@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:id="@+id/fl_ad"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--展示图片的-->
+    <ImageView
+        android:id="@+id/iv_img"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--腾讯广点通的广告视频播放器-->
+    <com.qq.e.ads.nativ.MediaView
+        android:id="@+id/gdt_media_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!--Top-->
+    <FrameLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_player_top_mask_bg"
+        android:layout_height="wrap_content">
+
+        <!-- 开发者自定义的倒计时 -->
+        <TextView
+            android:id="@+id/text_count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:paddingBottom="3dp"
+            android:layout_margin="13dp"
+            android:textColor="@android:color/white"
+            android:paddingLeft="10dp"
+            android:text="加载中..."
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:textSize="13sp" />
+
+    </FrameLayout>
+
+    <!--bottom-->
+    <FrameLayout
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_player_bottom_mask_bg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            tools:text="adfadfadfadsadfafadsfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdffadsf"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@android:color/white"
+            android:paddingBottom="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+    <include
+        android:layout_gravity="bottom|right"
+        android:layout_margin="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_ad_logo"/>
+
+</FrameLayout>
