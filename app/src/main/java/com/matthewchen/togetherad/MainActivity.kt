@@ -3,6 +3,7 @@ package com.matthewchen.togetherad
 import android.Manifest
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.rumtel.ad.AdHelperPreMovie
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.namee.permissiongen.PermissionFail
@@ -28,11 +29,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        PermissionGen.with(this)
+            .addRequestCode(100)
+            .permissions(
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            .request()
+    }
+
     /**
      * 权限申请成功
      */
     @PermissionSuccess(requestCode = 100)
     fun permissionSuccess() {
+        Log.e("ifmvo", "permissionSuccess")
         splashAd()
     }
 
@@ -41,24 +54,31 @@ class MainActivity : AppCompatActivity() {
      */
     @PermissionFail(requestCode = 100)
     fun permissionFail() {
+        Log.e("ifmvo", "permissionFail")
+        splashAd()
     }
 
     private fun splashAd() {
         //baidu:2,gdt:8
         AdHelperPreMovie.showAdPreMovie(this, "baidu:5,gdt:5", ll_ad, object : AdHelperPreMovie.AdListenerPreMovie {
             override fun onAdClick(channel: String) {
+                Log.e("ifmvo", "onAdClick")
             }
 
             override fun onAdFailed(failedMsg: String?) {
+                Log.e("ifmvo", "onAdFailed")
             }
 
             override fun onAdDismissed() {
+                Log.e("ifmvo", "onAdDismissed")
             }
 
             override fun onAdPrepared(channel: String) {
+                Log.e("ifmvo", "onAdPrepared")
             }
 
             override fun onStartRequest(channel: String) {
+                Log.e("ifmvo", "onStartRequest")
             }
         })
 

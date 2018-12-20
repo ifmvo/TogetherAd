@@ -17,12 +17,12 @@ import com.rumtel.ad.R;
  *
  * Created by Matthew_Chen on 2018/8/15.
  */
-public abstract class AdViewPreMovieBase extends FrameLayout{
+public abstract class AdViewPreMovieBase extends FrameLayout {
 
-    View      mRootView;
+    View mRootView;
     ImageView mIvImg;
-    TextView  mTextCountDown;
-    TextView  mTvDesc;
+    TextView mTextCountDown;
+    TextView mTvDesc;
 
     TimerCount mTimerCount;
 
@@ -30,8 +30,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
 
     public AdViewPreMovieListener adViewListener;
 
-    public AdViewPreMovieBase(@NonNull Context context)
-    {
+    public AdViewPreMovieBase(@NonNull Context context) {
         super(context);
         initView();
     }
@@ -46,7 +45,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
         initView();
     }
 
-    public void initView(){
+    public void initView() {
         mRootView = View.inflate(super.getContext(), R.layout.view_ad_pre_movie, this);
         mIvImg = mRootView.findViewById(R.id.iv_img);
         mTextCountDown = mRootView.findViewById(R.id.text_count_down);
@@ -56,7 +55,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
     /**
      * 开始计数
      */
-    protected void startTimerCount(long millisInFuture){
+    protected void startTimerCount(long millisInFuture) {
         cancelTimerCount();
         mTimerCount = new TimerCount(millisInFuture, 1000);
         mTimerCount.start();
@@ -68,20 +67,22 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
     /**
      * 取消计数
      */
-    protected void cancelTimerCount(){
-        if (mTimerCount != null){
+    protected void cancelTimerCount() {
+        if (mTimerCount != null) {
             mTimerCount.cancel();
         }
     }
 
-    public void setAdViewPreMovieListener(AdViewPreMovieListener adViewListener) {
+    public AdViewPreMovieBase setAdViewPreMovieListener(AdViewPreMovieListener adViewListener) {
         this.adViewListener = adViewListener;
+        return this;
     }
 
+    public abstract void start();
     /**
      * 监听回调
      */
-    public interface AdViewPreMovieListener{
+    public interface AdViewPreMovieListener {
 
         void onAdClick();
 
@@ -96,7 +97,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
      * 倒计时
      */
     @SuppressLint("DefaultLocale")
-    class TimerCount extends CountDownTimer{
+    class TimerCount extends CountDownTimer {
 
         TimerCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -111,7 +112,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
 
         @Override
         public void onFinish() {
-            if (mTimerCount != null){
+            if (mTimerCount != null) {
                 mTimerCount.cancel();
             }
             if (adViewListener != null) {
@@ -120,11 +121,11 @@ public abstract class AdViewPreMovieBase extends FrameLayout{
         }
     }
 
-    public void cancel(){
+    public void cancel() {
         cancelTimerCount();
     }
 
-    public void stop(){
+    public void stop() {
         stop = true;
     }
 

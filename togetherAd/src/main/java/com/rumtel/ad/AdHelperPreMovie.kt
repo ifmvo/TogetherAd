@@ -1,6 +1,7 @@
 package com.rumtel.ad
 
 import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.rumtel.ad.view.AdViewPreMovieBaidu
@@ -28,7 +29,12 @@ object AdHelperPreMovie {
         cancel()
     }
 
-    fun showAdPreMovie(activity: Activity, configPreMovie: String, adsParentLayout: ViewGroup?, adListener: AdListenerPreMovie?) {
+    fun showAdPreMovie(
+        activity: Activity,
+        configPreMovie: String,
+        adsParentLayout: ViewGroup?,
+        adListener: AdListenerPreMovie?
+    ) {
         cancel()
         this.mAdListener = adListener
         if (mAdListener == null) {
@@ -36,14 +42,16 @@ object AdHelperPreMovie {
         }
 
         if (adsParentLayout == null) {
-            adListener!!.onAdFailed("没有父容器")
+            adListener?.onAdFailed("没有父容器")
             return
         }
 
         startTimerTask(activity, adsParentLayout, adListener!!)
 
-        adsParentLayout.removeAllViews()
         adsParentLayout.visibility = View.VISIBLE
+        if (adsParentLayout.childCount > 0) {
+            adsParentLayout.removeAllViews()
+        }
 
         val randomAdName = AdRandomUtil.getRandomAdName(configPreMovie)
         when (randomAdName) {
@@ -63,10 +71,15 @@ object AdHelperPreMovie {
         adListener.onStartRequest(mChannel)
 
         val adView = weak?.get()
+
+        if (adView != null) {
+            adsParentLayout.addView(adView)
+        }
+
         adView?.setAdViewPreMovieListener(object : AdViewPreMovieBase.AdViewPreMovieListener {
             override fun onAdClick() {
 //                Log.e(tag, "前贴广告 $mChannel onAdClick")
-                mAdListener!!.onAdClick(mChannel)
+                mAdListener?.onAdClick(mChannel)
                 adsParentLayout.visibility = View.GONE
 
                 cancelTimerTask()
@@ -82,7 +95,12 @@ object AdHelperPreMovie {
                     AdConfig.GDT_AD_NAME -> {
                         newConfigPreMovie = configPreMovie.replace("gdt", AdConfig.MASK_NAME)
                     }
+                    else -> {
+                        mAdListener?.onAdFailed(failedMsg)
+                    }
                 }
+
+                Log.e("ifmvo", "线程：" + Thread.currentThread().name)
                 showAdPreMovie(activity, newConfigPreMovie, adsParentLayout, adListener)
 
                 cancelTimerTask()
@@ -90,7 +108,7 @@ object AdHelperPreMovie {
 
             override fun onAdDismissed() {
 //                Log.e(tag, "前贴广告 $mChannel onAdDismissed")
-                mAdListener!!.onAdDismissed()
+                mAdListener?.onAdDismissed()
                 adsParentLayout.visibility = View.GONE
 
                 cancelTimerTask()
@@ -98,16 +116,14 @@ object AdHelperPreMovie {
 
             override fun onAdPrepared() {
 //                Log.e(tag, "前贴广告 $mChannel onAdPrepared")
-                mAdListener!!.onAdPrepared(mChannel)
+                mAdListener?.onAdPrepared(mChannel)
                 adsParentLayout.visibility = View.VISIBLE
 
                 cancelTimerTask()
             }
-        })
+        })?.start()
 
-        if (adView != null) {
-            adsParentLayout.addView(adView)
-        }
+
     }
 
 
@@ -141,28 +157,29 @@ object AdHelperPreMovie {
      * 取消计时任务
      */
     private fun cancelTimerTask() {
-        if (timer != null) {
-            timer!!.cancel()
-        }
-        if (overTimerTask != null) {
-            overTimerTask!!.cancel()
-        }
+        timer?.cancel()
+        overTimerTask?.cancel()
     }
 
     /**
      * 开始计时任务
      */
-    private fun startTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdHelperPreMovie.AdListenerPreMovie) {
+    private fun startTimerTask(
+        activity: Activity,
+        adsParentLayout: ViewGroup,
+        adListener: AdHelperPreMovie.AdListenerPreMovie
+    ) {
         cancelTimerTask()
         timer = Timer()
         overTimerTask = OverTimerTask(activity, adsParentLayout, adListener)
-        timer!!.schedule(overTimerTask!!, 4000)
+        timer?.schedule(overTimerTask, 4000)
     }
 
     /**
      * 请求超时处理的任务
      */
-    internal class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) : TimerTask() {
+    internal class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) :
+        TimerTask() {
 
         private val weakReference: WeakReference<AdListenerPreMovie>?
         private val weakRefContext: WeakReference<Activity>?
@@ -175,14 +192,12 @@ object AdHelperPreMovie {
         }
 
         override fun run() {
-            if (weakReference?.get() != null && weakRefContext?.get() != null && weakRefView?.get() != null) {
-                weakRefContext.get()!!.runOnUiThread {
-                    weak?.get()?.cancel()
-                    weak?.get()?.stop()
-                    weak = null
-                    weakReference.get()!!.onAdFailed("超时了")
-                    weakRefView.get()!!.visibility = View.GONE
-                }
+            weakRefContext?.get()?.runOnUiThread {
+                weak?.get()?.cancel()
+                weak?.get()?.stop()
+                weak = null
+                weakReference?.get()?.onAdFailed("超时了")
+                weakRefView?.get()?.visibility = View.GONE
             }
         }
     }

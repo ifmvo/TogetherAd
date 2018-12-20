@@ -42,15 +42,15 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
     }
 
     @Override
-    public void initView() {
-        super.initView();
-
+    public void start() {
         BaiduNative baidu = new BaiduNative(super.getContext(), AdConfig.BAIDU_AD_PLAYER, new BaiduNative.BaiduNativeNetworkListener() {
 
             @Override
             public void onNativeFail(NativeErrorCode arg0) {
                 Log.w(TAG, "onNativeFail reason:" + arg0.name());
-                adViewListener.onAdFailed("onNativeFail reason:" + arg0.name());
+                if (adViewListener != null) {
+                    adViewListener.onAdFailed("onNativeFail reason:" + arg0.name());
+                }
             }
 
             @Override
@@ -61,7 +61,9 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                     mAd = arg0.get(0);
                     initAd();
                 } else {
-                    adViewListener.onAdFailed("没有广告了：百度");
+                    if (adViewListener != null) {
+                        adViewListener.onAdFailed("没有广告了：百度");
+                    }
                 }
 
             }
@@ -78,8 +80,11 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
         baidu.makeRequest(requestParameters);
     }
 
+
     private void initAd() {
         mTvDesc.setText(mAd.getTitle());
+        Log.e("ifmvo", "线程BAIDU：" + Thread.currentThread().getName());
+        Log.e("ifmvo", "mAd.getTitle():" + mAd.getTitle() + "mAd.getImageUrl():" + mAd.getImageUrl());
         if (!stop) {
             ILFactory.getLoader().load(super.getContext(), mIvImg, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
                 @Override
@@ -92,6 +97,9 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                         public void onClick(View view) {
                             // 点击响应
                             mAd.handleClick(view);
+                            if (adViewListener != null) {
+                                adViewListener.onAdClick();
+                            }
                         }
                     });
                     startTimerCount(6000);

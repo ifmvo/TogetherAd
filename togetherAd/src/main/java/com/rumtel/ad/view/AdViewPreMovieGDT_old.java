@@ -47,9 +47,7 @@ public class AdViewPreMovieGDT_old extends AdViewPreMovieBase {
     }
 
     @Override
-    public void initView() {
-        super.initView();
-
+    public void start() {
         NativeAD.NativeAdListener nativeAdListener = new NativeAD.NativeAdListener() {
             @Override
             public void onADLoaded(List<NativeADDataRef> adList) {
@@ -68,6 +66,9 @@ public class AdViewPreMovieGDT_old extends AdViewPreMovieBase {
                                 mRootView.setOnClickListener(new OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        if (adViewListener != null) {
+                                            adViewListener.onAdClick();
+                                        }
                                         mAD.onClicked(v);
                                     }
                                 });
@@ -84,7 +85,9 @@ public class AdViewPreMovieGDT_old extends AdViewPreMovieBase {
             @Override
             public void onNoAD(AdError adError) {
                 Log.e("ifmvo", "GDT:onNoAD:" + adError.getErrorMsg());
-                adViewListener.onAdFailed("没有广告了：" + adError.getErrorMsg());
+                if (adViewListener != null) {
+                    adViewListener.onAdFailed("没有广告了：" + adError.getErrorMsg());
+                }
             }
 
             @Override
@@ -94,7 +97,9 @@ public class AdViewPreMovieGDT_old extends AdViewPreMovieBase {
             @Override
             public void onADError(NativeADDataRef nativeADDataRef, AdError adError) {
                 Log.e("ifmvo", "GDT:onADError:" + adError.getErrorMsg());
-                adViewListener.onAdFailed(adError.getErrorMsg());
+                if (adViewListener != null) {
+                    adViewListener.onAdFailed(adError.getErrorMsg());
+                }
             }
         };
 
