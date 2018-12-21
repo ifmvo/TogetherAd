@@ -1,129 +1,97 @@
 package com.matthewchen.togetherad
 
-import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Toast
+import com.rumtel.ad.AdHelperInterstitial
 import com.rumtel.ad.AdHelperPreMovie
 import kotlinx.android.synthetic.main.activity_main.*
-import kr.co.namee.permissiongen.PermissionFail
-import kr.co.namee.permissiongen.PermissionGen
-import kr.co.namee.permissiongen.PermissionSuccess
 
 class MainActivity : AppCompatActivity() {
+
+    object MainAct {
+        fun action(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        PermissionGen.with(this)
-            .addRequestCode(100)
-            .permissions(
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            .request()
+        preMovieAd()
 
-        btn.setOnClickListener {
-            splashAd()
+        mBtnInter.setOnClickListener {
+            interstitialAd()
+        }
+
+        mBtnPreMoive.setOnClickListener {
+            preMovieAd()
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        PermissionGen.with(this)
-            .addRequestCode(100)
-            .permissions(
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            .request()
-    }
-
-    /**
-     * 权限申请成功
-     */
-    @PermissionSuccess(requestCode = 100)
-    fun permissionSuccess() {
-        Log.e("ifmvo", "permissionSuccess")
-        splashAd()
-    }
-
-    /**
-     * 权限申请失败
-     */
-    @PermissionFail(requestCode = 100)
-    fun permissionFail() {
-        Log.e("ifmvo", "permissionFail")
-        splashAd()
-    }
-
-    private fun splashAd() {
+    private fun preMovieAd() {
         //baidu:2,gdt:8
-        AdHelperPreMovie.showAdPreMovie(this, "baidu:5,gdt:5", ll_ad, object : AdHelperPreMovie.AdListenerPreMovie {
-            override fun onAdClick(channel: String) {
-                Log.e("ifmvo", "onAdClick")
-            }
+        AdHelperPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), ll_ad,
+            object : AdHelperPreMovie.AdListenerPreMovie {
+                override fun onAdClick(channel: String) {
+                    Log.e("ifmvo", "onAdClick")
+                }
 
-            override fun onAdFailed(failedMsg: String?) {
-                Log.e("ifmvo", "onAdFailed")
-            }
+                override fun onAdFailed(failedMsg: String?) {
+                    Log.e("ifmvo", "onAdFailed")
+                }
 
-            override fun onAdDismissed() {
-                Log.e("ifmvo", "onAdDismissed")
-            }
+                override fun onAdDismissed() {
+                    Log.e("ifmvo", "onAdDismissed")
+                }
 
-            override fun onAdPrepared(channel: String) {
-                Log.e("ifmvo", "onAdPrepared")
-            }
+                override fun onAdPrepared(channel: String) {
+                    Log.e("ifmvo", "onAdPrepared")
+                }
 
-            override fun onStartRequest(channel: String) {
-                Log.e("ifmvo", "onStartRequest")
-            }
-        })
+                override fun onStartRequest(channel: String) {
+                    Log.e("ifmvo", "onStartRequest")
+                }
+            })
+    }
 
-//        AdHelperInterstitial.showAdInterstitial(
-//            this,
-//            "baidu:5,gdt:5",
-//            false,
-//            ll_ad,
-//            object : AdHelperInterstitial.AdListenerInterstitial {
-//                override fun onStartRequest(channel: String?) {
-//                }
-//
-//                override fun onAdClick(channel: String?) {
-//                }
-//
-//                override fun onAdFailed(failedMsg: String?) {
-//                }
-//
-//                override fun onAdDismissed() {
-//                }
-//
-//                override fun onAdPrepared(channel: String?) {
-//                }
-//            })
-//        AdHelperSplashFull.showAdFull(this, "baidu:5,gdt:5", ll_ad, object : AdHelperSplashFull.AdListenerSplashFull {
-//            override fun onStartRequest(channel: String?) {
-//                Log.e("ifmvo", "onStartRequest" + channel)
-//            }
-//
-//            override fun onAdClick(channel: String?) {
-//                Log.e("ifmvo", channel)
-//            }
-//
-//            override fun onAdFailed(failedMsg: String?) {
-//                Log.e("ifmvo", "onAdFailed" + failedMsg)
-//            }
-//
-//            override fun onAdDismissed() {
-//                Log.e("ifmvo", "onAdDismissed")
-//            }
-//
-//            override fun onAdPrepared(channel: String?) {
-//                Log.e("ifmvo", "onAdPrepared" + channel)
-//            }
-//
-//        })
+    private fun interstitialAd() {
+        AdHelperInterstitial.showAdInterstitial(this, Config.interAdConfig(), false, mRlInterAd,
+            object : AdHelperInterstitial.AdListenerInterstitial {
+                override fun onStartRequest(channel: String?) {
+                }
+
+                override fun onAdClick(channel: String?) {
+                }
+
+                override fun onAdFailed(failedMsg: String?) {
+                }
+
+                override fun onAdDismissed() {
+                }
+
+                override fun onAdPrepared(channel: String?) {
+                }
+            })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AdHelperPreMovie.destroy()
+    }
+
+    private var lastTimeMillis: Long = 0
+    override fun finish() {
+        if (System.currentTimeMillis() - lastTimeMillis >= 1500) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
+            lastTimeMillis = System.currentTimeMillis()
+            return
+        }
+        super.finish()
     }
 }
