@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "cn.quicktv.androidpro"
+        applicationId "xxx"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
