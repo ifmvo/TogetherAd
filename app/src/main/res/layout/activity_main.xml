@@ -40,14 +40,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/mBtnPreMoive"
-                android:text="request 前贴"/>
+                android:text="前贴"/>
 
         <Button
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/mBtnInter"
-                android:text="request 插屏"/>
+                android:text="插屏"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="信息流"
+                android:id="@+id/mBtnFlow"
+                android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

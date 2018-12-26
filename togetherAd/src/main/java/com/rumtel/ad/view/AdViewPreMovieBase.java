@@ -23,6 +23,8 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     ImageView mIvImg;
     TextView mTextCountDown;
     TextView mTvDesc;
+    TextView mTvLogoCommon;
+    ImageView mIvAdLogo;
 
     TimerCount mTimerCount;
 
@@ -50,6 +52,8 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         mIvImg = mRootView.findViewById(R.id.iv_img);
         mTextCountDown = mRootView.findViewById(R.id.text_count_down);
         mTvDesc = mRootView.findViewById(R.id.tv_desc);
+        mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
+        mIvAdLogo = mRootView.findViewById(R.id.mIvAdLogo);
     }
 
     /**
@@ -78,7 +82,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         return this;
     }
 
-    public abstract void start();
+    public abstract void start(String locationId);
     /**
      * 监听回调
      */
@@ -91,6 +95,8 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         void onAdDismissed();
 
         void onAdPrepared();
+
+        void onExposured();
     }
 
     /**

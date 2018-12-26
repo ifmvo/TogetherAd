@@ -8,7 +8,7 @@ import android.provider.Settings
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.rumtel.ad.AdHelperSplashFull
+import com.rumtel.ad.helper.AdHelperSplash
 import kotlinx.android.synthetic.main.activity_splash.*
 import kr.co.namee.permissiongen.PermissionFail
 import kr.co.namee.permissiongen.PermissionGen
@@ -37,17 +37,6 @@ class SplashActivity : AppCompatActivity() {
             )
             .request()
 
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        PermissionGen.with(this)
-            .addRequestCode(100)
-            .permissions(
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            .request()
     }
 
     override fun onPause() {
@@ -124,31 +113,36 @@ class SplashActivity : AppCompatActivity() {
 
     private fun requestAd() {
         val splashConfigAd = Config.splashAdConfig()
-        AdHelperSplashFull.showAdFull(this, splashConfigAd, mFlAdContainer,
-            object : AdHelperSplashFull.AdListenerSplashFull {
-                override fun onStartRequest(channel: String?) {
-                    Log.e("ifmvo", "onStartRequest$channel")
+        AdHelperSplash.showAdFull(
+            this,
+            splashConfigAd,
+            TogetherAdConst.AD_SPLASH,
+            mFlAdContainer,
+            object : AdHelperSplash.AdListenerSplashFull {
+                override fun onStartRequest(channel: String) {
+                    Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
 
-                override fun onAdClick(channel: String?) {
-                    Log.e("ifmvo", channel)
+                override fun onAdClick(channel: String) {
                 }
 
                 override fun onAdFailed(failedMsg: String?) {
-                    Log.e("ifmvo", "onAdFailed:$failedMsg")
+                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
                     actionHome(2000)
                 }
 
                 override fun onAdDismissed() {
+                    Log.e("ifmvo", "onAdDismissed")
                     if (canJumpImmediately) {
                         actionHome(0)
                     }
                     canJumpImmediately = true
                 }
 
-                override fun onAdPrepared(channel: String?) {
-                    Log.e("ifmvo", "onAdPrepared$channel")
+                override fun onAdPrepared(channel: String) {
+                    Log.e("ifmvo", "onAdPrepared:channel:$channel")
                 }
+
             })
     }
 }

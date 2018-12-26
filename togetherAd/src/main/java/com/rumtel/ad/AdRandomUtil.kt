@@ -1,6 +1,6 @@
 package com.rumtel.ad
 
-import android.util.Log
+import com.rumtel.ad.other.logd
 
 /*
  * (●ﾟωﾟ●)
@@ -15,8 +15,6 @@ import android.util.Log
  */
 object AdRandomUtil {
 
-    const val tag = "ifmvo"
-
     /**
      * configStr : "baid:2,gdt:8"
      *
@@ -24,6 +22,7 @@ object AdRandomUtil {
      */
     fun getRandomAdName(configStr: String?): AdNameType {
 
+        logd("广告的配置：$configStr")
         if (configStr.isNullOrEmpty()) {
             return AdNameType.NO
         }
@@ -44,12 +43,15 @@ object AdRandomUtil {
                     if (keyStr.isNotEmpty() && valueStr.isNotEmpty()) {
                         //加到 list 里面 2 个 "baidu"
                         repeat(valueStr.toInt()) {
-                            when (keyStr.toUpperCase()) {
+                            when (keyStr) {
                                 AdNameType.BAIDU.type -> {
                                     list.add(AdNameType.BAIDU)
                                 }
                                 AdNameType.GDT.type -> {
                                     list.add(AdNameType.GDT)
+                                }
+                                AdNameType.XUNFEI.type -> {
+                                    list.add(AdNameType.XUNFEI)
                                 }
                                 else -> {
                                 }
@@ -65,7 +67,7 @@ object AdRandomUtil {
         }
 
         val adNameType = list[(getRandomInt(list.size)) - 1]
-        Log.e(tag, adNameType.type)
+        logd("随机到的广告: ${adNameType.type}")
         return adNameType
     }
 

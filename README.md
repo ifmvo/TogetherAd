@@ -2,7 +2,16 @@
 TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Lib
 
 ### 目前支持的广告
-腾讯广点通GDT、百度Mob
+
+开屏和插屏只有一种广告位
+- 开屏 Splash --> Baidu、GDT、XUNFEI
+- 插屏 Interstitial --> Baidu、GDT、XUNFEI
+
+信息流和前贴存在多种广告位
+- 信息流 List --> Baidu、GDT、XUNFEI
+首页信息流、点播信息流、Banner、热播信息流、搜索信息流、搜索短视频信息流、点播详情界面信息流、短视频头
+- 前贴 PreMovie --> Baidu、GDT、XUNFEI
+直播、点播、短视频
 
 ### 调用方法
 参数以及作用见相关类的注释即可
@@ -37,33 +46,6 @@ AdConfig.setAdConfigBaidu(new AdConfig.AdConfigBaiduId() {
 
     @Override
     public String BAIDU_AD_HOT() {
-        return "XXXXXXX";
-    }
-});
-
-AdConfig.setAdConfigTencent(new AdConfig.AdConfigGDTId() {
-    @Override
-    public String GDT_AD_APP_ID() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String GDT_AD_SPLASH() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String GDT_AD_INTER() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String GDT_AD_HOT() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String GDT_AD_PLAYER() {
         return "XXXXXXX";
     }
 });
@@ -121,5 +103,3 @@ AdHelperSplashFull.showAdFull(mContext, configSplash ?: "", mFlTopContainer, obj
 ......
 直到请求某个广告成功后停止 
 如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"
-
-> 目前开屏广告没有切源的逻辑（ 因为开屏时间太久影响用户的体验 ）

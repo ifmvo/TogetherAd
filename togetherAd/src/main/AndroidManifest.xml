@@ -7,11 +7,38 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application>
+
+        <!--
+            科大讯飞
+        -->
+        <meta-data android:name="IFLYTEK_APPKEY_AD" android:value="5c10c38c"/>
+        <service
+                android:name="com.iflytek.voiceads.update.DownloadService"
+                android:stopWithTask="true"/>
+        <activity
+                android:name="com.iflytek.voiceads.request.IFLYBrowser"
+                android:screenOrientation="portrait"/>
+        <provider
+                android:name=".other.IFlyFileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <!-- flie_paths 在 res 目录下，直接复制即可 -->
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"/>
+        </provider>
+
         <!--
             百度
         -->

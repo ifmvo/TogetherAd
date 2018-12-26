@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.rumtel.ad.AdHelperInterstitial
-import com.rumtel.ad.AdHelperPreMovie
+import com.rumtel.ad.helper.AdHelperFlow
+import com.rumtel.ad.helper.AdHelperInter
+import com.rumtel.ad.helper.AdHelperPreMovie
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         preMovieAd()
 
+        mBtnFlow.setOnClickListener {
+            flowAd()
+        }
+
         mBtnInter.setOnClickListener {
             interstitialAd()
         }
@@ -34,16 +39,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun flowAd() {
+        AdHelperFlow.getAdList(
+            this,
+            Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX, object : AdHelperFlow.AdListenerList {
+                override fun onAdFailed(failedMsg: String?) {
+                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
+                }
+
+                override fun onAdLoaded(channel: String, adList: List<*>) {
+                    Log.e("ifmvo", "onAdLoaded:channel:$channel")
+                }
+
+                override fun onStartRequest(channel: String) {
+                    Log.e("ifmvo", "onStartRequest:channel:$channel")
+                }
+
+            })
+    }
+
     private fun preMovieAd() {
         //baidu:2,gdt:8
-        AdHelperPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), ll_ad,
+        AdHelperPreMovie.showAdPreMovie(
+            this,
+            Config.preMoiveAdConfig(),
+            TogetherAdConst.AD_TIEPIAN_LIVE,
+            ll_ad,
             object : AdHelperPreMovie.AdListenerPreMovie {
                 override fun onAdClick(channel: String) {
-                    Log.e("ifmvo", "onAdClick")
                 }
 
                 override fun onAdFailed(failedMsg: String?) {
-                    Log.e("ifmvo", "onAdFailed")
+                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
                 }
 
                 override fun onAdDismissed() {
@@ -51,31 +78,42 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onAdPrepared(channel: String) {
-                    Log.e("ifmvo", "onAdPrepared")
+                    Log.e("ifmvo", "onAdPrepared:channel:$channel")
                 }
 
                 override fun onStartRequest(channel: String) {
-                    Log.e("ifmvo", "onStartRequest")
+                    Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
+
             })
     }
 
     private fun interstitialAd() {
-        AdHelperInterstitial.showAdInterstitial(this, Config.interAdConfig(), false, mRlInterAd,
-            object : AdHelperInterstitial.AdListenerInterstitial {
-                override fun onStartRequest(channel: String?) {
+        AdHelperInter.showAdInter(
+            this,
+            Config.interAdConfig(),
+            TogetherAdConst.AD_INTER,
+            false,
+            mRlInterAd,
+            object : AdHelperInter.AdListenerInter {
+                override fun onStartRequest(channel: String) {
+                    Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
 
-                override fun onAdClick(channel: String?) {
+                override fun onAdClick(channel: String) {
+                    Log.e("ifmvo", "onAdClick:channel:$channel")
                 }
 
                 override fun onAdFailed(failedMsg: String?) {
+                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
                 }
 
                 override fun onAdDismissed() {
+                    Log.e("ifmvo", "onAdDismissed")
                 }
 
-                override fun onAdPrepared(channel: String?) {
+                override fun onAdPrepared(channel: String) {
+                    Log.e("ifmvo", "onAdPrepared:channel:$channel")
                 }
             })
     }

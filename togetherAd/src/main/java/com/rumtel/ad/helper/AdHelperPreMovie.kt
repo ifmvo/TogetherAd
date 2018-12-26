@@ -1,12 +1,19 @@
-package com.rumtel.ad
+package com.rumtel.ad.helper
 
 import android.app.Activity
-import android.util.Log
+import android.support.annotation.NonNull
 import android.view.View
 import android.view.ViewGroup
+import com.rumtel.ad.AdNameType
+import com.rumtel.ad.AdRandomUtil
+import com.rumtel.ad.R
+import com.rumtel.ad.TogetherAd
+import com.rumtel.ad.other.logd
+import com.rumtel.ad.other.loge
 import com.rumtel.ad.view.AdViewPreMovieBaidu
 import com.rumtel.ad.view.AdViewPreMovieBase
-import com.rumtel.ad.view.AdViewPreMovieGDT_old
+import com.rumtel.ad.view.AdViewPreMovieGDT
+import com.rumtel.ad.view.AdViewPreMovieIXunFei
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -15,9 +22,8 @@ import java.util.*
  * 
  * Created by Matthew_Chen on 2018/8/17.
  */
-object AdHelperPreMovie {
+object AdHelperPreMovie : AdHelperBase {
 
-    const val tag = "AdHelperPreMovie"
     private var weak: WeakReference<AdViewPreMovieBase>? = null
     private var mAdListener: AdListenerPreMovie? = null
     private var mChannel: String = ""
@@ -30,23 +36,18 @@ object AdHelperPreMovie {
     }
 
     fun showAdPreMovie(
-        activity: Activity,
-        configPreMovie: String,
-        adsParentLayout: ViewGroup?,
-        adListener: AdListenerPreMovie?
+        @NonNull activity: Activity,
+        configPreMovie: String?,
+        @NonNull adConstStr: String,
+        @NonNull adsParentLayout: ViewGroup,
+        @NonNull adListener: AdListenerPreMovie
     ) {
+        startTimerTask(activity, adsParentLayout, adListener)
         cancel()
-        this.mAdListener = adListener
+        mAdListener = adListener
         if (mAdListener == null) {
             return
         }
-
-        if (adsParentLayout == null) {
-            adListener?.onAdFailed("没有父容器")
-            return
-        }
-
-        startTimerTask(activity, adsParentLayout, adListener!!)
 
         adsParentLayout.visibility = View.VISIBLE
         if (adsParentLayout.childCount > 0) {
@@ -61,8 +62,13 @@ object AdHelperPreMovie {
             AdNameType.GDT -> {
                 showAdPreMovieGDT(activity)
             }
+            AdNameType.XUNFEI -> {
+                showAdPreMovieIFly(activity)
+            }
             else -> {
-                adListener.onAdFailed("AdNameType.NO")
+                cancelTimerTask()
+                loge(activity.getString(R.string.all_ad_error))
+                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
                 adsParentLayout.visibility = View.GONE
                 return
             }
@@ -77,53 +83,72 @@ object AdHelperPreMovie {
         }
 
         adView?.setAdViewPreMovieListener(object : AdViewPreMovieBase.AdViewPreMovieListener {
+            override fun onExposured() {
+                logd("$mChannel: ${activity.getString(R.string.exposure)}")
+            }
+
             override fun onAdClick() {
-//                Log.e(tag, "前贴广告 $mChannel onAdClick")
                 mAdListener?.onAdClick(mChannel)
                 adsParentLayout.visibility = View.GONE
-
-                cancelTimerTask()
+                logd("$mChannel: ${activity.getString(R.string.clicked)}")
             }
 
             override fun onAdFailed(failedMsg: String) {
-//                Log.e(tag, "前贴广告 $mChannel 失败了:$failedMsg")
-                var newConfigPreMovie = ""
+                loge("$mChannel: $failedMsg")
+
+                var newConfigPreMovie: String? = null
                 when (mChannel) {
-                    AdConfig.BAIDU_AD_NAME -> {
-                        newConfigPreMovie = configPreMovie.replace("baidu", AdConfig.MASK_NAME)
+                    AdNameType.BAIDU.type -> {
+                        newConfigPreMovie = configPreMovie?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
                     }
-                    AdConfig.GDT_AD_NAME -> {
-                        newConfigPreMovie = configPreMovie.replace("gdt", AdConfig.MASK_NAME)
+                    AdNameType.GDT.type -> {
+                        newConfigPreMovie = configPreMovie?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                    }
+                    AdNameType.XUNFEI.type -> {
+                        newConfigPreMovie = configPreMovie?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                     }
                     else -> {
                         mAdListener?.onAdFailed(failedMsg)
                     }
                 }
 
-                Log.e("ifmvo", "线程：" + Thread.currentThread().name)
-                showAdPreMovie(activity, newConfigPreMovie, adsParentLayout, adListener)
-
-                cancelTimerTask()
+                showAdPreMovie(
+                    activity,
+                    newConfigPreMovie,
+                    adConstStr,
+                    adsParentLayout,
+                    adListener
+                )
             }
 
             override fun onAdDismissed() {
-//                Log.e(tag, "前贴广告 $mChannel onAdDismissed")
                 mAdListener?.onAdDismissed()
                 adsParentLayout.visibility = View.GONE
-
-                cancelTimerTask()
+                logd("$mChannel: ${activity.getString(R.string.dismiss)}")
             }
 
             override fun onAdPrepared() {
-//                Log.e(tag, "前贴广告 $mChannel onAdPrepared")
                 mAdListener?.onAdPrepared(mChannel)
                 adsParentLayout.visibility = View.VISIBLE
-
                 cancelTimerTask()
+                logd("$mChannel: ${activity.getString((R.string.prepared))}")
             }
-        })?.start()
+        })?.start(getLocationIdFromMap(adConstStr))
+    }
 
+    private fun getLocationIdFromMap(adConstStr: String): String? {
+        if (TogetherAd.idMapGDT[adConstStr]?.isNotEmpty() == true) {
+            return TogetherAd.idMapGDT[adConstStr]
+        }
 
+        if (TogetherAd.idMapBaidu[adConstStr]?.isNotEmpty() == true) {
+            return TogetherAd.idMapBaidu[adConstStr]
+        }
+
+        if (TogetherAd.idMapXunFei[adConstStr]?.isNotEmpty() == true) {
+            return TogetherAd.idMapXunFei[adConstStr]
+        }
+        return ""
     }
 
 
@@ -131,7 +156,7 @@ object AdHelperPreMovie {
      * 百度 Mob
      */
     private fun showAdPreMovieBaiduMob(activity: Activity) {
-        mChannel = AdConfig.BAIDU_AD_NAME
+        mChannel = AdNameType.BAIDU.type
         weak = WeakReference(AdViewPreMovieBaidu(activity))
     }
 
@@ -139,8 +164,16 @@ object AdHelperPreMovie {
      * 腾讯广点通
      */
     private fun showAdPreMovieGDT(activity: Activity) {
-        mChannel = AdConfig.GDT_AD_NAME
-        weak = WeakReference(AdViewPreMovieGDT_old(activity))
+        mChannel = AdNameType.GDT.type
+        weak = WeakReference(AdViewPreMovieGDT(activity))
+    }
+
+    /**
+     * 科大讯飞
+     */
+    private fun showAdPreMovieIFly(activity: Activity) {
+        mChannel = AdNameType.XUNFEI.type
+        weak = WeakReference(AdViewPreMovieIXunFei(activity))
     }
 
     private fun cancel() {
@@ -164,21 +197,17 @@ object AdHelperPreMovie {
     /**
      * 开始计时任务
      */
-    private fun startTimerTask(
-        activity: Activity,
-        adsParentLayout: ViewGroup,
-        adListener: AdHelperPreMovie.AdListenerPreMovie
-    ) {
+    private fun startTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) {
         cancelTimerTask()
         timer = Timer()
         overTimerTask = OverTimerTask(activity, adsParentLayout, adListener)
-        timer?.schedule(overTimerTask, 4000)
+        timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 
     /**
      * 请求超时处理的任务
      */
-    internal class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) :
+    private class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) :
         TimerTask() {
 
         private val weakReference: WeakReference<AdListenerPreMovie>?
@@ -196,7 +225,8 @@ object AdHelperPreMovie {
                 weak?.get()?.cancel()
                 weak?.get()?.stop()
                 weak = null
-                weakReference?.get()?.onAdFailed("超时了")
+                weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
+                loge(weakRefContext.get()?.getString(R.string.timeout))
                 weakRefView?.get()?.visibility = View.GONE
             }
         }

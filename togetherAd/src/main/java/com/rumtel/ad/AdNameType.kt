@@ -6,12 +6,15 @@ package com.rumtel.ad/*
 enum class AdNameType(val type : String) {
 
     //百度 Mob
-    BAIDU("BAIDU"),
+    BAIDU("baidu"),
 
     //腾讯的广点通
-    GDT("GDT"),
+    GDT("gdt"),
+
+    //科大讯飞
+    XUNFEI("xunfei"),
 
     //不展示
-    NO("NO")
+    NO("no")
 
 }

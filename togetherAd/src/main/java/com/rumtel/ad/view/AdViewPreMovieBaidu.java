@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import com.baidu.mobad.feeds.BaiduNative;
 import com.baidu.mobad.feeds.NativeErrorCode;
@@ -14,7 +13,6 @@ import com.baidu.mobad.feeds.RequestParameters;
 import com.ifmvo.imageloader.ILFactory;
 import com.ifmvo.imageloader.LoadListener;
 import com.ifmvo.imageloader.progress.LoaderOptions;
-import com.rumtel.ad.AdConfig;
 
 import java.util.List;
 
@@ -24,8 +22,6 @@ import java.util.List;
  * Created by Matthew_Chen on 2018/8/17.
  */
 public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
-
-    public final static String TAG = "AdViewPreMovieBaidu";
 
     private NativeResponse mAd;
 
@@ -42,12 +38,11 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
     }
 
     @Override
-    public void start() {
-        BaiduNative baidu = new BaiduNative(super.getContext(), AdConfig.BAIDU_AD_PLAYER, new BaiduNative.BaiduNativeNetworkListener() {
+    public void start(String locationId) {
+        BaiduNative baidu = new BaiduNative(super.getContext(), locationId, new BaiduNative.BaiduNativeNetworkListener() {
 
             @Override
             public void onNativeFail(NativeErrorCode arg0) {
-                Log.w(TAG, "onNativeFail reason:" + arg0.name());
                 if (adViewListener != null) {
                     adViewListener.onAdFailed("onNativeFail reason:" + arg0.name());
                 }
@@ -65,9 +60,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                         adViewListener.onAdFailed("没有广告了：百度");
                     }
                 }
-
             }
-
         });
 
         // 用户点击下载类广告时，是否弹出提示框让用户选择下载与否
@@ -83,8 +76,6 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
 
     private void initAd() {
         mTvDesc.setText(mAd.getTitle());
-        Log.e("ifmvo", "线程BAIDU：" + Thread.currentThread().getName());
-        Log.e("ifmvo", "mAd.getTitle():" + mAd.getTitle() + "mAd.getImageUrl():" + mAd.getImageUrl());
         if (!stop) {
             ILFactory.getLoader().load(super.getContext(), mIvImg, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
                 @Override
