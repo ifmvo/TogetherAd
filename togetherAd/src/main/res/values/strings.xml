@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">广告聚合</string>
-    <string name="all_ad_error">配置中的广告全部加载失败</string>
+    <string name="all_ad_error">配置中的广告全部加载失败，或配置中没有匹配的广告</string>
     <string name="timeout">超时了</string>
-    <string name="exposure">曝光了</string>
+    <string name="exposure">曝光成功了</string>
     <string name="prepared">准备好了</string>
     <string name="show">展示了</string>
     <string name="clicked">点击了</string>

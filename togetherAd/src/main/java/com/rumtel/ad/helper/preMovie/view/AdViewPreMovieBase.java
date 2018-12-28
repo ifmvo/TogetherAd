@@ -1,4 +1,4 @@
-package com.rumtel.ad.view;
+package com.rumtel.ad.helper.preMovie.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -112,7 +112,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         @Override
         public void onTick(long millisUntilFinished) {
             if (mTextCountDown != null) {
-                mTextCountDown.setText(String.format("广告剩余时间：%ds", millisUntilFinished / 1000));
+                mTextCountDown.setText(String.format("%d S", millisUntilFinished / 1000));
             }
         }
 

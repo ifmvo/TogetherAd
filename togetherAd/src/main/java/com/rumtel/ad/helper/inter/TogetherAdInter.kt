@@ -1,4 +1,4 @@
-package com.rumtel.ad.helper
+package com.rumtel.ad.helper.inter
 
 import android.app.Activity
 import android.support.annotation.NonNull
@@ -15,19 +15,20 @@ import com.iflytek.voiceads.IFLYInterstitialAd
 import com.qq.e.ads.interstitial.InterstitialAD
 import com.qq.e.ads.interstitial.InterstitialADListener
 import com.qq.e.comm.util.AdError
-import com.rumtel.ad.AdNameType
-import com.rumtel.ad.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
+import com.rumtel.ad.helper.AdBase
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
 
 /* 
- * (●ﾟωﾟ●)
+ * (●ﾟωﾟ●) 插屏的广告
  * 
  * Created by Matthew_Chen on 2018/12/26.
  */
-object AdHelperInter : AdHelperBase {
+object TogetherAdInter : AdBase {
 
     fun showAdInter(
         @NonNull activity: Activity,
@@ -102,7 +103,14 @@ object AdHelperInter : AdHelperBase {
 
             override fun onNoAD(error: AdError) {
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
                 loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
             }
 
@@ -172,7 +180,14 @@ object AdHelperInter : AdHelperBase {
 
             override fun onAdFailed(s: String) {
                 val newConfigStr = interConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
                 loge("${AdNameType.BAIDU.type}: $s")
             }
         })
@@ -208,7 +223,14 @@ object AdHelperInter : AdHelperBase {
 
             override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
                 val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
                 loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
             }
 

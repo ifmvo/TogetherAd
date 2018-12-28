@@ -1,6 +1,4 @@
-package com.rumtel.ad
-
-import com.rumtel.ad.other.logd
+package com.rumtel.ad.other
 
 /*
  * (●ﾟωﾟ●)

@@ -1,4 +1,4 @@
-package com.rumtel.ad.view;
+package com.rumtel.ad.helper.preMovie.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

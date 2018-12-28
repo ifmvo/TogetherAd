@@ -1,28 +1,29 @@
-package com.rumtel.ad.helper
+package com.rumtel.ad.helper.preMovie
 
 import android.app.Activity
 import android.support.annotation.NonNull
 import android.view.View
 import android.view.ViewGroup
-import com.rumtel.ad.AdNameType
-import com.rumtel.ad.AdRandomUtil
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
+import com.rumtel.ad.helper.AdBase
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
-import com.rumtel.ad.view.AdViewPreMovieBaidu
-import com.rumtel.ad.view.AdViewPreMovieBase
-import com.rumtel.ad.view.AdViewPreMovieGDT
-import com.rumtel.ad.view.AdViewPreMovieIXunFei
+import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBaidu
+import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBase
+import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieGDT
+import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieIXunFei
 import java.lang.ref.WeakReference
 import java.util.*
 
 /* 
- * (●ﾟωﾟ●)
+ * (●ﾟωﾟ●) 前贴的广告
  * 
  * Created by Matthew_Chen on 2018/8/17.
  */
-object AdHelperPreMovie : AdHelperBase {
+object TogetherAdPreMovie : AdBase {
 
     private var weak: WeakReference<AdViewPreMovieBase>? = null
     private var mAdListener: AdListenerPreMovie? = null
@@ -200,7 +201,8 @@ object AdHelperPreMovie : AdHelperBase {
     private fun startTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) {
         cancelTimerTask()
         timer = Timer()
-        overTimerTask = OverTimerTask(activity, adsParentLayout, adListener)
+        overTimerTask =
+                OverTimerTask(activity, adsParentLayout, adListener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 

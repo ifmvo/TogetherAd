@@ -1,4 +1,4 @@
-package com.rumtel.ad/*
+package com.rumtel.ad.other/*
  * (●ﾟωﾟ●)
  * 
  * Created by Matthew_Chen on 2018/8/23.

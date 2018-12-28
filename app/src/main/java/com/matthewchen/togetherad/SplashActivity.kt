@@ -8,7 +8,7 @@ import android.provider.Settings
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.rumtel.ad.helper.AdHelperSplash
+import com.rumtel.ad.helper.splash.TogetherAdSplash
 import kotlinx.android.synthetic.main.activity_splash.*
 import kr.co.namee.permissiongen.PermissionFail
 import kr.co.namee.permissiongen.PermissionGen
@@ -113,12 +113,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun requestAd() {
         val splashConfigAd = Config.splashAdConfig()
-        AdHelperSplash.showAdFull(
+        TogetherAdSplash.showAdFull(
             this,
             splashConfigAd,
             TogetherAdConst.AD_SPLASH,
             mFlAdContainer,
-            object : AdHelperSplash.AdListenerSplashFull {
+            object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }

@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
-import com.rumtel.ad.helper.AdHelperFlow
-import com.rumtel.ad.helper.AdHelperInter
-import com.rumtel.ad.helper.AdHelperPreMovie
+import com.rumtel.ad.helper.flow.TogetherAdFlow
+import com.rumtel.ad.helper.inter.TogetherAdInter
+import com.rumtel.ad.helper.preMovie.TogetherAdPreMovie
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,12 +37,13 @@ class MainActivity : AppCompatActivity() {
         mBtnPreMoive.setOnClickListener {
             preMovieAd()
         }
+
     }
 
     private fun flowAd() {
-        AdHelperFlow.getAdList(
+        TogetherAdFlow.getAdList(
             this,
-            Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX, object : AdHelperFlow.AdListenerList {
+            Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX, object : TogetherAdFlow.AdListenerList {
                 override fun onAdFailed(failedMsg: String?) {
                     Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
                 }
@@ -60,12 +61,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun preMovieAd() {
         //baidu:2,gdt:8
-        AdHelperPreMovie.showAdPreMovie(
+        TogetherAdPreMovie.showAdPreMovie(
             this,
             Config.preMoiveAdConfig(),
             TogetherAdConst.AD_TIEPIAN_LIVE,
             ll_ad,
-            object : AdHelperPreMovie.AdListenerPreMovie {
+            object : TogetherAdPreMovie.AdListenerPreMovie {
                 override fun onAdClick(channel: String) {
                 }
 
@@ -89,13 +90,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun interstitialAd() {
-        AdHelperInter.showAdInter(
+        TogetherAdInter.showAdInter(
             this,
             Config.interAdConfig(),
             TogetherAdConst.AD_INTER,
             false,
             mRlInterAd,
-            object : AdHelperInter.AdListenerInter {
+            object : TogetherAdInter.AdListenerInter {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
@@ -120,7 +121,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        AdHelperPreMovie.destroy()
+        TogetherAdPreMovie.destroy()
     }
 
     private var lastTimeMillis: Long = 0

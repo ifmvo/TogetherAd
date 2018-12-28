@@ -1,4 +1,4 @@
-package com.rumtel.ad.helper
+package com.rumtel.ad.helper.flow
 
 import android.app.Activity
 import android.support.annotation.NonNull
@@ -12,21 +12,22 @@ import com.iflytek.voiceads.NativeADDataRef
 import com.qq.e.ads.nativ.NativeMediaAD
 import com.qq.e.ads.nativ.NativeMediaADData
 import com.qq.e.comm.util.AdError
-import com.rumtel.ad.AdNameType
-import com.rumtel.ad.AdRandomUtil
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
+import com.rumtel.ad.helper.AdBase
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
 import java.lang.ref.WeakReference
 import java.util.*
 
 /* 
- * (●ﾟωﾟ●)
+ * (●ﾟωﾟ●) 信息流的广告
  * 
  * Created by Matthew_Chen on 2018/12/25.
  */
-object AdHelperFlow : AdHelperBase {
+object TogetherAdFlow : AdBase {
 
     private var timer: Timer? = null
     private var overTimerTask: OverTimerTask? = null
@@ -44,9 +45,24 @@ object AdHelperFlow : AdHelperBase {
 
         val randomAdName = AdRandomUtil.getRandomAdName(listConfigStr)
         when (randomAdName) {
-            AdNameType.BAIDU -> getAdListBaiduMob(activity, listConfigStr, adConstStr, adListener)
-            AdNameType.GDT -> getAdListTecentGDT(activity, listConfigStr, adConstStr, adListener)
-            AdNameType.XUNFEI -> getAdListIFly(activity, listConfigStr, adConstStr, adListener)
+            AdNameType.BAIDU -> getAdListBaiduMob(
+                activity,
+                listConfigStr,
+                adConstStr,
+                adListener
+            )
+            AdNameType.GDT -> getAdListTecentGDT(
+                activity,
+                listConfigStr,
+                adConstStr,
+                adListener
+            )
+            AdNameType.XUNFEI -> getAdListIFly(
+                activity,
+                listConfigStr,
+                adConstStr,
+                adListener
+            )
             else -> {
                 if (!stop) {
                     cancelTimerTask()
@@ -81,7 +97,12 @@ object AdHelperFlow : AdHelperBase {
                     if (!stop) {
                         cancelTimerTask()
                         val newListConfig = listConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
-                        getAdList(activity, newListConfig, adConstStr, adListener)
+                        getAdList(
+                            activity,
+                            newListConfig,
+                            adConstStr,
+                            adListener
+                        )
                         loge("${AdNameType.BAIDU.type}: nativeErrorCode: $nativeErrorCode")
                     }
                 }
@@ -188,7 +209,9 @@ object AdHelperFlow : AdHelperBase {
             }
         }
 
-        val nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], mListener)
+        val nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr],
+            mListener
+        )
         val count = 1 // 一次拉取的广告条数:范围 1-30(目前仅支持每次请求一条)
         nativeAd.loadAd(count)
 
@@ -218,7 +241,8 @@ object AdHelperFlow : AdHelperBase {
     private fun startTimerTask(activity: Activity, listener: AdListenerList) {
         cancelTimerTask()
         timer = Timer()
-        overTimerTask = OverTimerTask(activity, listener)
+        overTimerTask =
+                OverTimerTask(activity, listener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 
