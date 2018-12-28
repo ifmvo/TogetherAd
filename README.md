@@ -1,7 +1,5 @@
-![](img/logo.png)
-[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)  
+# TogetherAd (https://img.shields.io/badge/%E4%BD%9C%E8%80%85-%E9%99%88%E9%93%AD%E5%8D%93-yellowgreen.svg)](https://blog.csdn.net/ifmvo). 
 
-# TogetherAd
 TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Lib
 
 # 目前支持的广告
