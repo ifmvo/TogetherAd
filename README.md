@@ -1,7 +1,10 @@
-### TogetherAd
+![](https://user-images.githubusercontent.com/7698209/33198075-ef8f2230-d123-11e7-85a3-4cb9b22f877d.png)
+[![](https://jitpack.io/v/CymChad/BaseRecyclerViewAdapterHelper.svg)](https://jitpack.io/#CymChad/BaseRecyclerViewAdapterHelper)![](https://travis-ci.org/CymChad/BaseRecyclerViewAdapterHelper.svg?branch=master)[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-BaseRecyclerViewAdapterHelper-green.svg?style=true)](https://android-arsenal.com/details/1/3644)[![CircleCI](https://circleci.com/gh/CymChad/BaseRecyclerViewAdapterHelper/tree/master.svg?style=svg)](https://circleci.com/gh/CymChad/BaseRecyclerViewAdapterHelper/tree/master)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2302d0084d0048eaa0f9bac4350837a0)](https://www.codacy.com/app/CymChad/BaseRecyclerViewAdapterHelper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CymChad/BaseRecyclerViewAdapterHelper&amp;utm_campaign=Badge_Grade)[![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-%E9%99%88%E5%AE%87%E6%98%8E-7AD6FD.svg)](https://www.zhihu.com/people/chen-yu-ming-98/activities)  
+
+# TogetherAd
 TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Lib
 
-### 目前支持的广告
+# 目前支持的广告
 
 开屏和插屏只有一种广告位
 - 开屏 Splash --> Baidu、GDT、XUNFEI
@@ -13,7 +16,7 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 - 前贴 PreMovie --> Baidu、GDT、XUNFEI
 直播、点播、短视频
 
-### 调用方法
+# 调用方法
 参数以及作用见相关类的注释即可
 
 1. Lib 初始化操作
@@ -79,7 +82,7 @@ AdHelperSplashFull.showAdFull(mContext, configSplash ?: "", mFlTopContainer, obj
 })
 ```
 
-### 随机广告配置的规则
+# 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4" 
 
 1. 随机广告配置必须符合这样的格式
@@ -92,7 +95,7 @@ AdHelperSplashFull.showAdFull(mContext, configSplash ?: "", mFlTopContainer, obj
 "BAIDU:2,GDT:8" <==>  "baidu:2,gdt:8"
 "Baidu:2,Gdt:8" <==>  "baidu:2,gdt:8"
 
-### 广告切源的逻辑以及实际实现的方式
+# 广告切源的逻辑以及实际实现的方式
 假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ） 
 
 第一次随机到了 GDT，如果 GDT 请求失败，将 GDT 的 key 使用一个通用的字符串替换，再从其他的广告中再随机 
@@ -103,3 +106,20 @@ AdHelperSplashFull.showAdFull(mContext, configSplash ?: "", mFlTopContainer, obj
 ......
 直到请求某个广告成功后停止 
 如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"
+
+# License
+```
+Copyright 2018 陈铭卓
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
