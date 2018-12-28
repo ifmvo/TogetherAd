@@ -71,7 +71,10 @@ object TogetherAdInter : AdBase {
                 adIntersContainer,
                 adListener
             )
-            else -> adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+            else -> {
+                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                loge(activity.getString(R.string.all_ad_error))
+            }
         }
     }
 

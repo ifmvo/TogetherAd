@@ -12,11 +12,11 @@ import com.iflytek.voiceads.NativeADDataRef
 import com.qq.e.ads.nativ.NativeMediaAD
 import com.qq.e.ads.nativ.NativeMediaADData
 import com.qq.e.comm.util.AdError
-import com.rumtel.ad.other.AdNameType
-import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
 import com.rumtel.ad.helper.AdBase
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
 import java.lang.ref.WeakReference
@@ -67,6 +67,7 @@ object TogetherAdFlow : AdBase {
                 if (!stop) {
                     cancelTimerTask()
                     adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                    loge(activity.getString(R.string.all_ad_error))
                 }
             }
         }
