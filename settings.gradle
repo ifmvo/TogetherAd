@@ -1,1 +1,2 @@
-include ':app', ':togetherAd'
+include ':app'
+include ':togetherAd'
