@@ -21,24 +21,24 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 1. Lib 初始化操作
 ```
 Map<String, String> baiduIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "2543740");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "2543741");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "2715031");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "5985131");
-TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "ee93e58e", baiduIdMap);
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxx");
+TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "xxxxxx", baiduIdMap);
 
 Map<String, String> gdtIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "8030228893573270");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "4090620883979242");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "4010231735332811");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "4060449650093530");
-TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "1106572734", gdtIdMap);
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
+TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "xxxxxxxxxxxx", gdtIdMap);
 
 Map<String, String> iFlyIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "FD0AC8FDE5CE0B317A6C4077E68D34CC");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "6FD44C667D5EFD97730CC1E3F174D965");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "EE2009111A1DF0BCA9DAD3723A95602F");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "93D157AAFA8B7EF64165B1F0ECEE2623");
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
 TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
 ```
 
@@ -48,26 +48,26 @@ TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
 1. 初始化操作
 ```
 val baiduIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "2543740",
-    TogetherAdConst.AD_INTER to "2543741",
-    TogetherAdConst.AD_FLOW_INDEX to "2715031",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "5985131"
+    TogetherAdConst.AD_SPLASH to "xxxxxx",
+    TogetherAdConst.AD_INTER to "xxxxxx",
+    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
 )
-TogetherAd.initBaiduAd(applicationContext, "ee93e58e", baiduIdMap)
+TogetherAd.initBaiduAd(applicationContext, "xxxxxx", baiduIdMap)
 
 val gdtIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "8030228893573270",
-    TogetherAdConst.AD_INTER to "4090620883979242",
-    TogetherAdConst.AD_FLOW_INDEX to "4010231735332811",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "4060449650093530"
+    TogetherAdConst.AD_SPLASH to "xxxxxx",
+    TogetherAdConst.AD_INTER to "xxxxxx",
+    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
 )
-TogetherAd.initGDTAd(applicationContext, "1106572734", gdtIdMap)
+TogetherAd.initGDTAd(applicationContext, "xxxxxx", gdtIdMap)
 
 val xunFeiIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "FD0AC8FDE5CE0B317A6C4077E68D34CC",
-    TogetherAdConst.AD_INTER to "6FD44C667D5EFD97730CC1E3F174D965",
-    TogetherAdConst.AD_FLOW_INDEX to "EE2009111A1DF0BCA9DAD3723A95602F",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "93D157AAFA8B7EF64165B1F0ECEE2623"
+    TogetherAdConst.AD_SPLASH to "xxxxxx",
+    TogetherAdConst.AD_INTER to "xxxxxx",
+    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
 )
 TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
 ```
