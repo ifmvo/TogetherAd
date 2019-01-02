@@ -96,8 +96,12 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
     }
 })
 ```
-<a href="/img/img_splash.png?raw=true"><img src="/img/img_splash.png?raw=true" /></a><a href="/img/img_flow.png?raw=true"><img src="/img/img_flow.png" /></a>
-<a href="/img/img_pre_moive.png?raw=true"><img src="/img/img_pre_moive.png?raw=true" /></a><a href="/img/img_inter.png?raw=true"><img src="/img/img_inter.png" /></a>
+<div align="center">
+<img src="https://img-blog.csdnimg.cn/20190102131814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131608648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131901955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131931566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+</div>
 
 # 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
