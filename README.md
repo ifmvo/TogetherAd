@@ -104,23 +104,23 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
 "xxx:m,yyy:n,zzz:i"
 
 2. AdRandomUtil 这个类只会识别特定的 key （ 例：baidu、gdt、adview ）  
-"baidu:2,gdt:8" <==>  "baidu:2,gdt:8,abc:3"
+"baidu:2,gdt:8" <==>  "baidu:2,gdt:8,abc:3" （  abc 会被忽略 ）  
 
-3. key 不区分大小写  
-"BAIDU:2,GDT:8" <==>  "baidu:2,gdt:8"  
-"Baidu:2,Gdt:8" <==>  "baidu:2,gdt:8"  
+3. key 区分大小写  
+"BAIDU:2,GDT:8"  ≠  "baidu:2,gdt:8"  
+"Baidu:2,Gdt:8"  ≠  "baidu:2,gdt:8"  
 
 # 广告切源的逻辑以及实际实现的方式
-假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ） 
+假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ）   
 
-第一次随机到了 GDT，如果 GDT 请求失败，将 GDT 的 key 使用一个通用的字符串替换，再从其他的广告中再随机 
-此时的配置字符串："baidu:3,HIDE:3,adview:4"
+第一次随机到了 GDT，如果 GDT 请求失败，将 GDT 的 key 使用一个通用的字符串替换，再从其他的广告中再随机   
+此时的配置字符串："baidu:3,HIDE:3,adview:4"  
 
-第二次随机到了 BAIDU，如果 BAIDU 也请求失败了，将 BAIDU 的 key 使用一个通用的字符串替换，再从其他的广告中再随机  
-此时的配置字符串："HIDE:3,HIDE:3,adview:4"
-......
-直到请求某个广告成功后停止 
-如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"
+第二次随机到了 BAIDU，如果 BAIDU 也请求失败了，将 BAIDU 的 key 使用一个通用的字符串替换，再从其他的广告中再随机    
+此时的配置字符串："HIDE:3,HIDE:3,adview:4"  
+......  
+直到请求某个广告成功后停止   
+如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"  
 
 # License
 ```
