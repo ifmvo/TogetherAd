@@ -3,6 +3,14 @@
 
 TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Lib
 
+# 效果图
+<div align="center">
+<img src="https://img-blog.csdnimg.cn/20190102131814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131608648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131901955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="https://img-blog.csdnimg.cn/20190102131931566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+</div>
+
 # 目前支持的广告
 
 开屏和插屏只有一种广告位
@@ -96,12 +104,6 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
     }
 })
 ```
-<div align="center">
-<img src="https://img-blog.csdnimg.cn/20190102131814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131608648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131901955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131931566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-</div>
 
 # 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
