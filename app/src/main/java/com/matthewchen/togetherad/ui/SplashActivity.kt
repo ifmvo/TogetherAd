@@ -1,4 +1,4 @@
-package com.matthewchen.togetherad
+package com.matthewchen.togetherad.ui
 
 import android.Manifest
 import android.content.Intent
@@ -8,6 +8,9 @@ import android.provider.Settings
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.matthewchen.togetherad.R
+import com.matthewchen.togetherad.config.Config
+import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.helper.splash.TogetherAdSplash
 import kotlinx.android.synthetic.main.activity_splash.*
 import kr.co.namee.permissiongen.PermissionFail
@@ -137,7 +140,6 @@ class SplashActivity : AppCompatActivity() {
                 override fun onAdPrepared(channel: String) {
                     Log.e("ifmvo", "onAdPrepared:channel:$channel")
                 }
-
             })
     }
 }

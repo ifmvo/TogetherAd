@@ -1,34 +1,31 @@
-package com.matthewchen.togetherad
+package com.matthewchen.togetherad.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Toast
-import com.rumtel.ad.helper.flow.TogetherAdFlow
+import com.matthewchen.togetherad.R
+import com.matthewchen.togetherad.config.Config
+import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.helper.inter.TogetherAdInter
 import com.rumtel.ad.helper.preMovie.TogetherAdPreMovie
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_detail.*
 
-class MainActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity() {
 
-    object MainAct {
+    object DetailAct {
         fun action(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, DetailActivity::class.java)
             context.startActivity(intent)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_detail)
 
         preMovieAd()
-
-        mBtnFlow.setOnClickListener {
-            flowAd()
-        }
 
         mBtnInter.setOnClickListener {
             interstitialAd()
@@ -38,25 +35,6 @@ class MainActivity : AppCompatActivity() {
             preMovieAd()
         }
 
-    }
-
-    private fun flowAd() {
-        TogetherAdFlow.getAdList(
-            this,
-            Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX, object : TogetherAdFlow.AdListenerList {
-                override fun onAdFailed(failedMsg: String?) {
-                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
-                }
-
-                override fun onAdLoaded(channel: String, adList: List<*>) {
-                    Log.e("ifmvo", "onAdLoaded:channel:$channel")
-                }
-
-                override fun onStartRequest(channel: String) {
-                    Log.e("ifmvo", "onStartRequest:channel:$channel")
-                }
-
-            })
     }
 
     private fun preMovieAd() {
@@ -122,15 +100,5 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TogetherAdPreMovie.destroy()
-    }
-
-    private var lastTimeMillis: Long = 0
-    override fun finish() {
-        if (System.currentTimeMillis() - lastTimeMillis >= 1500) {
-            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
-            lastTimeMillis = System.currentTimeMillis()
-            return
-        }
-        super.finish()
     }
 }

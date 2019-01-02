@@ -1,4 +1,4 @@
-package com.matthewchen.togetherad
+package com.matthewchen.togetherad.config
 
 /* 
  * (●ﾟωﾟ●)

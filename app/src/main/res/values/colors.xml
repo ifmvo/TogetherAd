@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorPrimary">@color/c_theme</color>
+    <color name="colorPrimaryDark">@color/c_theme</color>
+    <color name="colorAccent">@color/c_theme</color>
+
+    <color name="c_theme">#eded00</color>
+    <color name="c_yellow">#ffc500</color>      <!-- 功能色 -->
+    <color name="c_blue">#3b9cfe</color>        <!-- 功能色 -->
+    <color name="c_red">#fe5a63</color>         <!-- 功能色 -->
+    <color name="c_white">#f5f5f5</color>       <!-- 所有界面背景、线 -->
+    <color name="c_white_transparent_50">#88f5f5f5</color>       <!-- 百分之50的白色 -->
+    <color name="c_white_transparent_80">#d8f5f5f5</color>       <!-- 百分之80的白色 -->
+    <color name="c_txt_2">#a9b2b0</color>       <!-- 所有二级文字颜色 -->
+    <color name="c_txt_1">#505050</color>       <!-- 所有一级文字颜色 -->
+
+    <color name="c_black_transparent_80">#dd000000</color>       <!-- 不透明度 80% 黑 -->
+    <color name="c_black_transparent_50">#7d000000</color>       <!-- 不透明度 30% 黑 -->
+    <color name="c_transparent">#00000000</color> <!-- 完全透明 -->
+
 </resources>
