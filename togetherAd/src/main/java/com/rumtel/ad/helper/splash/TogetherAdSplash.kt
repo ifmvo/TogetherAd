@@ -20,11 +20,11 @@ import com.ifmvo.imageloader.progress.LoaderOptions
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
-import com.rumtel.ad.other.AdNameType
-import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
 import com.rumtel.ad.helper.AdBase
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
 import java.lang.ref.WeakReference

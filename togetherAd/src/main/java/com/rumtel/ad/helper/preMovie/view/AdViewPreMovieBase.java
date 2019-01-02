@@ -83,6 +83,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     }
 
     public abstract void start(String locationId);
+
     /**
      * 监听回调
      */

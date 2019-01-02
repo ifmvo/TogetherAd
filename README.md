@@ -15,84 +15,100 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 - 前贴 PreMovie --> Baidu、GDT、XUNFEI
 直播、点播、短视频
 
-# 调用方法
+# Java 调用姿势
 参数以及作用见相关类的注释即可
 
 1. Lib 初始化操作
 ```
-AdConfig.init(instance);
+Map<String, String> baiduIdMap = new HashMap<>();
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "2543740");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "2543741");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "2715031");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "5985131");
+TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "ee93e58e", baiduIdMap);
+
+Map<String, String> gdtIdMap = new HashMap<>();
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "8030228893573270");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "4090620883979242");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "4010231735332811");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "4060449650093530");
+TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "1106572734", gdtIdMap);
+
+Map<String, String> iFlyIdMap = new HashMap<>();
+baiduIdMap.put(TogetherAdConst.AD_SPLASH, "FD0AC8FDE5CE0B317A6C4077E68D34CC");
+baiduIdMap.put(TogetherAdConst.AD_INTER, "6FD44C667D5EFD97730CC1E3F174D965");
+baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "EE2009111A1DF0BCA9DAD3723A95602F");
+baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "93D157AAFA8B7EF64165B1F0ECEE2623");
+TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
 ```
 
-2. 配置各个广告的 ID 和 位ID
+
+# Kotlin 的调用姿势
+
+1. 初始化操作
 ```
-AdConfig.setAdConfigBaidu(new AdConfig.AdConfigBaiduId() {
-    @Override
-    public String BAIDU_AD_APP_ID() {
-        return "XXXXXXX";
-    }
+val baiduIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "2543740",
+    TogetherAdConst.AD_INTER to "2543741",
+    TogetherAdConst.AD_FLOW_INDEX to "2715031",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "5985131"
+)
+TogetherAd.initBaiduAd(applicationContext, "ee93e58e", baiduIdMap)
 
-    @Override
-    public String BAIDU_AD_SPLASH() {
-        return "XXXXXXX";
-    }
+val gdtIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "8030228893573270",
+    TogetherAdConst.AD_INTER to "4090620883979242",
+    TogetherAdConst.AD_FLOW_INDEX to "4010231735332811",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "4060449650093530"
+)
+TogetherAd.initGDTAd(applicationContext, "1106572734", gdtIdMap)
 
-    @Override
-    public String BAIDU_AD_INTER() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String BAIDU_AD_PLAYER() {
-        return "XXXXXXX";
-    }
-
-    @Override
-    public String BAIDU_AD_HOT() {
-        return "XXXXXXX";
-    }
-});
+val xunFeiIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "FD0AC8FDE5CE0B317A6C4077E68D34CC",
+    TogetherAdConst.AD_INTER to "6FD44C667D5EFD97730CC1E3F174D965",
+    TogetherAdConst.AD_FLOW_INDEX to "EE2009111A1DF0BCA9DAD3723A95602F",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "93D157AAFA8B7EF64165B1F0ECEE2623"
+)
+TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
 ```
 
-3. 开屏广告的调用方法
+2. 开屏广告的调用方法
 ```
-AdHelperSplashFull.showAdFull(mContext, configSplash ?: "", mFlTopContainer, object : AdHelperSplashFull.AdListenerSplashFull {
+TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
     override fun onStartRequest(channel: String) {
-        ClickEvent.adPolyRequest(mContext, "开屏", channel)
+        //开始请求广告之前，channel：gdt、baidu、xunfei
     }
 
     override fun onAdClick(channel: String) {
-        ClickEvent.adPolyClick(mContext, "开屏", channel)
+        //广告被点击之后，channel：gdt、baidu、xunfei
     }
 
     override fun onAdFailed(failedMsg: String?) {
-        actionHome(2000)
+        //广告加载失败
     }
 
     override fun onAdDismissed() {
-        if (canJumpImmediately) {
-            actionHome(0)
-        }
-        canJumpImmediately = true
+        //广告倒计时消失
     }
 
     override fun onAdPrepared(channel: String) {
-        ClickEvent.adPolyShow(mContext, "开屏", channel)
+        //广告请求成功，准备展示，channel：gdt、baidu、xunfei
     }
 })
 ```
 
 # 随机广告配置的规则
-假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4" 
+假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
 
-1. 随机广告配置必须符合这样的格式
+1. 随机广告配置必须符合这样的格式  
 "xxx:m,yyy:n,zzz:i"
 
-2. AdRandomUtil 这个类只会识别特定的 key （ 例：baidu、gdt、adview ）
+2. AdRandomUtil 这个类只会识别特定的 key （ 例：baidu、gdt、adview ）  
 "baidu:2,gdt:8" <==>  "baidu:2,gdt:8,abc:3"
 
-3. key 不区分大小写
-"BAIDU:2,GDT:8" <==>  "baidu:2,gdt:8"
-"Baidu:2,Gdt:8" <==>  "baidu:2,gdt:8"
+3. key 不区分大小写  
+"BAIDU:2,GDT:8" <==>  "baidu:2,gdt:8"  
+"Baidu:2,Gdt:8" <==>  "baidu:2,gdt:8"  
 
 # 广告切源的逻辑以及实际实现的方式
 假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ） 
