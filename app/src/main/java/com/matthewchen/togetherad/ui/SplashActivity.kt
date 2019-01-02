@@ -11,6 +11,7 @@ import android.util.Log
 import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
+import com.matthewchen.togetherad.utils.Kits
 import com.rumtel.ad.helper.splash.TogetherAdSplash
 import kotlinx.android.synthetic.main.activity_splash.*
 import kr.co.namee.permissiongen.PermissionFail
@@ -31,6 +32,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Kits.StatuBar.immersive(this)
+        Kits.StatuBar.darkMode(this)
+        Kits.StatuBar.setPaddingSmart(this, mFlAdContainer)
 
         PermissionGen.with(this)
             .addRequestCode(100)
@@ -116,7 +121,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun requestAd() {
         val splashConfigAd = Config.splashAdConfig()
-        TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
+        TogetherAdSplash.showAdFull(
+            this,
+            splashConfigAd,
+            TogetherAdConst.AD_SPLASH,
+            mFlAdContainer,
+            object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.matthewchen.togetherad.R
+import com.matthewchen.togetherad.utils.Kits
 
 /* 
  * (●ﾟωﾟ●)
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Kits.StatuBar.immersive(this)
 
         setContentView(R.layout.activity_main)
 
