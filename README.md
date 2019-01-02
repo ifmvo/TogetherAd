@@ -96,8 +96,8 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
     }
 })
 ```
-![开屏广告](/img/img_splash.png)![列表广告](/img/img_flow.png)
-![前贴广告](/img/img_pre_moive.png)![插屏广告](/img/img_inter.png)
+<a href="/img/img_splash.png?raw=true"><img src="/img/img_splash.png?raw=true" /></a><a href="/img/img_flow.png?raw=true"><img src="/img/img_flow.png" /></a>
+<a href="/img/img_pre_moive.png?raw=true"><img src="/img/img_pre_moive.png?raw=true" /></a><a href="/img/img_inter.png?raw=true"><img src="/img/img_inter.png" /></a>
 
 # 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
