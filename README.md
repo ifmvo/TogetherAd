@@ -11,19 +11,12 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 <img src="https://img-blog.csdnimg.cn/20190102131931566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
 </div>
 
-# 目前支持的广告
+# 使用方法
+```
+implementation 'com.github.ifmvo:TogetherAd:1.0.2'
+```
 
-开屏和插屏只有一种广告位
-- 开屏 Splash --> Baidu、GDT、XUNFEI
-- 插屏 Interstitial --> Baidu、GDT、XUNFEI
-
-信息流和前贴存在多种广告位
-- 信息流 List --> Baidu、GDT、XUNFEI
-首页信息流、点播信息流、Banner、热播信息流、搜索信息流、搜索短视频信息流、点播详情界面信息流、短视频头
-- 前贴 PreMovie --> Baidu、GDT、XUNFEI
-直播、点播、短视频
-
-# Java 调用姿势
+### Java 调用姿势
 参数以及作用见相关类的注释即可
 
 1. Lib 初始化操作
@@ -50,8 +43,7 @@ baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
 TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
 ```
 
-
-# Kotlin 的调用姿势
+### Kotlin 的调用姿势
 
 1. 初始化操作
 ```
@@ -104,6 +96,10 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
     }
 })
 ```
+
+
+# 目前支持的广告
+百度Mob、腾讯GDT、科大讯飞
 
 # 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
