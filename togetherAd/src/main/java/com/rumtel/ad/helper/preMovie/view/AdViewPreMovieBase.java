@@ -113,7 +113,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         @Override
         public void onTick(long millisUntilFinished) {
             if (mTextCountDown != null) {
-                mTextCountDown.setText(String.format("%d S", millisUntilFinished / 1000));
+                mTextCountDown.setText(String.format("%d s", millisUntilFinished / 1000));
             }
         }
 

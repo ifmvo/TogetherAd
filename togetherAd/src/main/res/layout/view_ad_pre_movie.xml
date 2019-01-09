@@ -26,14 +26,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|end"
-            android:paddingBottom="1dp"
             android:layout_margin="13dp"
             android:textColor="@android:color/white"
             android:paddingLeft="10dp"
             android:text="加载中..."
             android:background="@drawable/shape_pre_movie_time"
             android:paddingRight="10dp"
-            android:paddingTop="1dp"
             android:textSize="13sp"/>
 
     <!--bottom-->

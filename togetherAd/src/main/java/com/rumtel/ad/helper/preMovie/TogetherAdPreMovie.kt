@@ -4,17 +4,17 @@ import android.app.Activity
 import android.support.annotation.NonNull
 import android.view.View
 import android.view.ViewGroup
-import com.rumtel.ad.other.AdNameType
-import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
 import com.rumtel.ad.helper.AdBase
-import com.rumtel.ad.other.logd
-import com.rumtel.ad.other.loge
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBaidu
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBase
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieGDT
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieIXunFei
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.AdRandomUtil
+import com.rumtel.ad.other.logd
+import com.rumtel.ad.other.loge
 import java.lang.ref.WeakReference
 import java.util.*
 
