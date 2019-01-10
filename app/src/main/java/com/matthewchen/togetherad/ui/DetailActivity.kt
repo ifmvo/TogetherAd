@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.baidu.mobads.InterstitialAd
 import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
@@ -21,18 +22,18 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    lateinit var interAd: InterstitialAd
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        preMovieAd()
+        mBtnPreMoive.setOnClickListener {
+            preMovieAd()
+        }
 
         mBtnInter.setOnClickListener {
             interstitialAd()
-        }
-
-        mBtnPreMoive.setOnClickListener {
-            preMovieAd()
         }
 
     }
@@ -63,11 +64,38 @@ class DetailActivity : AppCompatActivity() {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
-
             })
     }
 
     private fun interstitialAd() {
+
+//        val adPlaceId = "2543741" // 重要：请填上您的广告位ID，代码位错误会导致无法请求到广告
+//        interAd = InterstitialAd(this, adPlaceId)
+//        interAd.setListener(object : InterstitialAdListener {
+//
+//            override fun onAdClick(arg0: InterstitialAd) {
+//                Log.i("InterstitialAd", "onAdClick")
+//            }
+//
+//            override fun onAdDismissed() {
+//                Log.i("InterstitialAd", "onAdDismissed")
+//            }
+//
+//            override fun onAdFailed(arg0: String) {
+//                Log.i("InterstitialAd", "onAdFailed")
+//            }
+//
+//            override fun onAdPresent() {
+//                Log.i("InterstitialAd", "onAdPresent")
+//            }
+//
+//            override fun onAdReady() {
+//                Log.i("InterstitialAd", "onAdReady")
+//                interAd.showAd(this@DetailActivity)
+//            }
+//        })
+
+
         TogetherAdInter.showAdInter(
             this,
             Config.interAdConfig(),

@@ -72,8 +72,8 @@ object TogetherAdInter : AdBase {
                 adListener
             )
             else -> {
-                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
                 loge(activity.getString(R.string.all_ad_error))
+                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
             }
         }
     }
@@ -100,11 +100,12 @@ object TogetherAdInter : AdBase {
         val iad = InterstitialAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr])
         iad.setADListener(object : InterstitialADListener {
             override fun onADReceive() {
-                iad.show()
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.show)}")
+                iad.show()
             }
 
             override fun onNoAD(error: AdError) {
+                loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                 showAdInter(
                     activity,
@@ -114,19 +115,18 @@ object TogetherAdInter : AdBase {
                     adIntersContainer,
                     adListener
                 )
-                loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
             }
 
             override fun onADOpened() {}
 
             override fun onADExposure() {
-                adListener.onAdPrepared(AdNameType.GDT.type)
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
+                adListener.onAdPrepared(AdNameType.GDT.type)
             }
 
             override fun onADClicked() {
-                adListener.onAdClick(AdNameType.GDT.type)
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+                adListener.onAdClick(AdNameType.GDT.type)
             }
 
             override fun onADLeftApplication() {}
@@ -152,36 +152,31 @@ object TogetherAdInter : AdBase {
 
         val interAd = InterstitialAd(activity, AdSize.InterstitialForVideoPausePlay, TogetherAd.idMapBaidu[adConstStr])
 
-        val dm = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(dm)
-
-        val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
-        interAd.loadAdForVideoApp(n, (n * 0.8).toInt())
         interAd.setListener(object : InterstitialAdListener {
             override fun onAdReady() {
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.show)}")
                 adIntersContainer.visibility = View.VISIBLE
                 interAd.showAdInParentForVideoApp(activity, adIntersContainer)
-                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.show)}")
             }
 
             override fun onAdPresent() {
-                adListener.onAdPrepared(AdNameType.BAIDU.type)
                 logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
+                adListener.onAdPrepared(AdNameType.BAIDU.type)
             }
 
             override fun onAdClick(interstitialAd: InterstitialAd) {
-                adListener.onAdClick(AdNameType.BAIDU.type)
                 logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.clicked)}")
+                adListener.onAdClick(AdNameType.BAIDU.type)
             }
 
             override fun onAdDismissed() {
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
                 adIntersContainer.visibility = View.GONE
                 adListener.onAdDismissed()
-                interAd.loadAd()
-                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
             }
 
             override fun onAdFailed(s: String) {
+                loge("${AdNameType.BAIDU.type}: $s")
                 val newConfigStr = interConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
                 showAdInter(
                     activity,
@@ -191,9 +186,18 @@ object TogetherAdInter : AdBase {
                     adIntersContainer,
                     adListener
                 )
-                loge("${AdNameType.BAIDU.type}: $s")
             }
         })
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(dm)
+
+        val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+        interAd.loadAdForVideoApp(n, (n * 0.8).toInt())
+
+        adIntersContainer.postDelayed({
+            interAd.loadAdForVideoApp(n, (n * 0.8).toInt())
+        }, 1000)
+
     }
 
     private fun showAdInterIFLY(
@@ -219,12 +223,13 @@ object TogetherAdInter : AdBase {
             override fun onCancel() {}
 
             override fun onAdReceive() {
+                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
                 interstitialAd.showAd()
                 adListener.onAdPrepared(AdNameType.XUNFEI.type)
-                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
             }
 
             override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
+                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
                 val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                 showAdInter(
                     activity,
@@ -234,12 +239,11 @@ object TogetherAdInter : AdBase {
                     adIntersContainer,
                     adListener
                 )
-                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
             }
 
             override fun onAdClick() {
-                adListener.onAdClick(AdNameType.XUNFEI.type)
                 logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.clicked)}")
+                adListener.onAdClick(AdNameType.XUNFEI.type)
             }
 
             override fun onAdClose() {}
