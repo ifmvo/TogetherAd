@@ -66,7 +66,9 @@ object TogetherAdFlow : AdBase {
             else -> {
                 if (!stop) {
                     cancelTimerTask()
-                    adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                    activity.runOnUiThread {
+                        adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                    }
                     loge(activity.getString(R.string.all_ad_error))
                 }
             }
@@ -89,7 +91,9 @@ object TogetherAdFlow : AdBase {
                 override fun onNativeLoad(list: List<NativeResponse>) {
                     if (!stop) {
                         cancelTimerTask()
-                        adListener.onAdLoaded(AdNameType.BAIDU.type, list)
+                        activity.runOnUiThread {
+                            adListener.onAdLoaded(AdNameType.BAIDU.type, list)
+                        }
                         logd("${AdNameType.BAIDU.type}: list.size: " + list.size)
                     }
                 }
@@ -131,7 +135,9 @@ object TogetherAdFlow : AdBase {
             override fun onADLoaded(adList: List<NativeMediaADData>) {
                 if (!stop) {
                     cancelTimerTask()
-                    adListener.onAdLoaded(AdNameType.GDT.type, adList)
+                    activity.runOnUiThread {
+                        adListener.onAdLoaded(AdNameType.GDT.type, adList)
+                    }
                     logd("${AdNameType.GDT.type}: list.size: " + adList.size)
                 }
             }
@@ -195,7 +201,9 @@ object TogetherAdFlow : AdBase {
             override fun onADLoaded(list: List<NativeADDataRef>) {
                 if (!stop) {
                     cancelTimerTask()
-                    adListener.onAdLoaded(AdNameType.XUNFEI.type, list)
+                    activity.runOnUiThread {
+                        adListener.onAdLoaded(AdNameType.XUNFEI.type, list)
+                    }
                     logd("${AdNameType.XUNFEI.type}: list.size: " + list.size)
                 }
             }
@@ -210,7 +218,8 @@ object TogetherAdFlow : AdBase {
             }
         }
 
-        val nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr],
+        val nativeAd = IFLYNativeAd(
+            activity, TogetherAd.idMapXunFei[adConstStr],
             mListener
         )
         val count = 1 // 一次拉取的广告条数:范围 1-30(目前仅支持每次请求一条)

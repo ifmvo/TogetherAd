@@ -126,6 +126,10 @@ TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFl
 直到请求某个广告成功后停止   
 如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"  
 
+# 计划功能
+1. 提供自定义前贴广告的布局功能
+2. 可选择性添加广点通、百度、科大讯飞的广告
+
 # License
 ```
 Copyright 2018 陈铭卓

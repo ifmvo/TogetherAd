@@ -39,12 +39,13 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
 
     @Override
     public void start(String locationId) {
+
         BaiduNative baidu = new BaiduNative(super.getContext(), locationId, new BaiduNative.BaiduNativeNetworkListener() {
 
             @Override
             public void onNativeFail(NativeErrorCode arg0) {
                 if (adViewListener != null) {
-                    adViewListener.onAdFailed("onNativeFail reason:" + arg0.name());
+                    adViewListener.onAdFailed("onNativeFail reason:" + arg0.toString());
                 }
             }
 

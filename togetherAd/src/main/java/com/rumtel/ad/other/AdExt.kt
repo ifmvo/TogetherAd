@@ -2,6 +2,7 @@ package com.rumtel.ad.other
 
 import android.util.Log
 import com.rumtel.ad.helper.AdBase
+import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBase
 
 /* 
  * (●ﾟωﾟ●)
@@ -21,5 +22,13 @@ internal fun AdRandomUtil.logd(msg: String?) {
 }
 
 internal fun AdRandomUtil.loge(msg: String?) {
+    Log.e("TogetherAd", "${this.javaClass.simpleName}: $msg")
+}
+
+internal fun AdViewPreMovieBase.logd(msg: String?) {
+    Log.e("TogetherAd", "${this.javaClass.simpleName}: $msg")
+}
+
+internal fun AdViewPreMovieBase.loge(msg: String?) {
     Log.e("TogetherAd", "${this.javaClass.simpleName}: $msg")
 }

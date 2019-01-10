@@ -138,18 +138,21 @@ object TogetherAdPreMovie : AdBase {
     }
 
     private fun getLocationIdFromMap(adConstStr: String): String? {
-        if (TogetherAd.idMapGDT[adConstStr]?.isNotEmpty() == true) {
-            return TogetherAd.idMapGDT[adConstStr]
+        return when (mChannel) {
+            AdNameType.GDT.type -> {
+                TogetherAd.idMapGDT[adConstStr]
+            }
+            AdNameType.BAIDU.type -> {
+                TogetherAd.idMapBaidu[adConstStr]
+            }
+            AdNameType.XUNFEI.type -> {
+                TogetherAd.idMapXunFei[adConstStr]
+            }
+            else -> {
+                loge("发生了不可能的灵异事件")
+                ""
+            }
         }
-
-        if (TogetherAd.idMapBaidu[adConstStr]?.isNotEmpty() == true) {
-            return TogetherAd.idMapBaidu[adConstStr]
-        }
-
-        if (TogetherAd.idMapXunFei[adConstStr]?.isNotEmpty() == true) {
-            return TogetherAd.idMapXunFei[adConstStr]
-        }
-        return ""
     }
 
 
