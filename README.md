@@ -7,7 +7,7 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 <div align="center">
 <img src="/img/img_splash.jpeg" height="330" width="190" >
 <img src="/img/img_flow.jpeg" height="330" width="190" >
-<img src="/img/img_premovie.jpeg" width="190" >
+<img src="/img/img_premovie.jpeg" height="330" width="190" >
 <img src="/img/img_inter.jpeg" height="330" width="190" >
 </div>
 
@@ -29,17 +29,17 @@ baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxx");
 TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "xxxxxx", baiduIdMap);
 
 Map<String, String> gdtIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
+gdtIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
+gdtIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
+gdtIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
+gdtIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
 TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "xxxxxxxxxxxx", gdtIdMap);
 
 Map<String, String> iFlyIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
+iFlyIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
+iFlyIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
+iFlyIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
+iFlyIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
 TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
 ```
 
@@ -74,7 +74,7 @@ TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
 
 2. 开屏广告的调用方法
 ```
-TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
+TogetherAdSplash.showAdFull(this, "baidu:2,gdt:8", TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
     override fun onStartRequest(channel: String) {
         //开始请求广告之前，channel：gdt、baidu、xunfei
     }
