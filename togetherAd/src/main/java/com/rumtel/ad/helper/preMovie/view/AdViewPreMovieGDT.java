@@ -176,7 +176,7 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
         mADManager = new NativeMediaAD(super.getContext(), TogetherAd.INSTANCE.getAppIdGDT(), locationId, nativeMediaADListener);
 
         try {
-            mADManager.loadAD(1);
+            mADManager.loadAD(2);
         } catch (Exception e) {
             Toast.makeText(super.getContext(), "加载失败", Toast.LENGTH_SHORT).show();
         }
