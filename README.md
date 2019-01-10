@@ -5,10 +5,10 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 
 # 效果图
 <div align="center">
-<img src="https://img-blog.csdnimg.cn/20190102131814805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131608648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131901955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
-<img src="https://img-blog.csdnimg.cn/20190102131931566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2lmbXZv,size_16,color_FFFFFF,t_70" height="330" width="190" >
+<img src="/img/img_splash.jpeg" height="330" width="190" >
+<img src="/img/img_flow.jpeg" height="330" width="190" >
+<img src="/img/img_premovie.jpeg" width="190" >
+<img src="/img/img_inter.jpeg" height="330" width="190" >
 </div>
 
 # 使用方法
