@@ -13,7 +13,7 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 
 # 使用方法
 ```
-implementation 'com.github.ifmvo:TogetherAd:1.0.3'
+implementation 'com.github.ifmvo:TogetherAd:1.0.4'
 ```
 
 ### Java 调用姿势
