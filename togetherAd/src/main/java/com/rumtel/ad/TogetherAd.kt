@@ -34,6 +34,12 @@ object TogetherAd {
         private set
 
     /**
+     * 前贴
+     */
+    var preMoivePaddingSize = 0
+        private set
+
+    /**
      * 初始化广告
      */
     fun initBaiduAd(@NonNull context: Context, @NonNull baiduAdAppId: String, baiduIdMap: MutableMap<String, String?>) {
@@ -48,6 +54,10 @@ object TogetherAd {
 
     fun initXunFeiAd(@NonNull context: Context, @NonNull xunfeiIdMap: MutableMap<String, String?>) {
         idMapXunFei = xunfeiIdMap
+    }
+
+    fun setPreMoiveMarginTopSize(height: Int) {
+        preMoivePaddingSize = height
     }
 
 

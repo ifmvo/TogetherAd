@@ -2,15 +2,18 @@ package com.rumtel.ad.helper.preMovie.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.rumtel.ad.R;
+import com.rumtel.ad.TogetherAd;
 
 /*
  * (●ﾟωﾟ●) 前贴广告自定义 View 的 Base
@@ -54,6 +57,17 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         mTvDesc = mRootView.findViewById(R.id.tv_desc);
         mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
         mIvAdLogo = mRootView.findViewById(R.id.mIvAdLogo);
+        setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());
+    }
+
+    private void setPadding(View view, int height) {
+        if (Build.VERSION.SDK_INT > 16) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp instanceof ViewGroup.MarginLayoutParams) {
+                ((ViewGroup.MarginLayoutParams) lp).topMargin += height;//增高
+            }
+            view.setLayoutParams(lp);
+        }
     }
 
     /**
