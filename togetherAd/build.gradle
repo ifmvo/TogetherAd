@@ -6,7 +6,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 20181218//更新版本的当天日期
+        versionCode 20190121//更新版本的当天日期
         versionName "1.0.3"
     }
 
