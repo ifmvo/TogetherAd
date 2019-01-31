@@ -159,4 +159,6 @@ JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
 
 exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
 
-yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;28.0.3"
+yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-28"
+
+yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
