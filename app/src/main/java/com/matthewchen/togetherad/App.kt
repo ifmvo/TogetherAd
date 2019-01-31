@@ -13,7 +13,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         TogetherAd.setPreMoiveMarginTopSize(Kits.StatuBar.getStatusBarHeight(this))
     }
 }
