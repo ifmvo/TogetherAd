@@ -29,15 +29,17 @@
             android:layout_margin="13dp"
             android:textColor="@android:color/white"
             android:paddingLeft="10dp"
-            android:text="加载中..."
+            android:visibility="gone"
             android:background="@drawable/shape_pre_movie_time"
             android:paddingRight="10dp"
             android:textSize="13sp"/>
 
     <!--bottom-->
     <FrameLayout
+            android:id="@+id/fl_desc"
             android:layout_gravity="bottom"
             android:background="#56000000"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

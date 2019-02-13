@@ -30,7 +30,7 @@ object TogetherAd {
     /**
      * 超时时间
      */
-    var timeOutMillis: Long = 3000
+    var timeOutMillis: Long = 5000
         private set
 
     /**
@@ -54,6 +54,10 @@ object TogetherAd {
 
     fun initXunFeiAd(@NonNull context: Context, @NonNull xunfeiIdMap: MutableMap<String, String?>) {
         idMapXunFei = xunfeiIdMap
+    }
+
+    fun setAdTimeOutMillis(millis: Long) {
+        timeOutMillis = millis
     }
 
     fun setPreMoiveMarginTopSize(height: Int) {

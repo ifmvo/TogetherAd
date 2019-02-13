@@ -30,6 +30,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     ImageView mIvAdLogo;
 
     TimerCount mTimerCount;
+    View mFlDesc;
 
     boolean stop = false;
 
@@ -57,6 +58,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         mTvDesc = mRootView.findViewById(R.id.tv_desc);
         mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
         mIvAdLogo = mRootView.findViewById(R.id.mIvAdLogo);
+        mFlDesc = mRootView.findViewById(R.id.fl_desc);
         setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());
     }
 
@@ -127,6 +129,12 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         @Override
         public void onTick(long millisUntilFinished) {
             if (mTextCountDown != null) {
+                if (mTextCountDown.getVisibility() == View.GONE) {
+                    mTextCountDown.setVisibility(View.VISIBLE);
+                }
+                if (mFlDesc.getVisibility() == View.GONE) {
+                    mFlDesc.setVisibility(View.VISIBLE);
+                }
                 mTextCountDown.setText(String.format("%d s", millisUntilFinished / 1000));
             }
         }

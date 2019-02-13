@@ -26,7 +26,6 @@ import java.util.*
 object TogetherAdPreMovie : AdBase {
 
     private var weak: WeakReference<AdViewPreMovieBase>? = null
-    private var mAdListener: AdListenerPreMovie? = null
     private var mChannel: String = ""
 
     /**
@@ -45,10 +44,6 @@ object TogetherAdPreMovie : AdBase {
     ) {
         startTimerTask(activity, adsParentLayout, adListener)
         cancel()
-        mAdListener = adListener
-        if (mAdListener == null) {
-            return
-        }
 
         adsParentLayout.visibility = View.VISIBLE
         if (adsParentLayout.childCount > 0) {
@@ -89,7 +84,7 @@ object TogetherAdPreMovie : AdBase {
             }
 
             override fun onAdClick() {
-                mAdListener?.onAdClick(mChannel)
+                adListener.onAdClick(mChannel)
                 adsParentLayout.visibility = View.GONE
                 logd("$mChannel: ${activity.getString(R.string.clicked)}")
             }
@@ -109,7 +104,7 @@ object TogetherAdPreMovie : AdBase {
                         newConfigPreMovie = configPreMovie?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                     }
                     else -> {
-                        mAdListener?.onAdFailed(failedMsg)
+                        adListener.onAdFailed(failedMsg)
                     }
                 }
 
@@ -123,13 +118,13 @@ object TogetherAdPreMovie : AdBase {
             }
 
             override fun onAdDismissed() {
-                mAdListener?.onAdDismissed()
+                adListener.onAdDismissed()
                 adsParentLayout.visibility = View.GONE
                 logd("$mChannel: ${activity.getString(R.string.dismiss)}")
             }
 
             override fun onAdPrepared() {
-                mAdListener?.onAdPrepared(mChannel)
+                adListener.onAdPrepared(mChannel)
                 adsParentLayout.visibility = View.VISIBLE
                 cancelTimerTask()
                 logd("$mChannel: ${activity.getString((R.string.prepared))}")

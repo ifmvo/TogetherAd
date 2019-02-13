@@ -26,7 +26,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-//        implementation 'com.github.ifmvo:TogetherAd:1.0.3'
+//    implementation 'com.github.ifmvo:TogetherAd:1.0.7'
     implementation project(':togetherAd')
     //权限申请
     implementation 'com.lovedise:permissiongen:0.0.6'
