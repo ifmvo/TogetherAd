@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 20190131//更新版本的当天日期
-        versionName "1.0.8"
+        versionCode 20190227//更新版本的当天日期
+        versionName "1.1.1"
     }
 
     buildTypes {
@@ -30,7 +30,10 @@ publish {
     userOrg = 'ifmvo'//bintray.com用户名
     groupId = 'com.ifmvo'//jcenter上的路径
     artifactId = 'TogetherAd'//项目名称
-    publishVersion = '1.0.9'//版本号
+    publishVersion = '1.1.1'//版本号
     desc = 'All Ad Together!'//描述，不重要
     website = 'https://github.com/ifmvo/TogetherAd'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
+
+//  ./gradlew clean
+//  build bintrayUpload -PbintrayUser=hyman -PbintrayKey=xxxxxxxxxxxxxxxxxxxxxx -PdryRun=false

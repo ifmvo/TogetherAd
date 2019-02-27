@@ -27,8 +27,8 @@ import java.util.List;
 public class AdViewPreMovieGDT extends AdViewPreMovieBase {
 
     // 与广告有关的变量，用来显示广告素材的UI
-    private static NativeMediaADData mAD;                        // 加载的原生视频广告对象，本示例为简便只演示加载1条广告的示例
-    private static NativeMediaAD mADManager;                     // 原生广告manager，用于管理广告数据的加载，监听广告回调
+    private NativeMediaADData mAD;                        // 加载的原生视频广告对象，本示例为简便只演示加载1条广告的示例
+    private NativeMediaAD mADManager;                     // 原生广告manager，用于管理广告数据的加载，监听广告回调
 
     public AdViewPreMovieGDT(@NonNull Context context) {
         super(context);
@@ -120,58 +120,6 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 }
             }
         };
-
-//        NativeAD.NativeAdListener nativeAdListener = new NativeAD.NativeAdListener() {
-//            @Override
-//            public void onADLoaded(List<NativeADDataRef> adList) {
-//                if (adList != null && adList.size() > 0) {
-//                    mAD = adList.get(0);
-//                }
-//
-//                mTvDesc.setText(mAD.getTitle());
-//                if (!stop) {
-//                    try {
-//                        ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg, mAD.getImgUrl(), new LoaderOptions(), new LoadListener() {
-//                            @Override
-//                            public boolean onLoadCompleted(Drawable drawable) {
-//                                mAD.onExposured(mRootView);
-//                                mRootView.setOnClickListener(new OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        if (adViewListener != null) {
-//                                            adViewListener.onAdClick();
-//                                        }
-//                                        mAD.onClicked(v);
-//                                    }
-//                                });
-//
-//                                startTimerCount(6000);
-//                                return false;
-//                            }
-//                        });
-//                    } catch (Exception e) {
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onNoAD(AdError adError) {
-//                if (adViewListener != null) {
-//                    adViewListener.onAdFailed("没有广告了：" + adError.getErrorMsg());
-//                }
-//            }
-//
-//            @Override
-//            public void onADStatusChanged(NativeADDataRef nativeADDataRef) {
-//            }
-//
-//            @Override
-//            public void onADError(NativeADDataRef nativeADDataRef, AdError adError) {
-//                if (adViewListener != null) {
-//                    adViewListener.onAdFailed(adError.getErrorMsg());
-//                }
-//            }
-//        };
 
         mADManager = new NativeMediaAD(super.getContext(), TogetherAd.INSTANCE.getAppIdGDT(), locationId, nativeMediaADListener);
 
