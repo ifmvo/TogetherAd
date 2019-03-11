@@ -25,7 +25,8 @@ TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告�
 <img src="/img/img_inter.jpeg" height="330" width="190" >
 </div>
 
-### Gradle 集成
+### 集成方法
+1. Gradle 集成
 项目根目录下 build.gradle 中
 ```
 allprojects {
@@ -42,7 +43,14 @@ dependencies {
     implementation 'com.github.ifmvo:TogetherAd:lastest_version'
 }
 ```
-
+2. 本地导入 aar 集成
+点击下载 [TogetherAd-1.1.4.aar](aar/TogetherAd-1.1.4.aar) 文件后，放入 Module 目录下的 libs 文件夹中
+Module 目录下 build.gradle 中
+```
+dependencies {
+    implementation(name: 'TogetherAd-1.1.4', ext: 'aar')
+}
+```
 ### 使用方法
 [Java](doc/java.md)  
 [Kotlin](doc/kotlin.md)
