@@ -8,7 +8,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 20190228//更新版本的当天日期
-        versionName "1.1.2"
+        versionName "1.1.4"
     }
 
     buildTypes {
@@ -20,20 +20,24 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     //ImageLoader
     implementation 'com.github.ifmvo:Matthew_ImageLoader:1.1.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+//    implementation files('libs/GDTUnionSDK.4.22.890.min.jar')
+//    implementation files('libs/Ad_Android_SDK.jar')
+//    implementation(name: 'Baidu_MobAds_SDK', ext: 'aar')
 }
 
 publish {
     userOrg = 'ifmvo'//bintray.com用户名
     groupId = 'com.ifmvo'//jcenter上的路径
     artifactId = 'TogetherAd'//项目名称
-    publishVersion = '1.1.2'//版本号
+    publishVersion = '1.1.4'//版本号
     desc = 'All Ad Together!'//描述，不重要
     website = 'https://github.com/ifmvo/TogetherAd'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
 
 //  ./gradlew clean
-//  build bintrayUpload -PbintrayUser=ifmvo -PbintrayKey=xxxxxxxxxxxxxxxxxxxxxx -PdryRun=false
+//  ./gradlew build bintrayUpload -PbintrayUser=ifmvo -PbintrayKey=53212891455c3156587da49673de83949b5ea9b8 -PdryRun=false

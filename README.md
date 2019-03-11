@@ -1,9 +1,17 @@
 # TogetherAd 
 [![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-%E9%99%88%E9%93%AD%E5%8D%93-yellowgreen.svg?style=popout-square&logo=appveyor)](https://blog.csdn.net/ifmvo)
 
-TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Lib
+TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例
 
-# 效果图
+## TogetherAd 功能介绍
+
+多种平台随机展示
+> 因为各个平台分发广告的量实际上有可能不够用，所以多种广告根据一定比例随机展示会使收益最大化
+
+控制个平台广告的展示比例
+> 因为各个平台分发广告的量是不一样的，比如广点通分配1000次，百度只有100次，那么展示广点通和百度广告的次数必然是10：1才能使你的收益最大化
+
+## 效果图
 <div align="center">
 <img src="/img/img_splash.jpeg" height="330" width="190" >
 <img src="/img/img_flow.jpeg" height="330" width="190" >
@@ -11,92 +19,27 @@ TogetherAd 是一个对所有广告和随机展示逻辑进行封装的一个 Li
 <img src="/img/img_inter.jpeg" height="330" width="190" >
 </div>
 
-# 使用方法
+## Gradle 集成
+项目根目录下 build.gradle 中
 ```
-implementation 'com.github.ifmvo:TogetherAd:lastest_version'
-```
-
-### Java 调用姿势
-参数以及作用见相关类的注释即可
-
-1. Lib 初始化操作
-```
-Map<String, String> baiduIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxx");
-TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "xxxxxx", baiduIdMap);
-
-Map<String, String> gdtIdMap = new HashMap<>();
-gdtIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
-gdtIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-gdtIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-gdtIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
-TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "xxxxxxxxxxxx", gdtIdMap);
-
-Map<String, String> iFlyIdMap = new HashMap<>();
-iFlyIdMap.put(TogetherAdConst.AD_SPLASH, "xxxxxxxxxxxx");
-iFlyIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-iFlyIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-iFlyIdMap.put(TogetherAdConst.AD_TIEPIAN_LIVE, "xxxxxxxxxxxx");
-TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
-```
-
-### Kotlin 的调用姿势
-
-1. 初始化操作
-```
-val baiduIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "xxxxxx",
-    TogetherAdConst.AD_INTER to "xxxxxx",
-    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
-)
-TogetherAd.initBaiduAd(applicationContext, "xxxxxx", baiduIdMap)
-
-val gdtIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "xxxxxx",
-    TogetherAdConst.AD_INTER to "xxxxxx",
-    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
-)
-TogetherAd.initGDTAd(applicationContext, "xxxxxx", gdtIdMap)
-
-val xunFeiIdMap = mutableMapOf<String, String?>(
-    TogetherAdConst.AD_SPLASH to "xxxxxx",
-    TogetherAdConst.AD_INTER to "xxxxxx",
-    TogetherAdConst.AD_FLOW_INDEX to "xxxxxx",
-    TogetherAdConst.AD_TIEPIAN_LIVE to "xxxxxx"
-)
-TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
-```
-
-2. 开屏广告的调用方法
-```
-TogetherAdSplash.showAdFull(this, "baidu:2,gdt:8", TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
-    override fun onStartRequest(channel: String) {
-        //开始请求广告之前，channel：gdt、baidu、xunfei
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
     }
-
-    override fun onAdClick(channel: String) {
-        //广告被点击之后，channel：gdt、baidu、xunfei
-    }
-
-    override fun onAdFailed(failedMsg: String?) {
-        //广告加载失败
-    }
-
-    override fun onAdDismissed() {
-        //广告倒计时消失
-    }
-
-    override fun onAdPrepared(channel: String) {
-        //广告请求成功，准备展示，channel：gdt、baidu、xunfei
-    }
-})
+}
 ```
 
+Module 目录下 build.gradle 中
+```
+dependencies {
+    implementation 'com.github.ifmvo:TogetherAd:lastest_version'
+}
+```
+
+## 使用方法
+[Java](doc/java.md)
+[Kotlin](doc/kotlin.md)
 
 # 目前支持的广告
 百度Mob、腾讯GDT、科大讯飞
