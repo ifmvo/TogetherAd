@@ -26,7 +26,7 @@ TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告�
 </div>
 
 ### 集成方法
-1. Gradle 集成
+第一种： Gradle 集成
 项目根目录下 build.gradle 中
 ```
 allprojects {
@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.github.ifmvo:TogetherAd:lastest_version'
 }
 ```
-2. 本地导入 aar 集成
+第二种： 本地导入 aar 集成
 点击下载 [TogetherAd-1.1.4.aar](aar/TogetherAd-1.1.4.aar) 文件后，放入 Module 目录下的 libs 文件夹中
 Module 目录下 build.gradle 中
 ```
