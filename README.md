@@ -3,15 +3,21 @@
 
 TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例
 
-## TogetherAd 功能介绍
+### 目前支持的广告
+百度Mob、腾讯GDT、科大讯飞
+
+### 功能介绍
 
 多种平台随机展示
 > 因为各个平台分发广告的量实际上有可能不够用，所以多种广告根据一定比例随机展示会使收益最大化
 
 控制个平台广告的展示比例
-> 因为各个平台分发广告的量是不一样的，比如广点通分配1000次，百度只有100次，那么展示广点通和百度广告的次数必然是10：1才能使你的收益最大化
+> 因为各个平台分发广告的量是不一样的，比如广点通分配1000次，百度只有100次，那么展示广点通和百度广告的次数必然是10：1才能使收益最大化
 
-## 效果图
+广告失败切换
+> 如果某个平台的广告请求失败或没有量，会自动在其他广告中随机出一种再次请求，这样可以尽可能多的展示广告，使收益最大化
+
+### 效果图
 <div align="center">
 <img src="/img/img_splash.jpeg" height="330" width="190" >
 <img src="/img/img_flow.jpeg" height="330" width="190" >
@@ -19,7 +25,7 @@ TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告�
 <img src="/img/img_inter.jpeg" height="330" width="190" >
 </div>
 
-## Gradle 集成
+### Gradle 集成
 项目根目录下 build.gradle 中
 ```
 allprojects {
@@ -37,14 +43,11 @@ dependencies {
 }
 ```
 
-## 使用方法
-[Java](doc/java.md)
+### 使用方法
+[Java](doc/java.md)  
 [Kotlin](doc/kotlin.md)
 
-# 目前支持的广告
-百度Mob、腾讯GDT、科大讯飞
-
-# 随机广告配置的规则
+### 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
 
 1. 随机广告配置必须符合这样的格式  
@@ -57,7 +60,7 @@ dependencies {
 "BAIDU:2,GDT:8"  ≠  "baidu:2,gdt:8"  
 "Baidu:2,Gdt:8"  ≠  "baidu:2,gdt:8"  
 
-# 广告切源的逻辑以及实际实现的方式
+### 广告切源的逻辑以及实际实现的方式
 假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ）   
 
 第一次随机到了 GDT，如果 GDT 请求失败，将 GDT 的 key 使用一个通用的字符串替换，再从其他的广告中再随机   
@@ -69,11 +72,11 @@ dependencies {
 直到请求某个广告成功后停止   
 如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"  
 
-# 计划功能
+### 计划功能
 1. 提供自定义前贴广告的布局功能
 2. 可选择性添加广点通、百度、科大讯飞的广告
 
-# License
+### License
 ```
 Copyright 2018 陈铭卓
 

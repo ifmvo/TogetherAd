@@ -28,28 +28,31 @@ class TogetherAdConst {
 2. 初始化
 ```
 //初始化百度Mob广告
-Map<String, String> baiduIdMap = new HashMap<>();
-baiduIdMap.put(TogetherAdConst.AD_SPLASH, "相应的广告位ID");
-baiduIdMap.put(TogetherAdConst.AD_INTER, "xxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxx");
-baiduIdMap.put(TogetherAdConst.AD_VIDEO_PRE, "xxxxxx");
-TogetherAd.INSTANCE.initBaiduAd(getApplicationContext(), "你的Baidu_MobAds的APPID", baiduIdMap);
+val baiduIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "2543740",
+    TogetherAdConst.AD_INTER to "2543741",
+    TogetherAdConst.AD_FLOW_INDEX to "2715031",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "5985131"
+)
+TogetherAd.initBaiduAd(applicationContext, "ee93e58e", baiduIdMap)
 
 //初始化腾讯广点通广告
-Map<String, String> gdtIdMap = new HashMap<>();
-gdtIdMap.put(TogetherAdConst.AD_SPLASH, "相应的广告位ID");
-gdtIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-gdtIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-gdtIdMap.put(TogetherAdConst.AD_VIDEO_PRE, "xxxxxxxxxxxx");
-TogetherAd.INSTANCE.initGDTAd(getApplicationContext(), "你的GDT的APPID", gdtIdMap);
+val gdtIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "8030228893573270",
+    TogetherAdConst.AD_INTER to "4090620883979242",
+    TogetherAdConst.AD_FLOW_INDEX to "4010231735332811",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "4060449650093530"
+)
+TogetherAd.initGDTAd(applicationContext, "1106572734", gdtIdMap)
 
 //初始化科大讯飞广告
-Map<String, String> iFlyIdMap = new HashMap<>();
-iFlyIdMap.put(TogetherAdConst.AD_SPLASH, "相应的广告位ID");
-iFlyIdMap.put(TogetherAdConst.AD_INTER, "xxxxxxxxxxxx");
-iFlyIdMap.put(TogetherAdConst.AD_FLOW_INDEX, "xxxxxxxxxxxx");
-iFlyIdMap.put(TogetherAdConst.AD_VIDEO_PRE, "xxxxxxxxxxxx");
-TogetherAd.INSTANCE.initXunFeiAd(getApplicationContext(), iFlyIdMap);
+val xunFeiIdMap = mutableMapOf<String, String?>(
+    TogetherAdConst.AD_SPLASH to "FD0AC8FDE5CE0B317A6C4077E68D34CC",
+    TogetherAdConst.AD_INTER to "6FD44C667D5EFD97730CC1E3F174D965",
+    TogetherAdConst.AD_FLOW_INDEX to "EE2009111A1DF0BCA9DAD3723A95602F",
+    TogetherAdConst.AD_TIEPIAN_LIVE to "93D157AAFA8B7EF64165B1F0ECEE2623"
+)
+TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
 ```
 
 3. 开屏广告的调用姿势
