@@ -44,7 +44,7 @@ dependencies {
 }
 ```
 第二种： 本地导入 aar 集成
-点击下载 [TogetherAd-1.1.4.aar](aar/TogetherAd-1.1.4.aar) 文件后，放入 Module 目录下的 libs 文件夹中
+点击下载 [TogetherAd-1.1.4.aar](doc/aar/TogetherAd-1.1.4.aar) 文件后，放入 Module 目录下的 libs 文件夹中
 Module 目录下 build.gradle 中
 ```
 dependencies {
@@ -83,6 +83,10 @@ dependencies {
 ### 计划功能
 1. 提供自定义前贴广告的布局功能
 2. 可选择性添加广点通、百度、科大讯飞的广告
+
+### 对 TogetherAd 有疑问？
+欢迎 Issues 和 Star，或添加 TogetherAd 交流群  
+<img src="doc/img/TogetherAd-QQ.png" >
 
 ### License
 ```
