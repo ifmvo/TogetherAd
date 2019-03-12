@@ -1,13 +1,16 @@
 package com.rumtel.ad.helper.splash
 
 import android.app.Activity
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.support.annotation.NonNull
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.iflytek.voiceads.AdKeys
@@ -212,6 +215,7 @@ object TogetherAdSplash : AdBase {
         @NonNull adListener: AdListenerSplashFull
     ) {
 
+        var countDownTimer: CountDownTimer? = null
         adListener.onStartRequest(AdNameType.XUNFEI.type)
         nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], object : IFLYNativeListener {
             override fun onADLoaded(list: List<NativeADDataRef>?) {
@@ -230,12 +234,45 @@ object TogetherAdSplash : AdBase {
 
                 val adItem = list[0]
                 val adPic = ImageView(activity)
-                val params = RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+
+                adPic.scaleType = ImageView.ScaleType.FIT_XY
+                adsParentLayout.addView(
+                    adPic,
+                    RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
                 )
-                adPic.scaleType = ImageView.ScaleType.CENTER_CROP
-                adsParentLayout.addView(adPic, params)
+
+                //倒计时按钮
+                val adTime = TextView(activity)
+                val adTimeParams = RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                adTime.textSize = 16F
+                adTime.setBackgroundResource(R.drawable.shape_xunfei_skip_bg)
+                adTime.setTextColor(Color.WHITE)
+                adTime.setPadding(40, 6, 40, 6)
+                adTimeParams.setMargins(0, 40, 40, 0)
+                adTimeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                adsParentLayout.addView(adTime, adTimeParams)
+
+                adTime.setOnClickListener {
+                    nativeAd = null
+                    countDownTimer?.cancel()
+                    adListener.onAdDismissed()
+                }
+
+                val logoView = View.inflate(activity, R.layout.layout_ad_logo, null)
+                val logoViewParams = RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+                adsParentLayout.addView(logoView, logoViewParams)
+
                 ILFactory.getLoader().load(activity, adPic, adItem.image, LoaderOptions(), object : LoadListener() {
                     override fun onLoadCompleted(drawable: Drawable): Boolean {
 
@@ -249,8 +286,9 @@ object TogetherAdSplash : AdBase {
                             logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
                         }
 
-                        object : CountDownTimer(5000, 1000) {
+                        countDownTimer = object : CountDownTimer(5000, 1000) {
                             override fun onTick(millisUntilFinished: Long) {
+                                adTime.text = "${millisUntilFinished / 1000}丨跳过"
                                 logd("${AdNameType.XUNFEI.type}: 倒计时: $millisUntilFinished")
                             }
 
@@ -267,7 +305,7 @@ object TogetherAdSplash : AdBase {
                     adItem.onClicked(view)
                     adListener.onAdClick(AdNameType.XUNFEI.type)
                 }
-                adsParentLayout.setOnTouchListener { v, event ->
+                adsParentLayout.setOnTouchListener { _, event ->
                     when (event.action) {
                         MotionEvent.ACTION_DOWN -> {
                             nativeAd?.setParameter(AdKeys.CLICK_POS_DX, event.x.toString() + "")

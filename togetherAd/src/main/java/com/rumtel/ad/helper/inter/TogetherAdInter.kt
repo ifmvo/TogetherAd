@@ -214,6 +214,19 @@ object TogetherAdInter : AdBase {
         val interstitialAd = IFLYInterstitialAd.createInterstitialAd(activity, TogetherAd.idMapXunFei[adConstStr])
         //点击手机后退键，是否销毁广告:"true":销毁，"false":不销毁，默认销毁 interstitialAd.setParameter(AdKeys.BACK_KEY_ENABLE, "true");
         //设置广告尺寸
+        if (interstitialAd == null) {
+            loge("${AdNameType.XUNFEI.type}: 科大讯飞 interstitialAd 是 null")
+            val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+            showAdInter(
+                activity,
+                newConfigStr,
+                adConstStr,
+                isLandscape,
+                adIntersContainer,
+                adListener
+            )
+            return
+        }
         interstitialAd.setAdSize(IFLYAdSize.INTERSTITIAL)
 
         // 添加监听器，请求广告
