@@ -46,6 +46,35 @@ dependencies {
 [Java](doc/java.md)  
 [Kotlin](doc/kotlin.md)
 
+### 关于 Log
+如果你看不到广告或者广告展示异常，你可以在 Logcat 中过滤 ``TogetherAd`` 你就会看到类似下面这样的日志：
+```
+2019-03-12 14:18:40.238 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,xunfei:1
+2019-03-12 14:18:40.239 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: gdt
+2019-03-12 14:18:40.909 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdSplash: gdt: 准备好了
+2019-03-12 14:18:45.970 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdSplash: gdt: 曝光成功了
+2019-03-12 14:18:45.972 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdSplash: gdt: 消失了
+2019-03-12 14:18:46.035 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,xunfei:1
+2019-03-12 14:18:46.036 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: gdt
+2019-03-12 14:18:46.287 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdFlow: gdt: list.size: 4
+2019-03-12 14:18:46.370 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdFlow: gdt: 曝光成功了
+2019-03-12 14:19:01.337 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,xunfei:1
+2019-03-12 14:19:01.338 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: xunfei
+2019-03-12 14:19:01.878 8724-8724/xxxxxxxxxxxxxxxxxxxxx E/TogetherAd: TogetherAdPreMovie: xunfei: no fill
+2019-03-12 14:19:01.884 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,no:1
+2019-03-12 14:19:01.884 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: gdt
+2019-03-12 14:19:02.167 8724-8724/xxxxxxxxxxxxxxxxxxxxx E/TogetherAd: AdViewPreMovieGDT: list.size():2
+2019-03-12 14:19:02.454 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdPreMovie: gdt: 准备好了
+2019-03-12 14:19:08.467 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdPreMovie: gdt: 消失了
+2019-03-12 14:19:10.045 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,xunfei:1
+2019-03-12 14:19:10.046 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: xunfei
+2019-03-12 14:19:10.642 8724-8724/xxxxxxxxxxxxxxxxxxxxx E/TogetherAd: TogetherAdInter: xunfei: 71002, invalid ad request
+2019-03-12 14:19:10.643 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 广告的配置：baidu:0,gdt:9,no:1
+2019-03-12 14:19:10.644 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: AdRandomUtil: 随机到的广告: gdt
+2019-03-12 14:19:11.675 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdInter: gdt: 展示了
+2019-03-12 14:19:15.811 8724-8724/xxxxxxxxxxxxxxxxxxxxx D/TogetherAd: TogetherAdInter: gdt: 曝光成功了
+```
+
 ### 随机广告配置的规则
 假如有 BAIDU，GDT，ADVIEW 这三种广告，实际的配置字符串应该是这样的："baidu:3,gdt:3,adview:4"   
 
