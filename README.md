@@ -39,7 +39,7 @@ allprojects {
 Module 目录下 build.gradle 中
 ```
 dependencies {
-    implementation 'com.github.ifmvo:TogetherAd:1.1.8'
+    implementation 'com.github.ifmvo:TogetherAd:1.1.9'
 }
 ```
 ### 使用方法

@@ -232,11 +232,13 @@ object TogetherAdSplash : AdBase {
                     return
                 }
 
+                val relativeLayout = RelativeLayout(activity)
+
                 val adItem = list[0]
                 val adPic = ImageView(activity)
 
                 adPic.scaleType = ImageView.ScaleType.FIT_XY
-                adsParentLayout.addView(
+                relativeLayout.addView(
                     adPic,
                     RelativeLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -253,10 +255,10 @@ object TogetherAdSplash : AdBase {
                 adTime.textSize = 16F
                 adTime.setBackgroundResource(R.drawable.shape_xunfei_skip_bg)
                 adTime.setTextColor(Color.WHITE)
-                adTime.setPadding(40, 6, 40, 6)
+                adTime.setPadding(40, 12, 40, 12)
                 adTimeParams.setMargins(0, 40, 40, 0)
                 adTimeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                adsParentLayout.addView(adTime, adTimeParams)
+                relativeLayout.addView(adTime, adTimeParams)
 
                 adTime.setOnClickListener {
                     nativeAd = null
@@ -271,7 +273,7 @@ object TogetherAdSplash : AdBase {
                 )
                 logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                 logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-                adsParentLayout.addView(logoView, logoViewParams)
+                relativeLayout.addView(logoView, logoViewParams)
 
                 ILFactory.getLoader().load(activity, adPic, adItem.image, LoaderOptions(), object : LoadListener() {
                     override fun onLoadCompleted(drawable: Drawable): Boolean {
@@ -320,6 +322,11 @@ object TogetherAdSplash : AdBase {
                     }
                     false
                 }
+
+                adsParentLayout.addView(
+                    relativeLayout,
+                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                )
             }
 
             override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
