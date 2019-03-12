@@ -40,15 +40,15 @@ allprojects {
 Module 目录下 build.gradle 中
 ```
 dependencies {
-    implementation 'com.github.ifmvo:TogetherAd:lastest_version'
+    implementation 'com.github.ifmvo:TogetherAd:1.1.7'
 }
 ```
 第二种： 本地导入 aar 集成
-点击下载 [TogetherAd-1.1.4.aar](doc/aar/TogetherAd-1.1.4.aar) 文件后，放入 Module 目录下的 libs 文件夹中
+点击下载 [TogetherAd-1.1.7.aar](https://dl.bintray.com/ifmvo/maven/com/ifmvo/TogetherAd/1.1.7/:TogetherAd-1.1.7.aar) 文件后，放入 Module 目录下的 libs 文件夹中
 Module 目录下 build.gradle 中
 ```
 dependencies {
-    implementation(name: 'TogetherAd-1.1.4', ext: 'aar')
+    implementation(name: 'TogetherAd-1.1.7', ext: 'aar')
 }
 ```
 ### 使用方法
