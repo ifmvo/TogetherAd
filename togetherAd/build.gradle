@@ -30,10 +30,6 @@ dependencies {
 //    userOrg = 'ifmvo'//bintray.com用户名
 //    groupId = 'com.ifmvo'//jcenter上的路径
 //    artifactId = 'TogetherAd'//项目名称
-//    publishVersion = '1.1.9'//版本号
-//    desc = 'All Ad Together!'//描述，不重要
-//    website = 'https://github.com/ifmvo/TogetherAd'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
-//}
 
 //  ./gradlew clean
-//  ./gradlew build bintrayUpload -PbintrayUser=ifmvo -PbintrayKey=53212891455c3156587da49673de83949b5ea9b8 -PdryRun=false
+//  ./gradlew build bintrayUpload -PbintrayUser=ifmvo -PbintrayKey=xxxxxxxxxxxxxxxxxxxxx -PdryRun=false
