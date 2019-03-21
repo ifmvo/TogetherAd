@@ -65,8 +65,7 @@
                 android:screenOrientation="portrait"/>
 
         <activity
-                android:name=".ui.DetailActivity"
-                android:screenOrientation="portrait"/>
+                android:name=".ui.DetailActivity"/>
 
 
     </application>

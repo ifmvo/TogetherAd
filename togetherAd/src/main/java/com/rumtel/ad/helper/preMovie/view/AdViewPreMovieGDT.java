@@ -13,8 +13,10 @@ import com.ifmvo.imageloader.progress.LoaderOptions;
 import com.qq.e.ads.nativ.NativeMediaAD;
 import com.qq.e.ads.nativ.NativeMediaADData;
 import com.qq.e.comm.util.AdError;
+import com.rumtel.ad.R;
 import com.rumtel.ad.TogetherAd;
 import com.rumtel.ad.other.AdExtKt;
+import com.rumtel.ad.other.AdNameType;
 
 import java.util.List;
 
@@ -105,12 +107,12 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
 
             @Override
             public void onADExposure(NativeMediaADData nativeMediaADData) {
-
+                AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + ":前贴：" + AdViewPreMovieGDT.super.getContext().getString(R.string.exposure));
             }
 
             @Override
             public void onADClicked(NativeMediaADData nativeMediaADData) {
-
+                AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + ":前贴：" + AdViewPreMovieGDT.super.getContext().getString(R.string.clicked));
             }
 
             @Override

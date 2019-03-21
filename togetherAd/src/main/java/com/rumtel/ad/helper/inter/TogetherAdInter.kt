@@ -1,19 +1,24 @@
 package com.rumtel.ad.helper.inter
 
 import android.app.Activity
+import android.graphics.drawable.Drawable
 import android.support.annotation.NonNull
-import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.baidu.mobads.AdSize
 import com.baidu.mobads.InterstitialAd
 import com.baidu.mobads.InterstitialAdListener
-import com.iflytek.voiceads.IFLYAdListener
-import com.iflytek.voiceads.IFLYAdSize
-import com.iflytek.voiceads.IFLYInterstitialAd
-import com.qq.e.ads.interstitial.InterstitialAD
-import com.qq.e.ads.interstitial.InterstitialADListener
+import com.iflytek.voiceads.IFLYNativeAd
+import com.iflytek.voiceads.IFLYNativeListener
+import com.iflytek.voiceads.NativeADDataRef
+import com.ifmvo.imageloader.ILFactory
+import com.ifmvo.imageloader.LoadListener
+import com.ifmvo.imageloader.progress.LoaderOptions
+import com.qq.e.ads.nativ.NativeMediaAD
+import com.qq.e.ads.nativ.NativeMediaADData
 import com.qq.e.comm.util.AdError
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
@@ -23,7 +28,8 @@ import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
 
-/* 
+
+/*
  * (●ﾟωﾟ●) 插屏的广告
  * 
  * Created by Matthew_Chen on 2018/12/26.
@@ -38,18 +44,18 @@ object TogetherAdInter : AdBase {
         @NonNull adIntersContainer: RelativeLayout,
         @NonNull adListener: AdListenerInter
     ) {
-        var newConfigStr = interConfigStr
+//        var newConfigStr = interConfigStr
 
-        //目前这个版本先这样写，横屏下广点通大概率展示不出来的问题
-        if (isLandscape && !TextUtils.isEmpty(interConfigStr)) {
-            newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-        }
+//        //目前这个版本先这样写，横屏下广点通大概率展示不出来的问题
+//        if (isLandscape && !TextUtils.isEmpty(interConfigStr)) {
+//            newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+//        }
 
-        val randomAdName = AdRandomUtil.getRandomAdName(newConfigStr)
+        val randomAdName = AdRandomUtil.getRandomAdName(interConfigStr)
         when (randomAdName) {
             AdNameType.BAIDU -> showAdInterBaiduMob(
                 activity,
-                newConfigStr,
+                interConfigStr,
                 adConstStr,
                 isLandscape,
                 adIntersContainer,
@@ -57,7 +63,7 @@ object TogetherAdInter : AdBase {
             )
             AdNameType.GDT -> showAdInterTecentGDT(
                 activity,
-                newConfigStr,
+                interConfigStr,
                 adConstStr,
                 isLandscape,
                 adIntersContainer,
@@ -65,7 +71,7 @@ object TogetherAdInter : AdBase {
             )
             AdNameType.XUNFEI -> showAdInterIFLY(
                 activity,
-                newConfigStr,
+                interConfigStr,
                 adConstStr,
                 isLandscape,
                 adIntersContainer,
@@ -97,15 +103,99 @@ object TogetherAdInter : AdBase {
     ) {
 
         adListener.onStartRequest(AdNameType.GDT.type)
-        val iad = InterstitialAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr])
-        iad.setADListener(object : InterstitialADListener {
-            override fun onADReceive() {
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.show)}")
-                iad.show()
+
+        val adListenerNative = object : NativeMediaAD.NativeMediaADListener {
+            override fun onADLoaded(adList: List<NativeMediaADData>?) {
+                if (adList?.isEmpty() != false) {
+                    loge("${AdNameType.GDT.type}: 广点通信息流伪装插屏返回空的")
+                    val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                    showAdInter(
+                        activity,
+                        newConfigStr,
+                        adConstStr,
+                        isLandscape,
+                        adIntersContainer,
+                        adListener
+                    )
+                    return
+                }
+
+                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
+                adListener.onAdPrepared(AdNameType.GDT.type)
+                //将容器中的所有东西删除
+                adIntersContainer.visibility = View.VISIBLE
+                if (adIntersContainer.childCount > 0) {
+                    adIntersContainer.removeAllViews()
+                }
+
+                //获取一个广告
+                val adItem = adList[0]
+                val relativeLayout = RelativeLayout(activity)
+                val dm = DisplayMetrics()
+                activity.windowManager.defaultDisplay.getMetrics(dm)
+                //图片以16：9的宽高比展示
+                val n = if (isLandscape) {
+                    //横屏的时候 宽是屏幕宽度的 0.5
+                    ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.5).toInt()
+                } else {
+                    //竖屏的时候 宽是屏幕宽度的 0.8
+                    ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+                }
+
+                val rParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
+                rParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+                relativeLayout.layoutParams = rParams
+
+                val imageView = ImageView(activity)
+                imageView.layoutParams = RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+                )
+                imageView.scaleType = ImageView.ScaleType.FIT_XY
+
+                ILFactory.getLoader()
+                    .load(activity, imageView, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
+                        override fun onLoadCompleted(p0: Drawable?): Boolean {
+                            adItem.onExposured(adIntersContainer)
+                            val closeParam = RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT
+                            )
+                            closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                            val ivClose = ImageView(activity)
+                            ivClose.layoutParams = closeParam
+                            ivClose.setImageResource(R.mipmap.ad_close)
+                            ivClose.setOnClickListener {
+                                adIntersContainer.visibility = View.GONE
+                            }
+                            imageView.setOnClickListener {
+                                adListener.onAdClick(AdNameType.GDT.type)
+                                adItem.onClicked(it)
+                            }
+                            relativeLayout.addView(ivClose)
+
+                            val logoViewParams = RelativeLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT
+                            )
+                            logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                            logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+
+                            val gdtLogoView = ImageView(activity)
+                            gdtLogoView.layoutParams = logoViewParams
+                            gdtLogoView.setImageResource(R.drawable.gdt_ad_logo)
+
+                            relativeLayout.addView(gdtLogoView)
+
+                            return true
+                        }
+                    })
+                relativeLayout.addView(imageView)
+                adIntersContainer.addView(relativeLayout)
             }
 
-            override fun onNoAD(error: AdError) {
-                loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
+            override fun onNoAD(adError: AdError?) {
+                loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                 showAdInter(
                     activity,
@@ -117,24 +207,78 @@ object TogetherAdInter : AdBase {
                 )
             }
 
-            override fun onADOpened() {}
+            override fun onADStatusChanged(ad: NativeMediaADData?) {}
 
-            override fun onADExposure() {
+            override fun onADError(adData: NativeMediaADData?, adError: AdError?) {
+                loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
+                val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
+            }
+
+            override fun onADVideoLoaded(adData: NativeMediaADData?) {
+                logd("${AdNameType.GDT.type}: 视频素材加载完成")
+            }
+
+            override fun onADExposure(adData: NativeMediaADData?) {
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
-                adListener.onAdPrepared(AdNameType.GDT.type)
             }
 
-            override fun onADClicked() {
+            override fun onADClicked(adData: NativeMediaADData?) {
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-                adListener.onAdClick(AdNameType.GDT.type)
             }
+        }
 
-            override fun onADLeftApplication() {}
+        val mADManager =
+            NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
+        mADManager.loadAD(1)
 
-            override fun onADClosed() {}
-        })
 
-        iad.loadAD()
+//        adListener.onStartRequest(AdNameType.GDT.type)
+//        val iad = InterstitialAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr])
+//        iad.setADListener(object : InterstitialADListener {
+//            override fun onADReceive() {
+//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.show)}")
+//                iad.show()
+//            }
+//
+//            override fun onNoAD(error: AdError) {
+////                loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
+////                val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+////                showAdInter(
+////                    activity,
+////                    newConfigStr,
+////                    adConstStr,
+////                    isLandscape,
+////                    adIntersContainer,
+////                    adListener
+////                )
+//            }
+//
+//            override fun onADOpened() {}
+//
+//            override fun onADExposure() {
+//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
+//                adListener.onAdPrepared(AdNameType.GDT.type)
+//            }
+//
+//            override fun onADClicked() {
+//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+//                adListener.onAdClick(AdNameType.GDT.type)
+//            }
+//
+//            override fun onADLeftApplication() {}
+//
+//            override fun onADClosed() {}
+//        })
+//
+//        iad.loadAD()
     }
 
     private fun showAdInterBaiduMob(
@@ -156,6 +300,9 @@ object TogetherAdInter : AdBase {
             override fun onAdReady() {
                 logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.show)}")
                 adIntersContainer.visibility = View.VISIBLE
+                if (adIntersContainer.childCount > 0) {
+                    adIntersContainer.removeAllViews()
+                }
                 interAd.showAdInParentForVideoApp(activity, adIntersContainer)
             }
 
@@ -208,38 +355,77 @@ object TogetherAdInter : AdBase {
         @NonNull adIntersContainer: RelativeLayout,
         @NonNull adListener: AdListenerInter
     ) {
-
         adListener.onStartRequest(AdNameType.XUNFEI.type)
-        //创建插屏广告:adId:开发者在广告平台(http://www.voiceads.cn/)申请的广告位 ID
-        val interstitialAd = IFLYInterstitialAd.createInterstitialAd(activity, TogetherAd.idMapXunFei[adConstStr])
-        //点击手机后退键，是否销毁广告:"true":销毁，"false":不销毁，默认销毁 interstitialAd.setParameter(AdKeys.BACK_KEY_ENABLE, "true");
-        //设置广告尺寸
-        if (interstitialAd == null) {
-            loge("${AdNameType.XUNFEI.type}: 科大讯飞 interstitialAd 是 null")
-            val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-            showAdInter(
-                activity,
-                newConfigStr,
-                adConstStr,
-                isLandscape,
-                adIntersContainer,
-                adListener
-            )
-            return
-        }
-        interstitialAd.setAdSize(IFLYAdSize.INTERSTITIAL)
 
-        // 添加监听器，请求广告
-        val mAdListener = object : IFLYAdListener {
-            override fun onConfirm() {}
-
-            override fun onCancel() {}
-
-            override fun onAdReceive() {
+        val mListener = object : IFLYNativeListener {
+            override fun onADLoaded(list: MutableList<NativeADDataRef>?) {
+                if (list?.isEmpty() != false) {
+                    loge("${AdNameType.XUNFEI.type}: 科大讯飞信息流伪装插屏返回空的")
+                    val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+                    showAdInter(
+                        activity,
+                        newConfigStr,
+                        adConstStr,
+                        isLandscape,
+                        adIntersContainer,
+                        adListener
+                    )
+                    return
+                }
                 logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
-                interstitialAd.showAd()
                 adListener.onAdPrepared(AdNameType.XUNFEI.type)
+                adIntersContainer.visibility = View.VISIBLE
+                if (adIntersContainer.childCount > 0) {
+                    adIntersContainer.removeAllViews()
+                }
+
+                val adItem = list[0]
+
+                val relativeLayout = RelativeLayout(activity)
+                val dm = DisplayMetrics()
+                activity.windowManager.defaultDisplay.getMetrics(dm)
+                val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+                relativeLayout.layoutParams = RelativeLayout.LayoutParams(n, n * 2 / 3)
+
+                val imageView = ImageView(activity)
+                imageView.layoutParams = RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+                )
+                imageView.scaleType = ImageView.ScaleType.FIT_XY
+
+                ILFactory.getLoader()
+                    .load(activity, imageView, adItem.image, LoaderOptions(), object : LoadListener() {
+                        override fun onLoadCompleted(p0: Drawable?): Boolean {
+                            if (adItem.onExposured(imageView)) {
+                                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
+                            }
+                            val closeParam = RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT
+                            )
+                            closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                            val ivClose = ImageView(activity)
+                            ivClose.layoutParams = closeParam
+                            ivClose.setImageResource(R.mipmap.ad_close)
+                            ivClose.setOnClickListener {
+                                adIntersContainer.visibility = View.GONE
+                            }
+                            imageView.setOnClickListener {
+                                if (adItem.onClicked(imageView)) {
+                                    logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.clicked)}")
+                                    adListener.onAdClick(AdNameType.XUNFEI.type)
+                                }
+                            }
+                            relativeLayout.addView(ivClose)
+                            return true
+                        }
+                    })
+
+                relativeLayout.addView(imageView)
+                adIntersContainer.addView(relativeLayout)
             }
+
 
             override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
                 loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
@@ -254,18 +440,76 @@ object TogetherAdInter : AdBase {
                 )
             }
 
-            override fun onAdClick() {
-                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.clicked)}")
-                adListener.onAdClick(AdNameType.XUNFEI.type)
+            override fun onConfirm() {
+
             }
 
-            override fun onAdClose() {}
+            override fun onCancel() {
 
-            override fun onAdExposure() {
-                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
             }
         }
-        interstitialAd.loadAd(mAdListener)
+
+        val nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], mListener)
+        nativeAd.loadAd(1)
+
+
+//        adListener.onStartRequest(AdNameType.XUNFEI.type)
+//        //创建插屏广告:adId:开发者在广告平台(http://www.voiceads.cn/)申请的广告位 ID
+//        val interstitialAd = IFLYInterstitialAd.createInterstitialAd(activity, TogetherAd.idMapXunFei[adConstStr])
+//        //点击手机后退键，是否销毁广告:"true":销毁，"false":不销毁，默认销毁 interstitialAd.setParameter(AdKeys.BACK_KEY_ENABLE, "true");
+//        //设置广告尺寸
+//        if (interstitialAd == null) {
+//            loge("${AdNameType.XUNFEI.type}: 科大讯飞 interstitialAd 是 null")
+//            val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+//            showAdInter(
+//                activity,
+//                newConfigStr,
+//                adConstStr,
+//                isLandscape,
+//                adIntersContainer,
+//                adListener
+//            )
+//            return
+//        }
+//        interstitialAd.setAdSize(IFLYAdSize.INTERSTITIAL)
+
+//        // 添加监听器，请求广告
+//        val mAdListener = object : IFLYAdListener {
+//            override fun onConfirm() {}
+//
+//            override fun onCancel() {}
+//
+//            override fun onAdReceive() {
+//                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
+//                adListener.onAdPrepared(AdNameType.XUNFEI.type)
+//                interstitialAd.showAd()
+//            }
+
+//            override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
+//                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
+//                val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+//                showAdInter(
+//                    activity,
+//                    newConfigStr,
+//                    adConstStr,
+//                    isLandscape,
+//                    adIntersContainer,
+//                    adListener
+//                )
+//            }
+
+//            override fun onAdClick() {
+//                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.clicked)}")
+//                adListener.onAdClick(AdNameType.XUNFEI.type)
+//            }
+
+//            override fun onAdClose() {}
+
+//            override fun onAdExposure() {
+//                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
+//            }
+//        }
+//        interstitialAd.loadAd(mAdListener)
     }
 
     interface AdListenerInter {

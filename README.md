@@ -86,7 +86,7 @@ dependencies {
 2. 可选择性添加广点通、百度、科大讯飞的广告
 
 ### 对 TogetherAd 有疑问？
-欢迎 Issues 和 Star，或添加 TogetherAd 交流群  
+欢迎 Issues 和 Star，或添加 TogetherAd 交流群: 688291767
 <img src="doc/img/TogetherAd-QQ.png" >
 
 ### License
