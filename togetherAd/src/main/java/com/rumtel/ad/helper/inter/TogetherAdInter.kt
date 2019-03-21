@@ -136,7 +136,7 @@ object TogetherAdInter : AdBase {
                 //图片以16：9的宽高比展示
                 val n = if (isLandscape) {
                     //横屏的时候 宽是屏幕宽度的 0.5
-                    ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.5).toInt()
+                    ((if (dm.widthPixels < dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.5).toInt()
                 } else {
                     //竖屏的时候 宽是屏幕宽度的 0.8
                     ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
