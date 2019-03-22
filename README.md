@@ -27,7 +27,7 @@ allprojects {
 Module 目录下 build.gradle 中
 ```
 dependencies {
-    implementation 'com.github.ifmvo:TogetherAd:1.1.9'
+    implementation 'com.github.ifmvo:TogetherAd:1.2.2'
 }
 ```
 ### 使用方法
