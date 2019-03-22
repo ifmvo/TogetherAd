@@ -1,29 +1,17 @@
-# TogetherAd 
-[![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-%E9%99%88%E9%93%AD%E5%8D%93-yellowgreen.svg?style=popout-square&logo=appveyor)](https://blog.csdn.net/ifmvo)
+# TogetherAd Pro
 
-TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例
+TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例，TogetherAd Pro 版本对广告位方面进行优化，可以实现自定义广告位
 
 ### 目前支持的广告
 百度Mob、腾讯GDT、科大讯飞
 
 ### 功能介绍
 
-多种平台随机展示
-> 因为各个平台分发广告的量实际上有可能不够用，所以多种广告根据一定比例随机展示会使收益最大化
-
 控制个平台广告的展示比例
 > 因为各个平台分发广告的量是不一样的，比如广点通分配1000次，百度只有100次，那么展示广点通和百度广告的次数必然是10：1才能使收益最大化
 
 广告失败切换
 > 如果某个平台的广告请求失败或没有量，会自动在其他广告中随机出一种再次请求，这样可以尽可能多的展示广告，使收益最大化
-
-### 效果图
-<div align="center">
-<img src="/img/img_splash.jpeg" height="330" width="190" >
-<img src="/img/img_flow.jpeg" height="330" width="190" >
-<img src="/img/img_premovie.jpeg" height="330" width="190" >
-<img src="/img/img_inter.jpeg" height="330" width="190" >
-</div>
 
 ### Gradle集成方法
 项目根目录下 build.gradle 中
@@ -82,26 +70,14 @@ dependencies {
 如果所有的广告全部失败，此时的配置字符串："HIDE:3,HIDE:3,HIDE:4"  
 
 ### 计划功能
+目前虽然可以满足公司现有项目的需求，但是还有很多方面还需要改善和优化，例：  
+
 1. 提供自定义前贴广告的布局功能
 2. 可选择性添加广点通、百度、科大讯飞的广告
 
-### 对 TogetherAd 有疑问？
-欢迎 Issues 和 Star，或添加 TogetherAd 交流群: 688291767
-<img src="doc/img/TogetherAd-QQ.png" >
+接下来一一实现
 
-### License
-```
-Copyright 2018 陈铭卓
+### 特殊处理
+1. 前贴其实就是使用信息流+倒计时进行处理
+2. 广点通和讯飞的插屏广告也是使用 信息流 + 关闭按钮 的方式伪装出来的
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
