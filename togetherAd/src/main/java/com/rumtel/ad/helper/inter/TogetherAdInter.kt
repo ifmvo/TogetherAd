@@ -134,13 +134,8 @@ object TogetherAdInter : AdBase {
                 val dm = DisplayMetrics()
                 activity.windowManager.defaultDisplay.getMetrics(dm)
                 //图片以16：9的宽高比展示
-                val n = if (isLandscape) {
-                    //横屏的时候 宽是屏幕宽度的 0.5
-                    ((if (dm.widthPixels < dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.5).toInt()
-                } else {
-                    //竖屏的时候 宽是屏幕宽度的 0.8
-                    ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
-                }
+                //无论是横屏还是竖屏都是取小的那个长度的80%
+                val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
 
                 val rParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
                 rParams.addRule(RelativeLayout.CENTER_IN_PARENT)
