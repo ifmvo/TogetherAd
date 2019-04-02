@@ -178,11 +178,8 @@ object TogetherAdInter : AdBase {
 
                             relativeLayout.addView(ivClose)
                             relativeLayout.addView(gdtLogoView)
-                            adIntersContainer.setBackgroundColor(Color.parseColor("#30000000"))
-                            adIntersContainer.setOnClickListener {
-                                adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
-                                adIntersContainer.visibility = View.GONE
-                            }
+                            adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
+                            adIntersContainer.setOnClickListener {}
 
                             //将容器中的所有东西删除
                             return true
@@ -305,7 +302,7 @@ object TogetherAdInter : AdBase {
                 if (adIntersContainer.childCount > 0) {
                     adIntersContainer.removeAllViews()
                 }
-                adIntersContainer.setBackgroundColor(Color.parseColor("#30000000"))
+                adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
                 interAd.showAdInParentForVideoApp(activity, adIntersContainer)
             }
 
