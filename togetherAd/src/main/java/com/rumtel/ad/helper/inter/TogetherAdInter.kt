@@ -1,6 +1,7 @@
 package com.rumtel.ad.helper.inter
 
 import android.app.Activity
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.support.annotation.NonNull
 import android.util.DisplayMetrics
@@ -44,12 +45,6 @@ object TogetherAdInter : AdBase {
         @NonNull adIntersContainer: RelativeLayout,
         @NonNull adListener: AdListenerInter
     ) {
-//        var newConfigStr = interConfigStr
-
-//        //目前这个版本先这样写，横屏下广点通大概率展示不出来的问题
-//        if (isLandscape && !TextUtils.isEmpty(interConfigStr)) {
-//            newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-//        }
 
         val randomAdName = AdRandomUtil.getRandomAdName(interConfigStr)
         when (randomAdName) {
@@ -122,25 +117,22 @@ object TogetherAdInter : AdBase {
 
                 logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
                 adListener.onAdPrepared(AdNameType.GDT.type)
-                //将容器中的所有东西删除
-                adIntersContainer.visibility = View.VISIBLE
-                if (adIntersContainer.childCount > 0) {
-                    adIntersContainer.removeAllViews()
-                }
 
                 //获取一个广告
                 val adItem = adList[0]
-                val relativeLayout = RelativeLayout(activity)
+
                 val dm = DisplayMetrics()
                 activity.windowManager.defaultDisplay.getMetrics(dm)
                 //图片以16：9的宽高比展示
                 //无论是横屏还是竖屏都是取小的那个长度的80%
                 val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
 
+                val relativeLayout = RelativeLayout(activity)
                 val rParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
                 rParams.addRule(RelativeLayout.CENTER_IN_PARENT)
                 relativeLayout.layoutParams = rParams
 
+                //广告的图片
                 val imageView = ImageView(activity)
                 imageView.layoutParams = RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -148,43 +140,60 @@ object TogetherAdInter : AdBase {
                 )
                 imageView.scaleType = ImageView.ScaleType.FIT_XY
 
+                //关闭按钮
+                val closeParam = RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+                )
+                closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                val ivClose = ImageView(activity)
+                ivClose.layoutParams = closeParam
+                ivClose.setImageResource(R.mipmap.ad_close)
+                ivClose.setOnClickListener {
+                    adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
+                    adIntersContainer.visibility = View.GONE
+                }
+
+                //广点通的Logo
+                val logoViewParams = RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+
+                val gdtLogoView = ImageView(activity)
+                gdtLogoView.layoutParams = logoViewParams
+                gdtLogoView.setImageResource(R.drawable.gdt_ad_logo)
+
                 ILFactory.getLoader()
                     .load(activity, imageView, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
                         override fun onLoadCompleted(p0: Drawable?): Boolean {
                             adItem.onExposured(adIntersContainer)
-                            val closeParam = RelativeLayout.LayoutParams(
-                                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                RelativeLayout.LayoutParams.WRAP_CONTENT
-                            )
-                            closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                            val ivClose = ImageView(activity)
-                            ivClose.layoutParams = closeParam
-                            ivClose.setImageResource(R.mipmap.ad_close)
-                            ivClose.setOnClickListener {
-                                adIntersContainer.visibility = View.GONE
-                            }
+
                             imageView.setOnClickListener {
                                 adListener.onAdClick(AdNameType.GDT.type)
                                 adItem.onClicked(it)
                             }
+
                             relativeLayout.addView(ivClose)
-
-                            val logoViewParams = RelativeLayout.LayoutParams(
-                                ViewGroup.LayoutParams.WRAP_CONTENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT
-                            )
-                            logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                            logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-
-                            val gdtLogoView = ImageView(activity)
-                            gdtLogoView.layoutParams = logoViewParams
-                            gdtLogoView.setImageResource(R.drawable.gdt_ad_logo)
-
                             relativeLayout.addView(gdtLogoView)
+                            adIntersContainer.setBackgroundColor(Color.parseColor("#20000000"))
+                            adIntersContainer.setOnClickListener {
+                                adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
+                                adIntersContainer.visibility = View.GONE
+                            }
 
+                            //将容器中的所有东西删除
                             return true
                         }
                     })
+
+                adIntersContainer.visibility = View.VISIBLE
+                if (adIntersContainer.childCount > 0) {
+                    adIntersContainer.removeAllViews()
+                }
+
                 relativeLayout.addView(imageView)
                 adIntersContainer.addView(relativeLayout)
             }
@@ -286,8 +295,6 @@ object TogetherAdInter : AdBase {
     ) {
 
         adListener.onStartRequest(AdNameType.BAIDU.type)
-        adIntersContainer.setOnClickListener { adIntersContainer.visibility = View.GONE }
-        adIntersContainer.visibility = View.GONE
 
         val interAd = InterstitialAd(activity, AdSize.InterstitialForVideoPausePlay, TogetherAd.idMapBaidu[adConstStr])
 
@@ -298,11 +305,16 @@ object TogetherAdInter : AdBase {
                 if (adIntersContainer.childCount > 0) {
                     adIntersContainer.removeAllViews()
                 }
+                adIntersContainer.setBackgroundColor(Color.parseColor("#20000000"))
                 interAd.showAdInParentForVideoApp(activity, adIntersContainer)
             }
 
             override fun onAdPresent() {
                 logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
+                adIntersContainer.setOnClickListener {
+                    adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
+                    adIntersContainer.visibility = View.GONE
+                }
                 adListener.onAdPrepared(AdNameType.BAIDU.type)
             }
 
@@ -313,6 +325,7 @@ object TogetherAdInter : AdBase {
 
             override fun onAdDismissed() {
                 logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
+                adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                 adIntersContainer.visibility = View.GONE
                 adListener.onAdDismissed()
             }

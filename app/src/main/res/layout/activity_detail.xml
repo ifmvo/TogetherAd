@@ -19,16 +19,6 @@
 
     </FrameLayout>
 
-
-    <!--
-        插屏广告的容器
-    -->
-    <RelativeLayout
-            android:id="@+id/mRlInterAd"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -51,5 +41,12 @@
 
     </LinearLayout>
 
+    <!--
+        插屏广告的容器
+    -->
+    <RelativeLayout
+            android:id="@+id/mRlInterAd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </FrameLayout>
