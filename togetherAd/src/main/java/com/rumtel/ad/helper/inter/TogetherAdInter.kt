@@ -178,7 +178,7 @@ object TogetherAdInter : AdBase {
 
                             relativeLayout.addView(ivClose)
                             relativeLayout.addView(gdtLogoView)
-                            adIntersContainer.setBackgroundColor(Color.parseColor("#20000000"))
+                            adIntersContainer.setBackgroundColor(Color.parseColor("#30000000"))
                             adIntersContainer.setOnClickListener {
                                 adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                                 adIntersContainer.visibility = View.GONE
@@ -305,7 +305,7 @@ object TogetherAdInter : AdBase {
                 if (adIntersContainer.childCount > 0) {
                     adIntersContainer.removeAllViews()
                 }
-                adIntersContainer.setBackgroundColor(Color.parseColor("#20000000"))
+                adIntersContainer.setBackgroundColor(Color.parseColor("#30000000"))
                 interAd.showAdInParentForVideoApp(activity, adIntersContainer)
             }
 
