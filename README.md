@@ -1,5 +1,3 @@
-# TogetherAd Pro
-
 ![Logo](doc/img/TogetherAd-Logo.png)
 
 TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例，TogetherAd Pro 版本对广告位方面进行优化，可以实现自定义广告位
