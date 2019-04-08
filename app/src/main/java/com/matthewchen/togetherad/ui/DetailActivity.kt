@@ -95,6 +95,34 @@ class DetailActivity : AppCompatActivity() {
 //            }
 //        })
 
+//        TogetherAd.request {
+//
+//            ratio(gdt = 1, baidu = 2, xunfei = 3)
+//            adConst(TogetherAdConst.AD_INTER)
+//
+//            listen(object : TogetherAdInter.AdListenerInter {
+//                override fun onStartRequest(channel: String) {
+//                    Log.e("ifmvo", "onStartRequest:channel:$channel")
+//                }
+//
+//                override fun onAdClick(channel: String) {
+//                    Log.e("ifmvo", "onAdClick:channel:$channel")
+//                }
+//
+//                override fun onAdFailed(failedMsg: String?) {
+//                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
+//                }
+//
+//                override fun onAdDismissed() {
+//                    Log.e("ifmvo", "onAdDismissed")
+//                }
+//
+//                override fun onAdPrepared(channel: String) {
+//                    Log.e("ifmvo", "onAdPrepared:channel:$channel")
+//                }
+//            })
+//        }
+
 
         TogetherAdInter.showAdInter(
             this,

@@ -27,7 +27,7 @@ import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 import com.rumtel.ad.helper.flow.TogetherAdFlow
 
-/* 
+/*
  * (●ﾟωﾟ●)
  * 
  * Created by Matthew_Chen on 2019/1/2.
@@ -319,7 +319,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
     }
 
     private fun loadAd(t: List<IndexBean>, currentPage: Int) {
-
         TogetherAdFlow.getAdList(
             mContext,
             Config.listAdConfig(),
