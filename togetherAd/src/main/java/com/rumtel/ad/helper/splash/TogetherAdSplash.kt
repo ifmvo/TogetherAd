@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.support.annotation.NonNull
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -13,10 +12,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
-import com.iflytek.voiceads.AdKeys
 import com.iflytek.voiceads.IFLYNativeAd
-import com.iflytek.voiceads.IFLYNativeListener
-import com.iflytek.voiceads.NativeADDataRef
+import com.iflytek.voiceads.config.AdKeys
+import com.iflytek.voiceads.conn.NativeDataRef
+import com.iflytek.voiceads.listener.IFLYNativeListener
 import com.ifmvo.imageloader.ILFactory
 import com.ifmvo.imageloader.LoadListener
 import com.ifmvo.imageloader.progress.LoaderOptions
@@ -218,9 +217,8 @@ object TogetherAdSplash : AdBase {
         var countDownTimer: CountDownTimer? = null
         adListener.onStartRequest(AdNameType.XUNFEI.type)
         nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], object : IFLYNativeListener {
-            override fun onADLoaded(list: List<NativeADDataRef>?) {
-
-                if (list == null || list.isEmpty()) {
+            override fun onAdLoaded(adItem: NativeDataRef?) {
+                if (adItem == null) {
                     val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                     showAdFull(
                         activity,
@@ -234,7 +232,6 @@ object TogetherAdSplash : AdBase {
 
                 val relativeLayout = RelativeLayout(activity)
 
-                val adItem = list[0]
                 val adPic = ImageView(activity)
 
                 adPic.scaleType = ImageView.ScaleType.FIT_XY
@@ -275,7 +272,7 @@ object TogetherAdSplash : AdBase {
                 logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
                 relativeLayout.addView(logoView, logoViewParams)
 
-                ILFactory.getLoader().load(activity, adPic, adItem.image, LoaderOptions(), object : LoadListener() {
+                ILFactory.getLoader().load(activity, adPic, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
                     override fun onLoadCompleted(drawable: Drawable): Boolean {
 
                         if (!stop) {
@@ -284,7 +281,7 @@ object TogetherAdSplash : AdBase {
                             logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
                         }
 
-                        if (adItem.onExposured(adPic)) {
+                        if (adItem.onExposure(adPic)) {
                             logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
                         }
 
@@ -304,23 +301,8 @@ object TogetherAdSplash : AdBase {
                     }
                 })
                 adsParentLayout.setOnClickListener { view ->
-                    adItem.onClicked(view)
+                    adItem.onClick(view)
                     adListener.onAdClick(AdNameType.XUNFEI.type)
-                }
-                adsParentLayout.setOnTouchListener { _, event ->
-                    when (event.action) {
-                        MotionEvent.ACTION_DOWN -> {
-                            nativeAd?.setParameter(AdKeys.CLICK_POS_DX, event.x.toString() + "")
-                            nativeAd?.setParameter(AdKeys.CLICK_POS_DY, event.y.toString() + "")
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            nativeAd?.setParameter(AdKeys.CLICK_POS_UX, event.x.toString() + "")
-                            nativeAd?.setParameter(AdKeys.CLICK_POS_UY, event.y.toString() + "")
-                        }
-                        else -> {
-                        }
-                    }
-                    false
                 }
 
                 adsParentLayout.addView(
@@ -329,7 +311,8 @@ object TogetherAdSplash : AdBase {
                 )
             }
 
-            override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
+
+            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
                 if (!stop) {
                     cancelTimerTask()
                     val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
@@ -352,8 +335,8 @@ object TogetherAdSplash : AdBase {
 
             }
         })
-        val count = 1 // 一次拉取的广告条数:范围 1-30(目前仅支持每次请求一条)
-        nativeAd?.loadAd(count)
+        nativeAd?.setParameter(AdKeys.DOWNLOAD_ALERT, true)
+        nativeAd?.loadAd()
     }
 
     /**

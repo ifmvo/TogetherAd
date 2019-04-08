@@ -22,12 +22,16 @@
             科大讯飞
         -->
         <meta-data android:name="IFLYTEK_APPKEY_AD" android:value="5c10c38c"/>
+
+        <!-- 项目中报红无影响，必需添加 -->
         <service
-                android:name="com.iflytek.voiceads.update.DownloadService"
+                android:name="com.iflytek.voiceads.download.DownloadService"
                 android:stopWithTask="true"/>
+        <!-- 项目中报红无影响，必需添加 -->
         <activity
                 android:name="com.iflytek.voiceads.request.IFLYBrowser"
                 android:screenOrientation="portrait"/>
+        <!-- android:authorities="${packageName}.fileprovider",注意fileprovider大小写需严格匹配-->
         <provider
                 android:name=".other.IFlyFileProvider"
                 android:authorities="${applicationId}.fileprovider"

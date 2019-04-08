@@ -7,8 +7,8 @@ import com.baidu.mobad.feeds.NativeErrorCode
 import com.baidu.mobad.feeds.NativeResponse
 import com.baidu.mobad.feeds.RequestParameters
 import com.iflytek.voiceads.IFLYNativeAd
-import com.iflytek.voiceads.IFLYNativeListener
-import com.iflytek.voiceads.NativeADDataRef
+import com.iflytek.voiceads.conn.NativeDataRef
+import com.iflytek.voiceads.listener.IFLYNativeListener
 import com.qq.e.ads.nativ.NativeMediaAD
 import com.qq.e.ads.nativ.NativeMediaADData
 import com.qq.e.comm.util.AdError
@@ -190,6 +190,17 @@ object TogetherAdFlow : AdBase {
     ) {
         adListener.onStartRequest(AdNameType.XUNFEI.type)
         mListener = object : IFLYNativeListener {
+            override fun onAdLoaded(adItem: NativeDataRef?) {
+                if (!stop) {
+                    cancelTimerTask()
+                    activity.runOnUiThread {
+                        val list = mutableListOf(adItem)
+                        adListener.onAdLoaded(AdNameType.XUNFEI.type, list)
+                    }
+                    logd("${AdNameType.XUNFEI.type}: ${adItem?.title}")
+                }
+            }
+
             override fun onConfirm() {
 
             }
@@ -198,17 +209,7 @@ object TogetherAdFlow : AdBase {
 
             }
 
-            override fun onADLoaded(list: List<NativeADDataRef>) {
-                if (!stop) {
-                    cancelTimerTask()
-                    activity.runOnUiThread {
-                        adListener.onAdLoaded(AdNameType.XUNFEI.type, list)
-                    }
-                    logd("${AdNameType.XUNFEI.type}: list.size: " + list.size)
-                }
-            }
-
-            override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
+            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
                 if (!stop) {
                     cancelTimerTask()
                     val newListConfig = listConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
@@ -222,8 +223,7 @@ object TogetherAdFlow : AdBase {
             activity, TogetherAd.idMapXunFei[adConstStr],
             mListener
         )
-        val count = 1 // 一次拉取的广告条数:范围 1-30(目前仅支持每次请求一条)
-        nativeAd.loadAd(count)
+        nativeAd.loadAd()
 
     }
 

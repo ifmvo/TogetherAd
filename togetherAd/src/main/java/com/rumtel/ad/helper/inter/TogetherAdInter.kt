@@ -13,8 +13,8 @@ import com.baidu.mobads.AdSize
 import com.baidu.mobads.InterstitialAd
 import com.baidu.mobads.InterstitialAdListener
 import com.iflytek.voiceads.IFLYNativeAd
-import com.iflytek.voiceads.IFLYNativeListener
-import com.iflytek.voiceads.NativeADDataRef
+import com.iflytek.voiceads.conn.NativeDataRef
+import com.iflytek.voiceads.listener.IFLYNativeListener
 import com.ifmvo.imageloader.ILFactory
 import com.ifmvo.imageloader.LoadListener
 import com.ifmvo.imageloader.progress.LoaderOptions
@@ -329,6 +329,8 @@ object TogetherAdInter : AdBase {
 
             override fun onAdFailed(s: String) {
                 loge("${AdNameType.BAIDU.type}: $s")
+                adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
+                adIntersContainer.visibility = View.GONE
                 val newConfigStr = interConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
                 showAdInter(
                     activity,
@@ -363,8 +365,8 @@ object TogetherAdInter : AdBase {
         adListener.onStartRequest(AdNameType.XUNFEI.type)
 
         val mListener = object : IFLYNativeListener {
-            override fun onADLoaded(list: MutableList<NativeADDataRef>?) {
-                if (list?.isEmpty() != false) {
+            override fun onAdLoaded(adItem: NativeDataRef?) {
+                if (adItem == null) {
                     loge("${AdNameType.XUNFEI.type}: 科大讯飞信息流伪装插屏返回空的")
                     val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                     showAdInter(
@@ -384,8 +386,6 @@ object TogetherAdInter : AdBase {
                     adIntersContainer.removeAllViews()
                 }
 
-                val adItem = list[0]
-
                 val relativeLayout = RelativeLayout(activity)
                 val dm = DisplayMetrics()
                 activity.windowManager.defaultDisplay.getMetrics(dm)
@@ -400,9 +400,9 @@ object TogetherAdInter : AdBase {
                 imageView.scaleType = ImageView.ScaleType.FIT_XY
 
                 ILFactory.getLoader()
-                    .load(activity, imageView, adItem.image, LoaderOptions(), object : LoadListener() {
+                    .load(activity, imageView, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
                         override fun onLoadCompleted(p0: Drawable?): Boolean {
-                            if (adItem.onExposured(imageView)) {
+                            if (adItem.onExposure(imageView)) {
                                 logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
                             }
                             val closeParam = RelativeLayout.LayoutParams(
@@ -417,7 +417,7 @@ object TogetherAdInter : AdBase {
                                 adIntersContainer.visibility = View.GONE
                             }
                             imageView.setOnClickListener {
-                                if (adItem.onClicked(imageView)) {
+                                if (adItem.onClick(imageView)) {
                                     logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.clicked)}")
                                     adListener.onAdClick(AdNameType.XUNFEI.type)
                                 }
@@ -431,8 +431,7 @@ object TogetherAdInter : AdBase {
                 adIntersContainer.addView(relativeLayout)
             }
 
-
-            override fun onAdFailed(adError: com.iflytek.voiceads.AdError) {
+            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
                 loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
                 val newConfigStr = interConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
                 showAdInter(
@@ -455,7 +454,7 @@ object TogetherAdInter : AdBase {
         }
 
         val nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], mListener)
-        nativeAd.loadAd(1)
+        nativeAd.loadAd()
 
 
 //        adListener.onStartRequest(AdNameType.XUNFEI.type)

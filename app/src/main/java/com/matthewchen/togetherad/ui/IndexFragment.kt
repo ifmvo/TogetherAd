@@ -10,7 +10,7 @@ import com.baidu.mobad.feeds.NativeResponse
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.iflytek.voiceads.NativeADDataRef
+import com.iflytek.voiceads.conn.NativeDataRef
 import com.ifmvo.imageloader.ILFactory
 import com.ifmvo.imageloader.progress.LoaderOptions
 import com.matthewchen.togetherad.R
@@ -74,8 +74,8 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                 is NativeResponse -> {
                     ad.recordImpression(recyclerView)
                 }
-                is NativeADDataRef -> {
-                    ad.onExposured(recyclerView)
+                is NativeDataRef -> {
+                    ad.onExposure(recyclerView)
                 }
             }
         }

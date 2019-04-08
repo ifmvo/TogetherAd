@@ -5,17 +5,15 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import com.iflytek.voiceads.AdKeys;
 import com.iflytek.voiceads.IFLYNativeAd;
-import com.iflytek.voiceads.IFLYNativeListener;
-import com.iflytek.voiceads.NativeADDataRef;
+import com.iflytek.voiceads.config.AdError;
+import com.iflytek.voiceads.conn.NativeDataRef;
+import com.iflytek.voiceads.listener.IFLYNativeListener;
 import com.ifmvo.imageloader.ILFactory;
 import com.ifmvo.imageloader.LoadListener;
 import com.ifmvo.imageloader.progress.LoaderOptions;
 
-import java.util.List;
 
 /*
  * (●ﾟωﾟ●)
@@ -36,28 +34,28 @@ public class AdViewPreMovieIXunFei extends AdViewPreMovieBase {
         super(context, attrs, defStyleAttr);
     }
 
-    NativeADDataRef mAd;
+    NativeDataRef mAd;
     IFLYNativeAd nativeAd;
 
     @Override
     public void start(String locationId) {
         nativeAd = new IFLYNativeAd(super.getContext(), locationId, new IFLYNativeListener() {
+
             @Override
-            public void onADLoaded(List<NativeADDataRef> list) {
-                if (list == null || list.size() <= 0) {
+            public void onAdLoaded(NativeDataRef nativeDataRef) {
+                if (nativeDataRef == null) {
                     if (adViewListener != null) {
                         adViewListener.onAdFailed("IFLYNativeAd:onADLoaded");
                     }
                     return;
                 }
 
-                mAd = list.get(0);
+                mAd = nativeDataRef;
                 initAd();
-
             }
 
             @Override
-            public void onAdFailed(com.iflytek.voiceads.AdError adError) {
+            public void onAdFailed(AdError adError) {
                 if (adViewListener != null) {
                     adViewListener.onAdFailed(adError.getErrorDescription());
                 }
@@ -73,16 +71,15 @@ public class AdViewPreMovieIXunFei extends AdViewPreMovieBase {
 
             }
         });
-        int count = 1; // 一次拉取的广告条数:范围 1-30(目前仅支持每次请求一条)
-        nativeAd.loadAd(count);
+        nativeAd.loadAd();
     }
 
     private void initAd() {
         mTvDesc.setText(mAd.getTitle());
-        ILFactory.getLoader().load(AdViewPreMovieIXunFei.super.getContext(), mIvImg, mAd.getImage(), new LoaderOptions(), new LoadListener() {
+        ILFactory.getLoader().load(AdViewPreMovieIXunFei.super.getContext(), mIvImg, mAd.getImgUrl(), new LoaderOptions(), new LoadListener() {
             @Override
             public boolean onLoadCompleted(Drawable drawable) {
-                if (mAd.onExposured(mIvImg)) {
+                if (mAd.onExposure(mIvImg)) {
                     if (adViewListener != null) {
                         adViewListener.onExposured();
                     }
@@ -91,31 +88,13 @@ public class AdViewPreMovieIXunFei extends AdViewPreMovieBase {
                     @Override
                     public void onClick(View view) {
                         // 点击响应
-                        mAd.onClicked(view);
+                        mAd.onClick(view);
                         if (adViewListener != null) {
                             adViewListener.onAdClick();
                         }
                     }
                 });
                 startTimerCount(6000);
-                return false;
-            }
-        });
-        mRootView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        nativeAd.setParameter(AdKeys.CLICK_POS_DX, event.getX() + "");
-                        nativeAd.setParameter(AdKeys.CLICK_POS_DY, event.getY() + "");
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        nativeAd.setParameter(AdKeys.CLICK_POS_UX, event.getX() + "");
-                        nativeAd.setParameter(AdKeys.CLICK_POS_UY, event.getY() + "");
-                        break;
-                    default:
-                        break;
-                }
                 return false;
             }
         });

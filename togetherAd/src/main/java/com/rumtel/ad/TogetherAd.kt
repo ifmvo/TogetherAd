@@ -3,6 +3,8 @@ package com.rumtel.ad
 import android.content.Context
 import android.support.annotation.NonNull
 import com.baidu.mobads.AdView
+import com.iflytek.voiceads.config.SDKLogger
+import com.iflytek.voiceads.dex.DexLoader
 
 /* 
  * (●ﾟωﾟ●)
@@ -54,6 +56,8 @@ object TogetherAd {
 
     fun initXunFeiAd(@NonNull context: Context, @NonNull xunfeiIdMap: MutableMap<String, String?>) {
         idMapXunFei = xunfeiIdMap
+        SDKLogger.setDebug(BuildConfig.DEBUG)
+        DexLoader.initIFLYADModule(context)
     }
 
     fun setAdTimeOutMillis(millis: Long) {
