@@ -7,4 +7,7 @@
     <string name="show">展示了</string>
     <string name="clicked">点击了</string>
     <string name="dismiss">消失了</string>
+
+
+    <string name="dislike">不喜欢</string>
 </resources>

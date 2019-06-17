@@ -330,7 +330,7 @@ object TogetherAdSplash : AdBase {
         @NonNull adsParentLayout: ViewGroup,
         @NonNull adListener: AdListenerSplashFull
     ) {
-
+        adListener.onStartRequest(AdNameType.CSJ.type)
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(dm)
         //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
