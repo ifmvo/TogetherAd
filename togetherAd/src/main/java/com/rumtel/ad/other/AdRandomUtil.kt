@@ -14,7 +14,7 @@ package com.rumtel.ad.other
 object AdRandomUtil {
 
     /**
-     * configStr : "baid:2,gdt:8"
+     * configStr : "baidu:3,gdt:7,csj:7"
      *
      * return AdNameType.BAIDU  || AdNameType.GDT || ...
      */
@@ -51,7 +51,11 @@ object AdRandomUtil {
                                 AdNameType.XUNFEI.type -> {
                                     list.add(AdNameType.XUNFEI)
                                 }
+                                AdNameType.CSJ.type -> {
+                                    list.add(AdNameType.CSJ)
+                                }
                                 else -> {
+                                    //如果后台人员拼写字符串出错，忽略即可
                                 }
                             }
                         }

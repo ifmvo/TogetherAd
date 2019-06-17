@@ -3,6 +3,7 @@ package com.matthewchen.togetherad
 import android.app.Application
 import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.TogetherAd
+import java.util.*
 
 /* 
  * (●ﾟωﾟ●)
@@ -13,28 +14,26 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val baiduIdMap = mutableMapOf<String, String?>(
-            TogetherAdConst.AD_SPLASH to "2543740",
-            TogetherAdConst.AD_INTER to "5985131",
-            TogetherAdConst.AD_FLOW_INDEX to "2715031",
-            TogetherAdConst.AD_TIEPIAN_LIVE to "5985131"
-        )
-        TogetherAd.initBaiduAd(applicationContext, "ee93e58e", baiduIdMap)
 
-        val gdtIdMap = mutableMapOf<String, String?>(
-            TogetherAdConst.AD_SPLASH to "8030228893573270",
-            TogetherAdConst.AD_INTER to "4090620883979242",
-            TogetherAdConst.AD_FLOW_INDEX to "4010231735332811",
-            TogetherAdConst.AD_TIEPIAN_LIVE to "4060449650093530"
-        )
-        TogetherAd.initGDTAd(applicationContext, "1106572734", gdtIdMap)
+        val baiduIdMap = HashMap<String, String>()
+        baiduIdMap[TogetherAdConst.AD_SPLASH] = "5873732"
+        baiduIdMap[TogetherAdConst.AD_INTER] = "5873733"
+        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5873735"
+        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "5873734"
+        TogetherAd.initBaiduAd(applicationContext, "cd3d8b16", baiduIdMap)
 
-        val xunFeiIdMap = mutableMapOf<String, String?>(
-            TogetherAdConst.AD_SPLASH to "FD0AC8FDE5CE0B317A6C4077E68D34CC",
-            TogetherAdConst.AD_INTER to "6FD44C667D5EFD97730CC1E3F174D965",
-            TogetherAdConst.AD_FLOW_INDEX to "EE2009111A1DF0BCA9DAD3723A95602F",
-            TogetherAdConst.AD_TIEPIAN_LIVE to "93D157AAFA8B7EF64165B1F0ECEE2623"
+        val gdtIdMap = HashMap<String, String>()
+        gdtIdMap[TogetherAdConst.AD_SPLASH] = "5070550501041614"
+        gdtIdMap[TogetherAdConst.AD_INTER] = "7000758820077828"
+        gdtIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5060356551943607"
+        gdtIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "6040255571748678"
+        TogetherAd.initGDTAd(applicationContext, "1105965856", gdtIdMap)
+
+        val csjIdMap = mutableMapOf(
+            TogetherAdConst.AD_SPLASH to "820413685"
         )
-        TogetherAd.initXunFeiAd(applicationContext, xunFeiIdMap)
+        TogetherAd.initCsjAd(applicationContext, "5020413", getString(R.string.app_name), csjIdMap)
+
+        TogetherAd.setAdTimeOutMillis(5000)
     }
 }

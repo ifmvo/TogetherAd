@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.support.annotation.NonNull
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,6 +13,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
+import com.bytedance.sdk.openadsdk.AdSlot
+import com.bytedance.sdk.openadsdk.TTAdNative
+import com.bytedance.sdk.openadsdk.TTAdSdk
+import com.bytedance.sdk.openadsdk.TTSplashAd
 import com.iflytek.voiceads.IFLYNativeAd
 import com.iflytek.voiceads.config.AdKeys
 import com.iflytek.voiceads.conn.NativeDataRef
@@ -65,33 +70,18 @@ object TogetherAdSplash : AdBase {
 
         val randomAdName = AdRandomUtil.getRandomAdName(splashConfigStr)
         when (randomAdName) {
-            AdNameType.BAIDU -> showAdFullBaiduMob(
-                activity,
-                splashConfigStr,
-                adConstStr,
-                adsParentLayout,
-                adListener
-            )
-            AdNameType.GDT -> showAdFullGDT(
-                activity,
-                splashConfigStr,
-                adConstStr,
-                adsParentLayout,
-                adListener
-            )
-            AdNameType.XUNFEI -> showAdFullXunFei(
-                activity,
-                splashConfigStr,
-                adConstStr,
-                adsParentLayout,
-                adListener
-            )
+            AdNameType.BAIDU -> showAdFullBaiduMob(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
+            AdNameType.GDT -> showAdFullGDT(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
+            AdNameType.XUNFEI -> showAdFullXunFei(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
+            AdNameType.CSJ -> showAdFullCsj(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
             else -> {
-                if (!stop) {
-                    cancelTimerTask()
-                    adListener.onAdFailed(activity.getString(R.string.all_ad_error))
-                    loge(activity.getString(R.string.all_ad_error))
+                if (stop) {
+                    return
                 }
+                cancelTimerTask()
+
+                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                loge(activity.getString(R.string.all_ad_error))
             }
         }
     }
@@ -120,26 +110,30 @@ object TogetherAdSplash : AdBase {
                 }
 
                 override fun onNoAD(adError: AdError) {
-                    if (!stop) {
-                        cancelTimerTask()
-                        val newConfigPreMovie = splashConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                        showAdFull(
-                            activity,
-                            newConfigPreMovie,
-                            adConstStr,
-                            adsParentLayout,
-                            adListener
-                        )
-                        loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
+                    if (stop) {
+                        return
                     }
+                    cancelTimerTask()
+
+                    val newConfigPreMovie = splashConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                    showAdFull(
+                        activity,
+                        newConfigPreMovie,
+                        adConstStr,
+                        adsParentLayout,
+                        adListener
+                    )
+                    loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
                 }
 
                 override fun onADPresent() {
-                    if (!stop) {
-                        cancelTimerTask()
-                        adListener.onAdPrepared(AdNameType.GDT.type)
-                        logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
+                    if (stop) {
+                        return
                     }
+                    cancelTimerTask()
+
+                    adListener.onAdPrepared(AdNameType.GDT.type)
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
                 }
 
                 override fun onADClicked() {
@@ -155,52 +149,6 @@ object TogetherAdSplash : AdBase {
                     logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
                 }
             })
-    }
-
-    /**
-     * 百度Mob
-     */
-    private fun showAdFullBaiduMob(
-        @NonNull activity: Activity,
-        splashConfigStr: String?,
-        @NonNull adConstStr: String,
-        @NonNull adsParentLayout: ViewGroup,
-        @NonNull adListener: AdListenerSplashFull
-    ) {
-        adListener.onStartRequest(AdNameType.BAIDU.type)
-
-        SplashAd(activity, adsParentLayout, object : SplashAdListener {
-            override fun onAdPresent() {
-                if (!stop) {
-                    cancelTimerTask()
-                    adListener.onAdPrepared(AdNameType.BAIDU.type)
-                    logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
-                }
-            }
-
-            override fun onAdDismissed() {
-                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
-                adListener.onAdDismissed()
-            }
-
-            override fun onAdFailed(s: String) {
-                loge("${AdNameType.BAIDU.type}: $s")
-                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
-                showAdFull(
-                    activity,
-                    newConfigPreMovie,
-                    adConstStr,
-                    adsParentLayout,
-                    adListener
-                )
-            }
-
-            override fun onAdClick() {
-                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.clicked)}")
-                adListener.onAdClick(AdNameType.BAIDU.type)
-            }
-
-        }, TogetherAd.idMapBaidu[adConstStr], true)
     }
 
     /**
@@ -220,13 +168,7 @@ object TogetherAdSplash : AdBase {
             override fun onAdLoaded(adItem: NativeDataRef?) {
                 if (adItem == null) {
                     val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                    showAdFull(
-                        activity,
-                        newConfigPreMovie,
-                        adConstStr,
-                        adsParentLayout,
-                        adListener
-                    )
+                    showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
                     return
                 }
 
@@ -274,12 +216,13 @@ object TogetherAdSplash : AdBase {
 
                 ILFactory.getLoader().load(activity, adPic, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
                     override fun onLoadCompleted(drawable: Drawable): Boolean {
-
-                        if (!stop) {
-                            cancelTimerTask()
-                            adListener.onAdPrepared(AdNameType.XUNFEI.type)
-                            logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
+                        if (stop) {
+                            return false
                         }
+                        cancelTimerTask()
+
+                        adListener.onAdPrepared(AdNameType.XUNFEI.type)
+                        logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
 
                         if (adItem.onExposure(adPic)) {
                             logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
@@ -313,18 +256,14 @@ object TogetherAdSplash : AdBase {
 
 
             override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
-                if (!stop) {
-                    cancelTimerTask()
-                    val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                    showAdFull(
-                        activity,
-                        newConfigPreMovie,
-                        adConstStr,
-                        adsParentLayout,
-                        adListener
-                    )
-                    loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
+                if (stop) {
+                    return
                 }
+                cancelTimerTask()
+
+                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+                showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
+                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
             }
 
             override fun onConfirm() {
@@ -337,6 +276,130 @@ object TogetherAdSplash : AdBase {
         })
         nativeAd?.setParameter(AdKeys.DOWNLOAD_ALERT, true)
         nativeAd?.loadAd()
+    }
+
+    /**
+     * 百度Mob
+     */
+    private fun showAdFullBaiduMob(
+        @NonNull activity: Activity,
+        splashConfigStr: String?,
+        @NonNull adConstStr: String,
+        @NonNull adsParentLayout: ViewGroup,
+        @NonNull adListener: AdListenerSplashFull
+    ) {
+        adListener.onStartRequest(AdNameType.BAIDU.type)
+
+        SplashAd(activity, adsParentLayout, object : SplashAdListener {
+            override fun onAdPresent() {
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                adListener.onAdPrepared(AdNameType.BAIDU.type)
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
+            }
+
+            override fun onAdDismissed() {
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
+                adListener.onAdDismissed()
+            }
+
+            override fun onAdFailed(s: String) {
+                loge("${AdNameType.BAIDU.type}: $s")
+                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
+                showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
+            }
+
+            override fun onAdClick() {
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.clicked)}")
+                adListener.onAdClick(AdNameType.BAIDU.type)
+            }
+
+        }, TogetherAd.idMapBaidu[adConstStr], true)
+    }
+
+    /**
+     * 穿山甲
+     */
+    private fun showAdFullCsj(
+        @NonNull activity: Activity,
+        splashConfigStr: String?,
+        @NonNull adConstStr: String,
+        @NonNull adsParentLayout: ViewGroup,
+        @NonNull adListener: AdListenerSplashFull
+    ) {
+
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(dm)
+        //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
+        val adSlot = AdSlot.Builder()
+            .setCodeId(TogetherAd.idMapCsj[adConstStr])
+            .setSupportDeepLink(true)
+            .setImageAcceptedSize(dm.widthPixels, dm.heightPixels)
+            .build()
+        TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
+            override fun onSplashAdLoad(splashAd: TTSplashAd?) {
+                if (splashAd == null) {
+                    loge("${AdNameType.CSJ.type}: 广告是 null")
+                    val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                    showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+                    return
+                }
+
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                adsParentLayout.removeAllViews()
+                adsParentLayout.addView(splashAd.splashView)
+
+                splashAd.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
+                    override fun onAdClicked(view: View?, p1: Int) {
+                        logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
+                        adListener.onAdClick(AdNameType.CSJ.type)
+                    }
+
+                    override fun onAdSkip() {
+                        logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
+                        adListener.onAdDismissed()
+                    }
+
+                    override fun onAdShow(p0: View?, p1: Int) {
+                        logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
+                    }
+
+                    override fun onAdTimeOver() {
+                        logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
+                        adListener.onAdDismissed()
+                    }
+                })
+            }
+
+            override fun onTimeout() {
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                loge("${AdNameType.CSJ.type}: ${activity.getString(R.string.timeout)}")
+                val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+            }
+
+            override fun onError(errorCode: Int, errorMsg: String?) {
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                loge("${AdNameType.CSJ.type}: $errorCode : $errorMsg")
+                val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+            }
+        }, 2500)//超时时间，demo 为 2000
     }
 
     /**
@@ -369,8 +432,7 @@ object TogetherAdSplash : AdBase {
     private fun startTimerTask(activity: Activity, listener: AdListenerSplashFull) {
         cancelTimerTask()
         timer = Timer()
-        overTimerTask =
-                OverTimerTask(activity, listener)
+        overTimerTask = OverTimerTask(activity, listener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 

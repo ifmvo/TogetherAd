@@ -14,6 +14,9 @@ enum class AdNameType(val type : String) {
     //科大讯飞
     XUNFEI("xunfei"),
 
+    //穿山甲
+    CSJ("csj"),
+
     //不展示
     NO("no")
 

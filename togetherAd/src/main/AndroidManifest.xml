@@ -87,6 +87,24 @@
                     android:resource="@xml/gdt_file_path"/>
         </provider>
 
+        <!--
+            穿山甲，一个传染两，那可怎么办，赶紧用"亮甲"
+        -->
+        <provider
+                android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+                android:authorities="${applicationId}.TTFileProvider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/csj_file_paths"/>
+        </provider>
+
+        <provider
+                android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+                android:authorities="${applicationId}.TTMultiProvider"
+                android:exported="false"/>
+
     </application>
 
 </manifest>
