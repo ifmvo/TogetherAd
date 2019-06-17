@@ -3,7 +3,6 @@ package com.matthewchen.togetherad
 import android.app.Application
 import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.TogetherAd
-import java.util.*
 
 /* 
  * (●ﾟωﾟ●)
@@ -15,22 +14,27 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val baiduIdMap = HashMap<String, String>()
-        baiduIdMap[TogetherAdConst.AD_SPLASH] = "5873732"
-        baiduIdMap[TogetherAdConst.AD_INTER] = "5873733"
-        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5873735"
-        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "5873734"
+        val baiduIdMap = mutableMapOf(
+            TogetherAdConst.AD_SPLASH to "5873732",
+            TogetherAdConst.AD_INTER to "5873733",
+            TogetherAdConst.AD_FLOW_INDEX to "5873735",
+            TogetherAdConst.AD_TIEPIAN_LIVE to "5873734"
+        )
         TogetherAd.initBaiduAd(applicationContext, "cd3d8b16", baiduIdMap)
 
-        val gdtIdMap = HashMap<String, String>()
-        gdtIdMap[TogetherAdConst.AD_SPLASH] = "5070550501041614"
-        gdtIdMap[TogetherAdConst.AD_INTER] = "7000758820077828"
-        gdtIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5060356551943607"
-        gdtIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "6040255571748678"
+        val gdtIdMap = mutableMapOf(
+            TogetherAdConst.AD_SPLASH to "5070550501041614",
+            TogetherAdConst.AD_INTER to "7000758820077828",
+            TogetherAdConst.AD_FLOW_INDEX to "5060356551943607",
+            TogetherAdConst.AD_TIEPIAN_LIVE to "6040255571748678"
+        )
         TogetherAd.initGDTAd(applicationContext, "1105965856", gdtIdMap)
 
         val csjIdMap = mutableMapOf(
-            TogetherAdConst.AD_SPLASH to "820413685"
+            TogetherAdConst.AD_SPLASH to "820413685",
+            TogetherAdConst.AD_INTER to "920413056",
+            TogetherAdConst.AD_FLOW_INDEX to "920413297",
+            TogetherAdConst.AD_TIEPIAN_LIVE to "920413238"
         )
         TogetherAd.initCsjAd(applicationContext, "5020413", getString(R.string.app_name), csjIdMap)
 
