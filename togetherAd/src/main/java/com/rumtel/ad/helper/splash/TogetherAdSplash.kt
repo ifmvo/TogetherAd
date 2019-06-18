@@ -1,29 +1,16 @@
 package com.rumtel.ad.helper.splash
 
 import android.app.Activity
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.os.CountDownTimer
 import android.support.annotation.NonNull
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTSplashAd
-import com.iflytek.voiceads.IFLYNativeAd
-import com.iflytek.voiceads.config.AdKeys
-import com.iflytek.voiceads.conn.NativeDataRef
-import com.iflytek.voiceads.listener.IFLYNativeListener
-import com.ifmvo.imageloader.ILFactory
-import com.ifmvo.imageloader.LoadListener
-import com.ifmvo.imageloader.progress.LoaderOptions
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
@@ -44,7 +31,6 @@ import java.util.*
  */
 object TogetherAdSplash : AdBase {
 
-    private var nativeAd: IFLYNativeAd? = null
     private var timer: Timer? = null
     private var overTimerTask: OverTimerTask? = null
 
@@ -72,7 +58,6 @@ object TogetherAdSplash : AdBase {
         when (randomAdName) {
             AdNameType.BAIDU -> showAdFullBaiduMob(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
             AdNameType.GDT -> showAdFullGDT(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
-            AdNameType.XUNFEI -> showAdFullXunFei(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
             AdNameType.CSJ -> showAdFullCsj(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
             else -> {
                 if (stop) {
@@ -151,132 +136,132 @@ object TogetherAdSplash : AdBase {
             })
     }
 
-    /**
-     * 科大讯飞
-     */
-    private fun showAdFullXunFei(
-        @NonNull activity: Activity,
-        splashConfigStr: String?,
-        @NonNull adConstStr: String,
-        @NonNull adsParentLayout: ViewGroup,
-        @NonNull adListener: AdListenerSplashFull
-    ) {
-
-        var countDownTimer: CountDownTimer? = null
-        adListener.onStartRequest(AdNameType.XUNFEI.type)
-        nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], object : IFLYNativeListener {
-            override fun onAdLoaded(adItem: NativeDataRef?) {
-                if (adItem == null) {
-                    val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                    showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
-                    return
-                }
-
-                val relativeLayout = RelativeLayout(activity)
-
-                val adPic = ImageView(activity)
-
-                adPic.scaleType = ImageView.ScaleType.FIT_XY
-                relativeLayout.addView(
-                    adPic,
-                    RelativeLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
-                )
-
-                //倒计时按钮
-                val adTime = TextView(activity)
-                val adTimeParams = RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                adTime.textSize = 16F
-                adTime.setBackgroundResource(R.drawable.shape_xunfei_skip_bg)
-                adTime.setTextColor(Color.WHITE)
-                adTime.setPadding(40, 12, 40, 12)
-                adTimeParams.setMargins(0, 40, 40, 0)
-                adTimeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                relativeLayout.addView(adTime, adTimeParams)
-
-                adTime.setOnClickListener {
-                    nativeAd = null
-                    countDownTimer?.cancel()
-                    adListener.onAdDismissed()
-                }
-
-                val logoView = View.inflate(activity, R.layout.layout_ad_logo, null)
-                val logoViewParams = RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-                relativeLayout.addView(logoView, logoViewParams)
-
-                ILFactory.getLoader().load(activity, adPic, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
-                    override fun onLoadCompleted(drawable: Drawable): Boolean {
-                        if (stop) {
-                            return false
-                        }
-                        cancelTimerTask()
-
-                        adListener.onAdPrepared(AdNameType.XUNFEI.type)
-                        logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
-
-                        if (adItem.onExposure(adPic)) {
-                            logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
-                        }
-
-                        countDownTimer = object : CountDownTimer(5000, 1000) {
-                            override fun onTick(millisUntilFinished: Long) {
-                                adTime.text = "${millisUntilFinished / 1000}丨跳过"
-                                logd("${AdNameType.XUNFEI.type}: 倒计时: $millisUntilFinished")
-                            }
-
-                            override fun onFinish() {
-                                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.dismiss)}")
-                                nativeAd = null
-                                adListener.onAdDismissed()
-                            }
-                        }.start()
-                        return false
-                    }
-                })
-                adsParentLayout.setOnClickListener { view ->
-                    adItem.onClick(view)
-                    adListener.onAdClick(AdNameType.XUNFEI.type)
-                }
-
-                adsParentLayout.addView(
-                    relativeLayout,
-                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-                )
-            }
-
-
-            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
-                if (stop) {
-                    return
-                }
-                cancelTimerTask()
-
-                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
-                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
-            }
-
-            override fun onConfirm() {
-
-            }
-
-            override fun onCancel() {
-
-            }
-        })
-        nativeAd?.setParameter(AdKeys.DOWNLOAD_ALERT, true)
-        nativeAd?.loadAd()
-    }
+//    /**
+//     * 科大讯飞
+//     */
+//    private fun showAdFullXunFei(
+//        @NonNull activity: Activity,
+//        splashConfigStr: String?,
+//        @NonNull adConstStr: String,
+//        @NonNull adsParentLayout: ViewGroup,
+//        @NonNull adListener: AdListenerSplashFull
+//    ) {
+//
+//        var countDownTimer: CountDownTimer? = null
+//        adListener.onStartRequest(AdNameType.XUNFEI.type)
+//        nativeAd = IFLYNativeAd(activity, TogetherAd.idMapXunFei[adConstStr], object : IFLYNativeListener {
+//            override fun onAdLoaded(adItem: NativeDataRef?) {
+//                if (adItem == null) {
+//                    val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+//                    showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
+//                    return
+//                }
+//
+//                val relativeLayout = RelativeLayout(activity)
+//
+//                val adPic = ImageView(activity)
+//
+//                adPic.scaleType = ImageView.ScaleType.FIT_XY
+//                relativeLayout.addView(
+//                    adPic,
+//                    RelativeLayout.LayoutParams(
+//                        ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.MATCH_PARENT
+//                    )
+//                )
+//
+//                //倒计时按钮
+//                val adTime = TextView(activity)
+//                val adTimeParams = RelativeLayout.LayoutParams(
+//                    ViewGroup.LayoutParams.WRAP_CONTENT,
+//                    ViewGroup.LayoutParams.WRAP_CONTENT
+//                )
+//                adTime.textSize = 16F
+//                adTime.setBackgroundResource(R.drawable.shape_xunfei_skip_bg)
+//                adTime.setTextColor(Color.WHITE)
+//                adTime.setPadding(40, 12, 40, 12)
+//                adTimeParams.setMargins(0, 40, 40, 0)
+//                adTimeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+//                relativeLayout.addView(adTime, adTimeParams)
+//
+//                adTime.setOnClickListener {
+//                    nativeAd = null
+//                    countDownTimer?.cancel()
+//                    adListener.onAdDismissed()
+//                }
+//
+//                val logoView = View.inflate(activity, R.layout.layout_ad_logo, null)
+//                val logoViewParams = RelativeLayout.LayoutParams(
+//                    ViewGroup.LayoutParams.WRAP_CONTENT,
+//                    ViewGroup.LayoutParams.WRAP_CONTENT
+//                )
+//                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+//                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+//                relativeLayout.addView(logoView, logoViewParams)
+//
+//                ILFactory.getLoader().load(activity, adPic, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
+//                    override fun onLoadCompleted(drawable: Drawable): Boolean {
+//                        if (stop) {
+//                            return false
+//                        }
+//                        cancelTimerTask()
+//
+//                        adListener.onAdPrepared(AdNameType.XUNFEI.type)
+//                        logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.prepared)}")
+//
+//                        if (adItem.onExposure(adPic)) {
+//                            logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.exposure)}")
+//                        }
+//
+//                        countDownTimer = object : CountDownTimer(5000, 1000) {
+//                            override fun onTick(millisUntilFinished: Long) {
+//                                adTime.text = "${millisUntilFinished / 1000}丨跳过"
+//                                logd("${AdNameType.XUNFEI.type}: 倒计时: $millisUntilFinished")
+//                            }
+//
+//                            override fun onFinish() {
+//                                logd("${AdNameType.XUNFEI.type}: ${activity.getString(R.string.dismiss)}")
+//                                nativeAd = null
+//                                adListener.onAdDismissed()
+//                            }
+//                        }.start()
+//                        return false
+//                    }
+//                })
+//                adsParentLayout.setOnClickListener { view ->
+//                    adItem.onClick(view)
+//                    adListener.onAdClick(AdNameType.XUNFEI.type)
+//                }
+//
+//                adsParentLayout.addView(
+//                    relativeLayout,
+//                    ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+//                )
+//            }
+//
+//
+//            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
+//                if (stop) {
+//                    return
+//                }
+//                cancelTimerTask()
+//
+//                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+//                showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener)
+//                loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
+//            }
+//
+//            override fun onConfirm() {
+//
+//            }
+//
+//            override fun onCancel() {
+//
+//            }
+//        })
+//        nativeAd?.setParameter(AdKeys.DOWNLOAD_ALERT, true)
+//        nativeAd?.loadAd()
+//    }
 
     /**
      * 百度Mob
@@ -454,7 +439,6 @@ object TogetherAdSplash : AdBase {
             weakRefContext?.get()?.runOnUiThread {
                 weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
                 loge(weakRefContext.get()?.getString(R.string.timeout))
-                nativeAd = null
                 timer = null
                 overTimerTask = null
             }

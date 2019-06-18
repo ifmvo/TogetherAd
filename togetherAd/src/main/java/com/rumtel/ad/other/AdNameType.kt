@@ -11,9 +11,6 @@ enum class AdNameType(val type : String) {
     //腾讯的广点通
     GDT("gdt"),
 
-    //科大讯飞
-    XUNFEI("xunfei"),
-
     //穿山甲
     CSJ("csj"),
 

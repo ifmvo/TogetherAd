@@ -10,7 +10,6 @@ import com.rumtel.ad.helper.AdBase
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBaidu
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieBase
 import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieGDT
-import com.rumtel.ad.helper.preMovie.view.AdViewPreMovieIXunFei
 import com.rumtel.ad.other.AdNameType
 import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
@@ -58,9 +57,9 @@ object TogetherAdPreMovie : AdBase {
             AdNameType.GDT -> {
                 showAdPreMovieGDT(activity)
             }
-            AdNameType.XUNFEI -> {
-                showAdPreMovieIFly(activity)
-            }
+//            AdNameType.XUNFEI -> {
+//                showAdPreMovieIFly(activity)
+//            }
             else -> {
                 cancelTimerTask()
                 loge(activity.getString(R.string.all_ad_error))
@@ -100,9 +99,9 @@ object TogetherAdPreMovie : AdBase {
                     AdNameType.GDT.type -> {
                         newConfigPreMovie = configPreMovie?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                     }
-                    AdNameType.XUNFEI.type -> {
-                        newConfigPreMovie = configPreMovie?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                    }
+//                    AdNameType.XUNFEI.type -> {
+//                        newConfigPreMovie = configPreMovie?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
+//                    }
                     else -> {
                         adListener.onAdFailed(failedMsg)
                     }
@@ -140,9 +139,9 @@ object TogetherAdPreMovie : AdBase {
             AdNameType.BAIDU.type -> {
                 TogetherAd.idMapBaidu[adConstStr]
             }
-            AdNameType.XUNFEI.type -> {
-                TogetherAd.idMapXunFei[adConstStr]
-            }
+//            AdNameType.XUNFEI.type -> {
+//                TogetherAd.idMapXunFei[adConstStr]
+//            }
             else -> {
                 loge("发生了不可能的灵异事件")
                 ""
@@ -167,13 +166,13 @@ object TogetherAdPreMovie : AdBase {
         weak = WeakReference(AdViewPreMovieGDT(activity))
     }
 
-    /**
-     * 科大讯飞
-     */
-    private fun showAdPreMovieIFly(activity: Activity) {
-        mChannel = AdNameType.XUNFEI.type
-        weak = WeakReference(AdViewPreMovieIXunFei(activity))
-    }
+//    /**
+//     * 科大讯飞
+//     */
+//    private fun showAdPreMovieIFly(activity: Activity) {
+//        mChannel = AdNameType.XUNFEI.type
+//        weak = WeakReference(AdViewPreMovieIXunFei(activity))
+//    }
 
     private fun cancel() {
         val lastAdView = weak?.get()
@@ -200,7 +199,7 @@ object TogetherAdPreMovie : AdBase {
         cancelTimerTask()
         timer = Timer()
         overTimerTask =
-                OverTimerTask(activity, adsParentLayout, adListener)
+            OverTimerTask(activity, adsParentLayout, adListener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 

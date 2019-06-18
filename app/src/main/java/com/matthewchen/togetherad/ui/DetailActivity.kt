@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.baidu.mobads.InterstitialAd
 import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
@@ -21,8 +20,6 @@ class DetailActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
-
-    lateinit var interAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +37,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun preMovieAd() {
         //baidu:2,gdt:8
-        TogetherAdPreMovie.showAdPreMovie(
-            this,
-            Config.preMoiveAdConfig(),
-            TogetherAdConst.AD_TIEPIAN_LIVE,
-            ll_ad,
+        TogetherAdPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad,
             object : TogetherAdPreMovie.AdListenerPreMovie {
                 override fun onAdClick(channel: String) {
                 }
@@ -124,12 +117,7 @@ class DetailActivity : AppCompatActivity() {
 //        }
 
 
-        TogetherAdInter.showAdInter(
-            this,
-            Config.interAdConfig(),
-            TogetherAdConst.AD_INTER,
-            false,
-            mRlInterAd,
+        TogetherAdInter.showAdInter(this, Config.interAdConfig(), TogetherAdConst.AD_INTER, false, mRlInterAd,
             object : TogetherAdInter.AdListenerInter {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")

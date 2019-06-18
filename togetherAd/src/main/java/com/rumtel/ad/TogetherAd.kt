@@ -6,8 +6,6 @@ import com.baidu.mobads.AdView
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdSdk
-import com.iflytek.voiceads.config.SDKLogger
-import com.iflytek.voiceads.dex.DexLoader
 
 /* 
  * (●ﾟωﾟ●)
@@ -22,8 +20,6 @@ object TogetherAd {
     var idMapBaidu = mutableMapOf<String, String>()
         private set
     var idMapGDT = mutableMapOf<String, String>()
-        private set
-    var idMapXunFei = mutableMapOf<String, String>()
         private set
     var idMapCsj = mutableMapOf<String, String>()
         private set
@@ -59,13 +55,6 @@ object TogetherAd {
     fun initGDTAd(@NonNull context: Context, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: MutableMap<String, String>) {
         idMapGDT = gdtIdMap
         appIdGDT = gdtAdAppId
-    }
-
-    //科大讯飞
-    fun initXunFeiAd(@NonNull context: Context, @NonNull xunfeiIdMap: MutableMap<String, String>) {
-        idMapXunFei = xunfeiIdMap
-        SDKLogger.setDebug(BuildConfig.DEBUG)
-        DexLoader.initIFLYADModule(context)
     }
 
     //穿山甲

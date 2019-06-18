@@ -2,13 +2,15 @@ package com.rumtel.ad.helper.flow
 
 import android.app.Activity
 import android.support.annotation.NonNull
+import android.util.DisplayMetrics
 import com.baidu.mobad.feeds.BaiduNative
 import com.baidu.mobad.feeds.NativeErrorCode
 import com.baidu.mobad.feeds.NativeResponse
 import com.baidu.mobad.feeds.RequestParameters
-import com.iflytek.voiceads.IFLYNativeAd
-import com.iflytek.voiceads.conn.NativeDataRef
-import com.iflytek.voiceads.listener.IFLYNativeListener
+import com.bytedance.sdk.openadsdk.AdSlot
+import com.bytedance.sdk.openadsdk.TTAdNative
+import com.bytedance.sdk.openadsdk.TTAdSdk
+import com.bytedance.sdk.openadsdk.TTFeedAd
 import com.qq.e.ads.nativ.NativeMediaAD
 import com.qq.e.ads.nativ.NativeMediaADData
 import com.qq.e.comm.util.AdError
@@ -45,35 +47,21 @@ object TogetherAdFlow : AdBase {
 
         val randomAdName = AdRandomUtil.getRandomAdName(listConfigStr)
         when (randomAdName) {
-            AdNameType.BAIDU -> getAdListBaiduMob(
-                activity,
-                listConfigStr,
-                adConstStr,
-                adListener
-            )
-            AdNameType.GDT -> getAdListTecentGDT(
-                activity,
-                listConfigStr,
-                adConstStr,
-                adListener
-            )
-            AdNameType.XUNFEI -> getAdListIFly(
-                activity,
-                listConfigStr,
-                adConstStr,
-                adListener
-            )
+            AdNameType.BAIDU -> getAdListBaiduMob(activity, listConfigStr, adConstStr, adListener)
+            AdNameType.GDT -> getAdListTecentGDT(activity, listConfigStr, adConstStr, adListener)
+            AdNameType.CSJ -> getAdListCsj(activity, listConfigStr, adConstStr, adListener)
             else -> {
-                if (!stop) {
-                    cancelTimerTask()
-                    activity.runOnUiThread {
-                        adListener.onAdFailed(activity.getString(R.string.all_ad_error))
-                    }
-                    loge(activity.getString(R.string.all_ad_error))
+                if (stop) {
+                    return
                 }
+                cancelTimerTask()
+
+                activity.runOnUiThread {
+                    adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                }
+                loge(activity.getString(R.string.all_ad_error))
             }
         }
-
     }
 
     private fun getAdListBaiduMob(
@@ -89,27 +77,26 @@ object TogetherAdFlow : AdBase {
             object : BaiduNative.BaiduNativeNetworkListener {
 
                 override fun onNativeLoad(list: List<NativeResponse>) {
-                    if (!stop) {
-                        cancelTimerTask()
-                        activity.runOnUiThread {
-                            adListener.onAdLoaded(AdNameType.BAIDU.type, list)
-                        }
-                        logd("${AdNameType.BAIDU.type}: list.size: " + list.size)
+                    if (stop) {
+                        return
                     }
+                    cancelTimerTask()
+
+                    activity.runOnUiThread {
+                        adListener.onAdLoaded(AdNameType.BAIDU.type, list)
+                    }
+                    logd("${AdNameType.BAIDU.type}: list.size: " + list.size)
                 }
 
                 override fun onNativeFail(nativeErrorCode: NativeErrorCode) {
-                    if (!stop) {
-                        cancelTimerTask()
-                        val newListConfig = listConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
-                        getAdList(
-                            activity,
-                            newListConfig,
-                            adConstStr,
-                            adListener
-                        )
-                        loge("${AdNameType.BAIDU.type}: nativeErrorCode: $nativeErrorCode")
+                    if (stop) {
+                        return
                     }
+                    cancelTimerTask()
+
+                    val newListConfig = listConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
+                    getAdList(activity, newListConfig, adConstStr, adListener)
+                    loge("${AdNameType.BAIDU.type}: nativeErrorCode: $nativeErrorCode")
                 }
             })
         /*
@@ -117,10 +104,57 @@ object TogetherAdFlow : AdBase {
          */
         // 用户点击下载类广告时，是否弹出提示框让用户选择下载与否
         val requestParameters = RequestParameters.Builder()
-            //                        .downloadAppConfirmPolicy(RequestParameters.DOWNLOAD_APP_CONFIRM_NEVER)
             .build()
 
         baidu.makeRequest(requestParameters)
+    }
+
+    private fun getAdListCsj(
+        @NonNull activity: Activity,
+        listConfigStr: String?,
+        @NonNull adConstStr: String,
+        @NonNull adListener: AdListenerList
+    ) {
+        adListener.onStartRequest(AdNameType.CSJ.type)
+
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(dm)
+        val adSlot = AdSlot.Builder()
+            .setCodeId(TogetherAd.idMapCsj[adConstStr])
+            .setSupportDeepLink(true)
+            .setImageAcceptedSize(dm.widthPixels, (dm.widthPixels * 9 / 16))
+            .setAdCount(4)
+            .build()
+        TTAdSdk.getAdManager().createAdNative(activity).loadFeedAd(adSlot, object : TTAdNative.FeedAdListener {
+            override fun onFeedAdLoad(adList: MutableList<TTFeedAd>?) {
+                if (stop) {
+                    return
+                }
+                if (adList.isNullOrEmpty()) {
+                    loge("${AdNameType.CSJ.type}: 返回的广告是空的")
+                    val newListConfig = listConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                    getAdList(activity, newListConfig, adConstStr, adListener)
+                    return
+                }
+
+
+                cancelTimerTask()
+
+                adListener.onAdLoaded(AdNameType.CSJ.type, adList)
+                logd("${AdNameType.CSJ.type}: list.size: " + adList.size)
+            }
+
+            override fun onError(errorCode: Int, errorMsg: String?) {
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                loge("${AdNameType.CSJ.type}: errorCode: $errorCode, errorMsg: $errorMsg")
+                val newListConfig = listConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                getAdList(activity, newListConfig, adConstStr, adListener)
+            }
+        })
     }
 
     private fun getAdListTecentGDT(
@@ -133,33 +167,39 @@ object TogetherAdFlow : AdBase {
 
         val adListenerNative = object : NativeMediaAD.NativeMediaADListener {
             override fun onADLoaded(adList: List<NativeMediaADData>) {
-                if (!stop) {
-                    cancelTimerTask()
-                    activity.runOnUiThread {
-                        adListener.onAdLoaded(AdNameType.GDT.type, adList)
-                    }
-                    logd("${AdNameType.GDT.type}: list.size: " + adList.size)
+                if (stop) {
+                    return
+                }
+                cancelTimerTask()
+
+                logd("${AdNameType.GDT.type}: list.size: " + adList.size)
+                activity.runOnUiThread {
+                    adListener.onAdLoaded(AdNameType.GDT.type, adList)
                 }
             }
 
             override fun onNoAD(adError: AdError) {
-                if (!stop) {
-                    cancelTimerTask()
-                    val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                    getAdList(activity, newListConfig, adConstStr, adListener)
-                    loge("${AdNameType.GDT.type}: ${adError.errorCode}, ${adError.errorMsg}")
+                if (stop) {
+                    return
                 }
+                cancelTimerTask()
+
+                loge("${AdNameType.GDT.type}: ${adError.errorCode}, ${adError.errorMsg}")
+                val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                getAdList(activity, newListConfig, adConstStr, adListener)
             }
 
             override fun onADStatusChanged(ad: NativeMediaADData) {}
 
             override fun onADError(adData: NativeMediaADData, adError: AdError) {
-                if (!stop) {
-                    cancelTimerTask()
-                    val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                    getAdList(activity, newListConfig, adConstStr, adListener)
-                    loge("${AdNameType.GDT.type}: ${adError.errorCode}, ${adError.errorMsg}")
+                if (stop) {
+                    return
                 }
+                cancelTimerTask()
+
+                loge("${AdNameType.GDT.type}: ${adError.errorCode}, ${adError.errorMsg}")
+                val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                getAdList(activity, newListConfig, adConstStr, adListener)
             }
 
             override fun onADVideoLoaded(adData: NativeMediaADData) {
@@ -178,53 +218,6 @@ object TogetherAdFlow : AdBase {
         val mADManager =
             NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
         mADManager.loadAD(4)
-    }
-
-    private var mListener: IFLYNativeListener? = null
-
-    private fun getAdListIFly(
-        @NonNull activity: Activity,
-        listConfigStr: String?,
-        @NonNull adConstStr: String,
-        @NonNull adListener: AdListenerList
-    ) {
-        adListener.onStartRequest(AdNameType.XUNFEI.type)
-        mListener = object : IFLYNativeListener {
-            override fun onAdLoaded(adItem: NativeDataRef?) {
-                if (!stop) {
-                    cancelTimerTask()
-                    activity.runOnUiThread {
-                        val list = mutableListOf(adItem)
-                        adListener.onAdLoaded(AdNameType.XUNFEI.type, list)
-                    }
-                    logd("${AdNameType.XUNFEI.type}: ${adItem?.title}")
-                }
-            }
-
-            override fun onConfirm() {
-
-            }
-
-            override fun onCancel() {
-
-            }
-
-            override fun onAdFailed(adError: com.iflytek.voiceads.config.AdError) {
-                if (!stop) {
-                    cancelTimerTask()
-                    val newListConfig = listConfigStr?.replace(AdNameType.XUNFEI.type, AdNameType.NO.type)
-                    getAdList(activity, newListConfig, adConstStr, adListener)
-                    loge("${AdNameType.XUNFEI.type}: ${adError.errorCode}, ${adError.errorDescription}")
-                }
-            }
-        }
-
-        val nativeAd = IFLYNativeAd(
-            activity, TogetherAd.idMapXunFei[adConstStr],
-            mListener
-        )
-        nativeAd.loadAd()
-
     }
 
     interface AdListenerList {
@@ -252,7 +245,7 @@ object TogetherAdFlow : AdBase {
         cancelTimerTask()
         timer = Timer()
         overTimerTask =
-                OverTimerTask(activity, listener)
+            OverTimerTask(activity, listener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 
@@ -271,7 +264,6 @@ object TogetherAdFlow : AdBase {
 
         override fun run() {
             stop = true
-            mListener = null
             weakRefContext?.get()?.runOnUiThread {
                 weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
                 loge(weakRefContext.get()?.getString(R.string.timeout))

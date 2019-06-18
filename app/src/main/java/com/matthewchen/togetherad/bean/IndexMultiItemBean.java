@@ -24,6 +24,11 @@ public class IndexMultiItemBean implements MultiItemEntity {
     public static final int TYPE_AD_BAIDU = 3;
 
     /**
+     * 广告 穿山甲
+     */
+    public static final int TYPE_AD_CSJ = 4;
+
+    /**
      * 多类型列表中的类型
      */
     private int itemType;

@@ -48,9 +48,9 @@ object AdRandomUtil {
                                 AdNameType.GDT.type -> {
                                     list.add(AdNameType.GDT)
                                 }
-                                AdNameType.XUNFEI.type -> {
-                                    list.add(AdNameType.XUNFEI)
-                                }
+//                                AdNameType.XUNFEI.type -> {
+//                                    list.add(AdNameType.XUNFEI)
+//                                }
                                 AdNameType.CSJ.type -> {
                                     list.add(AdNameType.CSJ)
                                 }
