@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.rumtel.ad.R;
 import com.rumtel.ad.TogetherAd;
@@ -22,15 +23,25 @@ import com.rumtel.ad.TogetherAd;
  */
 public abstract class AdViewPreMovieBase extends FrameLayout {
 
-    View mRootView;
-    ImageView mIvImg;
+    ViewGroup mRootView;
+
+    FrameLayout mFlAdContainer;
+    LinearLayout mLlAdContainer;
+
+    ImageView mIvImg0;
+    ImageView mIvImg1;
+    ImageView mIvImg2;
+
     TextView mTextCountDown;
+
+    View mFlDesc;
     TextView mTvDesc;
+
     TextView mTvLogoCommon;
-    ImageView mIvAdLogo;
+    ImageView mTvLogoGdt;
+    ImageView mTvLogoCsj;
 
     TimerCount mTimerCount;
-    View mFlDesc;
 
     boolean stop = false;
 
@@ -52,13 +63,25 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     }
 
     public void initView() {
-        mRootView = View.inflate(super.getContext(), R.layout.view_ad_pre_movie, this);
-        mIvImg = mRootView.findViewById(R.id.iv_img);
+        mRootView = (ViewGroup) View.inflate(super.getContext(), R.layout.view_ad_pre_movie, this);
+
+        mFlAdContainer = mRootView.findViewById(R.id.fl_ad_container);
+        mLlAdContainer = mRootView.findViewById(R.id.ll_ad_container);
+
+        mIvImg0 = mRootView.findViewById(R.id.iv_img0);
+        mIvImg1 = mRootView.findViewById(R.id.iv_img1);
+        mIvImg2 = mRootView.findViewById(R.id.iv_img2);
+
         mTextCountDown = mRootView.findViewById(R.id.text_count_down);
+
         mTvDesc = mRootView.findViewById(R.id.tv_desc);
-        mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
-        mIvAdLogo = mRootView.findViewById(R.id.mIvAdLogo);
         mFlDesc = mRootView.findViewById(R.id.fl_desc);
+
+        //广告标示
+        mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
+        mTvLogoGdt = mRootView.findViewById(R.id.mTvLogoGdt);
+        mTvLogoCsj = mRootView.findViewById(R.id.mTvLogoCsj);
+
         setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());
     }
 
@@ -87,7 +110,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     /**
      * 取消计数
      */
-    protected void cancelTimerCount() {
+    private void cancelTimerCount() {
         if (mTimerCount != null) {
             mTimerCount.cancel();
         }

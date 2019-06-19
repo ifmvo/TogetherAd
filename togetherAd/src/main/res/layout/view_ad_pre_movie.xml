@@ -6,19 +6,44 @@
         android:layout_height="match_parent"
         android:id="@+id/fl_ad">
 
-    <!--展示图片的-->
-    <ImageView
-            android:id="@+id/iv_img"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    <!--腾讯广点通的广告视频播放器-->
-    <com.qq.e.ads.nativ.MediaView
-            android:id="@+id/gdt_media_view"
+    <!--
+        csj 的视频广告容器
+    -->
+    <FrameLayout
+            android:id="@+id/fl_ad_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    <!--
+        三个图片位，如果只有一张图片，就隐藏另外两个
+    -->
+    <LinearLayout
+            android:id="@+id/ll_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/iv_img0"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+
+        <ImageView
+                android:id="@+id/iv_img1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+
+        <ImageView
+                android:id="@+id/iv_img2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+
+    </LinearLayout>
 
     <!-- 开发者自定义的倒计时 -->
     <TextView
@@ -62,12 +87,13 @@
     <include
             android:layout_gravity="bottom|right"
             android:layout_margin="3dp"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             layout="@layout/layout_ad_logo"/>
 
     <ImageView
-            android:id="@+id/mIvAdLogo"
+            android:id="@+id/mTvLogoGdt"
             android:layout_gravity="right|bottom"
             android:layout_width="wrap_content"
             android:adjustViewBounds="true"
@@ -75,5 +101,14 @@
             android:src="@drawable/gdt_ad_logo"
             android:scaleType="centerCrop"
             android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:id="@+id/mTvLogoCsj"
+            android:visibility="gone"
+            android:layout_width="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|bottom"/>
 
 </FrameLayout>

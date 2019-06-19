@@ -197,7 +197,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val adObject = item.adObject
 
         if (adObject is TTFeedAd) {
-//            mIvAdLogo.setImageBitmap(adObject.adLogo)
+            mIvAdLogo.setImageBitmap(adObject.adLogo)
             // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
             val clickViewList = mutableListOf<View>()
             clickViewList.add(mLlSuper)

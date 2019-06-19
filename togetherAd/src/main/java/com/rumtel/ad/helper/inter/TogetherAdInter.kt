@@ -382,10 +382,7 @@ object TogetherAdInter : AdBase {
                     }
 
                     //广告标示
-                    val logoViewParams = RelativeLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
+                    val logoViewParams = RelativeLayout.LayoutParams(60, 60)
 
                     logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                     logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)

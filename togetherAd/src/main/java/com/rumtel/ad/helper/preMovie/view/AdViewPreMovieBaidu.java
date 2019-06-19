@@ -52,52 +52,51 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
             @Override
             public void onNativeLoad(List<NativeResponse> arg0) {
                 // 一个广告只允许展现一次，多次展现、点击只会计入一次
-                if (arg0.size() > 0) {
-                    // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
-                    mAd = arg0.get(0);
-                    initAd();
-                } else {
+                if (arg0 == null || arg0.size() == 0) {
                     if (adViewListener != null) {
                         adViewListener.onAdFailed("没有广告了：百度");
                     }
+                    return;
                 }
+
+                // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
+                mAd = arg0.get(0);
+                mTvDesc.setText(mAd.getTitle());
+                if (stop) {
+                    return;
+                }
+                mLlAdContainer.setVisibility(View.VISIBLE);
+                mFlAdContainer.setVisibility(View.GONE);
+                mIvImg1.setVisibility(View.GONE);
+                mIvImg2.setVisibility(View.GONE);
+                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
+                    @Override
+                    public boolean onLoadCompleted(Drawable drawable) {
+                        mTvLogoCommon.setVisibility(View.VISIBLE);
+                        // 警告：调用该函数来发送展现，勿漏！
+                        mAd.recordImpression(mRootView);
+                        mRootView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // 点击响应
+                                mAd.handleClick(view);
+                                if (adViewListener != null) {
+                                    adViewListener.onAdClick();
+                                }
+                            }
+                        });
+                        startTimerCount(6000);
+                        return false;
+                    }
+                });
             }
         });
 
         // 用户点击下载类广告时，是否弹出提示框让用户选择下载与否
         RequestParameters requestParameters =
                 new RequestParameters.Builder()
-//                        .downloadAppConfirmPolicy(RequestParameters.)
-//                        .downloadAppConfirmPolicy(RequestParameters.DOWNLOAD_APP_CONFIRM_NEVER)
                         .build();
 
         baidu.makeRequest(requestParameters);
-    }
-
-
-    private void initAd() {
-        mTvDesc.setText(mAd.getTitle());
-        if (!stop) {
-            ILFactory.getLoader().load(super.getContext(), mIvImg, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
-                @Override
-                public boolean onLoadCompleted(Drawable drawable) {
-                    // 警告：调用该函数来发送展现，勿漏！
-
-                    mAd.recordImpression(mRootView);
-                    mRootView.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // 点击响应
-                            mAd.handleClick(view);
-                            if (adViewListener != null) {
-                                adViewListener.onAdClick();
-                            }
-                        }
-                    });
-                    startTimerCount(6000);
-                    return false;
-                }
-            });
-        }
     }
 }

@@ -28,10 +28,6 @@ import java.util.List;
  */
 public class AdViewPreMovieGDT extends AdViewPreMovieBase {
 
-    // 与广告有关的变量，用来显示广告素材的UI
-    private NativeMediaADData mAD;                        // 加载的原生视频广告对象，本示例为简便只演示加载1条广告的示例
-    private NativeMediaAD mADManager;                     // 原生广告manager，用于管理广告数据的加载，监听广告回调
-
     public AdViewPreMovieGDT(@NonNull Context context) {
         super(context);
     }
@@ -47,44 +43,49 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
     @Override
     public void start(String locationId) {
 
-        mTvLogoCommon.setVisibility(View.GONE);
-        mIvAdLogo.setVisibility(View.VISIBLE);
-
         NativeMediaAD.NativeMediaADListener nativeMediaADListener = new NativeMediaAD.NativeMediaADListener() {
             @Override
             public void onADLoaded(List<NativeMediaADData> list) {
-                if (list != null && list.size() > 0) {
-                    AdExtKt.logd(AdViewPreMovieGDT.this, "list.size():" + list.size());
-                    mAD = list.get(0);
-                    mTvDesc.setText(mAD.getTitle());
-                    if (!stop) {
-                        try {
-                            ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg, mAD.getImgUrl(), new LoaderOptions(), new LoadListener() {
-                                @Override
-                                public boolean onLoadCompleted(Drawable drawable) {
-                                    mAD.onExposured(mRootView);
-                                    mRootView.setOnClickListener(new OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            if (adViewListener != null) {
-                                                adViewListener.onAdClick();
-                                            }
-                                            mAD.onClicked(v);
-                                        }
-                                    });
-
-                                    startTimerCount(6000);
-                                    return false;
-                                }
-                            });
-                        } catch (Exception e) {
-                        }
-                    }
-                } else {
+                if (stop) {
+                    return;
+                }
+                if (list == null || list.size() == 0) {
                     if (adViewListener != null) {
                         AdExtKt.logd(AdViewPreMovieGDT.this, "请求成功但是数量为空");
                         adViewListener.onAdFailed("请求成功但是数量为空");
                     }
+                    return;
+                }
+
+                AdExtKt.logd(AdViewPreMovieGDT.this, "list.size():" + list.size());
+
+                final NativeMediaADData mAD = list.get(0);
+                mTvDesc.setText(mAD.getTitle());
+                mLlAdContainer.setVisibility(View.VISIBLE);
+                mFlAdContainer.setVisibility(View.GONE);
+                mIvImg1.setVisibility(View.GONE);
+                mIvImg2.setVisibility(View.GONE);
+                try {
+                    ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg1, mAD.getImgUrl(), new LoaderOptions(), new LoadListener() {
+                        @Override
+                        public boolean onLoadCompleted(Drawable drawable) {
+                            mTvLogoGdt.setVisibility(View.VISIBLE);
+                            mAD.onExposured(mRootView);
+                            mRootView.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (adViewListener != null) {
+                                        adViewListener.onAdClick();
+                                    }
+                                    mAD.onClicked(v);
+                                }
+                            });
+
+                            startTimerCount(6000);
+                            return false;
+                        }
+                    });
+                } catch (Exception e) {
                 }
             }
 
@@ -123,10 +124,10 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
             }
         };
 
-        mADManager = new NativeMediaAD(super.getContext(), TogetherAd.INSTANCE.getAppIdGDT(), locationId, nativeMediaADListener);
+        NativeMediaAD mADManager = new NativeMediaAD(super.getContext(), TogetherAd.INSTANCE.getAppIdGDT(), locationId, nativeMediaADListener);
 
         try {
-            mADManager.loadAD(2);
+            mADManager.loadAD(1);
         } catch (Exception e) {
             Toast.makeText(super.getContext(), "加载失败", Toast.LENGTH_SHORT).show();
         }
