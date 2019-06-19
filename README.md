@@ -58,7 +58,7 @@ dependencies {
 "Baidu:2,Gdt:8"  ≠  "baidu:2,gdt:8"  
 
 ### 广告切源的逻辑以及实际实现的方式
-假如有 BAIDU，GDT，ADVIEW 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,adview:4" ）   
+假如有 BAIDU，GDT，CSJ 这三种广告 （ 实际的配置字符串："baidu:3,gdt:3,csj:4" ）   
 
 第一次随机到了 GDT，如果 GDT 请求失败，将 GDT 的 key 使用一个通用的字符串替换，再从其他的广告中再随机   
 此时的配置字符串："baidu:3,HIDE:3,csj:4"  

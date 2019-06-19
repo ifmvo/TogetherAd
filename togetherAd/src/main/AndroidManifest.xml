@@ -14,34 +14,8 @@
     <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application>
-
-        <!--
-            科大讯飞
-        -->
-        <meta-data android:name="IFLYTEK_APPKEY_AD" android:value="5c10c38c"/>
-
-        <!-- 项目中报红无影响，必需添加 -->
-        <service
-                android:name="com.iflytek.voiceads.download.DownloadService"
-                android:stopWithTask="true"/>
-        <!-- 项目中报红无影响，必需添加 -->
-        <activity
-                android:name="com.iflytek.voiceads.request.IFLYBrowser"
-                android:screenOrientation="portrait"/>
-        <!-- android:authorities="${packageName}.fileprovider",注意fileprovider大小写需严格匹配-->
-        <provider
-                android:name=".other.IFlyFileProvider"
-                android:authorities="${applicationId}.fileprovider"
-                android:exported="false"
-                android:grantUriPermissions="true">
-            <!-- flie_paths 在 res 目录下，直接复制即可 -->
-            <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths"/>
-        </provider>
 
         <!--
             百度
