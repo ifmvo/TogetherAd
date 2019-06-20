@@ -63,10 +63,12 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 mTvDesc.setText(mAD.getTitle());
                 mLlAdContainer.setVisibility(View.VISIBLE);
                 mFlAdContainer.setVisibility(View.GONE);
+                mIvImg0.setVisibility(View.VISIBLE);
                 mIvImg1.setVisibility(View.GONE);
                 mIvImg2.setVisibility(View.GONE);
                 try {
-                    ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg1, mAD.getImgUrl(), new LoaderOptions(), new LoadListener() {
+                    String url = mAD.getImgUrl();
+                    ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg0, url, new LoaderOptions(), new LoadListener() {
                         @Override
                         public boolean onLoadCompleted(Drawable drawable) {
                             mTvLogoGdt.setVisibility(View.VISIBLE);
@@ -86,6 +88,7 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                         }
                     });
                 } catch (Exception e) {
+                    AdExtKt.loge(AdViewPreMovieGDT.this, e.getMessage());
                 }
             }
 

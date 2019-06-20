@@ -67,6 +67,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 }
                 mLlAdContainer.setVisibility(View.VISIBLE);
                 mFlAdContainer.setVisibility(View.GONE);
+                mIvImg0.setVisibility(View.VISIBLE);
                 mIvImg1.setVisibility(View.GONE);
                 mIvImg2.setVisibility(View.GONE);
                 ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {

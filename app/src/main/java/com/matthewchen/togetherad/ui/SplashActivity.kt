@@ -132,6 +132,7 @@ class SplashActivity : AppCompatActivity() {
                 }
 
                 override fun onAdClick(channel: String) {
+                    Log.e("ifmvo", "onAdClick:channel:$channel")
                 }
 
                 override fun onAdFailed(failedMsg: String?) {
