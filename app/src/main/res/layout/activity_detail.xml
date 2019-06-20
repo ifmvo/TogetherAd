@@ -19,6 +19,16 @@
 
     </FrameLayout>
 
+    <!--
+        banner
+    -->
+    <FrameLayout
+            android:id="@+id/mFlAdBannerContainer"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="100dp"
+            android:layout_height="wrap_content"/>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -38,6 +48,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/mBtnInter"
                 android:text="插屏"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/mBtnWebPlay"
+                android:text="Banner"/>
 
     </LinearLayout>
 

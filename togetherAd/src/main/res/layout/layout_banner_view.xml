@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="70dp">
+    <!--高度在代码里面动态设置-->
+
+    <!--
+        宽度在代码里面动态设置
+    -->
+    <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="130dp"
+            tools:src="@mipmap/ad_close"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent">
+
+        <!--
+            标题
+        -->
+        <TextView
+                android:id="@+id/tv_title"
+                android:textColor="@android:color/black"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="15sp"
+                tools:text="asdfadfadsfadfasdfasdfasdfasdfasdfadsfasdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <!--
+            描述
+        -->
+        <TextView
+                android:id="@+id/tv_desc"
+                android:textColor="@android:color/darker_gray"
+                android:lines="1"
+                android:textSize="13sp"
+                android:layout_marginTop="8dp"
+                tools:text="asdfadfadsfadfasdfasdfasdfasdfasdfadsfasdf"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        <!--
+            关闭按钮
+        -->
+        <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:src="@mipmap/ad_close"
+                android:layout_height="wrap_content"/>
+
+        <!--
+            广告标示
+        -->
+        <include
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_ad_logo"/>
+
+    </FrameLayout>
+
+</LinearLayout>

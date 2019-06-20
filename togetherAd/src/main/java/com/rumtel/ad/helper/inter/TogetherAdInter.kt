@@ -128,9 +128,11 @@ object TogetherAdInter : AdBase {
                 ivClose.layoutParams = closeParam
                 ivClose.setImageResource(R.mipmap.ad_close)
                 ivClose.setOnClickListener {
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
                     adIntersContainer.removeAllViews()
                     adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                     adIntersContainer.visibility = View.GONE
+                    adListener.onAdDismissed()
                 }
 
                 //广点通的Logo
@@ -152,6 +154,7 @@ object TogetherAdInter : AdBase {
                             adItem.onExposured(adIntersContainer)
 
                             imageView.setOnClickListener {
+                                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
                                 adListener.onAdClick(AdNameType.GDT.type)
                                 adItem.onClicked(it)
                             }
@@ -207,45 +210,6 @@ object TogetherAdInter : AdBase {
         mADManager.loadAD(1)
 
 
-//        adListener.onStartRequest(AdNameType.GDT.type)
-//        val iad = InterstitialAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr])
-//        iad.setADListener(object : InterstitialADListener {
-//            override fun onADReceive() {
-//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.show)}")
-//                iad.show()
-//            }
-//
-//            override fun onNoAD(error: AdError) {
-////                loge("${AdNameType.GDT.type}: ${error.errorCode}, ${error.errorMsg}")
-////                val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-////                showAdInter(
-////                    activity,
-////                    newConfigStr,
-////                    adConstStr,
-////                    isLandscape,
-////                    adIntersContainer,
-////                    adListener
-////                )
-//            }
-//
-//            override fun onADOpened() {}
-//
-//            override fun onADExposure() {
-//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
-//                adListener.onAdPrepared(AdNameType.GDT.type)
-//            }
-//
-//            override fun onADClicked() {
-//                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-//                adListener.onAdClick(AdNameType.GDT.type)
-//            }
-//
-//            override fun onADLeftApplication() {}
-//
-//            override fun onADClosed() {}
-//        })
-//
-//        iad.loadAD()
     }
 
     private fun showAdInterBaiduMob(
@@ -376,9 +340,11 @@ object TogetherAdInter : AdBase {
                     ivClose.layoutParams = closeParam
                     ivClose.setImageResource(R.mipmap.ad_close)
                     ivClose.setOnClickListener {
+                        logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                         adIntersContainer.removeAllViews()
                         adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                         adIntersContainer.visibility = View.GONE
+                        adListener.onAdDismissed()
                     }
 
                     //广告标示
@@ -404,9 +370,11 @@ object TogetherAdInter : AdBase {
                     val dislikeDialog = adItem.getDislikeDialog(activity)
                     dislikeDialog?.setDislikeInteractionCallback(object : TTAdDislike.DislikeInteractionCallback {
                         override fun onSelected(position: Int, value: String?) {
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                             adIntersContainer.removeAllViews()
                             adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                             adIntersContainer.visibility = View.GONE
+                            adListener.onAdDismissed()
                         }
 
                         override fun onCancel() {
@@ -422,18 +390,26 @@ object TogetherAdInter : AdBase {
                     adItem.registerViewForInteraction(relativeLayout, clickViewList, clickViewList, dislikeView,
                         object : TTNativeAd.AdInteractionListener {
                             override fun onAdClicked(p0: View?, p1: TTNativeAd?) {
+                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
+                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                                 adIntersContainer.removeAllViews()
                                 adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                                 adIntersContainer.visibility = View.GONE
+                                adListener.onAdClick(AdNameType.CSJ.type)
+                                adListener.onAdDismissed()
                             }
 
                             override fun onAdShow(p0: TTNativeAd?) {
                             }
 
                             override fun onAdCreativeClick(p0: View?, p1: TTNativeAd?) {
+                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
+                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                                 adIntersContainer.removeAllViews()
                                 adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                                 adIntersContainer.visibility = View.GONE
+                                adListener.onAdClick(AdNameType.CSJ.type)
+                                adListener.onAdDismissed()
                             }
                         })
 

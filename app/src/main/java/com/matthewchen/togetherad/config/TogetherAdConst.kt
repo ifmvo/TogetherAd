@@ -18,5 +18,8 @@ class TogetherAdConst {
 
         //直播播放器前贴
         const val AD_TIEPIAN_LIVE = "ad_flow_tiepian_live"
+
+        //WebView Banner
+        const val AD_WEBVIEW_BANNER = "ad_webview_banner"
     }
 }
