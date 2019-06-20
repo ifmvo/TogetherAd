@@ -123,6 +123,8 @@ object TogetherAdInter : AdBase {
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT
                 )
+                closeParam.topMargin = 15
+                closeParam.rightMargin = 15
                 closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                 val ivClose = ImageView(activity)
                 ivClose.layoutParams = closeParam
@@ -335,6 +337,8 @@ object TogetherAdInter : AdBase {
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
                     )
+                    closeParam.topMargin = 15
+                    closeParam.rightMargin = 15
                     closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                     val ivClose = ImageView(activity)
                     ivClose.layoutParams = closeParam
