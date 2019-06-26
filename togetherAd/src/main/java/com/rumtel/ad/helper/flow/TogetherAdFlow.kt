@@ -215,8 +215,8 @@ object TogetherAdFlow : AdBase {
             }
         }
 
-        val mADManager =
-            NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
+        val mADManager = NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
+        mADManager.setMaxVideoDuration(60)
         mADManager.loadAD(4)
     }
 

@@ -5,7 +5,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:background="@android:color/white"
-        android:layout_height="70dp">
+        android:layout_height="50dp">
     <!--高度在代码里面动态设置-->
 
     <!--
@@ -64,12 +64,12 @@
         -->
         <ImageView
                 android:id="@+id/iv_close"
-                android:layout_width="wrap_content"
+                android:layout_width="35dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:src="@mipmap/ad_close"
-                android:layout_height="wrap_content"/>
+                android:layout_height="35dp"/>
 
         <!--
             广告标示

@@ -26,8 +26,6 @@ import com.rumtel.ad.other.AdNameType
 import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
-import java.lang.ref.WeakReference
-import java.util.*
 
 /* 
  * (●ﾟωﾟ●) 信息流的广告
@@ -36,10 +34,10 @@ import java.util.*
  */
 object TogetherAdBanner : AdBase {
 
-    private var timer: Timer? = null
-    private var overTimerTask: OverTimerTask? = null
-    @Volatile
-    private var stop = false
+//    private var timer: Timer? = null
+//    private var overTimerTask: OverTimerTask? = null
+//    @Volatile
+//    private var stop = false
 
     fun requestBanner(
         @NonNull activity: Activity,
@@ -48,8 +46,8 @@ object TogetherAdBanner : AdBase {
         @NonNull adContainer: FrameLayout,
         @NonNull adListener: AdListenerList
     ) {
-        stop = false
-        startTimerTask(activity, adListener)
+//        stop = false
+//        startTimerTask(activity, adListener)
 
         val randomAdName = AdRandomUtil.getRandomAdName(listConfigStr)
         when (randomAdName) {
@@ -57,10 +55,10 @@ object TogetherAdBanner : AdBase {
             AdNameType.GDT -> requestBannerGDT(activity, listConfigStr, adConstStr, adContainer, adListener)
             AdNameType.CSJ -> requestBannerCsj(activity, listConfigStr, adConstStr, adContainer, adListener)
             else -> {
-                if (stop) {
-                    return
-                }
-                cancelTimerTask()
+//                if (stop) {
+//                    return
+//                }
+//                cancelTimerTask()
 
                 activity.runOnUiThread {
                     adListener.onAdFailed(activity.getString(R.string.all_ad_error))
@@ -84,9 +82,9 @@ object TogetherAdBanner : AdBase {
             object : BaiduNative.BaiduNativeNetworkListener {
 
                 override fun onNativeLoad(list: List<NativeResponse>?) {
-                    if (stop) {
-                        return
-                    }
+//                    if (stop) {
+//                        return
+//                    }
 
                     if (list.isNullOrEmpty()) {
                         loge("${AdNameType.BAIDU.type}: 返回的广告是空的")
@@ -95,7 +93,7 @@ object TogetherAdBanner : AdBase {
                         return
                     }
 
-                    cancelTimerTask()
+//                    cancelTimerTask()
 
                     logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
                     adListener.onAdPrepared(AdNameType.BAIDU.type)
@@ -119,7 +117,7 @@ object TogetherAdBanner : AdBase {
 
                     val dm = DisplayMetrics()
                     activity.windowManager.defaultDisplay.getMetrics(dm)
-                    val w = dm.widthPixels / 3
+                    val w = dm.widthPixels / 4
                     val h = w * 9 / 16
                     val layoutParams = adContainer.layoutParams
                     layoutParams.height = h
@@ -149,10 +147,10 @@ object TogetherAdBanner : AdBase {
                 }
 
                 override fun onNativeFail(nativeErrorCode: NativeErrorCode) {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
+//                    if (stop) {
+//                        return
+//                    }
+//                    cancelTimerTask()
 
                     val newListConfig = listConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
                     requestBanner(activity, newListConfig, adConstStr, adContainer, adListener)
@@ -180,7 +178,7 @@ object TogetherAdBanner : AdBase {
 
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(dm)
-        val w = dm.widthPixels / 3
+        val w = dm.widthPixels / 4
         val h = w * 9 / 16
 
         val adSlot = AdSlot.Builder()
@@ -191,9 +189,9 @@ object TogetherAdBanner : AdBase {
             .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadFeedAd(adSlot, object : TTAdNative.FeedAdListener {
             override fun onFeedAdLoad(adList: MutableList<TTFeedAd>?) {
-                if (stop) {
-                    return
-                }
+//                if (stop) {
+//                    return
+//                }
                 if (adList.isNullOrEmpty()) {
                     loge("${AdNameType.CSJ.type}: 返回的广告是空的")
                     val newListConfig = listConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
@@ -201,7 +199,7 @@ object TogetherAdBanner : AdBase {
                     return
                 }
 
-                cancelTimerTask()
+//                cancelTimerTask()
 
                 logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.prepared)}")
                 adListener.onAdPrepared(AdNameType.CSJ.type)
@@ -311,10 +309,10 @@ object TogetherAdBanner : AdBase {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                if (stop) {
-                    return
-                }
-                cancelTimerTask()
+//                if (stop) {
+//                    return
+//                }
+//                cancelTimerTask()
 
                 loge("${AdNameType.CSJ.type}: errorCode: $errorCode, errorMsg: $errorMsg")
                 val newListConfig = listConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
@@ -355,20 +353,20 @@ object TogetherAdBanner : AdBase {
                 }
 
                 override fun onNoAD(adError: AdError?) {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
+//                    if (stop) {
+//                        return
+//                    }
+//                    cancelTimerTask()
                     loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
                     val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                     requestBanner(activity, newListConfig, adConstStr, adContainer, adListener)
                 }
 
                 override fun onADReceive() {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
+//                    if (stop) {
+//                        return
+//                    }
+//                    cancelTimerTask()
                     logd("${AdNameType.GDT.type}: onADReceiv")
                     adListener.onAdPrepared(AdNameType.GDT.type)
                 }
@@ -404,44 +402,44 @@ object TogetherAdBanner : AdBase {
     /**
      * 取消超时任务
      */
-    private fun cancelTimerTask() {
-        stop = false
-        timer?.cancel()
-        overTimerTask?.cancel()
-    }
+//    private fun cancelTimerTask() {
+//        stop = false
+//        timer?.cancel()
+//        overTimerTask?.cancel()
+//    }
 
     /**
      * 开始超时任务
      */
-    private fun startTimerTask(activity: Activity, listener: AdListenerList) {
-        cancelTimerTask()
-        timer = Timer()
-        overTimerTask =
-            OverTimerTask(activity, listener)
-        timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
-    }
+//    private fun startTimerTask(activity: Activity, listener: AdListenerList) {
+//        cancelTimerTask()
+//        timer = Timer()
+//        overTimerTask =
+//            OverTimerTask(activity, listener)
+//        timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
+//    }
 
     /**
      * 超时任务
      */
-    private class OverTimerTask(activity: Activity, listener: AdListenerList) : TimerTask() {
-
-        private val weakReference: WeakReference<AdListenerList>?
-        private val weakRefContext: WeakReference<Activity>?
-
-        init {
-            weakReference = WeakReference(listener)
-            weakRefContext = WeakReference(activity)
-        }
-
-        override fun run() {
-            stop = true
-            weakRefContext?.get()?.runOnUiThread {
-                weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
-                loge(weakRefContext.get()?.getString(R.string.timeout))
-                timer = null
-                overTimerTask = null
-            }
-        }
-    }
+//    private class OverTimerTask(activity: Activity, listener: AdListenerList) : TimerTask() {
+//
+//        private val weakReference: WeakReference<AdListenerList>?
+//        private val weakRefContext: WeakReference<Activity>?
+//
+//        init {
+//            weakReference = WeakReference(listener)
+//            weakRefContext = WeakReference(activity)
+//        }
+//
+//        override fun run() {
+//            stop = true
+//            weakRefContext?.get()?.runOnUiThread {
+//                weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
+//                loge(weakRefContext.get()?.getString(R.string.timeout))
+//                timer = null
+//                overTimerTask = null
+//            }
+//        }
+//    }
 }
