@@ -1,6 +1,6 @@
 package com.rumtel.ad
 
-import android.content.Context
+import android.app.Application
 import android.support.annotation.NonNull
 import com.baidu.mobads.AdView
 import com.bytedance.sdk.openadsdk.TTAdConfig
@@ -25,6 +25,11 @@ object TogetherAd {
         private set
 
     /**
+     * 保存application
+     */
+    lateinit var mContext: Application
+
+    /**
      * 广点通的 AppId
      */
     var appIdGDT = ""
@@ -46,19 +51,22 @@ object TogetherAd {
      * 初始化广告
      */
     //baidu
-    fun initBaiduAd(@NonNull context: Context, @NonNull baiduAdAppId: String, baiduIdMap: MutableMap<String, String>) {
+    fun initBaiduAd(@NonNull context: Application, @NonNull baiduAdAppId: String, baiduIdMap: MutableMap<String, String>) {
+        mContext = context
         AdView.setAppSid(context, baiduAdAppId)
         idMapBaidu = baiduIdMap
     }
 
     //广点通
-    fun initGDTAd(@NonNull context: Context, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: MutableMap<String, String>) {
+    fun initGDTAd(@NonNull context: Application, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: MutableMap<String, String>) {
+        mContext = context
         idMapGDT = gdtIdMap
         appIdGDT = gdtAdAppId
     }
 
     //穿山甲
-    fun initCsjAd(@NonNull context: Context, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>) {
+    fun initCsjAd(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>) {
+        mContext = context
         idMapCsj = csjIdMap
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
         TTAdSdk.init(

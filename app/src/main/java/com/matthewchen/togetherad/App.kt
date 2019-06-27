@@ -21,7 +21,7 @@ class App : Application() {
             TogetherAdConst.AD_TIEPIAN_LIVE to "5873734",
             TogetherAdConst.AD_WEBVIEW_BANNER to "6293556"
         )
-        TogetherAd.initBaiduAd(applicationContext, "cd3d8b16", baiduIdMap)
+        TogetherAd.initBaiduAd(this, "cd3d8b16", baiduIdMap)
 
         val gdtIdMap = mutableMapOf(
             TogetherAdConst.AD_SPLASH to "5070550501041614",
@@ -30,7 +30,7 @@ class App : Application() {
             TogetherAdConst.AD_TIEPIAN_LIVE to "6040255571748678",
             TogetherAdConst.AD_WEBVIEW_BANNER to "3050767842595815"
         )
-        TogetherAd.initGDTAd(applicationContext, "1105965856", gdtIdMap)
+        TogetherAd.initGDTAd(this, "1105965856", gdtIdMap)
 
         val csjIdMap = mutableMapOf(
             TogetherAdConst.AD_SPLASH to "820413685",
@@ -39,7 +39,7 @@ class App : Application() {
             TogetherAdConst.AD_TIEPIAN_LIVE to "920413238",
             TogetherAdConst.AD_WEBVIEW_BANNER to "920413685"
         )
-        TogetherAd.initCsjAd(applicationContext, "5020413", getString(R.string.app_name), csjIdMap)
+        TogetherAd.initCsjAd(this, "5020413", getString(R.string.app_name), csjIdMap)
 
         TogetherAd.setAdTimeOutMillis(5000)
     }

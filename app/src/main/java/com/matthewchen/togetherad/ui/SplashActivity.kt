@@ -137,7 +137,7 @@ class SplashActivity : AppCompatActivity() {
 
                 override fun onAdFailed(failedMsg: String?) {
                     Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
-                    actionHome(2000)
+                    actionHome(0)
                 }
 
                 override fun onAdDismissed() {
