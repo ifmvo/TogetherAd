@@ -25,7 +25,6 @@ import com.rumtel.ad.other.AdNameType
 import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
-import java.lang.ref.WeakReference
 import java.util.*
 
 /* 
@@ -316,22 +315,24 @@ object TogetherAdSplash : AdBase {
      */
     private class OverTimerTask(mContext: Activity, listener: AdListenerSplashFull) : TimerTask() {
 
-        private val weakReference: WeakReference<AdListenerSplashFull>?
-        private val weakRefContext: WeakReference<Activity>?
+        private var weakReference: AdListenerSplashFull?
+        private var weakRefContext: Activity?
 
         init {
-            weakReference = WeakReference(listener)
-            weakRefContext = WeakReference(mContext)
+            weakReference = listener
+            weakRefContext = mContext
         }
 
         override fun run() {
             stop = true
-            weakRefContext?.get()?.runOnUiThread {
-                weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
-                loge(weakRefContext.get()?.getString(R.string.timeout))
+            weakRefContext?.runOnUiThread {
+                weakReference?.onAdFailed(weakRefContext?.getString(R.string.timeout))
+                loge(weakRefContext?.getString(R.string.timeout))
                 timer = null
                 overTimerTask = null
             }
+            weakReference = null
+            weakRefContext = null
         }
     }
 
