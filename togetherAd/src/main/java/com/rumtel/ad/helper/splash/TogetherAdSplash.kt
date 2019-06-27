@@ -55,7 +55,7 @@ object TogetherAdSplash : AdBase {
         @NonNull adListener: AdListenerSplashFull
     ) {
         stop = false
-        startTimerTask(activity, adListener)
+        startTimerTask(adListener)
 
         when (AdRandomUtil.getRandomAdName(splashConfigStr)) {
             AdNameType.BAIDU -> showAdFullBaiduMob(activity, splashConfigStr, adConstStr, adsParentLayout, adListener)
@@ -303,37 +303,36 @@ object TogetherAdSplash : AdBase {
     /**
      * 开始超时任务
      */
-    private fun startTimerTask(mContext: Activity, listener: AdListenerSplashFull) {
+    private fun startTimerTask(listener: AdListenerSplashFull) {
         cancelTimerTask()
         timer = Timer()
-        overTimerTask = OverTimerTask(mContext, listener)
+        overTimerTask = OverTimerTask(listener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 
     /**
      * 超时任务
      */
-    private class OverTimerTask(mContext: Activity, listener: AdListenerSplashFull) : TimerTask() {
+    private class OverTimerTask(listener: AdListenerSplashFull) : TimerTask() {
 
         private var weakReference: AdListenerSplashFull?
-        private var weakRefContext: Activity?
+//        private var weakRefContext: Activity?
 
         init {
             weakReference = listener
-            weakRefContext = mContext
+//            weakRefContext = mContext
         }
 
         override fun run() {
             stop = true
-            weakRefContext?.runOnUiThread {
-                weakReference?.onAdFailed(weakRefContext?.getString(R.string.timeout))
-                loge(weakRefContext?.getString(R.string.timeout))
+//            weakRefContext?.runOnUiThread {
+                weakReference?.onAdFailed(mContext.getString(R.string.timeout))
+                loge(mContext.getString(R.string.timeout) + weakReference)
                 timer = null
                 overTimerTask = null
-            }
+//            }
             weakReference = null
-            weakRefContext = null
+//            weakRefContext = null
         }
     }
-
 }
