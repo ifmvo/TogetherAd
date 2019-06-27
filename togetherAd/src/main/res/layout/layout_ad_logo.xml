@@ -11,6 +11,6 @@
         android:paddingBottom="1dp"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:layout_gravity="bottom|right"
         android:layout_height="wrap_content"/>

@@ -126,7 +126,7 @@ object TogetherAdBanner : AdBase {
                     ivLayoutParams.width = w
 
                     ILFactory.getLoader()
-                        .load(activity, ivImage, adItem.imageUrl, LoaderOptions(), object : LoadListener() {
+                        .load(activity, ivImage, adItem.iconUrl, LoaderOptions(), object : LoadListener() {
                             override fun onLoadCompleted(p0: Drawable?): Boolean {
                                 return true
                             }

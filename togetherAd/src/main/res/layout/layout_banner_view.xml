@@ -67,7 +67,9 @@
                 android:layout_width="35dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
+                android:layout_gravity="center"
                 android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:src="@mipmap/ad_close"
                 android:layout_height="35dp"/>
 
@@ -75,7 +77,6 @@
             广告标示
         -->
         <include
-                android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 layout="@layout/layout_ad_logo"/>
