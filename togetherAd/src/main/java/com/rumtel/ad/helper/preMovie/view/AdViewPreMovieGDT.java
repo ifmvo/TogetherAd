@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class AdViewPreMovieGDT extends AdViewPreMovieBase {
 
-    public AdViewPreMovieGDT(@NonNull Context context) {
-        super(context);
+    public AdViewPreMovieGDT(@NonNull Context context, boolean needTimer) {
+        super(context, needTimer);
     }
 
     public AdViewPreMovieGDT(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -60,6 +60,14 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 AdExtKt.logd(AdViewPreMovieGDT.this, "list.size():" + list.size());
 
                 final NativeMediaADData mAD = list.get(0);
+                if (mAD == null) {
+                    if (adViewListener != null) {
+                        AdExtKt.logd(AdViewPreMovieGDT.this, "请求成功但是mAD==null");
+                        adViewListener.onAdFailed("请求成功但是mAD==null");
+                    }
+                    return;
+                }
+                mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAD.getTitle());
                 mLlAdContainer.setVisibility(View.VISIBLE);
                 mFlAdContainer.setVisibility(View.GONE);
@@ -82,8 +90,12 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                                     mAD.onClicked(v);
                                 }
                             });
-
-                            startTimerCount(6000);
+                            if (adViewListener != null) {
+                                adViewListener.onAdPrepared();
+                            }
+                            if (needTimer) {
+                                startTimerCount(6000);
+                            }
                             return false;
                         }
                     });

@@ -26,8 +26,8 @@ import java.util.List;
  */
 public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
-    public AdViewPreMovieCsj(@NonNull Context context) {
-        super(context);
+    public AdViewPreMovieCsj(@NonNull Context context, boolean needTimer) {
+        super(context, needTimer);
     }
 
     public AdViewPreMovieCsj(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -108,6 +108,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                     }
                 });
 
+                mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(adObject.getDescription());
                 List<TTImage> imageList = adObject.getImageList();
                 Log.e("ifmvo", "adObject.getImageMode():" + adObject.getImageMode());
@@ -159,7 +160,12 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                 mTvLogoCsj.setImageBitmap(adObject.getAdLogo());
 
                 //开始计时
-                startTimerCount(6000);
+                if (adViewListener != null) {
+                    adViewListener.onAdPrepared();
+                }
+                if (needTimer) {
+                    startTimerCount(6000);
+                }
             }
         });
     }

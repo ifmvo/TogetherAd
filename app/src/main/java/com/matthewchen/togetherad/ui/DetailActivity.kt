@@ -62,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
-            })
+            }, needTimer = false)
     }
 
     private fun interstitialAd() {

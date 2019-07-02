@@ -84,6 +84,9 @@
 
     </FrameLayout>
 
+    <!--
+        common logo
+    -->
     <include
             android:layout_gravity="bottom|right"
             android:layout_margin="3dp"
@@ -92,6 +95,9 @@
             android:layout_height="wrap_content"
             layout="@layout/layout_ad_logo"/>
 
+    <!--
+        gdt logo
+    -->
     <ImageView
             android:id="@+id/mTvLogoGdt"
             android:layout_gravity="right|bottom"
@@ -102,6 +108,9 @@
             android:scaleType="centerCrop"
             android:layout_height="wrap_content"/>
 
+    <!--
+        csj logo
+    -->
     <ImageView
             android:id="@+id/mTvLogoCsj"
             android:visibility="gone"

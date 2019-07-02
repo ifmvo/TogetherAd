@@ -40,7 +40,8 @@ object TogetherAdPreMovie : AdBase {
         configPreMovie: String?,
         @NonNull adConstStr: String,
         @NonNull adsParentLayout: ViewGroup,
-        @NonNull adListener: AdListenerPreMovie
+        @NonNull adListener: AdListenerPreMovie,
+        @NonNull needTimer: Boolean = true
     ) {
         startTimerTask(activity, adsParentLayout, adListener)
         cancel()
@@ -50,16 +51,15 @@ object TogetherAdPreMovie : AdBase {
             adsParentLayout.removeAllViews()
         }
 
-        val randomAdName = AdRandomUtil.getRandomAdName(configPreMovie)
-        when (randomAdName) {
+        when (AdRandomUtil.getRandomAdName(configPreMovie)) {
             AdNameType.BAIDU -> {
-                showAdPreMovieBaiduMob(activity)
+                showAdPreMovieBaiduMob(activity, needTimer)
             }
             AdNameType.GDT -> {
-                showAdPreMovieGDT(activity)
+                showAdPreMovieGDT(activity, needTimer)
             }
             AdNameType.CSJ -> {
-                showAdPreMovieIFly(activity)
+                showAdPreMovieIFly(activity, needTimer)
             }
             else -> {
                 cancelTimerTask()
@@ -154,25 +154,25 @@ object TogetherAdPreMovie : AdBase {
     /**
      * 百度 Mob
      */
-    private fun showAdPreMovieBaiduMob(activity: Activity) {
+    private fun showAdPreMovieBaiduMob(activity: Activity, @NonNull needTimer: Boolean) {
         mChannel = AdNameType.BAIDU.type
-        weak = WeakReference(AdViewPreMovieBaidu(activity))
+        weak = WeakReference(AdViewPreMovieBaidu(activity, needTimer))
     }
 
     /**
      * 腾讯广点通
      */
-    private fun showAdPreMovieGDT(activity: Activity) {
+    private fun showAdPreMovieGDT(activity: Activity, @NonNull needTimer: Boolean) {
         mChannel = AdNameType.GDT.type
-        weak = WeakReference(AdViewPreMovieGDT(activity))
+        weak = WeakReference(AdViewPreMovieGDT(activity, needTimer))
     }
 
     /**
      * 穿山甲
      */
-    private fun showAdPreMovieIFly(activity: Activity) {
+    private fun showAdPreMovieIFly(activity: Activity, @NonNull needTimer: Boolean) {
         mChannel = AdNameType.CSJ.type
-        weak = WeakReference(AdViewPreMovieCsj(activity))
+        weak = WeakReference(AdViewPreMovieCsj(activity, needTimer))
     }
 
     private fun cancel() {

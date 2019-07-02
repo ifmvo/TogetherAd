@@ -23,6 +23,8 @@ import com.rumtel.ad.TogetherAd;
  */
 public abstract class AdViewPreMovieBase extends FrameLayout {
 
+    protected Boolean needTimer = true;
+
     ViewGroup mRootView;
 
     FrameLayout mFlAdContainer;
@@ -49,6 +51,12 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
 
     public AdViewPreMovieBase(@NonNull Context context) {
         super(context);
+        initView();
+    }
+
+    public AdViewPreMovieBase(Context context, Boolean needTimer) {
+        super(context);
+        this.needTimer = needTimer;
         initView();
     }
 
@@ -102,9 +110,6 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         cancelTimerCount();
         mTimerCount = new TimerCount(millisInFuture, 1000);
         mTimerCount.start();
-        if (adViewListener != null) {
-            adViewListener.onAdPrepared();
-        }
     }
 
     /**
@@ -154,9 +159,6 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
             if (mTextCountDown != null) {
                 if (mTextCountDown.getVisibility() == View.GONE) {
                     mTextCountDown.setVisibility(View.VISIBLE);
-                }
-                if (mFlDesc.getVisibility() == View.GONE) {
-                    mFlDesc.setVisibility(View.VISIBLE);
                 }
                 mTextCountDown.setText(String.format("%d s", millisUntilFinished / 1000));
             }

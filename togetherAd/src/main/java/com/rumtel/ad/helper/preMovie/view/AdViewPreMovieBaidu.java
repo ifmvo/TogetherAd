@@ -25,8 +25,8 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
 
     private NativeResponse mAd;
 
-    public AdViewPreMovieBaidu(@NonNull Context context) {
-        super(context);
+    public AdViewPreMovieBaidu(@NonNull Context context, boolean needTimer) {
+        super(context, needTimer);
     }
 
     public AdViewPreMovieBaidu(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -61,6 +61,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
 
                 // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
                 mAd = arg0.get(0);
+                mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAd.getTitle());
                 if (stop) {
                     return;
@@ -86,7 +87,12 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                                 }
                             }
                         });
-                        startTimerCount(6000);
+                        if (adViewListener != null) {
+                            adViewListener.onAdPrepared();
+                        }
+                        if (needTimer) {
+                            startTimerCount(6000);
+                        }
                         return false;
                     }
                 });
