@@ -113,7 +113,8 @@ object TogetherAdPreMovie : AdBase {
                     newConfigPreMovie,
                     adConstStr,
                     adsParentLayout,
-                    adListener
+                    adListener,
+                    needTimer
                 )
             }
 
