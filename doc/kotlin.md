@@ -140,7 +140,7 @@ TogetherAdPreMovie.showAdPreMovie(this, "baidu:1,gdt:1,xunfei:1", TogetherAdCons
     override fun onStartRequest(channel: String) {
         //开始请求广告之前，channel：gdt、baidu、xunfei
     }
-})
+}, needTime)//是否需要倒计时
 ```
 
 6. 插屏广告调用姿势
