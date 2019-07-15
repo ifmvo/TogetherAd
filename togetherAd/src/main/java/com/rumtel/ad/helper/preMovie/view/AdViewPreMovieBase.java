@@ -26,6 +26,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     protected Boolean needTimer = true;
 
     ViewGroup mRootView;
+    FrameLayout mFlSuper;
 
     FrameLayout mFlAdContainer;
     LinearLayout mLlAdContainer;
@@ -72,6 +73,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
 
     public void initView() {
         mRootView = (ViewGroup) View.inflate(super.getContext(), R.layout.view_ad_pre_movie, this);
+        mFlSuper = mRootView.findViewById(R.id.fl_ad);
 
         mFlAdContainer = mRootView.findViewById(R.id.fl_ad_container);
         mLlAdContainer = mRootView.findViewById(R.id.ll_ad_container);

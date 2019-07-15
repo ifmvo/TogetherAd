@@ -59,7 +59,7 @@ object TogetherAdPreMovie : AdBase {
                 showAdPreMovieGDT(activity, needTimer)
             }
             AdNameType.CSJ -> {
-                showAdPreMovieIFly(activity, needTimer)
+                showAdPreMovieCsj(activity, needTimer)
             }
             else -> {
                 cancelTimerTask()
@@ -171,7 +171,7 @@ object TogetherAdPreMovie : AdBase {
     /**
      * 穿山甲
      */
-    private fun showAdPreMovieIFly(activity: Activity, @NonNull needTimer: Boolean) {
+    private fun showAdPreMovieCsj(activity: Activity, @NonNull needTimer: Boolean) {
         mChannel = AdNameType.CSJ.type
         weak = WeakReference(AdViewPreMovieCsj(activity, needTimer))
     }
