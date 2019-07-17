@@ -79,13 +79,13 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                 // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
                 List<View> clickViewList = new ArrayList<>();
-                clickViewList.add(mFlSuper);
+                clickViewList.add(mRootView);
                 // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
                 //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
                 List<View> creativeViewList = new ArrayList<>();
-                creativeViewList.add(mFlSuper);
+                creativeViewList.add(mRootView);
                 // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-                adObject.registerViewForInteraction(mFlSuper, clickViewList, creativeViewList, new TTNativeAd.AdInteractionListener() {
+                adObject.registerViewForInteraction(mRootView, clickViewList, creativeViewList, new TTNativeAd.AdInteractionListener() {
                     @Override
                     public void onAdClicked(View view, TTNativeAd ttNativeAd) {
                     }
