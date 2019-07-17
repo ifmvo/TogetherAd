@@ -237,6 +237,7 @@ object TogetherAdBanner : AdBase {
                         }
 
                         override fun onAdShow(p0: TTNativeAd?) {
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
                         }
 
                         override fun onAdCreativeClick(p0: View?, p1: TTNativeAd?) {

@@ -394,16 +394,11 @@ object TogetherAdInter : AdBase {
                     adItem.registerViewForInteraction(relativeLayout, clickViewList, clickViewList, dislikeView,
                         object : TTNativeAd.AdInteractionListener {
                             override fun onAdClicked(p0: View?, p1: TTNativeAd?) {
-                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
-                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
-                                adIntersContainer.removeAllViews()
-                                adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
-                                adIntersContainer.visibility = View.GONE
-                                adListener.onAdClick(AdNameType.CSJ.type)
-                                adListener.onAdDismissed()
+                                //clickViewList 和 creativeClickList 一样就只会回调 onAdCreativeClick
                             }
 
                             override fun onAdShow(p0: TTNativeAd?) {
+                                logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
                             }
 
                             override fun onAdCreativeClick(p0: View?, p1: TTNativeAd?) {
@@ -416,7 +411,6 @@ object TogetherAdInter : AdBase {
                                 adListener.onAdDismissed()
                             }
                         })
-
 
                     //加载ad 图片资源
                     val imageList = adItem.imageList

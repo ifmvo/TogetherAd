@@ -7,14 +7,14 @@ package com.matthewchen.togetherad.config
  */
 object Config {
 
-    fun splashAdConfig() = "baidu:1,gdt:1,csj:1"
+    fun splashAdConfig() = "baidu:0,gdt:0,csj:1"
 
-    fun interAdConfig() = "baidu:1,gdt:1,csj:1"
+    fun interAdConfig() = "baidu:0,gdt:0,csj:1"
 
-    fun preMoiveAdConfig() = "baidu:1,gdt:1,csj:1"
+    fun preMoiveAdConfig() = "baidu:0,gdt:0,csj:1"
 
-    fun listAdConfig() = "baidu:1,gdt:1,csj:1"
+    fun listAdConfig() = "baidu:0,gdt:0,csj:1"
 
-    fun webViewAdConfig() = "baidu:1,gdt:1,csj:1"
+    fun webViewAdConfig() = "baidu:0,gdt:0,csj:1"
 
 }
