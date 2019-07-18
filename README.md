@@ -92,3 +92,7 @@ v1.4.0
 v1.4.2
 TogetherAdBanner    csj 用的 信息流
 TogetherAdBanner2   csj 用的 Banner原生
+
+v1.4.3
+1. 只有前贴广告才能展示视频广告 （ 前贴会根据 needTimer 参数判断是否展示视频 ）
+2. 信息流也不展示视频

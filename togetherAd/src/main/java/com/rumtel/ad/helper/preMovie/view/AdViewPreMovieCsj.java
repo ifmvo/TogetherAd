@@ -114,12 +114,23 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                 switch (adObject.getImageMode()) {
                     case TTAdConstant.IMAGE_MODE_VIDEO:
                     case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
-                        mLlAdContainer.setVisibility(View.GONE);
-                        mFlAdContainer.setVisibility(View.VISIBLE);
-                        View adView = adObject.getAdView();
-                        if (adView != null && adView.getParent() == null) {
-                            mFlAdContainer.removeAllViews();
-                            mFlAdContainer.addView(adView);
+                        if (needTimer) {
+                            mLlAdContainer.setVisibility(View.GONE);
+                            mFlAdContainer.setVisibility(View.VISIBLE);
+                            View adView = adObject.getAdView();
+                            if (adView != null && adView.getParent() == null) {
+                                mFlAdContainer.removeAllViews();
+                                mFlAdContainer.addView(adView);
+                            }
+                        } else {
+                            mLlAdContainer.setVisibility(View.VISIBLE);
+                            mFlAdContainer.setVisibility(View.GONE);
+                            mIvImg1.setVisibility(View.GONE);
+                            mIvImg2.setVisibility(View.GONE);
+                            TTImage videoCoverImage = adObject.getVideoCoverImage();
+                            if (videoCoverImage != null && videoCoverImage.getImageUrl() != null) {
+                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, videoCoverImage.getImageUrl());
+                            }
                         }
                         break;
 

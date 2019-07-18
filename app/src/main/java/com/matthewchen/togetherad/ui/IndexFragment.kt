@@ -231,35 +231,45 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                 //视频类型
                 TTAdConstant.IMAGE_MODE_VIDEO, TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL -> {
 
-                    mLlAdContainer.visibility = View.GONE
-                    mFlVideoContainer.visibility = View.VISIBLE
-                    val video = adObject.adView
-                    if (video != null && video.parent == null) {
-                        mFlVideoContainer.removeAllViews()
-                        mFlVideoContainer.addView(video)
-                        adObject.setVideoAdListener(object : TTFeedAd.VideoAdListener {
-                            override fun onVideoLoad(ad: TTFeedAd) {
-                                Log.e("ifmvo", "onVideoLoad")
-                            }
+                    mLlAdContainer.visibility = View.VISIBLE
+                    mFlVideoContainer.visibility = View.GONE
+                    mImgPoster1.visibility = View.GONE
+                    mImgPoster2.visibility = View.GONE
+                    val videoCoverImage = adObject.videoCoverImage
 
-                            override fun onVideoError(errorCode: Int, extraCode: Int) {
-                                Log.e("ifmvo", "onVideoError")
-                            }
-
-                            override fun onVideoAdStartPlay(ad: TTFeedAd) {
-                                Log.e("ifmvo", "onVideoAdStartPlay")
-                            }
-
-                            override fun onVideoAdPaused(ad: TTFeedAd) {
-                                Log.e("ifmvo", "onVideoAdPaused")
-                            }
-
-                            override fun onVideoAdContinuePlay(ad: TTFeedAd) {
-                                //因为点击广告后返回来，出现了黑屏的情况，所以这里当继续播放的时候就刷新一下这个广告，初始化这个广告的状态
-//                                mAdapter.notifyItemChanged(helper.adapterPosition)
-                            }
-                        })
+                    if (videoCoverImage != null && videoCoverImage.imageUrl != null) {
+                        ILFactory.getLoader().load(mContext, mImgPoster0, videoCoverImage.imageUrl)
                     }
+
+//                    mLlAdContainer.visibility = View.GONE
+//                    mFlVideoContainer.visibility = View.VISIBLE
+//                    val video = adObject.adView
+//                    if (video != null && video.parent == null) {
+//                        mFlVideoContainer.removeAllViews()
+//                        mFlVideoContainer.addView(video)
+//                        adObject.setVideoAdListener(object : TTFeedAd.VideoAdListener {
+//                            override fun onVideoLoad(ad: TTFeedAd) {
+//                                Log.e("ifmvo", "onVideoLoad")
+//                            }
+//
+//                            override fun onVideoError(errorCode: Int, extraCode: Int) {
+//                                Log.e("ifmvo", "onVideoError")
+//                            }
+//
+//                            override fun onVideoAdStartPlay(ad: TTFeedAd) {
+//                                Log.e("ifmvo", "onVideoAdStartPlay")
+//                            }
+//
+//                            override fun onVideoAdPaused(ad: TTFeedAd) {
+//                                Log.e("ifmvo", "onVideoAdPaused")
+//                            }
+//
+//                            override fun onVideoAdContinuePlay(ad: TTFeedAd) {
+//                                //因为点击广告后返回来，出现了黑屏的情况，所以这里当继续播放的时候就刷新一下这个广告，初始化这个广告的状态
+////                                mAdapter.notifyItemChanged(helper.adapterPosition)
+//                            }
+//                        })
+//                    }
                 }
                 //单个图片的类型
                 TTAdConstant.IMAGE_MODE_LARGE_IMG, TTAdConstant.IMAGE_MODE_SMALL_IMG, TTAdConstant.IMAGE_MODE_VERTICAL_IMG -> {
