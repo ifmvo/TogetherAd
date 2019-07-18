@@ -9,6 +9,7 @@ import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.helper.banner.TogetherAdBanner
+import com.rumtel.ad.helper.banner.TogetherAdBanner2
 import com.rumtel.ad.helper.inter.TogetherAdInter
 import com.rumtel.ad.helper.preMovie.TogetherAdPreMovie
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -37,6 +38,10 @@ class DetailActivity : AppCompatActivity() {
         mBtnWebPlay.setOnClickListener {
             webViewBanner()
         }
+
+        mBtnWebPlay2.setOnClickListener {
+            webViewBanner2()
+        }
     }
 
     private fun preMovieAd() {
@@ -62,7 +67,8 @@ class DetailActivity : AppCompatActivity() {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
-            }, needTimer = false)
+            }, needTimer = false
+        )
     }
 
     private fun interstitialAd() {
@@ -94,6 +100,32 @@ class DetailActivity : AppCompatActivity() {
     private fun webViewBanner() {
         TogetherAdBanner.requestBanner(this, Config.webViewAdConfig(), TogetherAdConst.AD_WEBVIEW_BANNER,
             mFlAdBannerContainer, object : TogetherAdBanner.AdListenerList {
+                override fun onStartRequest(channel: String) {
+                    Log.e("ifmvo", "onStartRequest:channel:$channel")
+                }
+
+                override fun onAdClick(channel: String) {
+                    Log.e("ifmvo", "onAdClick:channel:$channel")
+                }
+
+                override fun onAdFailed(failedMsg: String?) {
+                    Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
+                }
+
+                override fun onAdDismissed() {
+                    Log.e("ifmvo", "onAdDismissed")
+                }
+
+                override fun onAdPrepared(channel: String) {
+                    Log.e("ifmvo", "onAdPrepared:channel:$channel")
+                }
+            })
+    }
+
+
+    private fun webViewBanner2() {
+        TogetherAdBanner2.requestBanner(this, Config.webViewAdConfig(), TogetherAdConst.AD_WEBVIEW_BANNER,
+            mFlAdBannerContainer, object : TogetherAdBanner2.AdListenerList {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
