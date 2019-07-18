@@ -88,3 +88,7 @@ v1.3.9
 
 v1.4.0
 1. 修复前贴广告穿山甲没有点击回调bug
+
+v1.4.2
+TogetherAdBanner    csj 用的 信息流
+TogetherAdBanner2   csj 用的 Banner原生
