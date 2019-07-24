@@ -81,6 +81,9 @@ dependencies {
 1. 前贴其实就是使用信息流+倒计时进行处理
 2. 广点通和穿山甲的插屏广告也是使用 信息流 + 关闭按钮 的方式伪装出来的
 
+### 有疑问？VX 联系我!
+![WeChat](img/Wechat.jpeg)
+
 ### 更新日志
 v1.3.9
 1. 视频前贴广告支持无倒计时模式 （ 可以用来实现再一次退出、搜索界面等. 只展示一个原生的情况 ）
@@ -90,8 +93,7 @@ v1.4.0
 1. 修复前贴广告穿山甲没有点击回调bug
 
 v1.4.2
-TogetherAdBanner    csj 用的 信息流
-TogetherAdBanner2   csj 用的 Banner原生
+1. TogetherAdBanner    csj 用的 信息流;  TogetherAdBanner2   csj 用的 Banner原生
 
 v1.4.3
 1. 只有前贴广告才能展示视频广告 （ 前贴会根据 needTimer 参数判断是否展示视频 ）
