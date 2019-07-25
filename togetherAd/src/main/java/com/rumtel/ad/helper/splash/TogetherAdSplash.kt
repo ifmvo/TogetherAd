@@ -194,86 +194,98 @@ object TogetherAdSplash : AdBase {
         @NonNull adsParentLayout: ViewGroup,
         @NonNull adListener: AdListenerSplashFull
     ) {
-        adListener.onStartRequest(AdNameType.CSJ.type)
-        val wm = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val point = Point()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        try {
 
-            wm.defaultDisplay.getRealSize(point)
-        } else {
+            adListener.onStartRequest(AdNameType.CSJ.type)
+            val wm = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val point = Point()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 
-            wm.defaultDisplay.getSize(point)
-        }
-        //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
-        val adSlot = AdSlot.Builder()
-            .setCodeId(TogetherAd.idMapCsj[adConstStr])
-            .setSupportDeepLink(true)
-            .setImageAcceptedSize(point.x, point.y)
-            .build()
-        TTAdSdk.getAdManager().createAdNative(mContext).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
-            override fun onSplashAdLoad(splashAd: TTSplashAd?) {
-                if (stop) {
-                    return
+                wm.defaultDisplay.getRealSize(point)
+            } else {
+
+                wm.defaultDisplay.getSize(point)
+            }
+            //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
+            val adSlot = AdSlot.Builder()
+                .setCodeId(TogetherAd.idMapCsj[adConstStr])
+                .setSupportDeepLink(true)
+                .setImageAcceptedSize(point.x, point.y)
+                .build()
+            TTAdSdk.getAdManager().createAdNative(mContext).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
+                override fun onSplashAdLoad(splashAd: TTSplashAd?) {
+                    if (stop) {
+                        return
+                    }
+                    cancelTimerTask()
+
+                    if (splashAd == null) {
+                        loge("${AdNameType.CSJ.type}: 广告是 null")
+                        val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                        showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+                        return
+                    }
+
+                    adListener.onAdPrepared(AdNameType.CSJ.type)
+                    logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.prepared)}")
+
+                    adsParentLayout.removeAllViews()
+                    adsParentLayout.addView(splashAd.splashView)
+
+                    splashAd.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
+                        override fun onAdClicked(view: View?, p1: Int) {
+                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.clicked)}")
+                            adListener.onAdClick(AdNameType.CSJ.type)
+                        }
+
+                        override fun onAdSkip() {
+                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
+                            adListener.onAdDismissed()
+                        }
+
+                        override fun onAdShow(p0: View?, p1: Int) {
+                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.exposure)}")
+                        }
+
+                        override fun onAdTimeOver() {
+                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
+                            adListener.onAdDismissed()
+                        }
+                    })
                 }
-                cancelTimerTask()
 
-                if (splashAd == null) {
-                    loge("${AdNameType.CSJ.type}: 广告是 null")
+                override fun onTimeout() {
+                    if (stop) {
+                        return
+                    }
+                    cancelTimerTask()
+
+                    loge("${AdNameType.CSJ.type}: ${mContext.getString(R.string.timeout)}")
                     val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
                     showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
-                    return
                 }
 
-                adListener.onAdPrepared(AdNameType.CSJ.type)
-                logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.prepared)}")
-
-                adsParentLayout.removeAllViews()
-                adsParentLayout.addView(splashAd.splashView)
-
-                splashAd.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
-                    override fun onAdClicked(view: View?, p1: Int) {
-                        logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.clicked)}")
-                        adListener.onAdClick(AdNameType.CSJ.type)
+                override fun onError(errorCode: Int, errorMsg: String?) {
+                    if (stop) {
+                        return
                     }
+                    cancelTimerTask()
 
-                    override fun onAdSkip() {
-                        logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
-                        adListener.onAdDismissed()
-                    }
-
-                    override fun onAdShow(p0: View?, p1: Int) {
-                        logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.exposure)}")
-                    }
-
-                    override fun onAdTimeOver() {
-                        logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
-                        adListener.onAdDismissed()
-                    }
-                })
-            }
-
-            override fun onTimeout() {
-                if (stop) {
-                    return
+                    loge("${AdNameType.CSJ.type}: $errorCode : $errorMsg")
+                    val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                    showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
                 }
-                cancelTimerTask()
-
-                loge("${AdNameType.CSJ.type}: ${mContext.getString(R.string.timeout)}")
-                val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+            }, 2500)//超时时间，demo 为 2000
+        } catch (e: Exception) {
+            if (stop) {
+                return
             }
+            cancelTimerTask()
 
-            override fun onError(errorCode: Int, errorMsg: String?) {
-                if (stop) {
-                    return
-                }
-                cancelTimerTask()
-
-                loge("${AdNameType.CSJ.type}: $errorCode : $errorMsg")
-                val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
-            }
-        }, 2500)//超时时间，demo 为 2000
+            loge("${AdNameType.CSJ.type}: 崩溃异常")
+            val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+            showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
+        }
     }
 
     /**
@@ -326,10 +338,10 @@ object TogetherAdSplash : AdBase {
         override fun run() {
             stop = true
 //            weakRefContext?.runOnUiThread {
-                weakReference?.onAdFailed(mContext.getString(R.string.timeout))
-                loge(mContext.getString(R.string.timeout) + weakReference)
-                timer = null
-                overTimerTask = null
+            weakReference?.onAdFailed(mContext.getString(R.string.timeout))
+            loge(mContext.getString(R.string.timeout) + weakReference)
+            timer = null
+            overTimerTask = null
 //            }
             weakReference = null
 //            weakRefContext = null
