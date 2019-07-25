@@ -6,7 +6,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -41,142 +40,148 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
     @Override
     public void start(String locationId) {
 
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        Point point = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            wm.getDefaultDisplay().getRealSize(point);
-        } else {
-            wm.getDefaultDisplay().getSize(point);
-        }
-
-        AdSlot adSlot = new AdSlot.Builder()
-                .setCodeId(locationId)
-                .setSupportDeepLink(true)
-                .setImageAcceptedSize(point.x, point.y)
-                .setAdCount(1)
-                .build();
-
-        TTAdSdk.getAdManager().createAdNative(getContext()).loadFeedAd(adSlot, new TTAdNative.FeedAdListener() {
-            @Override
-            public void onError(int i, String s) {
-                AdExtKt.logd(AdViewPreMovieCsj.this, "errorCode: " + i + "errorMsg: " + s);
-                if (adViewListener != null) {
-                    adViewListener.onAdFailed(s);
-                }
+        try {
+            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            Point point = new Point();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                wm.getDefaultDisplay().getRealSize(point);
+            } else {
+                wm.getDefaultDisplay().getSize(point);
             }
 
-            @Override
-            public void onFeedAdLoad(List<TTFeedAd> list) {
-                if (list == null || list.size() == 0) {
+            AdSlot adSlot = new AdSlot.Builder()
+                    .setCodeId(locationId)
+                    .setSupportDeepLink(true)
+                    .setImageAcceptedSize(point.x, point.y)
+                    .setAdCount(1)
+                    .build();
+
+            TTAdSdk.getAdManager().createAdNative(getContext()).loadFeedAd(adSlot, new TTAdNative.FeedAdListener() {
+                @Override
+                public void onError(int i, String s) {
+                    AdExtKt.logd(AdViewPreMovieCsj.this, "errorCode: " + i + "errorMsg: " + s);
                     if (adViewListener != null) {
-                        AdExtKt.logd(AdViewPreMovieCsj.this, "请求成功但是数量为空");
-                        adViewListener.onAdFailed("请求成功但是数量为空");
+                        adViewListener.onAdFailed(s);
                     }
-                    return;
                 }
 
-                TTFeedAd adObject = list.get(0);
-
-                // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
-                List<View> clickViewList = new ArrayList<>();
-                clickViewList.add(mRootView);
-                // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
-                //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
-                List<View> creativeViewList = new ArrayList<>();
-                creativeViewList.add(mRootView);
-                // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-                adObject.registerViewForInteraction(mRootView, clickViewList, creativeViewList, new TTNativeAd.AdInteractionListener() {
-                    @Override
-                    public void onAdClicked(View view, TTNativeAd ttNativeAd) {
-                    }
-
-                    @Override
-                    public void onAdCreativeClick(View view, TTNativeAd ttNativeAd) {
-                        AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + ":前贴：点击了");
+                @Override
+                public void onFeedAdLoad(List<TTFeedAd> list) {
+                    if (list == null || list.size() == 0) {
                         if (adViewListener != null) {
-                            adViewListener.onAdClick();
+                            AdExtKt.logd(AdViewPreMovieCsj.this, "请求成功但是数量为空");
+                            adViewListener.onAdFailed("请求成功但是数量为空");
                         }
+                        return;
                     }
 
-                    @Override
-                    public void onAdShow(TTNativeAd ttNativeAd) {
-                        AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + ":前贴：展示了");
-                        if (adViewListener != null) {
-                            adViewListener.onExposured();
-                        }
-                    }
-                });
+                    TTFeedAd adObject = list.get(0);
 
-                mFlDesc.setVisibility(View.VISIBLE);
-                mTvDesc.setText(adObject.getDescription());
-                List<TTImage> imageList = adObject.getImageList();
-                Log.e("ifmvo", "adObject.getImageMode():" + adObject.getImageMode());
-                switch (adObject.getImageMode()) {
-                    case TTAdConstant.IMAGE_MODE_VIDEO:
-                    case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
-                        if (needTimer) {
-                            mLlAdContainer.setVisibility(View.GONE);
-                            mFlAdContainer.setVisibility(View.VISIBLE);
-                            View adView = adObject.getAdView();
-                            if (adView != null && adView.getParent() == null) {
-                                mFlAdContainer.removeAllViews();
-                                mFlAdContainer.addView(adView);
+                    // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
+                    List<View> clickViewList = new ArrayList<>();
+                    clickViewList.add(mRootView);
+                    // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
+                    //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
+                    List<View> creativeViewList = new ArrayList<>();
+                    creativeViewList.add(mRootView);
+                    // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
+                    adObject.registerViewForInteraction(mRootView, clickViewList, creativeViewList, new TTNativeAd.AdInteractionListener() {
+                        @Override
+                        public void onAdClicked(View view, TTNativeAd ttNativeAd) {
+                        }
+
+                        @Override
+                        public void onAdCreativeClick(View view, TTNativeAd ttNativeAd) {
+                            AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + ":前贴：点击了");
+                            if (adViewListener != null) {
+                                adViewListener.onAdClick();
                             }
-                        } else {
+                        }
+
+                        @Override
+                        public void onAdShow(TTNativeAd ttNativeAd) {
+                            AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + ":前贴：展示了");
+                            if (adViewListener != null) {
+                                adViewListener.onExposured();
+                            }
+                        }
+                    });
+
+                    mFlDesc.setVisibility(View.VISIBLE);
+                    mTvDesc.setText(adObject.getDescription());
+                    List<TTImage> imageList = adObject.getImageList();
+                    switch (adObject.getImageMode()) {
+                        case TTAdConstant.IMAGE_MODE_VIDEO:
+                        case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
+                            if (needTimer) {
+                                mLlAdContainer.setVisibility(View.GONE);
+                                mFlAdContainer.setVisibility(View.VISIBLE);
+                                View adView = adObject.getAdView();
+                                if (adView != null && adView.getParent() == null) {
+                                    mFlAdContainer.removeAllViews();
+                                    mFlAdContainer.addView(adView);
+                                }
+                            } else {
+                                mLlAdContainer.setVisibility(View.VISIBLE);
+                                mFlAdContainer.setVisibility(View.GONE);
+                                mIvImg1.setVisibility(View.GONE);
+                                mIvImg2.setVisibility(View.GONE);
+                                TTImage videoCoverImage = adObject.getVideoCoverImage();
+                                if (videoCoverImage != null && videoCoverImage.getImageUrl() != null) {
+                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, videoCoverImage.getImageUrl());
+                                }
+                            }
+                            break;
+
+                        case TTAdConstant.IMAGE_MODE_LARGE_IMG:
+                        case TTAdConstant.IMAGE_MODE_SMALL_IMG:
+                        case TTAdConstant.IMAGE_MODE_VERTICAL_IMG:
                             mLlAdContainer.setVisibility(View.VISIBLE);
                             mFlAdContainer.setVisibility(View.GONE);
                             mIvImg1.setVisibility(View.GONE);
                             mIvImg2.setVisibility(View.GONE);
-                            TTImage videoCoverImage = adObject.getVideoCoverImage();
-                            if (videoCoverImage != null && videoCoverImage.getImageUrl() != null) {
-                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, videoCoverImage.getImageUrl());
+                            if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
+                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
                             }
-                        }
-                        break;
+                            break;
 
-                    case TTAdConstant.IMAGE_MODE_LARGE_IMG:
-                    case TTAdConstant.IMAGE_MODE_SMALL_IMG:
-                    case TTAdConstant.IMAGE_MODE_VERTICAL_IMG:
-                        mLlAdContainer.setVisibility(View.VISIBLE);
-                        mFlAdContainer.setVisibility(View.GONE);
-                        mIvImg1.setVisibility(View.GONE);
-                        mIvImg2.setVisibility(View.GONE);
-                        if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
-                            ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
-                        }
-                        break;
+                        case TTAdConstant.IMAGE_MODE_GROUP_IMG:
+                            mLlAdContainer.setVisibility(View.VISIBLE);
+                            mFlAdContainer.setVisibility(View.GONE);
+                            mIvImg1.setVisibility(View.VISIBLE);
+                            mIvImg2.setVisibility(View.VISIBLE);
 
-                    case TTAdConstant.IMAGE_MODE_GROUP_IMG:
-                        mLlAdContainer.setVisibility(View.VISIBLE);
-                        mFlAdContainer.setVisibility(View.GONE);
-                        mIvImg1.setVisibility(View.VISIBLE);
-                        mIvImg2.setVisibility(View.VISIBLE);
+                            if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
+                                mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
+                            }
+                            if (imageList != null && imageList.size() > 1 && imageList.get(1) != null && imageList.get(1).isValid()) {
+                                mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg1, imageList.get(1).getImageUrl());
+                            }
+                            if (imageList != null && imageList.size() > 2 && imageList.get(2) != null && imageList.get(2).isValid()) {
+                                mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg2, imageList.get(2).getImageUrl());
+                            }
+                            break;
+                    }
+                    mTvLogoCsj.setVisibility(View.VISIBLE);
+                    mTvLogoCsj.setImageBitmap(adObject.getAdLogo());
 
-                        if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
-                            mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
-                        }
-                        if (imageList != null && imageList.size() > 1 && imageList.get(1) != null && imageList.get(1).isValid()) {
-                            mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg1, imageList.get(1).getImageUrl());
-                        }
-                        if (imageList != null && imageList.size() > 2 && imageList.get(2) != null && imageList.get(2).isValid()) {
-                            mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg2, imageList.get(2).getImageUrl());
-                        }
-                        break;
+                    //开始计时
+                    if (adViewListener != null) {
+                        adViewListener.onAdPrepared();
+                    }
+                    if (needTimer) {
+                        startTimerCount(6000);
+                    }
                 }
-                mTvLogoCsj.setVisibility(View.VISIBLE);
-                mTvLogoCsj.setImageBitmap(adObject.getAdLogo());
-
-                //开始计时
-                if (adViewListener != null) {
-                    adViewListener.onAdPrepared();
-                }
-                if (needTimer) {
-                    startTimerCount(6000);
-                }
+            });
+        }catch (Exception e){
+            AdExtKt.logd(AdViewPreMovieCsj.this, "崩溃异常");
+            if (adViewListener != null) {
+                adViewListener.onAdFailed("崩溃异常");
             }
-        });
+        }
     }
 }
