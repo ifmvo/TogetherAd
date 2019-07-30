@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "cn.quicktv.androidpro"
+        applicationId "com.rumtel.pandatv"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -15,10 +15,10 @@ android {
     //签名配置
     signingConfigs {
         myConfig {
-            storeFile file("./keystore/release.keystore")
-            storePassword "68881478"
-            keyAlias 'ophone'
-            keyPassword "68881478"
+            storeFile file("./keystore/PandaTV.jks")
+            storePassword "Panda2018"
+            keyAlias 'Panda2018'
+            keyPassword "Panda2018"
         }
     }
 
