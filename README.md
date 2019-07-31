@@ -101,3 +101,6 @@ v1.4.3
 
 v1.4.4
 1. 穿山甲异常捕获，捕获后切广告
+
+v1.4.8
+1. 穿山甲广告初始化可选 .useTextureView(useTextureView)

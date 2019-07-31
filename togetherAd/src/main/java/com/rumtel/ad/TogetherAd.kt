@@ -65,7 +65,7 @@ object TogetherAd {
     }
 
     //穿山甲
-    fun initCsjAd(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>) {
+    fun initCsjAd(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>, useTextureView: Boolean = false) {
         mContext = context
         idMapCsj = csjIdMap
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
@@ -73,7 +73,7 @@ object TogetherAd {
             context, TTAdConfig.Builder()
                 .appId(csjAdAppId)
                 .appName(appName)
-                .useTextureView(false) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
+                .useTextureView(useTextureView) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
                 .titleBarTheme(TTAdConstant.TITLE_BAR_THEME_DARK)
                 .allowShowNotify(true) //是否允许sdk展示通知栏提示
                 .allowShowPageWhenScreenLock(true) //是否在锁屏场景支持展示广告落地页
