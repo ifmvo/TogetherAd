@@ -65,7 +65,7 @@ class App : Application() {
         csjIdMap[TogetherAdConst.AD_FLOW_INDEX] = "920413297"
         csjIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "920413238"
         csjIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "920413358"
-        TogetherAd.initCsjAd(this, "5020413", this.getString(R.string.app_name), csjIdMap)
+        TogetherAd.initCsjAd(this, "5020413", this.getString(R.string.app_name), csjIdMap, useTextureView = true)
 
         TogetherAd.setAdTimeOutMillis(5000)
     }

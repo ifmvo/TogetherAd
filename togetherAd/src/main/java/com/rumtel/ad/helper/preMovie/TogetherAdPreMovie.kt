@@ -85,7 +85,7 @@ object TogetherAdPreMovie : AdBase {
 
             override fun onAdClick() {
                 adListener.onAdClick(mChannel)
-                adsParentLayout.visibility = View.GONE
+//                adsParentLayout.visibility = View.GONE
                 logd("$mChannel: ${activity.getString(R.string.clicked)}")
             }
 

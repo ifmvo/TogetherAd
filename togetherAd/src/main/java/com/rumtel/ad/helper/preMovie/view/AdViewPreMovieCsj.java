@@ -113,24 +113,50 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                     switch (adObject.getImageMode()) {
                         case TTAdConstant.IMAGE_MODE_VIDEO:
                         case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
-                            if (needTimer) {
-                                mLlAdContainer.setVisibility(View.GONE);
-                                mFlAdContainer.setVisibility(View.VISIBLE);
-                                View adView = adObject.getAdView();
-                                if (adView != null && adView.getParent() == null) {
-                                    mFlAdContainer.removeAllViews();
-                                    mFlAdContainer.addView(adView);
+//                            if (needTimer) {
+                            adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
+                                @Override
+                                public void onVideoLoad(TTFeedAd ttFeedAd) {
+
                                 }
-                            } else {
-                                mLlAdContainer.setVisibility(View.VISIBLE);
-                                mFlAdContainer.setVisibility(View.GONE);
-                                mIvImg1.setVisibility(View.GONE);
-                                mIvImg2.setVisibility(View.GONE);
-                                TTImage videoCoverImage = adObject.getVideoCoverImage();
-                                if (videoCoverImage != null && videoCoverImage.getImageUrl() != null) {
-                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, videoCoverImage.getImageUrl());
+
+                                @Override
+                                public void onVideoError(int i, int i1) {
+
                                 }
+
+                                @Override
+                                public void onVideoAdStartPlay(TTFeedAd ttFeedAd) {
+
+                                }
+
+                                @Override
+                                public void onVideoAdPaused(TTFeedAd ttFeedAd) {
+
+                                }
+
+                                @Override
+                                public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) {
+
+                                }
+                            });
+                            mLlAdContainer.setVisibility(View.GONE);
+                            mFlAdContainer.setVisibility(View.VISIBLE);
+                            View adView = adObject.getAdView();
+                            if (adView != null && adView.getParent() == null) {
+                                mFlAdContainer.removeAllViews();
+                                mFlAdContainer.addView(adView);
                             }
+//                            } else {
+//                                mLlAdContainer.setVisibility(View.VISIBLE);
+//                                mFlAdContainer.setVisibility(View.GONE);
+//                                mIvImg1.setVisibility(View.GONE);
+//                                mIvImg2.setVisibility(View.GONE);
+//                                TTImage videoCoverImage = adObject.getVideoCoverImage();
+//                                if (videoCoverImage != null && videoCoverImage.getImageUrl() != null) {
+//                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, videoCoverImage.getImageUrl());
+//                                }
+//                            }
                             break;
 
                         case TTAdConstant.IMAGE_MODE_LARGE_IMG:
@@ -177,7 +203,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                     }
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             AdExtKt.logd(AdViewPreMovieCsj.this, "崩溃异常");
             if (adViewListener != null) {
                 adViewListener.onAdFailed("崩溃异常");
