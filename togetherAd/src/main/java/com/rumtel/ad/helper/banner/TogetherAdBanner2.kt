@@ -212,7 +212,9 @@ object TogetherAdBanner2 : AdBase {
                         override fun onRenderFail(p0: View?, msg: String?, code: Int) {
                             loge("${AdNameType.CSJ.type}: onRenderFail: code:$code, msg: $msg")
                             val newListConfig = listConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                            requestBanner(activity, newListConfig, adConstStr, adContainer, adListener)
+                            activity.runOnUiThread {
+                                requestBanner(activity, newListConfig, adConstStr, adContainer, adListener)
+                            }
                         }
                     })
 
