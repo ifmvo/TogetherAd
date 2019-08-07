@@ -29,7 +29,7 @@ import java.util.*
  * 
  * Created by Matthew_Chen on 2018/12/25.
  */
-object TogetherAdFlow : AdBase {
+object TogetherAdFlow : AdBase() {
 
     private var timer: Timer? = null
     private var overTimerTask: OverTimerTask? = null

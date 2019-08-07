@@ -23,7 +23,7 @@ import java.util.*
  * 
  * Created by Matthew_Chen on 2018/8/17.
  */
-object TogetherAdPreMovie : AdBase {
+object TogetherAdPreMovie : AdBase() {
 
     private var weak: WeakReference<AdViewPreMovieBase>? = null
     private var mChannel: String = ""

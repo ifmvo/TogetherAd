@@ -33,7 +33,7 @@ import com.rumtel.ad.other.loge
  * 
  * Created by Matthew_Chen on 2018/12/25.
  */
-object TogetherAdBanner2 : AdBase {
+object TogetherAdBanner2 : AdBase() {
 
     fun requestBanner(
         @NonNull activity: Activity,
@@ -248,6 +248,7 @@ object TogetherAdBanner2 : AdBase {
         @NonNull adContainer: FrameLayout,
         @NonNull adListener: AdListenerList
     ) {
+
         adListener.onStartRequest(AdNameType.GDT.type)
         bannerView = UnifiedBannerView(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr],
             object : UnifiedBannerADListener {

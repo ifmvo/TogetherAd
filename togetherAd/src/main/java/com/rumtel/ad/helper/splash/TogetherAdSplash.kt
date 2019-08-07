@@ -32,7 +32,7 @@ import java.util.*
  * 
  * Created by Matthew_Chen on 2018/12/24.
  */
-object TogetherAdSplash : AdBase {
+object TogetherAdSplash : AdBase() {
 
     private var timer: Timer? = null
     private var overTimerTask: OverTimerTask? = null

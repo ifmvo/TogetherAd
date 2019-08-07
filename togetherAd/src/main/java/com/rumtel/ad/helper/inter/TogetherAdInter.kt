@@ -34,7 +34,7 @@ import com.rumtel.ad.other.loge
  * 
  * Created by Matthew_Chen on 2018/12/26.
  */
-object TogetherAdInter : AdBase {
+object TogetherAdInter : AdBase() {
 
     fun showAdInter(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
 

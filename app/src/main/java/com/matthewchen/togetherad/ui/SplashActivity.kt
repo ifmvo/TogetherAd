@@ -1,11 +1,7 @@
 package com.matthewchen.togetherad.ui
 
 import android.Manifest
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.matthewchen.togetherad.R
@@ -75,27 +71,7 @@ class SplashActivity : AppCompatActivity() {
     @PermissionFail(requestCode = 100)
     fun permissionFail() {
         isPermission = false
-        showPermissionDialog()
-    }
-
-    private fun showPermissionDialog() {
-        val dialog = AlertDialog.Builder(this)
-        dialog.setTitle("请同意广告需要的权限")
-            .setCancelable(false)
-            .setNegativeButton("拒绝") { _, _ ->
-                finish()
-            }
-            .setPositiveButton("去设置") { _, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri = Uri.fromParts("package", packageName, null)
-                intent.data = uri
-                try {
-                    startActivity(intent)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            .show()
+        requestAd()
     }
 
     /**

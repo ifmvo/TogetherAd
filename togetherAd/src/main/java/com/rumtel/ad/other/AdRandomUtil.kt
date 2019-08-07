@@ -1,5 +1,8 @@
 package com.rumtel.ad.other
 
+import android.content.Context
+import com.rumtel.ad.TogetherAd
+
 /*
  * (●ﾟωﾟ●)
  *
@@ -48,9 +51,6 @@ object AdRandomUtil {
                                 AdNameType.GDT.type -> {
                                     list.add(AdNameType.GDT)
                                 }
-//                                AdNameType.XUNFEI.type -> {
-//                                    list.add(AdNameType.XUNFEI)
-//                                }
                                 AdNameType.CSJ.type -> {
                                     list.add(AdNameType.CSJ)
                                 }
@@ -70,10 +70,29 @@ object AdRandomUtil {
 
         val adNameType = list[(getRandomInt(list.size)) - 1]
         logd("随机到的广告: ${adNameType.type}")
+
+        //没有权限就重新随机
+        if (adNameType == AdNameType.GDT && !haveGDTNeedPermission(TogetherAd.mContext)) {
+            loge("但是没有 GDT 的必要权限: $permissionPhoneStateName 和 $permissionWriteEternalStorageName")
+            val newListConfig = configStr.replace(AdNameType.GDT.type, AdNameType.NO.type)
+            return getRandomAdName(newListConfig)
+        }
+
         return adNameType
     }
 
     private fun getRandomInt(max: Int): Int {
         return (1 + Math.random() * (max - 1 + 1)).toInt()
+    }
+
+    private val permissionPhoneStateName = "android.permission.READ_PHONE_STATE"
+    private val permissionWriteEternalStorageName = "android.permission.WRITE_EXTERNAL_STORAGE"
+
+    /**
+     * 有没有 GDT 需要的权限
+     */
+    private fun haveGDTNeedPermission(context: Context): Boolean {
+        return Utils.hasPermission(context, permissionPhoneStateName) &&
+                Utils.hasPermission(context, permissionWriteEternalStorageName)
     }
 }
