@@ -108,14 +108,16 @@ object TogetherAdPreMovie : AdBase() {
                     }
                 }
 
-                showAdPreMovie(
-                    activity,
-                    newConfigPreMovie,
-                    adConstStr,
-                    adsParentLayout,
-                    adListener,
-                    needTimer
-                )
+                activity.runOnUiThread {
+                    showAdPreMovie(
+                        activity,
+                        newConfigPreMovie,
+                        adConstStr,
+                        adsParentLayout,
+                        adListener,
+                        needTimer
+                    )
+                }
             }
 
             override fun onAdDismissed() {
