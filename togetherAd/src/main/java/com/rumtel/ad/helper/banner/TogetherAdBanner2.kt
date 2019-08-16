@@ -199,6 +199,7 @@ object TogetherAdBanner2 : AdBase() {
 
                         override fun onAdShow(p0: View?, type: Int) {
                             logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
+                            adListener.onAdPrepared(AdNameType.CSJ.type)
                         }
 
                         override fun onRenderSuccess(view: View?, width: Float, height: Float) {
