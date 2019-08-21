@@ -116,12 +116,10 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 //                            if (needTimer) {
                             adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
 
-                                @Override
                                 public void onProgressUpdate(long current, long duration) {
 
                                 }
 
-                                @Override
                                 public void onVideoAdComplete(TTFeedAd ad) {
 
                                 }
