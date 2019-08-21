@@ -115,6 +115,17 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                         case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
 //                            if (needTimer) {
                             adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
+
+                                @Override
+                                public void onProgressUpdate(long current, long duration) {
+
+                                }
+
+                                @Override
+                                public void onVideoAdComplete(TTFeedAd ad) {
+
+                                }
+
                                 @Override
                                 public void onVideoLoad(TTFeedAd ttFeedAd) {
 
