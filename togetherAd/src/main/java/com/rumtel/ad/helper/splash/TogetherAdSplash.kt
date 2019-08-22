@@ -282,7 +282,7 @@ object TogetherAdSplash : AdBase() {
             }
             cancelTimerTask()
 
-            loge("${AdNameType.CSJ.type}: 崩溃异常")
+            loge("${AdNameType.CSJ.type}: 线程：${Thread.currentThread().name}, 崩溃异常: $e")
             val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
             showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, adListener)
         }

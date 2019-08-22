@@ -6,6 +6,8 @@ import com.baidu.mobads.AdView
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdSdk
+import com.rumtel.ad.other.AdNameType
+import com.rumtel.ad.other.logd
 
 /* 
  * (●ﾟωﾟ●)
@@ -55,6 +57,7 @@ object TogetherAd {
         mContext = context
         AdView.setAppSid(context, baiduAdAppId)
         idMapBaidu = baiduIdMap
+        logd("初始化${AdNameType.BAIDU.type}")
     }
 
     //广点通
@@ -62,6 +65,7 @@ object TogetherAd {
         mContext = context
         idMapGDT = gdtIdMap
         appIdGDT = gdtAdAppId
+        logd("初始化${AdNameType.GDT.type}")
     }
 
     //穿山甲
@@ -85,10 +89,12 @@ object TogetherAd {
                 //.httpStack(new MyOkStack3())//自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
                 .build()
         )
+        logd("初始化${AdNameType.CSJ.type}")
     }
 
     fun setAdTimeOutMillis(millis: Long) {
         timeOutMillis = millis
+        logd("全局设置超时时间：$millis")
     }
 
     fun setPreMoiveMarginTopSize(height: Int) {
