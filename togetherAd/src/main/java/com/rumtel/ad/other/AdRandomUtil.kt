@@ -72,11 +72,11 @@ object AdRandomUtil {
         logd("随机到的广告: ${adNameType.type}")
 
         //没有权限就重新随机
-        if (adNameType == AdNameType.GDT && !haveGDTNeedPermission(TogetherAd.mContext)) {
+        /*if (adNameType == AdNameType.GDT && !haveGDTNeedPermission(TogetherAd.mContext)) {
             loge("但是没有 GDT 的必要权限: $permissionPhoneStateName 和 $permissionWriteEternalStorageName")
             val newListConfig = configStr.replace(AdNameType.GDT.type, AdNameType.NO.type)
             return getRandomAdName(newListConfig)
-        }
+        }*/
 
         return adNameType
     }
@@ -85,14 +85,14 @@ object AdRandomUtil {
         return (1 + Math.random() * (max - 1 + 1)).toInt()
     }
 
-    private val permissionPhoneStateName = "android.permission.READ_PHONE_STATE"
+    /*private val permissionPhoneStateName = "android.permission.READ_PHONE_STATE"
     private val permissionWriteEternalStorageName = "android.permission.WRITE_EXTERNAL_STORAGE"
 
-    /**
+    *//**
      * 有没有 GDT 需要的权限
-     */
+     *//*
     private fun haveGDTNeedPermission(context: Context): Boolean {
         return Utils.hasPermission(context, permissionPhoneStateName) &&
                 Utils.hasPermission(context, permissionWriteEternalStorageName)
-    }
+    }*/
 }
