@@ -1,6 +1,5 @@
 package com.matthewchen.togetherad.ui
 
-import android.Manifest
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -10,9 +9,6 @@ import com.matthewchen.togetherad.config.TogetherAdConst
 import com.matthewchen.togetherad.utils.Kits
 import com.rumtel.ad.helper.splash.TogetherAdSplash
 import kotlinx.android.synthetic.main.activity_splash.*
-import kr.co.namee.permissiongen.PermissionFail
-import kr.co.namee.permissiongen.PermissionGen
-import kr.co.namee.permissiongen.PermissionSuccess
 
 /* 
  * (●ﾟωﾟ●)
@@ -21,7 +17,7 @@ import kr.co.namee.permissiongen.PermissionSuccess
  */
 class SplashActivity : AppCompatActivity() {
 
-    private var isPermission = false
+//    private var isPermission = false
 
     private var canJumpImmediately = false
 
@@ -33,13 +29,15 @@ class SplashActivity : AppCompatActivity() {
         Kits.StatuBar.darkMode(this)
         Kits.StatuBar.setPaddingSmart(this, mFlAdContainer)
 
-        PermissionGen.with(this)
-            .addRequestCode(100)
-            .permissions(
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            .request()
+//        PermissionGen.with(this)
+//            .addRequestCode(100)
+//            .permissions(
+//                Manifest.permission.READ_PHONE_STATE,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            )
+//            .request()
+
+        requestAd()
 
     }
 
@@ -56,53 +54,52 @@ class SplashActivity : AppCompatActivity() {
         canJumpImmediately = true
     }
 
-    /**
-     * 权限申请成功
-     */
-    @PermissionSuccess(requestCode = 100)
-    fun permissionSuccess() {
-        isPermission = true
-        requestAd()
-    }
+//    /**
+//     * 权限申请成功
+//     */
+//    @PermissionSuccess(requestCode = 100)
+//    fun permissionSuccess() {
+//        isPermission = true
+//        requestAd()
+//    }
 
-    /**
-     * 权限申请失败
-     */
-    @PermissionFail(requestCode = 100)
-    fun permissionFail() {
-        isPermission = false
-        requestAd()
-    }
+//    /**
+//     * 权限申请失败
+//     */
+//    @PermissionFail(requestCode = 100)
+//    fun permissionFail() {
+//        isPermission = false
+//        requestAd()
+//    }
 
     /**
      * 跳转 Main, 延迟多少毫秒
      */
     private fun actionHome(delayMillis: Long) {
-      /*  mFlAdContainer.postDelayed({
+        mFlAdContainer.postDelayed({
             MainActivity.MainAct.action(this)
             finish()
-        }, delayMillis)*/
+        }, delayMillis)
     }
 
-    override fun onBackPressed() {
-        if (!isPermission) {
-            super.onBackPressed()
-        }
-    }
+//    override fun onBackPressed() {
+//        if (!isPermission) {
+//            super.onBackPressed()
+//        }
+//    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-    }
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+//    }
 
     private fun requestAd() {
         val splashConfigAd = Config.splashAdConfig()
-        TogetherAdSplash.showAdFull(
-            this,
-            splashConfigAd,
-            TogetherAdConst.AD_SPLASH,
-            mFlAdContainer,skip_view,
-            object : TogetherAdSplash.AdListenerSplashFull {
+        TogetherAdSplash.showAdFull(this, splashConfigAd, TogetherAdConst.AD_SPLASH, mFlAdContainer, object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
@@ -127,6 +124,6 @@ class SplashActivity : AppCompatActivity() {
                 override fun onAdPrepared(channel: String) {
                     Log.e("ifmvo", "onAdPrepared:channel:$channel")
                 }
-            })
+            }, skip_view)
     }
 }
