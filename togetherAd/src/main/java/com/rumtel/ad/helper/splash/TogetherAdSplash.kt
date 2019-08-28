@@ -162,9 +162,9 @@ object TogetherAdSplash : AdBase() {
                     if (stop) {
                         return
                     }
-
-//                    timer.schedule(timerTask, 1000)
-
+                    activity.runOnUiThread({
+                        skipView.visibility = View.VISIBLE
+                    })
                     cancelTimerTask()
 
                     adListener.onAdPrepared(AdNameType.GDT.type)
