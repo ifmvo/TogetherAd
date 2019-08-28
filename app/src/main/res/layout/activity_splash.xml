@@ -9,7 +9,19 @@
             android:id="@+id/mFlAdContainer"
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp">
+        <TextView
+                android:id="@+id/skip_view"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:layout_gravity="top|right"
+                android:background="@drawable/background_circle"
+                android:text="跳过"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"/>
+    </FrameLayout>
 
     <TextView
             android:layout_width="match_parent"
