@@ -107,7 +107,7 @@ class SplashActivity : AppCompatActivity() {
             this,
             splashConfigAd,
             TogetherAdConst.AD_SPLASH,
-            mFlAdContainer, skip_view, skip_view,
+            mFlAdContainer, skip_view, tv_time,
             object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")

@@ -179,9 +179,9 @@ object TogetherAdSplash : AdBase() {
                 }
 
                 override fun onADTick(l: Long) {
-                    logd("${AdNameType.GDT.type}: 倒计时: $l")
+                    logd("${AdNameType.GDT.type}: 倒计时: ${l/1000 + 1}")
                     activity.runOnUiThread({
-                        timeView.text = l.toString()
+                        timeView.text = (l/1000 + 1).toString()
                     })
                 }
 

@@ -10,17 +10,49 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-    <TextView
+    <RelativeLayout
             android:id="@+id/skip_view"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:layout_gravity="top|right"
-            android:layout_margin="16dp"
-            android:background="@drawable/background_circle"
-            android:gravity="center"
-            android:text="跳过"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="8dp"
+            android:background="@android:color/black"
+            android:visibility="gone">
+
+        <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+        <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/tv_skip"
+                android:text="|"
+                android:textColor="#979797"
+                android:textSize="11sp" />
+
+        <TextView
+                android:id="@+id/tv_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="跳过"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+    </RelativeLayout>
 
     <TextView
             android:layout_width="match_parent"
