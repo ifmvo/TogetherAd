@@ -180,7 +180,9 @@ object TogetherAdSplash : AdBase() {
 
                 override fun onADTick(l: Long) {
                     logd("${AdNameType.GDT.type}: 倒计时: $l")
-                    timeView.text = l.toString()
+                    activity.runOnUiThread({
+                        timeView.text = l.toString()
+                    })
                 }
 
                 override fun onADExposure() {
