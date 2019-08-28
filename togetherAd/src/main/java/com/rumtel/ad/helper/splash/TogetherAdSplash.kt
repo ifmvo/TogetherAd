@@ -5,12 +5,10 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.support.annotation.NonNull
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.bytedance.sdk.openadsdk.AdSlot
@@ -128,7 +126,6 @@ object TogetherAdSplash : AdBase() {
             }
         }*/
         adListener.onStartRequest(AdNameType.GDT.type)
-        skipView.visibility = View.VISIBLE
         val splash = SplashAD(
             activity,
             skipView,
