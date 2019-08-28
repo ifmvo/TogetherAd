@@ -78,10 +78,10 @@ class SplashActivity : AppCompatActivity() {
      * 跳转 Main, 延迟多少毫秒
      */
     private fun actionHome(delayMillis: Long) {
-      /*  mFlAdContainer.postDelayed({
-            MainActivity.MainAct.action(this)
-            finish()
-        }, delayMillis)*/
+        /*  mFlAdContainer.postDelayed({
+              MainActivity.MainAct.action(this)
+              finish()
+          }, delayMillis)*/
     }
 
     override fun onBackPressed() {
@@ -101,7 +101,7 @@ class SplashActivity : AppCompatActivity() {
             this,
             splashConfigAd,
             TogetherAdConst.AD_SPLASH,
-            mFlAdContainer,skip_view,
+            mFlAdContainer, skip_view, skip_view,
             object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
