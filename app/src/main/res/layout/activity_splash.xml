@@ -19,6 +19,7 @@
                 android:layout_gravity="top|right"
                 android:background="@drawable/background_circle"
                 android:text="跳过"
+                android:visibility="gone"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"/>
     </FrameLayout>

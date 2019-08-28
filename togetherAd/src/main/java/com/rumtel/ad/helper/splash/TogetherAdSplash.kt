@@ -110,6 +110,7 @@ object TogetherAdSplash : AdBase() {
         @NonNull adListener: AdListenerSplashFull
     ) {
         adListener.onStartRequest(AdNameType.GDT.type)
+        skipView.visibility = View.VISIBLE
         val splash = SplashAD(
             activity,
             skipView,
