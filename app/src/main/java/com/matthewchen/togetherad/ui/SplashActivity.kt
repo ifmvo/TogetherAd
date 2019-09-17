@@ -104,11 +104,11 @@ class SplashActivity : AppCompatActivity() {
     private fun requestAd() {
         val splashConfigAd = Config.splashAdConfig()
         TogetherAdSplash.showAdFull(
-            this,
-            splashConfigAd,
-            TogetherAdConst.AD_SPLASH,
-            mFlAdContainer, skip_view, tv_time,
-            object : TogetherAdSplash.AdListenerSplashFull {
+            activity = this,
+            splashConfigStr = splashConfigAd,
+            adConstStr = TogetherAdConst.AD_SPLASH,
+            adsParentLayout = mFlAdContainer,
+            adListener = object : TogetherAdSplash.AdListenerSplashFull {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }

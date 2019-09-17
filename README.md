@@ -85,32 +85,35 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
-v1.3.9
-1. 视频前贴广告支持无倒计时模式 （ 可以用来实现再一次退出、搜索界面等. 只展示一个原生的情况 ）
-2. 修复其他bug  
+v1.6.2
+1. 开屏广告的跳过按钮可null，并且为可选参数
 
-v1.4.0
-1. 修复前贴广告穿山甲没有点击回调bug
-
-v1.4.2
-1. TogetherAdBanner    csj 用的 信息流;  TogetherAdBanner2   csj 用的 Banner原生
-
-v1.4.3
-1. 只有前贴广告才能展示视频广告 （ 前贴会根据 needTimer 参数判断是否展示视频 ）
-2. 信息流也不展示视频
-
-v1.4.4
-1. 穿山甲异常捕获，捕获后切广告
-
-v1.4.8
-1. 穿山甲广告初始化可选 .useTextureView(useTextureView)
-
-v1.4.9
-1. 前贴广告没有倒计时的时候，也可以展示视频，点击不消失
+v1.5.1
+1. 修复一个 bug
 
 v1.5.0
 1. TogetherAdPreMovie 请求到的csj广告无论有没有倒计时都可能展示视频广告
 2. TogetherAdPreMovie 请求到的所有广告点击不消失
 
-v1.5.1
-1. 修复一个 bug
+v1.4.9
+1. 前贴广告没有倒计时的时候，也可以展示视频，点击不消失
+
+v1.4.8
+1. 穿山甲广告初始化可选 .useTextureView(useTextureView)
+
+v1.4.4
+1. 穿山甲异常捕获，捕获后切广告
+
+v1.4.3
+1. 只有前贴广告才能展示视频广告 （ 前贴会根据 needTimer 参数判断是否展示视频 ）
+2. 信息流也不展示视频
+
+v1.4.2
+1. TogetherAdBanner    csj 用的 信息流;  TogetherAdBanner2   csj 用的 Banner原生
+
+v1.4.0
+1. 修复前贴广告穿山甲没有点击回调bug
+
+v1.3.9
+1. 视频前贴广告支持无倒计时模式 （ 可以用来实现再一次退出、搜索界面等. 只展示一个原生的情况 ）
+2. 修复其他bug  

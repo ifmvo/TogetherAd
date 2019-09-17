@@ -26,7 +26,6 @@ import com.rumtel.ad.other.AdNameType
 import com.rumtel.ad.other.AdRandomUtil
 import com.rumtel.ad.other.logd
 import com.rumtel.ad.other.loge
-import org.jetbrains.annotations.NotNull
 import java.util.*
 
 /* 
@@ -54,8 +53,8 @@ object TogetherAdSplash : AdBase() {
         splashConfigStr: String?,
         @NonNull adConstStr: String,
         @NonNull adsParentLayout: ViewGroup,
-        @NotNull skipView: View,
-        @NotNull timeView: TextView,
+        skipView: View? = null,
+        timeView: TextView? = null,
         @NonNull adListener: AdListenerSplashFull
     ) {
         stop = false
@@ -109,8 +108,8 @@ object TogetherAdSplash : AdBase() {
         splashConfigStr: String?,
         @NonNull adConstStr: String,
         @NonNull adsParentLayout: ViewGroup,
-        @NonNull skipView: View,
-        @NotNull timeView: TextView,
+        skipView: View?,
+        timeView: TextView?,
         @NonNull adListener: AdListenerSplashFull
     ) {
         /*val timer = Timer()
@@ -162,9 +161,9 @@ object TogetherAdSplash : AdBase() {
                     if (stop) {
                         return
                     }
-                    activity.runOnUiThread({
-                        skipView.visibility = View.VISIBLE
-                    })
+                    activity.runOnUiThread {
+                        skipView?.visibility = View.VISIBLE
+                    }
                     cancelTimerTask()
 
                     adListener.onAdPrepared(AdNameType.GDT.type)
@@ -180,9 +179,9 @@ object TogetherAdSplash : AdBase() {
 
                 override fun onADTick(l: Long) {
                     logd("${AdNameType.GDT.type}: 倒计时: ${l/1000 + 1}")
-                    activity.runOnUiThread({
-                        timeView.text = (l/1000 + 1).toString()
-                    })
+                    activity.runOnUiThread {
+                        timeView?.text = (l/1000 + 1).toString()
+                    }
                 }
 
                 override fun onADExposure() {
@@ -201,8 +200,8 @@ object TogetherAdSplash : AdBase() {
         splashConfigStr: String?,
         @NonNull adConstStr: String,
         @NonNull adsParentLayout: ViewGroup,
-        @NonNull skipView: View,
-        @NonNull timeView: TextView,
+        skipView: View?,
+        timeView: TextView?,
         @NonNull adListener: AdListenerSplashFull
     ) {
         adListener.onStartRequest(AdNameType.BAIDU.type)
@@ -249,8 +248,8 @@ object TogetherAdSplash : AdBase() {
         splashConfigStr: String?,
         @NonNull adConstStr: String,
         @NonNull adsParentLayout: ViewGroup,
-        @NonNull skipView: View,
-        @NonNull timeView: TextView,
+        skipView: View?,
+        timeView: TextView?,
         @NonNull adListener: AdListenerSplashFull
     ) {
         try {
