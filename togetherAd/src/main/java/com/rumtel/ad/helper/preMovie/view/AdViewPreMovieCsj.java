@@ -116,38 +116,30 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 //                            if (needTimer) {
                             adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
 
-                                public void onProgressUpdate(long current, long duration) {
-
-                                }
+                                public void onProgressUpdate(long current, long duration) { }
 
                                 public void onVideoAdComplete(TTFeedAd ad) {
-
+                                    AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdComplete：" + ad.toString());
                                 }
 
                                 @Override
                                 public void onVideoLoad(TTFeedAd ttFeedAd) {
-
+                                    AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoLoad：" + ttFeedAd.toString());
                                 }
 
                                 @Override
                                 public void onVideoError(int i, int i1) {
-
+                                    AdExtKt.loge(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoError：" + i + ", " + i1);
                                 }
 
                                 @Override
-                                public void onVideoAdStartPlay(TTFeedAd ttFeedAd) {
-
-                                }
+                                public void onVideoAdStartPlay(TTFeedAd ttFeedAd) { }
 
                                 @Override
-                                public void onVideoAdPaused(TTFeedAd ttFeedAd) {
-
-                                }
+                                public void onVideoAdPaused(TTFeedAd ttFeedAd) { }
 
                                 @Override
-                                public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) {
-
-                                }
+                                public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) { }
                             });
                             mLlAdContainer.setVisibility(View.GONE);
                             mFlAdContainer.setVisibility(View.VISIBLE);
