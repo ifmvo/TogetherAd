@@ -264,6 +264,12 @@ object TogetherAdSplash : AdBase() {
 
                 wm.defaultDisplay.getSize(point)
             }
+
+            adsParentLayout.measure(0, 0)
+            val width = adsParentLayout.getMeasuredWidth()
+            val height = adsParentLayout.getMeasuredHeight()
+
+            logd("adsParentLayout: ${width}, ${height}")
             //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
             val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAd.idMapCsj[adConstStr])

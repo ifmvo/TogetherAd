@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tt_reward_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:id="@+id/tt_video_reward_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tt_reward_ad_countdown"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tt_reward_countdown_bg"
+        android:gravity="center"
+        android:textColor="@color/tt_white"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        />
+
+    <RelativeLayout
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="start|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:gravity="center"
+        android:background="@drawable/tt_mute_btn_bg"
+        >
+        <ImageView
+            android:id="@+id/tt_video_ad_mute"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/tt_unmute" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tt_video_skip_ad_btn"
+        android:layout_width="96dp"
+        android:layout_height="28dp"
+        android:layout_gravity="end|top"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tt_ad_skip_btn_bg"
+        android:gravity="center"
+        android:text="@string/tt_full_screen_skip_tx"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:textSize="14sp" />
+
+    <include layout="@layout/tt_activity_reward_and_full_video_bar" />
+
+
+</merge>

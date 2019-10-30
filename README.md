@@ -85,6 +85,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v1.6.4
+1. 修复 广点通 Banner 广告，刷新失败后一直回调 onError，导致请求错乱的问题
+
 v1.6.2
 1. 开屏广告的跳过按钮可null，并且为可选参数
 

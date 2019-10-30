@@ -249,7 +249,7 @@ object TogetherAdBanner2 : AdBase() {
         @NonNull adContainer: FrameLayout,
         @NonNull adListener: AdListenerList
     ) {
-
+        bannerView?.destroy()
         adListener.onStartRequest(AdNameType.GDT.type)
         bannerView = UnifiedBannerView(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr],
             object : UnifiedBannerADListener {
@@ -274,6 +274,7 @@ object TogetherAdBanner2 : AdBase() {
                 }
 
                 override fun onNoAD(adError: AdError?) {
+                    bannerView?.destroy()
                     loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
                     val newListConfig = listConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                     requestBanner(activity, newListConfig, adConstStr, adContainer, adListener)

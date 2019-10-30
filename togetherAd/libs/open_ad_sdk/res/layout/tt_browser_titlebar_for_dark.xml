@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="@color/tt_titlebar_background_dark"
+    tools:ignore="Overdraw">
+
+    <ImageView
+        android:id="@+id/tt_titlebar_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="10dp"
+        android:paddingStart="12dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/tt_leftbackicon_selector_for_dark" />
+
+    <ImageView
+        android:id="@+id/tt_titlebar_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tt_titlebar_back"
+        android:layout_toRightOf="@+id/tt_titlebar_back"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="10dp"
+        android:paddingStart="12dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/tt_titlebar_close_seletor_for_dark" />
+
+    <TextView
+        android:id="@+id/tt_titlebar_title"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="85dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/tt_titlebar_close"
+        android:layout_toRightOf="@+id/tt_titlebar_close"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true" />
+</RelativeLayout>

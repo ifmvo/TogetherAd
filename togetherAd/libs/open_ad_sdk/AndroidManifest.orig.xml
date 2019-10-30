@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bytedance.sdk.openadsdk"
+    android:versionCode="1"
+    android:versionName="1.0" > <!-- minSdkVersion为9时的合并 -->
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="27"
+        tools:overrideLibrary="com.ss.android.crash.log, android.support.graphics.drawable.animated,      android.support.graphics.drawable, android.support.v4, android.support.mediacompat, android.support.fragment,      android.support.coreui, android.support.coreutils, android.support.compat, android.arch.lifecycle,      android.arch.lifecycle.livedata.core, android.arch.core, android.arch.lifecycle.viewmodel,      com.ss.android.downloadlib, com.ss.android.downloadad, com.ss.android.downloadapi,      com.ss.android.socialbase.appdownloader, com.ss.android.socialbase.downloader" />
+
+    <application android:usesCleartextTraffic="true" >
+
+        <!-- 下面的activity和service必须注册 -->
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTPlayableLandingPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTVideoLandingPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTDelegateActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service android:name="com.bytedance.sdk.openadsdk.multipro.aidl.BinderPoolService" />
+    </application>
+
+</manifest>

@@ -1,8 +1,5 @@
 package com.rumtel.ad.other
 
-import android.content.Context
-import com.rumtel.ad.TogetherAd
-
 /*
  * (●ﾟωﾟ●)
  *
@@ -88,7 +85,8 @@ object AdRandomUtil {
     /*private val permissionPhoneStateName = "android.permission.READ_PHONE_STATE"
     private val permissionWriteEternalStorageName = "android.permission.WRITE_EXTERNAL_STORAGE"
 
-    *//**
+    */
+    /**
      * 有没有 GDT 需要的权限
      *//*
     private fun haveGDTNeedPermission(context: Context): Boolean {
