@@ -38,8 +38,7 @@ object TogetherAdInter : AdBase() {
 
     fun showAdInter(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
 
-        val randomAdName = AdRandomUtil.getRandomAdName(interConfigStr)
-        when (randomAdName) {
+        when (AdRandomUtil.getRandomAdName(interConfigStr)) {
             AdNameType.BAIDU -> showAdInterBaiduMob(
                 activity,
                 interConfigStr,
@@ -214,14 +213,7 @@ object TogetherAdInter : AdBase() {
 
     }
 
-    private fun showAdInterBaiduMob(
-        @NonNull activity: Activity,
-        interConfigStr: String?,
-        @NonNull adConstStr: String,
-        @NonNull isLandscape: Boolean,
-        @NonNull adIntersContainer: RelativeLayout,
-        @NonNull adListener: AdListenerInter
-    ) {
+    private fun showAdInterBaiduMob(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
 
         adListener.onStartRequest(AdNameType.BAIDU.type)
 
