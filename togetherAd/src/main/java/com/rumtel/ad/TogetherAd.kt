@@ -69,7 +69,10 @@ object TogetherAd {
     }
 
     //穿山甲
-    fun initCsjAd(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>, useTextureView: Boolean = false) {
+    fun initCsjAd(
+        @NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>,
+        useTextureView: Boolean = false
+    ) {
         mContext = context
         idMapCsj = csjIdMap
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常

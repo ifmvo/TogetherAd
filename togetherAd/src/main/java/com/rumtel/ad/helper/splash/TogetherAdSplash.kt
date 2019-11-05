@@ -94,8 +94,8 @@ object TogetherAdSplash : AdBase() {
                 }
                 cancelTimerTask()
 
-                adListener.onAdFailed(mContext.getString(R.string.all_ad_error))
-                loge(mContext.getString(R.string.all_ad_error))
+                adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                loge(activity.getString(R.string.all_ad_error))
             }
         }
     }
@@ -133,7 +133,7 @@ object TogetherAdSplash : AdBase() {
             object : SplashADListener {
                 override fun onADDismissed() {
                     adListener.onAdDismissed()
-                    logd("${AdNameType.GDT.type}: ${mContext.getString(R.string.dismiss)}")
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
                     /*timer?.cancel()
                     timerTask?.cancel()*/
                 }
@@ -167,12 +167,12 @@ object TogetherAdSplash : AdBase() {
                     cancelTimerTask()
 
                     adListener.onAdPrepared(AdNameType.GDT.type)
-                    logd("${AdNameType.GDT.type}: ${mContext.getString(R.string.prepared)}")
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
                 }
 
                 override fun onADClicked() {
                     adListener.onAdClick(AdNameType.GDT.type)
-                    logd("${AdNameType.GDT.type}: ${mContext.getString(R.string.clicked)}")
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
                     /*timer?.cancel()
                     timerTask?.cancel()*/
                 }
@@ -185,7 +185,7 @@ object TogetherAdSplash : AdBase() {
                 }
 
                 override fun onADExposure() {
-                    logd("${AdNameType.GDT.type}: ${mContext.getString(R.string.exposure)}")
+                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
                 }
             }, 0
         )
@@ -206,7 +206,7 @@ object TogetherAdSplash : AdBase() {
     ) {
         adListener.onStartRequest(AdNameType.BAIDU.type)
 
-        SplashAd(mContext, adsParentLayout, object : SplashAdListener {
+        SplashAd(activity, adsParentLayout, object : SplashAdListener {
             override fun onAdPresent() {
                 if (stop) {
                     return
@@ -214,11 +214,11 @@ object TogetherAdSplash : AdBase() {
                 cancelTimerTask()
 
                 adListener.onAdPrepared(AdNameType.BAIDU.type)
-                logd("${AdNameType.BAIDU.type}: ${mContext.getString(R.string.prepared)}")
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.prepared)}")
             }
 
             override fun onAdDismissed() {
-                logd("${AdNameType.BAIDU.type}: ${mContext.getString(R.string.dismiss)}")
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.dismiss)}")
                 adListener.onAdDismissed()
             }
 
@@ -233,7 +233,7 @@ object TogetherAdSplash : AdBase() {
             }
 
             override fun onAdClick() {
-                logd("${AdNameType.BAIDU.type}: ${mContext.getString(R.string.clicked)}")
+                logd("${AdNameType.BAIDU.type}: ${activity.getString(R.string.clicked)}")
                 adListener.onAdClick(AdNameType.BAIDU.type)
             }
 
@@ -255,7 +255,7 @@ object TogetherAdSplash : AdBase() {
         try {
 
             adListener.onStartRequest(AdNameType.CSJ.type)
-            val wm = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 
@@ -276,7 +276,7 @@ object TogetherAdSplash : AdBase() {
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(point.x, point.y)
                 .build()
-            TTAdSdk.getAdManager().createAdNative(mContext).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
+            TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
                 override fun onSplashAdLoad(splashAd: TTSplashAd?) {
                     if (stop) {
                         return
@@ -299,28 +299,28 @@ object TogetherAdSplash : AdBase() {
                     }
 
                     adListener.onAdPrepared(AdNameType.CSJ.type)
-                    logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.prepared)}")
+                    logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.prepared)}")
 
                     adsParentLayout.removeAllViews()
                     adsParentLayout.addView(splashAd.splashView)
 
                     splashAd.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
                         override fun onAdClicked(view: View?, p1: Int) {
-                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.clicked)}")
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
                             adListener.onAdClick(AdNameType.CSJ.type)
                         }
 
                         override fun onAdSkip() {
-                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                             adListener.onAdDismissed()
                         }
 
                         override fun onAdShow(p0: View?, p1: Int) {
-                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.exposure)}")
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
                         }
 
                         override fun onAdTimeOver() {
-                            logd("${AdNameType.CSJ.type}: ${mContext.getString(R.string.dismiss)}")
+                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                             adListener.onAdDismissed()
                         }
                     })
@@ -332,7 +332,7 @@ object TogetherAdSplash : AdBase() {
                     }
                     cancelTimerTask()
 
-                    loge("${AdNameType.CSJ.type}: ${mContext.getString(R.string.timeout)}")
+                    loge("${AdNameType.CSJ.type}: ${activity.getString(R.string.timeout)}")
                     val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
                     showAdFull(
                         activity,

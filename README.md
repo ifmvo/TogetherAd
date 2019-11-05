@@ -85,6 +85,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v1.6.6
+1. 修复百度的开屏广告
+
 v1.6.5
 1. 更新三种广告的SDK到最新版本
 
