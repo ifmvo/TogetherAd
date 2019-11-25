@@ -92,11 +92,11 @@ object TogetherAdInter : AdBase() {
                     return
                 }
 
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
-                adListener.onAdPrepared(AdNameType.GDT.type)
-
                 //获取一个广告
                 val adItem = adList[0]
+
+                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}, ecpm: ${adItem.ecpm}, ecpmLevel: ${adItem.ecpmLevel}")
+                adListener.onAdPrepared(AdNameType.GDT.type)
 
                 val dm = DisplayMetrics()
                 activity.windowManager.defaultDisplay.getMetrics(dm)

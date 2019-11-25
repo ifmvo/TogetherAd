@@ -67,6 +67,7 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                     }
                     return;
                 }
+                AdExtKt.logd(AdViewPreMovieGDT.this, "ecpm: " + mAD.getECPM() + ", ecpmLevel: " + mAD.getECPMLevel());
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAD.getTitle());
                 mLlAdContainer.setVisibility(View.VISIBLE);

@@ -173,6 +173,7 @@ object TogetherAdFlow : AdBase() {
                 cancelTimerTask()
 
                 logd("${AdNameType.GDT.type}: list.size: " + adList.size)
+                adList.forEach { logd("${AdNameType.GDT.type}, ecpm: ${it.ecpm}, ecpmLevel: ${it.ecpmLevel}") }
                 activity.runOnUiThread {
                     adListener.onAdLoaded(AdNameType.GDT.type, adList)
                 }
