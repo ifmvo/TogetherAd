@@ -36,20 +36,90 @@ import com.rumtel.ad.helper.flow.TogetherAdFlow
  */
 class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolder>() {
 
-    private var itemIvH: Int = 0
+    /**
+     * Item 的高度为屏幕宽度的 9/16，因为一般视频的宽高比是16：9
+     */
+    private val itemIvH by lazy { Kits.Dimens.getDisplayWidth(mContext) * 9 / 16 }
 
+    /**
+     * 广点通的视频广告继续播放
+     */
+    override fun onResume() {
+        super.onResume()
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is LinearLayoutManager) {
+            val firstPosition = layoutManager.findFirstVisibleItemPosition()
+            val lastPosition = layoutManager.findLastVisibleItemPosition()
+            for (index in firstPosition..lastPosition) {
+                val item = mAdapter.getItem(index)
+                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
+                    when (val ad = item.adObject) {
+                        is NativeMediaADData -> { //广点通
+                            ad.resume()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 广点通的视频广告需要暂停
+     */
+    override fun onPause() {
+        super.onPause()
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is LinearLayoutManager) {
+            val firstPosition = layoutManager.findFirstVisibleItemPosition()
+            val lastPosition = layoutManager.findLastVisibleItemPosition()
+            for (index in firstPosition..lastPosition) {
+                val item = mAdapter.getItem(index)
+                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
+                    when (val ad = item.adObject) {
+                        is NativeMediaADData -> { //广点通
+                            ad.stop()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 广点通需要销毁
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is LinearLayoutManager) {
+            val firstPosition = layoutManager.findFirstVisibleItemPosition()
+            val lastPosition = layoutManager.findLastVisibleItemPosition()
+            for (index in firstPosition..lastPosition) {
+                val item = mAdapter.getItem(index)
+                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
+                    when (val ad = item.adObject) {
+                        is NativeMediaADData -> { //广点通
+                            ad.destroy()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * RecyclerView 的滑动监听
+     */
     override fun initBeforeGetData() {
 
-        itemIvH = Kits.Dimens.getDisplayWidth(mContext) * 9 / 16
         //广告的曝光处理
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager
                 if (layoutManager is LinearLayoutManager) {
-                    val firstPosition = layoutManager.findFirstCompletelyVisibleItemPosition()
-                    val lastPosition = layoutManager.findLastCompletelyVisibleItemPosition()
-
+                    val firstPosition = layoutManager.findFirstVisibleItemPosition()
+                    val lastPosition = layoutManager.findLastVisibleItemPosition()
                     exposure(firstPosition)
                     if (firstPosition != lastPosition) {
                         exposure(lastPosition)
@@ -68,12 +138,15 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         }
         val item = mAdapter.getItem(position)
         if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
-            val ad = item.adObject
-            when (ad) {
-                is NativeMediaADData -> {
+            when (val ad = item.adObject) {
+                is NativeMediaADData -> { //广点通
                     ad.onExposured(recyclerView)
+                    if (ad.adPatternType == AdPatternType.NATIVE_VIDEO && ad.isVideoLoaded) {
+                        //控制视频广告滑出屏幕滑进屏幕的暂停与播放
+                        ad.onScroll(position, recyclerView)
+                    }
                 }
-                is NativeResponse -> {
+                is NativeResponse -> { //百度
                     ad.recordImpression(recyclerView)
                 }
             }
@@ -88,9 +161,10 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         layoutParams?.height = itemIvH
 
         ILFactory.getLoader()
-            .load(mContext, helper.getView(R.id.iv_image), item.indexBean?.image, LoaderOptions())
+                .load(mContext, helper.getView(R.id.iv_image), item.indexBean?.image, LoaderOptions())
 
-        helper.setText(R.id.tv_desc, "${item.indexBean?.detail}")?.setText(R.id.tv_title, item.indexBean?.title)
+        helper.setText(R.id.tv_desc, "${item.indexBean?.detail}")
+                ?.setText(R.id.tv_title, item.indexBean?.title)
     }
 
     /**
@@ -111,42 +185,59 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         if (adObject is NativeMediaADData) {
             mTvTitle?.text = adObject.title
             mTvDesc?.text = adObject.desc
-            ILFactory.getLoader().load(
-                mContext, mImgPoster, adObject.imgUrl,
-                LoaderOptions().skipCache()
-            )
+            mImgPoster?.setImageResource(R.mipmap.ic_launcher)
+            ILFactory.getLoader().load(mContext, mImgPoster, adObject.imgUrl, LoaderOptions().skipCache())
 
             mLlSuper?.setOnClickListener {
                 adObject.onClicked(it)
             }
-            if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO && adObject.isVideoLoaded) {
-                if (adObject.isPlaying) {
-                    mAdGdtMediaPlayer?.visibility = View.VISIBLE
-                    mImgPoster?.visibility = View.GONE
-                } else {
-                    mAdGdtMediaPlayer?.visibility = View.VISIBLE
-                    mImgPoster?.visibility = View.GONE
-                    adObject.bindView(mAdGdtMediaPlayer, true) // 只有将MediaView和广告实例绑定之后，才能播放视频
-                    adObject.play()
-                    adObject.setMediaListener(object : MediaListener {
-                        override fun onVideoReady(videoDuration: Long) {}
-                        override fun onVideoStart() {}
-                        override fun onVideoPause() {}
-                        override fun onVideoComplete() {}
-                        override fun onVideoError(adError: AdError) {}
-                        override fun onReplayButtonClicked() {}
-                        override fun onADButtonClicked() {
-                        }
+            if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
+                adObject.preLoadVideo()
+            }
 
-                        override fun onFullScreenChanged(inFullScreen: Boolean) {
-                            if (inFullScreen) {
-                                adObject.setVolumeOn(true)
-                            } else {
-                                adObject.setVolumeOn(false)
-                            }
+            if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO && adObject.isVideoLoaded) {
+                mAdGdtMediaPlayer?.visibility = View.VISIBLE
+                mImgPoster?.visibility = View.GONE
+                adObject.bindView(mAdGdtMediaPlayer, true) // 只有将MediaView和广告实例绑定之后，才能播放视频
+                adObject.play()
+                adObject.setMediaListener(object : MediaListener {
+                    override fun onVideoReady(videoDuration: Long) {
+                        Log.d("ifmvo", "onVideoReady: $videoDuration")
+                    }
+
+                    override fun onVideoStart() {
+                        Log.d("ifmvo", "onVideoStart")
+
+                    }
+
+                    override fun onVideoPause() {
+                        Log.d("ifmvo", "onVideoPause")
+                    }
+
+                    override fun onVideoComplete() {
+                        Log.d("ifmvo", "onVideoComplete")
+                    }
+
+                    override fun onVideoError(adError: AdError) {
+                        Log.d("ifmvo", "onVideoError：${adError.errorCode}: ${adError.errorMsg}")
+                    }
+
+                    override fun onReplayButtonClicked() {
+                        Log.d("ifmvo", "onReplayButtonClicked")
+                    }
+
+                    override fun onADButtonClicked() {
+                        Log.d("ifmvo", "onADButtonClicked")
+                    }
+
+                    override fun onFullScreenChanged(inFullScreen: Boolean) {
+                        if (inFullScreen) {
+                            adObject.setVolumeOn(true)
+                        } else {
+                            adObject.setVolumeOn(false)
                         }
-                    })
-                }
+                    }
+                })
             }
         }
     }
@@ -173,6 +264,9 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         }
     }
 
+    /**
+     * 处理穿山甲的广告数据
+     */
     private fun convertCsjAd(helper: BaseViewHolder, item: IndexMultiItemBean) {
         val mLlSuper = helper.getView<LinearLayout>(R.id.ll_super)
 
@@ -207,22 +301,22 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             creativeViewList.add(mLlSuper)
             // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
             adObject.registerViewForInteraction(mLlSuper, clickViewList, creativeViewList,
-                object : TTNativeAd.AdInteractionListener {
-                    override fun onAdClicked(view: View, ad: TTNativeAd) {
-                        // 点击普通区域的回调
-                        Toast.makeText(mContext, "广告被点击", Toast.LENGTH_SHORT).show()
-                    }
+                    object : TTNativeAd.AdInteractionListener {
+                        override fun onAdClicked(view: View, ad: TTNativeAd) {
+                            // 点击普通区域的回调
+                            Toast.makeText(mContext, "广告被点击", Toast.LENGTH_SHORT).show()
+                        }
 
-                    override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
-                        // 点击创意区域的回调
-                        Toast.makeText(mContext, "广告创意按钮被点击", Toast.LENGTH_SHORT).show()
-                    }
+                        override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
+                            // 点击创意区域的回调
+                            Toast.makeText(mContext, "广告创意按钮被点击", Toast.LENGTH_SHORT).show()
+                        }
 
-                    override fun onAdShow(ad: TTNativeAd) {
-                        // 广告曝光展示的回调
-                        Toast.makeText(mContext, "广告" + ad.title + "展示", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onAdShow(ad: TTNativeAd) {
+                            // 广告曝光展示的回调
+                            Toast.makeText(mContext, "广告" + ad.title + "展示", Toast.LENGTH_SHORT).show()
+                        }
+                    })
 
             mTvTitle.text = adObject.title
             mTvDesc.text = adObject.description
@@ -305,7 +399,9 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         }
     }
 
-
+    /**
+     * 初始化Adapter
+     */
     override fun getRecyclerViewAdapter(): BaseQuickAdapter<IndexMultiItemBean, BaseViewHolder> {
         mAdapter = object : BaseMultiItemQuickAdapter<IndexMultiItemBean, BaseViewHolder>(null) {
 
@@ -317,8 +413,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             }
 
             override fun convert(helper: BaseViewHolder, item: IndexMultiItemBean) {
-                val itemViewType = helper.itemViewType
-                when (itemViewType) {
+                when (helper.itemViewType) {
                     //热播数据
                     IndexMultiItemBean.TYPE_CONTENT -> {
                         convertContent(helper, item)
@@ -345,131 +440,30 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         return mAdapter
     }
 
+    /**
+     * 开始获取第n页的数据
+     */
     override fun getData(currentPage: Int, showLoading: Boolean) {
-
-        val listData = mutableListOf<IndexBean>()
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 1}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 2}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 3}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 4}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 5}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 6}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 7}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 8}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 9}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 10}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 11}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 12}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 13}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 14}",
-                "xxxxx"
-            )
-        )
-        listData.add(
-            IndexBean(
-                "https://github.com/ifmvo/SomeImage/blob/master/banner4.png?raw=true",
-                "${(currentPage - 1) * 15 + 15}",
-                "xxxxx"
-            )
-        )
-        loadAd(listData, currentPage)
+        val indexBeanList = DataFactory.getIndexDatas(currentPage)
+        loadAd(indexBeanList, currentPage)
     }
 
+    /**
+     * 请求广告
+     */
     private fun loadAd(t: List<IndexBean>, currentPage: Int) {
-        TogetherAdFlow.getAdList(mContext, Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX,
-            object : TogetherAdFlow.AdListenerList {
-                override fun onAdFailed(failedMsg: String?) {
-                    handleListData(insertAdAction(t, null), currentPage)
-                }
+        TogetherAdFlow.getAdList(mContext, Config.listAdConfig(), TogetherAdConst.AD_FLOW_INDEX, object : TogetherAdFlow.AdListenerList {
+            override fun onAdFailed(failedMsg: String?) {
+                handleListData(insertAdAction(t, null), currentPage)
+            }
 
-                override fun onAdLoaded(channel: String, adList: List<*>) {
-                    handleListData(insertAdAction(t, adList), currentPage)
-                }
+            override fun onAdLoaded(channel: String, adList: List<*>) {
+                handleListData(insertAdAction(t, adList), currentPage)
+            }
 
-                override fun onStartRequest(channel: String) {
-                }
-            })
+            override fun onStartRequest(channel: String) {
+            }
+        })
     }
 
     /**
@@ -487,8 +481,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                 if (lastUseAdPosition > adList.size - 1) {
                     lastUseAdPosition = 0
                 }
-                val any = adList[lastUseAdPosition]
-                when (any) {
+                when (val any = adList[lastUseAdPosition]) {
                     is NativeMediaADData -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_GDT, any))
                     is NativeResponse -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_BAIDU, any))
                     is TTFeedAd -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_CSJ, any))
