@@ -12,6 +12,32 @@ android {
         versionName "1.0"
     }
 
+    flavorDimensions "mode"
+    productFlavors {
+        TogetherAd {
+            resValue "string", "gdt_ad_id", "${gdt_ad_id}"
+            resValue "string", "gdt_ad_splash", "${gdt_ad_splash}"
+            resValue "string", "gdt_ad_inter", "${gdt_ad_inter}"
+            resValue "string", "gdt_ad_flow_index", "${gdt_ad_flow_index}"
+            resValue "string", "gdt_ad_flow_tiepian_live", "${gdt_ad_flow_tiepian_live}"
+            resValue "string", "gdt_ad_webview_banner", "${gdt_ad_webview_banner}"
+
+            resValue "string", "baidu_ad_id", "${baidu_ad_id}"
+            resValue "string", "baidu_ad_splash", "${baidu_ad_splash}"
+            resValue "string", "baidu_ad_inter", "${baidu_ad_inter}"
+            resValue "string", "baidu_ad_flow_index", "${baidu_ad_flow_index}"
+            resValue "string", "baidu_ad_flow_tiepian_live", "${baidu_ad_flow_tiepian_live}"
+            resValue "string", "baidu_ad_webview_banner", "${baidu_ad_webview_banner}"
+
+            resValue "string", "csj_ad_id", "${csj_ad_id}"
+            resValue "string", "csj_ad_splash", "${csj_ad_splash}"
+            resValue "string", "csj_ad_inter", "${csj_ad_inter}"
+            resValue "string", "csj_ad_flow_index", "${csj_ad_flow_index}"
+            resValue "string", "csj_ad_flow_tiepian_live", "${csj_ad_flow_tiepian_live}"
+            resValue "string", "csj_ad_webview_banner", "${csj_ad_webview_banner}"
+        }
+    }
+
     //签名配置
     signingConfigs {
         myConfig {
@@ -23,6 +49,7 @@ android {
     }
 
     buildTypes {
+
         debug {
             minifyEnabled false
             shrinkResources false
@@ -36,17 +63,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
