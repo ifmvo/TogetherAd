@@ -3,11 +3,11 @@ package com.rumtel.ad.other
 /*
  * (●ﾟωﾟ●)
  *
- * 参数 configStr : "baidu:2,gdt:8"
+ * 参数 configStr : "baidu:1,gdt:4,csj:4"
  *
- * 按照 2 ：8 的比例随机返回 BAIDU or GDT
+ * 按照 2 ：8 的比例随机返回 BAIDU or GDT or CSJ
  *
- * return AdNameType.BAIDU  || AdNameType.GDT || ...
+ * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
  *
  * Created by Matthew_Chen on 2018/8/24.
  */
@@ -16,81 +16,62 @@ object AdRandomUtil {
     /**
      * configStr : "baidu:3,gdt:7,csj:7"
      *
-     * return AdNameType.BAIDU  || AdNameType.GDT || ...
+     * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
      */
     fun getRandomAdName(configStr: String?): AdNameType {
 
         logd("广告的配置：$configStr")
-        if (configStr.isNullOrEmpty()) {
-            return AdNameType.NO
-        }
+        if (configStr.isNullOrEmpty()) return AdNameType.NO
 
         val list = ArrayList<AdNameType>()
         //{baidu:2},{gdt:8}
         val split = configStr.split(",")
-        repeat(split.size) { it ->
-            // baidu:2
-            val itemStr = split[it]
-            if (itemStr.isNotEmpty()) {
-                val splitKeyValue = itemStr.split(":")
-                if (splitKeyValue.size == 2) {
-                    //baidu
-                    val keyStr = splitKeyValue[0]
-                    // 2
-                    val valueStr = splitKeyValue[1]
-                    if (keyStr.isNotEmpty() && valueStr.isNotEmpty()) {
-                        //加到 list 里面 2 个 "baidu"
-                        repeat(valueStr.toInt()) {
-                            when (keyStr) {
-                                AdNameType.BAIDU.type -> {
-                                    list.add(AdNameType.BAIDU)
-                                }
-                                AdNameType.GDT.type -> {
-                                    list.add(AdNameType.GDT)
-                                }
-                                AdNameType.CSJ.type -> {
-                                    list.add(AdNameType.CSJ)
-                                }
-                                else -> {
-                                    //如果后台人员拼写字符串出错，忽略即可
-                                }
-                            }
-                        }
-                    }
-                }
+        for (itemStr in split) {
+            //不能为空
+            if (itemStr.isEmpty()) break
+            val splitKeyValue = itemStr.split(":")
+            //必须分割两份才正确
+            if (splitKeyValue.size != 2) break
+            //"baidu:2"
+            val keyStr = splitKeyValue[0]; val valueStr = splitKeyValue[1]
+            //都不能为空
+            if (keyStr.isEmpty() || valueStr.isEmpty()) break
+            //加到 list 里面 2 个 "baidu"
+            when (keyStr) {
+                AdNameType.BAIDU.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdNameType.BAIDU) }
+                AdNameType.GDT.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdNameType.GDT) }
+                AdNameType.CSJ.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdNameType.CSJ) }
+                else -> { /* 如果后台人员拼写字符串出错，忽略即可 */ }
             }
         }
 
-        if (list.size == 0) {
-            return AdNameType.NO
-        }
+        if (list.size == 0) return AdNameType.NO
 
-        val adNameType = list[(getRandomInt(list.size)) - 1]
+        val adNameType = list[(0 until list.size).random()]
         logd("随机到的广告: ${adNameType.type}")
-
-        //没有权限就重新随机
-        /*if (adNameType == AdNameType.GDT && !haveGDTNeedPermission(TogetherAd.mContext)) {
-            loge("但是没有 GDT 的必要权限: $permissionPhoneStateName 和 $permissionWriteEternalStorageName")
-            val newListConfig = configStr.replace(AdNameType.GDT.type, AdNameType.NO.type)
-            return getRandomAdName(newListConfig)
-        }*/
-
         return adNameType
     }
-
-    private fun getRandomInt(max: Int): Int {
-        return (1 + Math.random() * (max - 1 + 1)).toInt()
-    }
-
-    /*private val permissionPhoneStateName = "android.permission.READ_PHONE_STATE"
-    private val permissionWriteEternalStorageName = "android.permission.WRITE_EXTERNAL_STORAGE"
-
-    */
-    /**
-     * 有没有 GDT 需要的权限
-     *//*
-    private fun haveGDTNeedPermission(context: Context): Boolean {
-        return Utils.hasPermission(context, permissionPhoneStateName) &&
-                Utils.hasPermission(context, permissionWriteEternalStorageName)
-    }*/
 }
+
+
+///**
+// * 测试工具
+// */
+//fun main() {
+//
+//    var baidu = 0
+//    var gdt = 0
+//    var csj = 0
+//
+//    val startTime = System.currentTimeMillis()
+//    repeat(3000000) {
+//        when (AdRandomUtil.getRandomAdName("baidu:1,gdt:1,csj:1").type) {
+//            AdNameType.BAIDU.type -> baidu++
+//            AdNameType.GDT.type -> gdt++
+//            AdNameType.CSJ.type -> csj++
+//        }
+//    }
+//    val endTime = System.currentTimeMillis()
+//    //main函数执行的代码不能打log，要把log删除
+//    println("baidu: $baidu, gdt: $gdt, csj: $csj, 耗时: ${endTime - startTime}")
+//}

@@ -160,8 +160,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val layoutParams = helper.getView<ImageView>(R.id.iv_image)?.layoutParams
         layoutParams?.height = itemIvH
 
-        ILFactory.getLoader()
-                .load(mContext, helper.getView(R.id.iv_image), item.indexBean?.image, LoaderOptions())
+        ILFactory.getLoader().load(mContext, helper.getView(R.id.iv_image), item.indexBean?.image, LoaderOptions())
 
         helper.setText(R.id.tv_desc, "${item.indexBean?.detail}")
                 ?.setText(R.id.tv_title, item.indexBean?.title)
@@ -191,9 +190,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             mLlSuper?.setOnClickListener {
                 adObject.onClicked(it)
             }
-            if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
-                adObject.preLoadVideo()
-            }
 
             if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO && adObject.isVideoLoaded) {
                 mAdGdtMediaPlayer?.visibility = View.VISIBLE
@@ -207,7 +203,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
 
                     override fun onVideoStart() {
                         Log.d("ifmvo", "onVideoStart")
-
                     }
 
                     override fun onVideoPause() {
@@ -482,7 +477,12 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                     lastUseAdPosition = 0
                 }
                 when (val any = adList[lastUseAdPosition]) {
-                    is NativeMediaADData -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_GDT, any))
+                    is NativeMediaADData -> {
+                        if (any.adPatternType == AdPatternType.NATIVE_VIDEO) {
+                            any.preLoadVideo()
+                        }
+                        multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_GDT, any))
+                    }
                     is NativeResponse -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_BAIDU, any))
                     is TTFeedAd -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_CSJ, any))
                 }
