@@ -15,6 +15,34 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+
+        /**
+         * 请查看/app/build.gradle
+         *
+         * TogetherAd/local.properties 中配置你的广告ID
+         *
+         */
+//        #广点通
+//        gdt_ad_id=xxxxxxxx
+//        gdt_ad_splash=xxxxxxxx
+//        gdt_ad_inter=xxxxxxxx
+//        gdt_ad_flow_index=xxxxxxxx
+//        gdt_ad_flow_tiepian_live=xxxxxxxx
+//        gdt_ad_webview_banner=xxxxxxxx
+//        #百度
+//        baidu_ad_id=xxxxxxxx
+//        baidu_ad_splash=xxxxxxxx
+//        baidu_ad_inter=xxxxxxxx
+//        baidu_ad_flow_index=xxxxxxxx
+//        baidu_ad_flow_tiepian_live=xxxxxxxx
+//        baidu_ad_webview_banner=xxxxxxxx
+//        # 穿山甲
+//        csj_ad_id=xxxxxxxx
+//        csj_ad_splash=xxxxxxxx
+//        csj_ad_inter=xxxxxxxx
+//        csj_ad_flow_index=xxxxxxxx
+//        csj_ad_flow_tiepian_live=xxxxxxxx
+//        csj_ad_webview_banner=xxxxxxxx
         val baiduIdMap = HashMap<String, String>()
         baiduIdMap[TogetherAdConst.AD_SPLASH] = getString(R.string.baidu_ad_splash)
         baiduIdMap[TogetherAdConst.AD_INTER] = getString(R.string.baidu_ad_inter)
