@@ -15,15 +15,12 @@ object AdRandomUtil {
 
     /**
      * configStr : "baidu:3,gdt:7,csj:7"
-     *
      * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
      */
     fun getRandomAdName(configStr: String?): AdNameType {
-
         logd("广告的配置：$configStr")
         if (configStr.isNullOrEmpty()) return AdNameType.NO
-
-        val list = ArrayList<AdNameType>()
+        val list = mutableListOf<AdNameType>()
         //{baidu:2},{gdt:8}
         val split = configStr.split(",")
         for (itemStr in split) {
@@ -44,9 +41,9 @@ object AdRandomUtil {
                 else -> { /* 如果后台人员拼写字符串出错，忽略即可 */ }
             }
         }
-
+        //没有匹配的
         if (list.size == 0) return AdNameType.NO
-
+        //在list里面随机选择一个
         val adNameType = list[(0 until list.size).random()]
         logd("随机到的广告: ${adNameType.type}")
         return adNameType
@@ -65,7 +62,7 @@ object AdRandomUtil {
 //
 //    val startTime = System.currentTimeMillis()
 //    repeat(3000000) {
-//        when (AdRandomUtil.getRandomAdName("baidu:1,gdt:1,csj:1").type) {
+//        when (AdRandomUtil.getRandomAdName("baidu:10,gdt:10,csj:10").type) {
 //            AdNameType.BAIDU.type -> baidu++
 //            AdNameType.GDT.type -> gdt++
 //            AdNameType.CSJ.type -> csj++
