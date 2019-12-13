@@ -85,6 +85,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v1.6.7
+1. 更新穿山甲到 v2.5.3.2
+
 v1.6.6
 1. 修复百度的开屏广告
 
