@@ -67,6 +67,11 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                 @Override
                 public void onFeedAdLoad(List<TTFeedAd> list) {
+
+                    if (stop) {
+                        return;
+                    }
+
                     if (list == null || list.size() == 0) {
                         if (adViewListener != null) {
                             AdExtKt.logd(AdViewPreMovieCsj.this, "请求成功但是数量为空");

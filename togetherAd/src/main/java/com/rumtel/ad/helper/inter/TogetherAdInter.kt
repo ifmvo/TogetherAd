@@ -36,7 +36,11 @@ import com.rumtel.ad.other.loge
  */
 object TogetherAdInter : AdBase() {
 
+    private var stop = false
+
     fun showAdInter(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
+
+        stop = false
 
         when (AdRandomUtil.getRandomAdName(interConfigStr)) {
             AdNameType.BAIDU -> showAdInterBaiduMob(
@@ -85,10 +89,23 @@ object TogetherAdInter : AdBase() {
 
         val adListenerNative = object : NativeMediaAD.NativeMediaADListener {
             override fun onADLoaded(adList: List<NativeMediaADData>?) {
+
+                if (stop) {
+                    return
+                }
+
                 if (adList?.isEmpty() != false) {
                     loge("${AdNameType.GDT.type}: 广点通信息流伪装插屏返回空的")
-                    val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                    showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                    val newConfigStr =
+                        interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                    showAdInter(
+                        activity,
+                        newConfigStr,
+                        adConstStr,
+                        isLandscape,
+                        adIntersContainer,
+                        adListener
+                    )
                     return
                 }
 
@@ -102,7 +119,8 @@ object TogetherAdInter : AdBase() {
                 activity.windowManager.defaultDisplay.getMetrics(dm)
                 //图片以16：9的宽高比展示
                 //无论是横屏还是竖屏都是取小的那个长度的80%
-                val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+                val n =
+                    ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
 
                 val relativeLayout = RelativeLayout(activity)
                 val rParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
@@ -150,25 +168,30 @@ object TogetherAdInter : AdBase() {
                 gdtLogoView.setImageResource(R.drawable.gdt_ad_logo)
 
                 ILFactory.getLoader()
-                    .load(activity, imageView, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
-                        override fun onLoadCompleted(p0: Drawable?): Boolean {
-                            adItem.onExposured(adIntersContainer)
+                    .load(
+                        activity,
+                        imageView,
+                        adItem.imgUrl,
+                        LoaderOptions(),
+                        object : LoadListener() {
+                            override fun onLoadCompleted(p0: Drawable?): Boolean {
+                                adItem.onExposured(adIntersContainer)
 
-                            imageView.setOnClickListener {
-                                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-                                adListener.onAdClick(AdNameType.GDT.type)
-                                adItem.onClicked(it)
+                                imageView.setOnClickListener {
+                                    logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+                                    adListener.onAdClick(AdNameType.GDT.type)
+                                    adItem.onClicked(it)
+                                }
+
+                                relativeLayout.addView(ivClose)
+                                relativeLayout.addView(gdtLogoView)
+                                adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
+                                adIntersContainer.setOnClickListener {}
+
+                                //将容器中的所有东西删除
+                                return true
                             }
-
-                            relativeLayout.addView(ivClose)
-                            relativeLayout.addView(gdtLogoView)
-                            adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
-                            adIntersContainer.setOnClickListener {}
-
-                            //将容器中的所有东西删除
-                            return true
-                        }
-                    })
+                        })
 
                 adIntersContainer.visibility = View.VISIBLE
                 if (adIntersContainer.childCount > 0) {
@@ -182,15 +205,32 @@ object TogetherAdInter : AdBase() {
             override fun onNoAD(adError: AdError?) {
                 loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
             }
 
             override fun onADStatusChanged(ad: NativeMediaADData?) {}
 
             override fun onADError(adData: NativeMediaADData?, adError: AdError?) {
                 loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
+                if (stop) {
+                    return
+                }
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
             }
 
             override fun onADVideoLoaded(adData: NativeMediaADData?) {
@@ -206,7 +246,12 @@ object TogetherAdInter : AdBase() {
             }
         }
 
-        val mADManager = NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
+        val mADManager = NativeMediaAD(
+            activity,
+            TogetherAd.appIdGDT,
+            TogetherAd.idMapGDT[adConstStr],
+            adListenerNative
+        )
         mADManager.setMaxVideoDuration(60)
         mADManager.loadAD(1)
 
@@ -217,7 +262,11 @@ object TogetherAdInter : AdBase() {
 
         adListener.onStartRequest(AdNameType.BAIDU.type)
 
-        val interAd = InterstitialAd(activity, AdSize.InterstitialForVideoPausePlay, TogetherAd.idMapBaidu[adConstStr])
+        val interAd = InterstitialAd(
+            activity,
+            AdSize.InterstitialForVideoPausePlay,
+            TogetherAd.idMapBaidu[adConstStr]
+        )
 
         interAd.setListener(object : InterstitialAdListener {
             override fun onAdReady() {
@@ -258,14 +307,23 @@ object TogetherAdInter : AdBase() {
                 adIntersContainer.removeAllViews()
                 adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                 adIntersContainer.visibility = View.GONE
-                val newConfigStr = interConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                val newConfigStr =
+                    interConfigStr?.replace(AdNameType.BAIDU.type, AdNameType.NO.type)
+                showAdInter(
+                    activity,
+                    newConfigStr,
+                    adConstStr,
+                    isLandscape,
+                    adIntersContainer,
+                    adListener
+                )
             }
         })
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(dm)
 
-        val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+        val n =
+            ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
         interAd.loadAdForVideoApp(n, (n * 0.8).toInt())
 
         adIntersContainer.postDelayed({
@@ -281,7 +339,8 @@ object TogetherAdInter : AdBase() {
         activity.windowManager.defaultDisplay.getMetrics(dm)
         //图片以16：9的宽高比展示
         //无论是横屏还是竖屏都是取小的那个长度的80%
-        val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
+        val n =
+            ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
 
         val adSlot = AdSlot.Builder()
             .setCodeId(TogetherAd.idMapCsj[adConstStr])
@@ -293,15 +352,37 @@ object TogetherAdInter : AdBase() {
             .loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
                 override fun onError(errorCode: Int, errorMsg: String?) {
                     loge("${AdNameType.CSJ.type}: $errorCode : $errorMsg")
-                    val newConfigStr = interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                    showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                    if (stop) {
+                        return
+                    }
+                    val newConfigStr =
+                        interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                    showAdInter(
+                        activity,
+                        newConfigStr,
+                        adConstStr,
+                        isLandscape,
+                        adIntersContainer,
+                        adListener
+                    )
                 }
 
                 override fun onNativeAdLoad(adList: MutableList<TTNativeAd?>?) {
+                    if (stop) {
+                        return
+                    }
                     if (adList.isNullOrEmpty() || adList[0] == null) {
                         loge("${AdNameType.CSJ.type}: 穿山甲返回的广告是 null")
-                        val newConfigStr = interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                        showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                        val newConfigStr =
+                            interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                        showAdInter(
+                            activity,
+                            newConfigStr,
+                            adConstStr,
+                            isLandscape,
+                            adIntersContainer,
+                            adListener
+                        )
                         return
                     }
 
@@ -364,7 +445,8 @@ object TogetherAdInter : AdBase() {
                     dislikeView.setText(R.string.dislike)
 
                     val dislikeDialog = adItem.getDislikeDialog(activity)
-                    dislikeDialog?.setDislikeInteractionCallback(object : TTAdDislike.DislikeInteractionCallback {
+                    dislikeDialog?.setDislikeInteractionCallback(object :
+                        TTAdDislike.DislikeInteractionCallback {
                         override fun onSelected(position: Int, value: String?) {
                             logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                             adIntersContainer.removeAllViews()
@@ -383,7 +465,10 @@ object TogetherAdInter : AdBase() {
                     //绑定广告view事件交互
                     val clickViewList = mutableListOf<View>()
                     clickViewList.add(imageView)
-                    adItem.registerViewForInteraction(relativeLayout, clickViewList, clickViewList, dislikeView,
+                    adItem.registerViewForInteraction(relativeLayout,
+                        clickViewList,
+                        clickViewList,
+                        dislikeView,
                         object : TTNativeAd.AdInteractionListener {
                             override fun onAdClicked(p0: View?, p1: TTNativeAd?) {
                                 //clickViewList 和 creativeClickList 一样就只会回调 onAdCreativeClick
@@ -408,24 +493,37 @@ object TogetherAdInter : AdBase() {
                     val imageList = adItem.imageList
                     if (imageList.isNullOrEmpty() || imageList[0] == null) {
                         loge("${AdNameType.CSJ.type}: 广告里面的图片是null")
-                        val newConfigStr = interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                        showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
+                        val newConfigStr =
+                            interConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
+                        showAdInter(
+                            activity,
+                            newConfigStr,
+                            adConstStr,
+                            isLandscape,
+                            adIntersContainer,
+                            adListener
+                        )
                         return
                     }
 
                     val ttImage = imageList[0]
 
                     ILFactory.getLoader()
-                        .load(activity, imageView, ttImage.imageUrl, LoaderOptions(), object : LoadListener() {
-                            override fun onLoadCompleted(p0: Drawable?): Boolean {
-                                relativeLayout.addView(ivClose)
-                                relativeLayout.addView(logoView)
-                                adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
-                                adIntersContainer.setOnClickListener {}
-                                //将容器中的所有东西删除
-                                return true
-                            }
-                        })
+                        .load(
+                            activity,
+                            imageView,
+                            ttImage.imageUrl,
+                            LoaderOptions(),
+                            object : LoadListener() {
+                                override fun onLoadCompleted(p0: Drawable?): Boolean {
+                                    relativeLayout.addView(ivClose)
+                                    relativeLayout.addView(logoView)
+                                    adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
+                                    adIntersContainer.setOnClickListener {}
+                                    //将容器中的所有东西删除
+                                    return true
+                                }
+                            })
 
                     adIntersContainer.visibility = View.VISIBLE
                     if (adIntersContainer.childCount > 0) {
@@ -436,6 +534,10 @@ object TogetherAdInter : AdBase() {
                     adIntersContainer.addView(relativeLayout)
                 }
             })
+    }
+
+    fun destory() {
+        stop = true
     }
 
     interface AdListenerInter {

@@ -41,7 +41,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun preMovieAd() {
         //baidu:2,gdt:8
-        TogetherAdPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad,
+        TogetherAdPreMovie.showAdPreMovie(
+            this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad,
             object : TogetherAdPreMovie.AdListenerPreMovie {
                 override fun onAdClick(channel: String) {
                     Log.e("ifmvo", "onAdClick:channel:$channel")
@@ -68,7 +69,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun interstitialAd() {
 
-        TogetherAdInter.showAdInter(this, Config.interAdConfig(), TogetherAdConst.AD_INTER, false, mRlInterAd,
+        TogetherAdInter.showAdInter(this,
+            Config.interAdConfig(),
+            TogetherAdConst.AD_INTER,
+            false,
+            mRlInterAd,
             object : TogetherAdInter.AdListenerInter {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
@@ -93,8 +98,11 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun webViewBanner2() {
-        TogetherAdBanner2.requestBanner(this, Config.webViewAdConfig(), TogetherAdConst.AD_WEBVIEW_BANNER,
-            mFlAdBannerContainer, object : TogetherAdBanner2.AdListenerList {
+        TogetherAdBanner2.requestBanner(this,
+            Config.webViewAdConfig(),
+            TogetherAdConst.AD_WEBVIEW_BANNER,
+            mFlAdBannerContainer,
+            object : TogetherAdBanner2.AdListenerList {
                 override fun onStartRequest(channel: String) {
                     Log.e("ifmvo", "onStartRequest:channel:$channel")
                 }
@@ -120,5 +128,6 @@ class DetailActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TogetherAdPreMovie.destroy()
+        TogetherAdInter.destory()
     }
 }
