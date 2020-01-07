@@ -12,7 +12,7 @@
     <FrameLayout
             android:id="@+id/fl_ad_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
     <!--
         三个图片位，如果只有一张图片，就隐藏另外两个
