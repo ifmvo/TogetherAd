@@ -26,4 +26,5 @@ dependencies {
 
     //穿山甲用到
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
+    implementation 'com.android.support:support-annotations:28.0.0'
 }

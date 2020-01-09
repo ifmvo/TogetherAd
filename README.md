@@ -85,6 +85,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v1.6.8
+1. 更新项目的 gradle 版本，以解决找不到百度 FileProvider 的问题
+
 v1.6.7
 1. 更新穿山甲到 v2.5.3.2
 
