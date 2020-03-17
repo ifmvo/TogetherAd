@@ -17,32 +17,6 @@ android {
         versionName "1.0"
     }
 
-    flavorDimensions "mode"
-    productFlavors {
-        TogetherAd {
-            resValue "string", "gdt_ad_id", properties.getProperty('gdt_ad_id')
-            resValue "string", "gdt_ad_splash", properties.getProperty('gdt_ad_splash')
-            resValue "string", "gdt_ad_inter", properties.getProperty('gdt_ad_inter')
-            resValue "string", "gdt_ad_flow_index", properties.getProperty('gdt_ad_flow_index')
-            resValue "string", "gdt_ad_flow_tiepian_live", properties.getProperty('gdt_ad_flow_tiepian_live')
-            resValue "string", "gdt_ad_webview_banner", properties.getProperty('gdt_ad_webview_banner')
-
-            resValue "string", "baidu_ad_id", properties.getProperty('baidu_ad_id')
-            resValue "string", "baidu_ad_splash", properties.getProperty('baidu_ad_splash')
-            resValue "string", "baidu_ad_inter", properties.getProperty('baidu_ad_inter')
-            resValue "string", "baidu_ad_flow_index", properties.getProperty('baidu_ad_flow_index')
-            resValue "string", "baidu_ad_flow_tiepian_live", properties.getProperty('baidu_ad_flow_tiepian_live')
-            resValue "string", "baidu_ad_webview_banner", properties.getProperty('baidu_ad_webview_banner')
-
-            resValue "string", "csj_ad_id", properties.getProperty('csj_ad_id')
-            resValue "string", "csj_ad_splash", properties.getProperty('csj_ad_splash')
-            resValue "string", "csj_ad_inter", properties.getProperty('csj_ad_inter')
-            resValue "string", "csj_ad_flow_index", properties.getProperty('csj_ad_flow_index')
-            resValue "string", "csj_ad_flow_tiepian_live", properties.getProperty('csj_ad_flow_tiepian_live')
-            resValue "string", "csj_ad_webview_banner", properties.getProperty('csj_ad_webview_banner')
-        }
-    }
-
     //签名配置
     signingConfigs {
         myConfig {

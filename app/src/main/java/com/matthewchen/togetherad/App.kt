@@ -15,57 +15,29 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-
-        /**
-         * 请查看/app/build.gradle
-         *
-         * TogetherAd/local.properties 中配置你的广告ID
-         *
-         */
-//        #广点通
-//        gdt_ad_id=xxxxxxxx
-//        gdt_ad_splash=xxxxxxxx
-//        gdt_ad_inter=xxxxxxxx
-//        gdt_ad_flow_index=xxxxxxxx
-//        gdt_ad_flow_tiepian_live=xxxxxxxx
-//        gdt_ad_webview_banner=xxxxxxxx
-//        #百度
-//        baidu_ad_id=xxxxxxxx
-//        baidu_ad_splash=xxxxxxxx
-//        baidu_ad_inter=xxxxxxxx
-//        baidu_ad_flow_index=xxxxxxxx
-//        baidu_ad_flow_tiepian_live=xxxxxxxx
-//        baidu_ad_webview_banner=xxxxxxxx
-//        # 穿山甲
-//        csj_ad_id=xxxxxxxx
-//        csj_ad_splash=xxxxxxxx
-//        csj_ad_inter=xxxxxxxx
-//        csj_ad_flow_index=xxxxxxxx
-//        csj_ad_flow_tiepian_live=xxxxxxxx
-//        csj_ad_webview_banner=xxxxxxxx
         val baiduIdMap = HashMap<String, String>()
-        baiduIdMap[TogetherAdConst.AD_SPLASH] = getString(R.string.baidu_ad_splash)
-        baiduIdMap[TogetherAdConst.AD_INTER] = getString(R.string.baidu_ad_inter)
-        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = getString(R.string.baidu_ad_flow_index)
-        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = getString(R.string.baidu_ad_flow_tiepian_live)
-        baiduIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = getString(R.string.baidu_ad_webview_banner)
-        TogetherAd.initBaiduAd(this, getString(R.string.baidu_ad_id), baiduIdMap)
+        baiduIdMap[TogetherAdConst.AD_SPLASH] = "5873732"
+        baiduIdMap[TogetherAdConst.AD_INTER] = "5873733"
+        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5873735"
+        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "5873734"
+        baiduIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "6293556"
+        TogetherAd.initBaiduAd(this, "cd3d8b16", baiduIdMap)
 
         val gdtIdMap = HashMap<String, String>()
-        gdtIdMap[TogetherAdConst.AD_SPLASH] = getString(R.string.gdt_ad_splash)
-        gdtIdMap[TogetherAdConst.AD_INTER] = getString(R.string.gdt_ad_inter)
-        gdtIdMap[TogetherAdConst.AD_FLOW_INDEX] = getString(R.string.gdt_ad_flow_index)
-        gdtIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = getString(R.string.gdt_ad_flow_tiepian_live)
-        gdtIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = getString(R.string.gdt_ad_webview_banner)
-        TogetherAd.initGDTAd(this, getString(R.string.gdt_ad_id), gdtIdMap)
+        gdtIdMap[TogetherAdConst.AD_SPLASH] = "5070550501041614"
+        gdtIdMap[TogetherAdConst.AD_INTER] = "7000758820077828"
+        gdtIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5060356551943607"
+        gdtIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "6040255571748678"
+        gdtIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "3050767842595815"
+        TogetherAd.initGDTAd(this, "1105965856", gdtIdMap)
 
         val csjIdMap = HashMap<String, String>()
-        csjIdMap[TogetherAdConst.AD_SPLASH] = getString(R.string.csj_ad_splash)
-        csjIdMap[TogetherAdConst.AD_INTER] = getString(R.string.csj_ad_inter)
-        csjIdMap[TogetherAdConst.AD_FLOW_INDEX] = getString(R.string.csj_ad_flow_index)
-        csjIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = getString(R.string.csj_ad_flow_tiepian_live)
-        csjIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = getString(R.string.csj_ad_webview_banner)
-        TogetherAd.initCsjAd(this, getString(R.string.csj_ad_id), this.getString(R.string.app_name), csjIdMap, useTextureView = true)
+        csjIdMap[TogetherAdConst.AD_SPLASH] = "820413685"
+        csjIdMap[TogetherAdConst.AD_INTER] = "920413056"
+        csjIdMap[TogetherAdConst.AD_FLOW_INDEX] = "920413297"
+        csjIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "920413238"
+        csjIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "920413358"
+        TogetherAd.initCsjAd(this, "5020413", this.getString(R.string.app_name), csjIdMap, useTextureView = true)
 
         TogetherAd.setAdTimeOutMillis(5000)
     }
