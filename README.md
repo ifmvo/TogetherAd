@@ -85,8 +85,14 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v1.6.9 即将发布
+1. 广点通自渲染1.0即将关停
+2. TogetherAdBanner2 中广点通目前使用的就是 Banner2.0
+
 v1.6.8
 1. 更新项目的 gradle 版本，以解决找不到百度 FileProvider 的问题
+2. 更新穿山甲到 v2.8.0.3
+3. 更新广点通到 v4.176.1046
 
 v1.6.7
 1. 更新穿山甲到 v2.5.3.2
