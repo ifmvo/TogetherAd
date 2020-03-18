@@ -17,8 +17,10 @@ import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.imageloader.ILFactory
 import com.ifmvo.imageloader.LoadListener
 import com.ifmvo.imageloader.progress.LoaderOptions
-import com.qq.e.ads.nativ.NativeMediaAD
-import com.qq.e.ads.nativ.NativeMediaADData
+import com.qq.e.ads.cfg.VideoOption
+import com.qq.e.ads.nativ.*
+import com.qq.e.ads.nativ.widget.NativeAdContainer
+import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
@@ -59,12 +61,11 @@ object TogetherAdInter : AdBase() {
         }
     }
 
+    private var adItem: NativeUnifiedADData? = null
     private fun showAdInterTecentGDT(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
-
         adListener.onStartRequest(AdNameType.GDT.type)
-
-        val adListenerNative = object : NativeMediaAD.NativeMediaADListener {
-            override fun onADLoaded(adList: List<NativeMediaADData>?) {
+        val listener = object : NativeADUnifiedListener {
+            override fun onADLoaded(adList: List<NativeUnifiedADData>?) {
 
                 if (stop) {
                     return
@@ -78,9 +79,9 @@ object TogetherAdInter : AdBase() {
                 }
 
                 //获取一个广告
-                val adItem = adList[0]
+                adItem = adList[0]
 
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}, ecpm: ${adItem.ecpm}, ecpmLevel: ${adItem.ecpmLevel}")
+                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
                 adListener.onAdPrepared(AdNameType.GDT.type)
 
                 val dm = DisplayMetrics()
@@ -89,80 +90,88 @@ object TogetherAdInter : AdBase() {
                 //无论是横屏还是竖屏都是取小的那个长度的80%
                 val n = ((if (dm.widthPixels > dm.heightPixels) dm.heightPixels else dm.widthPixels) * 0.8).toInt()
 
-                val relativeLayout = RelativeLayout(activity)
-                val rParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
-                rParams.addRule(RelativeLayout.CENTER_IN_PARENT)
-                relativeLayout.layoutParams = rParams
+                val nativeAdContainer = View.inflate(activity, R.layout.view_inter_gdt, null) as NativeAdContainer
+                val ivClose = nativeAdContainer.findViewById<View>(R.id.iv_close)
+                val ivImage = nativeAdContainer.findViewById<ImageView>(R.id.iv_image)
+                val mediaView = nativeAdContainer.findViewById<MediaView>(R.id.media_view)
 
-                //广告的图片
-                val imageView = ImageView(activity)
-                imageView.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-                imageView.scaleType = ImageView.ScaleType.FIT_XY
-
-                //关闭按钮
-                val closeParam = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-                closeParam.topMargin = 15
-                closeParam.rightMargin = 15
-                closeParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                val ivClose = ImageView(activity)
-                ivClose.layoutParams = closeParam
-                ivClose.setImageResource(R.mipmap.ad_close)
                 ivClose.setOnClickListener {
                     logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
                     adIntersContainer.removeAllViews()
                     adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                     adIntersContainer.visibility = View.GONE
                     adListener.onAdDismissed()
+                    when (adItem?.adPatternType) {
+                        AdPatternType.NATIVE_VIDEO -> {
+                            adItem?.stopVideo()
+                        }
+                    }
+                    adItem?.destroy()
+                    adItem = null
                 }
 
-                //广点通的Logo
-                val logoViewParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                ILFactory.getLoader().load(activity, ivImage, adItem?.imgUrl, LoaderOptions())
+                logd("${AdNameType.GDT.type}: 原生类型： ${adItem?.adPatternType}")
+                when (adItem?.adPatternType) {
+                    AdPatternType.NATIVE_2IMAGE_2TEXT, AdPatternType.NATIVE_3IMAGE -> {
+                        mediaView.visibility = View.GONE
+                        ivImage.visibility = View.VISIBLE
+                        ILFactory.getLoader().load(activity, ivImage, adItem?.imgUrl, LoaderOptions().skipCache())
+                    }
+                    AdPatternType.NATIVE_VIDEO -> {
+                        mediaView.visibility = View.VISIBLE
+                        ivImage.visibility = View.GONE
+                    }
+                }
+                val clickableViews = arrayListOf<View>()
+                clickableViews.add(nativeAdContainer)
+                adItem?.bindAdToView(activity, nativeAdContainer, null, clickableViews)
+                adItem?.setNativeAdEventListener(object : NativeADEventListener {
+                    override fun onADStatusChanged() {}
 
-                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+                    override fun onADError(error: AdError?) {
+                        logd("${AdNameType.GDT.type}: ${error?.errorCode} ${error?.errorMsg}")
+                    }
 
-                val gdtLogoView = ImageView(activity)
-                gdtLogoView.layoutParams = logoViewParams
-                gdtLogoView.setImageResource(R.drawable.gdt_ad_logo)
+                    override fun onADClicked() {
+                        logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+                    }
 
-                ILFactory.getLoader().load(activity, imageView, adItem.imgUrl, LoaderOptions(), object : LoadListener() {
-                    override fun onLoadCompleted(p0: Drawable?): Boolean {
-                        adItem.onExposured(adIntersContainer)
-
-                        imageView.setOnClickListener {
-                            logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-                            adListener.onAdClick(AdNameType.GDT.type)
-                            adItem.onClicked(it)
-                        }
-
-                        relativeLayout.addView(ivClose)
-                        relativeLayout.addView(gdtLogoView)
-                        adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
-                        adIntersContainer.setOnClickListener {}
-
-                        //将容器中的所有东西删除
-                        return true
+                    override fun onADExposed() {
+                        logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
                     }
                 })
+                when (adItem?.adPatternType) {
+                    AdPatternType.NATIVE_VIDEO -> {
+                        val videoOption = VideoOption.Builder().setAutoPlayMuted(true).setAutoPlayPolicy(VideoOption.AutoPlayPolicy.ALWAYS).build()
+                        adItem?.bindMediaView(mediaView, videoOption, object : NativeADMediaListener {
+                            override fun onVideoInit() {}
+                            override fun onVideoStop() {}
+                            override fun onVideoPause() {}
+                            override fun onVideoStart() {}
+                            override fun onVideoError(p0: AdError?) {}
+                            override fun onVideoCompleted() {}
+                            override fun onVideoLoading() {}
+                            override fun onVideoReady() {}
+                            override fun onVideoLoaded(p0: Int) {}
+                            override fun onVideoClicked() {}
+                            override fun onVideoResume() {}
+                        })
+                        adItem?.startVideo()
+                    }
+                }
 
                 adIntersContainer.visibility = View.VISIBLE
                 if (adIntersContainer.childCount > 0) {
                     adIntersContainer.removeAllViews()
                 }
 
-                relativeLayout.addView(imageView)
-                adIntersContainer.addView(relativeLayout)
+                val adLayoutParams = RelativeLayout.LayoutParams(n, n * 9 / 16)
+                adLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+                adIntersContainer.addView(nativeAdContainer, adLayoutParams)
             }
 
             override fun onNoAD(adError: AdError?) {
-                loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
-                val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
-            }
-
-            override fun onADStatusChanged(ad: NativeMediaADData?) {}
-
-            override fun onADError(adData: NativeMediaADData?, adError: AdError?) {
                 loge("${AdNameType.GDT.type}: ${adError?.errorCode}, ${adError?.errorMsg}")
                 if (stop) {
                     return
@@ -170,25 +179,15 @@ object TogetherAdInter : AdBase() {
                 val newConfigStr = interConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                 showAdInter(activity, newConfigStr, adConstStr, isLandscape, adIntersContainer, adListener)
             }
-
-            override fun onADVideoLoaded(adData: NativeMediaADData?) {
-                logd("${AdNameType.GDT.type}: 视频素材加载完成")
-            }
-
-            override fun onADExposure(adData: NativeMediaADData?) {
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
-            }
-
-            override fun onADClicked(adData: NativeMediaADData?) {
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-            }
         }
 
-        val mADManager = NativeMediaAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], adListenerNative)
-        mADManager.setMaxVideoDuration(60)
-        mADManager.loadAD(1)
-
-
+        val mAdManager = NativeUnifiedAD(activity, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], listener)
+        //有效值就是 5-60
+        mAdManager.setMaxVideoDuration(60)
+        mAdManager.setMinVideoDuration(5)
+        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO) // 本次拉回的视频广告，在用户看来是否为自动播放的
+        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK) // 视频播放前，用户看到的广告容器是由SDK渲染的
+        mAdManager.loadData(1)
     }
 
     private fun showAdInterBaiduMob(@NonNull activity: Activity, interConfigStr: String?, @NonNull adConstStr: String, @NonNull isLandscape: Boolean, @NonNull adIntersContainer: RelativeLayout, @NonNull adListener: AdListenerInter) {
@@ -407,6 +406,23 @@ object TogetherAdInter : AdBase() {
                 adIntersContainer.addView(relativeLayout)
             }
         })
+    }
+
+    fun resume() {
+        adItem?.resume()
+        when (adItem?.adPatternType) {
+            AdPatternType.NATIVE_VIDEO -> {
+                adItem?.resumeVideo()
+            }
+        }
+    }
+
+    fun pause() {
+        when (adItem?.adPatternType) {
+            AdPatternType.NATIVE_VIDEO -> {
+                adItem?.pauseVideo()
+            }
+        }
     }
 
     fun destroy() {
