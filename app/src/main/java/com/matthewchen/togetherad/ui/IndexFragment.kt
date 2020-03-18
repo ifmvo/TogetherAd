@@ -21,9 +21,12 @@ import com.matthewchen.togetherad.bean.IndexMultiItemBean
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
 import com.matthewchen.togetherad.utils.Kits
-import com.qq.e.ads.nativ.MediaListener
+import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.MediaView
-import com.qq.e.ads.nativ.NativeMediaADData
+import com.qq.e.ads.nativ.NativeADEventListener
+import com.qq.e.ads.nativ.NativeADMediaListener
+import com.qq.e.ads.nativ.NativeUnifiedADData
+import com.qq.e.ads.nativ.widget.NativeAdContainer
 import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 import com.rumtel.ad.helper.flow.TogetherAdFlow
@@ -52,10 +55,14 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             val lastPosition = layoutManager.findLastVisibleItemPosition()
             for (index in firstPosition..lastPosition) {
                 val item = mAdapter.getItem(index)
-                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
-                    when (val ad = item.adObject) {
-                        is NativeMediaADData -> { //广点通
-                            ad.resume()
+                if (item is IndexMultiItemBean && item.itemType == IndexMultiItemBean.TYPE_AD_GDT) {
+                    if (item.adObject is NativeUnifiedADData) {
+                        val gdtAd = item.adObject as NativeUnifiedADData
+                        Log.d("ifmvo", "resume")
+                        gdtAd.resume()
+                        if (gdtAd.adPatternType == AdPatternType.NATIVE_VIDEO) {
+                            Log.d("ifmvo", "resumeVideo")
+                            gdtAd.resumeVideo()
                         }
                     }
                 }
@@ -74,10 +81,12 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             val lastPosition = layoutManager.findLastVisibleItemPosition()
             for (index in firstPosition..lastPosition) {
                 val item = mAdapter.getItem(index)
-                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
-                    when (val ad = item.adObject) {
-                        is NativeMediaADData -> { //广点通
-                            ad.stop()
+                if (item is IndexMultiItemBean && item.itemType == IndexMultiItemBean.TYPE_AD_GDT) {
+                    if (item.adObject is NativeUnifiedADData) {
+                        val gdtAd = item.adObject as NativeUnifiedADData
+                        if (gdtAd.adPatternType == AdPatternType.NATIVE_VIDEO) {
+                            Log.d("ifmvo", "pauseVideo")
+                            gdtAd.pauseVideo()
                         }
                     }
                 }
@@ -90,17 +99,12 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
      */
     override fun onDestroy() {
         super.onDestroy()
-        val layoutManager = recyclerView.layoutManager
-        if (layoutManager is LinearLayoutManager) {
-            val firstPosition = layoutManager.findFirstVisibleItemPosition()
-            val lastPosition = layoutManager.findLastVisibleItemPosition()
-            for (index in firstPosition..lastPosition) {
-                val item = mAdapter.getItem(index)
-                if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
-                    when (val ad = item.adObject) {
-                        is NativeMediaADData -> { //广点通
-                            ad.destroy()
-                        }
+        for (item in mAdapter.data) {
+            if (item is IndexMultiItemBean && item.itemType == IndexMultiItemBean.TYPE_AD_GDT) {
+                when (val ad = item.adObject) {
+                    is NativeUnifiedADData -> {
+                        Log.d("ifmvo", "destroy")
+                        ad.destroy()
                     }
                 }
             }
@@ -139,13 +143,13 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val item = mAdapter.getItem(position)
         if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
             when (val ad = item.adObject) {
-                is NativeMediaADData -> { //广点通
-                    ad.onExposured(recyclerView)
-                    if (ad.adPatternType == AdPatternType.NATIVE_VIDEO && ad.isVideoLoaded) {
-                        //控制视频广告滑出屏幕滑进屏幕的暂停与播放
-                        ad.onScroll(position, recyclerView)
-                    }
-                }
+//                is NativeUnifiedADData -> { //广点通
+//                    ad.onExposured(recyclerView)
+//                    if (ad.adPatternType == AdPatternType.NATIVE_VIDEO && ad.isVideoLoaded) {
+//                        //控制视频广告滑出屏幕滑进屏幕的暂停与播放
+//                        ad.onScroll(position, recyclerView)
+//                    }
+//                }
                 is NativeResponse -> { //百度
                     ad.recordImpression(recyclerView)
                 }
@@ -170,69 +174,71 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
      * 处理广点通广告的数据
      */
     private fun convertGDTAd(helper: BaseViewHolder, item: IndexMultiItemBean) {
+        val mNativeAdContainer = helper.getView<NativeAdContainer>(R.id.native_ad_container)
         val mLlSuper = helper.getView<LinearLayout>(R.id.ll_super)
         val mImgPoster = helper.getView<ImageView>(R.id.img_poster)
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
         val mTvDesc = helper.getView<TextView>(R.id.tv_desc)
         val mAdGdtMediaPlayer = helper.getView<MediaView>(R.id.gdt_media_view)
 
-        val layoutParams = mImgPoster?.layoutParams
-        layoutParams?.height = itemIvH
+        mImgPoster?.layoutParams?.height = itemIvH
+        mAdGdtMediaPlayer?.layoutParams?.height = itemIvH
 
         val adObject = item.adObject
-
-        if (adObject is NativeMediaADData) {
+        if (adObject is NativeUnifiedADData) {
             mTvTitle?.text = adObject.title
             mTvDesc?.text = adObject.desc
-            mImgPoster?.setImageResource(R.mipmap.ic_launcher)
-            ILFactory.getLoader().load(mContext, mImgPoster, adObject.imgUrl, LoaderOptions().skipCache())
-
-            mLlSuper?.setOnClickListener {
-                adObject.onClicked(it)
+            Log.d("ifmvo", adObject.adPatternType.toString())
+            when (adObject.adPatternType) {
+                AdPatternType.NATIVE_2IMAGE_2TEXT, AdPatternType.NATIVE_3IMAGE -> {
+                    mAdGdtMediaPlayer.visibility = View.GONE
+                    mImgPoster.visibility = View.VISIBLE
+                    mImgPoster?.setImageResource(R.mipmap.ic_launcher)
+                    ILFactory.getLoader().load(mContext, mImgPoster, adObject.imgUrl, LoaderOptions().skipCache())
+                }
+                AdPatternType.NATIVE_VIDEO -> {
+                    mAdGdtMediaPlayer.visibility = View.VISIBLE
+                    mImgPoster.visibility = View.GONE
+                }
             }
+            val clickableViews = arrayListOf<View>()
+            clickableViews.add(mLlSuper)
+            adObject.bindAdToView(mContext, mNativeAdContainer, null, clickableViews)
+            adObject.setNativeAdEventListener(object : NativeADEventListener {
+                override fun onADStatusChanged() {
+                    Log.d("ifmvo", "状态变化：${adObject.title}")
+                }
 
-            if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO && adObject.isVideoLoaded) {
-                mAdGdtMediaPlayer?.visibility = View.VISIBLE
-                mImgPoster?.visibility = View.GONE
-                adObject.bindView(mAdGdtMediaPlayer, true) // 只有将MediaView和广告实例绑定之后，才能播放视频
-                adObject.play()
-                adObject.setMediaListener(object : MediaListener {
-                    override fun onVideoReady(videoDuration: Long) {
-                        Log.d("ifmvo", "onVideoReady: $videoDuration")
-                    }
+                override fun onADError(error: AdError?) {
+                    Log.d("ifmvo", "出错：${adObject.title}")
+                }
 
-                    override fun onVideoStart() {
-                        Log.d("ifmvo", "onVideoStart")
-                    }
+                override fun onADClicked() {
+                    Log.d("ifmvo", "点击：${adObject.title}")
+                }
 
-                    override fun onVideoPause() {
-                        Log.d("ifmvo", "onVideoPause")
-                    }
-
-                    override fun onVideoComplete() {
-                        Log.d("ifmvo", "onVideoComplete")
-                    }
-
-                    override fun onVideoError(adError: AdError) {
-                        Log.d("ifmvo", "onVideoError：${adError.errorCode}: ${adError.errorMsg}")
-                    }
-
-                    override fun onReplayButtonClicked() {
-                        Log.d("ifmvo", "onReplayButtonClicked")
-                    }
-
-                    override fun onADButtonClicked() {
-                        Log.d("ifmvo", "onADButtonClicked")
-                    }
-
-                    override fun onFullScreenChanged(inFullScreen: Boolean) {
-                        if (inFullScreen) {
-                            adObject.setVolumeOn(true)
-                        } else {
-                            adObject.setVolumeOn(false)
-                        }
-                    }
-                })
+                override fun onADExposed() {
+                    Log.d("ifmvo", "曝光：${adObject.title}")
+                }
+            })
+            when (adObject.adPatternType) {
+                AdPatternType.NATIVE_VIDEO -> {
+                    val videoOption = VideoOption.Builder().setAutoPlayMuted(true).setAutoPlayPolicy(VideoOption.AutoPlayPolicy.ALWAYS).build()
+                    adObject.bindMediaView(mAdGdtMediaPlayer, videoOption, object : NativeADMediaListener {
+                        override fun onVideoInit() {}
+                        override fun onVideoStop() {}
+                        override fun onVideoPause() {}
+                        override fun onVideoStart() {}
+                        override fun onVideoError(p0: AdError?) {}
+                        override fun onVideoCompleted() {}
+                        override fun onVideoLoading() {}
+                        override fun onVideoReady() {}
+                        override fun onVideoLoaded(p0: Int) {}
+                        override fun onVideoClicked() {}
+                        override fun onVideoResume() {}
+                    })
+                    adObject.startVideo()
+                }
             }
         }
     }
@@ -477,14 +483,15 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                     lastUseAdPosition = 0
                 }
                 when (val any = adList[lastUseAdPosition]) {
-                    is NativeMediaADData -> {
-                        if (any.adPatternType == AdPatternType.NATIVE_VIDEO) {
-                            any.preLoadVideo()
-                        }
+                    is NativeUnifiedADData -> {
                         multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_GDT, any))
                     }
-                    is NativeResponse -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_BAIDU, any))
-                    is TTFeedAd -> multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_CSJ, any))
+                    is NativeResponse -> {
+                        multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_BAIDU, any))
+                    }
+                    is TTFeedAd -> {
+                        multiItemList.add(IndexMultiItemBean(IndexMultiItemBean.TYPE_AD_CSJ, any))
+                    }
                 }
                 lastUseAdPosition += 1
                 nextAdPosition += 5

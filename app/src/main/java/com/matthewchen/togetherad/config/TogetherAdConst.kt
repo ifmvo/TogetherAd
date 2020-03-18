@@ -19,6 +19,9 @@ class TogetherAdConst {
         //直播播放器前贴
         const val AD_TIEPIAN_LIVE = "ad_flow_tiepian_live"
 
+        //退出
+        const val AD_BACK = "ad_back"
+
         //WebView Banner
         const val AD_WEBVIEW_BANNER = "ad_webview_banner"
     }

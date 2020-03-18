@@ -92,10 +92,9 @@ object TogetherAdSplash : AdBase() {
                     return
                 }
                 cancelTimerTask()
-
+                loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
                 val newConfigPreMovie = splashConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
                 showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, skipView, timeView, adListener)
-                loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
             }
 
             override fun onADPresent() {

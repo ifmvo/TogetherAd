@@ -128,6 +128,6 @@ class DetailActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TogetherAdPreMovie.destroy()
-        TogetherAdInter.destory()
+        TogetherAdInter.destroy()
     }
 }
