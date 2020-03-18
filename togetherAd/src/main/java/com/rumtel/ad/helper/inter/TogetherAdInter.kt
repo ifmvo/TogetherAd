@@ -125,6 +125,8 @@ object TogetherAdInter : AdBase() {
                 }
                 val clickableViews = arrayListOf<View>()
                 clickableViews.add(nativeAdContainer)
+                clickableViews.add(ivImage)
+                clickableViews.add(mediaView)
                 adItem?.bindAdToView(activity, nativeAdContainer, null, clickableViews)
                 adItem?.setNativeAdEventListener(object : NativeADEventListener {
                     override fun onADStatusChanged() {}

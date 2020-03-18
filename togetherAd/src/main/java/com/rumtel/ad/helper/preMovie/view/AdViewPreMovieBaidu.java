@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
 import com.baidu.mobad.feeds.BaiduNative;
 import com.baidu.mobad.feeds.NativeErrorCode;
 import com.baidu.mobad.feeds.NativeResponse;
@@ -67,10 +68,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                     return;
                 }
                 mLlAdContainer.setVisibility(View.VISIBLE);
-                mFlAdContainer.setVisibility(View.GONE);
                 mIvImg0.setVisibility(View.VISIBLE);
-                mIvImg1.setVisibility(View.GONE);
-                mIvImg2.setVisibility(View.GONE);
                 ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
                     @Override
                     public boolean onLoadCompleted(Drawable drawable) {
@@ -100,10 +98,23 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
         });
 
         // 用户点击下载类广告时，是否弹出提示框让用户选择下载与否
-        RequestParameters requestParameters =
-                new RequestParameters.Builder()
-                        .build();
+        RequestParameters requestParameters = new RequestParameters.Builder().build();
 
         baidu.makeRequest(requestParameters);
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        mAd = null;
     }
 }

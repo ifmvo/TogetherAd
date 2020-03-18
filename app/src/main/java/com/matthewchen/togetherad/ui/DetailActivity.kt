@@ -41,60 +41,53 @@ class DetailActivity : AppCompatActivity() {
 
     private fun preMovieAd() {
         //baidu:2,gdt:8
-        TogetherAdPreMovie.showAdPreMovie(
-                this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad,
-                object : TogetherAdPreMovie.AdListenerPreMovie {
-                    override fun onAdClick(channel: String) {
-                        Log.e("ifmvo", "onAdClick:channel:$channel")
-                    }
+        TogetherAdPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad, object : TogetherAdPreMovie.AdListenerPreMovie {
+            override fun onAdClick(channel: String) {
+                Log.e("ifmvo", "onAdClick:channel:$channel")
+            }
 
-                    override fun onAdFailed(failedMsg: String?) {
-                        Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
-                    }
+            override fun onAdFailed(failedMsg: String?) {
+                Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
+            }
 
-                    override fun onAdDismissed() {
-                        Log.e("ifmvo", "onAdDismissed")
-                    }
+            override fun onAdDismissed() {
+                Log.e("ifmvo", "onAdDismissed")
+            }
 
-                    override fun onAdPrepared(channel: String) {
-                        Log.e("ifmvo", "onAdPrepared:channel:$channel")
-                    }
+            override fun onAdPrepared(channel: String) {
+                Log.e("ifmvo", "onAdPrepared:channel:$channel")
+            }
 
-                    override fun onStartRequest(channel: String) {
-                        Log.e("ifmvo", "onStartRequest:channel:$channel")
-                    }
-                }, needTimer = true
+            override fun onStartRequest(channel: String) {
+                Log.e("ifmvo", "onStartRequest:channel:$channel")
+            }
+        }, needTimer = true
         )
     }
 
     private fun interstitialAd() {
 
-        TogetherAdInter.showAdInter(this,
-                Config.interAdConfig(),
-                TogetherAdConst.AD_INTER,
-                false,
-                mRlInterAd,
-                object : TogetherAdInter.AdListenerInter {
-                    override fun onStartRequest(channel: String) {
-                        Log.e("ifmvo", "onStartRequest:channel:$channel")
-                    }
+        TogetherAdInter.showAdInter(this, Config.interAdConfig(), TogetherAdConst.AD_INTER, false, mRlInterAd, object : TogetherAdInter.AdListenerInter {
+            override fun onStartRequest(channel: String) {
+                Log.e("ifmvo", "onStartRequest:channel:$channel")
+            }
 
-                    override fun onAdClick(channel: String) {
-                        Log.e("ifmvo", "onAdClick:channel:$channel")
-                    }
+            override fun onAdClick(channel: String) {
+                Log.e("ifmvo", "onAdClick:channel:$channel")
+            }
 
-                    override fun onAdFailed(failedMsg: String?) {
-                        Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
-                    }
+            override fun onAdFailed(failedMsg: String?) {
+                Log.e("ifmvo", "onAdFailed:failedMsg:$failedMsg")
+            }
 
-                    override fun onAdDismissed() {
-                        Log.e("ifmvo", "onAdDismissed")
-                    }
+            override fun onAdDismissed() {
+                Log.e("ifmvo", "onAdDismissed")
+            }
 
-                    override fun onAdPrepared(channel: String) {
-                        Log.e("ifmvo", "onAdPrepared:channel:$channel")
-                    }
-                })
+            override fun onAdPrepared(channel: String) {
+                Log.e("ifmvo", "onAdPrepared:channel:$channel")
+            }
+        })
     }
 
     private fun webViewBanner2() {
@@ -123,11 +116,13 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        TogetherAdPreMovie.pause()
         TogetherAdInter.pause()
     }
 
     override fun onResume() {
         super.onResume()
+        TogetherAdPreMovie.resume()
         TogetherAdInter.resume()
     }
 

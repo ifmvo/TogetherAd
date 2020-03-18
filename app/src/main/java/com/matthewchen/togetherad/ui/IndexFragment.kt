@@ -203,22 +203,23 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             }
             val clickableViews = arrayListOf<View>()
             clickableViews.add(mLlSuper)
+            clickableViews.add(mImgPoster)
+            clickableViews.add(mAdGdtMediaPlayer)
             adObject.bindAdToView(mContext, mNativeAdContainer, null, clickableViews)
             adObject.setNativeAdEventListener(object : NativeADEventListener {
                 override fun onADStatusChanged() {
-                    Log.d("ifmvo", "状态变化：${adObject.title}")
                 }
 
                 override fun onADError(error: AdError?) {
-                    Log.d("ifmvo", "出错：${adObject.title}")
+                    Log.d("TogetherAd", "出错：${adObject.title}")
                 }
 
                 override fun onADClicked() {
-                    Log.d("ifmvo", "点击：${adObject.title}")
+                    Log.d("TogetherAd", "点击：${adObject.title}")
                 }
 
                 override fun onADExposed() {
-                    Log.d("ifmvo", "曝光：${adObject.title}")
+                    Log.d("TogetherAd", "曝光：${adObject.title}")
                 }
             })
             when (adObject.adPatternType) {

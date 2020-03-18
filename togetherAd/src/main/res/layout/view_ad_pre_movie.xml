@@ -1,86 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fl_ad">
+<com.qq.e.ads.nativ.widget.NativeAdContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_ad_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!--
         csj 的视频广告容器
     -->
     <FrameLayout
-            android:id="@+id/fl_ad_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:id="@+id/fl_ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!--
+        gdt 的视频控件
+    -->
+    <com.qq.e.ads.nativ.MediaView
+        android:id="@+id/media_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <!--
         三个图片位，如果只有一张图片，就隐藏另外两个
     -->
     <LinearLayout
-            android:id="@+id/ll_ad_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/ll_ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ImageView
-                android:id="@+id/iv_img0"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"/>
+            android:id="@+id/iv_img0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
 
         <ImageView
-                android:id="@+id/iv_img1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"/>
+            android:id="@+id/iv_img1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
 
         <ImageView
-                android:id="@+id/iv_img2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"/>
+            android:id="@+id/iv_img2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <!-- 开发者自定义的倒计时 -->
     <TextView
-            android:id="@+id/text_count_down"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:layout_margin="13dp"
-            android:textColor="@android:color/white"
-            android:paddingLeft="10dp"
-            android:visibility="gone"
-            android:background="@drawable/shape_pre_movie_time"
-            android:paddingRight="10dp"
-            android:textSize="13sp"/>
+        android:id="@+id/text_count_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="13dp"
+        android:background="@drawable/shape_pre_movie_time"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:visibility="gone" />
 
     <!--bottom-->
     <FrameLayout
-            android:id="@+id/fl_desc"
-            android:layout_gravity="bottom"
-            android:background="#56000000"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:id="@+id/fl_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#56000000"
+        android:visibility="gone">
 
         <TextView
-                android:id="@+id/tv_desc"
-                android:layout_width="match_parent"
-                tools:text="adfadfadfadsadfafadsfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdffadsf"
-                android:paddingLeft="10dp"
-                android:paddingRight="40dp"
-                android:paddingTop="3dp"
-                android:lines="1"
-                android:ellipsize="end"
-                android:textColor="@android:color/white"
-                android:paddingBottom="3dp"
-                android:layout_gravity="center_vertical"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:lines="1"
+            android:paddingLeft="10dp"
+            android:paddingTop="3dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="3dp"
+            android:textColor="@android:color/white"
+            tools:text="adfadfadfadsadfafadsfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdffadsf" />
 
     </FrameLayout>
 
@@ -88,35 +101,22 @@
         common logo
     -->
     <include
-            android:layout_gravity="bottom|right"
-            android:layout_margin="3dp"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            layout="@layout/layout_ad_logo"/>
-
-    <!--
-        gdt logo
-    -->
-    <ImageView
-            android:id="@+id/mTvLogoGdt"
-            android:layout_gravity="right|bottom"
-            android:layout_width="wrap_content"
-            android:adjustViewBounds="true"
-            android:visibility="gone"
-            android:src="@drawable/gdt_ad_logo"
-            android:scaleType="centerCrop"
-            android:layout_height="wrap_content"/>
+        layout="@layout/layout_ad_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="3dp"
+        android:visibility="gone" />
 
     <!--
         csj logo
     -->
     <ImageView
-            android:id="@+id/mTvLogoCsj"
-            android:visibility="gone"
-            android:layout_width="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="20dp"
-            android:layout_gravity="right|bottom"/>
+        android:id="@+id/mTvLogoCsj"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
 
-</FrameLayout>
+</com.qq.e.ads.nativ.widget.NativeAdContainer>

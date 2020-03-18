@@ -13,6 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.qq.e.ads.nativ.MediaView;
+import com.qq.e.ads.nativ.widget.NativeAdContainer;
 import com.rumtel.ad.R;
 import com.rumtel.ad.TogetherAd;
 
@@ -26,9 +29,11 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     protected Boolean needTimer = true;
 
     ViewGroup mRootView;
+    NativeAdContainer nativeAdContainer;
 
     FrameLayout mFlAdContainer;
     LinearLayout mLlAdContainer;
+    MediaView mMediaView;
 
     ImageView mIvImg0;
     ImageView mIvImg1;
@@ -40,7 +45,6 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     TextView mTvDesc;
 
     TextView mTvLogoCommon;
-    ImageView mTvLogoGdt;
     ImageView mTvLogoCsj;
 
     TimerCount mTimerCount;
@@ -72,9 +76,11 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
 
     public void initView() {
         mRootView = (ViewGroup) View.inflate(super.getContext(), R.layout.view_ad_pre_movie, this);
+        nativeAdContainer = mRootView.findViewById(R.id.native_ad_container);
 
         mFlAdContainer = mRootView.findViewById(R.id.fl_ad_container);
         mLlAdContainer = mRootView.findViewById(R.id.ll_ad_container);
+        mMediaView = mRootView.findViewById(R.id.media_view);
 
         mIvImg0 = mRootView.findViewById(R.id.iv_img0);
         mIvImg1 = mRootView.findViewById(R.id.iv_img1);
@@ -87,7 +93,6 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
 
         //广告标示
         mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
-        mTvLogoGdt = mRootView.findViewById(R.id.mTvLogoGdt);
         mTvLogoCsj = mRootView.findViewById(R.id.mTvLogoCsj);
 
         setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());
@@ -175,12 +180,12 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         }
     }
 
-    public void cancel() {
-        cancelTimerCount();
-    }
+    public abstract void resume();
 
-    public void stop() {
+    public abstract void pause();
+
+    public void destroy() {
+        cancelTimerCount();
         stop = true;
     }
-
 }

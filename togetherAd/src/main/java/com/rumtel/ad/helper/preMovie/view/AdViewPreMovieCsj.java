@@ -9,7 +9,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import com.bytedance.sdk.openadsdk.*;
+
+import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.TTAdConstant;
+import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.TTAdSdk;
+import com.bytedance.sdk.openadsdk.TTFeedAd;
+import com.bytedance.sdk.openadsdk.TTImage;
+import com.bytedance.sdk.openadsdk.TTNativeAd;
 import com.ifmvo.imageloader.ILFactory;
 import com.rumtel.ad.other.AdExtKt;
 import com.rumtel.ad.other.AdNameType;
@@ -121,7 +128,8 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 //                            if (needTimer) {
                             adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
 
-                                public void onProgressUpdate(long current, long duration) { }
+                                public void onProgressUpdate(long current, long duration) {
+                                }
 
                                 public void onVideoAdComplete(TTFeedAd ad) {
                                     AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdComplete：" + ad.toString());
@@ -138,15 +146,17 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                                 }
 
                                 @Override
-                                public void onVideoAdStartPlay(TTFeedAd ttFeedAd) { }
+                                public void onVideoAdStartPlay(TTFeedAd ttFeedAd) {
+                                }
 
                                 @Override
-                                public void onVideoAdPaused(TTFeedAd ttFeedAd) { }
+                                public void onVideoAdPaused(TTFeedAd ttFeedAd) {
+                                }
 
                                 @Override
-                                public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) { }
+                                public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) {
+                                }
                             });
-                            mLlAdContainer.setVisibility(View.GONE);
                             mFlAdContainer.setVisibility(View.VISIBLE);
                             View adView = adObject.getAdView();
                             if (adView != null && adView.getParent() == null) {
@@ -169,9 +179,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                         case TTAdConstant.IMAGE_MODE_SMALL_IMG:
                         case TTAdConstant.IMAGE_MODE_VERTICAL_IMG:
                             mLlAdContainer.setVisibility(View.VISIBLE);
-                            mFlAdContainer.setVisibility(View.GONE);
-                            mIvImg1.setVisibility(View.GONE);
-                            mIvImg2.setVisibility(View.GONE);
+                            mIvImg0.setVisibility(View.VISIBLE);
                             if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
                                 ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
                             }
@@ -179,7 +187,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                         case TTAdConstant.IMAGE_MODE_GROUP_IMG:
                             mLlAdContainer.setVisibility(View.VISIBLE);
-                            mFlAdContainer.setVisibility(View.GONE);
+                            mIvImg0.setVisibility(View.VISIBLE);
                             mIvImg1.setVisibility(View.VISIBLE);
                             mIvImg2.setVisibility(View.VISIBLE);
 
@@ -200,10 +208,10 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                     mTvLogoCsj.setVisibility(View.VISIBLE);
                     mTvLogoCsj.setImageBitmap(adObject.getAdLogo());
 
-                    //开始计时
                     if (adViewListener != null) {
                         adViewListener.onAdPrepared();
                     }
+                    //开始计时
                     if (needTimer) {
                         startTimerCount(6000);
                     }
@@ -215,5 +223,20 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                 adViewListener.onAdFailed("崩溃异常");
             }
         }
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
     }
 }

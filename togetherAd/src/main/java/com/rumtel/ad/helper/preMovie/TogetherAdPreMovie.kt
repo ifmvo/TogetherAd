@@ -28,23 +28,9 @@ object TogetherAdPreMovie : AdBase() {
     private var weak: WeakReference<AdViewPreMovieBase>? = null
     private var mChannel: String = ""
 
-    /**
-     * Activity / Fragment 里面的 onDestroy（） 调用
-     */
-    fun destroy() {
-        cancel()
-    }
-
-    fun showAdPreMovie(
-        @NonNull activity: Activity,
-        configPreMovie: String?,
-        @NonNull adConstStr: String,
-        @NonNull adsParentLayout: ViewGroup,
-        @NonNull adListener: AdListenerPreMovie,
-        @NonNull needTimer: Boolean = true
-    ) {
+    fun showAdPreMovie(@NonNull activity: Activity, configPreMovie: String?, @NonNull adConstStr: String, @NonNull adsParentLayout: ViewGroup, @NonNull adListener: AdListenerPreMovie, @NonNull needTimer: Boolean = true) {
         startTimerTask(activity, adsParentLayout, adListener)
-        cancel()
+        destroy()
 
         adsParentLayout.visibility = View.VISIBLE
         if (adsParentLayout.childCount > 0) {
@@ -85,7 +71,6 @@ object TogetherAdPreMovie : AdBase() {
 
             override fun onAdClick() {
                 adListener.onAdClick(mChannel)
-//                adsParentLayout.visibility = View.GONE
                 logd("$mChannel: ${activity.getString(R.string.clicked)}")
             }
 
@@ -110,12 +95,12 @@ object TogetherAdPreMovie : AdBase() {
 
                 activity.runOnUiThread {
                     showAdPreMovie(
-                        activity,
-                        newConfigPreMovie,
-                        adConstStr,
-                        adsParentLayout,
-                        adListener,
-                        needTimer
+                            activity,
+                            newConfigPreMovie,
+                            adConstStr,
+                            adsParentLayout,
+                            adListener,
+                            needTimer
                     )
                 }
             }
@@ -178,13 +163,6 @@ object TogetherAdPreMovie : AdBase() {
         weak = WeakReference(AdViewPreMovieCsj(activity, needTimer))
     }
 
-    private fun cancel() {
-        val lastAdView = weak?.get()
-        lastAdView?.cancel()
-        lastAdView?.stop()
-        weak = null
-    }
-
     private var timer: Timer? = null
     private var overTimerTask: OverTimerTask? = null
 
@@ -202,16 +180,14 @@ object TogetherAdPreMovie : AdBase() {
     private fun startTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) {
         cancelTimerTask()
         timer = Timer()
-        overTimerTask =
-            OverTimerTask(activity, adsParentLayout, adListener)
+        overTimerTask = OverTimerTask(activity, adsParentLayout, adListener)
         timer?.schedule(overTimerTask, TogetherAd.timeOutMillis)
     }
 
     /**
      * 请求超时处理的任务
      */
-    private class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) :
-        TimerTask() {
+    private class OverTimerTask(activity: Activity, adsParentLayout: ViewGroup, adListener: AdListenerPreMovie) : TimerTask() {
 
         private val weakReference: WeakReference<AdListenerPreMovie>?
         private val weakRefContext: WeakReference<Activity>?
@@ -225,14 +201,32 @@ object TogetherAdPreMovie : AdBase() {
 
         override fun run() {
             weakRefContext?.get()?.runOnUiThread {
-                weak?.get()?.cancel()
-                weak?.get()?.stop()
+                weak?.get()?.destroy()
                 weak = null
                 weakReference?.get()?.onAdFailed(weakRefContext.get()?.getString(R.string.timeout))
                 loge(weakRefContext.get()?.getString(R.string.timeout))
                 weakRefView?.get()?.visibility = View.GONE
             }
         }
+    }
+
+    /**
+     * Activity / Fragment 里面的 onDestroy（） 调用
+     */
+    fun destroy() {
+        val lastAdView = weak?.get()
+        lastAdView?.destroy()
+        weak = null
+    }
+
+    fun resume() {
+        val lastAdView = weak?.get()
+        lastAdView?.resume()
+    }
+
+    fun pause() {
+        val lastAdView = weak?.get()
+        lastAdView?.pause()
     }
 
     interface AdListenerPreMovie {
