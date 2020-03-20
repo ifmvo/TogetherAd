@@ -98,7 +98,6 @@ object TogetherAdInter : AdBase() {
                 ivClose.setOnClickListener {
                     logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
                     adIntersContainer.removeAllViews()
-                    adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                     adIntersContainer.visibility = View.GONE
                     adListener.onAdDismissed()
                     when (adItem?.adPatternType) {
@@ -316,7 +315,6 @@ object TogetherAdInter : AdBase() {
                 ivClose.setOnClickListener {
                     logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                     adIntersContainer.removeAllViews()
-                    adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                     adIntersContainer.visibility = View.GONE
                     adListener.onAdDismissed()
                 }
@@ -343,7 +341,6 @@ object TogetherAdInter : AdBase() {
                     override fun onSelected(position: Int, value: String?) {
                         logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                         adIntersContainer.removeAllViews()
-                        adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                         adIntersContainer.visibility = View.GONE
                         adListener.onAdDismissed()
                     }
@@ -370,7 +367,6 @@ object TogetherAdInter : AdBase() {
                         logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
                         logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
                         adIntersContainer.removeAllViews()
-                        adIntersContainer.setBackgroundColor(Color.parseColor("#00000000"))
                         adIntersContainer.visibility = View.GONE
                         adListener.onAdClick(AdNameType.CSJ.type)
                         adListener.onAdDismissed()
@@ -392,9 +388,6 @@ object TogetherAdInter : AdBase() {
                     override fun onLoadCompleted(p0: Drawable?): Boolean {
                         relativeLayout.addView(ivClose)
                         relativeLayout.addView(logoView)
-                        adIntersContainer.setBackgroundColor(Color.parseColor("#60000000"))
-                        adIntersContainer.setOnClickListener {}
-                        //将容器中的所有东西删除
                         return true
                     }
                 })

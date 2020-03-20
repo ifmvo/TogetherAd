@@ -143,13 +143,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val item = mAdapter.getItem(position)
         if (item is IndexMultiItemBean && item.itemType != IndexMultiItemBean.TYPE_CONTENT) {
             when (val ad = item.adObject) {
-//                is NativeUnifiedADData -> { //广点通
-//                    ad.onExposured(recyclerView)
-//                    if (ad.adPatternType == AdPatternType.NATIVE_VIDEO && ad.isVideoLoaded) {
-//                        //控制视频广告滑出屏幕滑进屏幕的暂停与播放
-//                        ad.onScroll(position, recyclerView)
-//                    }
-//                }
                 is NativeResponse -> { //百度
                     ad.recordImpression(recyclerView)
                 }
