@@ -107,6 +107,9 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                     @Override
                     public void onADClicked() {
                         AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + ":前贴：" + AdViewPreMovieGDT.super.getContext().getString(R.string.clicked));
+                        if (adViewListener != null) {
+                            adViewListener.onAdClick();
+                        }
                     }
 
                     @Override

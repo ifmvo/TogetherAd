@@ -136,6 +136,7 @@ object TogetherAdInter : AdBase() {
 
                     override fun onADClicked() {
                         logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+                        adListener.onAdClick(AdNameType.GDT.type)
                     }
 
                     override fun onADExposed() {
