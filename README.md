@@ -90,6 +90,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v2.0.3
+1. 广告标示：百度是用SDK && 穿山甲添加"广告"文字标示
+
 v2.0.0
 1. TogetherAdBanner2 中广点通目前使用的就是 Banner2.0
 2. 广点通自渲染1.0即将关停。信息流、插屏、前贴，这三种广告的广点通改为 自渲染2.0
