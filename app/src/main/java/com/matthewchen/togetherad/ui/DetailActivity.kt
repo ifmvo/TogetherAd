@@ -8,7 +8,7 @@ import android.util.Log
 import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
-import com.rumtel.ad.helper.banner.TogetherAdBanner2
+import com.rumtel.ad.helper.banner.TogetherAdBanner
 import com.rumtel.ad.helper.inter.TogetherAdInter
 import com.rumtel.ad.helper.preMovie.TogetherAdPreMovie
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -91,7 +91,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun webViewBanner2() {
-        TogetherAdBanner2.requestBanner(this, Config.webViewAdConfig(), TogetherAdConst.AD_WEBVIEW_BANNER, mFlAdBannerContainer, object : TogetherAdBanner2.AdListenerList {
+        TogetherAdBanner.requestBanner(this, Config.webViewAdConfig(), TogetherAdConst.AD_WEBVIEW_BANNER, mFlAdBannerContainer, object : TogetherAdBanner.AdListenerList {
             override fun onStartRequest(channel: String) {
                 Log.e("ifmvo", "onStartRequest:channel:$channel")
             }

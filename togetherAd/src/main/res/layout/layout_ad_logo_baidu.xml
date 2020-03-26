@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_logo_baidu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_logo_baidu"
+        android:layout_width="13dp"
+        android:layout_height="13dp" />
+
+    <ImageView
+        android:id="@+id/iv_ad"
+        android:layout_width="26dp"
+        android:layout_height="13dp" />
+
+</LinearLayout>

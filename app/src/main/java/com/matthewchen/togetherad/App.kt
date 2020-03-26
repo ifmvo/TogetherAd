@@ -16,13 +16,13 @@ class App : Application() {
         super.onCreate()
 
         val baiduIdMap = HashMap<String, String>()
-        baiduIdMap[TogetherAdConst.AD_SPLASH] = "5873732"
-        baiduIdMap[TogetherAdConst.AD_INTER] = "5873733"
-        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = "5873735"
-        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "5873734"
-        baiduIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "6293556"
+        baiduIdMap[TogetherAdConst.AD_SPLASH] = "6697024"
+        baiduIdMap[TogetherAdConst.AD_INTER] = "6697054"
+        baiduIdMap[TogetherAdConst.AD_FLOW_INDEX] = "6697101"
+        baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "6697116"
+        baiduIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "6697141"
         baiduIdMap[TogetherAdConst.AD_BACK] = "6697152"
-        TogetherAd.initBaiduAd(this, "cd3d8b16", baiduIdMap)
+        TogetherAd.initBaiduAd(this, "c4d4e71f", baiduIdMap)
 
         val gdtIdMap = HashMap<String, String>()
         gdtIdMap[TogetherAdConst.AD_SPLASH] = "5070550501041614"

@@ -321,14 +321,15 @@ object TogetherAdInter : AdBase() {
                 }
 
                 //广告标示
-                val logoViewParams = RelativeLayout.LayoutParams(60, 60)
+                val logoViewParams = RelativeLayout.LayoutParams(135, 45)
 
                 logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                 logoViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
 
                 val logoView = ImageView(activity)
                 logoView.layoutParams = logoViewParams
-                logoView.setImageBitmap(adItem.adLogo)
+                logoView.setImageResource(R.drawable.ic_ad_logo_csj)
+//                logoView.setImageBitmap(adItem.adLogo)
 
                 //不喜欢的标识, 绑定网盟dislike逻辑，有助于精准投放
                 val dislikeViewParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)

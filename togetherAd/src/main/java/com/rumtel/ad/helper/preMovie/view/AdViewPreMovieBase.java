@@ -44,8 +44,14 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     View mFlDesc;
     TextView mTvDesc;
 
-    TextView mTvLogoCommon;
-    ImageView mTvLogoCsj;
+    /**
+     * 广告标示
+     */
+    ViewGroup mLayoutLogoBaidu;//百度标示有两个部分
+    ImageView mIvLogoBaidu;//百度的logo
+    ImageView mIvAdBaidu;//"广告"两个字
+
+    ImageView mTvLogoCsj;//穿山甲的logo
 
     TimerCount mTimerCount;
 
@@ -92,7 +98,9 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         mFlDesc = mRootView.findViewById(R.id.fl_desc);
 
         //广告标示
-        mTvLogoCommon = mRootView.findViewById(R.id.mTvLogoCommon);
+        mLayoutLogoBaidu = mRootView.findViewById(R.id.layout_logo_baidu);
+        mIvAdBaidu = mRootView.findViewById(R.id.iv_ad);
+        mIvLogoBaidu = mRootView.findViewById(R.id.iv_logo_baidu);
         mTvLogoCsj = mRootView.findViewById(R.id.mTvLogoCsj);
 
         setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());

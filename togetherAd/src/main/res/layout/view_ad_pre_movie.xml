@@ -101,11 +101,10 @@
         common logo
     -->
     <include
-        layout="@layout/layout_ad_logo"
+        layout="@layout/layout_ad_logo_baidu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="3dp"
+        android:layout_gravity="bottom|end"
         android:visibility="gone" />
 
     <!--
@@ -113,10 +112,10 @@
     -->
     <ImageView
         android:id="@+id/mTvLogoCsj"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="45dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_ad_logo_csj"
         android:layout_gravity="right|bottom"
-        android:layout_marginRight="10dp"
         android:visibility="gone" />
 
 </com.qq.e.ads.nativ.widget.NativeAdContainer>

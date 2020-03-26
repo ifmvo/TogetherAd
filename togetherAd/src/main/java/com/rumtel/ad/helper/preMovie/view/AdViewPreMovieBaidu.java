@@ -64,6 +64,8 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 mAd = arg0.get(0);
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAd.getTitle());
+                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvAdBaidu, mAd.getAdLogoUrl());
+                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvLogoBaidu, mAd.getBaiduLogoUrl());
                 if (stop) {
                     return;
                 }
@@ -72,7 +74,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
                     @Override
                     public boolean onLoadCompleted(Drawable drawable) {
-                        mTvLogoCommon.setVisibility(View.VISIBLE);
+                        mLayoutLogoBaidu.setVisibility(View.VISIBLE);
                         // 警告：调用该函数来发送展现，勿漏！
                         mAd.recordImpression(mRootView);
                         mRootView.setOnClickListener(new OnClickListener() {

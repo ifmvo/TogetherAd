@@ -244,6 +244,9 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val mImgPoster = helper.getView<ImageView>(R.id.img_poster)
         val mLlSuper = helper.getView<LinearLayout>(R.id.ll_super)
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
+        val mIvLogo = helper.getView<ImageView>(R.id.iv_logo)
+        val mIvAd = helper.getView<ImageView>(R.id.iv_ad)
+
 
         val layoutParams = mImgPoster?.layoutParams
         layoutParams?.height = itemIvH
@@ -251,6 +254,9 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val adObject = item.adObject
 
         if (adObject is NativeResponse) {
+
+            ILFactory.getLoader().load(mContext, mIvLogo, adObject.baiduLogoUrl, LoaderOptions())
+            ILFactory.getLoader().load(mContext, mIvAd, adObject.adLogoUrl, LoaderOptions())
             mTvTitle?.text = adObject.title
             ILFactory.getLoader().load(mContext, mImgPoster, adObject.imageUrl, LoaderOptions())
             mLlSuper?.setOnClickListener {
@@ -286,6 +292,8 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val adObject = item.adObject
 
         if (adObject is TTFeedAd) {
+            Log.d("ifmvo", adObject.icon.imageUrl)
+
             mIvAdLogo.setImageBitmap(adObject.adLogo)
             // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
             val clickViewList = mutableListOf<View>()
