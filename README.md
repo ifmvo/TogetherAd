@@ -90,6 +90,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v2.0.5 
+1. 添加了一个自定义 AdLogoView 方便管理各个平台广告的标示
+
 v2.0.3
 1. 广告标示：百度是用SDK && 穿山甲添加"广告"文字标示
 
