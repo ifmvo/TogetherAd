@@ -244,7 +244,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val mImgPoster = helper.getView<ImageView>(R.id.img_poster)
         val mLlSuper = helper.getView<LinearLayout>(R.id.ll_super)
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
-        val mIvLogo = helper.getView<ImageView>(R.id.iv_logo)
+        val mIvLogo = helper.getView<ImageView>(R.id.iv_logo_baidu)
         val mIvAd = helper.getView<ImageView>(R.id.iv_ad)
 
 
@@ -284,7 +284,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         //标题和描述
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
         val mTvDesc = helper.getView<TextView>(R.id.tv_desc)
-        val mIvAdLogo = helper.getView<ImageView>(R.id.iv_csj_logo)
 
         val layoutParams = mFlParent?.layoutParams
         layoutParams?.height = itemIvH
@@ -294,7 +293,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         if (adObject is TTFeedAd) {
             Log.d("ifmvo", adObject.icon.imageUrl)
 
-            mIvAdLogo.setImageBitmap(adObject.adLogo)
             // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
             val clickViewList = mutableListOf<View>()
             clickViewList.add(mLlSuper)
@@ -337,36 +335,6 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
                     if (videoCoverImage != null && videoCoverImage.imageUrl != null) {
                         ILFactory.getLoader().load(mContext, mImgPoster0, videoCoverImage.imageUrl)
                     }
-
-//                    mLlAdContainer.visibility = View.GONE
-//                    mFlVideoContainer.visibility = View.VISIBLE
-//                    val video = adObject.adView
-//                    if (video != null && video.parent == null) {
-//                        mFlVideoContainer.removeAllViews()
-//                        mFlVideoContainer.addView(video)
-//                        adObject.setVideoAdListener(object : TTFeedAd.VideoAdListener {
-//                            override fun onVideoLoad(ad: TTFeedAd) {
-//                                Log.e("ifmvo", "onVideoLoad")
-//                            }
-//
-//                            override fun onVideoError(errorCode: Int, extraCode: Int) {
-//                                Log.e("ifmvo", "onVideoError")
-//                            }
-//
-//                            override fun onVideoAdStartPlay(ad: TTFeedAd) {
-//                                Log.e("ifmvo", "onVideoAdStartPlay")
-//                            }
-//
-//                            override fun onVideoAdPaused(ad: TTFeedAd) {
-//                                Log.e("ifmvo", "onVideoAdPaused")
-//                            }
-//
-//                            override fun onVideoAdContinuePlay(ad: TTFeedAd) {
-//                                //因为点击广告后返回来，出现了黑屏的情况，所以这里当继续播放的时候就刷新一下这个广告，初始化这个广告的状态
-////                                mAdapter.notifyItemChanged(helper.adapterPosition)
-//                            }
-//                        })
-//                    }
                 }
                 //单个图片的类型
                 TTAdConstant.IMAGE_MODE_LARGE_IMG, TTAdConstant.IMAGE_MODE_SMALL_IMG, TTAdConstant.IMAGE_MODE_VERTICAL_IMG -> {

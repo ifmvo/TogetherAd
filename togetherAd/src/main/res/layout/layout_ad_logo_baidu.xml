@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/iv_logo_baidu"
-        android:layout_width="13dp"
-        android:layout_height="13dp" />
+        android:layout_width="15dp"
+        android:layout_height="15dp" />
 
     <ImageView
         android:id="@+id/iv_ad"
-        android:layout_width="26dp"
-        android:layout_height="13dp" />
+        android:layout_width="30dp"
+        android:layout_height="15dp" />
 
 </LinearLayout>

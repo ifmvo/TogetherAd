@@ -26,23 +26,7 @@
             android:textSize="14sp"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_logo"
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <ImageView
-                android:id="@+id/iv_ad"
-                android:layout_width="20dp"
-                android:layout_height="10dp" />
-
-        </LinearLayout>
+        <include layout="@layout/layout_ad_logo_baidu"/>
 
     </FrameLayout>
 

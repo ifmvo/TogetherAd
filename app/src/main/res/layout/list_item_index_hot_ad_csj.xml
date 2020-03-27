@@ -45,13 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <ImageView
-                android:id="@+id/iv_csj_logo"
-                android:layout_width="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right|bottom"/>
+        <include layout="@layout/layout_ad_logo_csj"/>
 
     </FrameLayout>
 
