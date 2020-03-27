@@ -72,14 +72,11 @@
             android:paddingBottom="5dp"
             android:src="@mipmap/ad_close" />
 
-        <!--
-            广告标示
-        -->
-        <include
-            layout="@layout/layout_ad_logo_baidu"
-            android:layout_gravity="end|bottom"
+        <com.rumtel.ad.AdLogoView
+            android:id="@+id/ad_logo_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom" />
 
     </FrameLayout>
 

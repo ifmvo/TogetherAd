@@ -29,7 +29,9 @@ import com.qq.e.ads.nativ.NativeUnifiedADData
 import com.qq.e.ads.nativ.widget.NativeAdContainer
 import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
+import com.rumtel.ad.AdLogoView
 import com.rumtel.ad.helper.flow.TogetherAdFlow
+import com.rumtel.ad.other.AdNameType
 
 
 /*
@@ -244,8 +246,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         val mImgPoster = helper.getView<ImageView>(R.id.img_poster)
         val mLlSuper = helper.getView<LinearLayout>(R.id.ll_super)
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
-        val mIvLogo = helper.getView<ImageView>(R.id.iv_logo_baidu)
-        val mIvAd = helper.getView<ImageView>(R.id.iv_ad)
+        val mAdLogoView = helper.getView<AdLogoView>(R.id.ad_logo_view)
 
 
         val layoutParams = mImgPoster?.layoutParams
@@ -255,8 +256,8 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
 
         if (adObject is NativeResponse) {
 
-            ILFactory.getLoader().load(mContext, mIvLogo, adObject.baiduLogoUrl, LoaderOptions())
-            ILFactory.getLoader().load(mContext, mIvAd, adObject.adLogoUrl, LoaderOptions())
+            mAdLogoView.setAdLogoType(AdNameType.BAIDU, adObject)
+
             mTvTitle?.text = adObject.title
             ILFactory.getLoader().load(mContext, mImgPoster, adObject.imageUrl, LoaderOptions())
             mLlSuper?.setOnClickListener {
@@ -284,6 +285,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         //标题和描述
         val mTvTitle = helper.getView<TextView>(R.id.tv_title)
         val mTvDesc = helper.getView<TextView>(R.id.tv_desc)
+        val mAdLogoView = helper.getView<AdLogoView>(R.id.ad_logo_view)
 
         val layoutParams = mFlParent?.layoutParams
         layoutParams?.height = itemIvH
@@ -301,8 +303,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             val creativeViewList = mutableListOf<View>()
             creativeViewList.add(mLlSuper)
             // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-            adObject.registerViewForInteraction(mLlSuper, clickViewList, creativeViewList,
-                    object : TTNativeAd.AdInteractionListener {
+            adObject.registerViewForInteraction(mLlSuper, clickViewList, creativeViewList, object : TTNativeAd.AdInteractionListener {
                         override fun onAdClicked(view: View, ad: TTNativeAd) {
                             // 点击普通区域的回调
                             Toast.makeText(mContext, "广告被点击", Toast.LENGTH_SHORT).show()
@@ -321,6 +322,7 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
 
             mTvTitle.text = adObject.title
             mTvDesc.text = adObject.description
+            mAdLogoView.setAdLogoType(AdNameType.CSJ, adObject)
             Log.e("ifmvo", "adObject.imageMode: ${adObject.imageMode}")
             when (adObject.imageMode) {
                 //视频类型

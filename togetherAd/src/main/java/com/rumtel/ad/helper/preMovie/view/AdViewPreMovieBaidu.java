@@ -14,6 +14,7 @@ import com.baidu.mobad.feeds.RequestParameters;
 import com.ifmvo.imageloader.ILFactory;
 import com.ifmvo.imageloader.LoadListener;
 import com.ifmvo.imageloader.progress.LoaderOptions;
+import com.rumtel.ad.other.AdNameType;
 
 import java.util.List;
 
@@ -64,8 +65,6 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 mAd = arg0.get(0);
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAd.getTitle());
-                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvAdBaidu, mAd.getAdLogoUrl());
-                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvLogoBaidu, mAd.getBaiduLogoUrl());
                 if (stop) {
                     return;
                 }
@@ -74,7 +73,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
                     @Override
                     public boolean onLoadCompleted(Drawable drawable) {
-                        mLayoutLogoBaidu.setVisibility(View.VISIBLE);
+                        mAdLogoView.setAdLogoType(AdNameType.BAIDU, mAd);
                         // 警告：调用该函数来发送展现，勿漏！
                         mAd.recordImpression(mRootView);
                         mRootView.setOnClickListener(new OnClickListener() {

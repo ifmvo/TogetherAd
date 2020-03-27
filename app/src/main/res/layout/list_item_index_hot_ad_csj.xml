@@ -1,83 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/ll_super"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_super"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <FrameLayout
-            android:id="@+id/fl_parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:id="@+id/fl_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-                android:id="@+id/ll_ad_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:id="@+id/ll_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                    android:id="@+id/img_poster1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"/>
+                android:id="@+id/img_poster1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
 
             <ImageView
-                    android:id="@+id/img_poster2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"/>
+                android:id="@+id/img_poster2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
 
             <ImageView
-                    android:id="@+id/img_poster3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"/>
+                android:id="@+id/img_poster3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
 
         </LinearLayout>
 
         <FrameLayout
-                android:scaleType="centerCrop"
-                android:id="@+id/fl_ad_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/fl_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop" />
 
-        <include layout="@layout/layout_ad_logo_csj"/>
+        <com.rumtel.ad.AdLogoView
+            android:id="@+id/ad_logo_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom" />
 
     </FrameLayout>
 
     <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/c_txt_1"
+            android:textSize="16sp"
+            tools:text="adfadfasdfadsfadsfasdfkadf" />
 
         <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textColor="@color/c_txt_1"
-                android:textSize="16sp"
-                tools:text="adfadfasdfadsfadsfasdfkadf"/>
-
-        <TextView
-                android:id="@+id/tv_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/c_txt_2"
-                android:textSize="12sp"
-                tools:text="adfadfadadfadfsfadsf"/>
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/c_txt_2"
+            android:textSize="12sp"
+            tools:text="adfadfadadfadfsfadsf" />
 
     </LinearLayout>
 

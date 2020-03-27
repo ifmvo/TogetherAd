@@ -26,7 +26,6 @@
             android:id="@+id/mFlAdBannerContainer"
             android:layout_width="match_parent"
             android:layout_gravity="bottom"
-            android:background="@color/c_red"
             android:layout_marginBottom="100dp"
             android:layout_height="wrap_content"/>
 

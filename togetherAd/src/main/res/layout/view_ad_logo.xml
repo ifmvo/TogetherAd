@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--
+        百度的
+    -->
+    <LinearLayout
+        android:id="@+id/container_logo_baidu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_logo_baidu"
+            android:layout_width="15dp"
+            android:layout_height="15dp" />
+
+        <ImageView
+            android:id="@+id/img_ad"
+            android:layout_width="30dp"
+            android:layout_height="15dp" />
+
+    </LinearLayout>
+
+    <!--
+        穿山甲
+    -->
+    <LinearLayout
+        android:id="@+id/container_logo_csj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_logo_csj"
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_ad_logo_csj" />
+
+    </LinearLayout>
+
+</FrameLayout>

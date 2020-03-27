@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.qq.e.ads.nativ.MediaView;
 import com.qq.e.ads.nativ.widget.NativeAdContainer;
+import com.rumtel.ad.AdLogoView;
 import com.rumtel.ad.R;
 import com.rumtel.ad.TogetherAd;
 
@@ -47,11 +48,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
     /**
      * 广告标示
      */
-    ViewGroup mLayoutLogoBaidu;//百度标示有两个部分
-    ImageView mIvLogoBaidu;//百度的logo
-    ImageView mIvAdBaidu;//"广告"两个字
-
-    ImageView mTvLogoCsj;//穿山甲的logo
+    AdLogoView mAdLogoView;
 
     TimerCount mTimerCount;
 
@@ -98,10 +95,7 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
         mFlDesc = mRootView.findViewById(R.id.fl_desc);
 
         //广告标示
-        mLayoutLogoBaidu = mRootView.findViewById(R.id.layout_logo_baidu);
-        mIvAdBaidu = mRootView.findViewById(R.id.iv_ad);
-        mIvLogoBaidu = mRootView.findViewById(R.id.iv_logo_baidu);
-        mTvLogoCsj = mRootView.findViewById(R.id.mTvLogoCsj);
+        mAdLogoView = mRootView.findViewById(R.id.ad_logo_view);
 
         setPadding(mTextCountDown, TogetherAd.INSTANCE.getPreMoivePaddingSize());
     }

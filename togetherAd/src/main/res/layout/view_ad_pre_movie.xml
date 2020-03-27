@@ -97,25 +97,10 @@
 
     </FrameLayout>
 
-    <!--
-        common logo
-    -->
-    <include
-        layout="@layout/layout_ad_logo_baidu"
+    <com.rumtel.ad.AdLogoView
+        android:id="@+id/ad_logo_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:visibility="gone" />
-
-    <!--
-        csj logo
-    -->
-    <ImageView
-        android:id="@+id/mTvLogoCsj"
-        android:layout_width="45dp"
-        android:layout_height="15dp"
-        android:src="@drawable/ic_ad_logo_csj"
-        android:layout_gravity="right|bottom"
-        android:visibility="gone" />
+        android:layout_gravity="end|bottom" />
 
 </com.qq.e.ads.nativ.widget.NativeAdContainer>

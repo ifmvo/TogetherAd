@@ -205,7 +205,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                             }
                             break;
                     }
-                    mTvLogoCsj.setVisibility(View.VISIBLE);
+                    mAdLogoView.setAdLogoType(AdNameType.CSJ, adObject);
 //                    mTvLogoCsj.setImageBitmap(adObject.getAdLogo());
 
                     if (adViewListener != null) {

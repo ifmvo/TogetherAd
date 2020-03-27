@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.NonNull
 import android.util.DisplayMetrics
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,6 +19,7 @@ import com.ifmvo.imageloader.progress.LoaderOptions
 import com.qq.e.ads.banner2.UnifiedBannerADListener
 import com.qq.e.ads.banner2.UnifiedBannerView
 import com.qq.e.comm.util.AdError
+import com.rumtel.ad.AdLogoView
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
 import com.rumtel.ad.helper.AdBase
@@ -73,17 +73,13 @@ object TogetherAdBanner : AdBase() {
                 val superView = View.inflate(activity, R.layout.layout_banner_view, null)
                 val ivImage = superView.findViewById<ImageView>(R.id.iv_img)
                 val ivClose = superView.findViewById<ImageView>(R.id.iv_close)
-                val layoutLogoBaidu = superView.findViewById<ViewGroup>(R.id.layout_logo_baidu)
-                val ivLogoBaidu = superView.findViewById<ImageView>(R.id.iv_logo_baidu)
-                val ivLogoAd = superView.findViewById<ImageView>(R.id.iv_ad)
+                val adLogoView = superView.findViewById<AdLogoView>(R.id.ad_logo_view)
                 val tvTitle = superView.findViewById<TextView>(R.id.tv_title)
                 val tvDesc = superView.findViewById<TextView>(R.id.tv_desc)
 
                 tvTitle.text = adItem.title
                 tvDesc.text = adItem.desc
-                layoutLogoBaidu.visibility = View.VISIBLE
-                ILFactory.getLoader().load(activity, ivLogoBaidu, adItem.baiduLogoUrl)
-                ILFactory.getLoader().load(activity, ivLogoAd, adItem.adLogoUrl)
+                adLogoView.setAdLogoType(AdNameType.BAIDU, adItem)
 
                 adContainer.visibility = View.VISIBLE
                 if (adContainer.childCount > 0) {
