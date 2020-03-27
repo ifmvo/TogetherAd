@@ -54,7 +54,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
             @Override
             public void onNativeLoad(List<NativeResponse> arg0) {
                 // 一个广告只允许展现一次，多次展现、点击只会计入一次
-                if (arg0 == null || arg0.size() == 0) {
+                if (arg0 == null || arg0.size() == 0 || arg0.get(0) == null) {
                     if (adViewListener != null) {
                         adViewListener.onAdFailed("没有广告了：百度");
                     }
@@ -63,6 +63,7 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
 
                 // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
                 mAd = arg0.get(0);
+
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAd.getTitle());
                 if (stop) {
@@ -75,7 +76,9 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                     public boolean onLoadCompleted(Drawable drawable) {
                         mAdLogoView.setAdLogoType(AdNameType.BAIDU, mAd);
                         // 警告：调用该函数来发送展现，勿漏！
-                        mAd.recordImpression(mRootView);
+                        if (mAd != null) {
+                            mAd.recordImpression(mRootView);
+                        }
                         mRootView.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View view) {
