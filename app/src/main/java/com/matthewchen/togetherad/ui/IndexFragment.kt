@@ -257,6 +257,8 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
         if (adObject is NativeResponse) {
 
             mAdLogoView.setAdLogoType(AdNameType.BAIDU, adObject)
+            Log.d("ifmvo", adObject.baiduLogoUrl)
+            Log.d("ifmvo", adObject.adLogoUrl)
 
             mTvTitle?.text = adObject.title
             ILFactory.getLoader().load(mContext, mImgPoster, adObject.imageUrl, LoaderOptions())
@@ -304,21 +306,21 @@ class IndexFragment : BaseRecyclerViewFragment<IndexMultiItemBean, BaseViewHolde
             creativeViewList.add(mLlSuper)
             // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
             adObject.registerViewForInteraction(mLlSuper, clickViewList, creativeViewList, object : TTNativeAd.AdInteractionListener {
-                        override fun onAdClicked(view: View, ad: TTNativeAd) {
-                            // 点击普通区域的回调
-                            Toast.makeText(mContext, "广告被点击", Toast.LENGTH_SHORT).show()
-                        }
+                override fun onAdClicked(view: View, ad: TTNativeAd) {
+                    // 点击普通区域的回调
+                    Toast.makeText(mContext, "广告被点击", Toast.LENGTH_SHORT).show()
+                }
 
-                        override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
-                            // 点击创意区域的回调
-                            Toast.makeText(mContext, "广告创意按钮被点击", Toast.LENGTH_SHORT).show()
-                        }
+                override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
+                    // 点击创意区域的回调
+                    Toast.makeText(mContext, "广告创意按钮被点击", Toast.LENGTH_SHORT).show()
+                }
 
-                        override fun onAdShow(ad: TTNativeAd) {
-                            // 广告曝光展示的回调
-                            Toast.makeText(mContext, "广告" + ad.title + "展示", Toast.LENGTH_SHORT).show()
-                        }
-                    })
+                override fun onAdShow(ad: TTNativeAd) {
+                    // 广告曝光展示的回调
+                    Toast.makeText(mContext, "广告" + ad.title + "展示", Toast.LENGTH_SHORT).show()
+                }
+            })
 
             mTvTitle.text = adObject.title
             mTvDesc.text = adObject.description
