@@ -1,60 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <!--
             前贴广告的容器
         -->
         <FrameLayout
-                android:id="@+id/ll_ad"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            android:id="@+id/ll_ad"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
 
-    </FrameLayout>
-
-    <!--
-        banner
-    -->
-    <FrameLayout
+        <!--
+            banner
+        -->
+        <FrameLayout
             android:id="@+id/mFlAdBannerContainer"
             android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="100dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp" />
 
-    <LinearLayout
+        <!--
+            Mid
+        -->
+        <FrameLayout
+            android:id="@+id/mFlAdMidContainer"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom|center"
-            android:layout_height="wrap_content">
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/mBtnPreMoive"
-                android:text="前贴"/>
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/mBtnInter"
-                android:text="插屏"/>
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/mBtnWebPlay2"
-                android:text="Banner2"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -62,8 +40,47 @@
         插屏广告的容器
     -->
     <RelativeLayout
-            android:id="@+id/mRlInterAd"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:id="@+id/mRlInterAd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+        底部按钮
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mBtnPreMoive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="前贴" />
+
+        <Button
+            android:id="@+id/mBtnInter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="插屏" />
+
+        <Button
+            android:id="@+id/mBtnWebPlay2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Banner2" />
+
+        <Button
+            android:id="@+id/mBtnMid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mid" />
+
+    </LinearLayout>
 
 </FrameLayout>

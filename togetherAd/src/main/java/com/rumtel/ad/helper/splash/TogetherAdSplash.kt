@@ -29,7 +29,7 @@ import com.rumtel.ad.other.loge
 import java.util.*
 
 /* 
- * (●ﾟωﾟ●) 开屏的广告
+ * (●ﾟωﾟ●) 开屏的广告 （ 打开应用的时候展示 ）
  * 
  * Created by Matthew_Chen on 2018/12/24.
  */

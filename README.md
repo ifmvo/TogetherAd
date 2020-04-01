@@ -90,6 +90,9 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v2.0.7 
+1. 添加了一种在界面中间显示的类型，TogetherAdMid
+
 v2.0.5 
 1. 添加了一个自定义 AdLogoView 方便管理各个平台广告的标示
 

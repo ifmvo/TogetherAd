@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 /* 
- * (●ﾟωﾟ●) 前贴的广告
+ * (●ﾟωﾟ●) 前贴的广告 （ 视频播放之前展示、可配置是否倒计时 ）
  * 
  * Created by Matthew_Chen on 2018/8/17.
  */

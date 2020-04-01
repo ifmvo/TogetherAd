@@ -22,6 +22,7 @@ class App : Application() {
         baiduIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "6697116"
         baiduIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "6697141"
         baiduIdMap[TogetherAdConst.AD_BACK] = "6697152"
+        baiduIdMap[TogetherAdConst.AD_MID] = "6697152"
         TogetherAd.initBaiduAd(this, "c4d4e71f", baiduIdMap)
 
         val gdtIdMap = HashMap<String, String>()
@@ -29,8 +30,9 @@ class App : Application() {
         gdtIdMap[TogetherAdConst.AD_INTER] = "4061006419774284"
         gdtIdMap[TogetherAdConst.AD_FLOW_INDEX] = "6041707449579237"
         gdtIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "3031506499071361"
-        gdtIdMap[TogetherAdConst.AD_BACK] = "8021700419077347"
         gdtIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "3050767842595815"
+        gdtIdMap[TogetherAdConst.AD_BACK] = "8021700419077347"
+        gdtIdMap[TogetherAdConst.AD_MID] = "8021700419077347"
         TogetherAd.initGDTAd(this, "1105965856", gdtIdMap)
 
         val csjIdMap = HashMap<String, String>()
@@ -40,6 +42,7 @@ class App : Application() {
         csjIdMap[TogetherAdConst.AD_TIEPIAN_LIVE] = "920413238"
         csjIdMap[TogetherAdConst.AD_WEBVIEW_BANNER] = "920413358"
         csjIdMap[TogetherAdConst.AD_BACK] = "920413512"
+        csjIdMap[TogetherAdConst.AD_MID] = "920413056"
         TogetherAd.initCsjAd(this, "5020413", this.getString(R.string.app_name), csjIdMap, useTextureView = true)
 
         TogetherAd.setAdTimeOutMillis(5000)

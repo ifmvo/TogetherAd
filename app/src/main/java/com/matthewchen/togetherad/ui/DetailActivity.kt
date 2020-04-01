@@ -10,6 +10,7 @@ import com.matthewchen.togetherad.config.Config
 import com.matthewchen.togetherad.config.TogetherAdConst
 import com.rumtel.ad.helper.banner.TogetherAdBanner
 import com.rumtel.ad.helper.inter.TogetherAdInter
+import com.rumtel.ad.helper.mid.TogetherAdMid
 import com.rumtel.ad.helper.preMovie.TogetherAdPreMovie
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -36,6 +37,10 @@ class DetailActivity : AppCompatActivity() {
 
         mBtnWebPlay2.setOnClickListener {
             webViewBanner2()
+        }
+
+        mBtnMid.setOnClickListener {
+            midAd()
         }
     }
 
@@ -114,21 +119,48 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
+    private fun midAd() {
+        TogetherAdMid.showAdMid(this, Config.midAdConfig(), TogetherAdConst.AD_MID, mFlAdMidContainer, object : TogetherAdMid.AdListenerMid {
+            override fun onStartRequest(channel: String) {
+                Log.d("ifmvo", "TogetherAdMid.onStartRequest")
+            }
+
+            override fun onAdClick(channel: String) {
+                Log.d("ifmvo", "TogetherAdMid.onAdClick")
+            }
+
+            override fun onAdFailed(failedMsg: String?) {
+                Log.d("ifmvo", "TogetherAdMid.onAdFailed")
+            }
+
+            override fun onAdDismissed() {
+                Log.d("ifmvo", "TogetherAdMid.onAdDismissed")
+            }
+
+            override fun onAdPrepared(channel: String) {
+                Log.d("ifmvo", "TogetherAdMid.onAdPrepared")
+            }
+        })
+    }
+
     override fun onPause() {
         super.onPause()
         TogetherAdPreMovie.pause()
         TogetherAdInter.pause()
+        TogetherAdMid.pause()
     }
 
     override fun onResume() {
         super.onResume()
         TogetherAdPreMovie.resume()
         TogetherAdInter.resume()
+        TogetherAdMid.resume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         TogetherAdPreMovie.destroy()
         TogetherAdInter.destroy()
+        TogetherAdMid.destroy()
     }
 }

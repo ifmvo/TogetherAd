@@ -17,4 +17,6 @@ object Config {
 
     fun webViewAdConfig() = "baidu:1,gdt:0,csj:0"
 
+    fun midAdConfig() = "baidu:1,gdt:1,csj:1"
+
 }
