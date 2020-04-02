@@ -7,6 +7,9 @@ TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告�
 1. https://developers.adnet.qq.com/backend/error_code.html  （ 错误码对照 ）
 2. https://developers.adnet.qq.com/doc/android/union/union_debug#sdk%20%E9%94%99%E8%AF%AF%E7%A0%81
 
+- 穿山甲的文档
+1. http://partner.toutiao.com/doc?id=5de4cc6d78c8690012a90aa5   （ 错误码对照 ）
+
 ### 目前支持的广告
 百度Mob、腾讯GDT、穿山甲
 
