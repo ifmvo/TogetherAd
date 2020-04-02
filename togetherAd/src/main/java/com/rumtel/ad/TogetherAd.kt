@@ -1,7 +1,7 @@
 package com.rumtel.ad
 
 import android.app.Application
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.baidu.mobads.AdView
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant

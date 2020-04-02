@@ -2,21 +2,21 @@ package com.matthewchen.togetherad.base
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.utils.CommonItemDecoration
 import com.matthewchen.togetherad.utils.Kits
-import com.matthewchen.togetherad.R
 
 /*
  * (●ﾟωﾟ●)
@@ -152,7 +152,8 @@ abstract class BaseRecyclerViewFragment<T, P : BaseViewHolder> : LazyFragment() 
     /**
      * 提供重写
      */
-    open fun getRecyclerViewLayoutManager() = LinearLayoutManager(mContext)
+    open fun getRecyclerViewLayoutManager() =
+        LinearLayoutManager(mContext)
 
     /**
      * 提供重写

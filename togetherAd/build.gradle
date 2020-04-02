@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 1//更新版本的当天日期
+        targetSdkVersion 29
+        versionCode 1
         versionName "1.0.0"
     }
 
@@ -21,7 +21,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     //ImageLoader
     implementation 'com.github.ifmvo:Matthew_ImageLoader:1.1.4'
@@ -29,5 +29,5 @@ dependencies {
 
     //穿山甲用到
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
-    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
 }

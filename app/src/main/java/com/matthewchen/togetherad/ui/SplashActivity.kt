@@ -1,7 +1,7 @@
 package com.matthewchen.togetherad.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.matthewchen.togetherad.R
 import com.matthewchen.togetherad.config.Config

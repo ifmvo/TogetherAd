@@ -1,7 +1,7 @@
 package com.rumtel.ad.helper.flow
 
 import android.app.Activity
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.util.DisplayMetrics
 import com.baidu.mobad.feeds.BaiduNative
 import com.baidu.mobad.feeds.NativeErrorCode

@@ -52,7 +52,7 @@
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <!-- targetSDKVersion >= 24时才需要添加这个provider。provider的authorities属性的值为${applicationId}.fileprovider，请开发者根据自己的${applicationId}来设置这个值 -->
         <provider
-                android:name="android.support.v4.content.FileProvider"
+                android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.fileprovider"
                 android:exported="false"
                 android:grantUriPermissions="true">

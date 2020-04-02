@@ -8,11 +8,11 @@ InputStream inputStream = project.rootProject.file('local.properties').newDataIn
 properties.load(inputStream)
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.rumtel.pandatv"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -54,14 +54,15 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
 //    implementation 'com.github.ifmvo:TogetherAd:1.1.7'
     implementation project(':togetherAd')
-//    implementation(name: 'TogetherAd-1.1.4', ext: 'aar')
     //权限申请
     implementation 'com.lovedise:permissiongen:0.0.6'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.github.ifmvo:Matthew_ImageLoader:1.1.3'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.49-androidx'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.github.ifmvo:Matthew_ImageLoader:1.1.4'
 }
