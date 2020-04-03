@@ -1,2 +1,2 @@
-include ':app', ':core', ':gdt', ':csj', ':baidu'
+include ':app', ':core', ':gdt', ':csj', ':baidu', ':demo'
 include ':togetherAd'

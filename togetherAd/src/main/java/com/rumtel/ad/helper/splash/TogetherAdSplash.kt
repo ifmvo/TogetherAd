@@ -78,60 +78,7 @@ object TogetherAdSplash : AdBase() {
      * 腾讯广点通
      */
     private fun showAdFullGDT(@NonNull activity: Activity, splashConfigStr: String?, @NonNull adConstStr: String, @NonNull adsParentLayout: ViewGroup, skipView: View?, timeView: TextView?, @NonNull adListener: AdListenerSplashFull) {
-        adListener.onStartRequest(AdNameType.GDT.type)
-        val splash = SplashAD(activity, skipView, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], object : SplashADListener {
-            override fun onADDismissed() {
-                adListener.onAdDismissed()
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
-                /*timer?.cancel()
-                timerTask?.cancel()*/
-            }
 
-            override fun onNoAD(adError: AdError) {
-                if (stop) {
-                    return
-                }
-                cancelTimerTask()
-                loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
-                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
-                showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, skipView, timeView, adListener)
-            }
-
-            override fun onADPresent() {
-                if (stop) {
-                    return
-                }
-                activity.runOnUiThread {
-                    skipView?.visibility = View.VISIBLE
-                }
-                cancelTimerTask()
-
-                adListener.onAdPrepared(AdNameType.GDT.type)
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
-            }
-
-            override fun onADClicked() {
-                adListener.onAdClick(AdNameType.GDT.type)
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
-                /*timer?.cancel()
-                timerTask?.cancel()*/
-            }
-
-            override fun onADTick(l: Long) {
-                logd("${AdNameType.GDT.type}: 倒计时: ${l / 1000 + 1}")
-                activity.runOnUiThread {
-                    timeView?.text = (l / 1000 + 1).toString()
-                }
-            }
-
-            override fun onADExposure() {
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
-            }
-
-            override fun onADLoaded(p0: Long) {}
-        }, 0)
-
-        splash.fetchAndShowIn(adsParentLayout)
     }
 
     /**
