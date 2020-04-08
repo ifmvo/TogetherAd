@@ -9,6 +9,7 @@ import com.ifmvo.togetherad.core.listener.CommonListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
+import com.qq.e.comm.util.AdError
 
 /* 
  * (●ﾟωﾟ●)
@@ -21,10 +22,10 @@ class GdtProvider : BaseAdProvider() {
 
     override fun showSplashAd(activity: Activity, alias: String, radio: String?, container: ViewGroup, listener: CommonListener) {
         listener.onStartRequest(adProviderType)
-        val splash = SplashAD(activity, skipView, TogetherAd.appIdGDT, TogetherAd.idMapGDT[adConstStr], object : SplashADListener {
+        val splash = SplashAD(activity, skipView, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
             override fun onADDismissed() {
-                listener.onAdDismissed()
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.dismiss)}")
+                listener.onAdDismissed(adProviderType)
+                logd("${adProviderType}: ${activity.getString(R.string.dismiss)}")
                 /*timer?.cancel()
                 timerTask?.cancel()*/
             }
@@ -34,8 +35,8 @@ class GdtProvider : BaseAdProvider() {
                     return
                 }
                 cancelTimerTask()
-                loge("${AdNameType.GDT.type}: ${adError.errorMsg}")
-                val newConfigPreMovie = splashConfigStr?.replace(AdNameType.GDT.type, AdNameType.NO.type)
+                loge("${adProviderType}: ${adError.errorMsg}")
+                val newConfigPreMovie = splashConfigStr?.replace(adProviderType, AdProviderType.NO.type)
                 showAdFull(activity, newConfigPreMovie, adConstStr, adsParentLayout, skipView, timeView, listener)
             }
 
@@ -48,32 +49,32 @@ class GdtProvider : BaseAdProvider() {
                 }
                 cancelTimerTask()
 
-                listener.onAdPrepared(AdNameType.GDT.type)
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.prepared)}")
+                listener.onAdPrepared(AdProviderType.GDT)
+                logd("${AdProviderType.GDT}: ${activity.getString(R.string.prepared)}")
             }
 
             override fun onADClicked() {
-                listener.onAdClick(AdNameType.GDT.type)
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.clicked)}")
+                listener.onAdClick(AdProviderType.GDT)
+                logd("${AdProviderType.GDT}: ${activity.getString(R.string.clicked)}")
                 /*timer?.cancel()
                 timerTask?.cancel()*/
             }
 
             override fun onADTick(l: Long) {
-                logd("${AdNameType.GDT.type}: 倒计时: ${l / 1000 + 1}")
-                activity.runOnUiThread {
-                    timeView?.text = (l / 1000 + 1).toString()
-                }
+                logd("${AdProviderType.GDT}: 倒计时: ${l / 1000 + 1}")
+//                activity.runOnUiThread {
+//                    timeView?.text = (l / 1000 + 1).toString()
+//                }
             }
 
             override fun onADExposure() {
-                logd("${AdNameType.GDT.type}: ${activity.getString(R.string.exposure)}")
+                logd("${AdProviderType.GDT}: ${activity.getString(R.string.exposure)}")
             }
 
             override fun onADLoaded(p0: Long) {}
         }, 0)
 
-        splash.fetchAndShowIn(adsParentLayout)
+        splash.fetchAndShowIn(container)
     }
 
     override fun getNativeAdList(activity: Activity, alias: String, radio: String?, listener: CommonListener) {
