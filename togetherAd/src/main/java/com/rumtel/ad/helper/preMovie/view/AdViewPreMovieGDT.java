@@ -85,6 +85,8 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAD.getTitle());
 
+                isVideoAd = mAD.getAdPatternType() == AdPatternType.NATIVE_VIDEO;
+
                 if (mAD.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT || mAD.getAdPatternType() == AdPatternType.NATIVE_3IMAGE) {
                     mLlAdContainer.setVisibility(View.VISIBLE);
                     mIvImg0.setVisibility(View.VISIBLE);

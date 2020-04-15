@@ -27,7 +27,8 @@ import com.rumtel.ad.TogetherAd;
  */
 public abstract class AdViewPreMovieBase extends FrameLayout {
 
-    protected Boolean needTimer = true;
+    protected boolean isVideoAd = false;
+    protected boolean needTimer = true;
 
     ViewGroup mRootView;
     NativeAdContainer nativeAdContainer;
@@ -176,6 +177,25 @@ public abstract class AdViewPreMovieBase extends FrameLayout {
             if (mTimerCount != null) {
                 mTimerCount.cancel();
             }
+            timerFinish();
+        }
+    }
+
+    private void timerFinish() {
+        if (isVideoAd) {
+            //是视频广告，显示关闭
+            mTextCountDown.setText("关闭");
+            mTextCountDown.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //点击关闭按钮消失
+                    if (adViewListener != null) {
+                        adViewListener.onAdDismissed();
+                    }
+                }
+            });
+        } else {
+            //不是视频广告的话，就直接消失
             if (adViewListener != null) {
                 adViewListener.onAdDismissed();
             }

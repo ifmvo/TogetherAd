@@ -126,6 +126,7 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                         case TTAdConstant.IMAGE_MODE_VIDEO:
                         case TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL:
 //                            if (needTimer) {
+                            isVideoAd = true;
                             adObject.setVideoAdListener(new TTFeedAd.VideoAdListener() {
 
                                 public void onProgressUpdate(long current, long duration) {
