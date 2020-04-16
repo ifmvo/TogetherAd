@@ -51,7 +51,8 @@ object TogetherAdPreMovie : AdBase() {
                 cancelTimerTask()
                 loge(activity.getString(R.string.all_ad_error))
                 adListener.onAdFailed(activity.getString(R.string.all_ad_error))
-                adsParentLayout.visibility = View.GONE
+                destroy()
+                adsParentLayout.removeAllViews()
                 return
             }
         }
@@ -94,20 +95,14 @@ object TogetherAdPreMovie : AdBase() {
                 }
 
                 activity.runOnUiThread {
-                    showAdPreMovie(
-                            activity,
-                            newConfigPreMovie,
-                            adConstStr,
-                            adsParentLayout,
-                            adListener,
-                            needTimer
-                    )
+                    showAdPreMovie(activity, newConfigPreMovie, adConstStr, adsParentLayout, adListener, needTimer)
                 }
             }
 
             override fun onAdDismissed() {
                 adListener.onAdDismissed()
-                adsParentLayout.visibility = View.GONE
+                destroy()
+                adsParentLayout.removeAllViews()
                 logd("$mChannel: ${activity.getString(R.string.dismiss)}")
             }
 

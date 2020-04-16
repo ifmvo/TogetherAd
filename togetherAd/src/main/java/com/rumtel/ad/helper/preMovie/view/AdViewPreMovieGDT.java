@@ -10,6 +10,7 @@ import com.ifmvo.imageloader.ILFactory;
 import com.ifmvo.imageloader.progress.LoaderOptions;
 import com.qq.e.ads.cfg.VideoOption;
 import com.qq.e.ads.nativ.NativeADEventListener;
+import com.qq.e.ads.nativ.NativeADMediaListener;
 import com.qq.e.ads.nativ.NativeADUnifiedListener;
 import com.qq.e.ads.nativ.NativeUnifiedAD;
 import com.qq.e.ads.nativ.NativeUnifiedADData;
@@ -85,6 +86,8 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 mFlDesc.setVisibility(View.VISIBLE);
                 mTvDesc.setText(mAD.getTitle());
 
+                isVideoAd = mAD.getAdPatternType() == AdPatternType.NATIVE_VIDEO;
+
                 if (mAD.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT || mAD.getAdPatternType() == AdPatternType.NATIVE_3IMAGE) {
                     mLlAdContainer.setVisibility(View.VISIBLE);
                     mIvImg0.setVisibility(View.VISIBLE);
@@ -123,7 +126,66 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
 
                 if (mAD.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
                     VideoOption videoOption = new VideoOption.Builder().setAutoPlayMuted(true).setAutoPlayPolicy(VideoOption.AutoPlayPolicy.ALWAYS).build();
-                    mAD.bindMediaView(mMediaView, videoOption, null);
+                    mAD.bindMediaView(mMediaView, videoOption, new NativeADMediaListener() {
+                        @Override
+                        public void onVideoInit() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoInit");
+                        }
+
+                        @Override
+                        public void onVideoLoading() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoLoading");
+                        }
+
+                        @Override
+                        public void onVideoReady() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoReady");
+                        }
+
+                        @Override
+                        public void onVideoLoaded(int i) {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoLoaded:" + i);
+                        }
+
+                        @Override
+                        public void onVideoStart() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoStart");
+                        }
+
+                        @Override
+                        public void onVideoPause() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoPause");
+                        }
+
+                        @Override
+                        public void onVideoResume() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoResume");
+                        }
+
+                        @Override
+                        public void onVideoCompleted() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoCompleted");
+                            //视频广告的情况下，播放完成之后，自动消失
+                            if (adViewListener != null) {
+                                adViewListener.onAdDismissed();
+                            }
+                        }
+
+                        @Override
+                        public void onVideoError(AdError adError) {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoError");
+                        }
+
+                        @Override
+                        public void onVideoStop() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoStop");
+                        }
+
+                        @Override
+                        public void onVideoClicked() {
+                            AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoClicked");
+                        }
+                    });
                     mAD.startVideo();
                 }
                 if (adViewListener != null) {

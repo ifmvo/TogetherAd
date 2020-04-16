@@ -93,6 +93,12 @@ dependencies {
 ![WeChat](img/Wechat.jpeg)
 
 ### 更新日志
+v2.0.9
+1. 前贴视频广告播放完成之后自动消失
+
+v2.0.8
+1. 前贴视频广告倒计时5秒之后出现关闭按钮
+
 v2.0.7 
 1. 添加了一种在界面中间显示的类型，TogetherAdMid
 
