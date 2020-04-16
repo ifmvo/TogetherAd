@@ -51,6 +51,7 @@ object TogetherAdPreMovie : AdBase() {
                 cancelTimerTask()
                 loge(activity.getString(R.string.all_ad_error))
                 adListener.onAdFailed(activity.getString(R.string.all_ad_error))
+                destroy()
                 adsParentLayout.removeAllViews()
                 return
             }
@@ -100,6 +101,7 @@ object TogetherAdPreMovie : AdBase() {
 
             override fun onAdDismissed() {
                 adListener.onAdDismissed()
+                destroy()
                 adsParentLayout.removeAllViews()
                 logd("$mChannel: ${activity.getString(R.string.dismiss)}")
             }

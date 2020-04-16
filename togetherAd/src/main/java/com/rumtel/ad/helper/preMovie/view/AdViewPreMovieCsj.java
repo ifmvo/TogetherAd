@@ -134,6 +134,10 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                                 public void onVideoAdComplete(TTFeedAd ad) {
                                     AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdComplete：" + ad.toString());
+                                    //视频广告的情况下，播放完成之后，自动消失
+                                    if (adViewListener != null) {
+                                        adViewListener.onAdDismissed();
+                                    }
                                 }
 
                                 @Override
@@ -148,14 +152,17 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                                 @Override
                                 public void onVideoAdStartPlay(TTFeedAd ttFeedAd) {
+                                    AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdContinuePlay");
                                 }
 
                                 @Override
                                 public void onVideoAdPaused(TTFeedAd ttFeedAd) {
+                                    AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdContinuePlay");
                                 }
 
                                 @Override
                                 public void onVideoAdContinuePlay(TTFeedAd ttFeedAd) {
+                                    AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdContinuePlay");
                                 }
                             });
                             mFlAdContainer.setVisibility(View.VISIBLE);
