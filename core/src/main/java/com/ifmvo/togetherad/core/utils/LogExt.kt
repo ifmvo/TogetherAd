@@ -7,14 +7,22 @@ import android.util.Log
  * 
  * Created by Matthew_Chen on 2018/12/24.
  */
-internal fun Any.logd(msg: String?) {
-    Log.d("TogetherAd", "${this.javaClass.simpleName}: $msg")
+fun String.logv(tag: String? = "TogetherAd") {
+    Log.v(tag, this)
 }
 
-internal fun Any.logi(msg: String?) {
-    Log.i("TogetherAd", "${this.javaClass.simpleName}: $msg")
+fun String.logd(tag: String? = "TogetherAd") {
+    Log.d(tag, this)
 }
 
-internal fun Any.loge(msg: String?) {
-    Log.e("TogetherAd", "${this.javaClass.simpleName}: $msg")
+fun String.logi(tag: String? = "TogetherAd") {
+    Log.i(tag, this)
+}
+
+fun String.logw(tag: String? = "TogetherAd") {
+    Log.w(tag, this)
+}
+
+fun String.loge(tag: String? = "TogetherAd") {
+    Log.e(tag, this)
 }

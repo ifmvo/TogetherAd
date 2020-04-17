@@ -1,23 +1,12 @@
 package com.rumtel.ad.helper.splash
 
 import android.app.Activity
-import android.content.Context
-import android.graphics.Point
-import android.os.Build
-import androidx.annotation.NonNull
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.TextView
+import androidx.annotation.NonNull
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
-import com.bytedance.sdk.openadsdk.AdSlot
-import com.bytedance.sdk.openadsdk.TTAdNative
-import com.bytedance.sdk.openadsdk.TTAdSdk
-import com.bytedance.sdk.openadsdk.TTSplashAd
-import com.qq.e.ads.splash.SplashAD
-import com.qq.e.ads.splash.SplashADListener
-import com.qq.e.comm.util.AdError
 import com.rumtel.ad.R
 import com.rumtel.ad.TogetherAd
 import com.rumtel.ad.TogetherAd.mContext
@@ -126,90 +115,7 @@ object TogetherAdSplash : AdBase() {
      */
     private fun showAdFullCsj(@NonNull activity: Activity, splashConfigStr: String?, @NonNull adConstStr: String, @NonNull adsParentLayout: ViewGroup, skipView: View?, timeView: TextView?, @NonNull adListener: AdListenerSplashFull) {
         try {
-            adListener.onStartRequest(AdNameType.CSJ.type)
-            val wm = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            val point = Point()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                wm.defaultDisplay.getRealSize(point)
-            } else {
-                wm.defaultDisplay.getSize(point)
-            }
 
-//            adsParentLayout.measure(0, 0)
-//            val width = adsParentLayout.measuredWidth
-//            val height = adsParentLayout.measuredHeight
-
-//            logd("adsParentLayout: ${width}, $height")
-            //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
-            val adSlot = AdSlot.Builder()
-                    .setCodeId(TogetherAd.idMapCsj[adConstStr])
-                    .setSupportDeepLink(true)
-                    .setImageAcceptedSize(point.x, point.y)
-                    .build()
-            TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
-                override fun onSplashAdLoad(splashAd: TTSplashAd?) {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
-
-                    if (splashAd == null) {
-                        loge("${AdNameType.CSJ.type}: 广告是 null")
-                        val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                        showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, skipView, timeView, adListener)
-                        return
-                    }
-
-                    adListener.onAdPrepared(AdNameType.CSJ.type)
-                    logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.prepared)}")
-
-                    adsParentLayout.removeAllViews()
-                    adsParentLayout.addView(splashAd.splashView)
-
-                    splashAd.setSplashInteractionListener(object : TTSplashAd.AdInteractionListener {
-                        override fun onAdClicked(view: View?, p1: Int) {
-                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.clicked)}")
-                            adListener.onAdClick(AdNameType.CSJ.type)
-                        }
-
-                        override fun onAdSkip() {
-                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
-                            adListener.onAdDismissed()
-                        }
-
-                        override fun onAdShow(p0: View?, p1: Int) {
-                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.exposure)}")
-                        }
-
-                        override fun onAdTimeOver() {
-                            logd("${AdNameType.CSJ.type}: ${activity.getString(R.string.dismiss)}")
-                            adListener.onAdDismissed()
-                        }
-                    })
-                }
-
-                override fun onTimeout() {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
-
-                    loge("${AdNameType.CSJ.type}: ${activity.getString(R.string.timeout)}")
-                    val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                    showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, skipView, timeView, adListener)
-                }
-
-                override fun onError(errorCode: Int, errorMsg: String?) {
-                    if (stop) {
-                        return
-                    }
-                    cancelTimerTask()
-
-                    loge("${AdNameType.CSJ.type}: $errorCode : $errorMsg")
-                    val newSplashConfigStr = splashConfigStr?.replace(AdNameType.CSJ.type, AdNameType.NO.type)
-                    showAdFull(activity, newSplashConfigStr, adConstStr, adsParentLayout, skipView, timeView, adListener)
-                }
-            }, 2500)//超时时间，demo 为 2000
         } catch (e: Exception) {
             if (stop) {
                 return

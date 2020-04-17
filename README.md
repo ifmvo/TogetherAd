@@ -10,6 +10,9 @@ TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告�
 - 穿山甲的文档
 1. http://partner.toutiao.com/doc?id=5de4cc6d78c8690012a90aa5   （ 错误码对照 ）
 
+- 百青藤的文档
+1. https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf
+
 ### 目前支持的广告
 百度Mob、腾讯GDT、穿山甲
 

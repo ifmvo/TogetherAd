@@ -2,7 +2,10 @@ package com.ifmvo.togetherad.gdt
 
 import android.app.Application
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
+import com.ifmvo.togetherad.core.entity.AdProviderEntity
+import com.ifmvo.togetherad.core.utils.logi
 
 /* 
  * (●ﾟωﾟ●)
@@ -21,8 +24,11 @@ object TogetherAdGdt {
 
     //广点通
     fun initGDTAd(@NonNull context: Application, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: MutableMap<String, String>) {
+
+        TogetherAd.addProvider(AdProviderEntity(AdProviderType.GDT, GdtProvider::class.java.name))
+
         idMapGDT = gdtIdMap
         appIdGDT = gdtAdAppId
-        logd("初始化: ${AdProviderType.GDT.type}")
+        "初始化: ${AdProviderType.GDT.type}".logi()
     }
 }

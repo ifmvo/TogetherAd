@@ -3,7 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core.listener.CommonListener
+import com.ifmvo.togetherad.core.listener.SplashListener
 
 /* 
  * (●ﾟωﾟ●)
@@ -27,14 +27,14 @@ interface IAdProvider {
             @NonNull container: ViewGroup,
 
             //回调
-            @NonNull listener: CommonListener
+            @NonNull listener: SplashListener
     )
 
     fun getNativeAdList(
             @NonNull activity: Activity,
             @NonNull alias: String,
             radio: String? = null,
-            @NonNull listener: CommonListener
+            @NonNull listener: SplashListener
     )
 
 }

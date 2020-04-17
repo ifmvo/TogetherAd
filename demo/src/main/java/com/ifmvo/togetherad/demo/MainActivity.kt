@@ -1,55 +1,30 @@
 package com.ifmvo.togetherad.demo
 
+import android.app.ListActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.ifmvo.togetherad.baidu.BaiduProvider
-import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.entity.AdProviderEntity
-import com.ifmvo.togetherad.core.helper.AdHelper
-import com.ifmvo.togetherad.core.listener.CommonListener
-import com.ifmvo.togetherad.csj.CsjProvider
-import com.ifmvo.togetherad.gdt.GdtProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.GDT, GdtProvider::class.java.name))
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.CSJ, CsjProvider::class.java.name))
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.BAIDU, BaiduProvider::class.java.name))
-
-        val map = HashMap<AdProviderType, Int>()
-        map.put(AdProviderType.GDT, 1)
-        map.put(AdProviderType.CSJ, 1)
-        map.put(AdProviderType.BAIDU, 2)
-
-        TogetherAd.setDefaultProviderRadio(mapOf(
-                AdProviderType.GDT to 1,
-                AdProviderType.CSJ to 1,
-                AdProviderType.BAIDU to 0
+        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
+                "开屏",
+                "原生信息流"
         ))
+    }
 
-        TogetherAd.setDefaultProviderRadio("gdt:1,csj:1,baidu:0")
-
-        AdHelper.showSplashAd(activity = this, alias = "", container = adContainer, listener = object : CommonListener {
-            override fun onStartRequest(providerType: AdProviderType) {
+    override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
+        super.onListItemClick(l, v, position, id)
+        when (position) {
+            0 -> {
+                SplashActivity.action(this)
             }
-
-            override fun onAdPrepared(providerType: AdProviderType) {
+            1 -> {
             }
-
-            override fun onAdClick(providerType: AdProviderType) {
-            }
-
-            override fun onAdFailed(failedMsg: String?) {
-            }
-
-            override fun onAdDismissed(providerType: AdProviderType) {
-            }
-        })
+        }
     }
 }

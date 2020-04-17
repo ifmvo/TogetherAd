@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.core
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
-import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.core.utils.logi
 
 /* 
@@ -28,7 +27,7 @@ object TogetherAd {
      */
     fun addProvider(@NonNull adProviderEntity: AdProviderEntity) {
         mProviders[adProviderEntity.providerType.type] = adProviderEntity
-        logi("添加广告提供商：$adProviderEntity")
+        "添加广告提供商：$adProviderEntity".logi()
     }
 
     fun getProvider(providerType: AdProviderType): AdProviderEntity? {
@@ -40,7 +39,7 @@ object TogetherAd {
      * radio: "gdt:1,csj:1,baidu:1"
      */
     fun setDefaultProviderRadio(@NonNull radio: String) {
-        logd("设置默认广告提供商比例：$radio")
+        "设置默认广告提供商比例：$radio".logi()
         mRadioDefault = radio
     }
 
@@ -59,7 +58,7 @@ object TogetherAd {
             radio.append("${it.key.type}:${it.value}")
             radio.append(",")
         }
-        logd("设置默认广告提供商比例：$radio")
+        "设置默认广告提供商比例：$radio".logi()
         mRadioDefault = radio.toString()
     }
 

@@ -21,7 +21,7 @@ object AdRandomUtil {
      * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
      */
     fun getRandomAdProvider(@NonNull radio: String): AdProviderType {
-        logd("广告提供商的比例：$radio")
+        "广告提供商的比例：$radio".logi()
         val list = mutableListOf<AdProviderType>()
         //{baidu:2},{gdt:8}
         val split = radio.split(",")
@@ -47,7 +47,7 @@ object AdRandomUtil {
         if (list.size == 0) return AdProviderType.NO
         //在list里面随机选择一个
         val adNameType = list[(0 until list.size).random()]
-        logd("随机到的广告: ${adNameType.type}")
+        "随机到的广告: ${adNameType.type}".logi()
         return adNameType
     }
 }
