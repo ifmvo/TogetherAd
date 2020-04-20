@@ -20,9 +20,27 @@
             </intent-filter>
         </activity>
 
+        <!--
+            开屏界面
+        -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:theme="@style/SplashTheme" />
+
+        <!--
+            原生信息流
+        -->
+        <activity android:name=".flow.FlowActivity" />
+
+        <!--
+            原生信息流的简单用法
+        -->
+        <activity android:name=".flow.FlowSimpleActivity" />
+
+        <!--
+            原生信息流在 RecyclerView 中的用法
+        -->
+        <activity android:name=".flow.FlowRecyclerViewActivity" />
 
     </application>
 

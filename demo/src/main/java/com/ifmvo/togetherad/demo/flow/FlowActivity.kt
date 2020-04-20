@@ -1,21 +1,32 @@
-package com.ifmvo.togetherad.demo
+package com.ifmvo.togetherad.demo.flow
 
 import android.app.ListActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.ifmvo.togetherad.demo.flow.FlowActivity
-import com.ifmvo.togetherad.demo.splash.SplashActivity
 
-class MainActivity : ListActivity() {
+/* 
+ * (●ﾟωﾟ●)
+ * 
+ * Created by Matthew Chen on 2020-04-20.
+ */
+class FlowActivity : ListActivity() {
+
+    companion object {
+        fun action(context: Context) {
+            context.startActivity(Intent(context, FlowActivity::class.java))
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
-                "开屏",
-                "原生信息流"
+                "原生信息流简单用法",
+                "原生信息流在 RecyclerView 中使用"
         ))
     }
 
@@ -23,10 +34,10 @@ class MainActivity : ListActivity() {
         super.onListItemClick(l, v, position, id)
         when (position) {
             0 -> {
-                SplashActivity.action(this)
+                FlowSimpleActivity.action(this)
             }
             1 -> {
-                FlowActivity.action(this)
+                FlowRecyclerViewActivity.action(this)
             }
         }
     }

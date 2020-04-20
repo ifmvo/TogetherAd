@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 
 /* 
@@ -14,7 +15,7 @@ interface IAdProvider {
 
     fun showSplashAd(
 
-            //由于某个广告商需要使用 Activity，所以这里统一传
+            //由于百度必须使用 Activity，所以这里统一传
             @NonNull activity: Activity,
 
             //当前广告位的别名
@@ -34,7 +35,12 @@ interface IAdProvider {
             @NonNull activity: Activity,
             @NonNull alias: String,
             radio: String? = null,
-            @NonNull listener: SplashListener
+            maxCount: Int,
+            @NonNull listener: FlowListener
     )
+
+    fun requestRewardAd() {
+
+    }
 
 }

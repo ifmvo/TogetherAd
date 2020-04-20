@@ -22,7 +22,7 @@
         android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:text="开屏界面"
+        tools:text="开屏界面"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

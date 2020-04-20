@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_splash_skip_view_custom_bg"
-    android:gravity="center_vertical"
+    android:gravity="center"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
     android:paddingRight="10dp"
-    android:paddingBottom="5dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="跳过"
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
-
-</LinearLayout>
+    android:paddingBottom="5dp"
+    android:text="跳过"
+    android:textColor="@android:color/white"
+    android:textSize="12sp" />

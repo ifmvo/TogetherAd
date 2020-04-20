@@ -4,10 +4,15 @@ import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
+import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
+import com.qq.e.ads.cfg.VideoOption
+import com.qq.e.ads.nativ.NativeADUnifiedListener
+import com.qq.e.ads.nativ.NativeUnifiedAD
+import com.qq.e.ads.nativ.NativeUnifiedADData
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
@@ -24,18 +29,18 @@ class GdtProvider : BaseAdProvider() {
 
     override fun showSplashAd(activity: Activity, alias: String, radio: String?, container: ViewGroup, listener: SplashListener) {
 
-        callbackStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, listener)
 
         val customSkipView = AdHelperSplash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
         val splash = SplashAD(activity, skipView, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
             override fun onADDismissed() {
-                callbackDismiss(adProviderType, listener)
+                callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackSplashFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
             }
 
             /**
@@ -49,7 +54,7 @@ class GdtProvider : BaseAdProvider() {
             }
 
             override fun onADClicked() {
-                callbackClicked(adProviderType, listener)
+                callbackSplashClicked(adProviderType, listener)
             }
 
             override fun onADTick(millisUntilFinished: Long) {
@@ -59,14 +64,14 @@ class GdtProvider : BaseAdProvider() {
             }
 
             override fun onADExposure() {
-                callbackExposure(adProviderType, listener)
+                callbackSplashExposure(adProviderType, listener)
             }
 
             /**
              * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
              */
             override fun onADLoaded(expireTimestamp: Long) {
-                callbackLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, listener)
             }
         }, 0)
         /**
@@ -77,7 +82,33 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, radio: String?, listener: SplashListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, radio: String?, maxCount: Int, listener: FlowListener) {
+
+        callbackFlowStartRequest(adProviderType, listener)
+
+        val nativeADUnifiedListener = object : NativeADUnifiedListener {
+            override fun onADLoaded(adList: List<NativeUnifiedADData>?) {
+                //list是空的，按照错误来处理
+                if (adList?.isEmpty() != false) {
+                    callbackFlowFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    return
+                }
+
+                callbackFlowLoaded(adProviderType, listener, adList)
+            }
+
+            override fun onNoAD(adError: AdError?) {
+                callbackFlowFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+            }
+        }
+
+        val mAdManager = NativeUnifiedAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], nativeADUnifiedListener)
+        //有效值就是 5-60
+        mAdManager.setMaxVideoDuration(60)
+        mAdManager.setMinVideoDuration(5)
+        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO) // 本次拉回的视频广告，在用户看来是否为自动播放的
+        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK) // 视频播放前，用户看到的广告容器是由SDK渲染的
+        mAdManager.loadData(maxCount)
 
     }
 

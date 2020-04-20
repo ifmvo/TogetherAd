@@ -21,7 +21,7 @@ object TogetherAdCsj {
         private set
 
     //穿山甲
-    fun initCsjAd(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
+    fun init(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
 
         TogetherAd.addProvider(AdProviderEntity(AdProviderType.CSJ, CsjProvider::class.java.name))
 

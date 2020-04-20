@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo
+package com.ifmvo.togetherad.demo.splash
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,8 @@ import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.demo.R
+import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /* 
@@ -43,31 +45,38 @@ class SplashActivity : AppCompatActivity() {
 
         AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, container = adContainer, listener = object : SplashListener {
             override fun onAdStartRequest(providerType: AdProviderType) {
+                info.text = "开屏广告开始请求，${providerType.type}"
                 "onAdStartRequest: ${providerType.type}".logi(TAG)
             }
 
             override fun onAdLoaded(providerType: AdProviderType) {
+                info.text = "开屏广告请求好了，${providerType.type}"
                 "onAdLoaded: ${providerType.type}".logi(TAG)
             }
 
             override fun onAdClicked(providerType: AdProviderType) {
+                info.text = "开屏广告被点击了，${providerType.type}"
                 "onAdClicked: ${providerType.type}".logi(TAG)
             }
 
             override fun onAdExposure(providerType: AdProviderType) {
+                info.text = "开屏广告曝光了，${providerType.type}"
                 "onAdExposure: ${providerType.type}".logi(TAG)
             }
 
             override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
+                info.text = "开屏广告单个提供商请求失败了，${providerType.type}"
                 "onAdFailed: ${providerType.type}: $failedMsg".loge(TAG)
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
+                info.text = failedMsg
                 "onAdFailedAll: $failedMsg".loge(TAG)
                 actionHome(1000)
             }
 
             override fun onAdDismissed(providerType: AdProviderType) {
+                info.text = "开屏广告点了跳过或者倒计时结束， ${providerType.type}"
                 "onAdDismissed: ${providerType.type}".logi(TAG)
                 actionHome(0)
             }
