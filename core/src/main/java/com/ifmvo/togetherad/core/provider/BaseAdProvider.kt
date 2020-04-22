@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
@@ -55,7 +56,7 @@ abstract class BaseAdProvider : IAdProvider {
         listener.onAdStartRequest(adProviderType)
     }
 
-    fun callbackFlowLoaded(@NonNull adProviderType: AdProviderType, @NonNull listener: FlowListener, @NonNull adList: List<*>) {
+    fun callbackFlowLoaded(@NonNull adProviderType: AdProviderType, @NonNull listener: FlowListener, @NonNull adList: List<Any>) {
         "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
         listener.onAdLoaded(adProviderType, adList)
     }
@@ -63,5 +64,28 @@ abstract class BaseAdProvider : IAdProvider {
     fun callbackFlowFailed(@NonNull adProviderType: AdProviderType, @NonNull listener: FlowListener, failedMsg: String?) {
         "${adProviderType}: 请求失败了：$failedMsg".loge()
         listener.onAdFailed(adProviderType, failedMsg)
+    }
+
+    /**
+     * --------------------------- 激励广告 ---------------------------
+     */
+    fun callbackRewardStartRequest(@NonNull adProviderType: AdProviderType, @NonNull listener: RewardListener) {
+        "${adProviderType}: 开始请求".logi()
+        listener.onAdStartRequest(adProviderType)
+    }
+
+    fun callbackRewardFailed(@NonNull adProviderType: AdProviderType, @NonNull listener: RewardListener, failedMsg: String?) {
+        "${adProviderType}: 请求失败了：$failedMsg".loge()
+        listener.onAdFailed(adProviderType, failedMsg)
+    }
+
+    fun callbackRewardClicked(@NonNull adProviderType: AdProviderType, @NonNull listener: RewardListener) {
+        "${adProviderType}: 点击了".logi()
+        listener.onAdClicked(adProviderType)
+    }
+
+    fun callbackRewardShow(@NonNull adProviderType: AdProviderType, @NonNull listener: RewardListener) {
+        "${adProviderType}: 展示了".logi()
+        listener.onAdShow(adProviderType)
     }
 }

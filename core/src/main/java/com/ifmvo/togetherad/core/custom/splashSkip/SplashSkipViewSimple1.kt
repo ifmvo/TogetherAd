@@ -12,7 +12,7 @@ import com.ifmvo.togetherad.core.R
  * 
  * Created by Matthew Chen on 2020-04-17.
  */
-class Simple1SplashSkipView : BaseSplashSkipView() {
+class SplashSkipViewSimple1 : BaseSplashSkipView() {
 
     override fun onCreateSkipView(context: Context): View {
         return View.inflate(context, R.layout.layout_splash_skip_view_simple1, null)

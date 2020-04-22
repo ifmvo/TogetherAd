@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.ifmvo.togetherad.demo.flow.FlowActivity
+import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
 
 class MainActivity : ListActivity() {
@@ -15,7 +16,8 @@ class MainActivity : ListActivity() {
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
                 "开屏",
-                "原生信息流"
+                "原生信息流",
+                "激励广告"
         ))
     }
 
@@ -27,6 +29,9 @@ class MainActivity : ListActivity() {
             }
             1 -> {
                 FlowActivity.action(this)
+            }
+            2 -> {
+                RewardActivity.action(this)
             }
         }
     }

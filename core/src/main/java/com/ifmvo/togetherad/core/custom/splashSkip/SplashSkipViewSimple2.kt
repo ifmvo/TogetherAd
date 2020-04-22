@@ -13,7 +13,7 @@ import com.ifmvo.togetherad.core.R
  * 
  * Created by Matthew Chen on 2020-04-17.
  */
-class Simple2SplashSkipView : BaseSplashSkipView() {
+class SplashSkipViewSimple2 : BaseSplashSkipView() {
 
     private lateinit var tvTime: TextView
 

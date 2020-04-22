@@ -42,6 +42,11 @@
         -->
         <activity android:name=".flow.FlowRecyclerViewActivity" />
 
+        <!--
+            激励广告
+        -->
+        <activity android:name=".reward.RewardActivity" />
+
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
+import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
@@ -16,7 +17,7 @@ object AdHelperFlow : BaseHelper() {
 
     private const val defaultMaxCount = 4
 
-    fun getList(activity: Activity, alias: String, radio: String?, maxCount: Int = defaultMaxCount, listener: FlowListener?) {
+    fun getList(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, maxCount: Int = defaultMaxCount, listener: FlowListener? = null) {
         val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount
 
@@ -30,13 +31,13 @@ object AdHelperFlow : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
                 ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.getNativeAdList(activity, alias, radio, currentMaxCount, object : FlowListener {
+        adProvider.getNativeAdList(activity, alias, currentMaxCount, object : FlowListener {
 
             override fun onAdStartRequest(providerType: AdProviderType) {
                 listener?.onAdStartRequest(providerType)
             }
 
-            override fun onAdLoaded(providerType: AdProviderType, adList: List<*>) {
+            override fun onAdLoaded(providerType: AdProviderType, adList: List<Any>) {
                 listener?.onAdLoaded(providerType, adList)
             }
 
@@ -52,4 +53,5 @@ object AdHelperFlow : BaseHelper() {
         })
     }
 
+//    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, flowTemplate: BaseFlowTemplate) {}
 }

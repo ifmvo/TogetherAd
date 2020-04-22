@@ -13,9 +13,9 @@ abstract class BaseSplashSkipView {
 
     abstract fun onCreateSkipView(context: Context): View
 
+    abstract fun getLayoutParams(): ViewGroup.LayoutParams
+
     open fun handleTime(second: Int) {
 
     }
-
-    abstract fun getLayoutParams(): ViewGroup.LayoutParams
 }

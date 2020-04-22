@@ -32,7 +32,7 @@ object AdHelperSplash : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
                 ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.showSplashAd(activity, alias, currentRadio, container, object : SplashListener {
+        adProvider.showSplashAd(activity, alias, container, object : SplashListener {
             override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
                 val newRadio = currentRadio.replace(providerType.type, AdProviderType.NO.type)

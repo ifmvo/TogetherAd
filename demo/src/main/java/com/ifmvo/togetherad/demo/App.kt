@@ -25,6 +25,7 @@ class App : Application() {
         gdtIdMap[TogetherAdAlias.AD_WEBVIEW_BANNER] = "3050767842595815"
         gdtIdMap[TogetherAdAlias.AD_BACK] = "8021700419077347"
         gdtIdMap[TogetherAdAlias.AD_MID] = "8021700419077347"
+        gdtIdMap[TogetherAdAlias.AD_REWARD] = "6040295592058680"
         TogetherAdGdt.init(this, "1105965856", gdtIdMap)
 
         val csjIdMap = HashMap<String, String>()
@@ -35,6 +36,7 @@ class App : Application() {
         csjIdMap[TogetherAdAlias.AD_WEBVIEW_BANNER] = "920413358"
         csjIdMap[TogetherAdAlias.AD_BACK] = "920413512"
         csjIdMap[TogetherAdAlias.AD_MID] = "920413056"
+        csjIdMap[TogetherAdAlias.AD_REWARD] = "901121365"
         TogetherAdCsj.init(this, "5020413", this.getString(R.string.app_name), csjIdMap, useTextureView = true, isDebug = BuildConfig.DEBUG)
 
         val baiduIdMap = HashMap<String, String>()
@@ -45,9 +47,10 @@ class App : Application() {
         baiduIdMap[TogetherAdAlias.AD_WEBVIEW_BANNER] = "6697141"
         baiduIdMap[TogetherAdAlias.AD_BACK] = "6697152"
         baiduIdMap[TogetherAdAlias.AD_MID] = "6697152"
+        baiduIdMap[TogetherAdAlias.AD_REWARD] = "5925490"
         TogetherAdBaidu.init(this, "c4d4e71f", baiduIdMap)
 
-        TogetherAd.setDefaultProviderRadio("gdt:1,csj:0,baidu:0")
+        TogetherAd.setDefaultProviderRadio("gdt:1,csj:1,baidu:1")
 
     }
 }

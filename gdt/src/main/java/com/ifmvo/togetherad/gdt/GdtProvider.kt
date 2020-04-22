@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.logi
@@ -13,12 +14,15 @@ import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.NativeADUnifiedListener
 import com.qq.e.ads.nativ.NativeUnifiedAD
 import com.qq.e.ads.nativ.NativeUnifiedADData
+import com.qq.e.ads.rewardvideo.RewardVideoAD
+import com.qq.e.ads.rewardvideo.RewardVideoADListener
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
 import kotlin.math.roundToInt
 
-/* 
+
+/*
  * (●ﾟωﾟ●)
  * 
  * Created by Matthew Chen on 2020-04-03.
@@ -27,7 +31,7 @@ class GdtProvider : BaseAdProvider() {
 
     private val adProviderType = AdProviderType.GDT
 
-    override fun showSplashAd(activity: Activity, alias: String, radio: String?, container: ViewGroup, listener: SplashListener) {
+    override fun showSplashAd(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -82,7 +86,7 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, radio: String?, maxCount: Int, listener: FlowListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: FlowListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
 
@@ -112,4 +116,50 @@ class GdtProvider : BaseAdProvider() {
 
     }
 
+    override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
+
+        callbackRewardStartRequest(adProviderType, listener)
+
+        val rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
+
+            override fun onADExpose() {
+
+            }
+
+            override fun onADClick() {
+                callbackRewardClicked(adProviderType, listener)
+            }
+
+            override fun onVideoCached() {
+
+            }
+
+            override fun onReward() {
+
+            }
+
+            override fun onADClose() {
+
+            }
+
+            override fun onADLoad() {
+
+            }
+
+            override fun onVideoComplete() {
+
+            }
+
+            override fun onError(adError: AdError?) {
+                callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
+            }
+
+            override fun onADShow() {
+                callbackRewardShow(adProviderType, listener)
+            }
+
+        }, false)
+
+        rewardVideoAD.loadAD()
+    }
 }

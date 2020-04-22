@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.custom.splashSkip.Simple1SplashSkipView
+import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.loge
@@ -41,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
      */
     private fun requestSplashAd() {
 
-        AdHelperSplash.customSkipView = Simple1SplashSkipView()
+        AdHelperSplash.customSkipView = SplashSkipViewSimple2()
 
         AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, container = adContainer, listener = object : SplashListener {
             override fun onAdStartRequest(providerType: AdProviderType) {

@@ -11,10 +11,13 @@ import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.logi
 
-/* 
+
+/*
  * (●ﾟωﾟ●)
  * 
  * Created by Matthew Chen on 2020-04-03.
@@ -23,7 +26,7 @@ class CsjProvider : BaseAdProvider() {
 
     private val adProviderType = AdProviderType.CSJ
 
-    override fun showSplashAd(activity: Activity, alias: String, radio: String?, container: ViewGroup, listener: SplashListener) {
+    override fun showSplashAd(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -82,7 +85,7 @@ class CsjProvider : BaseAdProvider() {
         }, 2500)//超时时间，demo 为 2000
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, radio: String?, maxCount: Int, listener: FlowListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: FlowListener) {
         callbackFlowStartRequest(adProviderType, listener)
 
         val dm = DisplayMetrics()
@@ -106,6 +109,93 @@ class CsjProvider : BaseAdProvider() {
 
             override fun onError(errorCode: Int, errorMsg: String?) {
                 callbackFlowFailed(adProviderType, listener, "错误码: $errorCode}, 错误信息：$errorMsg")
+            }
+        })
+    }
+
+    private var mttRewardVideoAd: TTRewardVideoAd? = null
+
+    override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
+
+        callbackRewardStartRequest(adProviderType, listener)
+
+        val adSlot = AdSlot.Builder()
+                .setCodeId(TogetherAdCsj.idMapCsj[alias])
+                .setSupportDeepLink(true)
+                .setRewardName("金币")//奖励的名称
+                .setRewardAmount(3)//奖励的数量
+                //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传
+                //可设置为空字符串
+                .setUserID("")
+                .setOrientation(TTAdConstant.VERTICAL)  //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
+//                .setMediaExtra("media_extra") //用户透传的信息，可不传
+                .build()
+        TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlot, object : TTAdNative.RewardVideoAdListener {
+            override fun onError(code: Int, message: String) {
+                callbackRewardFailed(adProviderType, listener, "错误码: $code, 错误信息：$message")
+            }
+
+            //视频广告加载后的视频文件资源缓存到本地的回调
+            override fun onRewardVideoCached() {
+
+            }
+
+            //视频广告素材加载到，如title,视频url等，不包括视频文件
+            override fun onRewardVideoAdLoad(ad: TTRewardVideoAd) {
+                mttRewardVideoAd = ad
+                //mttRewardVideoAd.setShowDownLoadBar(false);
+                mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
+                    override fun onSkippedVideo() {
+
+                    }
+
+                    override fun onVideoError() {
+
+                    }
+
+                    override fun onAdShow() {
+                        callbackRewardShow(adProviderType, listener)
+                    }
+
+                    override fun onAdVideoBarClick() {
+                        callbackRewardClicked(adProviderType, listener)
+                    }
+
+                    override fun onAdClose() {
+                    }
+
+                    override fun onVideoComplete() {
+                    }
+
+                    override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String) {
+                        "verify:$rewardVerify amount:$rewardAmount name:$rewardName".logi()
+                    }
+                })
+                mttRewardVideoAd?.setDownloadListener(object : TTAppDownloadListener {
+                    override fun onIdle() {
+
+                    }
+
+                    override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+
+                    }
+
+                    override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+
+                    }
+
+                    override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+
+                    }
+
+                    override fun onDownloadFinished(totalBytes: Long, fileName: String, appName: String) {
+
+                    }
+
+                    override fun onInstalled(fileName: String, appName: String) {
+
+                    }
+                })
             }
         })
     }

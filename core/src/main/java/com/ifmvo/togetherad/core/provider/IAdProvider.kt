@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 
 /* 
@@ -21,9 +22,6 @@ interface IAdProvider {
             //当前广告位的别名
             @NonNull alias: String,
 
-            //广告提供商的比例，可不传，可空 （ 不传或空的情况会使用 全局默认的比例 ）
-            radio: String? = null,
-
             //开屏广告的容器，开屏广告请求到之后会自动添加进去
             @NonNull container: ViewGroup,
 
@@ -34,13 +32,16 @@ interface IAdProvider {
     fun getNativeAdList(
             @NonNull activity: Activity,
             @NonNull alias: String,
-            radio: String? = null,
             maxCount: Int,
             @NonNull listener: FlowListener
     )
 
-    fun requestRewardAd() {
+//    fun showNativeAd(
+//            @NonNull adObject: Any,
+//            @NonNull container: ViewGroup,
+//            flowTemplate: BaseFlowTemplate
+//    )
 
-    }
+    fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener)
 
 }

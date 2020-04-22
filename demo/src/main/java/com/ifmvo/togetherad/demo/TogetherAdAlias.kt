@@ -28,4 +28,7 @@ object TogetherAdAlias {
     //mid
     const val AD_MID = "ad_mid"
 
+    //激励广告
+    const val AD_REWARD = "ad_reward"
+
 }
