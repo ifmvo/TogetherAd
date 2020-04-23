@@ -27,8 +27,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        mBtnPreMoive.setOnClickListener {
-            preMovieAd()
+        mBtnPreMoiveNeedTimer.setOnClickListener {
+            preMovieAd(needTimer = true)
+        }
+
+        mBtnPreMoiveNoTimer.setOnClickListener {
+            preMovieAd(needTimer = false)
         }
 
         mBtnInter.setOnClickListener {
@@ -44,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun preMovieAd() {
+    private fun preMovieAd(needTimer: Boolean) {
         //baidu:2,gdt:8
         TogetherAdPreMovie.showAdPreMovie(this, Config.preMoiveAdConfig(), TogetherAdConst.AD_TIEPIAN_LIVE, ll_ad, object : TogetherAdPreMovie.AdListenerPreMovie {
             override fun onAdClick(channel: String) {
@@ -66,8 +70,7 @@ class DetailActivity : AppCompatActivity() {
             override fun onStartRequest(channel: String) {
                 Log.e("ifmvo", "onStartRequest:channel:$channel")
             }
-        }, needTimer = true
-        )
+        }, needTimer = needTimer)
     }
 
     private fun interstitialAd() {

@@ -91,7 +91,11 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 if (mAD.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT || mAD.getAdPatternType() == AdPatternType.NATIVE_3IMAGE) {
                     mLlAdContainer.setVisibility(View.VISIBLE);
                     mIvImg0.setVisibility(View.VISIBLE);
-                    ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg0, mAD.getImgUrl(), new LoaderOptions());
+                    try {
+                        ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg0, mAD.getImgUrl(), new LoaderOptions());
+                    } catch (Exception e) {
+                        //忽略即可
+                    }
                 } else if (mAD.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
                     mMediaView.setVisibility(View.VISIBLE);
                 }
@@ -165,8 +169,8 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                         @Override
                         public void onVideoCompleted() {
                             AdExtKt.logd(AdViewPreMovieGDT.this, AdNameType.GDT.getType() + "：onVideoCompleted");
-                            //视频广告的情况下，播放完成之后，自动消失
-                            if (adViewListener != null) {
+                            //视频广告的情况下，播放完成之后，自动消失 && 需要倒计时的情况（没有倒计时的情况，不自动消失）
+                            if (needTimer && adViewListener != null) {
                                 adViewListener.onAdDismissed();
                             }
                         }

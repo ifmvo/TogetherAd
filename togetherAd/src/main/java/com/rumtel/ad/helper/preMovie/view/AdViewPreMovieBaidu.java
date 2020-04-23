@@ -71,33 +71,37 @@ public class AdViewPreMovieBaidu extends AdViewPreMovieBase {
                 }
                 mLlAdContainer.setVisibility(View.VISIBLE);
                 mIvImg0.setVisibility(View.VISIBLE);
-                ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
-                    @Override
-                    public boolean onLoadCompleted(Drawable drawable) {
-                        mAdLogoView.setAdLogoType(AdNameType.BAIDU, mAd);
-                        // 警告：调用该函数来发送展现，勿漏！
-                        if (mAd != null) {
-                            mAd.recordImpression(mRootView);
-                        }
-                        mRootView.setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // 点击响应
-                                mAd.handleClick(view);
-                                if (adViewListener != null) {
-                                    adViewListener.onAdClick();
-                                }
+                try {
+                    ILFactory.getLoader().load(AdViewPreMovieBaidu.super.getContext(), mIvImg0, mAd.getImageUrl(), new LoaderOptions(), new LoadListener() {
+                        @Override
+                        public boolean onLoadCompleted(Drawable drawable) {
+                            mAdLogoView.setAdLogoType(AdNameType.BAIDU, mAd);
+                            // 警告：调用该函数来发送展现，勿漏！
+                            if (mAd != null) {
+                                mAd.recordImpression(mRootView);
                             }
-                        });
-                        if (adViewListener != null) {
-                            adViewListener.onAdPrepared();
+                            mRootView.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    // 点击响应
+                                    mAd.handleClick(view);
+                                    if (adViewListener != null) {
+                                        adViewListener.onAdClick();
+                                    }
+                                }
+                            });
+                            if (adViewListener != null) {
+                                adViewListener.onAdPrepared();
+                            }
+                            if (needTimer) {
+                                startTimerCount(6000);
+                            }
+                            return false;
                         }
-                        if (needTimer) {
-                            startTimerCount(6000);
-                        }
-                        return false;
-                    }
-                });
+                    });
+                } catch (Exception e) {
+                    //忽略即可
+                }
             }
         });
 
