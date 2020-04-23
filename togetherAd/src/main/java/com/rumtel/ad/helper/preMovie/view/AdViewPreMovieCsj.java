@@ -189,7 +189,11 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
                             mLlAdContainer.setVisibility(View.VISIBLE);
                             mIvImg0.setVisibility(View.VISIBLE);
                             if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
-                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
+                                try {
+                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
+                                } catch (Exception e) {
+                                    //忽略即可
+                                }
                             }
                             break;
 
@@ -201,15 +205,27 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                             if (imageList != null && imageList.size() > 0 && imageList.get(0) != null && imageList.get(0).isValid()) {
                                 mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
+                                try {
+                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg0, imageList.get(0).getImageUrl());
+                                } catch (Exception e) {
+                                    //忽略即可
+                                }
                             }
                             if (imageList != null && imageList.size() > 1 && imageList.get(1) != null && imageList.get(1).isValid()) {
                                 mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg1, imageList.get(1).getImageUrl());
+                                try {
+                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg1, imageList.get(1).getImageUrl());
+                                } catch (Exception e) {
+                                    //忽略即可
+                                }
                             }
                             if (imageList != null && imageList.size() > 2 && imageList.get(2) != null && imageList.get(2).isValid()) {
                                 mIvImg0.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg2, imageList.get(2).getImageUrl());
+                                try {
+                                    ILFactory.getLoader().load(AdViewPreMovieCsj.super.getContext(), mIvImg2, imageList.get(2).getImageUrl());
+                                } catch (Exception e) {
+                                    //忽略即可
+                                }
                             }
                             break;
                     }

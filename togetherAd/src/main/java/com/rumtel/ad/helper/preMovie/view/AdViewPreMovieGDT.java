@@ -91,7 +91,11 @@ public class AdViewPreMovieGDT extends AdViewPreMovieBase {
                 if (mAD.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT || mAD.getAdPatternType() == AdPatternType.NATIVE_3IMAGE) {
                     mLlAdContainer.setVisibility(View.VISIBLE);
                     mIvImg0.setVisibility(View.VISIBLE);
-                    ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg0, mAD.getImgUrl(), new LoaderOptions());
+                    try {
+                        ILFactory.getLoader().load(AdViewPreMovieGDT.super.getContext(), mIvImg0, mAD.getImgUrl(), new LoaderOptions());
+                    } catch (Exception e) {
+                        //忽略即可
+                    }
                 } else if (mAD.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
                     mMediaView.setVisibility(View.VISIBLE);
                 }
