@@ -1,10 +1,12 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
+import android.view.ViewGroup
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
+import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
 import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
@@ -13,7 +15,7 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
-object AdHelperFlow : BaseHelper() {
+object AdHelperNative : BaseHelper() {
 
     private const val defaultMaxCount = 4
 
@@ -53,5 +55,13 @@ object AdHelperFlow : BaseHelper() {
         })
     }
 
-//    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, flowTemplate: BaseFlowTemplate) {}
+    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+        AdProviderType.values().forEach { adProviderType ->
+            val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
+            if (adProvider?.isBelongTheProvider(adObject) == true) {
+                adProvider.showNativeAd(adObject, container, flowTemplate)
+                return@forEach
+            }
+        }
+    }
 }

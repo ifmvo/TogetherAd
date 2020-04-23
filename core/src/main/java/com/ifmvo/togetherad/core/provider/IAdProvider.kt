@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
 import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -36,12 +37,24 @@ interface IAdProvider {
             @NonNull listener: FlowListener
     )
 
-//    fun showNativeAd(
-//            @NonNull adObject: Any,
-//            @NonNull container: ViewGroup,
-//            flowTemplate: BaseFlowTemplate
-//    )
+    /**
+     * 判断原生广告对象是否属于这个提供商
+     */
+    fun isBelongTheProvider(
+            @NonNull adObject: Any
+    ): Boolean
 
-    fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener)
+
+    fun showNativeAd(
+            @NonNull adObject: Any,
+            @NonNull container: ViewGroup,
+            @NonNull flowTemplate: BaseFlowTemplate
+    )
+
+    fun requestRewardAd(
+            @NonNull activity: Activity,
+            @NonNull alias: String,
+            @NonNull listener: RewardListener
+    )
 
 }

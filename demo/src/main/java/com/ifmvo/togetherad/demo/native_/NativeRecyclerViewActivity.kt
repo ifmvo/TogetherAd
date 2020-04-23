@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.flow
+package com.ifmvo.togetherad.demo.native_
 
 import android.content.Context
 import android.content.Intent
@@ -12,11 +12,11 @@ import com.ifmvo.togetherad.demo.addFragment
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
-class FlowRecyclerViewActivity : AppCompatActivity() {
+class NativeRecyclerViewActivity : AppCompatActivity() {
 
     companion object {
         fun action(context: Context) {
-            context.startActivity(Intent(context, FlowRecyclerViewActivity::class.java))
+            context.startActivity(Intent(context, NativeRecyclerViewActivity::class.java))
         }
     }
 
@@ -24,6 +24,6 @@ class FlowRecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_common)
 
-        addFragment(R.id.fgContainer, FlowRecyclerViewFragment())
+        addFragment(R.id.fgContainer, NativeRecyclerViewFragment())
     }
 }

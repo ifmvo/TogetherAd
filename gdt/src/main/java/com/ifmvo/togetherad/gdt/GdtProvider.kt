@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.gdt
 import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core._enum.AdProviderType
+import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -113,6 +114,13 @@ class GdtProvider : BaseAdProvider() {
         mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO) // 本次拉回的视频广告，在用户看来是否为自动播放的
         mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK) // 视频播放前，用户看到的广告容器是由SDK渲染的
         mAdManager.loadData(maxCount)
+    }
+
+    override fun isBelongTheProvider(adObject: Any): Boolean {
+        return adObject is NativeUnifiedADData
+    }
+
+    override fun showNativeAd(adObject: Any, container: ViewGroup, flowTemplate: BaseFlowTemplate) {
 
     }
 

@@ -63,4 +63,6 @@ dependencies {
     implementation project(':gdt')
     implementation project(':baidu')
     implementation project(':csj')
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }

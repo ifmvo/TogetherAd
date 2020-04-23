@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.flow
+package com.ifmvo.togetherad.demo.native_
 
 import android.app.ListActivity
 import android.content.Context
@@ -13,11 +13,11 @@ import android.widget.ListView
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
-class FlowActivity : ListActivity() {
+class NativeActivity : ListActivity() {
 
     companion object {
         fun action(context: Context) {
-            context.startActivity(Intent(context, FlowActivity::class.java))
+            context.startActivity(Intent(context, NativeActivity::class.java))
         }
     }
 
@@ -34,10 +34,10 @@ class FlowActivity : ListActivity() {
         super.onListItemClick(l, v, position, id)
         when (position) {
             0 -> {
-                FlowSimpleActivity.action(this)
+                NativeSimpleActivity.action(this)
             }
             1 -> {
-                FlowRecyclerViewActivity.action(this)
+                NativeRecyclerViewActivity.action(this)
             }
         }
     }

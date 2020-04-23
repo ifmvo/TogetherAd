@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core._enum.AdProviderType
+import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
 import com.ifmvo.togetherad.core.listener.FlowListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -111,6 +112,14 @@ class CsjProvider : BaseAdProvider() {
                 callbackFlowFailed(adProviderType, listener, "错误码: $errorCode}, 错误信息：$errorMsg")
             }
         })
+    }
+
+    override fun isBelongTheProvider(adObject: Any): Boolean {
+        return adObject is TTFeedAd
+    }
+
+    override fun showNativeAd(adObject: Any, container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+
     }
 
     private var mttRewardVideoAd: TTRewardVideoAd? = null

@@ -1,5 +1,7 @@
 package com.ifmvo.togetherad.core.custom.flow
 
+import com.ifmvo.togetherad.core._enum.AdProviderType
+
 /*
  * (●ﾟωﾟ●)
  * 
@@ -7,16 +9,6 @@ package com.ifmvo.togetherad.core.custom.flow
  */
 abstract class BaseFlowTemplate {
 
-    open fun getFlowViewGdt(): BaseFlowView? {
-        return null
-    }
-
-    open fun getFlowViewBaidu(): BaseFlowView? {
-        return null
-    }
-
-    open fun getFlowViewCsj(): BaseFlowView? {
-        return null
-    }
+    abstract fun getFlowView(adProviderType: AdProviderType): BaseFlowView?
 
 }

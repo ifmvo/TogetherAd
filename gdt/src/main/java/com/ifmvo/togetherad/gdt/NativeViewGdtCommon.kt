@@ -7,5 +7,5 @@ import com.ifmvo.togetherad.core.custom.flow.BaseFlowView
  * 
  * Created by Matthew Chen on 2020-04-21.
  */
-class FlowViewGdtCommon : BaseFlowView() {
+class NativeViewGdtCommon : BaseFlowView() {
 }

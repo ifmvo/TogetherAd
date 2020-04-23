@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.ifmvo.togetherad.demo.flow.FlowActivity
+import com.ifmvo.togetherad.demo.native_.NativeActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
 
@@ -28,7 +28,7 @@ class MainActivity : ListActivity() {
                 SplashActivity.action(this)
             }
             1 -> {
-                FlowActivity.action(this)
+                NativeActivity.action(this)
             }
             2 -> {
                 RewardActivity.action(this)
