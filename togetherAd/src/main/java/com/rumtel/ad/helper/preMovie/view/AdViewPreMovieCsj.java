@@ -134,8 +134,8 @@ public class AdViewPreMovieCsj extends AdViewPreMovieBase {
 
                                 public void onVideoAdComplete(TTFeedAd ad) {
                                     AdExtKt.logd(AdViewPreMovieCsj.this, AdNameType.CSJ.getType() + "：onVideoAdComplete：" + ad.toString());
-                                    //视频广告的情况下，播放完成之后，自动消失
-                                    if (adViewListener != null) {
+                                    //视频广告的情况下，播放完成之后，自动消失 && 需要倒计时的情况（没有倒计时的情况，不自动消失）
+                                    if (needTimer && adViewListener != null) {
                                         adViewListener.onAdDismissed();
                                     }
                                 }

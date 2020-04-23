@@ -30,6 +30,7 @@ object TogetherAdPreMovie : AdBase() {
 
     fun showAdPreMovie(@NonNull activity: Activity, configPreMovie: String?, @NonNull adConstStr: String, @NonNull adsParentLayout: ViewGroup, @NonNull adListener: AdListenerPreMovie, @NonNull needTimer: Boolean = true) {
         startTimerTask(activity, adsParentLayout, adListener)
+        //如果存在，首先销毁上一个广告
         destroy()
 
         adsParentLayout.visibility = View.VISIBLE
@@ -101,7 +102,14 @@ object TogetherAdPreMovie : AdBase() {
 
             override fun onAdDismissed() {
                 adListener.onAdDismissed()
-                destroy()
+                /**
+                 * 这里不能销毁广告
+                 * 如果销毁广告，广告详情页就无法正常观看了
+                 * Activity 的 onDestroy 会将其销毁
+                 * 并且下次再请求广告也会先销毁上一个广告
+                 * 所以不用担心内存泄漏
+                 */
+//                destroy()
                 adsParentLayout.removeAllViews()
                 logd("$mChannel: ${activity.getString(R.string.dismiss)}")
             }
