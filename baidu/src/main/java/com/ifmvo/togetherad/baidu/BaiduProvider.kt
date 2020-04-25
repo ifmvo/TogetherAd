@@ -10,8 +10,8 @@ import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.baidu.mobads.rewardvideo.RewardVideoAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
@@ -48,7 +48,7 @@ class BaiduProvider : BaseAdProvider() {
         }, TogetherAdBaidu.idMapBaidu[alias], true)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: FlowListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
 
@@ -80,7 +80,7 @@ class BaiduProvider : BaseAdProvider() {
         return adObject is NativeResponse
     }
 
-    override fun showNativeAd(adObject: Any, container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
 
     }
 

@@ -2,8 +2,8 @@ package com.ifmvo.togetherad.demo.native_
 
 import com.ifmvo.togetherad.baidu.NativeViewBaiduCommon
 import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowView
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.csj.NativeViewCsjCommon
 import com.ifmvo.togetherad.gdt.NativeViewGdtCommon
 
@@ -12,9 +12,9 @@ import com.ifmvo.togetherad.gdt.NativeViewGdtCommon
  * 
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeTemplateCommon : BaseFlowTemplate() {
+class NativeTemplateCommon : BaseNativeTemplate() {
 
-    override fun getFlowView(adProviderType: AdProviderType): BaseFlowView? {
+    override fun getNativeView(adProviderType: AdProviderType): BaseNativeView? {
         return when (adProviderType) {
             AdProviderType.BAIDU -> {
                 NativeViewBaiduCommon()

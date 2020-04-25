@@ -8,7 +8,7 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
-interface FlowListener : BaseListener {
+interface NativeListener : BaseListener {
 
     fun onAdStartRequest(@NonNull providerType: AdProviderType) {}
 

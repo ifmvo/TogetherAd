@@ -3,9 +3,9 @@ package com.ifmvo.togetherad.gdt
 import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
@@ -87,7 +87,7 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: FlowListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
 
@@ -120,7 +120,7 @@ class GdtProvider : BaseAdProvider() {
         return adObject is NativeUnifiedADData
     }
 
-    override fun showNativeAd(adObject: Any, container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
 
     }
 

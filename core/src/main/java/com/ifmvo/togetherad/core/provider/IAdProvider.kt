@@ -3,8 +3,8 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 
@@ -34,7 +34,7 @@ interface IAdProvider {
             @NonNull activity: Activity,
             @NonNull alias: String,
             maxCount: Int,
-            @NonNull listener: FlowListener
+            @NonNull listener: NativeListener
     )
 
     /**
@@ -48,7 +48,7 @@ interface IAdProvider {
     fun showNativeAd(
             @NonNull adObject: Any,
             @NonNull container: ViewGroup,
-            @NonNull flowTemplate: BaseFlowTemplate
+            @NonNull nativeView: BaseNativeView
     )
 
     fun requestRewardAd(

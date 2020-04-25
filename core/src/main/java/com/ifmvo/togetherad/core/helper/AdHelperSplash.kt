@@ -64,4 +64,8 @@ object AdHelperSplash : BaseHelper() {
             }
         })
     }
+
+    fun destroy() {
+        customSkipView = null
+    }
 }

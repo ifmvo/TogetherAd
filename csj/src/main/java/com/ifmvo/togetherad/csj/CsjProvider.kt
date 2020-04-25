@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core._enum.AdProviderType
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
@@ -86,7 +86,7 @@ class CsjProvider : BaseAdProvider() {
         }, 2500)//超时时间，demo 为 2000
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: FlowListener) {
+    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
         callbackFlowStartRequest(adProviderType, listener)
 
         val dm = DisplayMetrics()
@@ -118,7 +118,7 @@ class CsjProvider : BaseAdProvider() {
         return adObject is TTFeedAd
     }
 
-    override fun showNativeAd(adObject: Any, container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
 
     }
 
@@ -151,7 +151,6 @@ class CsjProvider : BaseAdProvider() {
 
             //视频广告素材加载到，如title,视频url等，不包括视频文件
             override fun onRewardVideoAdLoad(ad: TTRewardVideoAd) {
-                mttRewardVideoAd = ad
                 //mttRewardVideoAd.setShowDownLoadBar(false);
                 mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
                     override fun onSkippedVideo() {

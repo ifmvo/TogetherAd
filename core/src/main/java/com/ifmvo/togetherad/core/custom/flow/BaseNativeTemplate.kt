@@ -7,8 +7,8 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  * 
  * Created by Matthew Chen on 2020-04-21.
  */
-abstract class BaseFlowTemplate {
+abstract class BaseNativeTemplate {
 
-    abstract fun getFlowView(adProviderType: AdProviderType): BaseFlowView?
+    abstract fun getNativeView(adProviderType: AdProviderType): BaseNativeView?
 
 }

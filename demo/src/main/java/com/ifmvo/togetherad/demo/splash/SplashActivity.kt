@@ -89,4 +89,9 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }, delayMillis)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AdHelperSplash.destroy()
+    }
 }

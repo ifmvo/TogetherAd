@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.helper.AdHelperNative
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.demo.R
@@ -32,7 +32,7 @@ class NativeSimpleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flow_simple)
 
-        AdHelperNative.getList(activity = this, alias = TogetherAdAlias.AD_FLOW_INDEX, maxCount = 10, listener = object : FlowListener {
+        AdHelperNative.getList(activity = this, alias = TogetherAdAlias.AD_FLOW_INDEX, maxCount = 10, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: AdProviderType) {
                 "onAdStartRequest: ${providerType.type}".logi(TAG)
             }

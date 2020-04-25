@@ -6,8 +6,8 @@ import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.custom.flow.BaseFlowTemplate
-import com.ifmvo.togetherad.core.listener.FlowListener
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
+import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /* 
@@ -19,7 +19,7 @@ object AdHelperNative : BaseHelper() {
 
     private const val defaultMaxCount = 4
 
-    fun getList(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, maxCount: Int = defaultMaxCount, listener: FlowListener? = null) {
+    fun getList(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount
 
@@ -33,7 +33,7 @@ object AdHelperNative : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
                 ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.getNativeAdList(activity, alias, currentMaxCount, object : FlowListener {
+        adProvider.getNativeAdList(activity, alias, currentMaxCount, object : NativeListener {
 
             override fun onAdStartRequest(providerType: AdProviderType) {
                 listener?.onAdStartRequest(providerType)
@@ -55,11 +55,12 @@ object AdHelperNative : BaseHelper() {
         })
     }
 
-    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, flowTemplate: BaseFlowTemplate) {
+    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, nativeTemplate: BaseNativeTemplate) {
         AdProviderType.values().forEach { adProviderType ->
             val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
             if (adProvider?.isBelongTheProvider(adObject) == true) {
-                adProvider.showNativeAd(adObject, container, flowTemplate)
+                val nativeView = nativeTemplate.getNativeView(adProviderType)
+                nativeView?.showNative(adObject, container)
                 return@forEach
             }
         }
