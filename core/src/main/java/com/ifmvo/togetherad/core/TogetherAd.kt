@@ -15,7 +15,7 @@ object TogetherAd {
     /**
      * 默认的广告提供商比例
      */
-    private var mRadioDefault = "gdt:1,csj:1,baidu:1"
+    private var mRadioDefault = "gdt:1,csj:1,baidu:1,mango:1"
 
     /**
      * 所有注册的广告提供商

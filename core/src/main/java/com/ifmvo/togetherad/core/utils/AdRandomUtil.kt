@@ -40,6 +40,7 @@ object AdRandomUtil {
                 AdProviderType.BAIDU.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.BAIDU) }
                 AdProviderType.GDT.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.GDT) }
                 AdProviderType.CSJ.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.CSJ) }
+                AdProviderType.MANGO.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.MANGO) }
                 else -> { /* 如果后台人员拼写字符串出错，忽略即可 */ }
             }
         }

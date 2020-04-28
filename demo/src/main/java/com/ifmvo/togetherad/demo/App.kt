@@ -1,10 +1,13 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.Application
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
+import com.ifmvo.togetherad.mango.TogetherAdMango
 import java.util.*
 
 /* 
@@ -50,7 +53,14 @@ class App : Application() {
         baiduIdMap[TogetherAdAlias.AD_REWARD] = "5925490"
         TogetherAdBaidu.init(this, "c4d4e71f", baiduIdMap)
 
-        TogetherAd.setDefaultProviderRadio("gdt:1,csj:1,baidu:1")
+        TogetherAdMango.init(this)
 
+        TogetherAd.setDefaultProviderRadio("gdt:1,csj:1,baidu:1,mango:1")
+
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 }

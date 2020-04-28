@@ -20,4 +20,6 @@ interface RewardListener {
 
     fun onAdShow(@NonNull providerType: AdProviderType) {}
 
+    fun onAdLoaded(@NonNull providerType: AdProviderType) {}
+
 }

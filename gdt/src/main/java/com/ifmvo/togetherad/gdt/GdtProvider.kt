@@ -9,6 +9,7 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.qq.e.ads.cfg.VideoOption
@@ -111,8 +112,8 @@ class GdtProvider : BaseAdProvider() {
         //有效值就是 5-60
         mAdManager.setMaxVideoDuration(60)
         mAdManager.setMinVideoDuration(5)
-        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO) // 本次拉回的视频广告，在用户看来是否为自动播放的
-        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK) // 视频播放前，用户看到的广告容器是由SDK渲染的
+        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO)//本次拉回的视频广告，在用户看来是否为自动播放的
+        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK)//视频播放前，用户看到的广告容器是由SDK渲染的
         mAdManager.loadData(maxCount)
     }
 
@@ -124,50 +125,59 @@ class GdtProvider : BaseAdProvider() {
 
     }
 
+    private var rewardVideoAD: RewardVideoAD? = null
     override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 
-        val rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
+        rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
 
             override fun onADExpose() {
-
+                "onADExpose".logi()
             }
 
             override fun onADClick() {
+                "onADClick".logi()
                 callbackRewardClicked(adProviderType, listener)
             }
 
             override fun onVideoCached() {
-
+                "onVideoCached".logi()
             }
 
             override fun onReward() {
-
+                "onReward".logi()
             }
 
             override fun onADClose() {
-
+                "onADClose".logi()
             }
 
             override fun onADLoad() {
-
+                "onADLoad".logi()
+                callbackRewardLoaded(adProviderType, listener)
             }
 
             override fun onVideoComplete() {
-
+                "onVideoComplete".logi()
             }
 
             override fun onError(adError: AdError?) {
+                "onError".loge()
                 callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
             }
 
             override fun onADShow() {
                 callbackRewardShow(adProviderType, listener)
+                "onADShow".logi()
             }
 
         }, false)
 
-        rewardVideoAD.loadAD()
+        rewardVideoAD?.loadAD()
+    }
+
+    override fun showRewardAd(activity: Activity) {
+        rewardVideoAD?.showAD()
     }
 }

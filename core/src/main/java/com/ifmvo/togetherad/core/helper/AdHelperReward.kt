@@ -6,6 +6,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
+import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /* 
@@ -13,7 +14,9 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
-object AdHelperReward : BaseHelper() {
+class AdHelperReward : BaseHelper() {
+
+    private var adProvider: BaseAdProvider? = null
 
     fun load(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, listener: RewardListener? = null) {
         val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
@@ -25,10 +28,10 @@ object AdHelperReward : BaseHelper() {
             return
         }
 
-        val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
+        adProvider = AdProviderLoader.loadAdProvider(adProviderType)
                 ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.requestRewardAd(activity, alias, object : RewardListener {
+        adProvider?.requestRewardAd(activity, alias, object : RewardListener {
             override fun onAdStartRequest(providerType: AdProviderType) {
                 listener?.onAdStartRequest(providerType)
             }
@@ -53,4 +56,7 @@ object AdHelperReward : BaseHelper() {
         })
     }
 
+    fun show(@NonNull activity: Activity) {
+        adProvider?.showRewardAd(activity)
+    }
 }

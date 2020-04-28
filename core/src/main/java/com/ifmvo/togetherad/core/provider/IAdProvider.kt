@@ -57,4 +57,8 @@ interface IAdProvider {
             @NonNull listener: RewardListener
     )
 
+    fun showRewardAd(
+        @NonNull activity: Activity
+    )
+
 }

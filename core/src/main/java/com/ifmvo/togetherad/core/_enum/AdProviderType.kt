@@ -16,6 +16,9 @@ enum class AdProviderType(val type: String) {
     //穿山甲
     CSJ("csj"),
 
+    //芒果
+    MANGO("mango"),
+
     //不提供
     NO("no")
 }

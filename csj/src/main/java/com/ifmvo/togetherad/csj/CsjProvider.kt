@@ -15,6 +15,7 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 
 
@@ -151,28 +152,34 @@ class CsjProvider : BaseAdProvider() {
 
             //视频广告素材加载到，如title,视频url等，不包括视频文件
             override fun onRewardVideoAdLoad(ad: TTRewardVideoAd) {
+
+                mttRewardVideoAd = ad
                 //mttRewardVideoAd.setShowDownLoadBar(false);
                 mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
                     override fun onSkippedVideo() {
-
+                        "onSkippedVideo".logi()
                     }
 
                     override fun onVideoError() {
-
+                        "onVideoError".loge()
                     }
 
                     override fun onAdShow() {
+                        "onAdShow".logi()
                         callbackRewardShow(adProviderType, listener)
                     }
 
                     override fun onAdVideoBarClick() {
+                        "onAdVideoBarClick".logi()
                         callbackRewardClicked(adProviderType, listener)
                     }
 
                     override fun onAdClose() {
+                        "onVideoComplete".logi()
                     }
 
                     override fun onVideoComplete() {
+                        "onVideoComplete".logi()
                     }
 
                     override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String) {
@@ -181,30 +188,34 @@ class CsjProvider : BaseAdProvider() {
                 })
                 mttRewardVideoAd?.setDownloadListener(object : TTAppDownloadListener {
                     override fun onIdle() {
-
+                        "onIdle".logi()
                     }
 
                     override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-
+                        "onDownloadActive".logi()
                     }
 
                     override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-
+                        "onDownloadPaused".logi()
                     }
 
                     override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-
+                        "onDownloadFailed".logi()
                     }
 
                     override fun onDownloadFinished(totalBytes: Long, fileName: String, appName: String) {
-
+                        "onDownloadFinished".logi()
                     }
 
                     override fun onInstalled(fileName: String, appName: String) {
-
+                        "onInstalled".logi()
                     }
                 })
             }
         })
+    }
+
+    override fun showRewardAd(activity: Activity) {
+        mttRewardVideoAd?.showRewardVideoAd(activity)
     }
 }

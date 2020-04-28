@@ -15,6 +15,8 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.loge
+import com.ifmvo.togetherad.core.utils.logi
 
 /* 
  * (●ﾟωﾟ●)
@@ -84,40 +86,49 @@ class BaiduProvider : BaseAdProvider() {
 
     }
 
+
+    private var mRewardVideoAd : RewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 
-        val mRewardVideoAd = RewardVideoAd(activity, TogetherAdBaidu.idMapBaidu[alias], object : RewardVideoAd.RewardVideoAdListener {
+        mRewardVideoAd = RewardVideoAd(activity, TogetherAdBaidu.idMapBaidu[alias], object : RewardVideoAd.RewardVideoAdListener {
             override fun onAdFailed(errorMsg: String?) {
+                "onAdFailed".loge()
                 callbackRewardFailed(adProviderType, listener, errorMsg)
             }
 
             override fun playCompletion() {
-
+                "playCompletion".logi()
             }
 
             override fun onAdShow() {
+                "onAdShow".logi()
                 callbackRewardShow(adProviderType, listener)
             }
 
             override fun onAdClick() {
+                "onAdClick".logi()
                 callbackRewardClicked(adProviderType, listener)
             }
 
             override fun onAdClose(playScale: Float) {
-
+                "onAdClose".logi()
             }
 
             override fun onVideoDownloadSuccess() {
-
+                "onVideoDownloadSuccess".logi()
             }
 
             override fun onVideoDownloadFailed() {
-
+                "onVideoDownloadFailed".logi()
             }
         }, false)
 
-        mRewardVideoAd.load()
+        mRewardVideoAd?.load()
+    }
+
+    override fun showRewardAd(activity: Activity) {
+        mRewardVideoAd?.show()
     }
 }

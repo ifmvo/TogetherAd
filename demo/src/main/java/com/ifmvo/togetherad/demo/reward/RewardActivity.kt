@@ -22,6 +22,8 @@ class RewardActivity : AppCompatActivity() {
 
     private val TAG = "RewardActivity"
 
+    private val adHelperReward by lazy { AdHelperReward() }
+
     companion object {
         fun action(context: Context) {
             context.startActivity(Intent(context, RewardActivity::class.java))
@@ -33,7 +35,7 @@ class RewardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_reward)
 
         load.setOnClickListener {
-            AdHelperReward.load(activity = this, alias = TogetherAdAlias.AD_REWARD, listener = object : RewardListener {
+            adHelperReward.load(activity = this, alias = TogetherAdAlias.AD_REWARD, listener = object : RewardListener {
                 override fun onAdStartRequest(providerType: AdProviderType) {
                     "onAdStartRequest: ${providerType.type}".logi(TAG)
                 }
@@ -57,7 +59,7 @@ class RewardActivity : AppCompatActivity() {
         }
 
         show.setOnClickListener {
-
+            adHelperReward.show(activity = this)
         }
     }
 

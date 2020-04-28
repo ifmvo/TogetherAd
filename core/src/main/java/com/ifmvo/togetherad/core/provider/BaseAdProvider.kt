@@ -88,4 +88,9 @@ abstract class BaseAdProvider : IAdProvider {
         "${adProviderType}: 展示了".logi()
         listener.onAdShow(adProviderType)
     }
+
+    fun callbackRewardLoaded(@NonNull adProviderType: AdProviderType, @NonNull listener: RewardListener) {
+        "${adProviderType}: 请求成功了".logi()
+        listener.onAdLoaded(adProviderType)
+    }
 }
