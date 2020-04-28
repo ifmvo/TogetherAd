@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core._enum.AdProviderType
 
 /* 
  * (●ﾟωﾟ●)
@@ -10,11 +9,11 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  */
 interface NativeListener : BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: AdProviderType) {}
+    fun onAdStartRequest(@NonNull providerType: String) {}
 
-    fun onAdLoaded(@NonNull providerType: AdProviderType, @NonNull adList: List<Any>) {}
+    fun onAdLoaded(@NonNull providerType: String, @NonNull adList: List<Any>) {}
 
-    fun onAdFailed(@NonNull providerType: AdProviderType, failedMsg: String?) {}
+    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
     fun onAdFailedAll(@NonNull failedMsg: String?) {}
 

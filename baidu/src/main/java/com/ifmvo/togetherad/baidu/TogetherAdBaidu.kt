@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.annotation.NonNull
 import com.baidu.mobads.AdView
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
@@ -15,19 +14,19 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 object TogetherAdBaidu {
 
-    var idMapBaidu = mutableMapOf<String, String>()
+    var idMapBaidu = mapOf<String, String>()
         private set
 
     /**
      * 初始化广告
      */
     //baidu
-    fun init(@NonNull context: Application, @NonNull baiduAdAppId: String, baiduIdMap: MutableMap<String, String>) {
+    fun init(@NonNull context: Application, @NonNull adProviderType: String, @NonNull baiduAdAppId: String, baiduIdMap: Map<String, String>) {
 
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.BAIDU, BaiduProvider::class.java.name))
+        TogetherAd.addProvider(AdProviderEntity(adProviderType, BaiduProvider::class.java.name))
 
         AdView.setAppSid(context, baiduAdAppId)
         idMapBaidu = baiduIdMap
-        "初始化${AdProviderType.BAIDU.type}".logi()
+        "初始化$adProviderType".logi()
     }
 }

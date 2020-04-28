@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core
 
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
@@ -13,56 +12,60 @@ import com.ifmvo.togetherad.core.utils.logi
 object TogetherAd {
 
     /**
-     * 默认的广告提供商比例
+     * 自定义公共的的的广告提供商比例
      */
-    private var mRadioDefault = "gdt:1,csj:1,baidu:1,mango:1"
+    private val mRadioPublicMap = mutableMapOf<String, Int>()
 
     /**
      * 所有注册的广告提供商
      */
-    private var mProviders = mutableMapOf<String, AdProviderEntity>()
+    var mProviders = mutableMapOf<String, AdProviderEntity>()
 
     /**
      * 添加广告提供商
      */
     fun addProvider(@NonNull adProviderEntity: AdProviderEntity) {
-        mProviders[adProviderEntity.providerType.type] = adProviderEntity
+        mProviders[adProviderEntity.providerType] = adProviderEntity
         "添加广告提供商：$adProviderEntity".logi()
     }
 
-    fun getProvider(providerType: AdProviderType): AdProviderEntity? {
-        return mProviders[providerType.type]
-    }
-
-    /**
-     * 全局配置默认比例
-     * radio: "gdt:1,csj:1,baidu:1"
-     */
-    fun setDefaultProviderRadio(@NonNull radio: String) {
-        "设置默认广告提供商比例：$radio".logi()
-        mRadioDefault = radio
+    internal fun getProvider(providerType: String): AdProviderEntity? {
+        return mProviders[providerType]
     }
 
     /**
      * 全局配置默认比例
      *
      * radioMap:
-     * val map = HashMap<AdProviderType, Int>()
+     * val map = HashMap<String, Int>()
      * map.put(AdProviderType.GDT, 1)
      * map.put(AdProviderType.CSJ, 1)
      * map.put(AdProviderType.BAIDU, 2)
      */
-    fun setDefaultProviderRadio(@NonNull radioMap: Map<AdProviderType, Int>) {
+    fun setPublicProviderRadio(@NonNull radioMap: Map<String, Int>) {
         val radio = StringBuilder()
         radioMap.entries.forEach {
-            radio.append("${it.key.type}:${it.value}")
+            radio.append("${it.key}:${it.value}")
             radio.append(",")
         }
         "设置默认广告提供商比例：$radio".logi()
-        mRadioDefault = radio.toString()
+
+        mRadioPublicMap.clear()
+        mRadioPublicMap.putAll(radioMap)
     }
 
-    fun getDefaultProviderRadio(): String {
-        return mRadioDefault
+    /**
+     * 有自定义的就用自定义的，没有自定义就每个注册的广告商等比
+     */
+    fun getPublicProviderRadio(): Map<String, Int> {
+        return if (mRadioPublicMap.isNotEmpty()) {
+            mRadioPublicMap
+        } else {
+            val defaultMap = mutableMapOf<String, Int>()
+            mProviders.entries.forEach {
+                defaultMap[it.key] = 1 //所有注册的广告商权重都是 1
+            }
+            defaultMap
+        }
     }
 }

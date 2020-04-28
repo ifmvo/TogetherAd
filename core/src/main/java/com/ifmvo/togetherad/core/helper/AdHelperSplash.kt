@@ -4,7 +4,6 @@ import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -19,39 +18,45 @@ object AdHelperSplash : BaseHelper() {
 
     var customSkipView: BaseSplashSkipView? = null
 
-    fun show(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
 
-        val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadio)
+        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
-        if (adProviderType == AdProviderType.NO) {
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
+
+        if (adProviderType?.isEmpty() != false) {
             listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
             return
         }
 
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
-                ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.showSplashAd(activity, alias, container, object : SplashListener {
-            override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
+        if (adProvider == null) {
+            val newRadioMap = filterType(currentRadioMap, adProviderType)
+            show(activity, alias, newRadioMap, container, listener)
+            return
+        }
+
+        adProvider.showSplashAd(activity, alias, adProviderType, container, object : SplashListener {
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadio = currentRadio.replace(providerType.type, AdProviderType.NO.type)
-                show(activity, alias, newRadio, container, listener)
+                val newRadioMap = filterType(currentRadioMap, adProviderType)
+                show(activity, alias, newRadioMap, container, listener)
             }
 
-            override fun onAdStartRequest(providerType: AdProviderType) {
+            override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
             }
 
-            override fun onAdLoaded(providerType: AdProviderType) {
+            override fun onAdLoaded(providerType: String) {
                 listener?.onAdLoaded(providerType)
             }
 
-            override fun onAdClicked(providerType: AdProviderType) {
+            override fun onAdClicked(providerType: String) {
                 listener?.onAdClicked(providerType)
             }
 
-            override fun onAdExposure(providerType: AdProviderType) {
+            override fun onAdExposure(providerType: String) {
                 listener?.onAdExposure(providerType)
             }
 
@@ -59,7 +64,7 @@ object AdHelperSplash : BaseHelper() {
                 listener?.onAdFailedAll(failedMsg)
             }
 
-            override fun onAdDismissed(providerType: AdProviderType) {
+            override fun onAdDismissed(providerType: String) {
                 listener?.onAdDismissed(providerType)
             }
         })

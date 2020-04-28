@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -44,29 +43,29 @@ class SplashActivity : AppCompatActivity() {
         AdHelperSplash.customSkipView = SplashSkipViewSimple2()
 
         AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, container = adContainer, listener = object : SplashListener {
-            override fun onAdStartRequest(providerType: AdProviderType) {
-                info.text = "开屏广告开始请求，${providerType.type}"
-                "onAdStartRequest: ${providerType.type}".logi(TAG)
+            override fun onAdStartRequest(providerType: String) {
+                info.text = "开屏广告开始请求，$providerType"
+                "onAdStartRequest: $providerType".logi(TAG)
             }
 
-            override fun onAdLoaded(providerType: AdProviderType) {
-                info.text = "开屏广告请求好了，${providerType.type}"
-                "onAdLoaded: ${providerType.type}".logi(TAG)
+            override fun onAdLoaded(providerType: String) {
+                info.text = "开屏广告请求好了，$providerType"
+                "onAdLoaded: $providerType".logi(TAG)
             }
 
-            override fun onAdClicked(providerType: AdProviderType) {
-                info.text = "开屏广告被点击了，${providerType.type}"
-                "onAdClicked: ${providerType.type}".logi(TAG)
+            override fun onAdClicked(providerType: String) {
+                info.text = "开屏广告被点击了，$providerType"
+                "onAdClicked: $providerType".logi(TAG)
             }
 
-            override fun onAdExposure(providerType: AdProviderType) {
-                info.text = "开屏广告曝光了，${providerType.type}"
-                "onAdExposure: ${providerType.type}".logi(TAG)
+            override fun onAdExposure(providerType: String) {
+                info.text = "开屏广告曝光了，$providerType"
+                "onAdExposure: $providerType".logi(TAG)
             }
 
-            override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
-                info.text = "开屏广告单个提供商请求失败了，${providerType.type}"
-                "onAdFailed: ${providerType.type}: $failedMsg".loge(TAG)
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
+                info.text = "开屏广告单个提供商请求失败了，$providerType"
+                "onAdFailed: $providerType: $failedMsg".loge(TAG)
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
@@ -75,9 +74,9 @@ class SplashActivity : AppCompatActivity() {
                 actionHome(1000)
             }
 
-            override fun onAdDismissed(providerType: AdProviderType) {
-                info.text = "开屏广告点了跳过或者倒计时结束， ${providerType.type}"
-                "onAdDismissed: ${providerType.type}".logi(TAG)
+            override fun onAdDismissed(providerType: String) {
+                info.text = "开屏广告点了跳过或者倒计时结束， $providerType"
+                "onAdDismissed: $providerType".logi(TAG)
                 actionHome(0)
             }
         })

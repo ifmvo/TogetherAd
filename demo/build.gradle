@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.rumtel.pandatv"
+        applicationId "com.yun.launcher"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -30,7 +30,7 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.myConfig
+//            signingConfig signingConfigs.myConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 

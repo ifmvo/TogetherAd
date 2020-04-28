@@ -2,7 +2,6 @@ package com.ifmvo.togetherad.gdt
 
 import android.app.Activity
 import android.view.ViewGroup
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.NativeListener
@@ -31,9 +30,7 @@ import kotlin.math.roundToInt
  */
 class GdtProvider : BaseAdProvider() {
 
-    private val adProviderType = AdProviderType.GDT
-
-    override fun showSplashAd(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener) {
+    override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -88,7 +85,7 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
+    override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
 
@@ -126,7 +123,7 @@ class GdtProvider : BaseAdProvider() {
     }
 
     private var rewardVideoAD: RewardVideoAD? = null
-    override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
+    override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 

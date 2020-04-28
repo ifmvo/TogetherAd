@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.gdt
 import android.app.Application
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
@@ -14,7 +13,7 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 object TogetherAdGdt {
 
-    var idMapGDT = mutableMapOf<String, String>()
+    var idMapGDT = mapOf<String, String>()
         private set
     /**
      * 广点通的 AppId
@@ -23,12 +22,12 @@ object TogetherAdGdt {
         private set
 
     //广点通
-    fun init(@NonNull context: Application, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: MutableMap<String, String>) {
+    fun init(@NonNull context: Application, @NonNull providerType: String, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: Map<String, String>) {
 
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.GDT, GdtProvider::class.java.name))
+        TogetherAd.addProvider(AdProviderEntity(providerType, GdtProvider::class.java.name))
 
         idMapGDT = gdtIdMap
         appIdGDT = gdtAdAppId
-        "初始化: ${AdProviderType.GDT.type}".logi()
+        "初始化: $providerType".logi()
     }
 }

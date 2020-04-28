@@ -1,8 +1,8 @@
-package com.ifmvo.togetherad.core._enum
+package com.ifmvo.togetherad.demo
 
 /*
  * 广告提供者的种类
- * 
+ *
  * Created by Matthew_Chen on 2018/8/23.
  */
 enum class AdProviderType(val type: String) {
@@ -17,8 +17,6 @@ enum class AdProviderType(val type: String) {
     CSJ("csj"),
 
     //芒果
-    MANGO("mango"),
+    MANGO("mango")
 
-    //不提供
-    NO("no")
 }

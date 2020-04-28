@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.utils
 
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core._enum.AdProviderType
 
 /*
  * (●ﾟωﾟ●)
@@ -16,41 +15,55 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  */
 object AdRandomUtil {
 
-    /**
-     * radio : "baidu:3,gdt:7,csj:7"
-     * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
-     */
-    fun getRandomAdProvider(@NonNull radio: String): AdProviderType {
-        "广告提供商的比例：$radio".logi()
-        val list = mutableListOf<AdProviderType>()
-        //{baidu:2},{gdt:8}
-        val split = radio.split(",")
-        for (itemStr in split) {
-            //不能为空
-            if (itemStr.isEmpty()) break
-            val splitKeyValue = itemStr.split(":")
-            //必须分割两份才正确
-            if (splitKeyValue.size != 2) break
-            //"baidu:2"
-            val keyStr = splitKeyValue[0]; val valueStr = splitKeyValue[1]
-            //都不能为空
-            if (keyStr.isEmpty() || valueStr.isEmpty()) break
-            //加到 list 里面 2 个 "baidu"
-            when (keyStr) {
-                AdProviderType.BAIDU.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.BAIDU) }
-                AdProviderType.GDT.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.GDT) }
-                AdProviderType.CSJ.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.CSJ) }
-                AdProviderType.MANGO.type -> repeat(valueStr.toIntOrNull() ?: 0) { list.add(AdProviderType.MANGO) }
-                else -> { /* 如果后台人员拼写字符串出错，忽略即可 */ }
+    fun getRandomAdProvider(@NonNull radioMap: Map<String, Int>): String? {
+        val list = mutableListOf<String>()
+
+        radioMap.entries.forEach { entry ->
+            repeat(entry.value) {
+                list.add(entry.key)
             }
         }
+
         //没有匹配的
-        if (list.size == 0) return AdProviderType.NO
+        if (list.isEmpty()) return null
         //在list里面随机选择一个
         val adNameType = list[(0 until list.size).random()]
-        "随机到的广告: ${adNameType.type}".logi()
+        "随机到的广告: $adNameType".logi()
         return adNameType
     }
+
+    //    /**
+    //     * radio : "baidu:3,gdt:7,csj:7"
+    //     * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
+    //     */
+    //    fun getRandomAdProvider(@NonNull radio: String): String {
+    //        "广告提供商的比例：$radio".logi()
+    //        val list = mutableListOf<String>()
+    //        //{baidu:2},{gdt:8}
+    //        val split = radio.split(",")
+    //        for (itemStr in split) {
+    //            //不能为空
+    //            if (itemStr.isEmpty()) break
+    //            val splitKeyValue = itemStr.split(":")
+    //            //必须分割两份才正确
+    //            if (splitKeyValue.size != 2) break
+    //            //"baidu:2"
+    //            val keyStr = splitKeyValue[0];
+    //            val valueStr = splitKeyValue[1]
+    //            //都不能为空
+    //            if (keyStr.isEmpty() || valueStr.isEmpty()) break
+    //            //加到 list 里面 2 个 "baidu"
+    //            repeat(valueStr.toIntOrNull() ?: 0) {
+    //                list.add(keyStr)
+    //            }
+    //        }
+    //        //没有匹配的
+    //        if (list.size == 0) return NO
+    //        //在list里面随机选择一个
+    //        val adNameType = list[(0 until list.size).random()]
+    //        "随机到的广告: $adNameType".logi()
+    //        return adNameType
+    //    }
 }
 
 
@@ -65,10 +78,10 @@ object AdRandomUtil {
 //
 //    val startTime = System.currentTimeMillis()
 //    repeat(3000000) {
-//        when (AdRandomUtil.getRandomAdName("baidu:10,gdt:10,csj:10").type) {
-//            AdNameType.BAIDU.type -> baidu++
-//            AdNameType.GDT.type -> gdt++
-//            AdNameType.CSJ.type -> csj++
+//        when (AdRandomUtil.getRandomAdProvider("baidu:10,gdt:10,csj:10").type) {
+//            AdProviderType.BAIDU.type -> baidu++
+//            AdProviderType.GDT.type -> gdt++
+//            AdProviderType.CSJ.type -> csj++
 //        }
 //    }
 //    val endTime = System.currentTimeMillis()

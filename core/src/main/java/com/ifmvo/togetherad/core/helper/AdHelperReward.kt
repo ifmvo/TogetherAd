@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.core.helper
 import android.app.Activity
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
@@ -18,39 +17,44 @@ class AdHelperReward : BaseHelper() {
 
     private var adProvider: BaseAdProvider? = null
 
-    fun load(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, listener: RewardListener? = null) {
-        val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
+    fun load(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, listener: RewardListener? = null) {
+        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadio)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
-        if (adProviderType == AdProviderType.NO) {
+        if (adProviderType?.isEmpty() != false) {
             listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
             return
         }
 
         adProvider = AdProviderLoader.loadAdProvider(adProviderType)
-                ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider?.requestRewardAd(activity, alias, object : RewardListener {
-            override fun onAdStartRequest(providerType: AdProviderType) {
+        if (adProvider == null) {
+            val newRadioMap = filterType(currentRadioMap, adProviderType)
+            load(activity, alias, newRadioMap, listener)
+            return
+        }
+
+        adProvider?.requestRewardAd(activity, adProviderType, alias, object : RewardListener {
+            override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
             }
 
-            override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadio = currentRadio.replace(providerType.type, AdProviderType.NO.type)
-                load(activity, alias, newRadio, listener)
+                val newRadioMap = filterType(currentRadioMap, adProviderType)
+                load(activity, alias, newRadioMap, listener)
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
                 listener?.onAdFailedAll(failedMsg)
             }
 
-            override fun onAdClicked(providerType: AdProviderType) {
+            override fun onAdClicked(providerType: String) {
                 listener?.onAdClicked(providerType)
             }
 
-            override fun onAdShow(providerType: AdProviderType) {
+            override fun onAdShow(providerType: String) {
                 listener?.onAdShow(providerType)
             }
         })

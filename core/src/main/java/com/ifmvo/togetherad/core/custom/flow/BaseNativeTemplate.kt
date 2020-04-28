@@ -1,6 +1,5 @@
 package com.ifmvo.togetherad.core.custom.flow
 
-import com.ifmvo.togetherad.core._enum.AdProviderType
 
 /*
  * (●ﾟωﾟ●)
@@ -9,6 +8,6 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  */
 abstract class BaseNativeTemplate {
 
-    abstract fun getNativeView(adProviderType: AdProviderType): BaseNativeView?
+    abstract fun getNativeView(adProviderType: String): BaseNativeView?
 
 }

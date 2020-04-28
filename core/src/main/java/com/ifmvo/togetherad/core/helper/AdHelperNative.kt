@@ -4,7 +4,6 @@ import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
@@ -19,34 +18,39 @@ object AdHelperNative : BaseHelper() {
 
     private const val defaultMaxCount = 4
 
-    fun getList(@NonNull activity: Activity, @NonNull alias: String, radio: String? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
-        val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
+    fun getList(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount
+        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadio)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
-        if (adProviderType == AdProviderType.NO) {
+        if (adProviderType?.isEmpty() != false) {
             listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
             return
         }
 
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
-                ?: throw Exception("随机到的广告商没注册，请检查初始化代码")
 
-        adProvider.getNativeAdList(activity, alias, currentMaxCount, object : NativeListener {
+        if (adProvider == null) {
+            val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
+            getList(activity, alias, newRadioMap, maxCount, listener)
+            return
+        }
 
-            override fun onAdStartRequest(providerType: AdProviderType) {
+        adProvider.getNativeAdList(activity, adProviderType, alias, currentMaxCount, object : NativeListener {
+
+            override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
             }
 
-            override fun onAdLoaded(providerType: AdProviderType, adList: List<Any>) {
+            override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 listener?.onAdLoaded(providerType, adList)
             }
 
-            override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadio = currentRadio.replace(providerType.type, AdProviderType.NO.type)
-                getList(activity, alias, newRadio, currentMaxCount, listener)
+                val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
+                getList(activity, alias, newRadioMap, maxCount, listener)
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
@@ -56,10 +60,10 @@ object AdHelperNative : BaseHelper() {
     }
 
     fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, nativeTemplate: BaseNativeTemplate) {
-        AdProviderType.values().forEach { adProviderType ->
-            val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
+        TogetherAd.mProviders.entries.forEach { entry ->
+            val adProvider = AdProviderLoader.loadAdProvider(entry.key)
             if (adProvider?.isBelongTheProvider(adObject) == true) {
-                val nativeView = nativeTemplate.getNativeView(adProviderType)
+                val nativeView = nativeTemplate.getNativeView(entry.key)
                 nativeView?.showNative(adObject, container)
                 return@forEach
             }

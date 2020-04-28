@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.helper.AdHelperReward
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.utils.loge
@@ -36,24 +35,29 @@ class RewardActivity : AppCompatActivity() {
 
         load.setOnClickListener {
             adHelperReward.load(activity = this, alias = TogetherAdAlias.AD_REWARD, listener = object : RewardListener {
-                override fun onAdStartRequest(providerType: AdProviderType) {
-                    "onAdStartRequest: ${providerType.type}".logi(TAG)
+                override fun onAdStartRequest(providerType: String) {
+                    addLog("onAdStartRequest: $providerType")
+                    "onAdStartRequest: $providerType".logi(TAG)
                 }
 
-                override fun onAdFailed(providerType: AdProviderType, failedMsg: String?) {
-                    "onAdFailed: ${providerType.type}: $failedMsg".loge(TAG)
+                override fun onAdFailed(providerType: String, failedMsg: String?) {
+                    addLog("onAdStartRequest: $providerType")
+                    "onAdFailed: $providerType: $failedMsg".loge(TAG)
                 }
 
                 override fun onAdFailedAll(failedMsg: String?) {
+                    addLog("onAdFailedAll: $failedMsg")
                     "onAdFailedAll: $failedMsg".loge(TAG)
                 }
 
-                override fun onAdClicked(providerType: AdProviderType) {
-                    "onAdClicked: ${providerType.type}".logi(TAG)
+                override fun onAdClicked(providerType: String) {
+                    addLog("onAdClicked: $providerType")
+                    "onAdClicked: $providerType".logi(TAG)
                 }
 
-                override fun onAdShow(providerType: AdProviderType) {
-                    "onAdShow: ${providerType.type}".logi(TAG)
+                override fun onAdShow(providerType: String) {
+                    addLog("onAdShow: $providerType")
+                    "onAdShow: $providerType".logi(TAG)
                 }
             })
         }
@@ -63,4 +67,10 @@ class RewardActivity : AppCompatActivity() {
         }
     }
 
+    private var logStr = ""
+
+    private fun addLog(content: String) {
+        logStr = content + "\n" + logStr
+        log.text = logStr
+    }
 }

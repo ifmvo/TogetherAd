@@ -6,7 +6,6 @@ import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
@@ -17,13 +16,13 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 object TogetherAdCsj {
 
-    var idMapCsj = mutableMapOf<String, String>()
+    var idMapCsj = mapOf<String, String>()
         private set
 
     //穿山甲
-    fun init(@NonNull context: Application, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: MutableMap<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
+    fun init(@NonNull context: Application, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: Map<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
 
-        TogetherAd.addProvider(AdProviderEntity(AdProviderType.CSJ, CsjProvider::class.java.name))
+        TogetherAd.addProvider(AdProviderEntity(adProviderType, CsjProvider::class.java.name))
 
         idMapCsj = csjIdMap
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
@@ -40,7 +39,7 @@ object TogetherAdCsj {
                 //.httpStack(new MyOkStack3())//自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
                 .build()
         )
-        "初始化${AdProviderType.CSJ.type}".logi()
+        "初始化$adProviderType".logi()
     }
 
 }

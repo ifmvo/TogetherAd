@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core._enum.AdProviderType
 
 /* 
  * (●ﾟωﾟ●) 通用的监听器
@@ -10,18 +9,18 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  */
 interface SplashListener : BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: AdProviderType) {}
+    fun onAdStartRequest(@NonNull providerType: String) {}
 
-    fun onAdLoaded(@NonNull providerType: AdProviderType) {}
+    fun onAdLoaded(@NonNull providerType: String) {}
 
-    fun onAdClicked(@NonNull providerType: AdProviderType) {}
+    fun onAdClicked(@NonNull providerType: String) {}
 
-    fun onAdExposure(@NonNull providerType: AdProviderType) {}
+    fun onAdExposure(@NonNull providerType: String) {}
 
-    fun onAdFailed(@NonNull providerType: AdProviderType, failedMsg: String?) {}
+    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
     fun onAdFailedAll(@NonNull failedMsg: String?) {}
 
-    fun onAdDismissed(@NonNull providerType: AdProviderType) {}
+    fun onAdDismissed(@NonNull providerType: String) {}
 
 }

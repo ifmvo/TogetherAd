@@ -20,6 +20,8 @@ interface IAdProvider {
             //由于百度必须使用 Activity，所以这里统一传
             @NonNull activity: Activity,
 
+            @NonNull adProviderType: String,
+
             //当前广告位的别名
             @NonNull alias: String,
 
@@ -32,6 +34,7 @@ interface IAdProvider {
 
     fun getNativeAdList(
             @NonNull activity: Activity,
+            @NonNull adProviderType: String,
             @NonNull alias: String,
             maxCount: Int,
             @NonNull listener: NativeListener
@@ -53,6 +56,7 @@ interface IAdProvider {
 
     fun requestRewardAd(
             @NonNull activity: Activity,
+            @NonNull adProviderType: String,
             @NonNull alias: String,
             @NonNull listener: RewardListener
     )

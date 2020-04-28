@@ -9,7 +9,6 @@ import com.baidu.mobad.feeds.RequestParameters
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.baidu.mobads.rewardvideo.RewardVideoAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -25,9 +24,7 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 class BaiduProvider : BaseAdProvider() {
 
-    private val adProviderType = AdProviderType.BAIDU
-
-    override fun showSplashAd(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener) {
+    override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, listener)
 
         SplashAd(activity, container, object : SplashAdListener {
@@ -50,7 +47,7 @@ class BaiduProvider : BaseAdProvider() {
         }, TogetherAdBaidu.idMapBaidu[alias], true)
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
+    override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
 
@@ -88,7 +85,7 @@ class BaiduProvider : BaseAdProvider() {
 
 
     private var mRewardVideoAd : RewardVideoAd? = null
-    override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
+    override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 

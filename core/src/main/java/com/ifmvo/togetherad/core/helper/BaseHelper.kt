@@ -1,5 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
+import androidx.annotation.NonNull
+
 /*
  * (●ﾟωﾟ●)
  * 
@@ -7,9 +9,11 @@ package com.ifmvo.togetherad.core.helper
  */
 abstract class BaseHelper {
 
-//    fun randomProvider(radio: String?): BaseAdProvider? {
-//        val currentRadio = if (radio?.isEmpty() != false) TogetherAd.getDefaultProviderRadio() else radio
-//        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadio)
-//        return AdProviderLoader.loadAdProvider(adProviderType)
-//    }
+    fun filterType(@NonNull radioMap: Map<String, Int>, adProviderType: String): MutableMap<String, Int> {
+        val newRadioMap = mutableMapOf<String, Int>()
+        newRadioMap.putAll(radioMap)
+        newRadioMap.remove(adProviderType)
+        return newRadioMap
+    }
+
 }

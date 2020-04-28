@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -26,9 +25,7 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 class CsjProvider : BaseAdProvider() {
 
-    private val adProviderType = AdProviderType.CSJ
-
-    override fun showSplashAd(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener) {
+    override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -87,7 +84,7 @@ class CsjProvider : BaseAdProvider() {
         }, 2500)//超时时间，demo 为 2000
     }
 
-    override fun getNativeAdList(activity: Activity, alias: String, maxCount: Int, listener: NativeListener) {
+    override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
         callbackFlowStartRequest(adProviderType, listener)
 
         val dm = DisplayMetrics()
@@ -125,7 +122,7 @@ class CsjProvider : BaseAdProvider() {
 
     private var mttRewardVideoAd: TTRewardVideoAd? = null
 
-    override fun requestRewardAd(activity: Activity, alias: String, listener: RewardListener) {
+    override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 
@@ -147,7 +144,7 @@ class CsjProvider : BaseAdProvider() {
 
             //视频广告加载后的视频文件资源缓存到本地的回调
             override fun onRewardVideoCached() {
-
+                "onRewardVideoCached".logi()
             }
 
             //视频广告素材加载到，如title,视频url等，不包括视频文件

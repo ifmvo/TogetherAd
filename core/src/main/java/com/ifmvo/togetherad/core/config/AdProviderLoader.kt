@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.config
 
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core._enum.AdProviderType
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import java.lang.reflect.Constructor
 
@@ -12,7 +11,7 @@ import java.lang.reflect.Constructor
  */
 object AdProviderLoader {
 
-    fun loadAdProvider(providerType: AdProviderType): BaseAdProvider? {
+    fun loadAdProvider(providerType: String): BaseAdProvider? {
         var adProvider: BaseAdProvider? = null
         try {
             val providerInstance = getProviderInstance(providerType)
@@ -25,7 +24,7 @@ object AdProviderLoader {
         return adProvider
     }
 
-    private fun getProviderInstance(providerType: AdProviderType): Any? {
+    private fun getProviderInstance(providerType: String): Any? {
         var instance: Any? = null
         try {
             TogetherAd.getProvider(providerType)?.classPath?.let { classPath ->

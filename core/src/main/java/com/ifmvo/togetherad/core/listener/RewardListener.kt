@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
 import androidx.annotation.NonNull
-import com.ifmvo.togetherad.core._enum.AdProviderType
 
 /* 
  * (●ﾟωﾟ●)
@@ -10,16 +9,16 @@ import com.ifmvo.togetherad.core._enum.AdProviderType
  */
 interface RewardListener {
 
-    fun onAdStartRequest(@NonNull providerType: AdProviderType) {}
+    fun onAdStartRequest(@NonNull providerType: String) {}
 
-    fun onAdFailed(@NonNull providerType: AdProviderType, failedMsg: String?) {}
+    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
     fun onAdFailedAll(@NonNull failedMsg: String?) {}
 
-    fun onAdClicked(@NonNull providerType: AdProviderType) {}
+    fun onAdClicked(@NonNull providerType: String) {}
 
-    fun onAdShow(@NonNull providerType: AdProviderType) {}
+    fun onAdShow(@NonNull providerType: String) {}
 
-    fun onAdLoaded(@NonNull providerType: AdProviderType) {}
+    fun onAdLoaded(@NonNull providerType: String) {}
 
 }
