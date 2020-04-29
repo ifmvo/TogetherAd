@@ -11,6 +11,8 @@ interface RewardListener {
 
     fun onAdStartRequest(@NonNull providerType: String) {}
 
+    fun onAdLoaded(@NonNull providerType: String) {}
+
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
     fun onAdFailedAll(@NonNull failedMsg: String?) {}
@@ -19,6 +21,14 @@ interface RewardListener {
 
     fun onAdShow(@NonNull providerType: String) {}
 
-    fun onAdLoaded(@NonNull providerType: String) {}
+    fun onAdExpose(@NonNull providerType: String) {}
+
+    fun onAdVideoComplete(@NonNull providerType: String) {}
+
+    fun onAdVideoCached(@NonNull providerType: String) {}
+
+    fun onAdRewardVerify(@NonNull providerType: String) {}
+
+    fun onAdClose(@NonNull providerType: String) {}
 
 }

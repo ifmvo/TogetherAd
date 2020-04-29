@@ -26,7 +26,7 @@ object TogetherAd {
      */
     fun addProvider(@NonNull adProviderEntity: AdProviderEntity) {
         mProviders[adProviderEntity.providerType] = adProviderEntity
-        "添加广告提供商：$adProviderEntity".logi()
+        "添加广告提供商：${adProviderEntity.providerType}".logi()
     }
 
     internal fun getProvider(providerType: String): AdProviderEntity? {

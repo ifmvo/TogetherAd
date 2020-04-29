@@ -24,6 +24,8 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 class BaiduProvider : BaseAdProvider() {
 
+    private val TAG = "BaiduProvider"
+
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -91,34 +93,41 @@ class BaiduProvider : BaseAdProvider() {
 
         mRewardVideoAd = RewardVideoAd(activity, TogetherAdBaidu.idMapBaidu[alias], object : RewardVideoAd.RewardVideoAdListener {
             override fun onAdFailed(errorMsg: String?) {
-                "onAdFailed".loge()
+                "onAdFailed".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, errorMsg)
             }
 
             override fun playCompletion() {
-                "playCompletion".logi()
+                "playCompletion".logi(TAG)
+                callbackRewardVideoComplete(adProviderType, listener)
+                callbackRewardVerify(adProviderType, listener)
             }
 
             override fun onAdShow() {
-                "onAdShow".logi()
+                "onAdShow".logi(TAG)
                 callbackRewardShow(adProviderType, listener)
+                callbackRewardExpose(adProviderType, listener)
             }
 
             override fun onAdClick() {
-                "onAdClick".logi()
+                "onAdClick".logi(TAG)
                 callbackRewardClicked(adProviderType, listener)
             }
 
             override fun onAdClose(playScale: Float) {
-                "onAdClose".logi()
+                "onAdClose".logi(TAG)
+                callbackRewardClose(adProviderType, listener)
             }
 
             override fun onVideoDownloadSuccess() {
-                "onVideoDownloadSuccess".logi()
+                "onVideoDownloadSuccess".logi(TAG)
+                callbackRewardLoaded(adProviderType, listener)
+                callbackRewardVideoCached(adProviderType, listener)
             }
 
             override fun onVideoDownloadFailed() {
-                "onVideoDownloadFailed".logi()
+                "onVideoDownloadFailed".loge(TAG)
+                callbackRewardFailed(adProviderType, listener, "视频缓存失败")
             }
         }, false)
 

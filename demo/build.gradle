@@ -57,14 +57,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     implementation 'com.github.ifmvo:QuickList:1.1.5'
-
     implementation 'androidx.multidex:multidex:2.0.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
     implementation project(':core')
     implementation project(':gdt')
     implementation project(':baidu')
     implementation project(':csj')
-    implementation project(':mango')
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }

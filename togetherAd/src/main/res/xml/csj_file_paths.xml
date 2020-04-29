@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<paths>
-    <external-files-path name="external_files_path" path="Download"/>
-    <!--为了适配所有路径可以设置 path = "." -->
-</paths>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<paths>
-    <!-- 这个下载路径不可以修改，必须是GDTDOWNLOAD -->
-    <external-path
-            name="gdt_sdk_download_path"
-            path="GDTDOWNLOAD"/>
-</paths>

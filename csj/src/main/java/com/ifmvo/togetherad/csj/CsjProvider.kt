@@ -25,6 +25,8 @@ import com.ifmvo.togetherad.core.utils.logi
  */
 class CsjProvider : BaseAdProvider() {
 
+    private val TAG = "CsjProvider"
+
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
@@ -139,73 +141,81 @@ class CsjProvider : BaseAdProvider() {
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlot, object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String) {
+                "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: $code, 错误信息：$message")
             }
 
             //视频广告加载后的视频文件资源缓存到本地的回调
             override fun onRewardVideoCached() {
-                "onRewardVideoCached".logi()
+                "onRewardVideoCached".logi(TAG)
+                callbackRewardVideoCached(adProviderType, listener)
             }
 
             //视频广告素材加载到，如title,视频url等，不包括视频文件
             override fun onRewardVideoAdLoad(ad: TTRewardVideoAd) {
+                "onRewardVideoAdLoad".logi(TAG)
+                callbackRewardLoaded(adProviderType, listener)
 
                 mttRewardVideoAd = ad
                 //mttRewardVideoAd.setShowDownLoadBar(false);
                 mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
                     override fun onSkippedVideo() {
-                        "onSkippedVideo".logi()
+                        "onSkippedVideo".logi(TAG)
                     }
 
                     override fun onVideoError() {
-                        "onVideoError".loge()
+                        "onVideoError".loge(TAG)
                     }
 
                     override fun onAdShow() {
-                        "onAdShow".logi()
+                        "onAdShow".logi(TAG)
                         callbackRewardShow(adProviderType, listener)
+                        callbackRewardExpose(adProviderType, listener)
                     }
 
                     override fun onAdVideoBarClick() {
-                        "onAdVideoBarClick".logi()
+                        "onAdVideoBarClick".logi(TAG)
                         callbackRewardClicked(adProviderType, listener)
                     }
 
                     override fun onAdClose() {
-                        "onVideoComplete".logi()
+                        "onAdClose".logi(TAG)
+                        callbackRewardClose(adProviderType, listener)
                     }
 
                     override fun onVideoComplete() {
-                        "onVideoComplete".logi()
+                        "onVideoComplete".logi(TAG)
+                        callbackRewardVideoComplete(adProviderType, listener)
                     }
 
                     override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String) {
-                        "verify:$rewardVerify amount:$rewardAmount name:$rewardName".logi()
+                        "verify:$rewardVerify amount:$rewardAmount name:$rewardName".logi(TAG)
+                        callbackRewardVerify(adProviderType, listener)
                     }
                 })
                 mttRewardVideoAd?.setDownloadListener(object : TTAppDownloadListener {
                     override fun onIdle() {
-                        "onIdle".logi()
+                        "onIdle".logi(TAG)
                     }
 
                     override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-                        "onDownloadActive".logi()
+                        "onDownloadActive".logi(TAG)
                     }
 
                     override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-                        "onDownloadPaused".logi()
+                        "onDownloadPaused".logi(TAG)
                     }
 
                     override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
-                        "onDownloadFailed".logi()
+                        "onDownloadFailed".loge(TAG)
                     }
 
                     override fun onDownloadFinished(totalBytes: Long, fileName: String, appName: String) {
-                        "onDownloadFinished".logi()
+                        "onDownloadFinished".logi(TAG)
                     }
 
                     override fun onInstalled(fileName: String, appName: String) {
-                        "onInstalled".logi()
+                        "onInstalled".logi(TAG)
                     }
                 })
             }

@@ -1,7 +1,5 @@
-//include ':app'
-include ':core', ':mango'
+include ':core'
 include ':gdt'
 include ':csj'
 include ':baidu'
 include ':demo'
-//include ':togetherAd'

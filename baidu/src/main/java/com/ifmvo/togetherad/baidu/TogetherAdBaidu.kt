@@ -5,7 +5,6 @@ import androidx.annotation.NonNull
 import com.baidu.mobads.AdView
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
-import com.ifmvo.togetherad.core.utils.logi
 
 /* 
  * (●ﾟωﾟ●)
@@ -22,11 +21,8 @@ object TogetherAdBaidu {
      */
     //baidu
     fun init(@NonNull context: Application, @NonNull adProviderType: String, @NonNull baiduAdAppId: String, baiduIdMap: Map<String, String>) {
-
         TogetherAd.addProvider(AdProviderEntity(adProviderType, BaiduProvider::class.java.name))
-
         AdView.setAppSid(context, baiduAdAppId)
         idMapBaidu = baiduIdMap
-        "初始化$adProviderType".logi()
     }
 }

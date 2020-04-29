@@ -30,6 +30,8 @@ import kotlin.math.roundToInt
  */
 class GdtProvider : BaseAdProvider() {
 
+    private val TAG = "GdtProvider"
+
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
@@ -53,7 +55,7 @@ class GdtProvider : BaseAdProvider() {
                 activity.runOnUiThread {
                     container.addView(skipView, customSkipView?.getLayoutParams())
                 }
-                "${adProviderType}: 广告成功展示".logi()
+                "${adProviderType}: 广告成功展示".logi(TAG)
             }
 
             override fun onADClicked() {
@@ -63,7 +65,7 @@ class GdtProvider : BaseAdProvider() {
             override fun onADTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
                 customSkipView?.handleTime(second)
-                "${adProviderType}: 倒计时: $second".logv()
+                "${adProviderType}: 倒计时: $second".logv(TAG)
             }
 
             override fun onADExposure() {
@@ -130,43 +132,48 @@ class GdtProvider : BaseAdProvider() {
         rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
 
             override fun onADExpose() {
-                "onADExpose".logi()
+                "onADExpose".logi(TAG)
+                callbackRewardExpose(adProviderType, listener)
             }
 
             override fun onADClick() {
-                "onADClick".logi()
+                "onADClick".logi(TAG)
                 callbackRewardClicked(adProviderType, listener)
             }
 
             override fun onVideoCached() {
-                "onVideoCached".logi()
+                "onVideoCached".logi(TAG)
+                callbackRewardVideoCached(adProviderType, listener)
             }
 
             override fun onReward() {
-                "onReward".logi()
+                "onReward".logi(TAG)
+                callbackRewardVerify(adProviderType, listener)
             }
 
             override fun onADClose() {
-                "onADClose".logi()
+                "onADClose".logi(TAG)
+                callbackRewardClose(adProviderType, listener)
             }
 
             override fun onADLoad() {
-                "onADLoad".logi()
+                "onADLoad".logi(TAG)
                 callbackRewardLoaded(adProviderType, listener)
             }
 
             override fun onVideoComplete() {
-                "onVideoComplete".logi()
+                "onVideoComplete".logi(TAG)
+                callbackRewardVideoComplete(adProviderType, listener)
             }
 
             override fun onError(adError: AdError?) {
-                "onError".loge()
+                "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
             }
 
             override fun onADShow() {
+                "onADShow".logi(TAG)
                 callbackRewardShow(adProviderType, listener)
-                "onADShow".logi()
             }
 
         }, false)

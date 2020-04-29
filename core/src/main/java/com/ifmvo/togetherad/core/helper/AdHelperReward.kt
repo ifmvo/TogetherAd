@@ -57,6 +57,30 @@ class AdHelperReward : BaseHelper() {
             override fun onAdShow(providerType: String) {
                 listener?.onAdShow(providerType)
             }
+
+            override fun onAdLoaded(providerType: String) {
+                listener?.onAdLoaded(providerType)
+            }
+
+            override fun onAdExpose(providerType: String) {
+                listener?.onAdExpose(providerType)
+            }
+
+            override fun onAdVideoComplete(providerType: String) {
+                listener?.onAdVideoComplete(providerType)
+            }
+
+            override fun onAdVideoCached(providerType: String) {
+                listener?.onAdVideoCached(providerType)
+            }
+
+            override fun onAdRewardVerify(providerType: String) {
+                listener?.onAdRewardVerify(providerType)
+            }
+
+            override fun onAdClose(providerType: String) {
+                listener?.onAdClose(providerType)
+            }
         })
     }
 

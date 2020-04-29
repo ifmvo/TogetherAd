@@ -3,11 +3,9 @@ package com.ifmvo.togetherad.demo
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
-import com.ifmvo.togetherad.mango.TogetherAdMango
 
 /* 
  * (●ﾟωﾟ●)
@@ -27,11 +25,11 @@ class App : Application() {
                 TogetherAdAlias.AD_REWARD to "6051815092224372"
         ))
 
-        TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "d3c4d8d6", mapOf(
-                TogetherAdAlias.AD_REWARD to "7041916"
-        ))
+//        TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "d39ba09f", mapOf(
+//                TogetherAdAlias.AD_REWARD to "7045323"
+//        ))
 
-        TogetherAdMango.init(this, AdProviderType.MANGO.type)
+//        TogetherAdMango.init(this, AdProviderType.MANGO.type)
 
         TogetherAd.setPublicProviderRadio(mapOf(
                 AdProviderType.GDT.type to 1,

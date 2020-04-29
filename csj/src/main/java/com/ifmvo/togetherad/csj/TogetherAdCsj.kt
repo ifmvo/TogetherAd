@@ -7,7 +7,6 @@ import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
-import com.ifmvo.togetherad.core.utils.logi
 
 /* 
  * (●ﾟωﾟ●)
@@ -39,7 +38,5 @@ object TogetherAdCsj {
                 //.httpStack(new MyOkStack3())//自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
                 .build()
         )
-        "初始化$adProviderType".logi()
     }
-
 }
