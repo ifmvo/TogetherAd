@@ -30,7 +30,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-    compileOnly project(':core')
+//    compileOnly project(':core')
+    compileOnly 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha'
 
     //穿山甲用到
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'

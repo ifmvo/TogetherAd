@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -59,9 +59,9 @@ dependencies {
     implementation 'com.github.ifmvo:QuickList:1.1.5'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
-    implementation project(':core')
-    implementation project(':gdt')
-    implementation project(':baidu')
-    implementation project(':csj')
+//    implementation project(':core')
+//    implementation project(':gdt')
+//    implementation project(':baidu')
+//    implementation project(':csj')
 
 }

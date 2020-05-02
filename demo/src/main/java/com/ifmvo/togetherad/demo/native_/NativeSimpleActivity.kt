@@ -38,7 +38,7 @@ class NativeSimpleActivity : AppCompatActivity() {
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 "onAdLoaded: $providerType, adList: ${adList.size}".logi(TAG)
-                AdHelperNative.show(adList[0], adContainer, NativeTemplateCommon())
+//                AdHelperNative.show(adList[0], adContainer, NativeTemplateCommon())
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
