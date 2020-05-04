@@ -25,13 +25,12 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-//    compileOnly project(':core')
-    compileOnly 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha'
+    implementation project(':core')
 
     //穿山甲用到
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
