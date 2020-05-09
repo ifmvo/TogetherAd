@@ -21,7 +21,7 @@ class RewardActivity : AppCompatActivity() {
 
     private val TAG = "RewardActivity"
 
-    private val adHelperReward by lazy { AdHelperReward() }
+    private lateinit var adHelperReward: AdHelperReward
 
     companion object {
         fun action(context: Context) {
@@ -33,67 +33,69 @@ class RewardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reward)
 
+        adHelperReward = AdHelperReward(activity = this, alias = TogetherAdAlias.AD_REWARD, listener = object : RewardListener {
+            override fun onAdStartRequest(providerType: String) {
+                addLog("\n开始请求: $providerType")
+                "onAdStartRequest: $providerType".logi(TAG)
+            }
+
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
+                addLog("请求失败: $providerType")
+                "onAdFailed: $providerType: $failedMsg".loge(TAG)
+            }
+
+            override fun onAdFailedAll(failedMsg: String?) {
+                addLog("全部失败: $failedMsg")
+                "onAdFailedAll: $failedMsg".loge(TAG)
+            }
+
+            override fun onAdClicked(providerType: String) {
+                addLog("点击了: $providerType")
+                "onAdClicked: $providerType".logi(TAG)
+            }
+
+            override fun onAdShow(providerType: String) {
+                addLog("展示了: $providerType")
+                "onAdShow: $providerType".logi(TAG)
+            }
+
+            override fun onAdLoaded(providerType: String) {
+                addLog("请求到了: $providerType")
+                "onAdLoaded: $providerType".logi(TAG)
+            }
+
+            override fun onAdExpose(providerType: String) {
+                addLog("曝光了: $providerType")
+                "onAdExpose: $providerType".logi(TAG)
+            }
+
+            override fun onAdVideoComplete(providerType: String) {
+                addLog("视频播放完成: $providerType")
+                "onAdVideoComplete: $providerType".logi(TAG)
+            }
+
+            override fun onAdVideoCached(providerType: String) {
+                addLog("视频已缓存: $providerType")
+                "onAdVideoCached: $providerType".logi(TAG)
+            }
+
+            override fun onAdRewardVerify(providerType: String) {
+                addLog("激励验证: $providerType")
+                "onAdRewardVerify: $providerType".logi(TAG)
+            }
+
+            override fun onAdClose(providerType: String) {
+                addLog("关闭了: $providerType")
+                "onAdClose: $providerType".logi(TAG)
+            }
+        })
+
         load.setOnClickListener {
-            adHelperReward.load(activity = this, alias = TogetherAdAlias.AD_REWARD, listener = object : RewardListener {
-                override fun onAdStartRequest(providerType: String) {
-                    addLog("\n开始请求: $providerType")
-                    "onAdStartRequest: $providerType".logi(TAG)
-                }
-
-                override fun onAdFailed(providerType: String, failedMsg: String?) {
-                    addLog("请求失败: $providerType")
-                    "onAdFailed: $providerType: $failedMsg".loge(TAG)
-                }
-
-                override fun onAdFailedAll(failedMsg: String?) {
-                    addLog("全部失败: $failedMsg")
-                    "onAdFailedAll: $failedMsg".loge(TAG)
-                }
-
-                override fun onAdClicked(providerType: String) {
-                    addLog("点击了: $providerType")
-                    "onAdClicked: $providerType".logi(TAG)
-                }
-
-                override fun onAdShow(providerType: String) {
-                    addLog("展示了: $providerType")
-                    "onAdShow: $providerType".logi(TAG)
-                }
-
-                override fun onAdLoaded(providerType: String) {
-                    addLog("请求到了: $providerType")
-                    "onAdLoaded: $providerType".logi(TAG)
-                }
-
-                override fun onAdExpose(providerType: String) {
-                    addLog("曝光了: $providerType")
-                    "onAdExpose: $providerType".logi(TAG)
-                }
-
-                override fun onAdVideoComplete(providerType: String) {
-                    addLog("视频播放完成: $providerType")
-                    "onAdVideoComplete: $providerType".logi(TAG)
-                }
-
-                override fun onAdVideoCached(providerType: String) {
-                    addLog("视频已缓存: $providerType")
-                    "onAdVideoCached: $providerType".logi(TAG)
-                }
-
-                override fun onAdRewardVerify(providerType: String) {
-                    addLog("激励验证: $providerType")
-                    "onAdRewardVerify: $providerType".logi(TAG)
-                }
-
-                override fun onAdClose(providerType: String) {
-                    addLog("关闭了: $providerType")
-                    "onAdClose: $providerType".logi(TAG)
-                }
-            })
+            adHelperReward.load()
         }
 
         show.setOnClickListener {
-            adHelperReward.show(activity = this)
+            adHelperReward.show()
         }
     }
 
