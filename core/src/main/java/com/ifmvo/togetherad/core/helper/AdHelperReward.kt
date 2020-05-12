@@ -15,10 +15,10 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  */
 class AdHelperReward(
 
-    @NonNull activity: Activity,
-    @NonNull alias: String,
-    radioMap: Map<String, Int>? = null,
-    listener: RewardListener? = null
+        @NonNull activity: Activity,
+        @NonNull alias: String,
+        radioMap: Map<String, Int>? = null,
+        listener: RewardListener? = null
 
 ) : BaseHelper() {
 
@@ -29,10 +29,13 @@ class AdHelperReward(
     private var adProvider: BaseAdProvider? = null
 
     fun load() {
-
         val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!
+        reload(currentRadioMap)
+    }
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
+    private fun reload(@NonNull radioMap: Map<String, Int>) {
+
+        val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
 
         if (adProviderType?.isEmpty() != false) {
             mListener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
@@ -42,8 +45,7 @@ class AdHelperReward(
         adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
-            mRadioMap = filterType(currentRadioMap, adProviderType)
-            load()
+            reload(filterType(radioMap, adProviderType))
             return
         }
 
@@ -54,8 +56,7 @@ class AdHelperReward(
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 mListener?.onAdFailed(providerType, failedMsg)
-                mRadioMap = filterType(currentRadioMap, adProviderType)
-                load()
+                reload(filterType(radioMap, adProviderType))
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
