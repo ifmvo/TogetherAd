@@ -64,7 +64,7 @@ dependencies {
 //    implementation 'com.github.ifmvo.TogetherAd:csj:dev-SNAPSHOT'
 //    implementation 'com.github.ifmvo.TogetherAd:baidu:dev-SNAPSHOT'
 
-    implementation project(':core')
+//    implementation project(':core')
     implementation project(':csj')
     implementation project(':gdt')
     implementation project(':baidu')
