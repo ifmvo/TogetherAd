@@ -59,10 +59,10 @@ dependencies {
     implementation 'com.github.ifmvo:QuickList:1.1.5'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
-//    implementation 'com.github.ifmvo:TogetherAd:3.0.0-alpha6'
-//    implementation 'com.github.ifmvo.TogetherAd:gdt:dev-SNAPSHOT'
-//    implementation 'com.github.ifmvo.TogetherAd:csj:dev-SNAPSHOT'
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:dev-SNAPSHOT'
+//    implementation 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha6'
+//    implementation 'com.github.ifmvo.TogetherAd:gdt:3.0.0-alpha7'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:3.0.0-alpha7'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:3.0.0-alpha7'
 
 //    implementation project(':core')
     implementation project(':csj')
