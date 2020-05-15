@@ -20,4 +20,4 @@ dependencies {
 ### 有疑问？VX 联系我! 获取加入开车 QQ 群
 <img src="img/Wechat.jpeg"  height="200" width="200">
 </br>
-<img src="img/QQ.png"  height="200" width="200">
+<img src="img/QQ.png"  height="265" width="200">
