@@ -7,8 +7,6 @@ import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 
 /* 
- * (●ﾟωﾟ●)
- * 
  * Created by Matthew Chen on 2020-04-16.
  */
 class App : Application() {
@@ -16,16 +14,25 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        TogetherAdCsj.init(this, AdProviderType.CSJ.type, "5062695", this.getString(R.string.app_name), mapOf(
-                TogetherAdAlias.AD_REWARD to "945152437"
+        TogetherAdCsj.init(this, AdProviderType.CSJ.type, "5020413", this.getString(R.string.app_name), mapOf(
+                TogetherAdAlias.AD_SPLASH to "820413685",
+                TogetherAdAlias.AD_NATIVE to "920413297",
+                TogetherAdAlias.AD_BANNER to "920413358",
+                TogetherAdAlias.AD_REWARD to "920413358"
         ), isDebug = BuildConfig.DEBUG)
 
-        TogetherAdGdt.init(this, AdProviderType.GDT.type, "1107469470", mapOf(
-                TogetherAdAlias.AD_REWARD to "6051815092224372"
+        TogetherAdGdt.init(this, AdProviderType.GDT.type, "1105965856", mapOf(
+                TogetherAdAlias.AD_SPLASH to "5070550501041614",
+                TogetherAdAlias.AD_NATIVE to "6041707449579237",
+                TogetherAdAlias.AD_BANNER to "3050767842595815",
+                TogetherAdAlias.AD_REWARD to "3050767842595815"
         ))
 
-        TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "d39ba09f", mapOf(
-                TogetherAdAlias.AD_REWARD to "7045323"
+        TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "c4d4e71f", mapOf(
+                TogetherAdAlias.AD_SPLASH to "6697024",
+                TogetherAdAlias.AD_NATIVE to "6697101",
+                TogetherAdAlias.AD_BANNER to "6697141",
+                TogetherAdAlias.AD_REWARD to "6697141"
         ))
 
         TogetherAd.setPublicProviderRadio(mapOf(
@@ -33,5 +40,11 @@ class App : Application() {
                 AdProviderType.BAIDU.type to 1,
                 AdProviderType.CSJ.type to 1
         ))
+
+//        TogetherAd.setCustomImageLoader(object : AdImageLoader {
+//            override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
+//                Glide.with(context).load(imgUrl).into(imageView)
+//            }
+//        })
     }
 }

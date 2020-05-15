@@ -10,7 +10,7 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
@@ -32,12 +32,12 @@ object AdHelperNative : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
-            val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
-            getList(activity, alias, newRadioMap, maxCount, listener)
+            val newRadioMap = AdHelperSplash.filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
+            getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             return
         }
 
-        adProvider.getNativeAdList(activity, adProviderType, alias, currentMaxCount, object : NativeListener {
+        adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = currentMaxCount, listener = object : NativeListener {
 
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
@@ -49,8 +49,8 @@ object AdHelperNative : BaseHelper() {
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
-                getList(activity, alias, newRadioMap, maxCount, listener)
+                val newRadioMap = AdHelperSplash.filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
+                getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             }
 
             override fun onAdFailedAll(failedMsg: String?) {

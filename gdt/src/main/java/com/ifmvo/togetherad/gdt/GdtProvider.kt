@@ -24,7 +24,7 @@ import kotlin.math.roundToInt
 
 
 /*
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-03.
  */

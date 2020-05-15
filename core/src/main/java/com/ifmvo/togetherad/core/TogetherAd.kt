@@ -1,11 +1,13 @@
 package com.ifmvo.togetherad.core
 
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
+import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-02.
  */
@@ -20,6 +22,7 @@ object TogetherAd {
      * 所有注册的广告提供商
      */
     var mProviders = mutableMapOf<String, AdProviderEntity>()
+        private set
 
     /**
      * 添加广告提供商
@@ -67,5 +70,15 @@ object TogetherAd {
             }
             defaultMap
         }
+    }
+
+    /**
+     * 可自定义图片加载处理
+     */
+    var mImageLoader: AdImageLoader? = DefaultImageLoader()
+        private set
+
+    fun setCustomImageLoader(@NonNull imageLoader: AdImageLoader) {
+        mImageLoader = imageLoader
     }
 }

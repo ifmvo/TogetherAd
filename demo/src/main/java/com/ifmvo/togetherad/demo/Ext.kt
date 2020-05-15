@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-21.
  */

@@ -3,7 +3,7 @@ package com.ifmvo.togetherad.core.helper
 import androidx.annotation.NonNull
 
 /*
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-03.
  */

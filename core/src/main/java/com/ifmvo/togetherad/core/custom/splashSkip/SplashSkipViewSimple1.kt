@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import com.ifmvo.togetherad.core.R
 
 /*
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-17.
  */

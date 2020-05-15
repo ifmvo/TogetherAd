@@ -9,7 +9,7 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-20.
  */

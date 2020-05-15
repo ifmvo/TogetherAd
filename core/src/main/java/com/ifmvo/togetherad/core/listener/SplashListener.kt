@@ -3,7 +3,7 @@ package com.ifmvo.togetherad.core.listener
 import androidx.annotation.NonNull
 
 /* 
- * (●ﾟωﾟ●) 通用的监听器
+ *  通用的监听器
  * 
  * Created by Matthew Chen on 2020-04-03.
  */

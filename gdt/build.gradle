@@ -2,17 +2,21 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
-
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+    }
+
+    lintOptions{
+        abortOnError false
     }
 
     buildTypes {
@@ -30,38 +34,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-    api 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha7'
-//    api project(':core')
+//    api 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha7'
+    api project(':core')
 }
 
-ext {
-    GITHUB_REPO_PATH = "outaar"
-    PUBLISH_GROUP_ID = 'com.ifmvo.togetherad'
-    PUBLISH_ARTIFACT_ID = 'gdt'
-    PUBLISH_VERSION = '1.0.0'
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //本地maven仓库地址,也可以使用远程maven仓库
-            def deployPath = file(project.GITHUB_REPO_PATH)
-            repository(url: "file://${deployPath.absolutePath}")
-            pom.project {
-                groupId project.PUBLISH_GROUP_ID
-                artifactId project.PUBLISH_ARTIFACT_ID
-                version project.PUBLISH_VERSION
-            }
-        }
-    }
-}
-
-// 源代码一起打包
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.sourceFiles
-}
-
-artifacts {
-    archives androidSourcesJar
+publish {
+    userOrg = 'matthewchen'
+    groupId = 'com.matthewchen.togetherad'
+    artifactId = 'gdt'
+    publishVersion = '1.0.0'
+    desc = 'A fast integration framework for a advertising platform.'
+    website = "https://github.com/ifmvo/TogetherAd"
 }

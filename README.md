@@ -1,8 +1,6 @@
-![Logo](doc/img/TogetherAd-Logo.png)
+``TogetherAd`` 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内主流广告 SDK。
 
-TogetherAd 封装了多种广告的 SDK，可以自行控制请求各种广告次数的比例，可以自定义广告位。
-
-### 接入方法
+### ~~接入方法~~
 项目根目录下 build.gradle 中
 ```
 allprojects {

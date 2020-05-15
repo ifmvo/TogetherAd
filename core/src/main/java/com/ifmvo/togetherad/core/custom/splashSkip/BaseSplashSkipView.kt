@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-17.
  */

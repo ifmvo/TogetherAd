@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.demo.reward
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core.helper.AdHelperReward
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -13,7 +14,7 @@ import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_reward.*
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-22.
  */
@@ -99,10 +100,12 @@ class RewardActivity : AppCompatActivity() {
         }
     }
 
-    private var logStr = ""
+    private var logStr = "日志: \n"
 
-    private fun addLog(content: String) {
+    private fun addLog(content: String?) {
         logStr = logStr + content + "\n"
         log.text = logStr
+
+        info.post { info.fullScroll(View.FOCUS_DOWN) }
     }
 }

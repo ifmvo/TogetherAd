@@ -15,16 +15,26 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ScrollView
         android:id="@+id/info"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        tools:text="开屏界面"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="日志" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

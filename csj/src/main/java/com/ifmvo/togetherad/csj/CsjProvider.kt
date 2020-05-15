@@ -19,7 +19,7 @@ import com.ifmvo.togetherad.core.utils.logi
 
 
 /*
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-03.
  */

@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
 
     defaultConfig {
-        applicationId "com.yun.launcher"
+        applicationId "com.rumtel.pandatv"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -25,12 +24,16 @@ android {
         }
     }
 
+    lintOptions{
+        abortOnError false
+    }
+
     buildTypes {
 
         debug {
             minifyEnabled false
             shrinkResources false
-//            signingConfig signingConfigs.myConfig
+            signingConfig signingConfigs.myConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -40,13 +43,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    android {
-        lintOptions {
-            abortOnError false
-        }
-    }
-
 }
 
 dependencies {
@@ -59,12 +55,17 @@ dependencies {
     implementation 'com.github.ifmvo:QuickList:1.1.5'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
-//    implementation 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha6'
-//    implementation 'com.github.ifmvo.TogetherAd:gdt:3.0.0-alpha7'
-//    implementation 'com.github.ifmvo.TogetherAd:csj:3.0.0-alpha7'
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:3.0.0-alpha7'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-//    implementation project(':core')
+//    implementation 'com.matthewchen.togetherad:gdt:1.0.0'
+//    implementation 'com.matthewchen.togetherad:baidu:1.0.0'
+
+//    implementation 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha7'
+//    implementation 'com.github.ifmvo.TogetherAd:gdt:3.0.0-alpha8'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:3.0.0-alpha8'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:3.0.0-alpha8'
+
+    implementation project(':core')
     implementation project(':csj')
     implementation project(':gdt')
     implementation project(':baidu')

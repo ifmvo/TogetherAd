@@ -8,7 +8,7 @@ import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.addFragment
 
 /* 
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-20.
  */

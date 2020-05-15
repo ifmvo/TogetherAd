@@ -1,55 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_super"
+    android:id="@+id/ll_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/fl_parent"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="wrap_content">
 
-        <!--
-            三图模式
-        -->
-        <LinearLayout
-            android:id="@+id/ll_ad_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/img_poster1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
-
-            <ImageView
-                android:id="@+id/img_poster2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
-
-            <ImageView
-                android:id="@+id/img_poster3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
-
-        </LinearLayout>
-
-        <!--
-            视频
-        -->
-        <FrameLayout
-            android:id="@+id/fl_ad_container"
+        <ImageView
+            android:id="@+id/img_poster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
 
         <!--        <com.rumtel.ad.AdLogoView-->
         <!--            android:id="@+id/ad_logo_view"-->
@@ -65,9 +40,6 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
-        <!--
-            标题
-        -->
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
@@ -81,9 +53,6 @@
             android:textSize="16sp"
             tools:text="adfadfasdfadsfadsfasdfkadf" />
 
-        <!--
-            描述
-        -->
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
@@ -91,8 +60,6 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:ellipsize="end"
-            android:lines="1"
             android:textColor="@android:color/darker_gray"
             android:textSize="12sp"
             tools:text="adfadfadadfadfsfadsf" />

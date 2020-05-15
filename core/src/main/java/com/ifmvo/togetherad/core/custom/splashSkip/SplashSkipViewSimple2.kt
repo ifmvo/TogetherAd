@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.ifmvo.togetherad.core.R
 
 /*
- * (●ﾟωﾟ●)
+ *
  * 
  * Created by Matthew Chen on 2020-04-17.
  */
