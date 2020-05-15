@@ -18,4 +18,4 @@ dependencies {
 }
 ```
 ### 有疑问？VX 联系我! 
-<img src="img/Wechat.jpeg"  height="300" width="300">
+<img src="img/Wechat.jpeg"  height="200" width="200">
