@@ -57,19 +57,12 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    implementation 'com.matthewchen.togetherad:core:1.0.0'
-    implementation 'com.matthewchen.togetherad:baidu:1.0.0'
-    implementation 'com.matthewchen.togetherad:gdt:1.0.0'
-    implementation 'com.matthewchen.togetherad:csj:1.0.0'
+//    implementation 'com.matthewchen.togetherad:baidu:1.0.1'
+//    implementation 'com.matthewchen.togetherad:gdt:1.0.1'
+//    implementation 'com.matthewchen.togetherad:csj:1.0.1'
 
-//    implementation 'com.github.ifmvo.TogetherAd:core:3.0.0-alpha7'
-//    implementation 'com.github.ifmvo.TogetherAd:gdt:3.0.0-alpha8'
-//    implementation 'com.github.ifmvo.TogetherAd:csj:3.0.0-alpha8'
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:3.0.0-alpha8'
-
-//    implementation project(':core')
-//    implementation project(':csj')
-//    implementation project(':gdt')
-//    implementation project(':baidu')
+    implementation project(':csj')
+    implementation project(':gdt')
+    implementation project(':baidu')
 
 }

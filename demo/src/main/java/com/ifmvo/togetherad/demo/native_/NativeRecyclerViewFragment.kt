@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ifmvo.quicklist.BaseRecyclerViewFragment
 import com.ifmvo.togetherad.core.helper.AdHelperNative
 import com.ifmvo.togetherad.core.listener.NativeListener
+import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 
@@ -88,7 +89,7 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
                         val content = item.anyObj as ContentDataEntity
                         holder.setText(R.id.txt, content.title)
                         val imgView = holder.getView<ImageView>(R.id.img)
-//                        imgView.layoutParams.height = ScreenUtil.getDisplayMetricsWidth(requireContext()) * 9 / 16
+                        imgView.layoutParams.height = ScreenUtil.getDisplayMetricsWidth(requireContext()) * 9 / 16
                         Glide.with(requireContext()).load(content.imgUrl).into(imgView)
                     }
                     NativeRVMultiItemEntity.TYPE_AD -> {

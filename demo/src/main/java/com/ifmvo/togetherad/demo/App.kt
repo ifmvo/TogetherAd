@@ -1,8 +1,12 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.Application
+import android.content.Context
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 
@@ -41,10 +45,10 @@ class App : Application() {
                 AdProviderType.CSJ.type to 1
         ))
 
-//        TogetherAd.setCustomImageLoader(object : AdImageLoader {
-//            override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
-//                Glide.with(context).load(imgUrl).into(imageView)
-//            }
-//        })
+        TogetherAd.setCustomImageLoader(object : AdImageLoader {
+            override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
+                Glide.with(context).load(imgUrl).into(imageView)
+            }
+        })
     }
 }

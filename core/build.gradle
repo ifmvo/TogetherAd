@@ -6,7 +6,6 @@ apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
 
     defaultConfig {
         minSdkVersion 16
@@ -28,7 +27,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -38,7 +36,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'core'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }
