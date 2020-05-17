@@ -49,21 +49,24 @@ dependencies {
 
 请到各个平台官网下载SDK，或者[点击这里获取aar文件](demo/libs)
 
-将对应的aar文件添加到项目的libs文件夹中
+将对应的aar文件添加到项目的libs文件夹中。
 
-<img src="img/aars-to-libs.png"  height="200" width="400">
+也是随意组合搭配，但是要和上面第 1 步骤相对应。
+
+<img src="img/aars-add-to-libs.png"  height="200" width="400">
 
 ###3. 引入aar文件
 ```
 dependencies {
 
 	//这句代码的意思是：将libs文件夹中的 所有aar和jar文件 依赖到项目中
+	//注意：这句代码和项目中默认的是不一样的，多了后面的 '*.aar'
 	implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 	
 	...
 }
 ```
-> 征集：寻找将aar打包到依赖里面的方法，以优化接入的步骤。有方案者请联系我，将获取精美咖啡一杯。
+> 征集：寻找将aar打包到依赖里面的方法，以优化接入的步骤。有方案者请联系我，将获得精美咖啡一杯。
 > 感激！！
 
 ## 支持的广告类型以及使用方法
