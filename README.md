@@ -77,7 +77,7 @@ dependencies {
 
 ## 使用方法
 
-[准备工作](doc/prepare.md)
+[准备工作及初始化](doc/prepare.md)
 
 [开屏广告](doc/splash.md)
 
