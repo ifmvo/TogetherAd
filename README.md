@@ -104,6 +104,10 @@ dependencies {
 
 >会尽量保持最新。如果发现有新版本也可联系我，我会及时更新，感激！！
 
+## License
+
+MIT
+
 ## 有疑问？欢迎提交 Issue，或者VX 联系我，也可加入 QQ 交流群
 
 <img src="img/Wechat.jpeg"  height="200" width="200">
