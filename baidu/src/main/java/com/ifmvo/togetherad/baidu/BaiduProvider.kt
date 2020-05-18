@@ -9,7 +9,6 @@ import com.baidu.mobad.feeds.RequestParameters
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.baidu.mobads.rewardvideo.RewardVideoAd
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -17,9 +16,9 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 
-/* 
+/**
+ * 广告提供商：百青藤
  *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 class BaiduProvider : BaseAdProvider() {
@@ -81,12 +80,7 @@ class BaiduProvider : BaseAdProvider() {
         return adObject is NativeResponse
     }
 
-    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
-
-    }
-
-
-    private var mRewardVideoAd : RewardVideoAd? = null
+    private var mRewardVideoAd: RewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)

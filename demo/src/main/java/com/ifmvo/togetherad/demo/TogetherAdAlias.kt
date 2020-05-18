@@ -1,6 +1,12 @@
 package com.ifmvo.togetherad.demo
 
-/* 
+/**
+ * 所有广告位的别名
+ *
+ * 列举你项目中的所有广告位，并给每个广告位起个名字
+ *
+ * 用于初始化广告位ID 以及 广告的请求
+ *
  * Created by Matthew Chen on 2020-04-16.
  */
 object TogetherAdAlias {

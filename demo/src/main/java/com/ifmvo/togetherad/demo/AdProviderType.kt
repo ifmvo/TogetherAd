@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.demo
 
 /*
- * 广告提供者的种类
+ * 广告提供商枚举
  *
  * Created by Matthew_Chen on 2018/8/23.
  */

@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -57,12 +57,12 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    implementation 'com.matthewchen.togetherad:baidu:3.0.0'
-    implementation 'com.matthewchen.togetherad:gdt:3.0.0'
-    implementation 'com.matthewchen.togetherad:csj:3.0.0'
+//    implementation 'com.matthewchen.togetherad:baidu:3.0.0'
+//    implementation 'com.matthewchen.togetherad:gdt:3.0.0'
+//    implementation 'com.matthewchen.togetherad:csj:3.0.0'
 
-//    implementation project(':csj')
-//    implementation project(':gdt')
-//    implementation project(':baidu')
+    implementation project(':csj')
+    implementation project(':gdt')
+    implementation project(':baidu')
 
 }

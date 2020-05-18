@@ -6,9 +6,7 @@ import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
-/* 
- *
- * 
+/*
  * Created by Matthew Chen on 2020-04-02.
  */
 object TogetherAd {

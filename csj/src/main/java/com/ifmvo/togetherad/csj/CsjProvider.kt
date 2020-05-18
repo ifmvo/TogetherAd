@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -17,10 +16,9 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 
-
-/*
+/**
+ * 广告提供商：穿山甲
  *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 class CsjProvider : BaseAdProvider() {
@@ -116,10 +114,6 @@ class CsjProvider : BaseAdProvider() {
 
     override fun isBelongTheProvider(adObject: Any): Boolean {
         return adObject is TTFeedAd
-    }
-
-    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
-
     }
 
     private var mttRewardVideoAd: TTRewardVideoAd? = null

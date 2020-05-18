@@ -1,12 +1,7 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.Application
-import android.content.Context
-import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
-import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 
@@ -18,40 +13,54 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        TogetherAdCsj.init(this, AdProviderType.CSJ.type, "5020413", this.getString(R.string.app_name), mapOf(
-                TogetherAdAlias.AD_SPLASH to "820413685",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "920413297",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "920413297",
-                TogetherAdAlias.AD_BANNER to "920413358",
-                TogetherAdAlias.AD_REWARD to "920413358"
+        //初始化穿山甲
+        TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "xxxxxxx", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "xxxxxxxxx",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxxxx",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxxxx",
+                TogetherAdAlias.AD_BANNER to "xxxxxxxxx",
+                TogetherAdAlias.AD_REWARD to "xxxxxxxxx"
         ), isDebug = BuildConfig.DEBUG)
 
-        TogetherAdGdt.init(this, AdProviderType.GDT.type, "1105965856", mapOf(
-                TogetherAdAlias.AD_SPLASH to "5070550501041614",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "6041707449579237",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6041707449579237",
-                TogetherAdAlias.AD_BANNER to "3050767842595815",
-                TogetherAdAlias.AD_REWARD to "3050767842595815"
+        //初始化广点通
+        TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "xxxxxxxxxxx", gdtIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "xxxxxxxxxxxxxxxx",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxxxxxxxxxxx",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxxxxxxxxxxx",
+                TogetherAdAlias.AD_BANNER to "xxxxxxxxxxxxxxxx",
+                TogetherAdAlias.AD_REWARD to "xxxxxxxxxxxxxxxx"
         ))
 
-        TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "c4d4e71f", mapOf(
-                TogetherAdAlias.AD_SPLASH to "6697024",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "6697101",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6697101",
-                TogetherAdAlias.AD_BANNER to "6697141",
-                TogetherAdAlias.AD_REWARD to "6697141"
+        //初始化百青藤
+        TogetherAdBaidu.init(context = this, adProviderType = AdProviderType.BAIDU.type, baiduAdAppId = "xxxxxxxx", baiduIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "xxxxxxx",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxx",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxx",
+                TogetherAdAlias.AD_BANNER to "xxxxxxx",
+                TogetherAdAlias.AD_REWARD to "xxxxxxx"
         ))
 
-        TogetherAd.setPublicProviderRadio(mapOf(
-                AdProviderType.GDT.type to 1,
-                AdProviderType.BAIDU.type to 1,
-                AdProviderType.CSJ.type to 1
-        ))
+        /**
+         * 配置全局的广告商权重。
+         * 如果在调用具体广告API时没有配置单次请求的权重，就会默认使用这个全局的权重
+         * 如果不配置，TogetherAd会默认所有初始化的广告商权重相同
+         */
+//        TogetherAd.setPublicProviderRadio(mapOf(
+//                AdProviderType.GDT.type to 1,
+//                AdProviderType.BAIDU.type to 1,
+//                AdProviderType.CSJ.type to 1
+//        ))
 
-        TogetherAd.setCustomImageLoader(object : AdImageLoader {
-            override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
-                Glide.with(context).load(imgUrl).into(imageView)
-            }
-        })
+        /**
+         * 自定义图片加载方式
+         * 用于自渲染类型的广告图片加载
+         * 如果不配置，TogetherAd 会使用默认的图片加载方式
+         * 主要考虑到：开发者可以自定义实现图片加载：渐变、占位图、错误图等
+         */
+//        TogetherAd.setCustomImageLoader(object : AdImageLoader {
+//            override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
+//                Glide.with(context).load(imgUrl).into(imageView)
+//            }
+//        })
     }
 }

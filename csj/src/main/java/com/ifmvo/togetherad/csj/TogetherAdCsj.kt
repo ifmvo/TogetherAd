@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.csj
 
-import android.app.Application
+import android.content.Context
 import androidx.annotation.NonNull
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
@@ -19,7 +19,7 @@ object TogetherAdCsj {
         private set
 
     //穿山甲
-    fun init(@NonNull context: Application, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: Map<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
+    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: Map<String, String>, useTextureView: Boolean = false, isDebug: Boolean = false) {
 
         TogetherAd.addProvider(AdProviderEntity(adProviderType, CsjProvider::class.java.name))
 

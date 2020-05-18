@@ -2,7 +2,6 @@ package com.ifmvo.togetherad.gdt
 
 import android.app.Activity
 import android.view.ViewGroup
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -22,10 +21,9 @@ import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
 import kotlin.math.roundToInt
 
-
-/*
+/**
+ * 广告提供商：优量汇（广点通）
  *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 class GdtProvider : BaseAdProvider() {
@@ -40,6 +38,7 @@ class GdtProvider : BaseAdProvider() {
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
         val splash = SplashAD(activity, skipView, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+
             override fun onADDismissed() {
                 callbackSplashDismiss(adProviderType, listener)
             }
@@ -118,10 +117,6 @@ class GdtProvider : BaseAdProvider() {
 
     override fun isBelongTheProvider(adObject: Any): Boolean {
         return adObject is NativeUnifiedADData
-    }
-
-    override fun showNativeAd(adObject: Any, container: ViewGroup, nativeView: BaseNativeView) {
-
     }
 
     private var rewardVideoAD: RewardVideoAD? = null

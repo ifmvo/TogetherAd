@@ -10,8 +10,6 @@ import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 
 /*
- *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 abstract class BaseAdProvider : IAdProvider {

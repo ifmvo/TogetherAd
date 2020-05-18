@@ -4,6 +4,9 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
 
+> 新版本 3.x 已发布。  
+>  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
+
 ## 特色功能
 
 ### 1. 主流SDK随意搭配组合
@@ -49,7 +52,7 @@ dependencies {
 
 ### 2. 下载对应广告平台的aar文件
 
-请到各个平台官网下载SDK，或者[点击这里获取aar文件](demo/libs)
+请到各个平台官网下载SDK，或者点击这里 [穿山甲](csj/libs/open_ad_sdk.aar) [优量汇](gdt/libs/GDTSDK.unionNormal.4.176.1046.aar) [百青藤](baidu/libs/Baidu_MobAds_SDK-release.aar) 按需获取aar文件
 
 将对应的aar文件添加到项目的libs文件夹中。
 
