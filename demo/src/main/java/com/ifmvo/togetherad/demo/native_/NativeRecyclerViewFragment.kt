@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.demo.native_
 
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
@@ -46,6 +47,7 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
             }
 
             override fun onAdFailedAll(failedMsg: String?) {
+                Toast.makeText(mContext, failedMsg, Toast.LENGTH_LONG).show()
                 //所有的提供商都失败
                 onResult(mutableListOf())
             }
@@ -63,7 +65,7 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
         val multiItemList = mutableListOf<NativeRVMultiItemEntity>()
         repeat(contentList.size) {
             multiItemList.add(NativeRVMultiItemEntity(itemType = NativeRVMultiItemEntity.TYPE_CONTENT, anyObj = contentList[it]))
-            if (nextAdPosition == it) {
+            if (adList.isNotEmpty() && nextAdPosition == it) {
                 if (lastUseAdPosition > adList.size - 1) {
                     lastUseAdPosition = 0
                 }

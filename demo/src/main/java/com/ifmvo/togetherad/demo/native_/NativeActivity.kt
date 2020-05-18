@@ -25,8 +25,8 @@ class NativeActivity : ListActivity() {
         super.onCreate(savedInstanceState)
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
-                "原生信息流简单用法",
-                "原生信息流在 RecyclerView 中使用"
+                "原生自渲染简单用法",
+                "原生自渲染在 RecyclerView 中使用"
         ))
     }
 

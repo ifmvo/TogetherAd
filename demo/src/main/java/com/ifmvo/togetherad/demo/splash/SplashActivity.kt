@@ -117,7 +117,7 @@ class SplashActivity : AppCompatActivity() {
     private fun actionHome(delayMillis: Long) {
         adContainer.postDelayed({
             //在这里跳转到 Home 主界面
-            finish()
+//            finish()
         }, delayMillis)
     }
 
