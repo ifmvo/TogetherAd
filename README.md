@@ -1,6 +1,8 @@
 # TogetherAd
 
-TogetherAd 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内主流广告 SDK。
+TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
+
+能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
 
 ## 特色功能
 
@@ -28,7 +30,7 @@ TogetherAd 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的
 
 ## 接入姿势
 
-### 1.根据自身需求``任选``以下 1 至 3 个依赖随意组合搭配
+### 1. 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
 
 ```
 dependencies {
@@ -45,7 +47,7 @@ dependencies {
 }
 ```
 
-### 2.下载对应广告平台的aar文件
+### 2. 下载对应广告平台的aar文件
 
 请到各个平台官网下载SDK，或者[点击这里获取aar文件](demo/libs)
 
@@ -70,13 +72,17 @@ dependencies {
 > 征集：寻找将aar打包到依赖里面的方法，以优化接入的步骤。有方案者请联系我，将获得精美咖啡一杯。
 > 感激！！
 
-## 支持的广告类型以及使用方法
+## 使用方法
+
+[准备工作](doc/prepare.md)
 
 [开屏广告](doc/splash.md)
 
 [原生自渲染](doc/native.md)
 
 [激励广告](doc/reward.md)
+
+[Banner横幅广告](doc/banner.md)
 
 ## 扩展
 ``TogetherAd``目前支持的广告平台有：穿山甲、广点通、百青藤。

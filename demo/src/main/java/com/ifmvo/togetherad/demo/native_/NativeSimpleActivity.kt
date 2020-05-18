@@ -32,7 +32,7 @@ class NativeSimpleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flow_simple)
 
-        AdHelperNative.getList(activity = this, alias = TogetherAdAlias.AD_NATIVE, maxCount = 1, listener = object : NativeListener {
+        AdHelperNative.getList(activity = this, alias = TogetherAdAlias.AD_NATIVE_SIMPLE, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 "onAdStartRequest: $providerType".logi(TAG)
                 addLog("原生广告开始请求，$providerType")

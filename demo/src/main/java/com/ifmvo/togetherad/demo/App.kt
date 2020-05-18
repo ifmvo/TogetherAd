@@ -20,21 +20,24 @@ class App : Application() {
 
         TogetherAdCsj.init(this, AdProviderType.CSJ.type, "5020413", this.getString(R.string.app_name), mapOf(
                 TogetherAdAlias.AD_SPLASH to "820413685",
-                TogetherAdAlias.AD_NATIVE to "920413297",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "920413297",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "920413297",
                 TogetherAdAlias.AD_BANNER to "920413358",
                 TogetherAdAlias.AD_REWARD to "920413358"
         ), isDebug = BuildConfig.DEBUG)
 
         TogetherAdGdt.init(this, AdProviderType.GDT.type, "1105965856", mapOf(
                 TogetherAdAlias.AD_SPLASH to "5070550501041614",
-                TogetherAdAlias.AD_NATIVE to "6041707449579237",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "6041707449579237",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6041707449579237",
                 TogetherAdAlias.AD_BANNER to "3050767842595815",
                 TogetherAdAlias.AD_REWARD to "3050767842595815"
         ))
 
         TogetherAdBaidu.init(this, AdProviderType.BAIDU.type, "c4d4e71f", mapOf(
                 TogetherAdAlias.AD_SPLASH to "6697024",
-                TogetherAdAlias.AD_NATIVE to "6697101",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "6697101",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6697101",
                 TogetherAdAlias.AD_BANNER to "6697141",
                 TogetherAdAlias.AD_REWARD to "6697141"
         ))

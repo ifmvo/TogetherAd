@@ -32,7 +32,7 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
     }
 
     private fun requestAd(onResult: (adList: List<Any>) -> Unit) {
-        AdHelperNative.getList(requireActivity(), TogetherAdAlias.AD_NATIVE, maxCount = 3, listener = object : NativeListener {
+        AdHelperNative.getList(requireActivity(), TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, maxCount = 3, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 //每个提供商请求之前都会回调
             }
