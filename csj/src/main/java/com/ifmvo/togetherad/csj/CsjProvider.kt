@@ -148,7 +148,6 @@ class CsjProvider : BaseAdProvider() {
             //视频广告素材加载到，如title,视频url等，不包括视频文件
             override fun onRewardVideoAdLoad(ad: TTRewardVideoAd) {
                 "onRewardVideoAdLoad".logi(TAG)
-                callbackRewardLoaded(adProviderType, listener)
 
                 mttRewardVideoAd = ad
                 //mttRewardVideoAd.setShowDownLoadBar(false);
@@ -212,6 +211,8 @@ class CsjProvider : BaseAdProvider() {
                         "onInstalled".logi(TAG)
                     }
                 })
+
+                callbackRewardLoaded(adProviderType, listener)
             }
         })
     }

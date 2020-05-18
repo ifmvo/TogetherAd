@@ -126,4 +126,4 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
 }
 ```
 
-可查看 Demo 中 [开屏广告的示例代码](demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)
+可查看 Demo 中 [开屏广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)
