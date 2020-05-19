@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.kezong.fat-aar'
 
 android {
     compileSdkVersion 29
@@ -11,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "3.0.1-2.9.5.6"
     }
 
     lintOptions{
@@ -24,10 +25,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories { flatDir { dirs 'libs' } }
+
 }
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    embed(name: 'open_ad_sdk', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -43,7 +48,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'csj'
-    publishVersion = '3.0.0'
+    publishVersion = '3.0.1-2.9.5.6'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }

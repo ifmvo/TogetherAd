@@ -14,6 +14,7 @@ object TogetherAdGdt {
 
     var idMapGDT = mapOf<String, String>()
         private set
+
     /**
      * 广点通的 AppId
      */

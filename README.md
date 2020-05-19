@@ -31,51 +31,28 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 
 如果某个平台的广告请求失败或没有量，会自动在其他广告中随机出一种再次请求，这样可以尽可能多的展示广告，使收益最大化
 
-## 接入姿势
+## 使用方法
 
-### 1. 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
+根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
 
 ```
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.0.0'
+    implementation 'com.matthewchen.togetherad:csj:3.0.1-2.9.5.6'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.0.0'
+    implementation 'com.matthewchen.togetherad:gdt:3.0.1-4.176.1046'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.0.0'
+    implementation 'com.matthewchen.togetherad:baidu:3.0.1-5.83'
     
 }
 ```
 
-### 2. 下载对应广告平台的aar文件
+> 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-请到各个平台官网下载SDK，或者点击这里 [穿山甲](csj/libs/open_ad_sdk.aar) [优量汇](gdt/libs/GDTSDK.unionNormal.4.176.1046.aar) [百青藤](baidu/libs/Baidu_MobAds_SDK-release.aar) 按需获取aar文件
-
-将对应的aar文件添加到项目的libs文件夹中。
-
-也是随意组合搭配，但是要和上面第 1 步骤相对应。
-
-<img src="img/aars-add-to-libs.png"  height="200" width="400">
-
-### 3. 引入aar文件
-```
-dependencies {
-
-	//这句代码的意思是：将libs文件夹中的 所有aar和jar文件 依赖到项目中
-	//注意：这句代码和项目中默认的是不一样的，多了后面的 '*.aar'
-	implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-	
-	...
-}
-```
-
-> 征集：寻找将aar打包到依赖里面的方法，以优化接入的步骤。有方案者请联系我，将获得精美咖啡一杯。
-> 感激！！
-
-## 使用方法
+## 
 
 [准备工作及初始化](doc/prepare.md)
 
@@ -87,12 +64,15 @@ dependencies {
 
 [Banner横幅广告](doc/banner.md)
 
-## 扩展
+## 更多
+
+### 扩展
+
 ``TogetherAd``目前支持的广告平台有：穿山甲、广点通、百青藤。
 
 如果你想接入其他广告平台，或者自己有API组装。可参考[这里进行自定义扩展](doc/extend.md)。
 
-## 相关文档收集
+### 相关文档收集
 
 [广点通接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
 
@@ -104,7 +84,9 @@ dependencies {
 
 >会尽量保持最新。如果发现有新版本也可联系我，我会及时更新，感激！！
 
-## License
+### [更新日志](doc/update_log.md)
+
+### License
 
 MIT
 

@@ -5,8 +5,6 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import java.lang.reflect.Constructor
 
 /* 
- *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 object AdProviderLoader {
