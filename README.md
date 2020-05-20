@@ -4,7 +4,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
 
-> 新版本 3.x 已发布。  
+> 新版本 3.x 已发布。
 >  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
 
 ## 特色功能
@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.matthewchen.togetherad:csj:3.0.1-2.9.5.6'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.0.1-4.176.1046'
+    implementation 'com.matthewchen.togetherad:gdt:3.0.1-4.211.1081'
     
     //百青藤 ( 百度 Mob )
     implementation 'com.matthewchen.togetherad:baidu:3.0.1-5.83'

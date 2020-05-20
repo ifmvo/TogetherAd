@@ -57,12 +57,12 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    implementation 'com.matthewchen.togetherad:baidu:3.0.1-5.83'
-    implementation 'com.matthewchen.togetherad:gdt:3.0.1-4.176.1046'
-    implementation 'com.matthewchen.togetherad:csj:3.0.1-2.9.5.6'
+//    implementation 'com.matthewchen.togetherad:baidu:3.0.1-5.83'
+//    implementation 'com.matthewchen.togetherad:gdt:3.0.1-4.211.1081'
+//    implementation 'com.matthewchen.togetherad:csj:3.0.1-2.9.5.6'
 
-//    implementation project(':csj')
-//    implementation project(':gdt')
-//    implementation project(':baidu')
+    implementation project(':csj')
+    implementation project(':gdt')
+    implementation project(':baidu')
 
 }

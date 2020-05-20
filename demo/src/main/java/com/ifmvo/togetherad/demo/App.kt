@@ -14,30 +14,30 @@ class App : Application() {
         super.onCreate()
 
         //初始化穿山甲
-        TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "xxxxxxx", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
-                TogetherAdAlias.AD_SPLASH to "xxxxxxxxx",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxxxx",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxxxx",
-                TogetherAdAlias.AD_BANNER to "xxxxxxxxx",
-                TogetherAdAlias.AD_REWARD to "xxxxxxxxx"
+        TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "你的穿山甲广告的应用ID", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "你的对应广告位的ID",
+                TogetherAdAlias.AD_BANNER to "你的对应广告位的ID",
+                TogetherAdAlias.AD_REWARD to "你的对应广告位的ID"
         ), isDebug = BuildConfig.DEBUG)
 
         //初始化广点通
-        TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "xxxxxxxxxxx", gdtIdMap = mapOf(
-                TogetherAdAlias.AD_SPLASH to "xxxxxxxxxxxxxxxx",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxxxxxxxxxxx",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxxxxxxxxxxx",
-                TogetherAdAlias.AD_BANNER to "xxxxxxxxxxxxxxxx",
-                TogetherAdAlias.AD_REWARD to "xxxxxxxxxxxxxxxx"
+        TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "你的广点通广告的应用ID", gdtIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "你的对应广告位的ID",
+                TogetherAdAlias.AD_BANNER to "你的对应广告位的ID",
+                TogetherAdAlias.AD_REWARD to "你的对应广告位的ID"
         ))
 
         //初始化百青藤
-        TogetherAdBaidu.init(context = this, adProviderType = AdProviderType.BAIDU.type, baiduAdAppId = "xxxxxxxx", baiduIdMap = mapOf(
-                TogetherAdAlias.AD_SPLASH to "xxxxxxx",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "xxxxxxx",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "xxxxxxx",
-                TogetherAdAlias.AD_BANNER to "xxxxxxx",
-                TogetherAdAlias.AD_REWARD to "xxxxxxx"
+        TogetherAdBaidu.init(context = this, adProviderType = AdProviderType.BAIDU.type, baiduAdAppId = "你的百青藤广告的应用ID", baiduIdMap = mapOf(
+                TogetherAdAlias.AD_SPLASH to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_SIMPLE to "你的对应广告位的ID",
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "你的对应广告位的ID",
+                TogetherAdAlias.AD_BANNER to "你的对应广告位的ID",
+                TogetherAdAlias.AD_REWARD to "你的对应广告位的ID"
         ))
 
         /**
