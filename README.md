@@ -4,6 +4,8 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
 
+欢迎 **Star** 、**Fork**、**Issues**
+
 > 新版本 3.x 已发布。
 >  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
 
@@ -86,11 +88,15 @@ dependencies {
 
 ### [更新日志](doc/update_log.md)
 
+### 致谢
+
+[PlayerBase](https://github.com/jiajunhui/PlayerBase)
+
 ### License
 
 MIT
 
-## 有疑问？欢迎提交 Issue，或者VX 联系我，也可加入 QQ 交流群
+### 有疑问？欢迎 VX 联系我，也可加入 TogetherAd QQ 交流群
 
 <img src="img/Wechat.jpeg"  height="200" width="200">
 </br>
