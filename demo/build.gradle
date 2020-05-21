@@ -6,22 +6,12 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.rumtel.pandatv"
+        applicationId "换成你自己的包名"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-    }
-
-    //签名配置
-    signingConfigs {
-        myConfig {
-            storeFile file("./keystore/PandaTV.jks")
-            storePassword "Panda2018"
-            keyAlias 'Panda2018'
-            keyPassword "Panda2018"
-        }
     }
 
     lintOptions{
@@ -33,7 +23,6 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.myConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
