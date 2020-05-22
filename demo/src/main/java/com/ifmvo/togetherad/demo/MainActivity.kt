@@ -18,7 +18,7 @@ class MainActivity : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_2, arrayListOf(
+        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
                 "开屏",
                 "原生自渲染简单用法",
                 "原生自渲染在 RecyclerView 中使用",
