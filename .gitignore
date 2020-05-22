@@ -47,6 +47,7 @@ out/
 # MAVEN COMPILE Files
 target/
 lint.xml
+local.properties
 
 deploy.gradle
 jcenterDeploy.gradle
