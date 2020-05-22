@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "换成你自己的包名"
+        applicationId "com.ifmvo.togetherad.demo"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

@@ -66,7 +66,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        /**
+         * 可查看 Demo 中初始化时候的测试 ID
+         */
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "你的穿山甲广告的应用ID", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
                 TogetherAdAlias.AD_SPLASH to "你的对应广告位的ID",
@@ -98,6 +100,8 @@ class App : Application() {
          * 配置全局的广告商权重。
          * 如果在调用具体广告API时没有配置单次请求的权重，就会默认使用这个全局的权重
          * 如果不配置，TogetherAd会默认所有初始化的广告商权重相同
+         *
+         * 也可以在请求广告前设置，实时生效
          */
 //        TogetherAd.setPublicProviderRadio(mapOf(
 //                AdProviderType.GDT.type to 1,

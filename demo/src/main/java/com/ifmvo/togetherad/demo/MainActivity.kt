@@ -6,7 +6,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import com.ifmvo.togetherad.demo.native_.NativeActivity
+import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
+import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
 
@@ -17,9 +18,10 @@ class MainActivity : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
+        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_2, arrayListOf(
                 "开屏",
-                "原生自渲染",
+                "原生自渲染简单用法",
+                "原生自渲染在 RecyclerView 中使用",
                 "激励广告"
         ))
     }
@@ -31,9 +33,12 @@ class MainActivity : ListActivity() {
                 SplashActivity.action(this)
             }
             1 -> {
-                NativeActivity.action(this)
+                NativeSimpleActivity.action(this)
             }
             2 -> {
+                NativeRecyclerViewActivity.action(this)
+            }
+            3 -> {
                 RewardActivity.action(this)
             }
         }
