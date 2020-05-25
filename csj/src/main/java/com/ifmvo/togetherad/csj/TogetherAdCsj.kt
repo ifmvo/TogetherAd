@@ -8,8 +8,8 @@ import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 
-/* 
- *
+/**
+ * 初始化穿山甲
  * 
  * Created by Matthew Chen on 2020-04-17.
  */

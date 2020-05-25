@@ -137,6 +137,7 @@ class CsjProvider : BaseAdProvider() {
             override fun onError(code: Int, message: String) {
                 "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: $code, 错误信息：$message")
+                mttRewardVideoAd = null
             }
 
             //视频广告加载后的视频文件资源缓存到本地的回调
@@ -174,6 +175,7 @@ class CsjProvider : BaseAdProvider() {
                     override fun onAdClose() {
                         "onAdClose".logi(TAG)
                         callbackRewardClose(adProviderType, listener)
+                        mttRewardVideoAd = null
                     }
 
                     override fun onVideoComplete() {

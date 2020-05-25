@@ -89,6 +89,7 @@ class BaiduProvider : BaseAdProvider() {
             override fun onAdFailed(errorMsg: String?) {
                 "onAdFailed".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, errorMsg)
+                mRewardVideoAd = null
             }
 
             override fun playCompletion() {
@@ -111,6 +112,7 @@ class BaiduProvider : BaseAdProvider() {
             override fun onAdClose(playScale: Float) {
                 "onAdClose".logi(TAG)
                 callbackRewardClose(adProviderType, listener)
+                mRewardVideoAd = null
             }
 
             override fun onVideoDownloadSuccess() {

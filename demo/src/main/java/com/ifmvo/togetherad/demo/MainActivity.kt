@@ -6,14 +6,13 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import com.ifmvo.togetherad.demo.help.HelpActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
 
 class MainActivity : ListActivity() {
-
-    private var lastClickTimeLong = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +21,12 @@ class MainActivity : ListActivity() {
                 "开屏",
                 "原生自渲染简单用法",
                 "原生自渲染在 RecyclerView 中使用",
-                "激励广告"
+                "激励广告",
+                "采坑指南"
         ))
     }
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        super.onListItemClick(l, v, position, id)
         when (position) {
             0 -> {
                 SplashActivity.action(this)
@@ -41,8 +40,13 @@ class MainActivity : ListActivity() {
             3 -> {
                 RewardActivity.action(this)
             }
+            4 -> {
+                HelpActivity.action(this)
+            }
         }
     }
+
+    private var lastClickTimeLong = 0L
 
     override fun onBackPressed() {
 

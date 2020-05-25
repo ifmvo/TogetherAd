@@ -9,12 +9,19 @@ import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
-/* 
+/**
+ * 开屏广告
+ *
  * Created by Matthew Chen on 2020-04-03.
  */
 object AdHelperSplash : BaseHelper() {
 
     var customSkipView: BaseSplashSkipView? = null
+
+    //为了照顾 Java 调用的同学
+    fun show(@NonNull activity: Activity, @NonNull alias: String, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+        show(activity, alias, null, container, listener)
+    }
 
     fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
 

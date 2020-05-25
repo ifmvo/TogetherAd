@@ -42,6 +42,11 @@
         -->
         <activity android:name=".reward.RewardActivity" />
 
+        <!--
+            踩坑指南
+        -->
+        <activity android:name=".help.HelpActivity" />
+
     </application>
 
 </manifest>

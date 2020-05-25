@@ -8,8 +8,8 @@ import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
-/* 
- *
+/**
+ * 激励广告
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
@@ -27,6 +27,13 @@ class AdHelperReward(
     private var mRadioMap: Map<String, Int>? = radioMap
     private var mListener: RewardListener? = listener
     private var adProvider: BaseAdProvider? = null
+
+    //为了照顾 Java 调用的同学
+    constructor(
+            @NonNull activity: Activity,
+            @NonNull alias: String,
+            listener: RewardListener? = null
+    ) : this(activity, alias, null, listener)
 
     fun load() {
         val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!

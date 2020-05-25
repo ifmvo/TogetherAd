@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.addFragment
 
-/* 
+/**
+ * 具体用法在 Fragment 中
  *
- * 
  * Created by Matthew Chen on 2020-04-20.
  */
 class NativeRecyclerViewActivity : AppCompatActivity() {

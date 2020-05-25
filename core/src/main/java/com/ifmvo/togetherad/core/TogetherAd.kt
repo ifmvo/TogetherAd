@@ -6,7 +6,7 @@ import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 
-/*
+/**
  * Created by Matthew Chen on 2020-04-02.
  */
 object TogetherAd {
@@ -76,6 +76,9 @@ object TogetherAd {
     var mImageLoader: AdImageLoader? = DefaultImageLoader()
         private set
 
+    /**
+     * 提供了自定义图片加载框架的接口
+     */
     fun setCustomImageLoader(@NonNull imageLoader: AdImageLoader) {
         mImageLoader = imageLoader
     }

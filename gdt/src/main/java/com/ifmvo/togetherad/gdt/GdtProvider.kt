@@ -149,6 +149,7 @@ class GdtProvider : BaseAdProvider() {
             override fun onADClose() {
                 "onADClose".logi(TAG)
                 callbackRewardClose(adProviderType, listener)
+                rewardVideoAD = null
             }
 
             override fun onADLoad() {
@@ -164,6 +165,7 @@ class GdtProvider : BaseAdProvider() {
             override fun onError(adError: AdError?) {
                 "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
+                rewardVideoAD = null
             }
 
             override fun onADShow() {

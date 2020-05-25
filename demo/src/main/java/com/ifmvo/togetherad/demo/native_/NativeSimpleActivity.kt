@@ -14,8 +14,8 @@ import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_flow_simple.*
 
-/* 
- *
+/**
+ * 原生自渲染的简单用法
  * 
  * Created by Matthew Chen on 2020-04-20.
  */

@@ -9,14 +9,19 @@ import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
-/* 
- *
+/**
+ * 原生自渲染广告
  * 
  * Created by Matthew Chen on 2020-04-20.
  */
 object AdHelperNative : BaseHelper() {
 
     private const val defaultMaxCount = 4
+
+    //为了照顾 Java 调用的同学
+    fun getList(@NonNull activity: Activity, @NonNull alias: String, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
+        getList(activity, alias, null, maxCount, listener)
+    }
 
     fun getList(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount

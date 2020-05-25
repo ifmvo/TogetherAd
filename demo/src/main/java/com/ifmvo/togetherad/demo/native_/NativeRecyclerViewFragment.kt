@@ -14,7 +14,9 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 
-/* 
+/**
+ * 原生自渲染在 RecyclerView 中的用法
+ *
  * Created by Matthew Chen on 2020-04-21.
  */
 class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEntity, BaseViewHolder>() {

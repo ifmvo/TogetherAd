@@ -2,9 +2,7 @@ package com.ifmvo.togetherad.core.utils
 
 import androidx.annotation.NonNull
 
-/*
- *
- *
+/**
  * 参数 configStr : "baidu:1,gdt:4,csj:4"
  *
  * 按照 2 ：8 的比例随机返回 BAIDU or GDT or CSJ
@@ -14,7 +12,6 @@ import androidx.annotation.NonNull
  * Created by Matthew_Chen on 2018/8/24.
  */
 object AdRandomUtil {
-
 
     /**
      * radioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
