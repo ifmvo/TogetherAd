@@ -7,6 +7,7 @@ import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import java.lang.ref.WeakReference
 
 /**
  * 激励广告
@@ -22,7 +23,7 @@ class AdHelperReward(
 
 ) : BaseHelper() {
 
-    private var mActivity: Activity = activity
+    private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
     private var mRadioMap: Map<String, Int>? = radioMap
     private var mListener: RewardListener? = listener
@@ -44,7 +45,7 @@ class AdHelperReward(
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
 
-        if (adProviderType?.isEmpty() != false) {
+        if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             mListener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
             return
         }
@@ -56,7 +57,7 @@ class AdHelperReward(
             return
         }
 
-        adProvider?.requestRewardAd(mActivity, adProviderType, mAlias, object : RewardListener {
+        adProvider?.requestRewardAd(mActivity.get()!!, adProviderType, mAlias, object : RewardListener {
             override fun onAdStartRequest(providerType: String) {
                 mListener?.onAdStartRequest(providerType)
             }
@@ -105,6 +106,6 @@ class AdHelperReward(
     }
 
     fun show() {
-        adProvider?.showRewardAd(mActivity)
+        adProvider?.showRewardAd(mActivity.get()!!)
     }
 }
