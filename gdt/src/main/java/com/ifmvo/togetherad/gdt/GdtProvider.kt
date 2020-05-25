@@ -37,7 +37,7 @@ class GdtProvider : BaseAdProvider() {
         val customSkipView = AdHelperSplash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
-        val splash = SplashAD(activity, skipView, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+        val splash = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
                 callbackSplashDismiss(adProviderType, listener)
@@ -106,7 +106,7 @@ class GdtProvider : BaseAdProvider() {
             }
         }
 
-        val mAdManager = NativeUnifiedAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], nativeADUnifiedListener)
+        val mAdManager = NativeUnifiedAD(activity, TogetherAdGdt.idMapGDT[alias], nativeADUnifiedListener)
         //有效值就是 5-60
         mAdManager.setMaxVideoDuration(60)
         mAdManager.setMinVideoDuration(5)
@@ -124,7 +124,7 @@ class GdtProvider : BaseAdProvider() {
 
         callbackRewardStartRequest(adProviderType, listener)
 
-        rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.appIdGDT, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
+        rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
 
             override fun onADExpose() {
                 "onADExpose".logi(TAG)
