@@ -3,9 +3,9 @@ package com.ifmvo.togetherad.core.listener
 import androidx.annotation.NonNull
 
 /**
- * Created by Matthew Chen on 2020-04-22.
+ * Created by Matthew Chen on 2020/5/25.
  */
-interface RewardListener {
+interface BannerListener : BaseListener {
 
     fun onAdStartRequest(@NonNull providerType: String) {}
 

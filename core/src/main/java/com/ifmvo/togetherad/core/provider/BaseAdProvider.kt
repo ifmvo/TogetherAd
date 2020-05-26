@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -156,4 +157,48 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
+    /**
+     * --------------------------- Banner 横幅广告 ---------------------------
+     */
+    fun callbackBannerStartRequest(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 开始请求".logi()
+            listener.onAdStartRequest(adProviderType)
+        }
+    }
+
+    fun callbackBannerLoaded(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求成功了".logi()
+            listener.onAdLoaded(adProviderType)
+        }
+    }
+
+    fun callbackBannerFailed(@NonNull adProviderType: String, @NonNull listener: BannerListener, failedMsg: String?) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求失败了：$failedMsg".loge()
+            listener.onAdFailed(adProviderType, failedMsg)
+        }
+    }
+
+    fun callbackBannerClose(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 关闭了".logi()
+            listener.onAdClose(adProviderType)
+        }
+    }
+
+    fun callbackBannerExpose(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 曝光了".logi()
+            listener.onAdExpose(adProviderType)
+        }
+    }
+
+    fun callbackBannerClicked(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 点击了".logi()
+            listener.onAdClicked(adProviderType)
+        }
+    }
 }

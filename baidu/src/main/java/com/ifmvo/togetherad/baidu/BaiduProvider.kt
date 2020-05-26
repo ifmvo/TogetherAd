@@ -6,15 +6,20 @@ import com.baidu.mobad.feeds.BaiduNative
 import com.baidu.mobad.feeds.NativeErrorCode
 import com.baidu.mobad.feeds.NativeResponse
 import com.baidu.mobad.feeds.RequestParameters
+import com.baidu.mobads.AdView
+import com.baidu.mobads.AdViewListener
 import com.baidu.mobads.SplashAd
 import com.baidu.mobads.SplashAdListener
 import com.baidu.mobads.rewardvideo.RewardVideoAd
+import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import org.json.JSONObject
+
 
 /**
  * 广告提供商：百青藤
@@ -46,6 +51,39 @@ class BaiduProvider : BaseAdProvider() {
             }
 
         }, TogetherAdBaidu.idMapBaidu[alias], true)
+    }
+
+    override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
+
+        callbackBannerStartRequest(adProviderType, listener)
+
+        val adView = AdView(activity, TogetherAdBaidu.idMapBaidu[alias])
+        adView.setListener(object : AdViewListener {
+            override fun onAdFailed(errorMsg: String?) {
+                callbackBannerFailed(adProviderType, listener, errorMsg)
+            }
+
+            override fun onAdShow(p0: JSONObject?) {
+                callbackBannerExpose(adProviderType, listener)
+            }
+
+            override fun onAdClick(p0: JSONObject?) {
+                callbackBannerClicked(adProviderType, listener)
+            }
+
+            override fun onAdReady(p0: AdView?) {
+                callbackBannerLoaded(adProviderType, listener)
+            }
+
+            override fun onAdSwitch() {
+                "onAdSwitch".logi(TAG)
+            }
+
+            override fun onAdClose(p0: JSONObject?) {
+                callbackBannerClose(adProviderType, listener)
+            }
+        })
+        container.addView(adView)
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {

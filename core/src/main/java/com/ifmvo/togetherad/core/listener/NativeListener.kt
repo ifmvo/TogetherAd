@@ -2,9 +2,7 @@ package com.ifmvo.togetherad.core.listener
 
 import androidx.annotation.NonNull
 
-/* 
- *
- * 
+/**
  * Created by Matthew Chen on 2020-04-20.
  */
 interface NativeListener : BaseListener {

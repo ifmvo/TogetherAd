@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -31,6 +32,19 @@ interface IAdProvider {
             @NonNull listener: SplashListener
     )
 
+    fun showBannerAd(
+
+            @NonNull activity: Activity,
+
+            @NonNull adProviderType: String,
+
+            @NonNull alias: String,
+
+            @NonNull container: ViewGroup,
+
+            @NonNull listener: BannerListener
+    )
+
     fun getNativeAdList(
             @NonNull activity: Activity,
             @NonNull adProviderType: String,
@@ -43,7 +57,9 @@ interface IAdProvider {
      * 判断原生广告对象是否属于这个提供商
      */
     fun isBelongTheProvider(
+
             @NonNull adObject: Any
+
     ): Boolean
 
     fun requestRewardAd(
@@ -54,7 +70,7 @@ interface IAdProvider {
     )
 
     fun showRewardAd(
-        @NonNull activity: Activity
+            @NonNull activity: Activity
     )
 
 }

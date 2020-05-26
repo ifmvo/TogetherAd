@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
+import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -82,6 +83,66 @@ class CsjProvider : BaseAdProvider() {
                 callbackSplashFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         }, 2500)//超时时间，demo 为 2000
+    }
+
+    override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
+        callbackBannerStartRequest(adProviderType, listener)
+
+        val dm = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(dm)
+        /**
+         * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+         */
+        fun px2dip(pxValue: Int): Float {
+            val scale = activity.resources.displayMetrics.density
+            return pxValue / scale + 0.5f
+        }
+
+        val wDp = px2dip(dm.widthPixels)
+        val hDp = wDp / 4 * 9 / 16
+
+        val adSlot = AdSlot.Builder()
+                .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
+                .setSupportDeepLink(true)
+                .setAdCount(1) //请求广告数量为1到3条
+                .setExpressViewAcceptedSize(wDp, hDp) //期望模板广告view的size,单位dp
+                .setImageAcceptedSize(350, 350)//这个参数设置即可，不影响模板广告的size
+                .build()
+        TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+            override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
+                if (adList.isNullOrEmpty()) {
+                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    return
+                }
+                callbackBannerLoaded(adProviderType, listener)
+
+                val mTTAd = adList[0]
+                mTTAd.setSlideIntervalTime(30 * 1000)
+                mTTAd.setExpressInteractionListener(object : TTNativeExpressAd.ExpressAdInteractionListener {
+                    override fun onAdClicked(p0: View?, p1: Int) {
+                        callbackBannerClicked(adProviderType, listener)
+                    }
+
+                    override fun onAdShow(view: View?, p1: Int) {
+                        callbackBannerLoaded(adProviderType, listener)
+                    }
+
+                    override fun onRenderSuccess(view: View?, p1: Float, p2: Float) {
+                        callbackBannerExpose(adProviderType, listener)
+                        container.addView(view)
+                    }
+
+                    override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
+                        callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                    }
+                })
+                mTTAd.render()
+            }
+
+            override fun onError(errorCode: Int, errorMsg: String?) {
+                callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+            }
+        })
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {

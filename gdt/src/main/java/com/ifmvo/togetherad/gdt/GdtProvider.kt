@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.gdt
 import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
+import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
@@ -10,6 +11,8 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
+import com.qq.e.ads.banner2.UnifiedBannerADListener
+import com.qq.e.ads.banner2.UnifiedBannerView
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.NativeADUnifiedListener
 import com.qq.e.ads.nativ.NativeUnifiedAD
@@ -86,6 +89,45 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
+    override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
+
+        callbackBannerStartRequest(adProviderType, listener)
+        val banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
+            override fun onADCloseOverlay() {
+                "onADCloseOverlay".logi()
+            }
+
+            override fun onADExposure() {
+                callbackBannerExpose(adProviderType, listener)
+            }
+
+            override fun onADClosed() {
+                callbackBannerClose(adProviderType, listener)
+            }
+
+            override fun onADLeftApplication() {
+                "onADLeftApplication".logi()
+            }
+
+            override fun onADOpenOverlay() {
+                "onADOpenOverlay".logi()
+            }
+
+            override fun onNoAD(adError: AdError?) {
+                callbackBannerFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+            }
+
+            override fun onADReceive() {
+                callbackBannerLoaded(adProviderType, listener)
+            }
+
+            override fun onADClicked() {
+                callbackBannerClicked(adProviderType, listener)
+            }
+        })
+        banner.loadAD()
+    }
+
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
@@ -127,49 +169,40 @@ class GdtProvider : BaseAdProvider() {
         rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
 
             override fun onADExpose() {
-                "onADExpose".logi(TAG)
                 callbackRewardExpose(adProviderType, listener)
             }
 
             override fun onADClick() {
-                "onADClick".logi(TAG)
                 callbackRewardClicked(adProviderType, listener)
             }
 
             override fun onVideoCached() {
-                "onVideoCached".logi(TAG)
                 callbackRewardVideoCached(adProviderType, listener)
             }
 
             override fun onReward() {
-                "onReward".logi(TAG)
                 callbackRewardVerify(adProviderType, listener)
             }
 
             override fun onADClose() {
-                "onADClose".logi(TAG)
                 callbackRewardClose(adProviderType, listener)
                 rewardVideoAD = null
             }
 
             override fun onADLoad() {
-                "onADLoad".logi(TAG)
                 callbackRewardLoaded(adProviderType, listener)
             }
 
             override fun onVideoComplete() {
-                "onVideoComplete".logi(TAG)
                 callbackRewardVideoComplete(adProviderType, listener)
             }
 
             override fun onError(adError: AdError?) {
-                "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
                 rewardVideoAD = null
             }
 
             override fun onADShow() {
-                "onADShow".logi(TAG)
                 callbackRewardShow(adProviderType, listener)
             }
 
