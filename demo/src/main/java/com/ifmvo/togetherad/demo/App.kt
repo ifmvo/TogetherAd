@@ -32,12 +32,13 @@ class App : Application() {
 //                .supportMultiProcess(false) //是否支持多进程，true支持
 //                //.httpStack(new MyOkStack3())//自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
 //                .build()
+
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
-                TogetherAdAlias.AD_BANNER to "901121423",
+                TogetherAdAlias.AD_BANNER to "901121246",
                 TogetherAdAlias.AD_REWARD to "901121365"
         )/*, ttAdConfig = customTTAdConfig*/)
 
@@ -46,7 +47,7 @@ class App : Application() {
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
-                TogetherAdAlias.AD_BANNER to "9079537218417626401",
+                TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_REWARD to "2090845242931421"
         ))
 
@@ -66,11 +67,11 @@ class App : Application() {
          *
          * 也可以在请求广告前设置，实时生效
          */
-//        TogetherAd.setPublicProviderRadio(mapOf(
-//                AdProviderType.GDT.type to 1,
-//                AdProviderType.BAIDU.type to 1,
-//                AdProviderType.CSJ.type to 1
-//        ))
+        TogetherAd.setPublicProviderRadio(mapOf(
+                AdProviderType.GDT.type to 1,
+                AdProviderType.BAIDU.type to 1,
+                AdProviderType.CSJ.type to 1
+        ))
 
         /**
          * 自定义图片加载方式

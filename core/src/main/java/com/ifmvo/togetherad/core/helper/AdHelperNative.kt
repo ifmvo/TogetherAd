@@ -30,7 +30,7 @@ object AdHelperNative : BaseHelper() {
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
         if (adProviderType?.isEmpty() != false) {
-            listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
+            listener?.onAdFailedAll()
             return
         }
 
@@ -58,8 +58,8 @@ object AdHelperNative : BaseHelper() {
                 getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
-                listener?.onAdFailedAll(failedMsg)
+            override fun onAdFailedAll() {
+                listener?.onAdFailedAll()
             }
         })
     }

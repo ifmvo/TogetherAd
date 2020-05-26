@@ -13,6 +13,6 @@ interface NativeListener : BaseListener {
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
-    fun onAdFailedAll(@NonNull failedMsg: String?) {}
+    fun onAdFailedAll() {}
 
 }

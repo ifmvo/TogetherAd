@@ -45,6 +45,8 @@ interface IAdProvider {
             @NonNull listener: BannerListener
     )
 
+    fun destroyBannerAd()
+
     fun getNativeAdList(
             @NonNull activity: Activity,
             @NonNull adProviderType: String,

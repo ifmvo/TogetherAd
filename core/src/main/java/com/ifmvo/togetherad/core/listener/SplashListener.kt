@@ -19,7 +19,7 @@ interface SplashListener : BaseListener {
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
-    fun onAdFailedAll(@NonNull failedMsg: String?) {}
+    fun onAdFailedAll() {}
 
     fun onAdDismissed(@NonNull providerType: String) {}
 

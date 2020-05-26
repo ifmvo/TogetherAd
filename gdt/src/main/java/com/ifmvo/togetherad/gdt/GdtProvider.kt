@@ -8,7 +8,6 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.qq.e.ads.banner2.UnifiedBannerADListener
@@ -89,12 +88,13 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
+    private var banner: UnifiedBannerView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
 
         callbackBannerStartRequest(adProviderType, listener)
-        val banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
+        banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
             override fun onADCloseOverlay() {
-                "onADCloseOverlay".logi()
+                "onADCloseOverlay".logi(TAG)
             }
 
             override fun onADExposure() {
@@ -106,14 +106,15 @@ class GdtProvider : BaseAdProvider() {
             }
 
             override fun onADLeftApplication() {
-                "onADLeftApplication".logi()
+                "onADLeftApplication".logi(TAG)
             }
 
             override fun onADOpenOverlay() {
-                "onADOpenOverlay".logi()
+                "onADOpenOverlay".logi(TAG)
             }
 
             override fun onNoAD(adError: AdError?) {
+                banner?.destroy()
                 callbackBannerFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
             }
 
@@ -125,7 +126,12 @@ class GdtProvider : BaseAdProvider() {
                 callbackBannerClicked(adProviderType, listener)
             }
         })
-        banner.loadAD()
+        container.addView(banner)
+        banner?.loadAD()
+    }
+
+    override fun destroyBannerAd() {
+        banner?.destroy()
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
@@ -207,7 +213,6 @@ class GdtProvider : BaseAdProvider() {
             }
 
         }, false)
-
         rewardVideoAD?.loadAD()
     }
 

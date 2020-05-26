@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/adContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <ScrollView
         android:id="@+id/info"
         android:layout_width="match_parent"
@@ -26,5 +21,10 @@
             tools:text="日志" />
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/adContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

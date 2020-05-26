@@ -48,8 +48,8 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
                 //单个提供商请求失败
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
-                Toast.makeText(mContext, failedMsg, Toast.LENGTH_LONG).show()
+            override fun onAdFailedAll() {
+                Toast.makeText(mContext, "所有平台都请求失败了", Toast.LENGTH_LONG).show()
                 //所有的提供商都失败
                 onResult(mutableListOf())
             }

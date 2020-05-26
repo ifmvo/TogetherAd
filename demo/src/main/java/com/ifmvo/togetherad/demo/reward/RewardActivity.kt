@@ -61,10 +61,10 @@ class RewardActivity : AppCompatActivity() {
                 "onAdFailed: $providerType: $failedMsg".loge(TAG)
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
+            override fun onAdFailedAll() {
                 //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
-                addLog("全部失败: $failedMsg")
-                "onAdFailedAll: $failedMsg".loge(TAG)
+                addLog("全部失败")
+                "onAdFailedAll".loge(TAG)
             }
 
             override fun onAdClicked(providerType: String) {

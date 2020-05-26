@@ -13,7 +13,7 @@ interface RewardListener {
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
 
-    fun onAdFailedAll(@NonNull failedMsg: String?) {}
+    fun onAdFailedAll() {}
 
     fun onAdClicked(@NonNull providerType: String) {}
 

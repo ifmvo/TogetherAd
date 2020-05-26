@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
+import com.bytedance.sdk.openadsdk.TTAdDislike.DislikeInteractionCallback
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -16,6 +17,7 @@ import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+
 
 /**
  * 广告提供商：穿山甲
@@ -85,6 +87,7 @@ class CsjProvider : BaseAdProvider() {
         }, 2500)//超时时间，demo 为 2000
     }
 
+    private var mTTAd: TTNativeExpressAd? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
         callbackBannerStartRequest(adProviderType, listener)
 
@@ -110,40 +113,59 @@ class CsjProvider : BaseAdProvider() {
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
+                "onNativeExpressAdLoad".logi(TAG)
                 if (adList.isNullOrEmpty()) {
                     callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的list为空")
                     return
                 }
                 callbackBannerLoaded(adProviderType, listener)
 
-                val mTTAd = adList[0]
-                mTTAd.setSlideIntervalTime(30 * 1000)
-                mTTAd.setExpressInteractionListener(object : TTNativeExpressAd.ExpressAdInteractionListener {
+                mTTAd = adList[0]
+                mTTAd?.setSlideIntervalTime(30 * 1000)
+                mTTAd?.setExpressInteractionListener(object : TTNativeExpressAd.ExpressAdInteractionListener {
                     override fun onAdClicked(p0: View?, p1: Int) {
+                        "onAdClicked".logi(TAG)
                         callbackBannerClicked(adProviderType, listener)
                     }
 
                     override fun onAdShow(view: View?, p1: Int) {
-                        callbackBannerLoaded(adProviderType, listener)
+                        "onAdShow".logi(TAG)
+                        callbackBannerExpose(adProviderType, listener)
                     }
 
                     override fun onRenderSuccess(view: View?, p1: Float, p2: Float) {
-                        callbackBannerExpose(adProviderType, listener)
+                        "onRenderSuccess".logi(TAG)
                         container.addView(view)
                     }
 
                     override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
+                        "onRenderFail".logi(TAG)
                         callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
                     }
                 })
-                mTTAd.render()
+                mTTAd?.setDislikeCallback(activity, object : DislikeInteractionCallback {
+                    override fun onSelected(position: Int, value: String) {
+                        //用户选择不喜欢原因后，移除广告展示
+                        container.removeAllViews()
+                        callbackBannerClose(adProviderType, listener)
+                    }
+
+                    override fun onCancel() {}
+                })
+                mTTAd?.render()
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
+                "onError".logi(TAG)
                 callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         })
     }
+
+    override fun destroyBannerAd() {
+        mTTAd?.destroy()
+    }
+
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
         callbackFlowStartRequest(adProviderType, listener)

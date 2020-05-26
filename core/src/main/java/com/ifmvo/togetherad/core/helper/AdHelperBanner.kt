@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.listener.BannerListener
+import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /**
@@ -13,25 +14,27 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  *
  * Created by Matthew Chen on 2020/5/25.
  */
-object AdHelperBanner {
+object AdHelperBanner : BaseHelper() {
+
+    private var adProvider: BaseAdProvider? = null
 
     //为了照顾 Java 调用的同学
-    fun show(@NonNull activity: Activity, @NonNull alias: String, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NonNull activity: Activity, @NonNull alias: String, @NonNull container: ViewGroup, listener: BannerListener? = null) {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: BannerListener? = null) {
 
         val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
         if (adProviderType?.isEmpty() != false) {
-            listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
+            listener?.onAdFailedAll()
             return
         }
 
-        val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
+        adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
             val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
@@ -39,36 +42,41 @@ object AdHelperBanner {
             return
         }
 
-        adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
-            override fun onAdFailed(providerType: String, failedMsg: String?) {
-                listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
-                show(activity, alias, newRadioMap, container, listener)
-            }
-
+        adProvider?.showBannerAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {
-                listener?.onAdStartRequest(providerType)
+                listener?.onAdStartRequest(adProviderType)
             }
 
             override fun onAdLoaded(providerType: String) {
                 listener?.onAdLoaded(providerType)
             }
 
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
+                listener?.onAdFailed(providerType, failedMsg)
+                val newRadioMap = filterType(currentRadioMap, adProviderType)
+                show(activity, alias, newRadioMap, container, listener)
+            }
+
+            override fun onAdFailedAll() {
+                listener?.onAdFailedAll()
+            }
+
             override fun onAdClicked(providerType: String) {
                 listener?.onAdClicked(providerType)
             }
 
-            override fun onAdExposure(providerType: String) {
-                listener?.onAdExposure(providerType)
+            override fun onAdExpose(providerType: String) {
+                listener?.onAdExpose(providerType)
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
-                listener?.onAdFailedAll(failedMsg)
-            }
-
-            override fun onAdDismissed(providerType: String) {
-                listener?.onAdDismissed(providerType)
+            override fun onAdClose(providerType: String) {
+                listener?.onAdClose(providerType)
             }
         })
+    }
+
+    fun destroy() {
+        adProvider?.destroyBannerAd()
+        adProvider = null
     }
 }

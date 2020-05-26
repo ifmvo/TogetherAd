@@ -53,12 +53,12 @@ class BaiduProvider : BaseAdProvider() {
         }, TogetherAdBaidu.idMapBaidu[alias], true)
     }
 
+    private var adView: AdView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
-
         callbackBannerStartRequest(adProviderType, listener)
 
-        val adView = AdView(activity, TogetherAdBaidu.idMapBaidu[alias])
-        adView.setListener(object : AdViewListener {
+        adView = AdView(activity, TogetherAdBaidu.idMapBaidu[alias])
+        adView?.setListener(object : AdViewListener {
             override fun onAdFailed(errorMsg: String?) {
                 callbackBannerFailed(adProviderType, listener, errorMsg)
             }
@@ -84,6 +84,10 @@ class BaiduProvider : BaseAdProvider() {
             }
         })
         container.addView(adView)
+    }
+
+    override fun destroyBannerAd() {
+        adView?.destroy()
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {

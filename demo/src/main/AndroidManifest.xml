@@ -47,6 +47,11 @@
         -->
         <activity android:name=".help.HelpActivity" />
 
+        <!--
+            Banner 横幅广告
+        -->
+        <activity android:name=".banner.BannerActivity" />
+
     </application>
 
 </manifest>

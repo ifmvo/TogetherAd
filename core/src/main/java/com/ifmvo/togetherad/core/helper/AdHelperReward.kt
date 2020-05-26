@@ -46,7 +46,7 @@ class AdHelperReward(
         val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
-            mListener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
+            mListener?.onAdFailedAll()
             return
         }
 
@@ -67,8 +67,8 @@ class AdHelperReward(
                 reload(filterType(radioMap, adProviderType))
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
-                mListener?.onAdFailedAll(failedMsg)
+            override fun onAdFailedAll() {
+                mListener?.onAdFailedAll()
             }
 
             override fun onAdClicked(providerType: String) {

@@ -31,7 +31,7 @@ object AdHelperSplash : BaseHelper() {
 
         if (adProviderType?.isEmpty() != false) {
             customSkipView = null
-            listener?.onAdFailedAll("配置中的广告全部加载失败，或配置中没有匹配的广告")
+            listener?.onAdFailedAll()
             return
         }
 
@@ -66,9 +66,8 @@ object AdHelperSplash : BaseHelper() {
                 listener?.onAdExposure(providerType)
             }
 
-            override fun onAdFailedAll(failedMsg: String?) {
+            override fun onAdFailedAll() {
                 customSkipView = null
-                listener?.onAdFailedAll(failedMsg)
             }
 
             override fun onAdDismissed(providerType: String) {
