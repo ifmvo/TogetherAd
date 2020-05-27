@@ -6,7 +6,7 @@
 
 ### 调用姿势
 
-```
+```kotlin
 //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
 val radioMapSplash = mapOf(
         AdProviderType.GDT.type to 3,
@@ -59,7 +59,7 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
 
 TogetherAd 提供了两个简单的实例模板，只需要在请求广告之前进行如下配置即可：
 
-```
+```kotlin
 /**
  * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
  * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
@@ -78,7 +78,7 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
 
 2. 然后模仿 ``SplashSkipViewSimple1`` 和 ``SplashSkipViewSimple2`` 来自定义想要的样式即可
 
-```
+```kotlin
 class SplashSkipViewCustom : BaseSplashSkipView() {
 
     private lateinit var tvTime: TextView
@@ -118,7 +118,7 @@ class SplashSkipViewCustom : BaseSplashSkipView() {
 ```
 最后不要忘记修改配置：
 
-```
+```kotlin
 AdHelperSplash.customSkipView = SplashSkipViewCustom()
 
 AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
