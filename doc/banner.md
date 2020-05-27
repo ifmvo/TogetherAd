@@ -4,7 +4,7 @@ Banner广告(横幅广告)位于app顶部、中部、底部任意一处，横向
 
 —— 引自广点通文档
 
-```
+```kotlin
 AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, listener = object : BannerListener {
     override fun onAdStartRequest(providerType: String) {
         //在开始请求之前会回调此方法，失败切换的情况会回调多次

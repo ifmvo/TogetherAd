@@ -64,7 +64,7 @@ void requestPermissionIfNecessary(Context context);
 
 新建一个枚举类 AdProviderType，列举你接入的广告商，任选1至3个，随意搭配
 
-```
+```kotlin
 /*
  * 广告提供商枚举
  * 不需要的就删除，只保留需要的即可
@@ -87,7 +87,7 @@ enum class AdProviderType(val type: String) {
 
 新建一个 静态类，并列举你项目中的所有广告位，例如下面: 列举Demo 中所有的广告位别名
 
-```
+```kotlin
 /**
  * 所有广告位的别名
  * 
@@ -123,7 +123,7 @@ object TogetherAdAlias {
 
 示例代码中的 ``ID`` 是各个平台中 Demo 的测试 ``ID``
 
-```
+```kotlin
 class App : Application() {
 
     override fun onCreate() {

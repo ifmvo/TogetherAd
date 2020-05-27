@@ -10,7 +10,7 @@
 
 > 展示广告一定要在 onAdLoaded() 回调方法中执行
 
-```
+```kotlin
 class RewardActivity : AppCompatActivity() {
 
     private lateinit var adHelperReward: AdHelperReward
