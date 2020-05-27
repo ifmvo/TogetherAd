@@ -43,7 +43,7 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
         //请求失败的回调，失败切换的情况会回调多次
     }
 
-    override fun onAdFailedAll(failedMsg: String?) {
+    override fun onAdFailedAll() {
         //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
     }
 
