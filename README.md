@@ -80,7 +80,7 @@ dependencies {
 
 [广点通错误码对照](https://developers.adnet.qq.com/backend/error_code.html)
 
-[穿山甲错误码对照](http://partner.toutiao.com/doc?id=5de4cc6d78c8690012a90aa5)
+[穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
 
 [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
 
