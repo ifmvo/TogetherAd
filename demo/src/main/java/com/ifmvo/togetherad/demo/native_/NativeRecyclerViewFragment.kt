@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ifmvo.quicklist.BaseRecyclerViewFragment
 import com.ifmvo.togetherad.core.helper.AdHelperNative
 import com.ifmvo.togetherad.core.listener.NativeListener
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
@@ -99,7 +100,15 @@ class NativeRecyclerViewFragment : BaseRecyclerViewFragment<NativeRVMultiItemEnt
                     NativeRVMultiItemEntity.TYPE_AD -> {
                         val adContainer = holder.getView<ViewGroup>(R.id.adContainer)
                         adContainer.removeAllViews()
-                        AdHelperNative.show(item.anyObj, adContainer, NativeTemplateCommon())
+                        AdHelperNative.show(item.anyObj, adContainer, NativeTemplateCommon(), object : NativeViewListener {
+                            override fun onAdExposed(providerType: String) {
+                                Toast.makeText(mContext, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
+                            }
+
+                            override fun onAdClicked(providerType: String) {
+                                Toast.makeText(mContext, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
+                            }
+                        })
                     }
                 }
             }

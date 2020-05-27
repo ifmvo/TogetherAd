@@ -18,20 +18,42 @@ android {
         abortOnError false
     }
 
-    buildTypes {
-
-        debug {
-            minifyEnabled false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
+    signingConfigs {
         release {
-            shrinkResources false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            keyAlias 'TogetherAd2020'
+            keyPassword 'TogetherAd2020'
+            storeFile file('TogetherAd.jks')
+            storePassword 'TogetherAd2020'
         }
     }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources false
+            debuggable true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 自定义APK文件名
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "TogetherAdDemo_${releaseTime()}.apk"
+        }
+    }
+}
+
+//获取时间
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
@@ -43,7 +65,7 @@ dependencies {
     implementation 'com.github.ifmvo:QuickList:1.1.5'
 
     //内存泄漏检测工具
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    implementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
     //图片加载框架
     implementation 'com.github.bumptech.glide:glide:4.11.0'

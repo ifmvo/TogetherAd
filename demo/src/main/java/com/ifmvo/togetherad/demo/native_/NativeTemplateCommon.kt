@@ -23,9 +23,7 @@ class NativeTemplateCommon : BaseNativeTemplate() {
             AdProviderType.CSJ.type -> {
                 NativeViewCsjCommon()
             }
-            else -> {
-                null
-            }
+            else -> throw Exception("模板配置错误")
         }
     }
 }

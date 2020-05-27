@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.baidu.mobad.feeds.NativeResponse
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 
 /**
@@ -15,7 +16,7 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
  */
 class NativeViewBaiduCommon : BaseNativeView() {
 
-    override fun showNative(adObject: Any, container: ViewGroup) {
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is NativeResponse) {
             return
         }
@@ -33,10 +34,13 @@ class NativeViewBaiduCommon : BaseNativeView() {
         mTvDesc?.text = adObject.desc
 //        mAdLogoView.setAdLogoType(AdNameType.BAIDU, adObject)
         TogetherAd.mImageLoader?.loadImage(container.context, mImgPoster, adObject.imageUrl)
-//        ILFactory.getLoader().load(mContext, mImgPoster, adObject.imageUrl, LoaderOptions().placeHolder(R.mipmap.ic_hot_placeholder).error(R.mipmap.ic_hot_placeholder).skipCache())
+        listener?.onAdExposed(adProviderType)
+        adObject.recordImpression(mLlParent)
         mLlParent?.setOnClickListener {
             adObject.handleClick(it)
-//            ClickEvent.adPolyClick(mContext, umengLocationStr, currentAdChannel)
+
+            listener?.onAdClicked(adProviderType)
         }
     }
+
 }

@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.MediaView
@@ -17,14 +18,12 @@ import com.qq.e.ads.nativ.widget.NativeAdContainer
 import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 
-/* 
- *
- * 
+/**
  * Created by Matthew Chen on 2020-04-21.
  */
 class NativeViewGdtCommon : BaseNativeView() {
 
-    override fun showNative(adObject: Any, container: ViewGroup) {
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
 
         if (adObject !is NativeUnifiedADData) {
             return
@@ -43,13 +42,11 @@ class NativeViewGdtCommon : BaseNativeView() {
 
         mTvTitle?.text = adObject.title
         mTvDesc?.text = adObject.desc
-//        logd("TogetherAd", adObject.adPatternType.toString())
         when (adObject.adPatternType) {
             AdPatternType.NATIVE_2IMAGE_2TEXT, AdPatternType.NATIVE_3IMAGE -> {
                 mAdGdtMediaPlayer.visibility = View.GONE
                 mImgPoster.visibility = View.VISIBLE
                 TogetherAd.mImageLoader?.loadImage(container.context, mImgPoster, adObject.imgUrl)
-//                ILFactory.getLoader().load(mContext, mImgPoster, adObject.imgUrl, LoaderOptions().skipCache())
             }
             AdPatternType.NATIVE_VIDEO -> {
                 mAdGdtMediaPlayer.visibility = View.VISIBLE
@@ -66,16 +63,14 @@ class NativeViewGdtCommon : BaseNativeView() {
             }
 
             override fun onADError(error: AdError?) {
-//                logd("TogetherAd", "出错：${adObject.title}")
             }
 
             override fun onADClicked() {
-//                logd("TogetherAd", "点击：${adObject.title}")
-//                ClickEvent.adPolyClick(mContext, umengLocationStr, currentAdChannel)
+                listener?.onAdClicked(adProviderType)
             }
 
             override fun onADExposed() {
-//                logd("TogetherAd", "曝光：${adObject.title}")
+                listener?.onAdExposed(adProviderType)
             }
         })
         when (adObject.adPatternType) {

@@ -3,15 +3,17 @@ package com.ifmvo.togetherad.core.helper
 import android.app.Activity
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.annotation.Nullable
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 
 /**
  * 原生自渲染广告
- * 
+ *
  * Created by Matthew Chen on 2020-04-20.
  */
 object AdHelperNative : BaseHelper() {
@@ -64,12 +66,12 @@ object AdHelperNative : BaseHelper() {
         })
     }
 
-    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, nativeTemplate: BaseNativeTemplate) {
+    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, @NonNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
         TogetherAd.mProviders.entries.forEach { entry ->
             val adProvider = AdProviderLoader.loadAdProvider(entry.key)
             if (adProvider?.isBelongTheProvider(adObject) == true) {
                 val nativeView = nativeTemplate.getNativeView(entry.key)
-                nativeView?.showNative(adObject, container)
+                nativeView?.showNative(entry.key, adObject, container, listener)
                 return@forEach
             }
         }

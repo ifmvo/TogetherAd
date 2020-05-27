@@ -11,6 +11,7 @@ import com.bytedance.sdk.openadsdk.TTFeedAd
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 
 /**
@@ -18,7 +19,7 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
  */
 class NativeViewCsjCommon : BaseNativeView() {
 
-    override fun showNative(adObject: Any, container: ViewGroup) {
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is TTFeedAd) {
             return
         }
@@ -59,12 +60,12 @@ class NativeViewCsjCommon : BaseNativeView() {
 
             override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
                 // 点击创意区域的回调
-//                ClickEvent.adPolyClick(mContext, umengLocationStr, currentAdChannel)
+                listener?.onAdClicked(adProviderType)
             }
 
             override fun onAdShow(ad: TTNativeAd) {
                 // 广告曝光展示的回调
-//                logd("TogetherAd", "CSJ: 曝光了")
+                listener?.onAdExposed(adProviderType)
             }
         })
 

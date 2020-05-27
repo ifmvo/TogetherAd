@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core.helper.AdHelperNative
 import com.ifmvo.togetherad.core.listener.NativeListener
+import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.demo.AdProviderType
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_flow_simple.*
 
 /**
  * 原生自渲染的简单用法
- * 
+ *
  * Created by Matthew Chen on 2020-04-20.
  */
 class NativeSimpleActivity : AppCompatActivity() {
@@ -49,7 +50,7 @@ class NativeSimpleActivity : AppCompatActivity() {
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 "onAdLoaded: $providerType, adList: ${adList.size}".logi(TAG)
                 addLog("原生广告请求成功，$providerType")
-                AdHelperNative.show(adObject = adList[0], container = adContainer, nativeTemplate = NativeTemplateCommon())
+                showAd(adList[0])
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
@@ -60,6 +61,20 @@ class NativeSimpleActivity : AppCompatActivity() {
             override fun onAdFailedAll() {
                 addLog("原生广告全部请求失败了")
                 "onAdFailedAll".loge(TAG)
+            }
+        })
+    }
+
+    private fun showAd(adObject: Any) {
+        AdHelperNative.show(adObject = adObject, container = adContainer, nativeTemplate = NativeTemplateCommon(), listener = object : NativeViewListener {
+            override fun onAdExposed(providerType: String) {
+                addLog("原生广告曝光了")
+                "onAdExposed".loge(TAG)
+            }
+
+            override fun onAdClicked(providerType: String) {
+                addLog("原生广告点击了")
+                "onAdClicked".loge(TAG)
             }
         })
     }
