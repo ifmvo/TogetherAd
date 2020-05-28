@@ -9,6 +9,8 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 > 新版本 3.x 已发布。
 >  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
 
+[点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV)
+
 ## 特色功能
 
 ### 1. 主流SDK随意搭配组合
@@ -54,6 +56,8 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
+### [更新日志](doc/update_log.md)
+
 ## 
 
 [准备工作及初始化](doc/prepare.md)
@@ -85,8 +89,6 @@ dependencies {
 [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
 
 >会尽量保持最新。如果发现有新版本也可联系我，我会及时更新，感激！！
-
-### [更新日志](doc/update_log.md)
 
 ### 致谢
 
