@@ -11,6 +11,8 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 
 [点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV)
 
+[点击查看 Demo 预览视频](img/demo.mp4)
+
 ## 特色功能
 
 ### 1. 主流SDK随意搭配组合
