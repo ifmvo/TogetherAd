@@ -9,9 +9,9 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。
 > 新版本 3.x 已发布。
 >  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
 
-[点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV)
+[点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV) 获取扫描下面二维码下载
 
-[点击查看 Demo 预览视频](img/demo.mp4)
+<img src="img/QR-code.png"  height="200" width="200">
 
 ## 特色功能
 
