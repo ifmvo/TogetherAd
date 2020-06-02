@@ -58,10 +58,6 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-### [更新日志](doc/update_log.md)
-
-## 
-
 [准备工作及初始化](doc/prepare.md)
 
 [开屏广告](doc/splash.md)
@@ -91,6 +87,8 @@ dependencies {
 [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
 
 >会尽量保持最新。如果发现有新版本也可联系我，我会及时更新，感激！！
+
+### [更新日志](doc/update_log.md)
 
 ### 致谢
 
