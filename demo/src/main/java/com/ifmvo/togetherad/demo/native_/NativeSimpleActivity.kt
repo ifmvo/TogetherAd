@@ -3,8 +3,8 @@ package com.ifmvo.togetherad.demo.native_
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core.helper.AdHelperNative
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener

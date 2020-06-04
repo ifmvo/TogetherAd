@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
 import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity

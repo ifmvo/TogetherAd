@@ -1,11 +1,11 @@
 package com.ifmvo.togetherad.demo.native_
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.addFragment
 
 /**
  * 具体用法在 Fragment 中
@@ -24,6 +24,6 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_common)
 
-        addFragment(R.id.fgContainer, NativeRecyclerViewFragment())
+//        addFragment(R.id.fgContainer, NativeRecyclerViewFragment())
     }
 }

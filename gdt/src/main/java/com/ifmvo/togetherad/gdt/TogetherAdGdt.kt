@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.gdt
 
 import android.content.Context
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.qq.e.comm.managers.GDTADManager

@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.listener
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
+
 
 /**
  * Created by Matthew Chen on 2020/5/25.

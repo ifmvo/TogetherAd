@@ -2,7 +2,7 @@ package com.ifmvo.togetherad.core.provider
 
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener

@@ -1,8 +1,8 @@
 package com.ifmvo.togetherad.core.custom.flow
 
 import android.content.Context
+import android.support.annotation.NonNull
 import android.widget.ImageView
-import androidx.annotation.NonNull
 
 /**
  * 加载图片的接口

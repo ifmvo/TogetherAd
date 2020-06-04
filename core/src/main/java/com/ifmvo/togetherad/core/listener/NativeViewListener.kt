@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.listener
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
+
 
 /**
  *  原生自渲染广告曝光和点击的监听

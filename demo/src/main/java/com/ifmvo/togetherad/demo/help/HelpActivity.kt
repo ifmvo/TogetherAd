@@ -3,7 +3,7 @@ package com.ifmvo.togetherad.demo.help
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 import com.ifmvo.togetherad.demo.R
 import kotlinx.android.synthetic.main.activity_help.*
 

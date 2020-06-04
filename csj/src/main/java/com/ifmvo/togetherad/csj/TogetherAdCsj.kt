@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.csj
 
 import android.content.Context
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAdSdk

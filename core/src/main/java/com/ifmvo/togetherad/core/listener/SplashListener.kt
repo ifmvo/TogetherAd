@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.listener
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
+
 
 /**
  *  通用的监听器

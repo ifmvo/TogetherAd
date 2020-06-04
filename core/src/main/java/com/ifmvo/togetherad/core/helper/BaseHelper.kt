@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
+
 
 /*
  * Created by Matthew Chen on 2020-04-03.

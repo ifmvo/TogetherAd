@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.ifmvo.togetherad.demo"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -58,17 +58,16 @@ def releaseTime() {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 
     //快速实现列表
-    implementation 'com.github.ifmvo:QuickList:1.1.5'
+//    implementation 'com.github.ifmvo:QuickList:1.1.5'
 
     //内存泄漏检测工具
     implementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 
     //图片加载框架
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+//    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     //TogetherAd
     implementation project(':csj')

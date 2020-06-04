@@ -3,8 +3,8 @@ package com.ifmvo.togetherad.demo.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener

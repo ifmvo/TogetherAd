@@ -1,9 +1,8 @@
 package com.ifmvo.togetherad.baidu
 
 import android.content.Context
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.baidu.mobads.AdView
-import com.baidu.mobads.BaiduManager
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 

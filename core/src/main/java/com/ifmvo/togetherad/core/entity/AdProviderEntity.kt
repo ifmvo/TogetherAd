@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.entity
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 
 /* 
  * 广告提供者（ 广告厂商：百度、广点通、穿山甲... ）

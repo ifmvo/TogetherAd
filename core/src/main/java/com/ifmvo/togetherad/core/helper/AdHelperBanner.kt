@@ -1,8 +1,8 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
+import android.support.annotation.NonNull
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.BannerListener

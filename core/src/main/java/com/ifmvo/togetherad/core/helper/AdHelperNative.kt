@@ -1,9 +1,9 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
+import android.support.annotation.NonNull
+import android.support.annotation.Nullable
 import android.view.ViewGroup
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate

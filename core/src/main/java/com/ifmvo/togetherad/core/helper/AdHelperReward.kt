@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener

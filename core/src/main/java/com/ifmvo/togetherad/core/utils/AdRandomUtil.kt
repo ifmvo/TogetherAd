@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.core.utils
 
-import androidx.annotation.NonNull
+import android.support.annotation.NonNull
+
 
 /**
  * 参数 configStr : "baidu:1,gdt:4,csj:4"

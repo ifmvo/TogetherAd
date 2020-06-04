@@ -6,11 +6,11 @@ apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.kezong.fat-aar'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "3.0.3-5.83"
     }
@@ -33,8 +33,7 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 //    embed(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 
     api project(':core')
 }

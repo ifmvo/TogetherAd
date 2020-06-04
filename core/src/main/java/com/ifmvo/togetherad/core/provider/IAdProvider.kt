@@ -1,8 +1,8 @@
 package com.ifmvo.togetherad.core.provider
 
 import android.app.Activity
+import android.support.annotation.NonNull
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.RewardListener
