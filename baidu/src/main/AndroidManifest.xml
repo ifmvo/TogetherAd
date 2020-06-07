@@ -12,8 +12,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <provider
-            android:name="com.baidu.mobads.openad.FileProvider"
-            android:authorities="${applicationId}.bd.provider"
+            android:name="com.baidu.mobads.openad.BdFileProvider"
+            android:authorities="${packageName}.bd.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

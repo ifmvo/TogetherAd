@@ -42,7 +42,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'baidu'
-    publishVersion = '3.0.4-5.83'
+    publishVersion = '3.0.4-5.85'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }
