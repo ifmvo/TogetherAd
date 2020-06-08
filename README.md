@@ -41,7 +41,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 
 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
 
-```
+```gradle
 dependencies {
 
     //穿山甲（ 头条 ）
