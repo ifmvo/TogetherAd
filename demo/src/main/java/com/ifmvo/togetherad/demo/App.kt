@@ -15,18 +15,26 @@ class App : Application() {
         super.onCreate()
 
         /**
-         * 可自行查看穿山甲的文档，自定义穿山甲的初始化配置
-         * ttAdConfig 为可选参数。不传或传空的情况会使用默认的配置
+         * 自定义穿山甲的初始化配置
+         * 可自行选择自定义穿山甲的配置，不配置就会使用穿山甲的默认值
          */
+//        //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
+//        TogetherAdCsj.useTextureView = false
+//        //标题栏的主题色
+//        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
+//        //是否允许sdk展示通知栏提示
+//        TogetherAdCsj.allowShowNotify = true
+//        //是否在锁屏场景支持展示广告落地页
+//        TogetherAdCsj.allowShowPageWhenScreenLock = true
+//        //测试阶段打开，可以通过日志排查问题，上线时去除该调用
+//        TogetherAdCsj.debug = true
+//        //允许直接下载的网络状态集合
+//        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_3G
+//        //是否支持多进程，true支持
+//        TogetherAdCsj.supportMultiProcess = false
+//        //自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
+//        TogetherAdCsj.httpStack = MyOkStack()
         //初始化穿山甲
-        TogetherAdCsj.useTextureView = false
-        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
-        TogetherAdCsj.allowShowNotify = true
-        TogetherAdCsj.allowShowPageWhenScreenLock = true
-        TogetherAdCsj.debug = true
-        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_3G
-        TogetherAdCsj.supportMultiProcess = false
-//        TogetherAdCsj.httpStack = MyOkStack3()
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name), csjIdMap = mapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
