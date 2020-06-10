@@ -13,7 +13,7 @@
 
         <provider
             android:name="com.baidu.mobads.openad.BdFileProvider"
-            android:authorities="${packageName}.bd.provider"
+            android:authorities="${applicationId}.bd.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

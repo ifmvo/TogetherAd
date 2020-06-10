@@ -69,16 +69,16 @@ dependencies {
     //图片加载框架
 //    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
-    //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.0.4-3.0.0.4'
-    //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.0.4-4.211.1081'
-    //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.0.4-5.85'
+//    //穿山甲（ 头条 ）
+//    implementation 'com.matthewchen.togetherad:csj:3.0.5-3.0.0.4'
+//    //优量汇（ 腾讯广点通 ）
+//    implementation 'com.matthewchen.togetherad:gdt:3.0.5-4.211.1081'
+//    //百青藤 ( 百度 Mob )
+//    implementation 'com.matthewchen.togetherad:baidu:3.0.5-5.85'
 
-//    //TogetherAd
-//    implementation project(':csj')
-//    implementation project(':gdt')
-//    implementation project(':baidu')
+    //TogetherAd
+    implementation project(':csj')
+    implementation project(':gdt')
+    implementation project(':baidu')
 
 }

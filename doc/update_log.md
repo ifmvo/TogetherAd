@@ -1,10 +1,16 @@
 # 更新日志
 
+### 3.0.5
+
+2020.06.10
+
+1. 修复 INSTALL_FAILED_CONFLICTING_PROVIDER ( Baidu 的 FileProvider 冲突问题 )
+
 ### 3.0.4
 
 2020.06.08
 
-1. 删除或替换项目中所有 androidx ( 为了兼容还在使用Support的项目 )
+1. 删除或替换项目中所有 androidx ( 为了兼容还在使用 Support 的项目 )
 2. 优化csj自定义初始化配置的方式
 3. 更新 百青藤v5.85，穿山甲v3.0.0.4
 
