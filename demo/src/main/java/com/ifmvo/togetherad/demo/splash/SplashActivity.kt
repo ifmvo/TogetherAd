@@ -106,6 +106,7 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onAdDismissed(providerType: String) {
                 //开屏广告消失了，点了跳过按钮或者倒计时结束之后会回调一次
+                //在这里跳转主界面，并关闭 Splash
                 addLog("开屏广告点了跳过或者倒计时结束， $providerType")
                 "onAdDismissed: $providerType".logi(TAG)
                 actionHome(0)

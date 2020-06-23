@@ -49,6 +49,7 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
 
     override fun onAdDismissed(providerType: String) {
         //开屏广告消失了，点了跳过按钮或者倒计时结束之后会回调一次
+        //在这里跳转主界面，并关闭 Splash
     }
 })
 ```

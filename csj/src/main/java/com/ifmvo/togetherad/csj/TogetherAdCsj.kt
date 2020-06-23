@@ -17,7 +17,6 @@ import com.ifmvo.togetherad.core.entity.AdProviderEntity
 object TogetherAdCsj {
 
     var idMapCsj = mapOf<String, String>()
-        private set
 
     var useTextureView = false
 
@@ -35,10 +34,15 @@ object TogetherAdCsj {
 
     var httpStack: IHttpStack? = null
 
+    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String) {
+        init(context, adProviderType, csjAdAppId, appName, null)
+    }
+
     //穿山甲
-    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, @NonNull csjIdMap: Map<String, String>) {
+    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, csjIdMap: Map<String, String>? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, CsjProvider::class.java.name))
-        idMapCsj = csjIdMap
+
+        csjIdMap?.let { idMapCsj = it }
 
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
         val ttAdConfig = TTAdConfig.Builder()

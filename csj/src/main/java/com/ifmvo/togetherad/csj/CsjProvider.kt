@@ -276,23 +276,23 @@ class CsjProvider : BaseAdProvider() {
                         "onIdle".logi(TAG)
                     }
 
-                    override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+                    override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
                         "onDownloadActive".logi(TAG)
                     }
 
-                    override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+                    override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
                         "onDownloadPaused".logi(TAG)
                     }
 
-                    override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String, appName: String) {
+                    override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
                         "onDownloadFailed".loge(TAG)
                     }
 
-                    override fun onDownloadFinished(totalBytes: Long, fileName: String, appName: String) {
+                    override fun onDownloadFinished(totalBytes: Long, fileName: String?, appName: String?) {
                         "onDownloadFinished".logi(TAG)
                     }
 
-                    override fun onInstalled(fileName: String, appName: String) {
+                    override fun onInstalled(fileName: String?, appName: String?) {
                         "onInstalled".logi(TAG)
                     }
                 })

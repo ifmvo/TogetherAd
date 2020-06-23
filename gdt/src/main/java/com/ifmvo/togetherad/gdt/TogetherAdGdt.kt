@@ -14,19 +14,16 @@ import com.qq.e.comm.managers.GDTADManager
 object TogetherAdGdt {
 
     var idMapGDT = mapOf<String, String>()
-        private set
 
-//    /**
-//     * 广点通的 AppId
-//     */
-//    var appIdGDT = ""
-//        private set
+    //照顾Java朋友
+    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull gdtAdAppId: String) {
+        init(context, adProviderType, gdtAdAppId, null)
+    }
 
     //广点通
-    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull gdtAdAppId: String, @NonNull gdtIdMap: Map<String, String>) {
+    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull gdtAdAppId: String, gdtIdMap: Map<String, String>? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, GdtProvider::class.java.name))
-        idMapGDT = gdtIdMap
-//        appIdGDT = gdtAdAppId
+        gdtIdMap?.let { idMapGDT = it }
         GDTADManager.getInstance().initWith(context, gdtAdAppId)
     }
 }
