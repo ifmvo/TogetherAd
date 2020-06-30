@@ -59,6 +59,7 @@ def releaseTime() {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
     //快速实现列表
 //    implementation 'com.github.ifmvo:QuickList:1.1.6'
