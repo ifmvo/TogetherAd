@@ -52,6 +52,11 @@
         -->
         <activity android:name=".banner.BannerActivity" />
 
+        <!--
+            Interstitial 插屏广告
+        -->
+        <activity android:name=".inter.InterActivity" />
+
     </application>
 
 </manifest>

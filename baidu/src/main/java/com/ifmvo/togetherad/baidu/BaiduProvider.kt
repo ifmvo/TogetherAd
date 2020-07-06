@@ -6,16 +6,11 @@ import com.baidu.mobad.feeds.BaiduNative
 import com.baidu.mobad.feeds.NativeErrorCode
 import com.baidu.mobad.feeds.NativeResponse
 import com.baidu.mobad.feeds.RequestParameters
-import com.baidu.mobads.AdView
-import com.baidu.mobads.AdViewListener
-import com.baidu.mobads.SplashAd
-import com.baidu.mobads.SplashAdListener
+import com.baidu.mobads.*
 import com.baidu.mobads.rewardvideo.RewardVideoAd
-import com.ifmvo.togetherad.core.listener.BannerListener
-import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.core.listener.RewardListener
-import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import org.json.JSONObject
@@ -80,7 +75,7 @@ class BaiduProvider : BaseAdProvider() {
             }
 
             override fun onAdClose(p0: JSONObject?) {
-                callbackBannerClose(adProviderType, listener)
+                callbackBannerClosed(adProviderType, listener)
             }
         })
         container.addView(adView)
@@ -88,6 +83,50 @@ class BaiduProvider : BaseAdProvider() {
 
     override fun destroyBannerAd() {
         adView?.destroy()
+    }
+
+    private var mInterAd: InterstitialAd? = null
+    override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
+
+        callbackInterStartRequest(adProviderType, listener)
+        "onStartRequest".logd(TAG)
+        destroyInterAd()
+
+        mInterAd = InterstitialAd(activity, TogetherAdBaidu.idMapBaidu[alias])
+        mInterAd?.setListener(object : InterstitialAdListener {
+            override fun onAdFailed(errorMsg: String?) {
+                "onAdFailed".logd(TAG)
+                callbackInterFailed(adProviderType, listener, errorMsg)
+            }
+
+            override fun onAdDismissed() {
+                "onAdDismissed".logd(TAG)
+                callbackInterClosed(adProviderType, listener)
+            }
+
+            override fun onAdPresent() {
+                "onAdPresent".logd(TAG)
+            }
+
+            override fun onAdClick(inter: InterstitialAd?) {
+                "onAdClick".logd(TAG)
+                callbackInterClicked(adProviderType, listener)
+            }
+
+            override fun onAdReady() {
+                "onAdReady".logd(TAG)
+            }
+        })
+        mInterAd?.loadAd()
+    }
+
+    override fun showInterAd(activity: Activity) {
+        mInterAd?.showAd(activity)
+    }
+
+    override fun destroyInterAd() {
+        mInterAd?.destroy()
+        mInterAd = null
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
@@ -153,7 +192,7 @@ class BaiduProvider : BaseAdProvider() {
 
             override fun onAdClose(playScale: Float) {
                 "onAdClose".logi(TAG)
-                callbackRewardClose(adProviderType, listener)
+                callbackRewardClosed(adProviderType, listener)
                 mRewardVideoAd = null
             }
 

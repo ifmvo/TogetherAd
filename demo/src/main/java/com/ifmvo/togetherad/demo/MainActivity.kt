@@ -8,6 +8,7 @@ import android.widget.ListView
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.help.HelpActivity
+import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
@@ -24,6 +25,7 @@ class MainActivity : ListActivity() {
                 "原生自渲染在 RecyclerView 中使用",
                 "激励广告",
                 "Banner 横幅广告",
+                "Interstitial插屏广告",
                 "采坑指南"
         ))
     }
@@ -46,6 +48,9 @@ class MainActivity : ListActivity() {
                 BannerActivity.action(this)
             }
             5 -> {
+                InterActivity.action(this)
+            }
+            6 -> {
                 HelpActivity.action(this)
             }
         }

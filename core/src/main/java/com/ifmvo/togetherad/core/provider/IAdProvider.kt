@@ -3,10 +3,7 @@ package com.ifmvo.togetherad.core.provider
 import android.app.Activity
 import android.support.annotation.NonNull
 import android.view.ViewGroup
-import com.ifmvo.togetherad.core.listener.BannerListener
-import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.core.listener.RewardListener
-import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.listener.*
 
 /* 
  *
@@ -15,38 +12,52 @@ import com.ifmvo.togetherad.core.listener.SplashListener
  */
 interface IAdProvider {
 
+    /**
+     * 开屏广告
+     */
     fun showSplashAd(
-
-            //由于百度必须使用 Activity，所以这里统一传
-            @NonNull activity: Activity,
-
+            @NonNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
             @NonNull adProviderType: String,
-
-            //当前广告位的别名
-            @NonNull alias: String,
-
-            //开屏广告的容器，开屏广告请求到之后会自动添加进去
-            @NonNull container: ViewGroup,
-
-            //回调
-            @NonNull listener: SplashListener
+            @NonNull alias: String,//当前广告位的别名
+            @NonNull container: ViewGroup,//开屏广告的容器，开屏广告请求到之后会自动添加进去
+            @NonNull listener: SplashListener//回调
     )
 
+    /**
+     * Banner 广告
+     */
     fun showBannerAd(
-
             @NonNull activity: Activity,
-
             @NonNull adProviderType: String,
-
             @NonNull alias: String,
-
             @NonNull container: ViewGroup,
-
             @NonNull listener: BannerListener
     )
 
+    //销毁 Banner 广告
     fun destroyBannerAd()
 
+    /**
+     * 插屏
+     */
+    fun requestInterAd(
+            @NonNull activity: Activity,
+            @NonNull adProviderType: String,
+            @NonNull alias: String,
+            @NonNull listener: InterListener
+    )
+
+    //展示插屏广告
+    fun showInterAd(
+            @NonNull activity: Activity
+    )
+
+    //销毁插屏广告
+    fun destroyInterAd()
+
+    /**
+     * 获取自渲染信息流
+     */
     fun getNativeAdList(
             @NonNull activity: Activity,
             @NonNull adProviderType: String,
@@ -59,11 +70,12 @@ interface IAdProvider {
      * 判断原生广告对象是否属于这个提供商
      */
     fun isBelongTheProvider(
-
             @NonNull adObject: Any
-
     ): Boolean
 
+    /**
+     * 请求激励广告
+     */
     fun requestRewardAd(
             @NonNull activity: Activity,
             @NonNull adProviderType: String,
@@ -71,6 +83,9 @@ interface IAdProvider {
             @NonNull listener: RewardListener
     )
 
+    /**
+     * 展示激励广告
+     */
     fun showRewardAd(
             @NonNull activity: Activity
     )

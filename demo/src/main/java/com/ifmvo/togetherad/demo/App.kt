@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.demo
 
 import android.app.Application
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
+import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 
@@ -48,6 +49,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121246",
+                TogetherAdAlias.AD_INTER to "901121725",
                 TogetherAdAlias.AD_REWARD to "901121365"
         )
 
@@ -56,6 +58,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
+                TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421"
         )
 
@@ -64,6 +67,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",
+                TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490"
         )
 
@@ -74,11 +78,11 @@ class App : Application() {
          *
          * 也可以在请求广告前设置，实时生效
          */
-//        TogetherAd.setPublicProviderRadio(mapOf(
-//                AdProviderType.GDT.type to 1,
-//                AdProviderType.BAIDU.type to 1,
-//                AdProviderType.CSJ.type to 1
-//        ))
+        TogetherAd.setPublicProviderRadio(mapOf(
+                AdProviderType.GDT.type to 0,
+                AdProviderType.BAIDU.type to 1,
+                AdProviderType.CSJ.type to 0
+        ))
 
         /**
          * 自定义图片加载方式

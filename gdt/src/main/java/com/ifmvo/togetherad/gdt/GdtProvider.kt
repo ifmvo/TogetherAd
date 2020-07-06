@@ -3,16 +3,15 @@ package com.ifmvo.togetherad.gdt
 import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
-import com.ifmvo.togetherad.core.listener.BannerListener
-import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.core.listener.RewardListener
-import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.qq.e.ads.banner2.UnifiedBannerADListener
 import com.qq.e.ads.banner2.UnifiedBannerView
 import com.qq.e.ads.cfg.VideoOption
+import com.qq.e.ads.interstitial2.UnifiedInterstitialAD
+import com.qq.e.ads.interstitial2.UnifiedInterstitialADListener
 import com.qq.e.ads.nativ.NativeADUnifiedListener
 import com.qq.e.ads.nativ.NativeUnifiedAD
 import com.qq.e.ads.nativ.NativeUnifiedADData
@@ -22,6 +21,7 @@ import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
 import kotlin.math.roundToInt
+
 
 /**
  * 广告提供商：优量汇（广点通）
@@ -90,8 +90,8 @@ class GdtProvider : BaseAdProvider() {
 
     private var banner: UnifiedBannerView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
-
         callbackBannerStartRequest(adProviderType, listener)
+        destroyBannerAd()
         banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
             override fun onADCloseOverlay() {
                 "onADCloseOverlay".logi(TAG)
@@ -102,7 +102,7 @@ class GdtProvider : BaseAdProvider() {
             }
 
             override fun onADClosed() {
-                callbackBannerClose(adProviderType, listener)
+                callbackBannerClosed(adProviderType, listener)
             }
 
             override fun onADLeftApplication() {
@@ -132,6 +132,60 @@ class GdtProvider : BaseAdProvider() {
 
     override fun destroyBannerAd() {
         banner?.destroy()
+        banner = null
+    }
+
+    private var interAd: UnifiedInterstitialAD? = null
+    override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
+
+        callbackInterStartRequest(adProviderType, listener)
+
+        destroyInterAd()
+
+        interAd = UnifiedInterstitialAD(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedInterstitialADListener {
+            override fun onADExposure() {
+                callbackInterExpose(adProviderType, listener)
+            }
+
+            override fun onVideoCached() {
+                "onVideoCached".logi(TAG)
+            }
+
+            override fun onADOpened() {
+                "onADOpened".logi(TAG)
+            }
+
+            override fun onADClosed() {
+                callbackInterClosed(adProviderType, listener)
+            }
+
+            override fun onADLeftApplication() {
+                "onADLeftApplication".logi(TAG)
+            }
+
+            override fun onADReceive() {
+                callbackInterLoaded(adProviderType, listener)
+            }
+
+            override fun onNoAD(adError: AdError?) {
+                callbackInterFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+            }
+
+            override fun onADClicked() {
+                callbackInterClicked(adProviderType, listener)
+            }
+        })
+        interAd?.loadAD()
+    }
+
+    override fun showInterAd(activity: Activity) {
+        interAd?.show()
+    }
+
+    override fun destroyInterAd() {
+        interAd?.close()
+        interAd?.destroy()
+        interAd = null
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
@@ -191,7 +245,7 @@ class GdtProvider : BaseAdProvider() {
             }
 
             override fun onADClose() {
-                callbackRewardClose(adProviderType, listener)
+                callbackRewardClosed(adProviderType, listener)
                 rewardVideoAD = null
             }
 

@@ -23,6 +23,9 @@ object TogetherAdAlias {
     //Banner
     const val AD_BANNER = "ad_banner"
 
+    //插屏广告
+    const val AD_INTER = "ad_inter"
+
     //激励广告
     const val AD_REWARD = "ad_reward"
 

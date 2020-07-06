@@ -10,10 +10,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
 import com.bytedance.sdk.openadsdk.TTAdDislike.DislikeInteractionCallback
-import com.ifmvo.togetherad.core.listener.BannerListener
-import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.core.listener.RewardListener
-import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
@@ -91,6 +88,8 @@ class CsjProvider : BaseAdProvider() {
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
         callbackBannerStartRequest(adProviderType, listener)
 
+        destroyBannerAd()
+
         val dm = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(dm)
         /**
@@ -147,7 +146,7 @@ class CsjProvider : BaseAdProvider() {
                     override fun onSelected(position: Int, value: String) {
                         //用户选择不喜欢原因后，移除广告展示
                         container.removeAllViews()
-                        callbackBannerClose(adProviderType, listener)
+                        callbackBannerClosed(adProviderType, listener)
                     }
 
                     override fun onCancel() {}
@@ -166,6 +165,85 @@ class CsjProvider : BaseAdProvider() {
         mTTAd?.destroy()
     }
 
+    private var mTtInteractionAd: TTInteractionAd? = null
+    override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
+
+        callbackInterStartRequest(adProviderType, listener)
+
+        destroyInterAd()
+
+        val adSlot = AdSlot.Builder()
+                .setCodeId(TogetherAdCsj.idMapCsj[alias])
+                .setSupportDeepLink(true)
+                .setImageAcceptedSize(600, 600) //根据广告平台选择的尺寸，传入同比例尺寸
+                .build()
+
+        TTAdSdk.getAdManager().createAdNative(activity).loadInteractionAd(adSlot, object : TTAdNative.InteractionAdListener {
+            override fun onError(errorCode: Int, errorMsg: String?) {
+                //出错
+                callbackInterFailed(adProviderType, listener, "错误码: $errorCode}, 错误信息：$errorMsg")
+            }
+
+            override fun onInteractionAdLoad(ttInteractionAd: TTInteractionAd?) {
+                //填充
+                callbackInterLoaded(adProviderType, listener)
+
+                mTtInteractionAd = ttInteractionAd
+                mTtInteractionAd?.setAdInteractionListener(object : TTInteractionAd.AdInteractionListener {
+                    override fun onAdDismiss() {
+                        //消失
+                        callbackInterClosed(adProviderType, listener)
+                    }
+
+                    override fun onAdClicked() {
+                        //点击
+                        callbackInterClicked(adProviderType, listener)
+                    }
+
+                    override fun onAdShow() {
+                        //曝光
+                        callbackInterExpose(adProviderType, listener)
+                    }
+                })
+
+                if (mTtInteractionAd?.interactionType == TTAdConstant.INTERACTION_TYPE_DOWNLOAD) {
+                    mTtInteractionAd?.setDownloadListener(object : TTAppDownloadListener {
+                        override fun onIdle() {
+                            "onIdle".logi(TAG)
+                        }
+
+                        override fun onDownloadPaused(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
+                            "onDownloadPaused".logi(TAG)
+                        }
+
+                        override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
+                            "onDownloadFailed".logi(TAG)
+                        }
+
+                        override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
+                            "onDownloadActive".logi(TAG)
+                        }
+
+                        override fun onDownloadFinished(totalBytes: Long, fileName: String?, appName: String?) {
+                            "onDownloadFinished".logi(TAG)
+                        }
+
+                        override fun onInstalled(fileName: String?, appName: String?) {
+                            "onInstalled".logi(TAG)
+                        }
+                    })
+                }
+            }
+        })
+    }
+
+    override fun showInterAd(activity: Activity) {
+        mTtInteractionAd?.showInteractionAd(activity)
+    }
+
+    override fun destroyInterAd() {
+        mTtInteractionAd = null
+    }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
         callbackFlowStartRequest(adProviderType, listener)
@@ -257,7 +335,7 @@ class CsjProvider : BaseAdProvider() {
 
                     override fun onAdClose() {
                         "onAdClose".logi(TAG)
-                        callbackRewardClose(adProviderType, listener)
+                        callbackRewardClosed(adProviderType, listener)
                         mttRewardVideoAd = null
                     }
 
