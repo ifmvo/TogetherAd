@@ -68,6 +68,8 @@ dependencies {
 
 [Banner横幅广告](doc/banner.md)
 
+[Interstitial插屏广告](doc/inter.md)
+
 ## 更多
 
 ### 扩展
