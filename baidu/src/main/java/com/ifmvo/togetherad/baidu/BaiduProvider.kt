@@ -106,6 +106,7 @@ class BaiduProvider : BaseAdProvider() {
 
             override fun onAdPresent() {
                 "onAdPresent".logd(TAG)
+                callbackInterExpose(adProviderType, listener)
             }
 
             override fun onAdClick(inter: InterstitialAd?) {
@@ -115,6 +116,7 @@ class BaiduProvider : BaseAdProvider() {
 
             override fun onAdReady() {
                 "onAdReady".logd(TAG)
+                callbackInterLoaded(adProviderType, listener)
             }
         })
         mInterAd?.loadAd()

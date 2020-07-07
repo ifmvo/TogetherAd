@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
-import com.bytedance.sdk.openadsdk.TTAdDislike.DislikeInteractionCallback
 import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
@@ -86,72 +85,54 @@ class CsjProvider : BaseAdProvider() {
 
     private var mTTAd: TTNativeExpressAd? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
+
         callbackBannerStartRequest(adProviderType, listener)
 
         destroyBannerAd()
 
-        val dm = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(dm)
-        /**
-         * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
-         */
-        fun px2dip(pxValue: Int): Float {
-            val scale = activity.resources.displayMetrics.density
-            return pxValue / scale + 0.5f
-        }
-
-        val wDp = px2dip(dm.widthPixels)
-        val hDp = wDp / 4 * 9 / 16
-
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
                 .setSupportDeepLink(true)
-                .setAdCount(1) //请求广告数量为1到3条
-                .setExpressViewAcceptedSize(wDp, hDp) //期望模板广告view的size,单位dp
-                .setImageAcceptedSize(350, 350)//这个参数设置即可，不影响模板广告的size
+                .setImageAcceptedSize(600, 257)
                 .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
-            override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
-                "onNativeExpressAdLoad".logi(TAG)
-                if (adList.isNullOrEmpty()) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+
+        TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
+            override fun onBannerAdLoad(bannerAd: TTBannerAd?) {
+                if (bannerAd == null) {
+                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerAd 为空")
                     return
                 }
+
+                val bannerView = bannerAd.bannerView
+                if (bannerView == null) {
+                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerView 为空")
+                    return
+                }
+
                 callbackBannerLoaded(adProviderType, listener)
 
-                mTTAd = adList[0]
-                mTTAd?.setSlideIntervalTime(30 * 1000)
-                mTTAd?.setExpressInteractionListener(object : TTNativeExpressAd.ExpressAdInteractionListener {
-                    override fun onAdClicked(p0: View?, p1: Int) {
-                        "onAdClicked".logi(TAG)
+                bannerAd.setSlideIntervalTime(30 * 1000)
+                container.removeAllViews()
+                container.addView(bannerView)
+
+                bannerAd.setBannerInteractionListener(object : TTBannerAd.AdInteractionListener {
+                    override fun onAdClicked(view: View?, type: Int) {
                         callbackBannerClicked(adProviderType, listener)
                     }
 
-                    override fun onAdShow(view: View?, p1: Int) {
-                        "onAdShow".logi(TAG)
+                    override fun onAdShow(view: View?, type: Int) {
                         callbackBannerExpose(adProviderType, listener)
                     }
-
-                    override fun onRenderSuccess(view: View?, p1: Float, p2: Float) {
-                        "onRenderSuccess".logi(TAG)
-                        container.addView(view)
-                    }
-
-                    override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
-                        "onRenderFail".logi(TAG)
-                        callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
-                    }
                 })
-                mTTAd?.setDislikeCallback(activity, object : DislikeInteractionCallback {
-                    override fun onSelected(position: Int, value: String) {
-                        //用户选择不喜欢原因后，移除广告展示
+
+                bannerAd.setShowDislikeIcon(object : TTAdDislike.DislikeInteractionCallback {
+                    override fun onSelected(position: Int, value: String?) {
                         container.removeAllViews()
                         callbackBannerClosed(adProviderType, listener)
                     }
 
                     override fun onCancel() {}
                 })
-                mTTAd?.render()
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {

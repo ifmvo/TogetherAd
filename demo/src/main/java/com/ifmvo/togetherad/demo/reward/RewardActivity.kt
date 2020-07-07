@@ -83,8 +83,6 @@ class RewardActivity : AppCompatActivity() {
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("请求到了: $providerType")
                 "onAdLoaded: $providerType".logi(TAG)
-                //必须在 onAdLoaded 回调之后展示
-                adHelperReward.show()
             }
 
             override fun onAdExpose(providerType: String) {
@@ -118,9 +116,15 @@ class RewardActivity : AppCompatActivity() {
             }
         })
 
-        //开始请求广告
-        adHelperReward.load()
+        btnRequest.setOnClickListener {
+            //开始请求广告
+            adHelperReward.load()
+        }
 
+        btnShow.setOnClickListener {
+            //onAdLoaded 回调之后才能展示
+            adHelperReward.show()
+        }
     }
 
     private var logStr = "日志: \n"
