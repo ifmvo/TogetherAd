@@ -71,11 +71,11 @@ dependencies {
 //    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
 //    //穿山甲（ 头条 ）
-//    implementation 'com.matthewchen.togetherad:csj:3.0.6-3.0.0.4'
+//    implementation 'com.matthewchen.togetherad:csj:3.0.7-3.0.0.4'
 //    //优量汇（ 腾讯广点通 ）
-//    implementation 'com.matthewchen.togetherad:gdt:3.0.6-4.211.1081'
+//    implementation 'com.matthewchen.togetherad:gdt:3.0.7-4.211.1081'
 //    //百青藤 ( 百度 Mob )
-//    implementation 'com.matthewchen.togetherad:baidu:3.0.6-5.85'
+//    implementation 'com.matthewchen.togetherad:baidu:3.0.7-5.85'
 
     //TogetherAd
     implementation project(':csj')

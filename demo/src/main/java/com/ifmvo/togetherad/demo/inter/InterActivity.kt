@@ -74,10 +74,12 @@ class InterActivity : AppCompatActivity() {
         })
 
         btnRequest.setOnClickListener {
+            //开始请求插屏广告
             adHelperInter?.load()
         }
 
         btnShow.setOnClickListener {
+            //开始展示插屏广告，必须在 onAdLoaded 回调之后展示
             adHelperInter?.show()
         }
 

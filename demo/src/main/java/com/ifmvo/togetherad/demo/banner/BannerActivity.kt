@@ -74,6 +74,7 @@ class BannerActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //销毁，避免内存泄漏
         AdHelperBanner.destroy()
     }
 

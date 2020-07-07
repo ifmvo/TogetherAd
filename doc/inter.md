@@ -1,32 +1,30 @@
-# Banner 横幅广告
-
-Banner广告(横幅广告)位于app顶部、中部、底部任意一处，横向贯穿整个app页面；当用户与app互动时，Banner广告会停留在屏幕上，并可在一段时间后自动刷新
-
-—— 引自广点通文档
+# Interstitial 插屏广告
 
 ```kotlin
-class BannerActivity : AppCompatActivity() {
+class InterActivity : AppCompatActivity() {
+
+    private var adHelperInter: AdHelperInter? = null
 
     companion object {
         fun action(context: Context) {
-            context.startActivity(Intent(context, BannerActivity::class.java))
+            context.startActivity(Intent(context, InterActivity::class.java))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_banner)
+        setContentView(R.layout.activity_inter)
 
-        AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, listener = object : BannerListener {
+        //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
+        val radioMapInter = mapOf(
+                AdProviderType.GDT.type to 1,
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.BAIDU.type to 1
+        )
+        adHelperInter = AdHelperInter(activity = this, alias = TogetherAdAlias.AD_INTER, /*radioMap = radioMapInter,*/ listener = object : InterListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("开始请求了，$providerType")
-                /*
-                 * 百度：设置'广告着陆页'动作栏的颜色主题，目前开放了七大主题：黑色、蓝色、咖啡色、绿色、藏青色、红色、白色(默认) 主题
-                 */
-//                if (providerType == AdProviderType.BAIDU.type) {
-//                    AppActivity.setActionBarColorTheme(AppActivity.ActionBarColorTheme.ACTION_BAR_RED_THEME)
-//                }
             }
 
             override fun onAdLoaded(providerType: String) {
@@ -59,12 +57,17 @@ class BannerActivity : AppCompatActivity() {
                 addLog("关闭了，$providerType")
             }
         })
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        //销毁，避免内存泄漏
-        AdHelperBanner.destroy()
+        btnRequest.setOnClickListener {
+            //开始请求插屏广告
+            adHelperInter?.load()
+        }
+
+        btnShow.setOnClickListener {
+            //开始展示插屏广告，必须在 onAdLoaded 回调之后展示
+            adHelperInter?.show()
+        }
+
     }
 
     private var logStr = "日志: \n"
@@ -78,4 +81,4 @@ class BannerActivity : AppCompatActivity() {
 }
 ```
 
-可查看 Demo 中 [Banner横幅广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/banner/BannerActivity.kt)
+可查看 Demo 中 [Interstitial插屏广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/inter/InterActivity.kt)
