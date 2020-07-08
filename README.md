@@ -69,7 +69,6 @@ dependencies {
 [Banner横幅广告](doc/banner.md)
 
 [Interstitial插屏广告](doc/inter.md)
-
 ## 更多
 
 ### 扩展
@@ -80,28 +79,25 @@ dependencies {
 
 ### 相关文档收集
 
-[广点通接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
+- [广点通接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
 
-[广点通错误码对照](https://developers.adnet.qq.com/backend/error_code.html)
+- [广点通错误码对照](https://developers.adnet.qq.com/backend/error_code.html)
 
-[穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
+- [穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
 
-[百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
-
->会尽量保持最新。如果发现有新版本也可联系我，我会及时更新，感激！！
-
-### [更新日志](doc/update_log.md)
+- [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
 
 ### 致谢
+-  [PlayerBase](https://github.com/jiajunhui/PlayerBase)
 
-[PlayerBase](https://github.com/jiajunhui/PlayerBase)
+### License: MIT
 
-### License
 
-MIT
 
 ### 有疑问？欢迎 VX 联系我，也可加入 TogetherAd QQ 交流群
 
 <img src="img/Wechat.jpeg"  height="200" width="200">
 </br>
 <img src="img/QQ.png"  height="265" width="200">
+
+### [更新日志](doc/update_log.md)
