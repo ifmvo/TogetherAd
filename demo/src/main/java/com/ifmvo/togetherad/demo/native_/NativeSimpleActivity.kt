@@ -65,7 +65,7 @@ class NativeSimpleActivity : AppCompatActivity() {
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
-                addLog("原生广告请求失败，$providerType")
+                addLog("原生广告单个提供商请求失败了，$providerType, $failedMsg")
                 "onAdFailed: $providerType: $failedMsg".loge(TAG)
             }
 

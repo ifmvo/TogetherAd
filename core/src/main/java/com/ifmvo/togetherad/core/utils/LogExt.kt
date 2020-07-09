@@ -3,8 +3,6 @@ package com.ifmvo.togetherad.core.utils
 import android.util.Log
 
 /* 
- *
- * 
  * Created by Matthew_Chen on 2018/12/24.
  */
 fun String.logv(tag: String? = "TogetherAd") {
