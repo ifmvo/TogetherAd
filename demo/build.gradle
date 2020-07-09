@@ -30,10 +30,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
-            shrinkResources false
-            debuggable false
-            zipAlignEnabled false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -61,14 +60,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
 
-    //快速实现列表
-//    implementation 'com.github.ifmvo:QuickList:1.1.6'
-
     //内存泄漏检测工具
-    implementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
-    //图片加载框架
-//    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
 //    //穿山甲（ 头条 ）
 //    implementation 'com.matthewchen.togetherad:csj:3.0.7-3.0.0.4'
@@ -76,6 +70,7 @@ dependencies {
 //    implementation 'com.matthewchen.togetherad:gdt:3.0.7-4.211.1081'
 //    //百青藤 ( 百度 Mob )
 //    implementation 'com.matthewchen.togetherad:baidu:3.0.7-5.85'
+
 
     //TogetherAd
     implementation project(':csj')

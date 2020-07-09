@@ -34,6 +34,17 @@ class NativeSimpleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flow_simple)
 
+        btnRequestShow.setOnClickListener {
+            requestAd()
+        }
+
+        requestAd()
+    }
+
+    /**
+     * 请求广告
+     */
+    private fun requestAd() {
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapNativeSimple = mapOf(
                 AdProviderType.GDT.type to 3,
@@ -44,7 +55,7 @@ class NativeSimpleActivity : AppCompatActivity() {
         AdHelperNative.getList(activity = this, alias = TogetherAdAlias.AD_NATIVE_SIMPLE, maxCount = 1, /*radioMap = radioMapNativeSimple,*/ listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 "onAdStartRequest: $providerType".logi(TAG)
-                addLog("原生广告开始请求，$providerType")
+                addLog("\n原生广告开始请求，$providerType")
             }
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
@@ -65,7 +76,11 @@ class NativeSimpleActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * 展示广告
+     */
     private fun showAd(adObject: Any) {
+        adContainer.removeAllViews()
         AdHelperNative.show(adObject = adObject, container = adContainer, nativeTemplate = NativeTemplateCommon(), listener = object : NativeViewListener {
             override fun onAdExposed(providerType: String) {
                 addLog("原生广告曝光了")

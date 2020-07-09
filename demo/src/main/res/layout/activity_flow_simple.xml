@@ -27,4 +27,10 @@
 
     </ScrollView>
 
+    <Button
+        android:id="@+id/btnRequestShow"
+        android:layout_width="match_parent"
+        android:text="请求并展示"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

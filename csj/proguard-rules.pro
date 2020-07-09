@@ -20,6 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#------------------------穿山甲的混淆---------------------------#
 -keep class com.bytedance.sdk.openadsdk.** { *; }
--keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
--keep class com.pgl.sys.ces.* {*;}
+-keep public interface com.bytedance.sdk.openadsdk.downloadnew.** { *; }
+-keep class com.pgl.sys.ces.* { *; }
+
+-keep class com.ifmvo.togetherad.csj.** { *; }
