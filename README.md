@@ -69,15 +69,20 @@ dependencies {
 [Banner横幅广告](doc/banner.md)
 
 [Interstitial插屏广告](doc/inter.md)
-## 更多
 
-### 扩展
+## 混淆 proguard-rules.pro
+
+资源库中已自带混淆规则，通常情况下无需手动配置。
+
+当然你也可以点击这里查看每个资源库的混淆规则： [core](core/proguard-rules.pro)、[gdt](gdt/proguard-rules.pro)、[csj](csj/proguard-rules.pro)、[baidu](baidu/proguard-rules.pro)
+
+## 扩展
 
 ``TogetherAd``目前支持的广告平台有：穿山甲、广点通、百青藤。
 
 如果你想接入其他广告平台，或者自己有API组装。可参考[这里进行自定义扩展](doc/extend.md)。
 
-### 相关文档收集
+## 相关文档收集
 
 - [广点通接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
 
@@ -87,17 +92,46 @@ dependencies {
 
 - [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
 
-### 致谢
--  [PlayerBase](https://github.com/jiajunhui/PlayerBase)
+## 更新日志
 
-### License: MIT
+3.0.8（2020.07.09）
 
+1. 配置项目混淆
 
+[点击查看更多日志](doc/update_log.md)
 
-### 有疑问？欢迎 VX 联系我，也可加入 TogetherAd QQ 交流群
+## 致谢
+
+-  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase) 
+
+## 有疑问？欢迎 VX 联系我，或者加入 QQ 交流群
 
 <img src="img/Wechat.jpeg"  height="200" width="200">
 </br>
 <img src="img/QQ.png"  height="265" width="200">
 
-### [更新日志](doc/update_log.md)
+## License
+
+```
+MIT License
+
+Copyright (c) 2020 陈铭卓
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
