@@ -69,9 +69,19 @@ interface IAdProvider {
     /**
      * 判断原生广告对象是否属于这个提供商
      */
-    fun isBelongTheProvider(
+    fun nativeAdIsBelongTheProvider(
             @NonNull adObject: Any
     ): Boolean
+
+    //控制原生自渲染的生命周期
+    fun resumeNativeAd(
+            @NonNull adObject: Any
+    )
+
+    //控制原生自渲染的生命周期
+    fun destroyNativeAd(
+            @NonNull adObject: Any
+    )
 
     /**
      * 请求激励广告

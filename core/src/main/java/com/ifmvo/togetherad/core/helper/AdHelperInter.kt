@@ -90,6 +90,6 @@ class AdHelperInter(
     }
 
     fun show() {
-        adProvider?.showInterAd(mActivity.get()!!)
+        mActivity.get()?.let { adProvider?.showInterAd(it) }
     }
 }

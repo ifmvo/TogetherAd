@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
-import com.ifmvo.togetherad.demo.help.HelpActivity
+import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity

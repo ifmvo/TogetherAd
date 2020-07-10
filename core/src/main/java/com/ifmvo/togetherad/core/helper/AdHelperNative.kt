@@ -16,6 +16,7 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  *
  * Created by Matthew Chen on 2020-04-20.
  */
+@Deprecated(message = "设计上考虑不周全，使用单例导致无法同时请求多次", replaceWith = ReplaceWith(expression = "AdHelperNativePro", imports = ["com.ifmvo.togetherad.core.helper"]))
 object AdHelperNative : BaseHelper() {
 
     private const val defaultMaxCount = 4
@@ -39,7 +40,7 @@ object AdHelperNative : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
-            val newRadioMap = AdHelperSplash.filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
+            val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
             getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             return
         }
@@ -56,7 +57,7 @@ object AdHelperNative : BaseHelper() {
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = AdHelperSplash.filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
+                val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
                 getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             }
 
@@ -69,7 +70,7 @@ object AdHelperNative : BaseHelper() {
     fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, @NonNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
         TogetherAd.mProviders.entries.forEach { entry ->
             val adProvider = AdProviderLoader.loadAdProvider(entry.key)
-            if (adProvider?.isBelongTheProvider(adObject) == true) {
+            if (adProvider?.nativeAdIsBelongTheProvider(adObject) == true) {
                 val nativeView = nativeTemplate.getNativeView(entry.key)
                 nativeView?.showNative(entry.key, adObject, container, listener)
                 return@forEach

@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference
 
 /**
  * 激励广告
- * 
+ *
  * Created by Matthew Chen on 2020-04-20.
  */
 class AdHelperReward(
@@ -106,6 +106,6 @@ class AdHelperReward(
     }
 
     fun show() {
-        adProvider?.showRewardAd(mActivity.get()!!)
+        mActivity.get()?.let { adProvider?.showRewardAd(it) }
     }
 }

@@ -217,8 +217,24 @@ class GdtProvider : BaseAdProvider() {
         mAdManager.loadData(maxCount)
     }
 
-    override fun isBelongTheProvider(adObject: Any): Boolean {
+    override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean {
         return adObject is NativeUnifiedADData
+    }
+
+    override fun resumeNativeAd(adObject: Any) {
+        when (adObject) {
+            is NativeUnifiedADData -> {
+                adObject.resume()
+            }
+        }
+    }
+
+    override fun destroyNativeAd(adObject: Any) {
+        when (adObject) {
+            is NativeUnifiedADData -> {
+                adObject.destroy()
+            }
+        }
     }
 
     private var rewardVideoAD: RewardVideoAD? = null

@@ -37,7 +37,7 @@ object AdHelperBanner : BaseHelper() {
         adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
-            val newRadioMap = AdHelperSplash.filterType(currentRadioMap, adProviderType)
+            val newRadioMap = filterType(currentRadioMap, adProviderType)
             show(activity, alias, newRadioMap, container, listener)
             return
         }

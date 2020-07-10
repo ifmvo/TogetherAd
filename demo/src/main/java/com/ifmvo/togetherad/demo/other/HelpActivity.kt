@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.help
+package com.ifmvo.togetherad.demo.other
 
 import android.content.Context
 import android.content.Intent

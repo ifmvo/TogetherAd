@@ -45,7 +45,7 @@
         <!--
             踩坑指南
         -->
-        <activity android:name=".help.HelpActivity" />
+        <activity android:name=".other.HelpActivity" />
 
         <!--
             Banner 横幅广告

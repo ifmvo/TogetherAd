@@ -159,8 +159,24 @@ class BaiduProvider : BaseAdProvider() {
         baidu.makeRequest(requestParameters)
     }
 
-    override fun isBelongTheProvider(adObject: Any): Boolean {
+    override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean {
         return adObject is NativeResponse
+    }
+
+    override fun resumeNativeAd(adObject: Any) {
+        when (adObject) {
+            is NativeResponse -> {
+
+            }
+        }
+    }
+
+    override fun destroyNativeAd(adObject: Any) {
+        when (adObject) {
+            is NativeResponse -> {
+
+            }
+        }
     }
 
     private var mRewardVideoAd: RewardVideoAd? = null

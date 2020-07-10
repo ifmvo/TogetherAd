@@ -28,10 +28,21 @@ class BannerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banner)
 
+        btnRequestShow.setOnClickListener {
+            showBannerAd()
+        }
+
+        showBannerAd()
+    }
+
+    private fun showBannerAd() {
+
+        adContainer.removeAllViews()
+
         AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
-                addLog("开始请求了，$providerType")
+                addLog("\n开始请求了，$providerType")
                 /*
                  * 百度：设置'广告着陆页'动作栏的颜色主题，目前开放了七大主题：黑色、蓝色、咖啡色、绿色、藏青色、红色、白色(默认) 主题
                  */

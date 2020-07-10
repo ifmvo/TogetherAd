@@ -254,7 +254,23 @@ class CsjProvider : BaseAdProvider() {
         })
     }
 
-    override fun isBelongTheProvider(adObject: Any): Boolean {
+    override fun resumeNativeAd(adObject: Any) {
+        when (adObject) {
+            is TTFeedAd -> {
+
+            }
+        }
+    }
+
+    override fun destroyNativeAd(adObject: Any) {
+        when (adObject) {
+            is TTFeedAd -> {
+
+            }
+        }
+    }
+
+    override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean {
         return adObject is TTFeedAd
     }
 

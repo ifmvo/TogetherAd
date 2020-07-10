@@ -25,6 +25,12 @@
     <FrameLayout
         android:id="@+id/adContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="150dp" />
+
+    <Button
+        android:id="@+id/btnRequestShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求并展示" />
 
 </LinearLayout>

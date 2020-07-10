@@ -69,7 +69,7 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
-                addLog("开屏广告开始请求，$providerType")
+                addLog("\n开屏广告开始请求，$providerType")
                 "onAdStartRequest: $providerType".logi(TAG)
             }
 

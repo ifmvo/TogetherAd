@@ -4,7 +4,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
 
-欢迎 **Star** 、**Fork**、**Issues**
+欢迎 **<mark>Star**</mark> 、**Fork**、**Issues**
 
 > 新版本 3.x 已发布。
 >  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
@@ -37,7 +37,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 
 如果某个平台的广告请求失败或没有量，会自动在其他广告中随机出一种再次请求，这样可以尽可能多的展示广告，使收益最大化
 
-## 使用方法
+## Gradle 添加依赖
 
 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
 
@@ -58,17 +58,27 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-[准备工作及初始化](doc/prepare.md)
+## 更新日志
 
-[开屏广告](doc/splash.md)
+3.0.8（2020.07.09）
 
-[原生自渲染](doc/native.md)
+1. 资源库自带混淆规则，无需手动添加
 
-[激励广告](doc/reward.md)
+[点击查看更多日志](doc/update_log.md)
 
-[Banner横幅广告](doc/banner.md)
+## 使用方法
 
-[Interstitial插屏广告](doc/inter.md)
+- [准备工作及初始化](doc/prepare.md)
+
+- [开屏广告](doc/splash.md)
+
+- [原生自渲染](doc/native.md)
+
+- [激励广告](doc/reward.md)
+
+- [Banner横幅广告](doc/banner.md)
+
+- [Interstitial插屏广告](doc/inter.md)
 
 ## 混淆 proguard-rules.pro
 
@@ -91,14 +101,6 @@ dependencies {
 - [穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
 
 - [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
-
-## 更新日志
-
-3.0.8（2020.07.09）
-
-1. 资源库自带混淆规则，无需手动添加
-
-[点击查看更多日志](doc/update_log.md)
 
 ## 致谢
 

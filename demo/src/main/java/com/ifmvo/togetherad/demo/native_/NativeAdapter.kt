@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.helper.AdHelperNative
+import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
@@ -53,7 +53,7 @@ class NativeAdapter(list: List<Any>, context: Context) : RecyclerView.Adapter<Re
             ITEM_VIEW_TYPE_AD -> {
                 val adViewHolder = holder as AdViewHolder
                 adViewHolder.adContainer.removeAllViews()
-                AdHelperNative.show(mList[position], adViewHolder.adContainer, NativeTemplateCommon(), object : NativeViewListener {
+                AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateCommon(), object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                         Toast.makeText(mContext, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
                     }

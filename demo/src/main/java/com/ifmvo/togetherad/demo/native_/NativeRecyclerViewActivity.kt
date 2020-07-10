@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
-import com.ifmvo.togetherad.core.helper.AdHelperNative
+import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
@@ -20,6 +20,10 @@ import kotlinx.android.synthetic.main.activity_native_recyclerview.*
  */
 class NativeRecyclerViewActivity : AppCompatActivity() {
 
+    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, 3) }
+
+    private val mAdList = mutableListOf<Any>()
+
     companion object {
         fun action(context: Context) {
             context.startActivity(Intent(context, NativeRecyclerViewActivity::class.java))
@@ -30,19 +34,46 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_native_recyclerview)
 
-        val contentData = getContentData()
-
-        requestAd {
-
+        requestRvAd {
             //使用 RecyclerView 展示合并后的数据
-            val allList = mergeContentAd(contentData, it)
-            rv.layoutManager = LinearLayoutManager(this@NativeRecyclerViewActivity)
-            rv.adapter = NativeAdapter(allList, this@NativeRecyclerViewActivity)
+            val allList = mergeContentAd(getContentData(), it)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = NativeAdapter(allList, this)
         }
     }
 
     /**
+     * 请求广告List
+     */
+    private fun requestRvAd(onResult: (adList: List<Any>) -> Unit) {
+        adHelperNativeRv.getList(listener = object : NativeListener {
+            override fun onAdStartRequest(providerType: String) {
+                //每个提供商请求之前都会回调
+            }
+
+            override fun onAdLoaded(providerType: String, adList: List<Any>) {
+                mAdList.addAll(adList)
+                onResult(adList)
+            }
+
+            override fun onAdFailed(providerType: String, failedMsg: String?) {
+                //单个提供商请求失败
+            }
+
+            override fun onAdFailedAll() {
+                Toast.makeText(this@NativeRecyclerViewActivity, "所有平台都请求失败了", Toast.LENGTH_LONG).show()
+                //所有的提供商都失败
+                onResult(mutableListOf())
+            }
+        })
+    }
+
+    /**
      * 把内容List和广告List合并
+     *
+     * 示例：第二条插入广告，之后每隔5条内容插入一条广告
+     *
+     * 具体逻辑按照自己的需求自行处理
      */
     private fun mergeContentAd(contentList: List<ContentDataEntity>, adList: List<Any>): List<Any> {
 
@@ -76,29 +107,14 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
         return contentList
     }
 
-    /**
-     * 请求广告List
-     */
-    private fun requestAd(onResult: (adList: List<Any>) -> Unit) {
-        AdHelperNative.getList(this@NativeRecyclerViewActivity, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, maxCount = 3, listener = object : NativeListener {
-            override fun onAdStartRequest(providerType: String) {
-                //每个提供商请求之前都会回调
-            }
+    override fun onResume() {
+        super.onResume()
+        AdHelperNativePro.resumeAd(mAdList)
+    }
 
-            override fun onAdLoaded(providerType: String, adList: List<Any>) {
-                onResult(adList)
-            }
-
-            override fun onAdFailed(providerType: String, failedMsg: String?) {
-                //单个提供商请求失败
-            }
-
-            override fun onAdFailedAll() {
-                Toast.makeText(this@NativeRecyclerViewActivity, "所有平台都请求失败了", Toast.LENGTH_LONG).show()
-                //所有的提供商都失败
-                onResult(mutableListOf())
-            }
-        })
+    override fun onDestroy() {
+        super.onDestroy()
+        AdHelperNativePro.destroyAd(mAdList)
     }
 }
 
