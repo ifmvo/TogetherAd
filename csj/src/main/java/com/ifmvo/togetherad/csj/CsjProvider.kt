@@ -132,6 +132,7 @@ class CsjProvider : BaseAdProvider() {
                     }
 
                     override fun onCancel() {}
+                    override fun onRefuse() {}
                 })
             }
 

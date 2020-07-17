@@ -82,4 +82,9 @@ object TogetherAd {
     fun setCustomImageLoader(@NonNull imageLoader: AdImageLoader) {
         mImageLoader = imageLoader
     }
+
+    /**
+     * 是否打印 Log 日志
+     */
+    var printLogEnable: Boolean = true
 }
