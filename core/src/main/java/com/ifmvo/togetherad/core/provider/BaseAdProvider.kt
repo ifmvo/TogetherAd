@@ -15,42 +15,42 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- 开屏 ---------------------------
      */
-    fun callbackSplashStartRequest(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
+    protected fun callbackSplashStartRequest(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    fun callbackSplashLoaded(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
+    protected fun callbackSplashLoaded(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了".logi()
             listener.onAdLoaded(adProviderType)
         }
     }
 
-    fun callbackSplashClicked(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
+    protected fun callbackSplashClicked(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 点击了".logi()
             listener.onAdClicked(adProviderType)
         }
     }
 
-    fun callbackSplashExposure(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
+    protected fun callbackSplashExposure(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 曝光了".logi()
             listener.onAdExposure(adProviderType)
         }
     }
 
-    fun callbackSplashFailed(@NonNull adProviderType: String, @NonNull listener: SplashListener, failedMsg: String?) {
+    protected fun callbackSplashFailed(@NonNull adProviderType: String, @NonNull listener: SplashListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
         }
     }
 
-    fun callbackSplashDismiss(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
+    protected fun callbackSplashDismiss(@NonNull adProviderType: String, @NonNull listener: SplashListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 消失了".logi()
             listener.onAdDismissed(adProviderType)
@@ -60,21 +60,21 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- 原生信息流 ---------------------------
      */
-    fun callbackFlowStartRequest(@NonNull adProviderType: String, @NonNull listener: NativeListener) {
+    protected fun callbackFlowStartRequest(@NonNull adProviderType: String, @NonNull listener: NativeListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    fun callbackFlowLoaded(@NonNull adProviderType: String, @NonNull listener: NativeListener, @NonNull adList: List<Any>) {
+    protected fun callbackFlowLoaded(@NonNull adProviderType: String, @NonNull listener: NativeListener, @NonNull adList: List<Any>) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
             listener.onAdLoaded(adProviderType, adList)
         }
     }
 
-    fun callbackFlowFailed(@NonNull adProviderType: String, @NonNull listener: NativeListener, failedMsg: String?) {
+    protected fun callbackFlowFailed(@NonNull adProviderType: String, @NonNull listener: NativeListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
@@ -84,70 +84,70 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- 激励广告 ---------------------------
      */
-    fun callbackRewardStartRequest(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardStartRequest(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    fun callbackRewardLoaded(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardLoaded(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了".logi()
             listener.onAdLoaded(adProviderType)
         }
     }
 
-    fun callbackRewardFailed(@NonNull adProviderType: String, @NonNull listener: RewardListener, failedMsg: String?) {
+    protected fun callbackRewardFailed(@NonNull adProviderType: String, @NonNull listener: RewardListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
         }
     }
 
-    fun callbackRewardClicked(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardClicked(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 点击了".logi()
             listener.onAdClicked(adProviderType)
         }
     }
 
-    fun callbackRewardShow(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardShow(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 展示了".logi()
             listener.onAdShow(adProviderType)
         }
     }
 
-    fun callbackRewardExpose(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardExpose(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 曝光了".logi()
             listener.onAdExpose(adProviderType)
         }
     }
 
-    fun callbackRewardVideoComplete(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardVideoComplete(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 播放完成".logi()
             listener.onAdVideoComplete(adProviderType)
         }
     }
 
-    fun callbackRewardVideoCached(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardVideoCached(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 视频已缓存".logi()
             listener.onAdVideoCached(adProviderType)
         }
     }
 
-    fun callbackRewardVerify(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardVerify(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 激励验证".logi()
             listener.onAdRewardVerify(adProviderType)
         }
     }
 
-    fun callbackRewardClosed(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
+    protected fun callbackRewardClosed(@NonNull adProviderType: String, @NonNull listener: RewardListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 关闭了".logi()
             listener.onAdClose(adProviderType)
@@ -157,42 +157,42 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- Banner 横幅广告 ---------------------------
      */
-    fun callbackBannerStartRequest(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+    protected fun callbackBannerStartRequest(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    fun callbackBannerLoaded(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+    protected fun callbackBannerLoaded(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了".logi()
             listener.onAdLoaded(adProviderType)
         }
     }
 
-    fun callbackBannerFailed(@NonNull adProviderType: String, @NonNull listener: BannerListener, failedMsg: String?) {
+    protected fun callbackBannerFailed(@NonNull adProviderType: String, @NonNull listener: BannerListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
         }
     }
 
-    fun callbackBannerClosed(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+    protected fun callbackBannerClosed(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 关闭了".logi()
             listener.onAdClose(adProviderType)
         }
     }
 
-    fun callbackBannerExpose(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+    protected fun callbackBannerExpose(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 曝光了".logi()
             listener.onAdExpose(adProviderType)
         }
     }
 
-    fun callbackBannerClicked(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
+    protected fun callbackBannerClicked(@NonNull adProviderType: String, @NonNull listener: BannerListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 点击了".logi()
             listener.onAdClicked(adProviderType)
@@ -202,42 +202,42 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- Interaction 插屏广告 ---------------------------
      */
-    fun callbackInterStartRequest(@NonNull adProviderType: String, @NonNull listener: InterListener) {
+    protected fun callbackInterStartRequest(@NonNull adProviderType: String, @NonNull listener: InterListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    fun callbackInterLoaded(@NonNull adProviderType: String, @NonNull listener: InterListener) {
+    protected fun callbackInterLoaded(@NonNull adProviderType: String, @NonNull listener: InterListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了".logi()
             listener.onAdLoaded(adProviderType)
         }
     }
 
-    fun callbackInterFailed(@NonNull adProviderType: String, @NonNull listener: InterListener, failedMsg: String?) {
+    protected fun callbackInterFailed(@NonNull adProviderType: String, @NonNull listener: InterListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
         }
     }
 
-    fun callbackInterClosed(@NonNull adProviderType: String, @NonNull listener: InterListener) {
+    protected fun callbackInterClosed(@NonNull adProviderType: String, @NonNull listener: InterListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 关闭了".logi()
             listener.onAdClose(adProviderType)
         }
     }
 
-    fun callbackInterExpose(@NonNull adProviderType: String, @NonNull listener: InterListener) {
+    protected fun callbackInterExpose(@NonNull adProviderType: String, @NonNull listener: InterListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 曝光了".logi()
             listener.onAdExpose(adProviderType)
         }
     }
 
-    fun callbackInterClicked(@NonNull adProviderType: String, @NonNull listener: InterListener) {
+    protected fun callbackInterClicked(@NonNull adProviderType: String, @NonNull listener: InterListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 点击了".logi()
             listener.onAdClicked(adProviderType)

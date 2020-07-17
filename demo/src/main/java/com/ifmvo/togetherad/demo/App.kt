@@ -45,7 +45,8 @@ class App : Application() {
          * 配置所有广告位ID
          */
         TogetherAdCsj.idMapCsj = mapOf(
-                TogetherAdAlias.AD_SPLASH to "801121648",
+                TogetherAdAlias.AD_SPLASH to "901121737",
+//                TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121987",
@@ -54,7 +55,8 @@ class App : Application() {
         )
 
         TogetherAdGdt.idMapGDT = mapOf(
-                TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+                TogetherAdAlias.AD_SPLASH to "6040749702835933",
+//                TogetherAdAlias.AD_SPLASH to "8863364436303842593",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
