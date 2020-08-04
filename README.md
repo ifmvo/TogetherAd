@@ -60,10 +60,11 @@ dependencies {
 
 ## 更新日志
 
-3.0.9 (2020.07.17)
+3.0.9 (2020.08.04)
 1. Log 日志开关
 2. 由于设计缺陷 AdHelperNative 弃用，使用 AdHelperNativePro 替换
 3. 原生自渲染广告的生命周期处理 [详情查看文档](doc/native.md)
+4. 更新穿山甲SDK版本到3.1.0.1
 
 [点击查看更多日志](doc/update_log.md)
 

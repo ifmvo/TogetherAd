@@ -215,6 +215,11 @@ class App : Application() {
 //                Glide.with(context).load(imgUrl).into(imageView)
 //            }
 //        })
+
+        /**
+         * 日志的开关
+         */
+        TogetherAd.printLogEnable = BuildConfig.DEBUG
     }
 }
 ```
