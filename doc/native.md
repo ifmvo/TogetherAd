@@ -82,6 +82,11 @@ override fun onResume() {
     AdHelperNativePro.resumeAd(adObject)
 }
 
+override fun onPause() {
+    super.onPause()
+    AdHelperNativePro.pauseAd(adObject)
+}
+
 override fun onDestroy() {
     super.onDestroy()
     AdHelperNativePro.destroyAd(adObject)

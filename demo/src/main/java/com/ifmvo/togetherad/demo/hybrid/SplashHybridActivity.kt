@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.splash
+package com.ifmvo.togetherad.demo.hybrid
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
-import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
@@ -16,17 +15,17 @@ import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
- * 开屏广告使用示例
+ * 开屏 & 原生 混合使用
  *
  * Created by Matthew Chen on 2020-04-17.
  */
-class SplashActivity : AppCompatActivity() {
+class SplashHybridActivity : AppCompatActivity() {
 
-    private val TAG = "SplashActivity"
+    private val TAG = "SplashHybridActivity"
 
     companion object {
         fun action(context: Context) {
-            context.startActivity(Intent(context, SplashActivity::class.java))
+            context.startActivity(Intent(context, SplashHybridActivity::class.java))
         }
     }
 
@@ -48,8 +47,8 @@ class SplashActivity : AppCompatActivity() {
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
          */
-        AdHelperSplash.customSkipView = SplashSkipViewSimple2()
-        //AdHelperSplash.customSkipView = SplashSkipViewSimple1()
+        AdHelperSplashHybrid.customSkipView = SplashSkipViewSimple2()
+//        SplashHybridAdapter.customSkipView = SplashSkipViewSimple1()
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapSplash = mapOf(
@@ -65,7 +64,7 @@ class SplashActivity : AppCompatActivity() {
          * container: 必传。请求到广告之后会自动添加到 container 这个布局中展示。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
+        AdHelperSplashHybrid.show(activity = this, alias = TogetherAdAlias.AD_SPLASH_AND_NATIVE, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
@@ -113,6 +112,21 @@ class SplashActivity : AppCompatActivity() {
             }
         })
         //回调中的 providerType 是广告商类型
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AdHelperSplashHybrid.resumeAd()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        AdHelperSplashHybrid.pauseAd()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AdHelperSplashHybrid.destroyAd()
     }
 
     //不能手动返回

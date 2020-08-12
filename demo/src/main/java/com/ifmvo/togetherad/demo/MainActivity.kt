@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
+import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
@@ -21,6 +22,7 @@ class MainActivity : ListActivity() {
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
                 "开屏",
+                "开屏&原生混合使用(gdt是原生自渲染伪装成开屏)",
                 "原生自渲染简单用法",
                 "原生自渲染在 RecyclerView 中使用",
                 "激励广告",
@@ -36,23 +38,27 @@ class MainActivity : ListActivity() {
                 SplashActivity.action(this)
             }
             1 -> {
-                NativeSimpleActivity.action(this)
+                SplashHybridActivity.action(this)
             }
             2 -> {
-                NativeRecyclerViewActivity.action(this)
+                NativeSimpleActivity.action(this)
             }
             3 -> {
-                RewardActivity.action(this)
+                NativeRecyclerViewActivity.action(this)
             }
             4 -> {
-                BannerActivity.action(this)
+                RewardActivity.action(this)
             }
             5 -> {
-                InterActivity.action(this)
+                BannerActivity.action(this)
             }
             6 -> {
+                InterActivity.action(this)
+            }
+            7 -> {
                 HelpActivity.action(this)
             }
+
         }
     }
 

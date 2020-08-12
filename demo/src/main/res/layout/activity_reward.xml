@@ -26,12 +26,12 @@
         android:id="@+id/btnRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="请求插屏广告" />
+        android:text="请求激励广告" />
 
     <Button
         android:id="@+id/btnShow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="展示插屏广告" />
+        android:text="展示激励广告" />
 
 </LinearLayout>

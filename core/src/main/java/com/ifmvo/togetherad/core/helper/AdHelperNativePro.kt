@@ -48,6 +48,17 @@ class AdHelperNativePro(
             }
         }
 
+        fun pauseAd(@NonNull adObject: Any) {
+            TogetherAd.mProviders.entries.forEach { entry ->
+                val adProvider = AdProviderLoader.loadAdProvider(entry.key)
+                adProvider?.pauseNativeAd(adObject)
+            }
+        }
+
+        fun pauseAd(@NonNull adObjectList: List<Any>) {
+            adObjectList.forEach { pauseAd(it) }
+        }
+
         fun resumeAd(@NonNull adObject: Any) {
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)

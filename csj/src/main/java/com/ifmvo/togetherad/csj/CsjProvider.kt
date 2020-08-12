@@ -263,6 +263,14 @@ class CsjProvider : BaseAdProvider() {
         }
     }
 
+    override fun pauseNativeAd(adObject: Any) {
+        when (adObject) {
+            is TTFeedAd -> {
+
+            }
+        }
+    }
+
     override fun destroyNativeAd(adObject: Any) {
         when (adObject) {
             is TTFeedAd -> {

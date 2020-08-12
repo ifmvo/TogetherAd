@@ -29,4 +29,7 @@ object TogetherAdAlias {
     //激励广告
     const val AD_REWARD = "ad_reward"
 
+    //开屏和原生混合使用
+    const val AD_SPLASH_AND_NATIVE = "ad_splash_and_native"
+
 }

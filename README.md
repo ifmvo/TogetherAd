@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.0.9-3.1.0.1'
+    implementation 'com.matthewchen.togetherad:csj:3.1.0-3.1.0.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.0.9-4.211.1081'
+    implementation 'com.matthewchen.togetherad:gdt:3.1.0-4.211.1081'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.0.9-5.85'
+    implementation 'com.matthewchen.togetherad:baidu:3.1.0-5.85'
     
 }
 ```
@@ -60,11 +60,11 @@ dependencies {
 
 ## 更新日志
 
-3.0.9 (2020.08.04)
-1. Log 日志开关
-2. 由于设计缺陷 AdHelperNative 弃用，使用 AdHelperNativePro 替换
-3. 原生自渲染广告的生命周期处理 [详情查看文档](doc/native.md)
-4. 更新穿山甲SDK版本到3.1.0.1
+3.1.0（2020.08.12）
+1. 新增失败切换的开关 TogetherAd.failedSwitchEnable（ 默认开启 ）
+2. 提供混合使用的方案（ 例如Demo中的AdHelperSplashHybrid类，随机到csj和baidu时调用开屏展示，随机到gdt时使用原生信息流伪装成开屏展示）
+3. 解决 AdHelperSplash 不设置自定义跳过按钮时崩溃的问题
+4. 处理 Demo 中一个内存泄漏的问题
 
 [点击查看更多日志](doc/update_log.md)
 
@@ -81,6 +81,8 @@ dependencies {
 - [Banner横幅广告](doc/banner.md)
 
 - [Interstitial插屏广告](doc/inter.md)
+
+- [混合使用](doc/hybrid.md)
 
 ## 混淆 proguard-rules.pro
 

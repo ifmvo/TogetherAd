@@ -171,6 +171,14 @@ class BaiduProvider : BaseAdProvider() {
         }
     }
 
+    override fun pauseNativeAd(adObject: Any) {
+        when (adObject) {
+            is NativeResponse -> {
+
+            }
+        }
+    }
+
     override fun destroyNativeAd(adObject: Any) {
         when (adObject) {
             is NativeResponse -> {

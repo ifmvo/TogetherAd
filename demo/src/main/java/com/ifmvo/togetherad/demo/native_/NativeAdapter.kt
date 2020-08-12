@@ -1,6 +1,5 @@
 package com.ifmvo.togetherad.demo.native_
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,7 @@ import com.ifmvo.togetherad.demo.R
  *
  * Created by Matthew Chen on 2020/6/30.
  */
-class NativeAdapter(list: List<Any>, context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_VIEW_TYPE_AD = 0
@@ -27,7 +26,6 @@ class NativeAdapter(list: List<Any>, context: Context) : RecyclerView.Adapter<Re
     }
 
     private var mList: List<Any> = list
-    private var mContext: Context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_VIEW_TYPE_CONTENT) {
@@ -46,8 +44,8 @@ class NativeAdapter(list: List<Any>, context: Context) : RecyclerView.Adapter<Re
             ITEM_VIEW_TYPE_CONTENT -> {
                 val contentViewHolder = holder as ContentViewHolder
                 val contentDataEntity = mList[position] as ContentDataEntity
-                contentViewHolder.imageView.layoutParams.height = ScreenUtil.getDisplayMetricsWidth(mContext) * 9 / 16
-                TogetherAd.mImageLoader?.loadImage(mContext, contentViewHolder.imageView, contentDataEntity.imgUrl)
+                contentViewHolder.imageView.layoutParams.height = ScreenUtil.getDisplayMetricsWidth(contentViewHolder.imageView.context) * 9 / 16
+                TogetherAd.mImageLoader?.loadImage(contentViewHolder.imageView.context, contentViewHolder.imageView, contentDataEntity.imgUrl)
                 contentViewHolder.textView.text = contentDataEntity.title
             }
             ITEM_VIEW_TYPE_AD -> {
@@ -55,11 +53,11 @@ class NativeAdapter(list: List<Any>, context: Context) : RecyclerView.Adapter<Re
                 adViewHolder.adContainer.removeAllViews()
                 AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateCommon(), object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
-                        Toast.makeText(mContext, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
+                        Toast.makeText(adViewHolder.adContainer.context, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onAdClicked(providerType: String) {
-                        Toast.makeText(mContext, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
+                        Toast.makeText(adViewHolder.adContainer.context, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
                     }
                 })
             }

@@ -25,7 +25,7 @@ class NativeViewCsjCommon : BaseNativeView() {
         }
         val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_common, container)
 
-        val mLlSuper = rootView.findViewById<LinearLayout>(R.id.ll_super)
+        val mSuperParent = rootView.findViewById<ViewGroup>(R.id.super_parent)
         val mFlParent = rootView.findViewById<FrameLayout>(R.id.fl_parent)
 
         //图片类型的
@@ -47,13 +47,13 @@ class NativeViewCsjCommon : BaseNativeView() {
 //        mAdLogoView.setAdLogoType(AdNameType.CSJ, adObject)
         // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
         val clickViewList = mutableListOf<View>()
-        clickViewList.add(mLlSuper)
+        clickViewList.add(mSuperParent)
         // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
         //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
         val creativeViewList = mutableListOf<View>()
-        creativeViewList.add(mLlSuper)
+        creativeViewList.add(mSuperParent)
         // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-        adObject.registerViewForInteraction(mLlSuper, clickViewList, creativeViewList, object : TTNativeAd.AdInteractionListener {
+        adObject.registerViewForInteraction(mSuperParent, clickViewList, creativeViewList, object : TTNativeAd.AdInteractionListener {
             override fun onAdClicked(view: View, ad: TTNativeAd) {
                 // 点击普通区域的回调
             }

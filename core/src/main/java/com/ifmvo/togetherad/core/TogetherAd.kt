@@ -87,4 +87,9 @@ object TogetherAd {
      * 是否打印 Log 日志
      */
     var printLogEnable: Boolean = true
+
+    /**
+     * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
+     */
+    var failedSwitchEnable: Boolean = true
 }

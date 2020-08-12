@@ -79,6 +79,11 @@ interface IAdProvider {
     )
 
     //控制原生自渲染的生命周期
+    fun pauseNativeAd(
+        @NonNull adObject: Any
+    )
+
+    //控制原生自渲染的生命周期
     fun destroyNativeAd(
             @NonNull adObject: Any
     )

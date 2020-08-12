@@ -19,6 +19,7 @@ import com.qq.e.ads.rewardvideo.RewardVideoAD
 import com.qq.e.ads.rewardvideo.RewardVideoADListener
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
+import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 import kotlin.math.roundToInt
 
@@ -54,7 +55,9 @@ class GdtProvider : BaseAdProvider() {
              */
             override fun onADPresent() {
                 activity.runOnUiThread {
-                    container.addView(skipView, customSkipView?.getLayoutParams())
+                    skipView?.run {
+                        container.addView(this, customSkipView.getLayoutParams())
+                    }
                 }
                 "${adProviderType}: 广告成功展示".logi(TAG)
             }
@@ -222,19 +225,23 @@ class GdtProvider : BaseAdProvider() {
     }
 
     override fun resumeNativeAd(adObject: Any) {
-        when (adObject) {
-            is NativeUnifiedADData -> {
-                adObject.resume()
-            }
+        if (adObject !is NativeUnifiedADData) return
+        adObject.resume()
+        if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
+            adObject.resumeVideo()
+        }
+    }
+
+    override fun pauseNativeAd(adObject: Any) {
+        if (adObject !is NativeUnifiedADData) return
+        if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
+            adObject.pauseVideo()
         }
     }
 
     override fun destroyNativeAd(adObject: Any) {
-        when (adObject) {
-            is NativeUnifiedADData -> {
-                adObject.destroy()
-            }
-        }
+        if (adObject !is NativeUnifiedADData) return
+        adObject.destroy()
     }
 
     private var rewardVideoAD: RewardVideoAD? = null

@@ -109,6 +109,13 @@ class NativeSimpleActivity : AppCompatActivity() {
         })
     }
 
+    override fun onPause() {
+        super.onPause()
+        mAdObject?.run {
+            AdHelperNativePro.pauseAd(this)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         mAdObject?.run {

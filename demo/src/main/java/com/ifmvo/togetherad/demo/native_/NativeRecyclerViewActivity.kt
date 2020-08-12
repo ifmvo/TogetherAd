@@ -38,7 +38,7 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
             //使用 RecyclerView 展示合并后的数据
             val allList = mergeContentAd(getContentData(), it)
             recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = NativeAdapter(allList, this)
+            recyclerView.adapter = NativeAdapter(allList)
         }
     }
 
@@ -110,6 +110,11 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         AdHelperNativePro.resumeAd(mAdList)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        AdHelperNativePro.pauseAd(mAdList)
     }
 
     override fun onDestroy() {

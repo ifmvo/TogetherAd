@@ -28,6 +28,13 @@
             android:theme="@style/SplashTheme" />
 
         <!--
+            开屏 & 原生 混合使用
+        -->
+        <activity
+            android:name=".hybrid.SplashHybridActivity"
+            android:theme="@style/SplashTheme" />
+
+        <!--
             原生信息流的简单用法
         -->
         <activity android:name=".native_.NativeSimpleActivity" />
