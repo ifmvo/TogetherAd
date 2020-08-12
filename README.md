@@ -62,8 +62,8 @@ dependencies {
 
 3.1.0（2020.08.12）
 1. 新增失败切换的开关 TogetherAd.failedSwitchEnable（ 默认开启 ）
-2. 提供混合使用的方案（ 例如Demo中的AdHelperSplashHybrid类，随机到csj和baidu时调用开屏展示，随机到gdt时使用原生信息流伪装成开屏展示）
-3. 解决 AdHelperSplash 不设置自定义跳过按钮时崩溃的问题
+2. Demo中提供混合使用的方案 [详情查看文档](doc/hybrid.md)
+3. 解决开屏不设置自定义跳过按钮时广点通崩溃的问题
 4. 处理 Demo 中一个内存泄漏的问题
 
 [点击查看更多日志](doc/update_log.md)

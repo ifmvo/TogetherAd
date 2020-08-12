@@ -5,7 +5,7 @@
 2020.08.12
 
 1. 新增失败切换的开关 TogetherAd.failedSwitchEnable（ 默认开启 ）
-2. 提供混合使用的方案 [详情查看文档](doc/hybrid.md)
+2. Demo中提供混合使用的方案 [详情查看文档](doc/hybrid.md)
 3. 解决开屏不设置自定义跳过按钮时广点通崩溃的问题
 4. 处理 Demo 中一个内存泄漏的问题
 

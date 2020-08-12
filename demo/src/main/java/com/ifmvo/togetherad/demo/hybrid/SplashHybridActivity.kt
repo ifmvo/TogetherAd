@@ -126,7 +126,7 @@ class SplashHybridActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        AdHelperSplashHybrid.destroyAd()
+//        AdHelperSplashHybrid.destroyAd()
     }
 
     //不能手动返回
