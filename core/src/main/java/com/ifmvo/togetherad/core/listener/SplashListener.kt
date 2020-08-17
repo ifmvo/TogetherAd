@@ -10,8 +10,6 @@ import android.support.annotation.NonNull
  */
 interface SplashListener : BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: String) {}
-
     fun onAdLoaded(@NonNull providerType: String) {}
 
     fun onAdClicked(@NonNull providerType: String) {}
@@ -19,8 +17,6 @@ interface SplashListener : BaseListener {
     fun onAdExposure(@NonNull providerType: String) {}
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
-
-    fun onAdFailedAll() {}
 
     fun onAdDismissed(@NonNull providerType: String) {}
 

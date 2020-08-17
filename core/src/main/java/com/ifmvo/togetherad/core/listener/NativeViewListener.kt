@@ -8,7 +8,7 @@ import android.support.annotation.NonNull
  *
  * Created by Matthew Chen on 2020/5/27.
  */
-interface NativeViewListener : BaseListener {
+interface NativeViewListener {
 
     fun onAdExposed(@NonNull providerType: String) {}
 

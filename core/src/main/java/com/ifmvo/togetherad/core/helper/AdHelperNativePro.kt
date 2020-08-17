@@ -35,6 +35,8 @@ class AdHelperNativePro(
 
     companion object {
 
+        var csjNativeAdType: Int = -1
+
         private const val defaultMaxCount = 4
 
         fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, @NonNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {

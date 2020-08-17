@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bytedance.sdk.openadsdk.TTAdConstant
-import com.bytedance.sdk.openadsdk.TTFeedAd
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
@@ -20,7 +19,7 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
 class NativeViewCsjCommon : BaseNativeView() {
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
-        if (adObject !is TTFeedAd) {
+        if (adObject !is TTNativeAd) {
             return
         }
         val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_common, container)

@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
+import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import java.lang.IllegalArgumentException
 
 
 /**
@@ -228,6 +230,26 @@ class CsjProvider : BaseAdProvider() {
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
+        if (AdHelperNativePro.csjNativeAdType == -1) {
+            throw IllegalArgumentException(
+"""
+    //-------------------------------------------------------------------------------------- 
+    //  必须在每次请求穿山甲的原生广告之前设置类型。
+    //  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
+    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+    //--------------------------------------------------------------------------------------
+
+"""
+            )
+        }
+
         callbackFlowStartRequest(adProviderType, listener)
 
         val dm = DisplayMetrics()
@@ -236,11 +258,11 @@ class CsjProvider : BaseAdProvider() {
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(dm.widthPixels, (dm.widthPixels * 9 / 16))
+                .setNativeAdType(AdHelperNativePro.csjNativeAdType)
                 .setAdCount(maxCount)
                 .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadFeedAd(adSlot, object : TTAdNative.FeedAdListener {
-            override fun onFeedAdLoad(adList: MutableList<TTFeedAd>?) {
-
+        TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object: TTAdNative.NativeAdListener {
+            override fun onNativeAdLoad(adList: MutableList<TTNativeAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackFlowFailed(adProviderType, listener, "请求成功，但是返回的list为空")
                     return
@@ -257,7 +279,7 @@ class CsjProvider : BaseAdProvider() {
 
     override fun resumeNativeAd(adObject: Any) {
         when (adObject) {
-            is TTFeedAd -> {
+            is TTNativeAd -> {
 
             }
         }
@@ -265,7 +287,7 @@ class CsjProvider : BaseAdProvider() {
 
     override fun pauseNativeAd(adObject: Any) {
         when (adObject) {
-            is TTFeedAd -> {
+            is TTNativeAd -> {
 
             }
         }
@@ -273,14 +295,14 @@ class CsjProvider : BaseAdProvider() {
 
     override fun destroyNativeAd(adObject: Any) {
         when (adObject) {
-            is TTFeedAd -> {
+            is TTNativeAd -> {
 
             }
         }
     }
 
     override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean {
-        return adObject is TTFeedAd
+        return adObject is TTNativeAd
     }
 
     private var mttRewardVideoAd: TTRewardVideoAd? = null

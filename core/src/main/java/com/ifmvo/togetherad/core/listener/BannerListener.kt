@@ -8,13 +8,9 @@ import android.support.annotation.NonNull
  */
 interface BannerListener : BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: String) {}
-
     fun onAdLoaded(@NonNull providerType: String) {}
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
-
-    fun onAdFailedAll() {}
 
     fun onAdClicked(@NonNull providerType: String) {}
 

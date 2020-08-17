@@ -1,7 +1,9 @@
 package com.ifmvo.togetherad.core.helper
 
+import android.os.CountDownTimer
 import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.listener.BaseListener
 
 
 /*
@@ -21,5 +23,26 @@ abstract class BaseHelper {
 
         return newRadioMap
     }
+
+//    private var mTimer: CountDownTimer? = null
+//
+//    fun startTimer(millisInFuture: Long, listener: BaseListener?) {
+//        cancelTimer()
+//        mTimer = object : CountDownTimer(millisInFuture, 1000) {
+//            override fun onFinish() {
+//                listener?.onAdFailedAll()
+//            }
+//
+//            override fun onTick(millisUntilFinished: Long) {
+//
+//            }
+//        }
+//        mTimer?.start()
+//    }
+//
+//    fun cancelTimer() {
+//        mTimer?.cancel()
+//    }
+
 
 }

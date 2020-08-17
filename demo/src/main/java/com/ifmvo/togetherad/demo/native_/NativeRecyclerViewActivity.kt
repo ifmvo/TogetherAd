@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.demo.R
@@ -46,6 +47,20 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
      * 请求广告List
      */
     private fun requestRvAd(onResult: (adList: List<Any>) -> Unit) {
+        //--------------------------------------------------------------------------------------
+        //  必须在每次请求穿山甲的原生广告之前设置类型。
+        //  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+        //--------------------------------------------------------------------------------------
+        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+
         adHelperNativeRv.getList(listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 //每个提供商请求之前都会回调

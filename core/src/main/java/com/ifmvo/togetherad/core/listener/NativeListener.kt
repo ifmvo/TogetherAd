@@ -8,12 +8,8 @@ import android.support.annotation.NonNull
  */
 interface NativeListener : BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: String) {}
-
     fun onAdLoaded(@NonNull providerType: String, @NonNull adList: List<Any>) {}
 
     fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
-
-    fun onAdFailedAll() {}
 
 }

@@ -64,7 +64,7 @@ class SplashHybridActivity : AppCompatActivity() {
          * container: 必传。请求到广告之后会自动添加到 container 这个布局中展示。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        AdHelperSplashHybrid.show(activity = this, alias = TogetherAdAlias.AD_SPLASH_AND_NATIVE, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
+        AdHelperSplashHybrid.show(activity = this, alias = TogetherAdAlias.AD_SPLASH_HYBRID, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次

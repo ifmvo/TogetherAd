@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
@@ -60,6 +61,20 @@ class NativeSimpleActivity : AppCompatActivity() {
      * 请求广告
      */
     private fun requestAd() {
+        //--------------------------------------------------------------------------------------
+        //  必须在每次请求穿山甲的原生广告之前设置类型。
+        //  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
+        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+        //--------------------------------------------------------------------------------------
+        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+
         adHelperNative?.getList(listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
