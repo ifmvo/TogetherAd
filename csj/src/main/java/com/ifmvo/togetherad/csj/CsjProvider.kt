@@ -233,18 +233,18 @@ class CsjProvider : BaseAdProvider() {
         if (AdHelperNativePro.csjNativeAdType == -1) {
             throw IllegalArgumentException(
 """
-    //-------------------------------------------------------------------------------------- 
-    //  必须在每次请求穿山甲的原生广告之前设置类型。
-    //  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
-    //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
-    //--------------------------------------------------------------------------------------
+    |-------------------------------------------------------------------------------------- 
+    |  必须在每次请求穿山甲的原生广告之前设置类型。
+    |  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
+    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+    |--------------------------------------------------------------------------------------
 
 """
             )

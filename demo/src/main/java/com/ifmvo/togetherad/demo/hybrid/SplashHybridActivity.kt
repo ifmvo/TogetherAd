@@ -54,7 +54,7 @@ class SplashHybridActivity : AppCompatActivity() {
         val radioMapSplash = mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
-                AdProviderType.BAIDU.type to 1
+                AdProviderType.BAIDU.type to 0
         )
 
         /**

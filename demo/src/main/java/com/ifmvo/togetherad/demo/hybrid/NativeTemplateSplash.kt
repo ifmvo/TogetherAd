@@ -17,6 +17,9 @@ class NativeTemplateSplash(onDismiss: (providerType: String) -> Unit) : BaseNati
             AdProviderType.GDT.type -> {
                 NativeViewGdtSplash(mOnDismiss)
             }
+            AdProviderType.CSJ.type -> {
+                NativeViewCsjSplash(mOnDismiss)
+            }
             else -> throw Exception("模板配置错误")
         }
     }

@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.demo.hybrid
 import android.app.Activity
 import android.support.annotation.NonNull
 import android.view.ViewGroup
+import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
@@ -50,10 +51,10 @@ object AdHelperSplashHybrid : BaseHelper() {
         }
 
         when (adProviderType) {
-            AdProviderType.BAIDU.type, AdProviderType.CSJ.type -> {
+            AdProviderType.BAIDU.type -> {
                 showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
             }
-            AdProviderType.GDT.type -> {
+            AdProviderType.GDT.type, AdProviderType.CSJ.type -> {
                 showNative(adProvider, activity, adProviderType, alias, listener, container, currentRadioMap)
             }
         }
@@ -61,6 +62,7 @@ object AdHelperSplashHybrid : BaseHelper() {
 
     private var mAdObject: Any? = null
     private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, listener: SplashListener?, container: ViewGroup, currentRadioMap: Map<String, Int>) {
+        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
         adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 0, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
