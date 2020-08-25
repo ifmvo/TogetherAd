@@ -24,13 +24,18 @@ object AdHelperSplash : BaseHelper() {
     }
 
     fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+        startTimer(listener)
+        realShow(activity, alias, radioMap, container, listener)
+    }
 
+    private fun realShow(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
         if (adProviderType?.isEmpty() != false) {
             customSkipView = null
+            cancelTimer()
             listener?.onAdFailedAll()
             return
         }
@@ -39,15 +44,17 @@ object AdHelperSplash : BaseHelper() {
 
         if (adProvider == null) {
             val newRadioMap = filterType(currentRadioMap, adProviderType)
-            show(activity, alias, newRadioMap, container, listener)
+            realShow(activity, alias, newRadioMap, container, listener)
             return
         }
 
         adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
+                if (isFetchOverTime) return
+
                 listener?.onAdFailed(providerType, failedMsg)
                 val newRadioMap = filterType(currentRadioMap, adProviderType)
-                show(activity, alias, newRadioMap, container, listener)
+                realShow(activity, alias, newRadioMap, container, listener)
             }
 
             override fun onAdStartRequest(providerType: String) {
@@ -55,6 +62,9 @@ object AdHelperSplash : BaseHelper() {
             }
 
             override fun onAdLoaded(providerType: String) {
+                if (isFetchOverTime) return
+
+                cancelTimer()
                 listener?.onAdLoaded(providerType)
             }
 
@@ -64,10 +74,6 @@ object AdHelperSplash : BaseHelper() {
 
             override fun onAdExposure(providerType: String) {
                 listener?.onAdExposure(providerType)
-            }
-
-            override fun onAdFailedAll() {
-                customSkipView = null
             }
 
             override fun onAdDismissed(providerType: String) {

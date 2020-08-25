@@ -57,10 +57,6 @@ object AdHelperBanner : BaseHelper() {
                 show(activity, alias, newRadioMap, container, listener)
             }
 
-            override fun onAdFailedAll() {
-                listener?.onAdFailedAll()
-            }
-
             override fun onAdClicked(providerType: String) {
                 listener?.onAdClicked(providerType)
             }

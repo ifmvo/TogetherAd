@@ -133,10 +133,6 @@ class AdHelperNativePro(
                 listener?.onAdFailed(providerType, failedMsg)
                 getListForMap(filterType(radioMap, adProviderType), listener)
             }
-
-            override fun onAdFailedAll() {
-                listener?.onAdFailedAll()
-            }
         })
     }
 }

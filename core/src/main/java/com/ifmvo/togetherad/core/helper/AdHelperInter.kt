@@ -71,10 +71,6 @@ class AdHelperInter(
                 reload(filterType(radioMap, adProviderType))
             }
 
-            override fun onAdFailedAll() {
-                mListener?.onAdFailedAll()
-            }
-
             override fun onAdClicked(providerType: String) {
                 mListener?.onAdClicked(providerType)
             }

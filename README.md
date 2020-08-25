@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.1.0-3.1.0.1'
+    implementation 'com.matthewchen.togetherad:csj:3.1.2-3.1.1.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.1.0-4.211.1081'
+    implementation 'com.matthewchen.togetherad:gdt:3.1.2-4.211.1081'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.1.0-5.85'
+    implementation 'com.matthewchen.togetherad:baidu:3.1.2-5.85'
     
 }
 ```
@@ -60,11 +60,8 @@ dependencies {
 
 ## 更新日志
 
-3.1.0（2020.08.12）
-1. 新增失败切换的开关 TogetherAd.failedSwitchEnable（ 默认开启 ）
-2. Demo中提供混合使用的方案 [详情查看文档](doc/hybrid.md)
-3. 解决开屏不设置自定义跳过按钮时广点通崩溃的问题
-4. 处理 Demo 中一个内存泄漏的问题
+3.1.2（2020.08.25）
+1. 开屏广告支持超时逻辑
 
 [点击查看更多日志](doc/update_log.md)
 

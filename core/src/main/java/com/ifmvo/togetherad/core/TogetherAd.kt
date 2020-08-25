@@ -92,4 +92,22 @@ object TogetherAd {
      * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
      */
     var failedSwitchEnable: Boolean = true
+
+    /**
+     * 通用最大拉取延时时间ms（ 请求广告的超时时间；3000 ≤ value ≥ 10000 ）
+     */
+    var maxFetchDelay: Long = 0
+        set(value) {
+            field = when {
+                value < 3000 -> {
+                    3000
+                }
+                value > 10000 -> {
+                    10000
+                }
+                else -> {
+                    value
+                }
+            }
+        }
 }

@@ -60,10 +60,6 @@ object AdHelperNative : BaseHelper() {
                 val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
                 getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             }
-
-            override fun onAdFailedAll() {
-                listener?.onAdFailedAll()
-            }
         })
     }
 

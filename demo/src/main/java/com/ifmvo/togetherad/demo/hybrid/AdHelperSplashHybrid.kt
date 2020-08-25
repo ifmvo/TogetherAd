@@ -8,6 +8,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
+import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.helper.BaseHelper
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
@@ -31,13 +32,18 @@ object AdHelperSplashHybrid : BaseHelper() {
     }
 
     fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+        startTimer(listener)
+        realShow(activity, alias, radioMap, container, listener)
+    }
 
+    private fun realShow(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
         if (adProviderType?.isEmpty() != false) {
             customSkipView = null
+            cancelTimer()
             listener?.onAdFailedAll()
             return
         }
@@ -69,13 +75,18 @@ object AdHelperSplashHybrid : BaseHelper() {
             }
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
+                if (isFetchOverTime) return
+
+                cancelTimer()
                 listener?.onAdLoaded(providerType)
 
-                mAdObject = adList[0]
-                AdHelperNativePro.show(adObject = adList[0], container = container, nativeTemplate = NativeTemplateSplash {
+                fun onDismiss(adProviderType: String) {
                     customSkipView = null
-                    listener?.onAdDismissed(it)
-                }, listener = object : NativeViewListener {
+                    listener?.onAdDismissed(adProviderType)
+                }
+
+                mAdObject = adList[0]
+                AdHelperNativePro.show(adObject = adList[0], container = container, nativeTemplate = NativeTemplateSplash(::onDismiss), listener = object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                         listener?.onAdExposure(providerType)
                     }
@@ -87,21 +98,21 @@ object AdHelperSplashHybrid : BaseHelper() {
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
+                if (isFetchOverTime) return
+
                 listener?.onAdFailed(providerType, failedMsg)
                 val newRadioMap = filterType(currentRadioMap, adProviderType)
                 show(activity, alias, newRadioMap, container, listener)
             }
 
-            override fun onAdFailedAll() {
-                customSkipView = null
-                listener?.onAdFailedAll()
-            }
         })
     }
 
     private fun showSplash(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRadioMap: Map<String, Int>) {
         adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
+                if (isFetchOverTime) return
+
                 listener?.onAdFailed(providerType, failedMsg)
                 val newRadioMap = filterType(currentRadioMap, adProviderType)
                 show(activity, alias, newRadioMap, container, listener)
@@ -112,6 +123,9 @@ object AdHelperSplashHybrid : BaseHelper() {
             }
 
             override fun onAdLoaded(providerType: String) {
+                if (isFetchOverTime) return
+
+                cancelTimer()
                 listener?.onAdLoaded(providerType)
             }
 
@@ -121,11 +135,6 @@ object AdHelperSplashHybrid : BaseHelper() {
 
             override fun onAdExposure(providerType: String) {
                 listener?.onAdExposure(providerType)
-            }
-
-            override fun onAdFailedAll() {
-                customSkipView = null
-                listener?.onAdFailedAll()
             }
 
             override fun onAdDismissed(providerType: String) {

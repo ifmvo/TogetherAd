@@ -113,13 +113,13 @@ class NativeSimpleActivity : AppCompatActivity() {
             override fun onAdExposed(providerType: String) {
                 //每次曝光就会回调这里一次
                 addLog("原生广告曝光了")
-                "onAdExposed".loge(TAG)
+                "onAdExposed".logi(TAG)
             }
 
             override fun onAdClicked(providerType: String) {
                 //每次点击就会回调这里一次
                 addLog("原生广告点击了")
-                "onAdClicked".loge(TAG)
+                "onAdClicked".logi(TAG)
             }
         })
     }
