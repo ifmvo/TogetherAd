@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
@@ -19,16 +19,16 @@ object AdHelperSplash : BaseHelper() {
     var customSkipView: BaseSplashSkipView? = null
 
     //为了照顾 Java 调用的同学
-    fun show(@NonNull activity: Activity, @NonNull alias: String, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         startTimer(listener)
         realShow(activity, alias, radioMap, container, listener)
     }
 
-    private fun realShow(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, @NonNull container: ViewGroup, listener: SplashListener? = null) {
+    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)

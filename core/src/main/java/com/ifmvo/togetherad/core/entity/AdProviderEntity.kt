@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.entity
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 /* 
  * 广告提供者（ 广告厂商：百度、广点通、穿山甲... ）
@@ -10,13 +10,13 @@ import android.support.annotation.NonNull
 data class AdProviderEntity(
 
         // key 标示，唯一
-        @NonNull val providerType: String,
+        @NotNull val providerType: String,
 
         //Provider 类的路径
-        @NonNull val classPath: String,
+        @NotNull val classPath: String,
 
         //Provider 的描述
-        @NonNull val desc: String = classPath
+        @NotNull val desc: String = classPath
 
 ) {
     override fun toString(): String {

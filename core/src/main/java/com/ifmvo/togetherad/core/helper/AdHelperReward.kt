@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
@@ -16,8 +16,8 @@ import java.lang.ref.WeakReference
  */
 class AdHelperReward(
 
-        @NonNull activity: Activity,
-        @NonNull alias: String,
+        @NotNull activity: Activity,
+        @NotNull alias: String,
         radioMap: Map<String, Int>? = null,
         listener: RewardListener? = null
 
@@ -31,21 +31,24 @@ class AdHelperReward(
 
     //为了照顾 Java 调用的同学
     constructor(
-            @NonNull activity: Activity,
-            @NonNull alias: String,
+            @NotNull activity: Activity,
+            @NotNull alias: String,
             listener: RewardListener? = null
     ) : this(activity, alias, null, listener)
 
     fun load() {
         val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!
+
+        startTimer(mListener)
         reload(currentRadioMap)
     }
 
-    private fun reload(@NonNull radioMap: Map<String, Int>) {
+    private fun reload(@NotNull radioMap: Map<String, Int>) {
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
+            cancelTimer()
             mListener?.onAdFailedAll()
             return
         }
@@ -63,6 +66,8 @@ class AdHelperReward(
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
+                if (isFetchOverTime) return
+
                 mListener?.onAdFailed(providerType, failedMsg)
                 reload(filterType(radioMap, adProviderType))
             }
@@ -76,6 +81,9 @@ class AdHelperReward(
             }
 
             override fun onAdLoaded(providerType: String) {
+                if (isFetchOverTime) return
+
+                cancelTimer()
                 mListener?.onAdLoaded(providerType)
             }
 

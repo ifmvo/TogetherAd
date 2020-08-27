@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.utils
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 
 /**
@@ -17,7 +17,7 @@ object AdRandomUtil {
     /**
      * radioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
      */
-    fun getRandomAdProvider(@NonNull radioMap: Map<String, Int>): String? {
+    fun getRandomAdProvider(@NotNull radioMap: Map<String, Int>): String? {
 
         val radio = StringBuilder()
         val list = mutableListOf<String>()
@@ -44,7 +44,7 @@ object AdRandomUtil {
      * radio : "baidu:3,gdt:7,csj:7"
      * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
      */
-    fun getRandomAdProvider(@NonNull radio: String): String? {
+    fun getRandomAdProvider(@NotNull radio: String): String? {
         "广告提供商的比例：$radio".logi()
         val list = mutableListOf<String>()
         //{baidu:2},{gdt:8}

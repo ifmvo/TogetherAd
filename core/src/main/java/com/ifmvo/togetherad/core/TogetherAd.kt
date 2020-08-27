@@ -1,10 +1,10 @@
 package com.ifmvo.togetherad.core
 
-import android.support.annotation.NonNull
 import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
 import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
+import org.jetbrains.annotations.NotNull
 
 /**
  * Created by Matthew Chen on 2020-04-02.
@@ -25,7 +25,7 @@ object TogetherAd {
     /**
      * 添加广告提供商
      */
-    fun addProvider(@NonNull adProviderEntity: AdProviderEntity) {
+    fun addProvider(@NotNull adProviderEntity: AdProviderEntity) {
         mProviders[adProviderEntity.providerType] = adProviderEntity
         "注册广告提供商：${adProviderEntity.providerType}".logi()
     }
@@ -43,7 +43,7 @@ object TogetherAd {
      * map.put(AdProviderType.CSJ, 1)
      * map.put(AdProviderType.BAIDU, 2)
      */
-    fun setPublicProviderRadio(@NonNull radioMap: Map<String, Int>) {
+    fun setPublicProviderRadio(@NotNull radioMap: Map<String, Int>) {
         val radio = StringBuilder()
         radioMap.entries.forEach {
             radio.append("${it.key}:${it.value}")
@@ -79,7 +79,7 @@ object TogetherAd {
     /**
      * 提供了自定义图片加载框架的接口
      */
-    fun setCustomImageLoader(@NonNull imageLoader: AdImageLoader) {
+    fun setCustomImageLoader(@NotNull imageLoader: AdImageLoader) {
         mImageLoader = imageLoader
     }
 

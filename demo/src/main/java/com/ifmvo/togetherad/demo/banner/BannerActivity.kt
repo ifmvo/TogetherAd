@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ifmvo.togetherad.core.helper.AdHelperBanner
 import com.ifmvo.togetherad.core.listener.BannerListener
+import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_banner.*
@@ -39,7 +40,13 @@ class BannerActivity : AppCompatActivity() {
 
         adContainer.removeAllViews()
 
-        AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, listener = object : BannerListener {
+        val radioMapBanner = mapOf(
+            AdProviderType.GDT.type to 1,
+            AdProviderType.CSJ.type to 1,
+            AdProviderType.BAIDU.type to 1
+        )
+
+        AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, /*radioMap = radioMapBanner,*/ listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开始请求了，$providerType")

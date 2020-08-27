@@ -2,12 +2,15 @@ package com.ifmvo.togetherad.core.custom.flow
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
-import com.ifmvo.togetherad.core.utils.Async
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 /* 
  *  默认的图片加载处理
@@ -15,6 +18,12 @@ import java.net.URL
  * Created by Matthew Chen on 2020-05-15.
  */
 class DefaultImageLoader : AdImageLoader {
+
+    object Async {
+        internal val cache: Executor = Executors.newCachedThreadPool()
+        private val HANDLER = Handler(Looper.getMainLooper())
+        internal val main: Executor = Executor { command -> HANDLER.post(command) }
+    }
 
     override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
         try {

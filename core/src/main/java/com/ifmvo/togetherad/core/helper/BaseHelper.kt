@@ -1,9 +1,11 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.os.CountDownTimer
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.listener.BaseListener
+import com.ifmvo.togetherad.core.utils.logd
+import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 
 
@@ -16,7 +18,7 @@ abstract class BaseHelper {
      * 将传进来的 adProviderType 权重设置为 0，其他不变
      * 如果是不允许失败切换的时候，将所有广告提供商的权重都清空
      */
-    fun filterType(@NonNull radioMap: Map<String, Int>, adProviderType: String): MutableMap<String, Int> {
+    fun filterType(@NotNull radioMap: Map<String, Int>, adProviderType: String): MutableMap<String, Int> {
         val newRadioMap = mutableMapOf<String, Int>()
         newRadioMap.putAll(radioMap)
         newRadioMap[adProviderType] = 0
@@ -42,16 +44,17 @@ abstract class BaseHelper {
         }
 
         cancelTimer()
-        "开始倒计时：${TogetherAd.maxFetchDelay}".logv(this@BaseHelper::class.java.simpleName)
+        "开始倒计时：${TogetherAd.maxFetchDelay}".logv()
         mTimer = object : CountDownTimer(TogetherAd.maxFetchDelay, 1000) {
             override fun onFinish() {
-                "倒计时结束".logv(this@BaseHelper::class.java.simpleName)
+                "倒计时结束".logv()
+                "请求超时".logi()
                 isFetchOverTime = true
                 listener?.onAdFailedAll()
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                "倒计时：$millisUntilFinished".logv(this@BaseHelper::class.java.simpleName)
+                "倒计时：$millisUntilFinished".logv()
             }
         }
         isFetchOverTime = false
@@ -63,6 +66,7 @@ abstract class BaseHelper {
      */
     fun cancelTimer() {
         mTimer?.cancel()
+        mTimer = null
     }
 
 

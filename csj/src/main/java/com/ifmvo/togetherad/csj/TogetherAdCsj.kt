@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.csj
 
 import android.content.Context
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 import com.bytedance.sdk.adnet.face.IHttpStack
 import com.bytedance.sdk.openadsdk.TTAdConfig
 import com.bytedance.sdk.openadsdk.TTAdConstant
@@ -34,12 +34,12 @@ object TogetherAdCsj {
 
     var httpStack: IHttpStack? = null
 
-    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String) {
+    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String) {
         init(context, adProviderType, csjAdAppId, appName, null)
     }
 
     //穿山甲
-    fun init(@NonNull context: Context, @NonNull adProviderType: String, @NonNull csjAdAppId: String, @NonNull appName: String, csjIdMap: Map<String, String>? = null) {
+    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, CsjProvider::class.java.name))
 
         csjIdMap?.let { idMapCsj = it }

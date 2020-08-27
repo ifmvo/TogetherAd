@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.core.custom.flow
 
 import android.content.Context
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 import android.widget.ImageView
 
 /**
@@ -11,6 +11,6 @@ import android.widget.ImageView
  */
 interface AdImageLoader {
 
-    fun loadImage(@NonNull context: Context, @NonNull imageView: ImageView, @NonNull imgUrl: String)
+    fun loadImage(@NotNull context: Context, @NotNull imageView: ImageView, @NotNull imgUrl: String)
 
 }

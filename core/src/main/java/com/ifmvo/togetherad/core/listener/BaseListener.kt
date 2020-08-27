@@ -1,14 +1,17 @@
 package com.ifmvo.togetherad.core.listener
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
+
 
 /**
  * Created by Matthew Chen on 2020-04-20.
  */
 interface BaseListener {
 
-    fun onAdStartRequest(@NonNull providerType: String) {}
+    fun onAdStartRequest(@NotNull providerType: String) {}
 
     fun onAdFailedAll() {}
+
+    fun onAdFailed(@NotNull providerType: String, failedMsg: String?) {}
 
 }

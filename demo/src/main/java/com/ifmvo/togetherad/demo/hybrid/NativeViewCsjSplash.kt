@@ -13,6 +13,8 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.demo.AdLogoView
+import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import kotlin.math.roundToInt
 
@@ -43,12 +45,12 @@ class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativ
         //标题和描述
         val mTvTitle = rootView.findViewById<TextView>(R.id.tv_title)
         val mTvDesc = rootView.findViewById<TextView>(R.id.tv_desc)
-//        val mAdLogoView = rootView.findViewById<AdLogoView>(R.id.ad_logo_view)
+        val mAdLogoView = rootView.findViewById<AdLogoView>(R.id.ad_logo_view)
 
         val layoutParams = mFlParent?.layoutParams
         layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
 
-//        mAdLogoView.setAdLogoType(AdNameType.CSJ, adObject)
+        mAdLogoView.setAdLogoType(AdProviderType.CSJ.type, adObject)
         // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
         val clickViewList = mutableListOf<View>()
         clickViewList.add(mSuperParent)

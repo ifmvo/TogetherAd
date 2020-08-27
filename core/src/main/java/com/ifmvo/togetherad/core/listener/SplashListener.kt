@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 
 /**
@@ -10,14 +10,12 @@ import android.support.annotation.NonNull
  */
 interface SplashListener : BaseListener {
 
-    fun onAdLoaded(@NonNull providerType: String) {}
+    fun onAdLoaded(@NotNull providerType: String) {}
 
-    fun onAdClicked(@NonNull providerType: String) {}
+    fun onAdClicked(@NotNull providerType: String) {}
 
-    fun onAdExposure(@NonNull providerType: String) {}
+    fun onAdExposure(@NotNull providerType: String) {}
 
-    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
-
-    fun onAdDismissed(@NonNull providerType: String) {}
+    fun onAdDismissed(@NotNull providerType: String) {}
 
 }

@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 
 /**
@@ -10,8 +10,8 @@ import android.support.annotation.NonNull
  */
 interface NativeViewListener {
 
-    fun onAdExposed(@NonNull providerType: String) {}
+    fun onAdExposed(@NotNull providerType: String) {}
 
-    fun onAdClicked(@NonNull providerType: String) {}
+    fun onAdClicked(@NotNull providerType: String) {}
 
 }

@@ -1,8 +1,7 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import android.support.annotation.NonNull
-import android.support.annotation.Nullable
+import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
@@ -10,6 +9,7 @@ import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import org.jetbrains.annotations.Nullable
 
 /**
  * 原生自渲染广告
@@ -22,11 +22,11 @@ object AdHelperNative : BaseHelper() {
     private const val defaultMaxCount = 4
 
     //为了照顾 Java 调用的同学
-    fun getList(@NonNull activity: Activity, @NonNull alias: String, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
+    fun getList(@NotNull activity: Activity, @NotNull alias: String, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         getList(activity, alias, null, maxCount, listener)
     }
 
-    fun getList(@NonNull activity: Activity, @NonNull alias: String, radioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
+    fun getList(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount
         val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
 
@@ -63,7 +63,7 @@ object AdHelperNative : BaseHelper() {
         })
     }
 
-    fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, @NonNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
+    fun show(@NotNull adObject: Any, @NotNull container: ViewGroup, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
         TogetherAd.mProviders.entries.forEach { entry ->
             val adProvider = AdProviderLoader.loadAdProvider(entry.key)
             if (adProvider?.nativeAdIsBelongTheProvider(adObject) == true) {

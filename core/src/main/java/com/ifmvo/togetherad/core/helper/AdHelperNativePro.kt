@@ -1,8 +1,6 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import android.support.annotation.NonNull
-import android.support.annotation.Nullable
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
@@ -11,6 +9,8 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import org.jetbrains.annotations.NotNull
+import org.jetbrains.annotations.Nullable
 import java.lang.ref.WeakReference
 
 /**
@@ -20,8 +20,8 @@ import java.lang.ref.WeakReference
  */
 class AdHelperNativePro(
 
-        @NonNull activity: Activity,
-        @NonNull alias: String,
+        @NotNull activity: Activity,
+        @NotNull alias: String,
         radioMap: Map<String, Int>? = null,
         maxCount: Int
 
@@ -39,7 +39,7 @@ class AdHelperNativePro(
 
         private const val defaultMaxCount = 4
 
-        fun show(@NonNull adObject: Any, @NonNull container: ViewGroup, @NonNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
+        fun show(@NotNull adObject: Any, @NotNull container: ViewGroup, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 if (adProvider?.nativeAdIsBelongTheProvider(adObject) == true) {
@@ -50,65 +50,68 @@ class AdHelperNativePro(
             }
         }
 
-        fun pauseAd(@NonNull adObject: Any) {
+        fun pauseAd(@NotNull adObject: Any) {
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.pauseNativeAd(adObject)
             }
         }
 
-        fun pauseAd(@NonNull adObjectList: List<Any>) {
+        fun pauseAd(@NotNull adObjectList: List<Any>) {
             adObjectList.forEach { pauseAd(it) }
         }
 
-        fun resumeAd(@NonNull adObject: Any) {
+        fun resumeAd(@NotNull adObject: Any) {
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.resumeNativeAd(adObject)
             }
         }
 
-        fun resumeAd(@NonNull adObjectList: List<Any>) {
+        fun resumeAd(@NotNull adObjectList: List<Any>) {
             adObjectList.forEach { resumeAd(it) }
         }
 
-        fun destroyAd(@NonNull adObject: Any) {
+        fun destroyAd(@NotNull adObject: Any) {
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.destroyNativeAd(adObject)
             }
         }
 
-        fun destroyAd(@NonNull adObjectList: List<Any>) {
+        fun destroyAd(@NotNull adObjectList: List<Any>) {
             adObjectList.forEach { destroyAd(it) }
         }
     }
 
     //为了照顾 Java 调用的同学
     constructor(
-            @NonNull activity: Activity,
-            @NonNull alias: String,
+            @NotNull activity: Activity,
+            @NotNull alias: String,
             maxCount: Int
     ) : this(activity, alias, null, maxCount)
 
     //为了照顾 Java 调用的同学
     constructor(
-            @NonNull activity: Activity,
-            @NonNull alias: String
+            @NotNull activity: Activity,
+            @NotNull alias: String
     ) : this(activity, alias, null, defaultMaxCount)
 
     fun getList(listener: NativeListener? = null) {
         val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!
+
+        startTimer(listener)
         getListForMap(currentRadioMap, listener)
     }
 
-    private fun getListForMap(@NonNull radioMap: Map<String, Int>, listener: NativeListener? = null) {
+    private fun getListForMap(@NotNull radioMap: Map<String, Int>, listener: NativeListener? = null) {
 
         val currentMaxCount = if (mMaxCount <= 0) defaultMaxCount else mMaxCount
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
+            cancelTimer()
             listener?.onAdFailedAll()
             return
         }
@@ -126,10 +129,15 @@ class AdHelperNativePro(
             }
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
+                if (isFetchOverTime) return
+
+                cancelTimer()
                 listener?.onAdLoaded(providerType, adList)
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
+                if (isFetchOverTime) return
+
                 listener?.onAdFailed(providerType, failedMsg)
                 getListForMap(filterType(radioMap, adProviderType), listener)
             }

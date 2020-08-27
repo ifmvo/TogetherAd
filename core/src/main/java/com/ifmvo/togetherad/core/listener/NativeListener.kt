@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 
 /**
@@ -8,8 +8,6 @@ import android.support.annotation.NonNull
  */
 interface NativeListener : BaseListener {
 
-    fun onAdLoaded(@NonNull providerType: String, @NonNull adList: List<Any>) {}
-
-    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
+    fun onAdLoaded(@NotNull providerType: String, @NotNull adList: List<Any>) {}
 
 }

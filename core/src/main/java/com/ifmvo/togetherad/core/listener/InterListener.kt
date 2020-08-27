@@ -1,6 +1,6 @@
 package com.ifmvo.togetherad.core.listener
 
-import android.support.annotation.NonNull
+import org.jetbrains.annotations.NotNull
 
 /**
  * 插屏的回调
@@ -9,14 +9,12 @@ import android.support.annotation.NonNull
  */
 interface InterListener : BaseListener {
 
-    fun onAdLoaded(@NonNull providerType: String) {}
+    fun onAdLoaded(@NotNull providerType: String) {}
 
-    fun onAdFailed(@NonNull providerType: String, failedMsg: String?) {}
+    fun onAdClicked(@NotNull providerType: String) {}
 
-    fun onAdClicked(@NonNull providerType: String) {}
+    fun onAdExpose(@NotNull providerType: String) {}
 
-    fun onAdExpose(@NonNull providerType: String) {}
-
-    fun onAdClose(@NonNull providerType: String) {}
+    fun onAdClose(@NotNull providerType: String) {}
 
 }

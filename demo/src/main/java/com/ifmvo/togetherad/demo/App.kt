@@ -51,7 +51,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "901121987",
                 TogetherAdAlias.AD_INTER to "901121725",
                 TogetherAdAlias.AD_REWARD to "901121365",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "901121737"//id是原生类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "901121709"//id是原生类型
         )
 
         TogetherAdGdt.idMapGDT = mapOf(

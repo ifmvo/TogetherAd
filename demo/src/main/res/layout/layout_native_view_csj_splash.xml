@@ -8,9 +8,9 @@
 
     <FrameLayout
         android:id="@+id/fl_parent"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <!--
             三图模式
@@ -25,21 +25,21 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/img_poster2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/img_poster3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitXY" />
 
         </LinearLayout>
 
@@ -52,11 +52,11 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
-        <!--        <com.rumtel.ad.AdLogoView-->
-        <!--            android:id="@+id/ad_logo_view"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="end|bottom" />-->
+        <com.ifmvo.togetherad.demo.AdLogoView
+            android:id="@+id/ad_logo_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom" />
 
     </FrameLayout>
 
@@ -64,7 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <!--
             标题
