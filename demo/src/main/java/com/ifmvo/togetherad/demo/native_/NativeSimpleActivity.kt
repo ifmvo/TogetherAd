@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.bytedance.sdk.openadsdk.AdSlot
+import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
@@ -14,7 +15,7 @@ import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
-import kotlinx.android.synthetic.main.activity_flow_simple.*
+import kotlinx.android.synthetic.main.activity_native_simple.*
 
 /**
  * 原生自渲染的简单用法
@@ -38,11 +39,11 @@ class NativeSimpleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_flow_simple)
+        setContentView(R.layout.activity_native_simple)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapNativeSimple = mapOf(
-                AdProviderType.GDT.type to 3,
+                AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
@@ -50,11 +51,17 @@ class NativeSimpleActivity : AppCompatActivity() {
         //初始化  maxCount: 返回广告的最大个数 （ 由于各个广告提供商返回的广告数量不等，所以只能控制返回广告的最大数量。例：maxCount = 4，返回的 1 ≤ List.size ≤ 4 ）
         adHelperNative = AdHelperNativePro(activity = this, alias = TogetherAdAlias.AD_NATIVE_SIMPLE, maxCount = 1/*, radioMap = radioMapNativeSimple*/)
 
-        btnRequestShow.setOnClickListener {
+        btnRequest.setOnClickListener {
             requestAd()
         }
 
-        requestAd()
+        btnShow1.setOnClickListener {
+            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple1())
+        }
+
+        btnShow2.setOnClickListener {
+            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple2())
+        }
     }
 
     /**
@@ -87,7 +94,6 @@ class NativeSimpleActivity : AppCompatActivity() {
                 "onAdLoaded: $providerType, adList: ${adList.size}".logi(TAG)
                 addLog("原生广告请求成功，$providerType")
                 mAdObject = adList[0]
-                showAd(adList[0])
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
@@ -107,9 +113,11 @@ class NativeSimpleActivity : AppCompatActivity() {
     /**
      * 展示广告
      */
-    private fun showAd(adObject: Any) {
+    private fun showAd(adObject: Any?, nativeTemplate: BaseNativeTemplate) {
+        if (adObject == null) return
+
         adContainer.removeAllViews()
-        AdHelperNativePro.show(adObject = adObject, container = adContainer, nativeTemplate = NativeTemplateCommon(), listener = object : NativeViewListener {
+        AdHelperNativePro.show(adObject = adObject, container = adContainer, nativeTemplate = nativeTemplate, listener = object : NativeViewListener {
             override fun onAdExposed(providerType: String) {
                 //每次曝光就会回调这里一次
                 addLog("原生广告曝光了")

@@ -16,13 +16,13 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjCommon : BaseNativeView() {
+class NativeViewCsjSimple2 : BaseNativeView() {
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is TTNativeAd) {
             return
         }
-        val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_common, container)
+        val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_simple_2, container)
 
         val mSuperParent = rootView.findViewById<ViewGroup>(R.id.super_parent)
         val mFlParent = rootView.findViewById<FrameLayout>(R.id.fl_parent)
@@ -41,9 +41,9 @@ class NativeViewCsjCommon : BaseNativeView() {
 //        val mAdLogoView = rootView.findViewById<AdLogoView>(R.id.ad_logo_view)
 
         val layoutParams = mFlParent?.layoutParams
-        layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
+        layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16
 
-//        mAdLogoView.setAdLogoType(AdNameType.CSJ, adObject)
+//        mAdLogoView.setAdLogoType(AdProviderType.CSJ.type, adObject)
         // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
         val clickViewList = mutableListOf<View>()
         clickViewList.add(mSuperParent)

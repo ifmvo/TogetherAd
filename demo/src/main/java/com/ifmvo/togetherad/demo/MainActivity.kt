@@ -9,10 +9,10 @@ import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.hybrid.AdHelperSplashHybrid
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
-import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
+import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
 

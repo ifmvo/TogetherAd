@@ -14,13 +14,13 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewBaiduCommon : BaseNativeView() {
+class NativeViewBaiduSimple1 : BaseNativeView() {
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is NativeResponse) {
             return
         }
-        val rootView = View.inflate(container.context, R.layout.layout_native_view_baidu_common, container)
+        val rootView = View.inflate(container.context, R.layout.layout_native_view_baidu_simple_1, container)
 
         val mImgPoster = rootView.findViewById<ImageView>(R.id.img_poster)
         val mLlParent = rootView.findViewById<LinearLayout>(R.id.ll_parent)

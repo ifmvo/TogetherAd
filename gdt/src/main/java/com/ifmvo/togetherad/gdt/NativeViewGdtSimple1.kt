@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.gdt
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
@@ -21,14 +20,14 @@ import com.qq.e.comm.util.AdError
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewGdtCommon : BaseNativeView() {
+class NativeViewGdtSimple1 : BaseNativeView() {
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
 
         if (adObject !is NativeUnifiedADData) {
             return
         }
-        val rootView = View.inflate(container.context, R.layout.layout_native_view_gdt_common, container)
+        val rootView = View.inflate(container.context, R.layout.layout_native_view_gdt_simple_1, container)
 
         val mNativeAdContainer = rootView.findViewById<NativeAdContainer>(R.id.native_ad_container)
         val mSuperParent = rootView.findViewById<ViewGroup>(R.id.super_parent)
