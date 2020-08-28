@@ -26,13 +26,18 @@ class NativeViewBaiduSimple2 : BaseNativeView() {
         val mLlParent = rootView.findViewById<LinearLayout>(R.id.ll_parent)
         val mTvTitle = rootView.findViewById<TextView>(R.id.tv_title)
         val mTvDesc = rootView.findViewById<TextView>(R.id.tv_desc)
-//        val mAdLogoView = rootView.findViewById<AdLogoView>(R.id.ad_logo_view)
+        val mImgLogoBaidu = rootView.findViewById<ImageView>(R.id.img_logo_baidu)
+        val mImgAd = rootView.findViewById<ImageView>(R.id.img_ad)
+
         val layoutParams = mImgPoster?.layoutParams
         layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16
 
         mTvTitle?.text = adObject.title
         mTvDesc?.text = adObject.desc
-//        mAdLogoView.setAdLogoType(AdNameType.BAIDU, adObject)
+
+        TogetherAd.mImageLoader?.loadImage(container.context, mImgLogoBaidu, adObject.baiduLogoUrl)
+        TogetherAd.mImageLoader?.loadImage(container.context, mImgAd, adObject.adLogoUrl)
+
         TogetherAd.mImageLoader?.loadImage(container.context, mImgPoster, adObject.imageUrl)
         listener?.onAdExposed(adProviderType)
         adObject.recordImpression(mLlParent)

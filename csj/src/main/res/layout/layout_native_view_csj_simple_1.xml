@@ -51,6 +51,12 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_ad_logo_csj" />
+
         <!--        <com.rumtel.ad.AdLogoView-->
         <!--            android:id="@+id/ad_logo_view"-->
         <!--            android:layout_width="wrap_content"-->

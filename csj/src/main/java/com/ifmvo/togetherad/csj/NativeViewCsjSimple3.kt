@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.hybrid
+package com.ifmvo.togetherad.csj
 
 import android.os.CountDownTimer
 import android.view.View
@@ -11,17 +11,15 @@ import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
-import com.ifmvo.togetherad.demo.AdLogoView
-import com.ifmvo.togetherad.demo.AdProviderType
-import com.ifmvo.togetherad.demo.R
 import kotlin.math.roundToInt
 
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativeView() {
+class NativeViewCsjSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeView() {
 
     private var mOnDismiss: (providerType: String) -> Unit = onDismiss
 
@@ -29,7 +27,7 @@ class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativ
         if (adObject !is TTNativeAd) {
             return
         }
-        val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_splash, container)
+        val rootView = View.inflate(container.context, R.layout.layout_native_view_csj_simple_3, container)
 
         val mSuperParent = rootView.findViewById<ViewGroup>(R.id.super_parent)
         val mFlParent = rootView.findViewById<FrameLayout>(R.id.fl_parent)
@@ -45,12 +43,10 @@ class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativ
         //标题和描述
         val mTvTitle = rootView.findViewById<TextView>(R.id.tv_title)
         val mTvDesc = rootView.findViewById<TextView>(R.id.tv_desc)
-        val mAdLogoView = rootView.findViewById<AdLogoView>(R.id.ad_logo_view)
 
         val layoutParams = mFlParent?.layoutParams
         layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
 
-        mAdLogoView.setAdLogoType(AdProviderType.CSJ.type, adObject)
         // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
         val clickViewList = mutableListOf<View>()
         clickViewList.add(mSuperParent)
@@ -124,9 +120,9 @@ class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativ
         }
 
         //添加跳过按钮
-        val customSkipView = AdHelperSplashHybrid.customSkipView
-        val skipView = customSkipView?.onCreateSkipView(container.context)
-        skipView?.run {
+        val customSkipView = SplashSkipViewSimple2()
+        val skipView = customSkipView.onCreateSkipView(container.context)
+        skipView.run {
             container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
@@ -143,7 +139,7 @@ class NativeViewCsjSplash(onDismiss: (providerType: String) -> Unit) : BaseNativ
 
             override fun onTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
-                customSkipView?.handleTime(second)
+                customSkipView.handleTime(second)
             }
         }
         mTimer?.start()

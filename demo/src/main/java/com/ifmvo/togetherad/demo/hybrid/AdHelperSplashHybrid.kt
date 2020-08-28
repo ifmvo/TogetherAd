@@ -1,14 +1,12 @@
 package com.ifmvo.togetherad.demo.hybrid
 
 import android.app.Activity
-import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
-import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.helper.BaseHelper
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
@@ -16,6 +14,7 @@ import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.demo.AdProviderType
+import org.jetbrains.annotations.NotNull
 
 /**
  * 开屏广告
@@ -57,10 +56,10 @@ object AdHelperSplashHybrid : BaseHelper() {
         }
 
         when (adProviderType) {
-            AdProviderType.BAIDU.type -> {
+            AdProviderType.CSJ.type, AdProviderType.BAIDU.type -> {
                 showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
             }
-            AdProviderType.GDT.type, AdProviderType.CSJ.type -> {
+            AdProviderType.GDT.type -> {
                 showNative(adProvider, activity, adProviderType, alias, listener, container, currentRadioMap)
             }
         }

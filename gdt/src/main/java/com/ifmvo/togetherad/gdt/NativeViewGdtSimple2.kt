@@ -40,7 +40,7 @@ class NativeViewGdtSimple2 : BaseNativeView() {
         val mTvTitle = rootView.findViewById<TextView>(R.id.tv_title)
         val mTvDesc = rootView.findViewById<TextView>(R.id.tv_desc)
         val mAdGdtMediaPlayer = rootView.findViewById<MediaView>(R.id.gdt_media_view)
-        val mLayoutInfo = rootView.findViewById<FrameLayout>(R.id.layout_info)
+        val mLayoutInfo = rootView.findViewById<ViewGroup>(R.id.layout_info)
 
         mMediaContainer?.layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16
 

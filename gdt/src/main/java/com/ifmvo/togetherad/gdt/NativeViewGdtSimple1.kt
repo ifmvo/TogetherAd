@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.gdt
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.ifmvo.togetherad.core.TogetherAd
@@ -30,14 +31,12 @@ class NativeViewGdtSimple1 : BaseNativeView() {
         val rootView = View.inflate(container.context, R.layout.layout_native_view_gdt_simple_1, container)
 
         val mNativeAdContainer = rootView.findViewById<NativeAdContainer>(R.id.native_ad_container)
-        val mSuperParent = rootView.findViewById<ViewGroup>(R.id.super_parent)
         val mImgPoster = rootView.findViewById<ImageView>(R.id.img_poster)
         val mTvTitle = rootView.findViewById<TextView>(R.id.tv_title)
         val mTvDesc = rootView.findViewById<TextView>(R.id.tv_desc)
         val mAdGdtMediaPlayer = rootView.findViewById<MediaView>(R.id.gdt_media_view)
 
-        mImgPoster?.layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
-        mAdGdtMediaPlayer?.layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
+        mNativeAdContainer?.layoutParams?.height = ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16
 
         mTvTitle?.text = adObject.title
         mTvDesc?.text = adObject.desc
@@ -53,7 +52,6 @@ class NativeViewGdtSimple1 : BaseNativeView() {
             }
         }
         val clickableViews = arrayListOf<View>()
-        clickableViews.add(mSuperParent)
         clickableViews.add(mImgPoster)
         clickableViews.add(mAdGdtMediaPlayer)
         adObject.bindAdToView(container.context, mNativeAdContainer, null, clickableViews)

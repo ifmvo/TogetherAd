@@ -52,11 +52,11 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
-        <com.ifmvo.togetherad.demo.AdLogoView
-            android:id="@+id/ad_logo_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom" />
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_ad_logo_csj" />
 
     </FrameLayout>
 

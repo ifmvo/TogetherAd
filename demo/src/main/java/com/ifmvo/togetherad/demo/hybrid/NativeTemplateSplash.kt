@@ -1,9 +1,11 @@
 package com.ifmvo.togetherad.demo.hybrid
 
+import com.ifmvo.togetherad.baidu.NativeViewBaiduSimple3
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.csj.NativeViewCsjSimple3
 import com.ifmvo.togetherad.demo.AdProviderType
-import com.ifmvo.togetherad.demo.hybrid.NativeViewGdtSplash
+import com.ifmvo.togetherad.gdt.NativeViewGdtSimple3
 
 /*
  * Created by Matthew Chen on 2020-04-21.
@@ -15,10 +17,13 @@ class NativeTemplateSplash(onDismiss: (providerType: String) -> Unit) : BaseNati
     override fun getNativeView(adProviderType: String): BaseNativeView? {
         return when (adProviderType) {
             AdProviderType.GDT.type -> {
-                NativeViewGdtSplash(mOnDismiss)
+                NativeViewGdtSimple3(mOnDismiss)
             }
             AdProviderType.CSJ.type -> {
-                NativeViewCsjSplash(mOnDismiss)
+                NativeViewCsjSimple3(mOnDismiss)
+            }
+            AdProviderType.BAIDU.type -> {
+                NativeViewBaiduSimple3(mOnDismiss)
             }
             else -> throw Exception("模板配置错误")
         }
