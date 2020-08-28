@@ -112,10 +112,10 @@ class App : Application() {
         TogetherAd.failedSwitchEnable = true
 
         /**
-         * 最大拉取延时时间ms（ 请求广告的超时时间 ）
+         * 最大拉取延时时间 ms（ 请求广告的超时时间 ）
          * 3000 ≤ value ≥ 10000（ 小于3000时按3000计算，大于10000时按10000计算 ）
          * 全局实时生效
-         * 不设置代表超时时间无限大
+         * 不设置代表没有超时时间
          */
         TogetherAd.maxFetchDelay = 5000
     }

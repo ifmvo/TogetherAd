@@ -69,7 +69,7 @@ object AdHelperSplashHybrid : BaseHelper() {
     private var mAdObject: Any? = null
     private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, listener: SplashListener?, container: ViewGroup, currentRadioMap: Map<String, Int>) {
         AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
-        adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 0, listener = object : NativeListener {
+        adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
             }

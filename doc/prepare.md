@@ -170,7 +170,8 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121987",
                 TogetherAdAlias.AD_INTER to "901121725",
-                TogetherAdAlias.AD_REWARD to "901121365"
+                TogetherAdAlias.AD_REWARD to "901121365",
+                TogetherAdAlias.AD_SPLASH_HYBRID to "901121709"//id是原生类型
         )
 
         TogetherAdGdt.idMapGDT = mapOf(
@@ -179,7 +180,8 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
-                TogetherAdAlias.AD_REWARD to "2090845242931421"
+                TogetherAdAlias.AD_REWARD to "2090845242931421",
+                TogetherAdAlias.AD_SPLASH_HYBRID to "6040749702835933"//id是原生类型
         )
 
         TogetherAdBaidu.idMapBaidu = mapOf(
@@ -188,7 +190,8 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",
                 TogetherAdAlias.AD_INTER to "2403633",
-                TogetherAdAlias.AD_REWARD to "5925490"
+                TogetherAdAlias.AD_REWARD to "5925490",
+                TogetherAdAlias.AD_SPLASH_HYBRID to "2058622"//id是开屏类型
         )
 
         /**
@@ -218,8 +221,23 @@ class App : Application() {
 
         /**
          * 日志的开关
+         * 全局实时生效
          */
         TogetherAd.printLogEnable = BuildConfig.DEBUG
+
+        /**
+         * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
+         * 全局实时生效
+         */
+        TogetherAd.failedSwitchEnable = true
+
+        /**
+         * 最大拉取延时时间 ms（ 请求广告的超时时间 ）
+         * 3000 ≤ value ≥ 10000（ 小于3000时按3000计算，大于10000时按10000计算 ）
+         * 全局实时生效
+         * 不设置代表没有超时时间
+         */
+        TogetherAd.maxFetchDelay = 5000
     }
 }
 ```
