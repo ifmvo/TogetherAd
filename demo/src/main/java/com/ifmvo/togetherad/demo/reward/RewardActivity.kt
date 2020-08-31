@@ -37,7 +37,7 @@ class RewardActivity : AppCompatActivity() {
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapReward = mapOf(
-                AdProviderType.GDT.type to 3,
+                AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
@@ -48,7 +48,7 @@ class RewardActivity : AppCompatActivity() {
          * radioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRadio 设置的全局通用权重。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        adHelperReward = AdHelperReward(activity = this, alias = TogetherAdAlias.AD_REWARD, /*radioMap = radioMapReward,*/ listener = object : RewardListener {
+        adHelperReward = AdHelperReward(activity = this, alias = TogetherAdAlias.AD_REWARD, radioMap = radioMapReward, listener = object : RewardListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开始请求: $providerType")

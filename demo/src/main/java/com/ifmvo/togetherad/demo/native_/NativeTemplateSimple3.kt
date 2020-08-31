@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.hybrid
+package com.ifmvo.togetherad.demo.native_
 
 import com.ifmvo.togetherad.baidu.NativeViewBaiduSimple3
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
@@ -10,7 +10,7 @@ import com.ifmvo.togetherad.gdt.NativeViewGdtSimple3
 /*
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeTemplateSplash(onDismiss: (providerType: String) -> Unit) : BaseNativeTemplate() {
+class NativeTemplateSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeTemplate() {
 
     private var mOnDismiss: (providerType: String) -> Unit = onDismiss
 

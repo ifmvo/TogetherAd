@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
+import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_native_recyclerview.*
@@ -21,7 +22,14 @@ import kotlinx.android.synthetic.main.activity_native_recyclerview.*
  */
 class NativeRecyclerViewActivity : AppCompatActivity() {
 
-    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, 3) }
+    //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
+    private val radioMapNativeRecycler = mapOf(
+            AdProviderType.GDT.type to 1,
+            AdProviderType.CSJ.type to 1,
+            AdProviderType.BAIDU.type to 1
+    )
+
+    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, radioMapNativeRecycler, 3) }
 
     private val mAdList = mutableListOf<Any>()
 

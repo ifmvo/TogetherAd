@@ -23,7 +23,7 @@ class MainActivity : ListActivity() {
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
                 "开屏",
-                "开屏&原生混合使用(gdt是原生自渲染伪装成开屏)",
+                "开屏&原生混合使用(gdt、csj是原生自渲染伪装成开屏)",
                 "原生自渲染简单用法",
                 "原生自渲染在 RecyclerView 中使用",
                 "激励广告",

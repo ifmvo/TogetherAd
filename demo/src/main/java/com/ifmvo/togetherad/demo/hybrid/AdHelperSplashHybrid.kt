@@ -14,6 +14,7 @@ import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -56,18 +57,18 @@ object AdHelperSplashHybrid : BaseHelper() {
         }
 
         when (adProviderType) {
-            AdProviderType.CSJ.type, AdProviderType.BAIDU.type -> {
-                showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
+            AdProviderType.CSJ.type, AdProviderType.GDT.type -> {
+                showNative(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
             }
-            AdProviderType.GDT.type -> {
-                showNative(adProvider, activity, adProviderType, alias, listener, container, currentRadioMap)
+            AdProviderType.BAIDU.type -> {
+                showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
             }
         }
     }
 
     private var mAdObject: Any? = null
-    private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, listener: SplashListener?, container: ViewGroup, currentRadioMap: Map<String, Int>) {
-        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
+    private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRadioMap: Map<String, Int>) {
+        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
         adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
@@ -85,7 +86,7 @@ object AdHelperSplashHybrid : BaseHelper() {
                 }
 
                 mAdObject = adList[0]
-                AdHelperNativePro.show(adObject = adList[0], container = container, nativeTemplate = NativeTemplateSplash(::onDismiss), listener = object : NativeViewListener {
+                AdHelperNativePro.show(adObject = adList[0], container = container, nativeTemplate = NativeTemplateSimple3(::onDismiss), listener = object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                         listener?.onAdExposure(providerType)
                     }
