@@ -76,7 +76,7 @@ private fun requestAd() {
  * 展示广告
  */
 private fun showAd(adObject: Any) {
-    AdHelperNativePro.show(adObject = adObject, container = adContainer, nativeTemplate = NativeTemplateCommon(), listener = object : NativeViewListener {
+    AdHelperNativePro.show(adObject = adObject, container = adContainer, nativeTemplate = NativeTemplateSimple1(), listener = object : NativeViewListener {
         override fun onAdExposed(providerType: String) {
             //每次曝光就会回调这里一次
         }

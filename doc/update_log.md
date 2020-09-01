@@ -1,5 +1,11 @@
 # 更新日志
 
+## 3.1.5
+
+2020.09.01
+
+1. 新增原生自渲染的样例 NativeViewSimple1、NativeViewSimple2、NativeViewSimple3
+
 ### 3.1.4
 
 2020.08.27
