@@ -5,6 +5,7 @@
 2020.09.07
 
 1. 激励广告支持穿山甲自定义请求参数 CsjProvider.Reward [详情查看文档](doc/reward.md)
+2. 穿山甲原生广告设置类型的Api变为：CsjProvider.Native.nativeAdType = xxxxxx。不建议继续使用：AdHelperNativePro.csjNativeAdType = xxxxxx
 
 ## 3.1.5
 
