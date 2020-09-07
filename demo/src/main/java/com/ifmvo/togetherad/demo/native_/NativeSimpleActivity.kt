@@ -12,6 +12,7 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
@@ -69,18 +70,18 @@ class NativeSimpleActivity : AppCompatActivity() {
      */
     private fun requestAd() {
         //--------------------------------------------------------------------------------------
-        //  必须在每次请求穿山甲的原生广告之前设置类型。
-        //  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
-        //  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+        //  如果需要使用穿山甲的原生广告，必须在请求之前设置类型。（ 没用到穿山甲的请忽略 ）
+        //  设置方式：CsjProvider.Native.nativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_INTERACTION_AD
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_BANNER
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_CACHED_SPLASH
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_DRAW_FEED
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_REWARD_VIDEO
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_SPLASH
         //--------------------------------------------------------------------------------------
-        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+        CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
 
         adHelperNative?.getList(listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {

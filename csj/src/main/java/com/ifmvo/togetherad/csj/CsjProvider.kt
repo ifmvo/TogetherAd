@@ -14,7 +14,6 @@ import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
-import java.lang.IllegalArgumentException
 
 
 /**
@@ -26,6 +25,9 @@ class CsjProvider : BaseAdProvider() {
 
     private val TAG = "CsjProvider"
 
+    /**
+     * --------------------------- 开屏 ---------------------------
+     */
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
@@ -85,6 +87,9 @@ class CsjProvider : BaseAdProvider() {
         }, 2500)//超时时间，demo 为 2000
     }
 
+    /**
+     * --------------------------- 横幅Banner ---------------------------
+     */
     private var mTTAd: TTNativeExpressAd? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
 
@@ -149,6 +154,9 @@ class CsjProvider : BaseAdProvider() {
         mTTAd?.destroy()
     }
 
+    /**
+     * --------------------------- 插屏 ---------------------------
+     */
     private var mTtInteractionAd: TTInteractionAd? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
@@ -229,21 +237,29 @@ class CsjProvider : BaseAdProvider() {
         mTtInteractionAd = null
     }
 
+    /**
+     * --------------------------- 原生自渲染 ---------------------------
+     */
+    object Native {
+        //如果需要使用穿山甲的原生广告，必须在请求之前设置类型。
+        var nativeAdType = -1
+    }
+
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
-        if (AdHelperNativePro.csjNativeAdType == -1) {
+        if (Native.nativeAdType == -1 && AdHelperNativePro.csjNativeAdType == -1) {
             throw IllegalArgumentException(
-"""
+                    """
     |-------------------------------------------------------------------------------------- 
     |  必须在每次请求穿山甲的原生广告之前设置类型。
-    |  设置方式：AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_INTERACTION_AD
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_BANNER
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_CACHED_SPLASH
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_DRAW_FEED
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_REWARD_VIDEO
-    |  AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_SPLASH
+    |  设置方式：CsjProvider.Native.nativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_INTERACTION_AD
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_BANNER
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_CACHED_SPLASH
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_DRAW_FEED
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_REWARD_VIDEO
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_SPLASH
     |--------------------------------------------------------------------------------------
 
 """
@@ -258,10 +274,10 @@ class CsjProvider : BaseAdProvider() {
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(dm.widthPixels, (dm.widthPixels * 9 / 16))
-                .setNativeAdType(AdHelperNativePro.csjNativeAdType)
+                .setNativeAdType(if (Native.nativeAdType != -1) Native.nativeAdType else AdHelperNativePro.csjNativeAdType)
                 .setAdCount(maxCount)
                 .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object: TTAdNative.NativeAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
             override fun onNativeAdLoad(adList: MutableList<TTNativeAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackFlowFailed(adProviderType, listener, "请求成功，但是返回的list为空")
@@ -305,24 +321,54 @@ class CsjProvider : BaseAdProvider() {
         return adObject is TTNativeAd
     }
 
-    private var mttRewardVideoAd: TTRewardVideoAd? = null
+    /**
+     * --------------------------- 激励 ---------------------------
+     */
+    object Reward {
+        //表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
+        var userID: String? = null
 
+        var supportDeepLink: Boolean = true
+
+        //奖励的名称
+        var rewardName: String? = null
+
+        //奖励的数量
+        var rewardAmount: Int = -1
+
+        //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
+        var orientation: Int = TTAdConstant.VERTICAL
+
+        //用户透传的信息，可不传
+        var mediaExtra: String? = null
+
+        //设置是否在视频播放页面展示下载bar
+        var showDownLoadBar: Boolean = true
+
+        //onAdRewardVerify 回调中用于判断校验结果（ 后台校验中用到 ）
+        var rewardVerify: Boolean = false
+            internal set
+    }
+
+    private var mttRewardVideoAd: TTRewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
         callbackRewardStartRequest(adProviderType, listener)
 
-        val adSlot = AdSlot.Builder()
+        val adSlotBuilder = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(true)
-                .setRewardName("金币")//奖励的名称
-                .setRewardAmount(3)//奖励的数量
-                //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传
-                //可设置为空字符串
-                .setUserID("")
-                .setOrientation(TTAdConstant.VERTICAL)  //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
-//                .setMediaExtra("media_extra") //用户透传的信息，可不传
-                .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlot, object : TTAdNative.RewardVideoAdListener {
+                .setSupportDeepLink(Reward.supportDeepLink)
+                .setRewardAmount(if (Reward.rewardAmount != -1) Reward.rewardAmount else -1)
+                .setRewardName(if (Reward.rewardName?.isNotEmpty() == true) Reward.rewardName else "")
+                //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
+                .setUserID(if (Reward.userID?.isNotEmpty() == true) Reward.userID else "")
+                .setOrientation(Reward.orientation)  //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
+
+        if (Reward.mediaExtra?.isNotEmpty() == true) {
+            adSlotBuilder.setMediaExtra(Reward.mediaExtra)
+        }
+
+        TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String) {
                 "onError".loge(TAG)
                 callbackRewardFailed(adProviderType, listener, "错误码: $code, 错误信息：$message")
@@ -340,7 +386,7 @@ class CsjProvider : BaseAdProvider() {
                 "onRewardVideoAdLoad".logi(TAG)
 
                 mttRewardVideoAd = ad
-                //mttRewardVideoAd.setShowDownLoadBar(false);
+                mttRewardVideoAd?.setShowDownLoadBar(Reward.showDownLoadBar)
                 mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
                     override fun onSkippedVideo() {
                         "onSkippedVideo".logi(TAG)
@@ -374,6 +420,7 @@ class CsjProvider : BaseAdProvider() {
 
                     override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String) {
                         "verify:$rewardVerify amount:$rewardAmount name:$rewardName".logi(TAG)
+                        Reward.rewardVerify = rewardVerify
                         callbackRewardVerify(adProviderType, listener)
                     }
                 })

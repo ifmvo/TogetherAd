@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "3.1.5-5.83"
+        versionName "3.1.6-5.83"
     }
 
     lintOptions{
@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
+//    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    embed(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')
@@ -40,7 +40,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'baidu'
-    publishVersion = '3.1.5-5.85'
+    publishVersion = '3.1.6-5.85'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }

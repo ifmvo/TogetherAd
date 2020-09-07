@@ -22,9 +22,22 @@ class RewardActivity : AppCompatActivity() {
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapReward = mapOf(
                 AdProviderType.GDT.type to 3,
-                AdProviderType.CSJ.type to 1
-                //AdProviderType.BAIDU.type to 1
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.BAIDU.type to 1
         )
+
+        /**
+         * 穿山甲请求激励广告可选参数
+         * 以下参数均为（ 非必传 ）
+         */
+//        CsjProvider.Reward.userID = "userId_123"
+//        CsjProvider.Reward.supportDeepLink = true//默认为true
+//        CsjProvider.Reward.rewardName = "金币"//奖励名称
+//        CsjProvider.Reward.rewardAmount = 30//奖励数量
+//        CsjProvider.Reward.mediaExtra = "TogetherAd"//用户透传的信息
+//        //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL。默认是TTAdConstant.VERTICAL
+//        CsjProvider.Reward.orientation = TTAdConstant.VERTICAL//默认 TTAdConstant.VERTICAL
+//        CsjProvider.Reward.showDownLoadBar = true//不设置默认为true
 
         /**
          * activity: 必传。
@@ -57,6 +70,11 @@ class RewardActivity : AppCompatActivity() {
                 //广告请求成功的回调，每次请求只回调一次
                 //展示广告一定要在 onAdLoaded() 回调方法中执行
                 adHelperReward.show()
+
+//                //如果 csj 使用到服务器到服务器回调功能，需要进行以下判断，gdt、baidu都不需要此判断
+//                if (providerType == AdProviderType.CSJ.type && CsjProvider.Reward.rewardVerify) {
+//                    ... 验证成功后的操作
+//                }
             }
 
             override fun onAdExpose(providerType: String) {

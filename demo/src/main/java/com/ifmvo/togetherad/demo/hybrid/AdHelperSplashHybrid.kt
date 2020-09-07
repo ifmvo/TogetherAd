@@ -13,6 +13,7 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
 import org.jetbrains.annotations.NotNull
@@ -68,7 +69,7 @@ object AdHelperSplashHybrid : BaseHelper() {
 
     private var mAdObject: Any? = null
     private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRadioMap: Map<String, Int>) {
-        AdHelperNativePro.csjNativeAdType = AdSlot.TYPE_FEED
+        CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
         adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)

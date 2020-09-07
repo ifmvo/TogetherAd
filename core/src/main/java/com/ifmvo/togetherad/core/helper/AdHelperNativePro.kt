@@ -35,6 +35,10 @@ class AdHelperNativePro(
 
     companion object {
 
+        @Deprecated(
+                message = "设计上考虑不周全，csj的api不应该放在通用helper中，请及时使用 CsjProvider.Native.nativeAdType 进行替换",
+                replaceWith = ReplaceWith(expression = "CsjProvider.Native.nativeAdType", imports = ["com.ifmvo.togetherad.csj"])
+        )
         var csjNativeAdType: Int = -1
 
         private const val defaultMaxCount = 4

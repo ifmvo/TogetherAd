@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.1.5-3.1.1.1'
+    implementation 'com.matthewchen.togetherad:csj:3.1.6-3.1.1.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.1.5-4.211.1081'
+    implementation 'com.matthewchen.togetherad:gdt:3.1.6-4.211.1081'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.1.5-5.85'
+    implementation 'com.matthewchen.togetherad:baidu:3.1.6-5.85'
     
 }
 ```
@@ -60,8 +60,8 @@ dependencies {
 
 ## 更新日志
 
-3.1.5（2020.09.01）
-1. 新增原生自渲染的样例 NativeViewSimple1、NativeViewSimple2、NativeViewSimple3
+3.1.6（2020.09.07）
+1. 激励广告支持穿山甲自定义请求参数 CsjProvider.Reward [详情查看文档](doc/reward.md)
 
 [点击查看更多日志](doc/update_log.md)
 
