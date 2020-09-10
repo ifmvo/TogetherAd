@@ -134,4 +134,4 @@ override fun onDestroy() {
 
 详情可查看 Demo 中 [原生自渲染广告的简单用法示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeSimpleActivity.kt)
 
-详情可查看 Demo 中 [原生自渲染广告在RecyclerView中使用示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeRecyclerViewFragment.kt)
+详情可查看 Demo 中 [原生自渲染广告在RecyclerView中使用示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeRecyclerViewActivity.kt)

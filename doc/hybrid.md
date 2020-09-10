@@ -11,3 +11,5 @@
 详情可查看 Demo 中 [开屏广告混合使用的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/hybrid/SplashHybridActivity.kt)
 
 这里只举了一个开屏的例子，其他广告类型同理。
+
+``原生自渲染可以和任何类型的广告混合使用。``
