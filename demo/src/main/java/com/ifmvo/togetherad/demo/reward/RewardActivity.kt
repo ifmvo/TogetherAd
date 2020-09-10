@@ -13,6 +13,7 @@ import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.gdt.GdtProvider
 import kotlinx.android.synthetic.main.activity_reward.*
 
 /**

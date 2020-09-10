@@ -5,10 +5,10 @@
     android:layout_height="wrap_content"
     android:background="@drawable/shape_splash_skip_view_custom_bg"
     android:gravity="center_vertical"
-    android:paddingLeft="10dp"
-    android:paddingTop="5dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="5dp">
+    android:paddingLeft="8dp"
+    android:paddingTop="4dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="4dp">
 
     <TextView
         android:id="@+id/time"

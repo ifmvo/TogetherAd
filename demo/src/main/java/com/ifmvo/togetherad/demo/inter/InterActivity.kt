@@ -30,6 +30,9 @@ class InterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inter)
 
+        //设置 穿山甲 Inter插屏广告 可接受图片尺寸,可以不设置，默认为 600 600
+        //CsjProvider.Inter.setImageAcceptedSize(600, 600)
+
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapInter = mapOf(
                 AdProviderType.GDT.type to 1,

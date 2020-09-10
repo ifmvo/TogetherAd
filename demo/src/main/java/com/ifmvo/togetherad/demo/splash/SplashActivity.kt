@@ -8,11 +8,15 @@ import android.view.View
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.core.utils.dp
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.gdt.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
@@ -44,12 +48,32 @@ class SplashActivity : AppCompatActivity() {
     private fun requestSplashAd() {
 
         /**
-         * 自定义跳过按钮
+         * 设置 广点通 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
          */
-        AdHelperSplash.customSkipView = SplashSkipViewSimple2()
-        //AdHelperSplash.customSkipView = SplashSkipViewSimple1()
+        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
+        /**
+         * 设置 广点通 开屏广告超时时间
+         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+         * 取值范围为[3000, 5000]ms。
+         * 如果需要使用默认值，可以给 fetchDelay 设为0或者不设置。
+         */
+        //GdtProvider.Splash.maxFetchDelay = 0
+
+        /**
+         * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
+         * 一般设置容器的宽高即可
+         */
+        CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
+
+        /**
+         * 设置 穿山甲 开屏广告超时时间
+         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+         * 如果不设置，默认值为 3000ms
+         */
+        //CsjProvider.Splash.maxFetchDelay = 3000
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapSplash = mapOf(

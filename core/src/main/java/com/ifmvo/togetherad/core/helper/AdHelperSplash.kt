@@ -16,6 +16,10 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
  */
 object AdHelperSplash : BaseHelper() {
 
+    @Deprecated(
+            message = "设计上考虑不周全，gdt的自定义跳过按钮不应该放在通用helper中，请及时使用 GdtProvider.Splash.customSkipView 进行替换",
+            replaceWith = ReplaceWith(expression = "GdtProvider.Splash.customSkipView", imports = ["com.ifmvo.togetherad.gdt"])
+    )
     var customSkipView: BaseSplashSkipView? = null
 
     //为了照顾 Java 调用的同学

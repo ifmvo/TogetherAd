@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.SplashListener
+import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.core.utils.dp
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.gdt.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
@@ -47,8 +51,8 @@ class SplashHybridActivity : AppCompatActivity() {
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
          */
-        AdHelperSplashHybrid.customSkipView = SplashSkipViewSimple2()
-//        SplashHybridAdapter.customSkipView = SplashSkipViewSimple1()
+        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+//        GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapSplash = mapOf(
@@ -56,6 +60,8 @@ class SplashHybridActivity : AppCompatActivity() {
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
+
+        CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
 
         /**
          * activity: 必传。这里不是 Context，因为广点通必须传 Activity，所以统一传 Activity。
@@ -126,6 +132,7 @@ class SplashHybridActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //由于原生自渲染在开屏广告倒计时完成并destroy 之后会出现异常，所以这里不能destroy，可以去主页 MainActivity 再destroy也不迟
 //        AdHelperSplashHybrid.destroyAd()
     }
 

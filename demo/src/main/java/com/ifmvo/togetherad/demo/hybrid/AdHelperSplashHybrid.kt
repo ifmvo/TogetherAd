@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.helper.BaseHelper
 import com.ifmvo.togetherad.core.listener.NativeListener
@@ -16,6 +15,7 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
+import com.ifmvo.togetherad.gdt.GdtProvider
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -24,8 +24,6 @@ import org.jetbrains.annotations.NotNull
  * Created by Matthew Chen on 2020-04-03.
  */
 object AdHelperSplashHybrid : BaseHelper() {
-
-    var customSkipView: BaseSplashSkipView? = null
 
     //为了照顾 Java 调用的同学
     fun show(@NotNull activity: Activity, @NotNull alias: String, @NotNull container: ViewGroup, listener: SplashListener? = null) {
@@ -43,7 +41,6 @@ object AdHelperSplashHybrid : BaseHelper() {
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
 
         if (adProviderType?.isEmpty() != false) {
-            customSkipView = null
             cancelTimer()
             listener?.onAdFailedAll()
             return
@@ -82,7 +79,6 @@ object AdHelperSplashHybrid : BaseHelper() {
                 listener?.onAdLoaded(providerType)
 
                 fun onDismiss(adProviderType: String) {
-                    customSkipView = null
                     listener?.onAdDismissed(adProviderType)
                 }
 
@@ -139,7 +135,6 @@ object AdHelperSplashHybrid : BaseHelper() {
             }
 
             override fun onAdDismissed(providerType: String) {
-                customSkipView = null
                 listener?.onAdDismissed(providerType)
             }
         })
@@ -158,7 +153,6 @@ object AdHelperSplashHybrid : BaseHelper() {
     }
 
     fun destroyAd() {
-        customSkipView = null
         mAdObject?.run {
             AdHelperNativePro.destroyAd(this)
             mAdObject = null

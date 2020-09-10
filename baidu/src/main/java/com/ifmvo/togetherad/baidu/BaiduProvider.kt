@@ -25,6 +25,9 @@ class BaiduProvider : BaseAdProvider() {
 
     private val TAG = "BaiduProvider"
 
+    /**
+     * --------------------------- 开屏 ---------------------------
+     */
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, listener)
 
@@ -48,6 +51,9 @@ class BaiduProvider : BaseAdProvider() {
         }, TogetherAdBaidu.idMapBaidu[alias], true)
     }
 
+    /**
+     * --------------------------- Banner横幅 ---------------------------
+     */
     private var adView: AdView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
         callbackBannerStartRequest(adProviderType, listener)
@@ -85,6 +91,9 @@ class BaiduProvider : BaseAdProvider() {
         adView?.destroy()
     }
 
+    /**
+     * --------------------------- Inter插屏 ---------------------------
+     */
     private var mInterAd: InterstitialAd? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
@@ -131,6 +140,9 @@ class BaiduProvider : BaseAdProvider() {
         mInterAd = null
     }
 
+    /**
+     * --------------------------- 原生自渲染 ---------------------------
+     */
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
@@ -187,6 +199,9 @@ class BaiduProvider : BaseAdProvider() {
         }
     }
 
+    /**
+     * --------------------------- 激励 ---------------------------
+     */
     private var mRewardVideoAd: RewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 

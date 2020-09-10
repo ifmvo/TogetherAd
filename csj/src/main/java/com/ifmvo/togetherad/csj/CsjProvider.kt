@@ -1,13 +1,8 @@
 package com.ifmvo.togetherad.csj
 
 import android.app.Activity
-import android.content.Context
-import android.graphics.Point
-import android.os.Build
-import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.*
@@ -28,22 +23,32 @@ class CsjProvider : BaseAdProvider() {
     /**
      * --------------------------- 开屏 ---------------------------
      */
+    object Splash {
+
+        //超时时间
+        var maxFetchDelay = 3000
+
+        var supportDeepLink: Boolean = true
+
+        //图片的宽高
+        internal var imageAcceptedSizeWidth = 1080
+
+        internal var imageAcceptedSizeHeight = 1920
+
+        fun setImageAcceptedSize(width: Int, height: Int) {
+            imageAcceptedSizeWidth = width
+            imageAcceptedSizeHeight = height
+        }
+    }
+
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
-
-        val wm = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val point = Point()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            wm.defaultDisplay.getRealSize(point)
-        } else {
-            wm.defaultDisplay.getSize(point)
-        }
         //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(true)
-                .setImageAcceptedSize(point.x, point.y)
+                .setSupportDeepLink(Splash.supportDeepLink)
+                .setImageAcceptedSize(Splash.imageAcceptedSizeWidth, Splash.imageAcceptedSizeHeight)
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
@@ -84,12 +89,30 @@ class CsjProvider : BaseAdProvider() {
             override fun onError(errorCode: Int, errorMsg: String?) {
                 callbackSplashFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
-        }, 2500)//超时时间，demo 为 2000
+        }, Splash.maxFetchDelay)//超时时间，demo 为 3000
     }
 
     /**
      * --------------------------- 横幅Banner ---------------------------
      */
+    object Banner {
+
+        var supportDeepLink: Boolean = true
+
+        //图片的宽高
+        internal var imageAcceptedSizeWidth = 600
+
+        internal var imageAcceptedSizeHeight = 257
+
+        fun setImageAcceptedSize(width: Int, height: Int) {
+            imageAcceptedSizeWidth = width
+            imageAcceptedSizeHeight = height
+        }
+
+        //Banner 刷新间隔时间
+        var slideIntervalTime = 30 * 1000
+    }
+
     private var mTTAd: TTNativeExpressAd? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
 
@@ -99,8 +122,8 @@ class CsjProvider : BaseAdProvider() {
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
-                .setSupportDeepLink(true)
-                .setImageAcceptedSize(600, 257)
+                .setSupportDeepLink(Banner.supportDeepLink)
+                .setImageAcceptedSize(Banner.imageAcceptedSizeWidth, Banner.imageAcceptedSizeHeight)
                 .build()
 
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
@@ -118,7 +141,7 @@ class CsjProvider : BaseAdProvider() {
 
                 callbackBannerLoaded(adProviderType, listener)
 
-                bannerAd.setSlideIntervalTime(30 * 1000)
+                bannerAd.setSlideIntervalTime(Banner.slideIntervalTime)
                 container.removeAllViews()
                 container.addView(bannerView)
 
@@ -144,7 +167,7 @@ class CsjProvider : BaseAdProvider() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                "onError".logi(TAG)
+                "onError".loge(TAG)
                 callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         })
@@ -157,6 +180,21 @@ class CsjProvider : BaseAdProvider() {
     /**
      * --------------------------- 插屏 ---------------------------
      */
+    object Inter {
+
+        var supportDeepLink: Boolean = true
+
+        //图片的宽高
+        internal var imageAcceptedSizeWidth = 600
+
+        internal var imageAcceptedSizeHeight = 600
+
+        fun setImageAcceptedSize(width: Int, height: Int) {
+            imageAcceptedSizeWidth = width
+            imageAcceptedSizeHeight = height
+        }
+    }
+
     private var mTtInteractionAd: TTInteractionAd? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
@@ -166,8 +204,8 @@ class CsjProvider : BaseAdProvider() {
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(true)
-                .setImageAcceptedSize(600, 600) //根据广告平台选择的尺寸，传入同比例尺寸
+                .setSupportDeepLink(Inter.supportDeepLink)
+                .setImageAcceptedSize(Inter.imageAcceptedSizeWidth, Inter.imageAcceptedSizeHeight) //根据广告平台选择的尺寸，传入同比例尺寸
                 .build()
 
         TTAdSdk.getAdManager().createAdNative(activity).loadInteractionAd(adSlot, object : TTAdNative.InteractionAdListener {
@@ -209,7 +247,7 @@ class CsjProvider : BaseAdProvider() {
                         }
 
                         override fun onDownloadFailed(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
-                            "onDownloadFailed".logi(TAG)
+                            "onDownloadFailed".loge(TAG)
                         }
 
                         override fun onDownloadActive(totalBytes: Long, currBytes: Long, fileName: String?, appName: String?) {
@@ -243,6 +281,18 @@ class CsjProvider : BaseAdProvider() {
     object Native {
         //如果需要使用穿山甲的原生广告，必须在请求之前设置类型。
         var nativeAdType = -1
+
+        var supportDeepLink: Boolean = true
+
+        //图片的宽高
+        internal var imageAcceptedSizeWidth = 1080
+
+        internal var imageAcceptedSizeHeight = 1080 * 9 / 16
+
+        fun setImageAcceptedSize(width: Int, height: Int) {
+            imageAcceptedSizeWidth = width
+            imageAcceptedSizeHeight = height
+        }
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
@@ -268,12 +318,10 @@ class CsjProvider : BaseAdProvider() {
 
         callbackFlowStartRequest(adProviderType, listener)
 
-        val dm = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(dm)
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(true)
-                .setImageAcceptedSize(dm.widthPixels, (dm.widthPixels * 9 / 16))
+                .setSupportDeepLink(Native.supportDeepLink)
+                .setImageAcceptedSize(Native.imageAcceptedSizeWidth, Native.imageAcceptedSizeHeight)
                 .setNativeAdType(if (Native.nativeAdType != -1) Native.nativeAdType else AdHelperNativePro.csjNativeAdType)
                 .setAdCount(maxCount)
                 .build()

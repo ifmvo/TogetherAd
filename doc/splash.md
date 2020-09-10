@@ -7,11 +7,39 @@
 ### 调用姿势
 
 ```kotlin
+/**
+ * 设置 gdt 开屏广告 自定义跳过按钮
+ * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
+ * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
+ */
+GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+//GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
+/**
+ * 设置 gdt 开屏广告超时时间
+ * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+ * 取值范围为[3000, 5000]ms。
+ * 如果需要使用默认值，可以给 fetchDelay 设为0或者不设置。
+ */
+//GdtProvider.Splash.maxFetchDelay = 0
+
+/**
+ * 给 csj 设置可接受的图片尺寸，避免图片变形
+ * 一般设置容器的宽高即可
+ */
+CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
+
+/**
+ * 设置 csj 开屏广告超时时间
+ * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+ * 如果不设置，默认值为 3000ms
+ */
+//CsjProvider.Splash.maxFetchDelay = 3000
+
 //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
 val radioMapSplash = mapOf(
-        AdProviderType.GDT.type to 3,
-        AdProviderType.CSJ.type to 1
-        //AdProviderType.BAIDU.type to 1
+        AdProviderType.GDT.type to 1,
+        AdProviderType.CSJ.type to 1,
+        AdProviderType.BAIDU.type to 1
 )
 
 /**
@@ -45,39 +73,42 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap
 
     override fun onAdFailedAll() {
         //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
+        actionHome(1000)//跳转主页并finish开屏页
     }
 
     override fun onAdDismissed(providerType: String) {
         //开屏广告消失了，点了跳过按钮或者倒计时结束之后会回调一次
         //在这里跳转主界面，并关闭 Splash
+        actionHome(0)//跳转主页并finish开屏页
     }
 })
 ```
 
 > 回调中 ``providerType: String `` 是广告商的类型
 
-### 自定义跳过按钮
+### 自定义广点通的跳过按钮
 
 TogetherAd 提供了两个简单的实例模板，只需要在请求广告之前进行如下配置即可：
 
 ```kotlin
-/**
+/*
+ * 设置 gdt 开屏广告 自定义跳过按钮
  * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
  * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
  */
-AdHelperSplash.customSkipView = SplashSkipViewSimple2()
-//AdHelperSplash.customSkipView = SplashSkipViewSimple1()
+GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+//GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
 
 AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
 	...
-}
+})
 ```
 
 如果你觉得提供的两个模板都不满足你的需求，可以自定义样式：
 
 1. 首先需要创建一个类并继承 BaseSplashSkipView
 
-2. 然后模仿 ``SplashSkipViewSimple1`` 和 ``SplashSkipViewSimple2`` 来自定义想要的样式即可
+2. 然后模仿 ``SplashSkipViewSimple1`` 和 ``SplashSkipViewSimple2`` 来自定义想要的样式
 
 ```kotlin
 class SplashSkipViewCustom : BaseSplashSkipView() {
@@ -120,11 +151,11 @@ class SplashSkipViewCustom : BaseSplashSkipView() {
 最后不要忘记修改配置：
 
 ```kotlin
-AdHelperSplash.customSkipView = SplashSkipViewCustom()
+GdtProvider.Splash.customSkipView = SplashSkipViewCustom()
 
 AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
 	...
-}
+})
 ```
 
-可查看 Demo 中 [开屏广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)
+详情可查看 Demo 中 [开屏广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)

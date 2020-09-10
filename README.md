@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.1.6-3.1.1.1'
+    implementation 'com.matthewchen.togetherad:csj:3.1.7-3.1.1.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.1.6-4.211.1081'
+    implementation 'com.matthewchen.togetherad:gdt:3.1.7-4.211.1081'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.1.6-5.85'
+    implementation 'com.matthewchen.togetherad:baidu:3.1.7-5.85'
     
 }
 ```
@@ -60,9 +60,11 @@ dependencies {
 
 ## 更新日志
 
-3.1.6（2020.09.07）
-1. 激励广告支持穿山甲自定义请求参数 CsjProvider.Reward [详情查看文档](doc/reward.md)
-2. 穿山甲原生广告设置类型的Api变为：CsjProvider.Native.nativeAdType = xxxxxx。不建议继续使用：AdHelperNativePro.csjNativeAdType = xxxxxx
+3.1.7（2020.09.10）
+1. 开屏广告：广点通和穿山甲支持自定义超时时间，另外穿山甲还支持设置图片尺寸避免变形 [详情查看文档](doc/splash.md)
+2. 原生自渲染：广点通支持自定义一些参数  [详情查看文档](doc/native.md)
+3. Banner横幅广告：穿山甲支持设置刷新时间、图片尺寸 [详情查看文档](doc/banner.md)
+4. Inter插屏广告：穿山甲支持设置图片尺寸 [详情查看文档](doc/inter.md)
 
 [点击查看更多日志](doc/update_log.md)
 

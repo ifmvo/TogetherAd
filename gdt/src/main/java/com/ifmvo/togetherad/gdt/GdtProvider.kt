@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.gdt
 
 import android.app.Activity
 import android.view.ViewGroup
+import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.helper.AdHelperSplash
 import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
@@ -9,6 +10,8 @@ import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.qq.e.ads.banner2.UnifiedBannerADListener
 import com.qq.e.ads.banner2.UnifiedBannerView
+import com.qq.e.ads.cfg.BrowserType
+import com.qq.e.ads.cfg.DownAPPConfirmPolicy
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.interstitial2.UnifiedInterstitialAD
 import com.qq.e.ads.interstitial2.UnifiedInterstitialADListener
@@ -33,11 +36,28 @@ class GdtProvider : BaseAdProvider() {
 
     private val TAG = "GdtProvider"
 
+    /**
+     * --------------------------- 开屏 ---------------------------
+     */
+    object Splash {
+
+        /**
+         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+         * 取值范围为[3000, 5000]ms。
+         * 如果需要使用默认值，可以给 fetchDelay 设为0。
+         */
+        var maxFetchDelay = 0
+
+        //自定义按钮
+        var customSkipView: BaseSplashSkipView? = null
+
+    }
+
     override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
         callbackSplashStartRequest(adProviderType, listener)
 
-        val customSkipView = AdHelperSplash.customSkipView
+        val customSkipView = Splash.customSkipView ?: AdHelperSplash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
         val splash = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
@@ -82,7 +102,7 @@ class GdtProvider : BaseAdProvider() {
             override fun onADLoaded(expireTimestamp: Long) {
                 callbackSplashLoaded(adProviderType, listener)
             }
-        }, 0)
+        }, Splash.maxFetchDelay)
         /**
          * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
          * 取值范围为[3000, 5000]ms。
@@ -91,6 +111,9 @@ class GdtProvider : BaseAdProvider() {
         splash.fetchAndShowIn(container)
     }
 
+    /**
+     * --------------------------- Banner横幅 ---------------------------
+     */
     private var banner: UnifiedBannerView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
         callbackBannerStartRequest(adProviderType, listener)
@@ -138,6 +161,9 @@ class GdtProvider : BaseAdProvider() {
         banner = null
     }
 
+    /**
+     * --------------------------- Inter插屏 ---------------------------
+     */
     private var interAd: UnifiedInterstitialAD? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
@@ -191,6 +217,31 @@ class GdtProvider : BaseAdProvider() {
         interAd = null
     }
 
+    /**
+     * --------------------------- 原生自渲染 ---------------------------
+     */
+    object Native {
+        //设置返回视频广告的最大视频时长（闭区间，可单独设置），单位:秒，合法输入为：5<=maxVideoDuration<=60. 此设置会影响广告填充，请谨慎设置
+        var maxVideoDuration = 60
+
+        //设置返回视频广告的最小视频时长（闭区间，可单独设置），单位:秒 此设置会影响广告填充，请谨慎设置
+        var minVideoDuration = 5
+
+        //指定普链广告点击后用于展示落地页的浏览器类型，可选项包括：InnerBrowser（APP 内置浏览器），Sys（系统浏览器），Default（默认，SDK 按照默认逻辑选择)
+        var browserType: BrowserType = BrowserType.Default
+
+        //指定点击 APP 广告后是否展示二次确认，可选项包括 Default（wifi 不展示，非 wifi 展示），NoConfirm（所有情况不展示）
+        var downAPPConfirmPolicy: DownAPPConfirmPolicy = DownAPPConfirmPolicy.Default
+
+        //测试性接口，不保证有效。传入 app 内类目信息
+        var categories: List<String>? = null
+
+        //设置本次拉取的视频广告，从用户角度看到的视频播放策略；
+        // 可选项包括自VideoOption.VideoPlayPolicy.AUTO(在用户看来，视频广告是自动播放的)和VideoOption.VideoPlayPolicy.MANUAL(在用户看来，视频广告是手动播放的)；
+        // 如果广告位支持视频，强烈建议调用此接口设置视频广告的播放策略，有助于提高eCPM值；如果广告位不支持视频，忽略本接口
+        var videoPlayPolicy: Int = VideoOption.VideoPlayPolicy.AUTO
+    }
+
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
         callbackFlowStartRequest(adProviderType, listener)
@@ -212,10 +263,12 @@ class GdtProvider : BaseAdProvider() {
         }
 
         val mAdManager = NativeUnifiedAD(activity, TogetherAdGdt.idMapGDT[alias], nativeADUnifiedListener)
-        //有效值就是 5-60
-        mAdManager.setMaxVideoDuration(60)
-        mAdManager.setMinVideoDuration(5)
-        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO)//本次拉回的视频广告，在用户看来是否为自动播放的
+        mAdManager.setBrowserType(Native.browserType)
+        mAdManager.setDownAPPConfirmPolicy(Native.downAPPConfirmPolicy)
+        Native.categories?.let { mAdManager.setCategories(it) }
+        mAdManager.setMaxVideoDuration(Native.maxVideoDuration)//有效值就是 5-60
+        mAdManager.setMinVideoDuration(Native.minVideoDuration)
+        mAdManager.setVideoPlayPolicy(Native.videoPlayPolicy)//本次拉回的视频广告，在用户看来是否为自动播放的
         mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK)//视频播放前，用户看到的广告容器是由SDK渲染的
         mAdManager.loadData(maxCount)
     }
@@ -244,6 +297,9 @@ class GdtProvider : BaseAdProvider() {
         adObject.destroy()
     }
 
+    /**
+     * --------------------------- 激励 ---------------------------
+     */
     private var rewardVideoAD: RewardVideoAD? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 

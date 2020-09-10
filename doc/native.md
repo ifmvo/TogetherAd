@@ -36,7 +36,7 @@ class NativeSimpleActivity : AppCompatActivity() {
  */
 private fun requestAd() {
     //--------------------------------------------------------------------------------------
-    //  如果需要使用穿山甲的原生广告，必须在请求之前设置类型。（ 没用到穿山甲的请忽略 ）
+    //  （ 必须设置 ）如果需要使用穿山甲的原生广告，必须在请求之前设置类型。（ 没用到穿山甲的请忽略 ）
     //  设置方式：CsjProvider.Native.nativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
     //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
     //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_INTERACTION_AD
@@ -48,6 +48,31 @@ private fun requestAd() {
     //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_SPLASH
     //--------------------------------------------------------------------------------------
     CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
+
+    //设置 穿山甲 图片可接受的尺寸 ( 建议设置，默认是 1080，607.5 )
+    //CsjProvider.Native.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsWidth(this) * 9 / 16)
+
+    //指定普链广告点击后用于展示落地页的浏览器类型，可选项包括：InnerBrowser（APP 内置浏览器），Sys（系统浏览器），Default（默认，SDK 按照默认逻辑选择)
+    // ( 非必须设置，默认是：BrowserType.Default )
+    //GdtProvider.Native.browserType = BrowserType.Default
+
+    //指定点击 APP 广告后是否展示二次确认，可选项包括 Default（wifi 不展示，非 wifi 展示），NoConfirm（所有情况不展示）
+    // ( 非必须设置，默认是：DownAPPConfirmPolicy.Default )
+    //GdtProvider.Native.downAPPConfirmPolicy = DownAPPConfirmPolicy.Default
+
+    //设置返回视频广告的最大视频时长（闭区间，可单独设置），单位:秒，合法输入为：5<=maxVideoDuration<=60. 此设置会影响广告填充，请谨慎设置
+    // ( 非必须设置，默认是：60 )
+    //GdtProvider.Native.maxVideoDuration = 60
+
+    //设置返回视频广告的最小视频时长（闭区间，可单独设置），单位:秒 此设置会影响广告填充，请谨慎设置
+    // ( 非必须设置，默认是：5 )
+    //GdtProvider.Native.minVideoDuration = 5
+
+    //设置本次拉取的视频广告，从用户角度看到的视频播放策略；
+    // 可选项包括自VideoOption.VideoPlayPolicy.AUTO(在用户看来，视频广告是自动播放的)和VideoOption.VideoPlayPolicy.MANUAL(在用户看来，视频广告是手动播放的)；
+    // 如果广告位支持视频，强烈建议调用此接口设置视频广告的播放策略，有助于提高eCPM值；如果广告位不支持视频，忽略本接口
+    // ( 默认是：VideoOption.VideoPlayPolicy.AUTO )
+    //GdtProvider.Native.videoPlayPolicy = VideoOption.VideoPlayPolicy.AUTO
 
     adHelperNative?.getList(listener = object : NativeListener {
         override fun onAdStartRequest(providerType: String) {
@@ -107,6 +132,6 @@ override fun onDestroy() {
 }
 ```
 
-可查看 Demo 中 [原生自渲染广告的简单用法示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeSimpleActivity.kt)
+详情可查看 Demo 中 [原生自渲染广告的简单用法示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeSimpleActivity.kt)
 
-可查看 Demo 中 [原生自渲染广告在RecyclerView中使用示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeRecyclerViewFragment.kt)
+详情可查看 Demo 中 [原生自渲染广告在RecyclerView中使用示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeRecyclerViewFragment.kt)

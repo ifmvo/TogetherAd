@@ -41,10 +41,16 @@ class BannerActivity : AppCompatActivity() {
         adContainer.removeAllViews()
 
         val radioMapBanner = mapOf(
-            AdProviderType.GDT.type to 1,
-            AdProviderType.CSJ.type to 1,
-            AdProviderType.BAIDU.type to 1
+                AdProviderType.GDT.type to 1,
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.BAIDU.type to 1
         )
+
+        //设置 穿山甲 Banner 刷新间隔时间ms，可以不设置，默认为 30 * 1000 ms
+        //CsjProvider.Banner.slideIntervalTime = 30 * 1000
+
+        //设置 穿山甲 Banner 设置可接受图片尺寸,可以不设置，默认为 600 257
+        //CsjProvider.Banner.setImageAcceptedSize(600, 257)
 
         AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, radioMap = radioMapBanner, listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {
