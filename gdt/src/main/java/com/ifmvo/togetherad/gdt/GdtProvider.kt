@@ -63,10 +63,12 @@ class GdtProvider : BaseAdProvider() {
         val splash = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
+                Splash.customSkipView = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
+                Splash.customSkipView = null
                 callbackSplashFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
             }
 

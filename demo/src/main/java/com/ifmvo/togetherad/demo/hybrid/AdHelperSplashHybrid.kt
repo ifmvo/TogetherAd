@@ -15,7 +15,6 @@ import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
-import com.ifmvo.togetherad.gdt.GdtProvider
 import org.jetbrains.annotations.NotNull
 
 /**
