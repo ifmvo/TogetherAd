@@ -1,6 +1,9 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.Application
+import com.bytedance.sdk.adnet.face.IHttpStack
+import com.bytedance.sdk.openadsdk.TTAdConstant
+import com.bytedance.sdk.openadsdk.TTCustomController
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -18,22 +21,33 @@ class App : Application() {
          * 自定义穿山甲的初始化配置
          * 可自行选择自定义穿山甲的配置，不配置就会使用穿山甲的默认值
          */
-//        //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
+//        // 可选参数，需在初始化之前，使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
 //        TogetherAdCsj.useTextureView = false
-//        //标题栏的主题色
+//        // 可选参数，需在初始化之前，标题栏的主题色
 //        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
-//        //是否允许sdk展示通知栏提示
+//        // 可选参数，需在初始化之前，是否允许sdk展示通知栏提示
 //        TogetherAdCsj.allowShowNotify = true
-//        //是否在锁屏场景支持展示广告落地页
+//        // 可选参数，需在初始化之前，是否在锁屏场景支持展示广告落地页
 //        TogetherAdCsj.allowShowPageWhenScreenLock = true
-//        //测试阶段打开，可以通过日志排查问题，上线时去除该调用
+//        // 可选参数，需在初始化之前，测试阶段打开，可以通过日志排查问题，上线时去除该调用
 //        TogetherAdCsj.debug = true
-//        //允许直接下载的网络状态集合
+//        // 可选参数，需在初始化之前，允许直接下载的网络状态集合
 //        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_3G
-//        //是否支持多进程，true支持
+//        // 可选参数，需在初始化之前，是否支持多进程，true支持
 //        TogetherAdCsj.supportMultiProcess = false
-//        //自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
-//        TogetherAdCsj.httpStack = MyOkStack()
+//        // 可选参数，需在初始化之前，自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
+//        TogetherAdCsj.httpStack = object : IHttpStack {}
+//        // 可选参数，需在初始化之前，设置是否为计费用户：true计费用户、false非计费用户。默认为false非计费用户。须征得用户同意才可传入该参数
+//        TogetherAdCsj.isPaid = false
+//        // 可选参数，需在初始化之前，是否一步初始化
+//        TogetherAdCsj.isAsyncInit = false
+//        // 可选参数，需在初始化之前，设置用户画像的关键词列表 **不能超过为1000个字符**。须征得用户同意才可传入该参数
+//        TogetherAdCsj.keywords = ""
+//        // 可选参数，需在初始化之前，设置额外的用户信息 **不能超过为1000个字符**
+//        TogetherAdCsj.data = ""
+//        //可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
+//        TogetherAdCsj.customController = object : TTCustomController() {}
+
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通

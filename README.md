@@ -65,6 +65,7 @@ dependencies {
 2. 原生自渲染：广点通支持自定义一些参数  [详情查看文档](doc/native.md)
 3. Banner横幅广告：穿山甲支持设置刷新时间、图片尺寸 [详情查看文档](doc/banner.md)
 4. Inter插屏广告：穿山甲支持设置图片尺寸 [详情查看文档](doc/inter.md)
+5. 初始化：穿山甲新增初始化参数 [详情查看文档](doc/prepare.md)
 
 [点击查看更多日志](doc/update_log.md)
 
