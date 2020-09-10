@@ -54,6 +54,7 @@ object AdHelperSplashHybrid : BaseHelper() {
             return
         }
 
+        //可以在这里修改，哪种平台使用开屏，哪种平台使用原生
         when (adProviderType) {
             AdProviderType.CSJ.type, AdProviderType.GDT.type -> {
                 showNative(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
