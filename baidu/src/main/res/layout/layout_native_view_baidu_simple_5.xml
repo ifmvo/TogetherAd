@@ -36,39 +36,29 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#50000000"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/native_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="3dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="3dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                tools:text="adfadfadadfadfsfadsf" />
+
+        </LinearLayout>
+
     </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/native_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            tools:text="adfadfasdfadsfadsfasdfkadf" />
-
-        <TextView
-            android:id="@+id/native_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="12sp"
-            tools:text="adfadfadadfadfsfadsf" />
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -57,6 +57,7 @@ class App : Application() {
 
         /**
          * 配置所有广告位ID
+         * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
         TogetherAdCsj.idMapCsj = mapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",

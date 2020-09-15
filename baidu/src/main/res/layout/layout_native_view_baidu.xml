@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/native_outer_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/native_icon_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#FFFFFF"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/native_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="74dp"
+        android:ellipsize="end"
+        android:hint="标题"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/native_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/native_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:hint="内容描述"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+
+    <ImageView
+        android:id="@+id/native_main_image"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/native_icon_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/native_brand_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/native_main_image"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="4dp"
+        android:hint="广告的品牌名称"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/native_baidulogo"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_below="@id/native_main_image"
+        android:layout_marginTop="4dp"
+        android:layout_toLeftOf="@id/native_adlogo"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/native_adlogo"
+        android:layout_width="25dp"
+        android:layout_height="13dp"
+        android:layout_below="@id/native_main_image"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="4dp" />
+
+</RelativeLayout>

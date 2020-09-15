@@ -10,4 +10,6 @@
 
 
     <string name="dislike">不喜欢</string>
+
+    <string name="no_init">未初始化，请根据文档进行初始化：https://github.com/ifmvo/TogetherAd/blob/master/doc/prepare.md</string>
 </resources>

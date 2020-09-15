@@ -44,8 +44,8 @@ class NativeSimpleActivity : AppCompatActivity() {
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapNativeSimple = mapOf(
-                AdProviderType.GDT.type to 1,
-                AdProviderType.CSJ.type to 1,
+                AdProviderType.GDT.type to 0,
+                AdProviderType.CSJ.type to 0,
                 AdProviderType.BAIDU.type to 1
         )
 
@@ -62,6 +62,12 @@ class NativeSimpleActivity : AppCompatActivity() {
 
         btnShow2.setOnClickListener {
             showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple2())
+        }
+
+        btnShow4.setOnClickListener {
+            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple4 {
+
+            })
         }
     }
 

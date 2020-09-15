@@ -1,12 +1,14 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
+import com.ifmvo.togetherad.core.R
 import org.jetbrains.annotations.NotNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.InterListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.loge
 import java.lang.ref.WeakReference
 
 /**
@@ -56,6 +58,7 @@ class AdHelperInter(
         adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
+            "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
             reload(filterType(radioMap, adProviderType))
             return
         }

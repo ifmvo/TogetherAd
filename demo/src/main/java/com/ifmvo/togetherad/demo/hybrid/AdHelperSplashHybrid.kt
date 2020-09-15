@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.demo.hybrid
 import android.app.Activity
 import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.AdSlot
+import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
@@ -12,6 +13,7 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
@@ -48,6 +50,7 @@ object AdHelperSplashHybrid : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
+            "$adProviderType ${activity.getString(R.string.no_init)}".loge()
             val newRadioMap = filterType(currentRadioMap, adProviderType)
             show(activity, alias, newRadioMap, container, listener)
             return

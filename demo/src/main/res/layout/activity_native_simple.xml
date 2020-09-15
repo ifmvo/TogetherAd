@@ -52,6 +52,13 @@
             android:layout_weight="1"
             android:text="展示样式2" />
 
+        <Button
+            android:id="@+id/btnShow4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="展示样式4" />
+
     </LinearLayout>
 
 </LinearLayout>

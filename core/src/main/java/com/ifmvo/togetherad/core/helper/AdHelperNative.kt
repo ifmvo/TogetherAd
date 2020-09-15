@@ -3,12 +3,14 @@ package com.ifmvo.togetherad.core.helper
 import android.app.Activity
 import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
+import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.loge
 import org.jetbrains.annotations.Nullable
 
 /**
@@ -40,6 +42,7 @@ object AdHelperNative : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
+            "$adProviderType ${activity.getString(R.string.no_init)}".loge()
             val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
             getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
             return

@@ -3,11 +3,13 @@ package com.ifmvo.togetherad.core.helper
 import android.app.Activity
 import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
+import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.loge
 
 /**
  * 开屏广告
@@ -47,6 +49,7 @@ object AdHelperSplash : BaseHelper() {
         val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
+            "$adProviderType ${activity.getString(R.string.no_init)}".loge()
             val newRadioMap = filterType(currentRadioMap, adProviderType)
             realShow(activity, alias, newRadioMap, container, listener)
             return
