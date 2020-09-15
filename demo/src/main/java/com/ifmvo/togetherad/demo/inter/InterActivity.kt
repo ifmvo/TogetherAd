@@ -88,6 +88,11 @@ class InterActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        adHelperInter?.destroy()
+    }
+
     private var logStr = "日志: \n"
 
     private fun addLog(content: String?) {

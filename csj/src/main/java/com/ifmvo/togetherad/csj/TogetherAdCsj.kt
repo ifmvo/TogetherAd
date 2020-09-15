@@ -30,6 +30,7 @@ object TogetherAdCsj {
     var allowShowNotify: Boolean = true
 
     // 可选参数，需在初始化之前，设置是否允许落地页出现在锁屏上面：true允许、false禁止。默认为false禁止
+    @Deprecated(message = "被穿山甲Deprecated了")
     var allowShowPageWhenScreenLock = true
 
     // 可选参数，需在初始化之前，是否打开debug调试信息输出：true打开、false关闭。默认false关闭

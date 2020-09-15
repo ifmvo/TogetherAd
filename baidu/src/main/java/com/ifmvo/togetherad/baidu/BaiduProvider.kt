@@ -33,18 +33,26 @@ class BaiduProvider : BaseAdProvider() {
 
         SplashAd(activity, container, object : SplashAdListener {
             override fun onAdPresent() {
+                "onADLoaded".logd(TAG)
                 callbackSplashLoaded(adProviderType, listener)
             }
 
             override fun onAdDismissed() {
+                "onADLoaded".logd(TAG)
                 callbackSplashDismiss(adProviderType, listener)
             }
 
+            override fun onADLoaded() {
+                "onADLoaded".logd(TAG)
+            }
+
             override fun onAdFailed(s: String) {
+                "onADLoaded".logd(TAG)
                 callbackSplashFailed(adProviderType, listener, "错误信息：$s")
             }
 
             override fun onAdClick() {
+                "onADLoaded".logd(TAG)
                 callbackSplashClicked(adProviderType, listener)
             }
 

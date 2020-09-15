@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.1.7-3.1.1.1'
+    implementation 'com.matthewchen.togetherad:csj:3.1.8-3.2.5.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.1.7-4.211.1081'
+    implementation 'com.matthewchen.togetherad:gdt:3.1.8-4.270.1140'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.1.7-5.85'
+    implementation 'com.matthewchen.togetherad:baidu:3.1.8-5.91'
     
 }
 ```
@@ -60,12 +60,8 @@ dependencies {
 
 ## 更新日志
 
-3.1.7（2020.09.10）
-1. 开屏广告：广点通和穿山甲支持自定义超时时间，另外穿山甲还支持设置图片尺寸避免变形 [详情查看文档](doc/splash.md)
-2. 原生自渲染：广点通支持自定义一些参数  [详情查看文档](doc/native.md)
-3. Banner横幅广告：穿山甲支持设置刷新时间、图片尺寸 [详情查看文档](doc/banner.md)
-4. Inter插屏广告：穿山甲支持设置图片尺寸 [详情查看文档](doc/inter.md)
-5. 初始化：穿山甲新增初始化参数 [详情查看文档](doc/prepare.md)
+3.1.8 (2020.09.15)
+1. 更新SDK版本：穿山甲v3.2.5.1；广点通v4.270.1140；百青藤v5.91
 
 [点击查看更多日志](doc/update_log.md)
 
@@ -105,7 +101,7 @@ dependencies {
 
 - [穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
 
-- [百青藤v5.85接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.85.pdf)
+- [百青藤v5.88接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.88.pdf)
 
 ## 致谢
 

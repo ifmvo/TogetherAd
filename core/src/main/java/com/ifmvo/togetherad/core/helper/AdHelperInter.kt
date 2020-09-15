@@ -99,4 +99,9 @@ class AdHelperInter(
     fun show() {
         mActivity.get()?.let { adProvider?.showInterAd(it) }
     }
+
+    fun destroy() {
+        adProvider?.destroyInterAd()
+        adProvider = null
+    }
 }
