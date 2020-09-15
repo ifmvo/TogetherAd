@@ -1,9 +1,6 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.Application
-import com.bytedance.sdk.adnet.face.IHttpStack
-import com.bytedance.sdk.openadsdk.TTAdConstant
-import com.bytedance.sdk.openadsdk.TTCustomController
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -27,8 +24,6 @@ class App : Application() {
 //        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
 //        // 可选参数，需在初始化之前，是否允许sdk展示通知栏提示
 //        TogetherAdCsj.allowShowNotify = true
-//        // 可选参数，需在初始化之前，是否在锁屏场景支持展示广告落地页
-//        TogetherAdCsj.allowShowPageWhenScreenLock = true
 //        // 可选参数，需在初始化之前，测试阶段打开，可以通过日志排查问题，上线时去除该调用
 //        TogetherAdCsj.debug = true
 //        // 可选参数，需在初始化之前，允许直接下载的网络状态集合
@@ -36,7 +31,7 @@ class App : Application() {
 //        // 可选参数，需在初始化之前，是否支持多进程，true支持
 //        TogetherAdCsj.supportMultiProcess = false
 //        // 可选参数，需在初始化之前，自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
-//        TogetherAdCsj.httpStack = object : IHttpStack {}
+//        TogetherAdCsj.httpStack = object : IHttpStack {  }
 //        // 可选参数，需在初始化之前，设置是否为计费用户：true计费用户、false非计费用户。默认为false非计费用户。须征得用户同意才可传入该参数
 //        TogetherAdCsj.isPaid = false
 //        // 可选参数，需在初始化之前，是否一步初始化
