@@ -17,35 +17,35 @@ abstract class BaseNativeViewBaidu : BaseNativeView() {
 
     internal var rootView: View? = null
 
-    open fun getLayoutRes(): Int {
+    internal open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_baidu
     }
 
-    open fun getMainImageView(): ImageView? {
+    internal open fun getMainImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_main_image)
     }
 
-    open fun getIconImageView(): ImageView? {
+    internal open fun getIconImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_icon_image)
     }
 
-    open fun getBaiduLogoImageView(): ImageView? {
+    internal open fun getBaiduLogoImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_baidulogo)
     }
 
-    open fun getAdLogoImageView(): ImageView? {
+    internal open fun getAdLogoImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_adlogo)
     }
 
-    open fun getTitleTextView(): TextView? {
+    internal open fun getTitleTextView(): TextView? {
         return rootView?.findViewById(R.id.native_title)
     }
 
-    open fun getDescTextView(): TextView? {
+    internal open fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.native_text)
     }
 
-    open fun getBrandNameTextView(): TextView? {
+    internal open fun getBrandNameTextView(): TextView? {
         return rootView?.findViewById(R.id.native_brand_name)
     }
 

@@ -113,7 +113,6 @@ class CsjProvider : BaseAdProvider() {
         var slideIntervalTime = 30 * 1000
     }
 
-    private var mTTAd: TTNativeExpressAd? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
 
         callbackBannerStartRequest(adProviderType, listener)
@@ -174,7 +173,7 @@ class CsjProvider : BaseAdProvider() {
     }
 
     override fun destroyBannerAd() {
-        mTTAd?.destroy()
+
     }
 
     /**
