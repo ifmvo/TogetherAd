@@ -18,63 +18,63 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
  */
 abstract class BaseNativeViewCsj : BaseNativeView() {
 
-    internal var rootView: View? = null
+    var rootView: View? = null
 
-    internal open fun getLayoutRes(): Int {
+    open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_csj
     }
 
     //广告Logo
-    internal open fun getAdLogoImageView(): ImageView? {
+    open fun getAdLogoImageView(): ImageView? {
         return rootView?.findViewById(R.id.csj_ad_logo)
     }
 
     //标题文字
-    internal open fun getTitleTextView(): TextView? {
+    open fun getTitleTextView(): TextView? {
         return rootView?.findViewById(R.id.csj_tv_title)
     }
 
     //描述文字
-    internal open fun getDescTextView(): TextView? {
+    open fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.csj_tv_desc)
     }
 
     //描述文字
-    internal open fun getSourceTextView(): TextView? {
+    open fun getSourceTextView(): TextView? {
         return rootView?.findViewById(R.id.csj_tv_source)
     }
 
     //icon 图
-    internal open fun getIconImageView(): ImageView? {
+    open fun getIconImageView(): ImageView? {
         return rootView?.findViewById(R.id.csj_img_logo)
     }
 
     //主图1
-    internal open fun getMainImageView_1(): ImageView? {
+    open fun getMainImageView_1(): ImageView? {
         return rootView?.findViewById(R.id.csj_img_poster1)
     }
 
     //主图2
-    internal open fun getMainImageView_2(): ImageView? {
+    open fun getMainImageView_2(): ImageView? {
         return rootView?.findViewById(R.id.csj_img_poster2)
     }
 
     //主图3
-    internal open fun getMainImageView_3(): ImageView? {
+    open fun getMainImageView_3(): ImageView? {
         return rootView?.findViewById(R.id.csj_img_poster2)
     }
 
     //视频容器
-    internal open fun getVideoContainer(): ViewGroup? {
+    open fun getVideoContainer(): ViewGroup? {
         return rootView?.findViewById(R.id.csj_video_container)
     }
 
     //图片容器
-    internal open fun getImageContainer(): ViewGroup? {
+    open fun getImageContainer(): ViewGroup? {
         return rootView?.findViewById(R.id.csj_img_container)
     }
 
-    internal open fun getActionButton(): Button? {
+    open fun getActionButton(): Button? {
         return rootView?.findViewById(R.id.csj_btn_action)
     }
 
@@ -208,7 +208,7 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
     /**
      * 根据广告的状态返回按钮应该展示的文字
      */
-    internal open fun getActionBtnText(ad: TTNativeAd): String {
+    open fun getActionBtnText(ad: TTNativeAd): String {
         return when (ad.interactionType) {
             TTAdConstant.INTERACTION_TYPE_DOWNLOAD -> {
                 "下载"

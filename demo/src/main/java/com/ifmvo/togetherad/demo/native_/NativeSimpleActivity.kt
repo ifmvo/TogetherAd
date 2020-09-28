@@ -44,9 +44,9 @@ class NativeSimpleActivity : AppCompatActivity() {
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val radioMapNativeSimple = mapOf(
-                AdProviderType.GDT.type to 0,
+                AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
-                AdProviderType.BAIDU.type to 0
+                AdProviderType.BAIDU.type to 1
         )
 
         //初始化  maxCount: 返回广告的最大个数 （ 由于各个广告提供商返回的广告数量不等，所以只能控制返回广告的最大数量。例：maxCount = 4，返回的 1 ≤ List.size ≤ 4 ）

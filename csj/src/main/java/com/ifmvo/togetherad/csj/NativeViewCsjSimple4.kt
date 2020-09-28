@@ -1,20 +1,11 @@
 package com.ifmvo.togetherad.csj
 
 import android.os.CountDownTimer
-import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import com.bytedance.sdk.openadsdk.TTAdConstant
-import com.bytedance.sdk.openadsdk.TTNativeAd
-import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
-import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple3
 import com.ifmvo.togetherad.core.listener.NativeViewListener
-import com.ifmvo.togetherad.core.utils.ScreenUtil
 import kotlin.math.roundToInt
 
 /**
@@ -56,11 +47,16 @@ class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNati
         return rootView?.findViewById(R.id.tv_desc)
     }
 
-    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
+    override fun showNative(
+        adProviderType: String,
+        adObject: Any,
+        container: ViewGroup,
+        listener: NativeViewListener?
+    ) {
         super.showNative(adProviderType, adObject, container, listener)
 
         //添加跳过按钮
-        val customSkipView = SplashSkipViewSimple2()
+        val customSkipView = SplashSkipViewSimple3()
         val skipView = customSkipView.onCreateSkipView(container.context)
         skipView.run {
             container.addView(this, customSkipView.getLayoutParams())

@@ -54,63 +54,63 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
     //设置视频详情页是否静音播放，默认值为false，即有声播放；模板渲染视频、插屏2.0视频、自渲染2.0视频都可使用
     var detailPageMuted = false
 
-    internal var rootView: View? = null
+    var rootView: View? = null
 
-    internal open fun getLayoutRes(): Int {
+    open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_gdt
     }
 
-    internal open fun getNativeAdContainer(): NativeAdContainer? {
+    open fun getNativeAdContainer(): NativeAdContainer? {
         return rootView?.findViewById(R.id.native_ad_container)
     }
 
     //icon 图
-    internal open fun getIconImageView(): ImageView? {
+    open fun getIconImageView(): ImageView? {
         return rootView?.findViewById(R.id.img_logo)
     }
 
     //action 按钮（ 下载、浏览、打电话。。。 ）
-    internal open fun getActionButton(): Button? {
+    open fun getActionButton(): Button? {
         return rootView?.findViewById(R.id.btn_download)
     }
 
     //标题文字
-    internal open fun getTitleTextView(): TextView? {
+    open fun getTitleTextView(): TextView? {
         return rootView?.findViewById(R.id.text_title)
     }
 
     //描述文字
-    internal open fun getDescTextView(): TextView? {
+    open fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.text_desc)
     }
 
     //视频控件
-    internal open fun getMediaView(): MediaView? {
+    open fun getMediaView(): MediaView? {
         return rootView?.findViewById(R.id.gdt_media_view)
     }
 
     //主图
-    internal open fun getMainImageView(): ImageView? {
+    open fun getMainImageView(): ImageView? {
         return rootView?.findViewById(R.id.img_poster)
     }
 
     //视频是否静音按钮
-    internal open fun getMuteCheckBox(): CheckBox? {
+    open fun getMuteCheckBox(): CheckBox? {
         return rootView?.findViewById(R.id.btn_mute)
     }
 
     //视频播放按钮
-    internal open fun getPlayButton(): Button? {
+    open fun getPlayButton(): Button? {
         return rootView?.findViewById(R.id.btn_play)
     }
 
     //视频暂停按钮
-    internal open fun getPauseButton(): Button? {
+    open fun getPauseButton(): Button? {
         return rootView?.findViewById(R.id.btn_pause)
     }
 
     //视频停止按钮
-    internal open fun getStopButton(): Button? {
+    open fun getStopButton(): Button? {
         return rootView?.findViewById(R.id.btn_stop)
     }
 
@@ -230,7 +230,7 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
     /**
      * 根据广告的状态返回按钮应该展示的文字
      */
-    internal open fun getActionBtnText(ad: NativeUnifiedADData): String {
+    open fun getActionBtnText(ad: NativeUnifiedADData): String {
         if (!ad.isAppAd) {
             return "浏览"
         }

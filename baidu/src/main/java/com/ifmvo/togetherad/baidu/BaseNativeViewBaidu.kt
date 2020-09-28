@@ -15,37 +15,37 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
  */
 abstract class BaseNativeViewBaidu : BaseNativeView() {
 
-    internal var rootView: View? = null
+    var rootView: View? = null
 
-    internal open fun getLayoutRes(): Int {
+    open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_baidu
     }
 
-    internal open fun getMainImageView(): ImageView? {
+    open fun getMainImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_main_image)
     }
 
-    internal open fun getIconImageView(): ImageView? {
+    open fun getIconImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_icon_image)
     }
 
-    internal open fun getBaiduLogoImageView(): ImageView? {
+    open fun getBaiduLogoImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_baidulogo)
     }
 
-    internal open fun getAdLogoImageView(): ImageView? {
+    open fun getAdLogoImageView(): ImageView? {
         return rootView?.findViewById(R.id.native_adlogo)
     }
 
-    internal open fun getTitleTextView(): TextView? {
+    open fun getTitleTextView(): TextView? {
         return rootView?.findViewById(R.id.native_title)
     }
 
-    internal open fun getDescTextView(): TextView? {
+    open fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.native_text)
     }
 
-    internal open fun getBrandNameTextView(): TextView? {
+    open fun getBrandNameTextView(): TextView? {
         return rootView?.findViewById(R.id.native_brand_name)
     }
 
