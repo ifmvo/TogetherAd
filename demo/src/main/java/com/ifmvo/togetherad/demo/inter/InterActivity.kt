@@ -34,12 +34,12 @@ class InterActivity : AppCompatActivity() {
         //CsjProvider.Inter.setImageAcceptedSize(600, 600)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val radioMapInter = mapOf(
+        val ratioMapInter = mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
-        adHelperInter = AdHelperInter(activity = this, alias = TogetherAdAlias.AD_INTER, radioMap = radioMapInter, listener = object : InterListener {
+        adHelperInter = AdHelperInter(activity = this, alias = TogetherAdAlias.AD_INTER, ratioMap = ratioMapInter, listener = object : InterListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开始请求了，$providerType")

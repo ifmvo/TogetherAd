@@ -15,22 +15,22 @@ import org.jetbrains.annotations.NotNull
 object AdRandomUtil {
 
     /**
-     * radioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
+     * ratioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
      */
-    fun getRandomAdProvider(@NotNull radioMap: Map<String, Int>): String? {
+    fun getRandomAdProvider(@NotNull ratioMap: Map<String, Int>): String? {
 
-        val radio = StringBuilder()
+        val ratio = StringBuilder()
         val list = mutableListOf<String>()
 
-        radioMap.entries.forEach { entry ->
-            radio.append("${entry.key}:${entry.value}")
-            radio.append(",")
+        ratioMap.entries.forEach { entry ->
+            ratio.append("${entry.key}:${entry.value}")
+            ratio.append(",")
             repeat(entry.value) {
                 list.add(entry.key)
             }
         }
 
-        "提供商比例：$radio".logi()
+        "提供商比例：$ratio".logi()
 
         //没有匹配的
         if (list.isEmpty()) return null
@@ -41,14 +41,14 @@ object AdRandomUtil {
     }
 
     /**
-     * radio : "baidu:3,gdt:7,csj:7"
+     * ratio : "baidu:3,gdt:7,csj:7"
      * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
      */
-    fun getRandomAdProvider(@NotNull radio: String): String? {
-        "广告提供商的比例：$radio".logi()
+    fun getRandomAdProvider(@NotNull ratio: String): String? {
+        "广告提供商的比例：$ratio".logi()
         val list = mutableListOf<String>()
         //{baidu:2},{gdt:8}
-        val split = radio.split(",")
+        val split = ratio.split(",")
         for (itemStr in split) {
             //不能为空
             if (itemStr.isEmpty()) break
@@ -85,11 +85,11 @@ object AdRandomUtil {
 //    var c = 0
 //    var d = 0
 //
-//    val radioMap = mapOf("a" to 1, "b" to 1, "c" to 1, "d" to 1)
+//    val ratioMap = mapOf("a" to 1, "b" to 1, "c" to 1, "d" to 1)
 //
 //    val startTime = System.currentTimeMillis()
 //    repeat(300000) {
-//        when (AdRandomUtil.getRandomAdProvider(radioMap)) {
+//        when (AdRandomUtil.getRandomAdProvider(ratioMap)) {
 //            "a" -> a++
 //            "b" -> b++
 //            "c" -> c++

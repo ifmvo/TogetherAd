@@ -16,14 +16,14 @@ class NativeSimpleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_flow_simple)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val radioMapNativeSimple = mapOf(
+        val ratioMapNativeSimple = mapOf(
                 AdProviderType.GDT.type to 3,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
 
         //初始化  maxCount: 返回广告的最大个数 （ 由于各个广告提供商返回的广告数量不等，所以只能控制返回广告的最大数量。例：maxCount = 4，返回的 1 ≤ List.size ≤ 4 ）
-        adHelperNative = AdHelperNativePro(activity = this, alias = TogetherAdAlias.AD_NATIVE_SIMPLE, maxCount = 1/*, radioMap = radioMapNativeSimple*/)
+        adHelperNative = AdHelperNativePro(activity = this, alias = TogetherAdAlias.AD_NATIVE_SIMPLE, maxCount = 1/*, ratioMap = ratioMapNativeSimple*/)
     }
 }
 ```

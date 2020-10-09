@@ -20,14 +20,14 @@ class AdHelperInter(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        radioMap: Map<String, Int>? = null,
+        ratioMap: Map<String, Int>? = null,
         listener: InterListener? = null
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRadioMap: Map<String, Int>? = radioMap
+    private var mRatioMap: Map<String, Int>? = ratioMap
     private var mListener: InterListener? = listener
     private var adProvider: BaseAdProvider? = null
 
@@ -39,15 +39,15 @@ class AdHelperInter(
     ) : this(activity, alias, null, listener)
 
     fun load() {
-        val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!
+        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(mListener)
-        reload(currentRadioMap)
+        reload(currentRatioMap)
     }
 
-    private fun reload(@NotNull radioMap: Map<String, Int>) {
+    private fun reload(@NotNull ratioMap: Map<String, Int>) {
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
@@ -59,7 +59,7 @@ class AdHelperInter(
 
         if (adProvider == null) {
             "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
-            reload(filterType(radioMap, adProviderType))
+            reload(filterType(ratioMap, adProviderType))
             return
         }
 
@@ -79,7 +79,7 @@ class AdHelperInter(
                 if (isFetchOverTime) return
 
                 mListener?.onAdFailed(providerType, failedMsg)
-                reload(filterType(radioMap, adProviderType))
+                reload(filterType(ratioMap, adProviderType))
             }
 
             override fun onAdClicked(providerType: String) {

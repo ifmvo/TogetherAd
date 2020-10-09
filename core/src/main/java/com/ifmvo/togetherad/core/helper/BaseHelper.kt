@@ -18,17 +18,17 @@ abstract class BaseHelper {
      * 将传进来的 adProviderType 权重设置为 0，其他不变
      * 如果是不允许失败切换的时候，将所有广告提供商的权重都清空
      */
-    fun filterType(@NotNull radioMap: Map<String, Int>, adProviderType: String): MutableMap<String, Int> {
-        val newRadioMap = mutableMapOf<String, Int>()
-        newRadioMap.putAll(radioMap)
-        newRadioMap[adProviderType] = 0
+    fun filterType(@NotNull ratioMap: Map<String, Int>, adProviderType: String): MutableMap<String, Int> {
+        val newRatioMap = mutableMapOf<String, Int>()
+        newRatioMap.putAll(ratioMap)
+        newRatioMap[adProviderType] = 0
 
         //不允许失败切换的时候，将所有广告提供商的权重都清空
         if (!TogetherAd.failedSwitchEnable) {
-            newRadioMap.keys.forEach { newRadioMap[it] = 0 }
+            newRatioMap.keys.forEach { newRatioMap[it] = 0 }
         }
 
-        return newRadioMap
+        return newRatioMap
     }
 
     private var mTimer: CountDownTimer? = null

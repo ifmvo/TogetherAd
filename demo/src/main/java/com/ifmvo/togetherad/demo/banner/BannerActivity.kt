@@ -40,7 +40,7 @@ class BannerActivity : AppCompatActivity() {
 
         adContainer.removeAllViews()
 
-        val radioMapBanner = mapOf(
+        val ratioMapBanner = mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
@@ -52,7 +52,7 @@ class BannerActivity : AppCompatActivity() {
         //设置 穿山甲 Banner 设置可接受图片尺寸,可以不设置，默认为 600 257
         //CsjProvider.Banner.setImageAcceptedSize(600, 257)
 
-        AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, radioMap = radioMapBanner, listener = object : BannerListener {
+        AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, ratioMap = ratioMapBanner, listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开始请求了，$providerType")

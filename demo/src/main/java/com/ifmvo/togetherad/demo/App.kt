@@ -91,7 +91,7 @@ class App : Application() {
          *
          * 也可以在请求广告前设置，实时生效
          */
-        TogetherAd.setPublicProviderRadio(mapOf(
+        TogetherAd.setPublicProviderRatio(mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.BAIDU.type to 1,
                 AdProviderType.CSJ.type to 1

@@ -14,7 +14,7 @@ object TogetherAd {
     /**
      * 自定义公共的的的广告提供商比例
      */
-    private val mRadioPublicMap = mutableMapOf<String, Int>()
+    private val mRatioPublicMap = mutableMapOf<String, Int>()
 
     /**
      * 所有注册的广告提供商
@@ -37,30 +37,30 @@ object TogetherAd {
     /**
      * 全局配置默认比例
      *
-     * radioMap:
+     * ratioMap:
      * val map = HashMap<String, Int>()
      * map.put(AdProviderType.GDT, 1)
      * map.put(AdProviderType.CSJ, 1)
      * map.put(AdProviderType.BAIDU, 2)
      */
-    fun setPublicProviderRadio(@NotNull radioMap: Map<String, Int>) {
-        val radio = StringBuilder()
-        radioMap.entries.forEach {
-            radio.append("${it.key}:${it.value}")
-            radio.append(",")
+    fun setPublicProviderRatio(@NotNull ratioMap: Map<String, Int>) {
+        val ratio = StringBuilder()
+        ratioMap.entries.forEach {
+            ratio.append("${it.key}:${it.value}")
+            ratio.append(",")
         }
-        "设置默认广告提供商比例：$radio".logi()
+        "设置默认广告提供商比例：$ratio".logi()
 
-        mRadioPublicMap.clear()
-        mRadioPublicMap.putAll(radioMap)
+        mRatioPublicMap.clear()
+        mRatioPublicMap.putAll(ratioMap)
     }
 
     /**
      * 有自定义的就用自定义的，没有自定义就每个注册的广告商等比
      */
-    fun getPublicProviderRadio(): Map<String, Int> {
-        return if (mRadioPublicMap.isNotEmpty()) {
-            mRadioPublicMap
+    fun getPublicProviderRatio(): Map<String, Int> {
+        return if (mRatioPublicMap.isNotEmpty()) {
+            mRatioPublicMap
         } else {
             val defaultMap = mutableMapOf<String, Int>()
             mProviders.entries.forEach {

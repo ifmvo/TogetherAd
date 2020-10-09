@@ -76,7 +76,7 @@ class SplashActivity : AppCompatActivity() {
         //CsjProvider.Splash.maxFetchDelay = 3000
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val radioMapSplash = mapOf(
+        val ratioMapSplash = mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1
@@ -85,11 +85,11 @@ class SplashActivity : AppCompatActivity() {
         /**
          * activity: 必传。这里不是 Context，因为广点通必须传 Activity，所以统一传 Activity。
          * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
-         * radioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRadio 设置的全局通用权重。
+         * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
          * container: 必传。请求到广告之后会自动添加到 container 这个布局中展示。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, radioMap = radioMapSplash, container = adContainer, listener = object : SplashListener {
+        AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, ratioMap = ratioMapSplash, container = adContainer, listener = object : SplashListener {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次

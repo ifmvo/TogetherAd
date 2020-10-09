@@ -51,7 +51,7 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
             ITEM_VIEW_TYPE_AD -> {
                 val adViewHolder = holder as AdViewHolder
                 adViewHolder.adContainer.removeAllViews()
-                AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple1(), object : NativeViewListener {
+                AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple5(), object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                         Toast.makeText(adViewHolder.adContainer.context, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
                     }

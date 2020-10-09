@@ -31,15 +31,15 @@ object AdHelperSplashHybrid : BaseHelper() {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         startTimer(listener)
-        realShow(activity, alias, radioMap, container, listener)
+        realShow(activity, alias, ratioMap, container, listener)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
-        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
+    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+        val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()
@@ -51,24 +51,24 @@ object AdHelperSplashHybrid : BaseHelper() {
 
         if (adProvider == null) {
             "$adProviderType ${activity.getString(R.string.no_init)}".loge()
-            val newRadioMap = filterType(currentRadioMap, adProviderType)
-            show(activity, alias, newRadioMap, container, listener)
+            val newRatioMap = filterType(currentRatioMap, adProviderType)
+            show(activity, alias, newRatioMap, container, listener)
             return
         }
 
         //可以在这里修改，哪种平台使用开屏，哪种平台使用原生
         when (adProviderType) {
             AdProviderType.CSJ.type, AdProviderType.GDT.type -> {
-                showNative(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
+                showNative(adProvider, activity, adProviderType, alias, container, listener, currentRatioMap)
             }
             AdProviderType.BAIDU.type -> {
-                showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRadioMap)
+                showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRatioMap)
             }
         }
     }
 
     private var mAdObject: Any? = null
-    private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRadioMap: Map<String, Int>) {
+    private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRatioMap: Map<String, Int>) {
         CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
         adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
@@ -101,21 +101,21 @@ object AdHelperSplashHybrid : BaseHelper() {
                 if (isFetchOverTime) return
 
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = filterType(currentRadioMap, adProviderType)
-                show(activity, alias, newRadioMap, container, listener)
+                val newRatioMap = filterType(currentRatioMap, adProviderType)
+                show(activity, alias, newRatioMap, container, listener)
             }
 
         })
     }
 
-    private fun showSplash(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRadioMap: Map<String, Int>) {
+    private fun showSplash(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRatioMap: Map<String, Int>) {
         adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = filterType(currentRadioMap, adProviderType)
-                show(activity, alias, newRadioMap, container, listener)
+                val newRatioMap = filterType(currentRatioMap, adProviderType)
+                show(activity, alias, newRatioMap, container, listener)
             }
 
             override fun onAdStartRequest(providerType: String) {

@@ -24,14 +24,14 @@ class AdHelperNativePro(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        radioMap: Map<String, Int>? = null,
+        ratioMap: Map<String, Int>? = null,
         maxCount: Int
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRadioMap: Map<String, Int>? = radioMap
+    private var mRatioMap: Map<String, Int>? = ratioMap
     private var mMaxCount: Int = maxCount
     private var adProvider: BaseAdProvider? = null
 
@@ -104,17 +104,17 @@ class AdHelperNativePro(
     ) : this(activity, alias, null, defaultMaxCount)
 
     fun getList(listener: NativeListener? = null) {
-        val currentRadioMap: Map<String, Int> = if (mRadioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else mRadioMap!!
+        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(listener)
-        getListForMap(currentRadioMap, listener)
+        getListForMap(currentRatioMap, listener)
     }
 
-    private fun getListForMap(@NotNull radioMap: Map<String, Int>, listener: NativeListener? = null) {
+    private fun getListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeListener? = null) {
 
         val currentMaxCount = if (mMaxCount <= 0) defaultMaxCount else mMaxCount
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(radioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
@@ -126,7 +126,7 @@ class AdHelperNativePro(
 
         if (adProvider == null) {
             "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
-            getListForMap(filterType(radioMap, adProviderType), listener)
+            getListForMap(filterType(ratioMap, adProviderType), listener)
             return
         }
 
@@ -146,7 +146,7 @@ class AdHelperNativePro(
                 if (isFetchOverTime) return
 
                 listener?.onAdFailed(providerType, failedMsg)
-                getListForMap(filterType(radioMap, adProviderType), listener)
+                getListForMap(filterType(ratioMap, adProviderType), listener)
             }
         })
     }

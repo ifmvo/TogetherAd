@@ -25,16 +25,16 @@ object AdHelperBanner : BaseHelper() {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
         startTimer(listener)
-        realShow(activity, alias, radioMap, container, listener)
+        realShow(activity, alias, ratioMap, container, listener)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
+    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
 
-        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
+        val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()
@@ -46,8 +46,8 @@ object AdHelperBanner : BaseHelper() {
 
         if (adProvider == null) {
             "$adProviderType ${activity.getString(R.string.no_init)}".loge()
-            val newRadioMap = filterType(currentRadioMap, adProviderType)
-            realShow(activity, alias, newRadioMap, container, listener)
+            val newRatioMap = filterType(currentRatioMap, adProviderType)
+            realShow(activity, alias, newRatioMap, container, listener)
             return
         }
 
@@ -67,8 +67,8 @@ object AdHelperBanner : BaseHelper() {
                 if (isFetchOverTime) return
 
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = filterType(currentRadioMap, adProviderType)
-                realShow(activity, alias, newRadioMap, container, listener)
+                val newRatioMap = filterType(currentRatioMap, adProviderType)
+                realShow(activity, alias, newRatioMap, container, listener)
             }
 
             override fun onAdClicked(providerType: String) {

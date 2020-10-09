@@ -24,13 +24,13 @@ import kotlinx.android.synthetic.main.activity_native_recyclerview.*
 class NativeRecyclerViewActivity : AppCompatActivity() {
 
     //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-    private val radioMapNativeRecycler = mapOf(
+    private val ratioMapNativeRecycler = mapOf(
             AdProviderType.GDT.type to 1,
             AdProviderType.CSJ.type to 1,
             AdProviderType.BAIDU.type to 1
     )
 
-    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, radioMapNativeRecycler, 3) }
+    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, ratioMapNativeRecycler, 3) }
 
     private val mAdList = mutableListOf<Any>()
 

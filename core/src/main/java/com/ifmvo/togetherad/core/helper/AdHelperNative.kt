@@ -28,11 +28,11 @@ object AdHelperNative : BaseHelper() {
         getList(activity, alias, null, maxCount, listener)
     }
 
-    fun getList(@NotNull activity: Activity, @NotNull alias: String, radioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
+    fun getList(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, maxCount: Int = defaultMaxCount, listener: NativeListener? = null) {
         val currentMaxCount = if (maxCount <= 0) defaultMaxCount else maxCount
-        val currentRadioMap = if (radioMap?.isEmpty() != false) TogetherAd.getPublicProviderRadio() else radioMap
+        val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRadioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             listener?.onAdFailedAll()
@@ -43,8 +43,8 @@ object AdHelperNative : BaseHelper() {
 
         if (adProvider == null) {
             "$adProviderType ${activity.getString(R.string.no_init)}".loge()
-            val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
-            getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
+            val newRatioMap = filterType(ratioMap = currentRatioMap, adProviderType = adProviderType)
+            getList(activity = activity, alias = alias, ratioMap = newRatioMap, maxCount = maxCount, listener = listener)
             return
         }
 
@@ -60,8 +60,8 @@ object AdHelperNative : BaseHelper() {
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 listener?.onAdFailed(providerType, failedMsg)
-                val newRadioMap = filterType(radioMap = currentRadioMap, adProviderType = adProviderType)
-                getList(activity = activity, alias = alias, radioMap = newRadioMap, maxCount = maxCount, listener = listener)
+                val newRatioMap = filterType(ratioMap = currentRatioMap, adProviderType = adProviderType)
+                getList(activity = activity, alias = alias, ratioMap = newRatioMap, maxCount = maxCount, listener = listener)
             }
         })
     }

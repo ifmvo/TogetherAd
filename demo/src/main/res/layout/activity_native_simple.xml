@@ -29,35 +29,50 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnRequest"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="请求" />
 
-        <Button
-            android:id="@+id/btnShow1"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="展示样式1" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnShow2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="展示样式2" />
+            <Button
+                android:id="@+id/btnShow1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="展示样式1" />
 
-        <Button
-            android:id="@+id/btnShow4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="展示样式4" />
+            <Button
+                android:id="@+id/btnShow2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="展示样式2" />
+
+            <Button
+                android:id="@+id/btnShow4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="展示样式4" />
+
+            <Button
+                android:id="@+id/btnShow5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="展示样式5" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
