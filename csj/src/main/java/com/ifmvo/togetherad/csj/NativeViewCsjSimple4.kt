@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple3
 import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.core.utils.ScreenUtil
 import kotlin.math.roundToInt
 
 /**
@@ -47,13 +48,11 @@ class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNati
         return rootView?.findViewById(R.id.tv_desc)
     }
 
-    override fun showNative(
-        adProviderType: String,
-        adObject: Any,
-        container: ViewGroup,
-        listener: NativeViewListener?
-    ) {
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         super.showNative(adProviderType, adObject, container, listener)
+
+        getImageContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
+        getVideoContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
 
         //添加跳过按钮
         val customSkipView = SplashSkipViewSimple3()

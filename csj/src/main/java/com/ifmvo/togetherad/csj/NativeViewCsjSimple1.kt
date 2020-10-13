@@ -3,6 +3,8 @@ package com.ifmvo.togetherad.csj
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.core.utils.ScreenUtil
 
 /**
  * Created by Matthew Chen on 2020-04-21.
@@ -39,6 +41,13 @@ class NativeViewCsjSimple1 : BaseNativeViewCsj() {
 
     override fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.tv_desc)
+    }
+
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
+        super.showNative(adProviderType, adObject, container, listener)
+
+        getImageContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
+        getVideoContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
     }
 
 }

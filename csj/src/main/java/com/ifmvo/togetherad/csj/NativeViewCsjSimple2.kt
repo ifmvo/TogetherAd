@@ -49,4 +49,11 @@ class NativeViewCsjSimple2 : BaseNativeViewCsj() {
     override fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.tv_desc)
     }
+
+    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
+        super.showNative(adProviderType, adObject, container, listener)
+
+        getImageContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16)
+        getVideoContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16)
+    }
 }
