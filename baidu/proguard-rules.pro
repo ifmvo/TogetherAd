@@ -30,3 +30,5 @@
 }
 -keep class com.baidu.mobads.** { *; }
 -keep class com.baidu.mobad.** { *; }
+
+-keep class com.ifmvo.togetherad.baidu.** { *; }
