@@ -64,7 +64,7 @@ object TogetherAd {
         } else {
             val defaultMap = mutableMapOf<String, Int>()
             mProviders.entries.forEach {
-                defaultMap[it.key] = 1 //所有注册的广告商权重都是 1
+                defaultMap[it.key] = 0 //所有注册的广告商权重都是 0
             }
             defaultMap
         }
