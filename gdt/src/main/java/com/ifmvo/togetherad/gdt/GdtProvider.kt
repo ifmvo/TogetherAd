@@ -57,7 +57,7 @@ class GdtProvider : BaseAdProvider() {
 
         callbackSplashStartRequest(adProviderType, listener)
 
-        val customSkipView = Splash.customSkipView ?: AdHelperSplash.customSkipView
+        val customSkipView = Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
         val splash = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {

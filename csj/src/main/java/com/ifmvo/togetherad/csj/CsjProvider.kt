@@ -295,7 +295,7 @@ class CsjProvider : BaseAdProvider() {
     }
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
-        if (Native.nativeAdType == -1 && AdHelperNativePro.csjNativeAdType == -1) {
+        if (Native.nativeAdType == -1) {
             throw IllegalArgumentException(
                     """
     |-------------------------------------------------------------------------------------- 
@@ -321,7 +321,7 @@ class CsjProvider : BaseAdProvider() {
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(Native.supportDeepLink)
                 .setImageAcceptedSize(Native.imageAcceptedSizeWidth, Native.imageAcceptedSizeHeight)
-                .setNativeAdType(if (Native.nativeAdType != -1) Native.nativeAdType else AdHelperNativePro.csjNativeAdType)
+                .setNativeAdType(Native.nativeAdType)
                 .setAdCount(maxCount)
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {

@@ -29,10 +29,6 @@ object TogetherAdCsj {
     // 可选参数，需在初始化之前，设置是否允许SDK弹出通知：true允许、false禁止。默认为true允许
     var allowShowNotify: Boolean = true
 
-    // 可选参数，需在初始化之前，设置是否允许落地页出现在锁屏上面：true允许、false禁止。默认为false禁止
-    @Deprecated(message = "被穿山甲Deprecated了")
-    var allowShowPageWhenScreenLock = true
-
     // 可选参数，需在初始化之前，是否打开debug调试信息输出：true打开、false关闭。默认false关闭
     var debug: Boolean = false
 
@@ -77,7 +73,6 @@ object TogetherAdCsj {
         ttAdConfig.useTextureView(useTextureView) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
         ttAdConfig.titleBarTheme(titleBarTheme)
         ttAdConfig.allowShowNotify(allowShowNotify) //是否允许sdk展示通知栏提示
-        ttAdConfig.allowShowPageWhenScreenLock(allowShowPageWhenScreenLock) //是否在锁屏场景支持展示广告落地页
         ttAdConfig.debug(debug) //测试阶段打开，可以通过日志排查问题，上线时去除该调用
         ttAdConfig.directDownloadNetworkType(directDownloadNetworkType) //允许直接下载的网络状态集合
         ttAdConfig.supportMultiProcess(supportMultiProcess) //是否支持多进程，true支持

@@ -30,7 +30,7 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
             AdProviderType.BAIDU.type to 1
     )
 
-    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, ratioMapNativeRecycler, 3) }
+    private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, /*ratioMapNativeRecycler,*/ 3) }
 
     private val mAdList = mutableListOf<Any>()
 

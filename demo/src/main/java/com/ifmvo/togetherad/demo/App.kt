@@ -93,8 +93,8 @@ class App : Application() {
          */
         TogetherAd.setPublicProviderRatio(mapOf(
                 AdProviderType.GDT.type to 1,
-                AdProviderType.BAIDU.type to 1,
-                AdProviderType.CSJ.type to 1
+                AdProviderType.BAIDU.type to 0,
+                AdProviderType.CSJ.type to 0
         ))
 
         /**

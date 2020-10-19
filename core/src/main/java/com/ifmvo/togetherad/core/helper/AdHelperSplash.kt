@@ -18,12 +18,6 @@ import com.ifmvo.togetherad.core.utils.loge
  */
 object AdHelperSplash : BaseHelper() {
 
-    @Deprecated(
-            message = "设计上考虑不周全，gdt的自定义跳过按钮不应该放在通用helper中，请及时使用 GdtProvider.Splash.customSkipView 进行替换",
-            replaceWith = ReplaceWith(expression = "GdtProvider.Splash.customSkipView", imports = ["com.ifmvo.togetherad.gdt"])
-    )
-    var customSkipView: BaseSplashSkipView? = null
-
     //为了照顾 Java 调用的同学
     fun show(@NotNull activity: Activity, @NotNull alias: String, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         show(activity, alias, null, container, listener)
@@ -40,7 +34,6 @@ object AdHelperSplash : BaseHelper() {
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
-            customSkipView = null
             cancelTimer()
             listener?.onAdFailedAll()
             return
@@ -84,7 +77,6 @@ object AdHelperSplash : BaseHelper() {
             }
 
             override fun onAdDismissed(providerType: String) {
-                customSkipView = null
                 listener?.onAdDismissed(providerType)
             }
         })
