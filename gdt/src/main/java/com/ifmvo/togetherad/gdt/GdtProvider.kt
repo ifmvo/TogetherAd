@@ -32,7 +32,7 @@ import kotlin.math.roundToInt
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-class GdtProvider : BaseAdProvider() {
+open class GdtProvider : BaseAdProvider() {
 
     private val TAG = "GdtProvider"
 

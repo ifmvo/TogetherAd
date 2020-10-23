@@ -14,6 +14,6 @@ enum class AdProviderType(val type: String) {
     GDT("gdt"),
 
     //穿山甲
-    CSJ("csj")
+    CSJ("csj"),
 
 }

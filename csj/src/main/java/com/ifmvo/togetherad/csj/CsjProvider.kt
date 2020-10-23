@@ -4,11 +4,12 @@ import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.*
-import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
+import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.core.utils.px2dp
 
 
 /**
@@ -16,7 +17,7 @@ import com.ifmvo.togetherad.core.utils.logi
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-class CsjProvider : BaseAdProvider() {
+open class CsjProvider : BaseAdProvider() {
 
     private val TAG = "CsjProvider"
 
@@ -100,62 +101,73 @@ class CsjProvider : BaseAdProvider() {
         var supportDeepLink: Boolean = true
 
         //图片的宽高
-        internal var imageAcceptedSizeWidth = 600
+        internal var expressViewAcceptedSizeWidth = -1f
 
-        internal var imageAcceptedSizeHeight = 257
+        internal var expressViewAcceptedSizeHeight = -1f
 
-        fun setImageAcceptedSize(width: Int, height: Int) {
-            imageAcceptedSizeWidth = width
-            imageAcceptedSizeHeight = height
+        fun setExpressViewAcceptedSize(width: Float, height: Float) {
+            expressViewAcceptedSizeWidth = width
+            expressViewAcceptedSizeHeight = height
         }
 
         //Banner 刷新间隔时间
         var slideIntervalTime = 30 * 1000
     }
 
+    private var mTTNativeExpressAd: TTNativeExpressAd? = null
+
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
+
+        destroyBannerAd()
 
         callbackBannerStartRequest(adProviderType, listener)
 
-        destroyBannerAd()
+        val screenWidth = ScreenUtil.getDisplayMetricsWidth(activity)
+        val wDp = if (Banner.expressViewAcceptedSizeWidth == -1f) px2dp(activity, screenWidth) else Banner.expressViewAcceptedSizeWidth
+        val hDp = if (Banner.expressViewAcceptedSizeHeight == -1f) wDp / 8 else Banner.expressViewAcceptedSizeHeight
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
                 .setSupportDeepLink(Banner.supportDeepLink)
-                .setImageAcceptedSize(Banner.imageAcceptedSizeWidth, Banner.imageAcceptedSizeHeight)
+                .setAdCount(1) //请求广告数量为1到3条
+                .setExpressViewAcceptedSize(wDp, hDp) //期望模板广告view的size,单位dp
+                .setImageAcceptedSize(1, 1)//这个参数设置即可，不影响模板广告的size
                 .build()
-
-        TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
-            override fun onBannerAdLoad(bannerAd: TTBannerAd?) {
-                if (bannerAd == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerAd 为空")
+        TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+            override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
+                "onNativeExpressAdLoad".logi(TAG)
+                if (adList.isNullOrEmpty()) {
+                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的list为空")
                     return
                 }
-
-                val bannerView = bannerAd.bannerView
-                if (bannerView == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerView 为空")
-                    return
-                }
-
                 callbackBannerLoaded(adProviderType, listener)
 
-                bannerAd.setSlideIntervalTime(Banner.slideIntervalTime)
-                container.removeAllViews()
-                container.addView(bannerView)
-
-                bannerAd.setBannerInteractionListener(object : TTBannerAd.AdInteractionListener {
-                    override fun onAdClicked(view: View?, type: Int) {
+                mTTNativeExpressAd = adList[0]
+                mTTNativeExpressAd?.setSlideIntervalTime(Banner.slideIntervalTime)
+                mTTNativeExpressAd?.setExpressInteractionListener(object : TTNativeExpressAd.ExpressAdInteractionListener {
+                    override fun onAdClicked(p0: View?, p1: Int) {
+                        "onAdClicked".logi(TAG)
                         callbackBannerClicked(adProviderType, listener)
                     }
 
-                    override fun onAdShow(view: View?, type: Int) {
+                    override fun onAdShow(view: View?, p1: Int) {
+                        "onAdShow".logi(TAG)
                         callbackBannerExpose(adProviderType, listener)
                     }
-                })
 
-                bannerAd.setShowDislikeIcon(object : TTAdDislike.DislikeInteractionCallback {
-                    override fun onSelected(position: Int, value: String?) {
+                    override fun onRenderSuccess(view: View?, p1: Float, p2: Float) {
+                        "onRenderSuccess".logi(TAG)
+                        container.addView(view)
+                    }
+
+                    override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
+                        "onRenderFail".logi(TAG)
+                        callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                    }
+                })
+                mTTNativeExpressAd?.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
+                    override fun onSelected(position: Int, value: String) {
+                        //用户选择不喜欢原因后，移除广告展示
                         container.removeAllViews()
                         callbackBannerClosed(adProviderType, listener)
                     }
@@ -163,17 +175,19 @@ class CsjProvider : BaseAdProvider() {
                     override fun onCancel() {}
                     override fun onRefuse() {}
                 })
+                mTTNativeExpressAd?.render()
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                "onError".loge(TAG)
+                "onError".logi(TAG)
                 callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         })
     }
 
     override fun destroyBannerAd() {
-
+        mTTNativeExpressAd?.destroy()
+        mTTNativeExpressAd = null
     }
 
     /**

@@ -58,7 +58,7 @@ class App : Application() {
                 TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
-                TogetherAdAlias.AD_BANNER to "901121987",
+                TogetherAdAlias.AD_BANNER to "901121223",
                 TogetherAdAlias.AD_INTER to "901121725",
                 TogetherAdAlias.AD_REWARD to "901121365",
                 TogetherAdAlias.AD_SPLASH_HYBRID to "901121737"//id是原生类型

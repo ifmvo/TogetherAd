@@ -57,12 +57,19 @@ object TogetherAdCsj {
     var customController: TTCustomController? = null
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String) {
-        init(context, adProviderType, csjAdAppId, appName, null)
+        init(context, adProviderType, csjAdAppId, appName, null, null)
     }
 
-    //穿山甲
+    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, providerClassPath: String? = null) {
+        init(context, adProviderType, csjAdAppId, appName, null, providerClassPath)
+    }
+
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null) {
-        TogetherAd.addProvider(AdProviderEntity(adProviderType, CsjProvider::class.java.name))
+        init(context, adProviderType, csjAdAppId, appName, csjIdMap, null)
+    }
+
+    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null, providerClassPath: String?) {
+        TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) CsjProvider::class.java.name else providerClassPath))
 
         csjIdMap?.let { idMapCsj = it }
 

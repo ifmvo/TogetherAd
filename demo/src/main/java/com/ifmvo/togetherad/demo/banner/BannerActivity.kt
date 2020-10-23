@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ifmvo.togetherad.core.helper.AdHelperBanner
 import com.ifmvo.togetherad.core.listener.BannerListener
+import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
@@ -47,10 +48,10 @@ class BannerActivity : AppCompatActivity() {
         )
 
         //设置 穿山甲 Banner 刷新间隔时间ms，可以不设置，默认为 30 * 1000 ms
-        //CsjProvider.Banner.slideIntervalTime = 30 * 1000
+        CsjProvider.Banner.slideIntervalTime = 30 * 1000
 
-        //设置 穿山甲 Banner 设置可接受图片尺寸,可以不设置，默认为 600 257
-        //CsjProvider.Banner.setImageAcceptedSize(600, 257)
+        //设置 穿山甲 Banner 尺寸,可以不设置，默认宽度: 屏幕宽度，默认高度: 屏幕宽度/8
+//        CsjProvider.Banner.setExpressViewAcceptedSize(width, height)
 
         AdHelperBanner.show(activity = this, alias = TogetherAdAlias.AD_BANNER, container = adContainer, /*ratioMap = ratioMapBanner,*/ listener = object : BannerListener {
             override fun onAdStartRequest(providerType: String) {

@@ -58,10 +58,13 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-## 更新日志
+## 最新版本
 
-3.2.0 (2020.10.13)
-1. radio -> ratio ( 比例，英文单词拼写错误纠正 )
+3.2.1 (2020.10.23)
+1. 穿山甲 loadBannerAd -> loadBannerExpressAd（ 穿山甲目前只支持模板类型Banner，如果你还想继续使用loadBannerAd ）[查看文档](doc/extend.md)
+2. 改为不设置ratioMap的情况下默认不展示广告
+3. 删除了所有 Deprecated.
+4. 将各个平台的 Provider 开放出来，如果现有的 Provider 不满足你的需求可以自定义扩展。[查看文档](doc/extend.md)
 
 [点击查看更多日志](doc/update_log.md)
 
@@ -80,6 +83,8 @@ dependencies {
 - [Interstitial插屏广告](doc/inter.md)
 
 - [混合使用](doc/hybrid.md)
+
+- [扩展](doc/extend.md)
 
 ## 混淆 proguard-rules.pro
 

@@ -21,7 +21,7 @@ import org.json.JSONObject
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-class BaiduProvider : BaseAdProvider() {
+open class BaiduProvider : BaseAdProvider() {
 
     private val TAG = "BaiduProvider"
 
