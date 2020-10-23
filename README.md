@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.2.0-3.2.5.1'
+    implementation 'com.matthewchen.togetherad:csj:3.2.1-3.2.5.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.2.0-4.270.1140'
+    implementation 'com.matthewchen.togetherad:gdt:3.2.1-4.270.1140'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.2.0-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:3.2.1-5.91'
     
 }
 ```
@@ -61,10 +61,10 @@ dependencies {
 ## 最新版本
 
 3.2.1 (2020.10.23)
-1. 穿山甲 loadBannerAd -> loadBannerExpressAd（ 穿山甲目前只支持模板类型Banner，如果你还想继续使用loadBannerAd ）[查看文档](doc/extend.md)
+1. 穿山甲 loadBannerAd -> loadBannerExpressAd（ 穿山甲目前只支持模板类型Banner，如果你还想继续使用loadBannerAd ）[详情查看文档](doc/extend.md)
 2. 改为不设置ratioMap的情况下默认不展示广告
 3. 删除了所有 Deprecated.
-4. 将各个平台的 Provider 开放出来，如果现有的 Provider 不满足你的需求可以自定义扩展。[查看文档](doc/extend.md)
+4. 将各个平台的 Provider 开放出来，如果现有的 Provider 不满足你的需求可以自定义扩展。[详情查看文档](doc/extend.md)
 
 [点击查看更多日志](doc/update_log.md)
 
