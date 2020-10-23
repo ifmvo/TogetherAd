@@ -32,8 +32,6 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
 
     private val adHelperNativeRv by lazy { AdHelperNativePro(this, TogetherAdAlias.AD_NATIVE_RECYCLERVIEW, /*ratioMapNativeRecycler,*/ 3) }
 
-    private val mAdList = mutableListOf<Any>()
-
     companion object {
         fun action(context: Context) {
             context.startActivity(Intent(context, NativeRecyclerViewActivity::class.java))
@@ -101,7 +99,6 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
             }
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
-                mAdList.addAll(adList)
                 onResult(adList)
             }
 
@@ -158,17 +155,17 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        AdHelperNativePro.resumeAd(mAdList)
+        adHelperNativeRv.resumeAllAd()
     }
 
     override fun onPause() {
         super.onPause()
-        AdHelperNativePro.pauseAd(mAdList)
+        adHelperNativeRv.pauseAllAd()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        AdHelperNativePro.destroyAd(mAdList)
+        adHelperNativeRv.destroyAllAd()
     }
 }
 

@@ -170,23 +170,17 @@ class NativeSimpleActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mAdObject?.run {
-            AdHelperNativePro.pauseAd(this)
-        }
+        adHelperNative?.pauseAllAd()
     }
 
     override fun onResume() {
         super.onResume()
-        mAdObject?.run {
-            AdHelperNativePro.resumeAd(this)
-        }
+        adHelperNative?.resumeAllAd()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mAdObject?.run {
-            AdHelperNativePro.destroyAd(this)
-        }
+        adHelperNative?.destroyAllAd()
     }
 
     private var logStr = "日志: \n"

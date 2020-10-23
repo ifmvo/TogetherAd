@@ -35,6 +35,9 @@ class AdHelperNativePro(
     private var mMaxCount: Int = maxCount
     private var adProvider: BaseAdProvider? = null
 
+    //所有请求到的广告容器
+    private var mAdList = mutableListOf<Any>()
+
     companion object {
 
         private const val defaultMaxCount = 4
@@ -133,6 +136,7 @@ class AdHelperNativePro(
                 if (isFetchOverTime) return
 
                 cancelTimer()
+                mAdList.addAll(adList)
                 listener?.onAdLoaded(providerType, adList)
             }
 
@@ -143,5 +147,27 @@ class AdHelperNativePro(
                 getListForMap(filterType(ratioMap, adProviderType), listener)
             }
         })
+    }
+
+    /**
+     * 恢复所有可见的广告
+     */
+    fun resumeAllAd() {
+        resumeAd(mAdList)
+    }
+
+    /**
+     * 暂停所有可见的广告
+     */
+    fun pauseAllAd() {
+        pauseAd(mAdList)
+    }
+
+    /**
+     * 销毁所有请求到的广告
+     */
+    fun destroyAllAd() {
+        destroyAd(mAdList)
+        mAdList.clear()
     }
 }
