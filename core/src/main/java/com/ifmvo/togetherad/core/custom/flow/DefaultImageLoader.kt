@@ -5,9 +5,8 @@ import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
-import java.io.IOException
+import com.ifmvo.togetherad.core.utils.loge
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.URL
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -39,9 +38,20 @@ class DefaultImageLoader : AdImageLoader {
                     imageView.setImageBitmap(bitmap)
                 }
             }
-        } catch (e: MalformedURLException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
+        } catch (e: Exception) {
+            """
+    |-------------------------------------------------------------------------------------- 
+    |  DefaultImageLoader 默认的图片加载器出现异常，请自行设置图片加载器
+    |  设置方式,在 Application 中添加如下：
+    |  TogetherAd.setCustomImageLoader(object : AdImageLoader {
+    |      override fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
+    |          //以 Glide 为例
+    |          Glide.with(context).load(imgUrl).into(imageView)
+    |      }
+    |  })
+    |--------------------------------------------------------------------------------------
+
+""".loge()
             e.printStackTrace()
         }
     }

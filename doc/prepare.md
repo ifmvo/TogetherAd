@@ -221,6 +221,7 @@ class App : Application() {
          * 自定义图片加载方式
          * 用于自渲染类型的广告图片加载
          * 如果不配置，TogetherAd 会使用默认的图片加载方式
+         * 不建议使用默认的 DefaultImageLoader 兼容性较差
          * 主要考虑到：开发者可以自定义实现图片加载：渐变、占位图、错误图等
          */
 //        TogetherAd.setCustomImageLoader(object : AdImageLoader {

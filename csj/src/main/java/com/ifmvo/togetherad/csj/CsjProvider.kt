@@ -314,7 +314,8 @@ open class CsjProvider : BaseAdProvider() {
                     """
     |-------------------------------------------------------------------------------------- 
     |  必须在每次请求穿山甲的原生广告之前设置类型。
-    |  设置方式：CsjProvider.Native.nativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
+    |  设置方式：
+    |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_XXX（类型和你的广告位ID一致）。
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_INTERACTION_AD
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_BANNER
@@ -323,6 +324,7 @@ open class CsjProvider : BaseAdProvider() {
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_REWARD_VIDEO
     |  CsjProvider.Native.nativeAdType = AdSlot.TYPE_SPLASH
+    |  任选其一
     |--------------------------------------------------------------------------------------
 
 """
