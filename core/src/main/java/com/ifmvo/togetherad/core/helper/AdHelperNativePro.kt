@@ -11,6 +11,8 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
+import com.ifmvo.togetherad.core.utils.logv
+import com.ifmvo.togetherad.core.utils.logw
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 import java.lang.ref.WeakReference
@@ -42,7 +44,15 @@ class AdHelperNativePro(
 
         private const val defaultMaxCount = 4
 
-        fun show(@NotNull adObject: Any, @NotNull container: ViewGroup, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
+        fun show(@Nullable adObject: Any?, @Nullable container: ViewGroup?, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
+            if (adObject == null) {
+                "adObject 广告对象不能为空".logw()
+                return
+            }
+            if (container == null) {
+                "container 广告容器不能为空".logw()
+                return
+            }
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 if (adProvider?.nativeAdIsBelongTheProvider(adObject) == true) {
@@ -53,36 +63,60 @@ class AdHelperNativePro(
             }
         }
 
-        fun pauseAd(@NotNull adObject: Any) {
+        fun pauseAd(@Nullable adObject: Any?) {
+            if (adObject == null) {
+                "adObject 广告对象不能为空".logw()
+                return
+            }
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.pauseNativeAd(adObject)
             }
         }
 
-        fun pauseAd(@NotNull adObjectList: List<Any>) {
+        fun pauseAd(@Nullable adObjectList: List<Any>?) {
+            if (adObjectList?.isEmpty() != false) {
+                "adObjectList 广告对象List不能为空".logw()
+                return
+            }
             adObjectList.forEach { pauseAd(it) }
         }
 
-        fun resumeAd(@NotNull adObject: Any) {
+        fun resumeAd(@Nullable adObject: Any?) {
+            if (adObject == null) {
+                "adObject 广告对象不能为空".logw()
+                return
+            }
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.resumeNativeAd(adObject)
             }
         }
 
-        fun resumeAd(@NotNull adObjectList: List<Any>) {
+        fun resumeAd(@Nullable adObjectList: List<Any>?) {
+            if (adObjectList?.isEmpty() != false) {
+                "adObjectList 广告对象List不能为空".logw()
+                return
+            }
             adObjectList.forEach { resumeAd(it) }
         }
 
-        fun destroyAd(@NotNull adObject: Any) {
+        fun destroyAd(@Nullable adObject: Any?) {
+            if (adObject == null) {
+                "adObject 广告对象不能为空".logw()
+                return
+            }
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.destroyNativeAd(adObject)
             }
         }
 
-        fun destroyAd(@NotNull adObjectList: List<Any>) {
+        fun destroyAd(@Nullable adObjectList: List<Any>?) {
+            if (adObjectList?.isEmpty() != false) {
+                "adObjectList 广告对象List不能为空".logw()
+                return
+            }
             adObjectList.forEach { destroyAd(it) }
         }
     }
