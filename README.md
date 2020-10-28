@@ -60,11 +60,9 @@ dependencies {
 
 ## 最新版本
 
-3.2.1 (2020.10.23)
-1. 穿山甲 loadBannerAd -> loadBannerExpressAd（ 穿山甲目前只支持模板类型Banner，如果你还想继续使用loadBannerAd ）[详情查看文档](doc/extend.md)
-2. 改为不设置ratioMap的情况下默认不展示广告
-3. 删除了所有 Deprecated.
-4. 将各个平台的 Provider 开放出来，如果现有的 Provider 不满足你的需求可以自定义扩展。[详情查看文档](doc/extend.md)
+3.2.2 (2020.10.28)
+1. 修复部分机型DefaultImageLoader崩溃(#25)
+2. 原生自渲染参数可空
 
 [点击查看更多日志](doc/update_log.md)
 
