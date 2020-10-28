@@ -28,5 +28,37 @@
 -keep class android.support.v7.**{
     public *;
 }
+-keep class yaq.gdtadv{
+    *;
+}
+-keep class com.qq.e.** {
+    *;
+}
+-keep class com.tencent.** {
+    *;
+}
+-keep class cn.mmachina.JniClient {
+    *;
+}
+-keep class c.t.m.li.tsa.** {
+    *;
+}
+
+-keep class * extends java.lang.annotation.Annotation { *; }
+-keep interface * extends java.lang.annotation.Annotation { *; }
+
+-keep, allowobfuscation class com.qq.e.comm.plugin.services.SDKServerService {*;}
+-keepclassmembers, allowobfuscation class com.qq.e.comm.plugin.net.SecurePackager {
+    public *;
+}
+
+-keepclasseswithmembers,includedescriptorclasses class * {
+native <methods>;
+}
+
+-keep class * extends com.qq.e.mediation.interfaces.BaseNativeUnifiedAd { *; }
+-keep class * extends com.qq.e.mediation.interfaces.BaseSplashAd { *; }
+-keep class * extends com.qq.e.mediation.interfaces.BaseRewardAd { *; }
+
 
 -keep class com.ifmvo.togetherad.gdt.** { *; }
