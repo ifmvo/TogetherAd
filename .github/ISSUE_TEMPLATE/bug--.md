@@ -23,8 +23,8 @@ assignees: ifmvo
  - 设备型号：华为Mate40Pro]
  - 系统版本：Android11
  - TogetherAd版本：
-    implementation 'com.matthewchen.togetherad:csj:3.2.3-3.2.5.1'
-    implementation 'com.matthewchen.togetherad:gdt:3.2.3-4.270.1140'
-    implementation 'com.matthewchen.togetherad:baidu:3.2.3-5.91'
+    implementation 'com.matthewchen.togetherad:csj:x.x.x-x.x.x.x'
+    implementation 'com.matthewchen.togetherad:gdt:x.x.x-x.xxx.xxxx'
+    implementation 'com.matthewchen.togetherad:baidu:x.x.x-x.xx'
 
 **附加信息**
