@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.2.3-3.2.5.1'
+    implementation 'com.matthewchen.togetherad:csj:3.2.4-3.3.0.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.2.3-4.270.1140'
+    implementation 'com.matthewchen.togetherad:gdt:3.2.4-4.290.1160'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.2.3-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:3.2.4-5.91'
     
 }
 ```
@@ -60,10 +60,9 @@ dependencies {
 
 ## 最新版本
 
-3.2.3 (2020.10.28)
-1. 修复部分机型DefaultImageLoader崩溃(#25)
-2. 原生自渲染参数可空
-3. 修复开启混淆后广点通初始化错误的问题(#24)
+3.2.4 (2020.11.04)
+1. 更新穿山甲版本到 3.3.0.1
+2. 更新优量汇版本到 4.290.1160
 
 [点击查看更多日志](doc/update_log.md)
 

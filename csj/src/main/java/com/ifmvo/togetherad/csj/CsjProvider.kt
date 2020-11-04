@@ -408,8 +408,16 @@ open class CsjProvider : BaseAdProvider() {
         //设置是否在视频播放页面展示下载bar
         var showDownLoadBar: Boolean = true
 
-        //onAdRewardVerify 回调中用于判断校验结果（ 后台校验中用到 ）
+        /**
+         * onAdRewardVerify 回调中用于判断校验结果（ 后台校验中用到 ）
+         */
         var rewardVerify: Boolean = false
+            internal set
+
+        var errorCode: Int = 0
+            internal set
+
+        var errorMsg: String? = null
             internal set
     }
 
@@ -481,9 +489,13 @@ open class CsjProvider : BaseAdProvider() {
                         callbackRewardVideoComplete(adProviderType, listener)
                     }
 
-                    override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String) {
+                    override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String?, errorCode: Int, errorMsg: String?) {
                         "verify:$rewardVerify amount:$rewardAmount name:$rewardName".logi(TAG)
                         Reward.rewardVerify = rewardVerify
+                        Reward.rewardAmount = rewardAmount
+                        Reward.rewardName = rewardName
+                        Reward.errorCode = errorCode
+                        Reward.errorMsg = errorMsg
                         callbackRewardVerify(adProviderType, listener)
                     }
                 })
