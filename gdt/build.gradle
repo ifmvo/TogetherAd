@@ -31,7 +31,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'GDTSDK.unionNoPlugin.4.290.1160', ext: 'aar')
+//    embed(name: 'GDTSDK.unionNoPlugin.4.291.1161', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')
