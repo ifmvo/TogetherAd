@@ -109,7 +109,7 @@ object AdHelperSplashHybrid : BaseHelper() {
     }
 
     private fun showSplash(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRatioMap: Map<String, Int>) {
-        adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
+        adProvider.loadAndShowSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 

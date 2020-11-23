@@ -28,7 +28,7 @@ class NativeViewBaiduSimple4(onDismiss: (providerType: String) -> Unit) : BaseNa
         val customSkipView = SplashSkipViewSimple3()
         val skipView = customSkipView.onCreateSkipView(container.context)
         skipView.run {
-            container.addView(this, customSkipView.getLayoutParams())
+            container.addView(this)
             setOnClickListener {
                 mTimer?.cancel()
                 mOnDismiss.invoke(adProviderType)

@@ -24,11 +24,19 @@ import org.json.JSONObject
 open class BaiduProvider : BaseAdProvider() {
 
     private val TAG = "BaiduProvider"
+    override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
+        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashFailed(adProviderType, listener, "百度开屏不支持加载和展示分开")
+    }
+
+    override fun showSplashAd(container: ViewGroup): Boolean {
+        return false
+    }
 
     /**
      * --------------------------- 开屏 ---------------------------
      */
-    override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
+    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, listener)
 
         SplashAd(activity, container, object : SplashAdListener {
@@ -39,6 +47,7 @@ open class BaiduProvider : BaseAdProvider() {
 
             override fun onAdDismissed() {
                 "onADLoaded".logd(TAG)
+
                 callbackSplashDismiss(adProviderType, listener)
             }
 

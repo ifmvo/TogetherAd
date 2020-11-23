@@ -13,9 +13,23 @@ import org.jetbrains.annotations.NotNull
 interface IAdProvider {
 
     /**
+     * 开屏广告仅请求
+     */
+    fun loadOnlySplashAd(
+            @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
+            @NotNull adProviderType: String,
+            @NotNull alias: String,//当前广告位的别名
+            @NotNull listener: SplashListener//回调
+    )
+
+    fun showSplashAd(
+            @NotNull container: ViewGroup
+    ): Boolean
+
+    /**
      * 开屏广告
      */
-    fun showSplashAd(
+    fun loadAndShowSplashAd(
             @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
             @NotNull adProviderType: String,
             @NotNull alias: String,//当前广告位的别名

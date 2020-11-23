@@ -14,7 +14,15 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
  */
 class XiaomiProvider: BaseAdProvider() {
 
-    override fun showSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {}
+    override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
+        callbackSplashFailed(adProviderType, listener, "小米开屏不支持加载和展示分开")
+    }
+
+    override fun showSplashAd(container: ViewGroup): Boolean {
+        return false
+    }
+
+    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {}
 
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {}
 

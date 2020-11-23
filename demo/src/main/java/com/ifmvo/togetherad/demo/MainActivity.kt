@@ -15,6 +15,7 @@ import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
+import com.ifmvo.togetherad.demo.splash.SplashProActivity
 
 class MainActivity : ListActivity() {
 
@@ -22,7 +23,8 @@ class MainActivity : ListActivity() {
         super.onCreate(savedInstanceState)
 
         listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
-                "开屏",
+                "开屏（ 请求并展示 ）",
+                "开屏（ 请求和展示分开，可实现预加载 ）",
                 "开屏&原生混合使用(gdt、csj是原生自渲染伪装成开屏)",
                 "原生自渲染简单用法",
                 "原生自渲染在 RecyclerView 中使用",
@@ -39,24 +41,27 @@ class MainActivity : ListActivity() {
                 SplashActivity.action(this)
             }
             1 -> {
-                SplashHybridActivity.action(this)
+                SplashProActivity.action(this)
             }
             2 -> {
-                NativeSimpleActivity.action(this)
+                SplashHybridActivity.action(this)
             }
             3 -> {
-                NativeRecyclerViewActivity.action(this)
+                NativeSimpleActivity.action(this)
             }
             4 -> {
-                RewardActivity.action(this)
+                NativeRecyclerViewActivity.action(this)
             }
             5 -> {
-                BannerActivity.action(this)
+                RewardActivity.action(this)
             }
             6 -> {
-                InterActivity.action(this)
+                BannerActivity.action(this)
             }
             7 -> {
+                InterActivity.action(this)
+            }
+            8 -> {
                 HelpActivity.action(this)
             }
 

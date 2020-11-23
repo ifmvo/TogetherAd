@@ -71,8 +71,9 @@ class AdHelperReward(
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                mListener?.onAdFailed(providerType, failedMsg)
                 reload(filterType(ratioMap, adProviderType))
+
+                mListener?.onAdFailed(providerType, failedMsg)
             }
 
             override fun onAdClicked(providerType: String) {

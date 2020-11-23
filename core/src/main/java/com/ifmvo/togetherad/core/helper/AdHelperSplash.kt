@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
@@ -48,13 +47,14 @@ object AdHelperSplash : BaseHelper() {
             return
         }
 
-        adProvider.showSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
+        adProvider.loadAndShowSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                listener?.onAdFailed(providerType, failedMsg)
                 val newRatioMap = filterType(currentRatioMap, adProviderType)
                 realShow(activity, alias, newRatioMap, container, listener)
+
+                listener?.onAdFailed(providerType, failedMsg)
             }
 
             override fun onAdStartRequest(providerType: String) {

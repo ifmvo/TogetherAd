@@ -66,9 +66,11 @@ object AdHelperBanner : BaseHelper() {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                listener?.onAdFailed(providerType, failedMsg)
                 val newRatioMap = filterType(currentRatioMap, adProviderType)
                 realShow(activity, alias, newRatioMap, container, listener)
+
+                listener?.onAdFailed(providerType, failedMsg)
+
             }
 
             override fun onAdClicked(providerType: String) {

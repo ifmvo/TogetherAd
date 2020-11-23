@@ -28,6 +28,13 @@
             android:theme="@style/SplashTheme" />
 
         <!--
+            开屏界面 （ 请求与展示分开 ）
+        -->
+        <activity
+            android:name=".splash.SplashProActivity"
+            android:theme="@style/SplashTheme" />
+
+        <!--
             开屏 & 原生 混合使用
         -->
         <activity

@@ -177,8 +177,9 @@ class AdHelperNativePro(
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                listener?.onAdFailed(providerType, failedMsg)
                 getListForMap(filterType(ratioMap, adProviderType), listener)
+
+                listener?.onAdFailed(providerType, failedMsg)
             }
         })
     }
