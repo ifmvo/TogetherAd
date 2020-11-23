@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "3.2.6-4.291.1161"
+        versionName "3.2.6-4.294.1164"
     }
 
     lintOptions{
@@ -31,7 +31,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'GDTSDK.unionNoPlugin.4.291.1161', ext: 'aar')
+//    embed(name: 'GDTSDK.unionNoPlugin.4.294.1164', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')
@@ -41,7 +41,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'gdt'
-    publishVersion = '3.2.6-4.291.1161'
+    publishVersion = '3.2.6-4.294.1164'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }
