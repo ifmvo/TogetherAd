@@ -45,13 +45,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:3.2.5-3.3.0.1'
+    implementation 'com.matthewchen.togetherad:csj:3.2.6-3.3.0.1'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:3.2.5-4.291.1161'
+    implementation 'com.matthewchen.togetherad:gdt:3.2.6-4.291.1161'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:3.2.5-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:3.2.6-5.91'
     
 }
 ```
@@ -60,8 +60,7 @@ dependencies {
 
 ## 最新版本
 
-3.2.5 (2020.11.05)
-1. 更新优量汇版本到 4.291.1161（ 修复开屏视频挂件在开屏结束后可能没有消失的问题；修复插屏 2.0 广告在Android8.x 系统中，当 Activity 使用透明主题时可能崩溃的问题。 ）
+3.2.6 (2020.11.23)
 
 [点击查看更多日志](doc/update_log.md)
 

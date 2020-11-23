@@ -27,7 +27,7 @@ class App : Application() {
 //        // 可选参数，需在初始化之前，测试阶段打开，可以通过日志排查问题，上线时去除该调用
 //        TogetherAdCsj.debug = true
 //        // 可选参数，需在初始化之前，允许直接下载的网络状态集合
-//        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_3G
+//        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_4G
 //        // 可选参数，需在初始化之前，是否支持多进程，true支持
 //        TogetherAdCsj.supportMultiProcess = false
 //        // 可选参数，需在初始化之前，自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
