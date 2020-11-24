@@ -55,18 +55,25 @@ open class GdtProvider : BaseAdProvider() {
 
     private var splashAd: SplashAD? = null
     private var mExpireTimestamp = 0L//广告失效的时间戳
+    private var mContainer: ViewGroup? = null
+
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, listener)
 
-        splashAd = SplashAD(activity, Splash.customSkipView?.onCreateSkipView(activity), TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+        val customSkipView = Splash.customSkipView
+        val skipView = customSkipView?.onCreateSkipView(activity)
+
+        splashAd = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
                 Splash.customSkipView = null
+                mContainer = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
                 Splash.customSkipView = null
+                mContainer = null
                 callbackSplashFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
             }
 
@@ -74,6 +81,11 @@ open class GdtProvider : BaseAdProvider() {
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
             override fun onADPresent() {
+                activity.runOnUiThread {
+                    skipView?.run {
+                        mContainer?.addView(this, customSkipView.getLayoutParams())
+                    }
+                }
                 "${adProviderType}: 广告成功展示".logi(TAG)
                 splashAd?.preLoad()
             }
@@ -120,6 +132,7 @@ open class GdtProvider : BaseAdProvider() {
             return false
         }
 
+        mContainer = container
         splashAd?.showAd(container)
 
         return true
@@ -148,6 +161,11 @@ open class GdtProvider : BaseAdProvider() {
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
             override fun onADPresent() {
+                activity.runOnUiThread {
+                    skipView?.run {
+                        container.addView(this, customSkipView.getLayoutParams())
+                    }
+                }
                 "${adProviderType}: 广告成功展示".logi(TAG)
             }
 

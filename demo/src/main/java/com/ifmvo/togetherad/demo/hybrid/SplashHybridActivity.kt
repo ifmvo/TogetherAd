@@ -16,7 +16,7 @@ import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 import com.ifmvo.togetherad.gdt.GdtProvider
-import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.android.synthetic.main.activity_splash_pro.*
 
 /**
  * 开屏 & 原生 混合使用
@@ -27,6 +27,23 @@ class SplashHybridActivity : AppCompatActivity() {
 
     private val TAG = "SplashHybridActivity"
 
+    private val adHelperSplashHybrid by lazy {
+        /**
+         * 使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
+         */
+        val ratioMapSplash = mapOf(
+                AdProviderType.GDT.type to 1,
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.BAIDU.type to 1
+        )
+        /**
+         * activity: 必传。这里不是 Context，因为广点通必须传 Activity，所以统一传 Activity。
+         * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
+         * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
+         */
+        AdHelperSplashHybrid(activity = this, alias = TogetherAdAlias.AD_SPLASH_HYBRID /*, ratioMap = ratioMapSplash*/)
+    }
+
     companion object {
         fun action(context: Context) {
             context.startActivity(Intent(context, SplashHybridActivity::class.java))
@@ -35,10 +52,18 @@ class SplashHybridActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_splash_pro)
 
-        //开始请求开屏广告
-        requestSplashAd()
+        btnLoad.setOnClickListener {
+            //开始请求开屏广告
+            requestSplashAd()
+        }
+
+        btnShow.setOnClickListener {
+            //展示广告
+            showSplashAd()
+        }
+
     }
 
     /**
@@ -47,30 +72,34 @@ class SplashHybridActivity : AppCompatActivity() {
     private fun requestSplashAd() {
 
         /**
-         * 自定义跳过按钮
+         * 设置 广点通 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
          */
         GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
-//        GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
-
-        //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val ratioMapSplash = mapOf(
-                AdProviderType.GDT.type to 1,
-                AdProviderType.CSJ.type to 1,
-                AdProviderType.BAIDU.type to 1
-        )
-
+        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
+        /**
+         * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
+         * 一般设置容器的宽高即可
+         */
         CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
+        /**
+         * 设置 穿山甲 开屏广告超时时间
+         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长）
+         * 如果不设置，默认值为 3000ms
+         */
+        CsjProvider.Splash.maxFetchDelay = 3000
+        /**
+         * 设置 优量汇 开屏广告超时时间
+         * 取值范围为[3000, 5000]ms。
+         * 如果不设置，会使用默认值
+         */
+        GdtProvider.Splash.maxFetchDelay = 3500
 
         /**
-         * activity: 必传。这里不是 Context，因为广点通必须传 Activity，所以统一传 Activity。
-         * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
-         * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
-         * container: 必传。请求到广告之后会自动添加到 container 这个布局中展示。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        AdHelperSplashHybrid.show(activity = this, alias = TogetherAdAlias.AD_SPLASH_HYBRID, /*ratioMap = ratioMapSplash,*/ container = adContainer, listener = object : SplashListener {
+        adHelperSplashHybrid.loadOnly(listener = object : SplashListener {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
@@ -120,20 +149,31 @@ class SplashHybridActivity : AppCompatActivity() {
         //回调中的 providerType 是广告商类型
     }
 
+    /**
+     * 展示开屏广告
+     */
+    private fun showSplashAd() {
+        //展示广告并返回是否展示成功
+        val showAdIsSuccess = adHelperSplashHybrid.showAd(adContainer)
+        //如果没有展示成功就直接跳走
+        if (!showAdIsSuccess) {
+            actionHome(1000)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        AdHelperSplashHybrid.resumeAd()
+        adHelperSplashHybrid.resumeAd()
     }
 
     override fun onPause() {
         super.onPause()
-        AdHelperSplashHybrid.pauseAd()
+        adHelperSplashHybrid.pauseAd()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //由于原生自渲染在开屏广告倒计时完成并destroy 之后会出现异常，所以这里不能destroy，可以去主页 MainActivity 再destroy也不迟
-//        AdHelperSplashHybrid.destroyAd()
+        adHelperSplashHybrid.destroyAd()
     }
 
     //不能手动返回

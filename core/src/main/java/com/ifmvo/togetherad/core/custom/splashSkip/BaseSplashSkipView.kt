@@ -22,4 +22,10 @@ abstract class BaseSplashSkipView {
     open fun handleTime(second: Int) {
     }
 
+    /**
+     * 获取布局参数，控制跳过按钮的位置
+     */
+    abstract fun getLayoutParams(): ViewGroup.LayoutParams
+
+
 }

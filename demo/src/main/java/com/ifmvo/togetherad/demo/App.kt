@@ -71,7 +71,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "6040749702835933"//id是原生类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593"//id是开屏类型
         )
 
         TogetherAdBaidu.idMapBaidu = mapOf(
@@ -81,7 +81,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "2015351",
                 TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "2058622"//id是开屏类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "2058628"//id是原生类型
         )
 
         /**

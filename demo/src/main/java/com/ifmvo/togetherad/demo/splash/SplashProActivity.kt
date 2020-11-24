@@ -17,9 +17,6 @@ import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
 import com.ifmvo.togetherad.gdt.GdtProvider
-import kotlinx.android.synthetic.main.activity_splash.adContainer
-import kotlinx.android.synthetic.main.activity_splash.info
-import kotlinx.android.synthetic.main.activity_splash.log
 import kotlinx.android.synthetic.main.activity_splash_pro.*
 
 /**
@@ -33,33 +30,8 @@ class SplashProActivity : AppCompatActivity() {
 
     private val adHelperSplashPro by lazy {
         /**
-         * 设置 广点通 开屏广告 自定义跳过按钮
-         * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
-         * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
+         * 使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
          */
-//        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
-        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
-        /**
-         * 设置 广点通 开屏广告超时时间
-         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
-         * 取值范围为[3000, 5000]ms。
-         * 如果需要使用默认值，可以给 fetchDelay 设为0或者不设置。
-         */
-        //GdtProvider.Splash.maxFetchDelay = 0
-
-        /**
-         * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
-         * 一般设置容器的宽高即可
-         */
-        CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
-
-        /**
-         * 设置 穿山甲 开屏广告超时时间
-         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
-         * 如果不设置，默认值为 3000ms
-         */
-        //CsjProvider.Splash.maxFetchDelay = 3000
-        //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val ratioMapSplash = mapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
@@ -99,6 +71,31 @@ class SplashProActivity : AppCompatActivity() {
      * 请求开屏广告
      */
     private fun requestSplashAd() {
+
+        /**
+         * 设置 广点通 开屏广告 自定义跳过按钮
+         * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
+         * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
+         */
+        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
+        /**
+         * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
+         * 一般设置容器的宽高即可
+         */
+        CsjProvider.Splash.setImageAcceptedSize(ScreenUtil.getDisplayMetricsWidth(this), ScreenUtil.getDisplayMetricsHeight(this) - 100f.dp.toInt())
+        /**
+         * 设置 穿山甲 开屏广告超时时间
+         * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
+         * 如果不设置，默认值为 3000ms
+         */
+        CsjProvider.Splash.maxFetchDelay = 3000
+        /**
+         * 设置 优量汇 开屏广告超时时间
+         * 取值范围为[3000, 5000]ms。
+         * 如果不设置，会使用默认值
+         */
+        GdtProvider.Splash.maxFetchDelay = 3500
 
         /**
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
@@ -157,6 +154,7 @@ class SplashProActivity : AppCompatActivity() {
      * 展示开屏广告
      */
     private fun showSplashAd() {
+        //展示广告并返回是否展示成功
         val showAdIsSuccess = adHelperSplashPro.showAd(adContainer)
         //如果没有展示成功就直接跳走
         if (!showAdIsSuccess) {

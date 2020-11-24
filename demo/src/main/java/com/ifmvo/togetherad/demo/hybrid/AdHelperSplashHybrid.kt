@@ -18,129 +18,159 @@ import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.native_.NativeTemplateSimple3
 import org.jetbrains.annotations.NotNull
+import java.lang.ref.WeakReference
 
 /**
  * 开屏广告
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-object AdHelperSplashHybrid : BaseHelper() {
+class AdHelperSplashHybrid(
+
+        @NotNull activity: Activity,
+        @NotNull alias: String,
+        ratioMap: Map<String, Int>? = null
+
+) : BaseHelper() {
+
+    private var mActivity: WeakReference<Activity> = WeakReference(activity)
+    private var mAlias: String = alias
+    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var adProvider: BaseAdProvider? = null
+    private var mListener: SplashListener? = null
 
     //为了照顾 Java 调用的同学
-    fun show(@NotNull activity: Activity, @NotNull alias: String, @NotNull container: ViewGroup, listener: SplashListener? = null) {
-        show(activity, alias, null, container, listener)
-    }
+    constructor(
+            @NotNull activity: Activity,
+            @NotNull alias: String
+    ) : this(activity, alias, null)
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    //为了照顾 Java 调用的同学
+    fun loadOnly(listener: SplashListener? = null) {
+        destroyAd()
+
+        mListener = listener
+        val currentRatioMap = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
+
         startTimer(listener)
-        realShow(activity, alias, ratioMap, container, listener)
+        realLoadOnly(currentRatioMap)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
-        val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
+    private fun realLoadOnly(@NotNull ratioMap: Map<String, Int>) {
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
+        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 
-        if (adProviderType?.isEmpty() != false) {
+        if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            listener?.onAdFailedAll()
+            mListener?.onAdFailedAll()
+            mListener = null
             return
         }
 
-        val adProvider = AdProviderLoader.loadAdProvider(adProviderType)
+        adProvider = AdProviderLoader.loadAdProvider(adProviderType)
 
         if (adProvider == null) {
-            "$adProviderType ${activity.getString(R.string.no_init)}".loge()
-            val newRatioMap = filterType(currentRatioMap, adProviderType)
-            show(activity, alias, newRatioMap, container, listener)
+            "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
+            realLoadOnly(filterType(ratioMap, adProviderType))
             return
         }
 
         //可以在这里修改，哪种平台使用开屏，哪种平台使用原生
         when (adProviderType) {
-            AdProviderType.CSJ.type, AdProviderType.GDT.type -> {
-                showNative(adProvider, activity, adProviderType, alias, container, listener, currentRatioMap)
+            AdProviderType.GDT.type -> {
+                realLoadOnlySplash(ratioMap, adProviderType)
             }
-            AdProviderType.BAIDU.type -> {
-                showSplash(adProvider, activity, adProviderType, alias, container, listener, currentRatioMap)
+            AdProviderType.BAIDU.type, AdProviderType.CSJ.type -> {
+                realLoadOnlyNative(ratioMap, adProviderType)
             }
         }
+
     }
 
     private var mAdObject: Any? = null
-    private fun showNative(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRatioMap: Map<String, Int>) {
+    private fun realLoadOnlyNative(ratioMap: Map<String, Int>, adProviderType: String) {
         CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
-        adProvider.getNativeAdList(activity = activity, adProviderType = adProviderType, alias = alias, maxCount = 1, listener = object : NativeListener {
+        adProvider?.getNativeAdList(activity = mActivity.get()!!, adProviderType = adProviderType, alias = mAlias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
-                listener?.onAdStartRequest(providerType)
+                mListener?.onAdStartRequest(providerType)
             }
 
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 if (isFetchOverTime) return
 
                 cancelTimer()
-                listener?.onAdLoaded(providerType)
-
-                fun onDismiss(adProviderType: String) {
-                    listener?.onAdDismissed(adProviderType)
-                }
+                mListener?.onAdLoaded(providerType)
 
                 mAdObject = adList[0]
-                AdHelperNativePro.show(adObject = adList[0], container = container, nativeTemplate = NativeTemplateSimple3(::onDismiss), listener = object : NativeViewListener {
-                    override fun onAdExposed(providerType: String) {
-                        listener?.onAdExposure(providerType)
-                    }
-
-                    override fun onAdClicked(providerType: String) {
-                        listener?.onAdClicked(providerType)
-                    }
-                })
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                listener?.onAdFailed(providerType, failedMsg)
-                val newRatioMap = filterType(currentRatioMap, adProviderType)
-                show(activity, alias, newRatioMap, container, listener)
+                mListener?.onAdFailed(providerType, failedMsg)
+                val newRatioMap = filterType(ratioMap, adProviderType)
+                realLoadOnly(newRatioMap)
             }
-
         })
     }
 
-    private fun showSplash(adProvider: BaseAdProvider, activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener?, currentRatioMap: Map<String, Int>) {
-        adProvider.loadAndShowSplashAd(activity = activity, adProviderType = adProviderType, alias = alias, container = container, listener = object : SplashListener {
+    private fun realLoadOnlySplash(ratioMap: Map<String, Int>, adProviderType: String) {
+        adProvider?.loadOnlySplashAd(activity = mActivity.get()!!, adProviderType = adProviderType, alias = mAlias, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                listener?.onAdFailed(providerType, failedMsg)
-                val newRatioMap = filterType(currentRatioMap, adProviderType)
-                show(activity, alias, newRatioMap, container, listener)
+                mListener?.onAdFailed(providerType, failedMsg)
+                val newRatioMap = filterType(ratioMap, adProviderType)
+                realLoadOnly(newRatioMap)
             }
 
             override fun onAdStartRequest(providerType: String) {
-                listener?.onAdStartRequest(providerType)
+                mListener?.onAdStartRequest(providerType)
             }
 
             override fun onAdLoaded(providerType: String) {
                 if (isFetchOverTime) return
 
                 cancelTimer()
-                listener?.onAdLoaded(providerType)
+                mListener?.onAdLoaded(providerType)
             }
 
             override fun onAdClicked(providerType: String) {
-                listener?.onAdClicked(providerType)
+                mListener?.onAdClicked(providerType)
             }
 
             override fun onAdExposure(providerType: String) {
-                listener?.onAdExposure(providerType)
+                mListener?.onAdExposure(providerType)
             }
 
             override fun onAdDismissed(providerType: String) {
-                listener?.onAdDismissed(providerType)
+                mListener?.onAdDismissed(providerType)
+                mListener = null
             }
         })
+    }
+
+    fun showAd(@NotNull container: ViewGroup): Boolean {
+
+        if (mAdObject != null) {
+            fun onDismiss(adProviderType: String) {
+                mListener?.onAdDismissed(adProviderType)
+                destroyAd()
+            }
+
+            AdHelperNativePro.show(adObject = mAdObject, container = container, nativeTemplate = NativeTemplateSimple3(::onDismiss), listener = object : NativeViewListener {
+                override fun onAdExposed(providerType: String) {
+                    mListener?.onAdExposure(providerType)
+                }
+
+                override fun onAdClicked(providerType: String) {
+                    mListener?.onAdClicked(providerType)
+                }
+            })
+            return true
+        } else {
+            return adProvider?.showSplashAd(container) ?: false
+        }
     }
 
     fun resumeAd() {
@@ -159,7 +189,7 @@ object AdHelperSplashHybrid : BaseHelper() {
         mAdObject?.run {
             AdHelperNativePro.destroyAd(this)
             mAdObject = null
+            mListener = null
         }
     }
-
 }

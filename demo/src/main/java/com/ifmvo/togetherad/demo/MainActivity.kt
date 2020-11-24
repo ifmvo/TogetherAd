@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
-import com.ifmvo.togetherad.demo.hybrid.AdHelperSplashHybrid
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
@@ -81,8 +80,4 @@ class MainActivity : ListActivity() {
         super.onBackPressed()
     }
 
-    override fun onResume() {
-        super.onResume()
-        AdHelperSplashHybrid.destroyAd()
-    }
 }

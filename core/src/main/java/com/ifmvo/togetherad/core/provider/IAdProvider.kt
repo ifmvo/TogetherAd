@@ -29,6 +29,7 @@ interface IAdProvider {
     /**
      * 开屏广告
      */
+    @Deprecated(message = "进一步优化加载和展示分开调用更灵活", replaceWith = ReplaceWith(expression = "loadOnlySplashAd", imports = ["com.ifmvo.togetherad.core.provider"]), level = DeprecationLevel.WARNING)
     fun loadAndShowSplashAd(
             @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
             @NotNull adProviderType: String,
