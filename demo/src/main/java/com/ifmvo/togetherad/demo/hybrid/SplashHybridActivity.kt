@@ -108,6 +108,7 @@ class SplashHybridActivity : AppCompatActivity() {
             }
 
             override fun onAdLoaded(providerType: String) {
+                btnShow.isEnabled = true
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("开屏广告请求好了，$providerType")
                 "onAdLoaded: $providerType".logi(TAG)

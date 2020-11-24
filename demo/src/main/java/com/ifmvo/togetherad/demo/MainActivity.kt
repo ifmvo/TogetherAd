@@ -1,10 +1,11 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.ListActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SimpleAdapter
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
@@ -18,53 +19,63 @@ import com.ifmvo.togetherad.demo.splash.SplashProActivity
 
 class MainActivity : ListActivity() {
 
+    private val list = arrayListOf(
+            mapOf(
+                    "title" to "开屏",
+                    "desc" to "请求并展示",
+                    "class" to SplashActivity::class.java
+            ),
+            mapOf(
+                    "title" to "开屏",
+                    "desc" to "请求和展示分开，可实现预加载",
+                    "class" to SplashProActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生自渲染",
+                    "desc" to "简单用法",
+                    "class" to NativeSimpleActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生自渲染",
+                    "desc" to "在 RecyclerView 中使用",
+                    "class" to NativeRecyclerViewActivity::class.java
+            ),
+            mapOf(
+                    "title" to "激励广告",
+                    "desc" to "",
+                    "class" to RewardActivity::class.java
+            ),
+            mapOf(
+                    "title" to "Banner横幅广告",
+                    "desc" to "",
+                    "class" to BannerActivity::class.java
+            ),
+            mapOf(
+                    "title" to "Interstitial插屏广告",
+                    "desc" to "",
+                    "class" to InterActivity::class.java
+            ),
+            mapOf(
+                    "title" to "混合使用",
+                    "desc" to "gdt是开屏，baidu、csj是原生自渲染伪装成开屏",
+                    "class" to SplashHybridActivity::class.java
+            ),
+            mapOf(
+                    "title" to "采坑指南",
+                    "desc" to "持续更新...",
+                    "class" to HelpActivity::class.java
+            )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayListOf(
-                "开屏（ 请求并展示 ）",
-                "开屏（ 请求和展示分开，可实现预加载 ）",
-                "开屏&原生混合使用(gdt、csj是原生自渲染伪装成开屏)",
-                "原生自渲染简单用法",
-                "原生自渲染在 RecyclerView 中使用",
-                "激励广告",
-                "Banner 横幅广告",
-                "Interstitial插屏广告",
-                "采坑指南"
-        ))
+        listAdapter = SimpleAdapter(this, list, R.layout.list_item_main, arrayOf("title", "desc"), intArrayOf(R.id.text1, R.id.text2))
     }
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        when (position) {
-            0 -> {
-                SplashActivity.action(this)
-            }
-            1 -> {
-                SplashProActivity.action(this)
-            }
-            2 -> {
-                SplashHybridActivity.action(this)
-            }
-            3 -> {
-                NativeSimpleActivity.action(this)
-            }
-            4 -> {
-                NativeRecyclerViewActivity.action(this)
-            }
-            5 -> {
-                RewardActivity.action(this)
-            }
-            6 -> {
-                BannerActivity.action(this)
-            }
-            7 -> {
-                InterActivity.action(this)
-            }
-            8 -> {
-                HelpActivity.action(this)
-            }
-
-        }
+        val intent = Intent(this, list[position]["class"] as Class<*>)
+        startActivity(intent)
     }
 
     private var lastClickTimeLong = 0L

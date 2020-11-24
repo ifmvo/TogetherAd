@@ -60,7 +60,7 @@ class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
         val customSkipView = SplashSkipViewSimple2()
         val skipView = customSkipView.onCreateSkipView(container.context)
         skipView.run {
-            container.addView(this)
+            container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
                 mOnDismiss.invoke(adProviderType)

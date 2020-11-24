@@ -34,15 +34,14 @@ class SplashProActivity : AppCompatActivity() {
          */
         val ratioMapSplash = mapOf(
                 AdProviderType.GDT.type to 1,
-                AdProviderType.CSJ.type to 1,
-                AdProviderType.BAIDU.type to 1
+                AdProviderType.CSJ.type to 1
         )
         /**
          * activity: 必传。这里不是 Context，因为广点通必须传 Activity，所以统一传 Activity。
          * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
          * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
          */
-        AdHelperSplashPro(activity = this, alias = TogetherAdAlias.AD_SPLASH /*, ratioMap = ratioMapSplash*/)
+        AdHelperSplashPro(activity = this, alias = TogetherAdAlias.AD_SPLASH, ratioMap = ratioMapSplash)
     }
 
     companion object {
@@ -109,6 +108,7 @@ class SplashProActivity : AppCompatActivity() {
             }
 
             override fun onAdLoaded(providerType: String) {
+                btnShow.isEnabled = true
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("开屏广告请求好了，$providerType")
                 "onAdLoaded: $providerType".logi(TAG)
