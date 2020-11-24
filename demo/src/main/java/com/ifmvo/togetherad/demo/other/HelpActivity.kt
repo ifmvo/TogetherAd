@@ -2,6 +2,8 @@ package com.ifmvo.togetherad.demo.other
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.ifmvo.togetherad.demo.R
@@ -20,11 +22,26 @@ class HelpActivity : AppCompatActivity() {
         }
     }
 
+    fun getVersionName(context: Context): String? {
+        val pManager = context.packageManager
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = pManager.getPackageInfo(context.packageName, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return packageInfo?.versionName
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help)
 
         val txt = """
+            
+广告聚合 ${getVersionName(this)}
+            
+-------------------------------------------     
             
 广告法要求所有广告必须有广告的标示，否则会有风险。
 原生广告需要特别注意这一点，因为原生自渲染需要开发者自己写布局，而开屏、激励、Banner横幅、这类广告平台会自动添加广告标示。

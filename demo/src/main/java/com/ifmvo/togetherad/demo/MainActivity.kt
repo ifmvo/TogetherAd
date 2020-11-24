@@ -74,7 +74,8 @@ class MainActivity : ListActivity() {
     }
 
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        val intent = Intent(this, list[position]["class"] as Class<*>)
+        val classStr = list[position]["class"] ?: return
+        val intent = Intent(this, classStr as Class<*>)
         startActivity(intent)
     }
 
