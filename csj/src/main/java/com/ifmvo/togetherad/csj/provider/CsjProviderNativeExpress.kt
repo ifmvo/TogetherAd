@@ -16,7 +16,7 @@ import com.ifmvo.togetherad.csj.TogetherAdCsj
  */
 abstract class CsjProviderNativeExpress : CsjProviderNative() {
 
-    fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeExpressListener) {
+    override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeExpressListener) {
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
@@ -39,7 +39,7 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         })
     }
 
-    override fun resumeNativeAd(adObject: Any) {
+    override fun resumeNativeExpressAd(adObject: Any) {
         when (adObject) {
             is TTNativeExpressAd -> {
 
@@ -47,7 +47,7 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         }
     }
 
-    override fun pauseNativeAd(adObject: Any) {
+    override fun pauseNativeExpressAd(adObject: Any) {
         when (adObject) {
             is TTNativeExpressAd -> {
 
@@ -55,7 +55,7 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         }
     }
 
-    override fun destroyNativeAd(adObject: Any) {
+    override fun destroyNativeExpressAd(adObject: Any) {
         when (adObject) {
             is TTNativeExpressAd -> {
 
@@ -63,7 +63,7 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         }
     }
 
-    fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
+    override fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
         return adObject is TTNativeExpressAd
     }
 }

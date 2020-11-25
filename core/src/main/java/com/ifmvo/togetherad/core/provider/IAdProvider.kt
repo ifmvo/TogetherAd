@@ -6,28 +6,12 @@ import com.ifmvo.togetherad.core.listener.*
 import org.jetbrains.annotations.NotNull
 
 /* 
- *
- * 
  * Created by Matthew Chen on 2020-04-03.
  */
 interface IAdProvider {
 
     /**
-     * 开屏广告仅请求
-     */
-    fun loadOnlySplashAd(
-            @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
-            @NotNull adProviderType: String,
-            @NotNull alias: String,//当前广告位的别名
-            @NotNull listener: SplashListener//回调
-    )
-
-    fun showSplashAd(
-            @NotNull container: ViewGroup
-    ): Boolean
-
-    /**
-     * 开屏广告
+     * -----------------------------------开屏广告-----------------------------------
      */
     @Deprecated(message = "进一步优化加载和展示分开调用更灵活", replaceWith = ReplaceWith(expression = "loadOnlySplashAd", imports = ["com.ifmvo.togetherad.core.provider"]), level = DeprecationLevel.WARNING)
     fun loadAndShowSplashAd(
@@ -38,8 +22,21 @@ interface IAdProvider {
             @NotNull listener: SplashListener//回调
     )
 
+    //开屏广告仅请求
+    fun loadOnlySplashAd(
+            @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
+            @NotNull adProviderType: String,
+            @NotNull alias: String,//当前广告位的别名
+            @NotNull listener: SplashListener//回调
+    )
+
+    //展示开屏广告
+    fun showSplashAd(
+            @NotNull container: ViewGroup
+    ): Boolean
+
     /**
-     * Banner 广告
+     * -----------------------------------Banner 广告-----------------------------------
      */
     fun showBannerAd(
             @NotNull activity: Activity,
@@ -53,7 +50,7 @@ interface IAdProvider {
     fun destroyBannerAd()
 
     /**
-     * 插屏
+     * -----------------------------------插屏-----------------------------------
      */
     fun requestInterAd(
             @NotNull activity: Activity,
@@ -71,7 +68,7 @@ interface IAdProvider {
     fun destroyInterAd()
 
     /**
-     * 获取自渲染信息流
+     * -----------------------------------获取自渲染信息流-----------------------------------
      */
     fun getNativeAdList(
             @NotNull activity: Activity,
@@ -81,30 +78,43 @@ interface IAdProvider {
             @NotNull listener: NativeListener
     )
 
+    //判断原生广告对象是否属于这个提供商
+    fun nativeAdIsBelongTheProvider(@NotNull adObject: Any): Boolean
+
+    //控制原生自渲染的生命周期
+    fun resumeNativeAd(@NotNull adObject: Any)
+
+    //控制原生自渲染的生命周期
+    fun pauseNativeAd(@NotNull adObject: Any)
+
+    //控制原生自渲染的生命周期
+    fun destroyNativeAd(@NotNull adObject: Any)
+
     /**
-     * 判断原生广告对象是否属于这个提供商
+     * -----------------------------------获取原生模板列表-----------------------------------
      */
-    fun nativeAdIsBelongTheProvider(
-            @NotNull adObject: Any
-    ): Boolean
-
-    //控制原生自渲染的生命周期
-    fun resumeNativeAd(
-            @NotNull adObject: Any
+    fun getNativeExpressAdList(
+            @NotNull activity: Activity,
+            @NotNull adProviderType: String,
+            @NotNull alias: String,
+            maxCount: Int,
+            @NotNull listener: NativeExpressListener
     )
 
-    //控制原生自渲染的生命周期
-    fun pauseNativeAd(
-            @NotNull adObject: Any
-    )
+    //控制原生模板的生命周期
+    fun resumeNativeExpressAd(adObject: Any)
 
-    //控制原生自渲染的生命周期
-    fun destroyNativeAd(
-            @NotNull adObject: Any
-    )
+    //控制原生模板的生命周期
+    fun pauseNativeExpressAd(adObject: Any)
+
+    //控制原生模板的生命周期
+    fun destroyNativeExpressAd(adObject: Any)
+
+    //判断模板广告对象是否属于这个提供商
+    fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean
 
     /**
-     * 请求激励广告
+     * -----------------------------------请求激励广告 -----------------------------------
      */
     fun requestRewardAd(
             @NotNull activity: Activity,
@@ -113,9 +123,7 @@ interface IAdProvider {
             @NotNull listener: RewardListener
     )
 
-    /**
-     * 展示激励广告
-     */
+    //展示激励广告
     fun showRewardAd(
             @NotNull activity: Activity
     )
