@@ -50,7 +50,7 @@ abstract class GdtProviderReward : GdtProviderNativeExpress() {
             }
 
             override fun onError(adError: AdError?) {
-                callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}}, 错误信息：${adError?.errorMsg}")
+                callbackRewardFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
                 rewardVideoAD = null
             }
 

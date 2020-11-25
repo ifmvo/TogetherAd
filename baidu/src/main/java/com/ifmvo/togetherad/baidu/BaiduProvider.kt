@@ -162,7 +162,7 @@ open class BaiduProvider : BaseAdProvider() {
      */
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
-        callbackFlowStartRequest(adProviderType, listener)
+        callbackNativeStartRequest(adProviderType, listener)
 
         val baidu = BaiduNative(activity, TogetherAdBaidu.idMapBaidu[alias], object : BaiduNative.BaiduNativeNetworkListener {
 
@@ -172,11 +172,11 @@ open class BaiduProvider : BaseAdProvider() {
                 } else {
                     list
                 }
-                callbackFlowLoaded(adProviderType, listener, subList)
+                callbackNativeLoaded(adProviderType, listener, subList)
             }
 
             override fun onNativeFail(nativeErrorCode: NativeErrorCode) {
-                callbackFlowFailed(adProviderType, listener, "错误码: $nativeErrorCode")
+                callbackNativeFailed(adProviderType, listener, "错误码: $nativeErrorCode")
             }
         })
         /*

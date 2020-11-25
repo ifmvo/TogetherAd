@@ -19,21 +19,21 @@ abstract class GdtProviderNative : GdtProviderInter() {
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
-        callbackFlowStartRequest(adProviderType, listener)
+        callbackNativeStartRequest(adProviderType, listener)
 
         val nativeADUnifiedListener = object : NativeADUnifiedListener {
             override fun onADLoaded(adList: List<NativeUnifiedADData>?) {
                 //list是空的，按照错误来处理
                 if (adList?.isEmpty() != false) {
-                    callbackFlowFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    callbackNativeFailed(adProviderType, listener, "请求成功，但是返回的list为空")
                     return
                 }
 
-                callbackFlowLoaded(adProviderType, listener, adList)
+                callbackNativeLoaded(adProviderType, listener, adList)
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackFlowFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackNativeFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
             }
         }
 

@@ -91,6 +91,28 @@ open class CsjProvider : CsjProviderSplash() {
     }
 
     /**
+     * --------------------------- 原生自渲染模板 ---------------------------
+     */
+    object NativeExpress {
+
+        var supportDeepLink: Boolean = true
+
+        //期望模板广告view的size,单位dp
+        internal var expressViewAcceptedSizeWidth = 0f
+
+        //高度设置为0, 则高度会自适应
+        internal var expressViewAcceptedSizeHeight = 0f
+
+        /**
+         * 期望模板广告view的size, 单位dp
+         */
+        fun setExpressViewAcceptedSize(widthDp: Float, heightDp: Float) {
+            expressViewAcceptedSizeWidth = widthDp
+            expressViewAcceptedSizeHeight = heightDp
+        }
+    }
+
+    /**
      * --------------------------- 激励 ---------------------------
      */
     object Reward {

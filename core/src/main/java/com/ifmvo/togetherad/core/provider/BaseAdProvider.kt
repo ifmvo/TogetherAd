@@ -62,21 +62,45 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- 原生信息流 ---------------------------
      */
-    protected fun callbackFlowStartRequest(@NotNull adProviderType: String, @NotNull listener: NativeListener) {
+    protected fun callbackNativeStartRequest(@NotNull adProviderType: String, @NotNull listener: NativeListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
         }
     }
 
-    protected fun callbackFlowLoaded(@NotNull adProviderType: String, @NotNull listener: NativeListener, @NotNull adList: List<Any>) {
+    protected fun callbackNativeLoaded(@NotNull adProviderType: String, @NotNull listener: NativeListener, @NotNull adList: List<Any>) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
             listener.onAdLoaded(adProviderType, adList)
         }
     }
 
-    protected fun callbackFlowFailed(@NotNull adProviderType: String, @NotNull listener: NativeListener, failedMsg: String?) {
+    protected fun callbackNativeFailed(@NotNull adProviderType: String, @NotNull listener: NativeListener, failedMsg: String?) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求失败了：$failedMsg".loge()
+            listener.onAdFailed(adProviderType, failedMsg)
+        }
+    }
+
+    /**
+     * --------------------------- 原生信息流模板 ---------------------------
+     */
+    protected fun callbackNativeExpressStartRequest(@NotNull adProviderType: String, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 开始请求".logi()
+            listener.onAdStartRequest(adProviderType)
+        }
+    }
+
+    protected fun callbackNativeExpressLoaded(@NotNull adProviderType: String, @NotNull listener: NativeExpressListener, @NotNull adList: List<Any>) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
+            listener.onAdLoaded(adProviderType, adList)
+        }
+    }
+
+    protected fun callbackNativeExpressFailed(@NotNull adProviderType: String, @NotNull listener: NativeExpressListener, failedMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$failedMsg".loge()
             listener.onAdFailed(adProviderType, failedMsg)
