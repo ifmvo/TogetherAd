@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull
  */
 abstract class BaseAdProvider : IAdProvider {
 
+    protected val TAG = this.javaClass.simpleName
+
     /**
      * --------------------------- 开屏 ---------------------------
      */
