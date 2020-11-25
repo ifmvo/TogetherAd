@@ -97,15 +97,9 @@ interface IAdProvider {
             @NotNull activity: Activity,
             @NotNull adProviderType: String,
             @NotNull alias: String,
-            maxCount: Int,
+            adCount: Int,
             @NotNull listener: NativeExpressListener
     )
-
-    //控制原生模板的生命周期
-    fun resumeNativeExpressAd(adObject: Any)
-
-    //控制原生模板的生命周期
-    fun pauseNativeExpressAd(adObject: Any)
 
     //控制原生模板的生命周期
     fun destroyNativeExpressAd(adObject: Any)

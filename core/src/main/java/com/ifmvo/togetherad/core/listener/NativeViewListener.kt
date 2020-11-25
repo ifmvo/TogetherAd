@@ -10,8 +10,14 @@ import org.jetbrains.annotations.NotNull
  */
 interface NativeViewListener {
 
+    /**
+     * 广告曝光了
+     */
     fun onAdExposed(@NotNull providerType: String) {}
 
+    /**
+     * 广告被点击了
+     */
     fun onAdClicked(@NotNull providerType: String) {}
 
 }

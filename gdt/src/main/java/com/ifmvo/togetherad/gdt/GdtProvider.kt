@@ -5,6 +5,7 @@ import com.ifmvo.togetherad.gdt.provider.GdtProviderSplash
 import com.qq.e.ads.cfg.BrowserType
 import com.qq.e.ads.cfg.DownAPPConfirmPolicy
 import com.qq.e.ads.cfg.VideoOption
+import com.qq.e.ads.nativ.ADSize
 
 
 /**
@@ -54,6 +55,38 @@ open class GdtProvider : GdtProviderSplash() {
         // 可选项包括自VideoOption.VideoPlayPolicy.AUTO(在用户看来，视频广告是自动播放的)和VideoOption.VideoPlayPolicy.MANUAL(在用户看来，视频广告是手动播放的)；
         // 如果广告位支持视频，强烈建议调用此接口设置视频广告的播放策略，有助于提高eCPM值；如果广告位不支持视频，忽略本接口
         var videoPlayPolicy: Int = VideoOption.VideoPlayPolicy.AUTO
+    }
+
+    /**
+     * --------------------------- 原生模板 ---------------------------
+     */
+    object NativeExpress {
+
+        // 自动播放时为静音
+        var autoPlayMuted = true
+
+        // WIFI 环境下可以自动播放视频
+        var autoPlayPolicy: Int = VideoOption.AutoPlayPolicy.WIFI
+
+        /**
+         * 如果广告位支持视频广告，强烈建议在调用loadData请求广告前调用setVideoPlayPolicy，有助于提高视频广告的eCPM值 <br/>
+         * 如果广告位仅支持图文广告，则无需调用
+         * 设置本次拉取的视频广告，从用户角度看到的视频播放策略<p/>
+         * "用户角度"特指用户看到的情况，并非SDK是否自动播放，与自动播放策略AutoPlayPolicy的取值并非一一对应 <br/>
+         * 如自动播放策略为AutoPlayPolicy.WIFI，但此时用户网络为4G环境，在用户看来就是手工播放的
+         */
+        var videoPlayPolicy = VideoOption.VideoPlayPolicy.AUTO
+
+        //广告的宽高
+        internal var adWidth = ADSize.FULL_WIDTH
+
+        internal var adHeight = ADSize.AUTO_HEIGHT
+
+        fun setAdSize(width: Int = ADSize.FULL_WIDTH, height: Int = ADSize.AUTO_HEIGHT) {
+            adWidth = width
+            adHeight = height
+        }
+
     }
 
 }

@@ -8,10 +8,19 @@ import org.jetbrains.annotations.NotNull
  */
 interface BaseListener {
 
+    /**
+     * 开始请求前回调
+     */
     fun onAdStartRequest(@NotNull providerType: String) {}
 
+    /**
+     * 所有的提供商都请求失败，或请求超时
+     */
     fun onAdFailedAll() {}
 
+    /**
+     * 单个提供商请求失败
+     */
     fun onAdFailed(@NotNull providerType: String, failedMsg: String?) {}
 
 }

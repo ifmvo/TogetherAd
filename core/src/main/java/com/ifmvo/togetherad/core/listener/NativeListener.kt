@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull
  */
 interface NativeListener : BaseListener {
 
+    /**
+     * 请求到了广告
+     */
     fun onAdLoaded(@NotNull providerType: String, @NotNull adList: List<Any>) {}
 
 }

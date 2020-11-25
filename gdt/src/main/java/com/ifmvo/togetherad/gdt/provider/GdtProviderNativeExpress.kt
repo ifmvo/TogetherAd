@@ -2,6 +2,13 @@ package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
+import com.ifmvo.togetherad.gdt.GdtProvider
+import com.ifmvo.togetherad.gdt.TogetherAdGdt
+import com.qq.e.ads.cfg.VideoOption
+import com.qq.e.ads.nativ.ADSize
+import com.qq.e.ads.nativ.NativeExpressAD
+import com.qq.e.ads.nativ.NativeExpressADView
+import com.qq.e.comm.util.AdError
 
 /**
  *
@@ -9,23 +16,64 @@ import com.ifmvo.togetherad.core.listener.NativeExpressListener
  */
 abstract class GdtProviderNativeExpress : GdtProviderNative() {
 
-    override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeExpressListener) {
+    override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
 
-    }
+        callbackNativeExpressStartRequest(adProviderType, listener)
 
-    override fun resumeNativeExpressAd(adObject: Any) {
+        val nativeExpressADListener = object : NativeExpressAD.NativeExpressADListener {
 
-    }
+            override fun onADLoaded(ads: MutableList<NativeExpressADView>?) {
+                if (ads.isNullOrEmpty()) {
+                    callbackNativeExpressFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    return
+                }
+                callbackNativeExpressLoaded(adProviderType, listener, ads)
+            }
 
-    override fun pauseNativeExpressAd(adObject: Any) {
+            override fun onNoAD(adError: AdError?) {
+                callbackNativeExpressFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+            }
 
+            override fun onRenderSuccess(adView: NativeExpressADView?) {
+                callbackNativeExpressRenderSuccess(adProviderType, adView, listener)
+            }
+
+            override fun onRenderFail(adView: NativeExpressADView?) {
+                callbackNativeExpressRenderFail(adProviderType, adView, listener)
+            }
+
+            override fun onADClicked(adView: NativeExpressADView?) {
+                callbackNativeExpressClicked(adProviderType, adView, listener)
+            }
+
+            override fun onADExposure(adView: NativeExpressADView?) {
+                callbackNativeExpressShow(adProviderType, adView, listener)
+            }
+
+            override fun onADClosed(adView: NativeExpressADView?) {
+                callbackNativeExpressClosed(adProviderType, adView, listener)
+            }
+
+            override fun onADCloseOverlay(adView: NativeExpressADView?) {}
+            override fun onADOpenOverlay(adView: NativeExpressADView?) {}
+            override fun onADLeftApplication(adView: NativeExpressADView?) {}
+        }
+
+        val nativeExpressAD = NativeExpressAD(activity, ADSize(GdtProvider.NativeExpress.adWidth, GdtProvider.NativeExpress.adHeight), TogetherAdGdt.idMapGDT[alias], nativeExpressADListener)
+        nativeExpressAD.setVideoOption(VideoOption.Builder()
+                .setAutoPlayPolicy(GdtProvider.NativeExpress.autoPlayPolicy)
+                .setAutoPlayMuted(GdtProvider.NativeExpress.autoPlayMuted)
+                .build())
+        nativeExpressAD.setVideoPlayPolicy(GdtProvider.NativeExpress.videoPlayPolicy)
+        nativeExpressAD.loadAD(adCount)
     }
 
     override fun destroyNativeExpressAd(adObject: Any) {
-
+        if (adObject !is NativeExpressADView) return
+        adObject.destroy()
     }
 
     override fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
-        return false
+        return adObject is NativeExpressADView
     }
 }

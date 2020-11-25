@@ -6,6 +6,7 @@ import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import org.jetbrains.annotations.NotNull
+import org.jetbrains.annotations.Nullable
 
 /*
  * Created by Matthew Chen on 2020-04-03.
@@ -104,6 +105,41 @@ abstract class BaseAdProvider : IAdProvider {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
             listener.onAdFailed(adProviderType, errorMsg)
+        }
+    }
+
+    protected fun callbackNativeExpressClicked(@NotNull adProviderType: String, @Nullable adObject: Any?, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 点击了".logi()
+            listener.onAdClicked(adProviderType, adObject)
+        }
+    }
+
+    protected fun callbackNativeExpressShow(@NotNull adProviderType: String, @Nullable adObject: Any?, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 展示了".logi()
+            listener.onAdShow(adProviderType, adObject)
+        }
+    }
+
+    protected fun callbackNativeExpressRenderSuccess(@NotNull adProviderType: String, @Nullable adObject: Any?, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 渲染成功".logi()
+            listener.onAdRenderSuccess(adProviderType, adObject)
+        }
+    }
+
+    protected fun callbackNativeExpressRenderFail(@NotNull adProviderType: String, @Nullable adObject: Any?, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 渲染失败了".loge()
+            listener.onAdRenderFail(adProviderType, adObject)
+        }
+    }
+
+    protected fun callbackNativeExpressClosed(@NotNull adProviderType: String, @Nullable adObject: Any?, @NotNull listener: NativeExpressListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 关闭了".logi()
+            listener.onAdClosed(adProviderType, adObject)
         }
     }
 
