@@ -28,13 +28,13 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         TTAdSdk.getAdManager().createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(ads: MutableList<TTNativeExpressAd>?) {
                 if (ads.isNullOrEmpty()) {
-                    callbackNativeExpressFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    callbackNativeExpressFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackNativeExpressFailed(adProviderType, listener, "错误码: $errorCode, 错误信息：$errorMsg")
+                callbackNativeExpressFailed(adProviderType, listener, errorCode, errorMsg)
             }
         })
     }

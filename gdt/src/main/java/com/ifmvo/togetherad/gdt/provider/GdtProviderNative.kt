@@ -25,7 +25,7 @@ abstract class GdtProviderNative : GdtProviderInter() {
             override fun onADLoaded(adList: List<NativeUnifiedADData>?) {
                 //list是空的，按照错误来处理
                 if (adList?.isEmpty() != false) {
-                    callbackNativeFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    callbackNativeFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
 
@@ -33,7 +33,7 @@ abstract class GdtProviderNative : GdtProviderInter() {
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackNativeFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackNativeFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
         }
 

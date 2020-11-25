@@ -28,7 +28,7 @@ abstract class CsjProviderInter : CsjProviderBanner() {
         TTAdSdk.getAdManager().createAdNative(activity).loadInteractionAd(adSlot, object : TTAdNative.InteractionAdListener {
             override fun onError(errorCode: Int, errorMsg: String?) {
                 //出错
-                callbackInterFailed(adProviderType, listener, "错误码: $errorCode, 错误信息：$errorMsg")
+                callbackInterFailed(adProviderType, listener, errorCode, errorMsg)
             }
 
             override fun onInteractionAdLoad(ttInteractionAd: TTInteractionAd?) {

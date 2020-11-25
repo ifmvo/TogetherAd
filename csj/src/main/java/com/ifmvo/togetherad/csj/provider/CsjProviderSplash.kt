@@ -30,7 +30,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {
-                    callbackSplashFailed(adProviderType, listener, "请求成功，但是返回的广告为null")
+                    callbackSplashFailed(adProviderType, listener, null, "请求成功，但是返回的广告为null")
                     return
                 }
 
@@ -58,11 +58,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             }
 
             override fun onTimeout() {
-                callbackSplashFailed(adProviderType, listener, "请求超时了")
+                callbackSplashFailed(adProviderType, listener, null, "请求超时了")
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackSplashFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                callbackSplashFailed(adProviderType, listener, errorCode, errorMsg)
             }
         }, CsjProvider.Splash.maxFetchDelay)//超时时间，demo 为 3000
     }
@@ -91,7 +91,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {
-                    callbackSplashFailed(adProviderType, listener, "请求成功，但是返回的广告为null")
+                    callbackSplashFailed(adProviderType, listener, null, "请求成功，但是返回的广告为null")
                     return
                 }
 
@@ -120,11 +120,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             }
 
             override fun onTimeout() {
-                callbackSplashFailed(adProviderType, listener, "请求超时了")
+                callbackSplashFailed(adProviderType, listener, null, "请求超时了")
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackSplashFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                callbackSplashFailed(adProviderType, listener, errorCode, errorMsg)
             }
         }, CsjProvider.Splash.maxFetchDelay)//超时时间，demo 为 3000
     }

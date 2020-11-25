@@ -22,7 +22,7 @@ abstract class GdtProviderBanner : BaseAdProvider() {
         destroyBannerAd()
         banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
             override fun onADCloseOverlay() {
-                "onADCloseOverlay".logi(TAG)
+                "onADCloseOverlay".logi(tag)
             }
 
             override fun onADExposure() {
@@ -34,16 +34,16 @@ abstract class GdtProviderBanner : BaseAdProvider() {
             }
 
             override fun onADLeftApplication() {
-                "onADLeftApplication".logi(TAG)
+                "onADLeftApplication".logi(tag)
             }
 
             override fun onADOpenOverlay() {
-                "onADOpenOverlay".logi(TAG)
+                "onADOpenOverlay".logi(tag)
             }
 
             override fun onNoAD(adError: AdError?) {
                 banner?.destroy()
-                callbackBannerFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackBannerFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onADReceive() {

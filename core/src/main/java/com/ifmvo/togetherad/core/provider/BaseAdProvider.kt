@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull
  */
 abstract class BaseAdProvider : IAdProvider {
 
-    protected val TAG = this.javaClass.simpleName
+    protected val tag: String? = this.javaClass.simpleName
 
     /**
      * --------------------------- 开屏 ---------------------------
@@ -45,10 +45,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackSplashFailed(@NotNull adProviderType: String, @NotNull listener: SplashListener, failedMsg: String?) {
+    protected fun callbackSplashFailed(@NotNull adProviderType: String, @NotNull listener: SplashListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 
@@ -76,10 +76,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackNativeFailed(@NotNull adProviderType: String, @NotNull listener: NativeListener, failedMsg: String?) {
+    protected fun callbackNativeFailed(@NotNull adProviderType: String, @NotNull listener: NativeListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 
@@ -100,10 +100,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackNativeExpressFailed(@NotNull adProviderType: String, @NotNull listener: NativeExpressListener, failedMsg: String?) {
+    protected fun callbackNativeExpressFailed(@NotNull adProviderType: String, @NotNull listener: NativeExpressListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 
@@ -124,10 +124,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackRewardFailed(@NotNull adProviderType: String, @NotNull listener: RewardListener, failedMsg: String?) {
+    protected fun callbackRewardFailed(@NotNull adProviderType: String, @NotNull listener: RewardListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 
@@ -197,10 +197,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackBannerFailed(@NotNull adProviderType: String, @NotNull listener: BannerListener, failedMsg: String?) {
+    protected fun callbackBannerFailed(@NotNull adProviderType: String, @NotNull listener: BannerListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 
@@ -242,10 +242,10 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackInterFailed(@NotNull adProviderType: String, @NotNull listener: InterListener, failedMsg: String?) {
+    protected fun callbackInterFailed(@NotNull adProviderType: String, @NotNull listener: InterListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$failedMsg".loge()
-            listener.onAdFailed(adProviderType, failedMsg)
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
         }
     }
 

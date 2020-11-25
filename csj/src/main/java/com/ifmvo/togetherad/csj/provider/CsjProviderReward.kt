@@ -32,7 +32,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
         TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String) {
-                callbackRewardFailed(adProviderType, listener, "错误码: $code, 错误信息：$message")
+                callbackRewardFailed(adProviderType, listener, code, message)
                 mttRewardVideoAd = null
             }
 

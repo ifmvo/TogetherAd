@@ -39,7 +39,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    callbackBannerFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
                 callbackBannerLoaded(adProviderType, listener)
@@ -60,7 +60,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                     }
 
                     override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
-                        callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                        callbackBannerFailed(adProviderType, listener, errorCode, errorMsg)
                     }
                 })
                 mTTNativeExpressAd?.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
@@ -77,7 +77,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                callbackBannerFailed(adProviderType, listener, errorCode, errorMsg)
             }
         })
     }

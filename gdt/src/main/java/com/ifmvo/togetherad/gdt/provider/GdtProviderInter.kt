@@ -27,11 +27,11 @@ abstract class GdtProviderInter : GdtProviderBanner() {
             }
 
             override fun onVideoCached() {
-                "onVideoCached".logi(TAG)
+                "onVideoCached".logi(tag)
             }
 
             override fun onADOpened() {
-                "onADOpened".logi(TAG)
+                "onADOpened".logi(tag)
             }
 
             override fun onADClosed() {
@@ -39,7 +39,7 @@ abstract class GdtProviderInter : GdtProviderBanner() {
             }
 
             override fun onADLeftApplication() {
-                "onADLeftApplication".logi(TAG)
+                "onADLeftApplication".logi(tag)
             }
 
             override fun onADReceive() {
@@ -47,7 +47,7 @@ abstract class GdtProviderInter : GdtProviderBanner() {
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackInterFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackInterFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onADClicked() {

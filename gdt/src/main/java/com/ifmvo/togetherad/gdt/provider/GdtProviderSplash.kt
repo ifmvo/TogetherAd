@@ -40,7 +40,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
                 mContainer = null
-                callbackSplashFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackSplashFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             /**
@@ -55,7 +55,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
                         mContainer?.addView(this, customSkipView.getLayoutParams())
                     }
                 }
-                "${adProviderType}: 广告成功展示".logi(TAG)
+                "${adProviderType}: 广告成功展示".logi(tag)
                 splashAd?.preLoad()
             }
 
@@ -66,7 +66,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             override fun onADTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
                 GdtProvider.Splash.customSkipView?.handleTime(second)
-                "${adProviderType}: 倒计时: $second".logv(TAG)
+                "${adProviderType}: 倒计时: $second".logv(tag)
             }
 
             override fun onADExposure() {
@@ -131,7 +131,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
-                callbackSplashFailed(adProviderType, listener, "错误码: ${adError?.errorCode}, 错误信息：${adError?.errorMsg}")
+                callbackSplashFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             /**
@@ -146,7 +146,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
                         container.addView(this, customSkipView.getLayoutParams())
                     }
                 }
-                "${adProviderType}: 广告成功展示".logi(TAG)
+                "${adProviderType}: 广告成功展示".logi(tag)
             }
 
             override fun onADClicked() {
@@ -156,7 +156,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             override fun onADTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
                 customSkipView?.handleTime(second)
-                "${adProviderType}: 倒计时: $second".logv(TAG)
+                "${adProviderType}: 倒计时: $second".logv(tag)
             }
 
             override fun onADExposure() {

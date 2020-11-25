@@ -50,7 +50,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
         TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
             override fun onNativeAdLoad(adList: MutableList<TTNativeAd>?) {
                 if (adList.isNullOrEmpty()) {
-                    callbackNativeFailed(adProviderType, listener, "请求成功，但是返回的list为空")
+                    callbackNativeFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
 
@@ -58,7 +58,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackNativeFailed(adProviderType, listener, "错误码: $errorCode, 错误信息：$errorMsg")
+                callbackNativeFailed(adProviderType, listener, errorCode, errorMsg)
             }
         })
     }
