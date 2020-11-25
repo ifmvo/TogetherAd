@@ -2,7 +2,6 @@ package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
 import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.gdt.GdtProvider
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.NativeADUnifiedListener

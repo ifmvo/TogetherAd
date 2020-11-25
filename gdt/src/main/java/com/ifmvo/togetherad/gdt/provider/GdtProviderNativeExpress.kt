@@ -2,7 +2,6 @@ package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
-import com.ifmvo.togetherad.gdt.GdtProvider
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.ADSize
@@ -65,6 +64,8 @@ abstract class GdtProviderNativeExpress : GdtProviderNative() {
                 .setAutoPlayMuted(GdtProvider.NativeExpress.autoPlayMuted)
                 .build())
         nativeExpressAD.setVideoPlayPolicy(GdtProvider.NativeExpress.videoPlayPolicy)
+        nativeExpressAD.setMinVideoDuration(GdtProvider.NativeExpress.minVideoDuration)
+        nativeExpressAD.setMaxVideoDuration(GdtProvider.NativeExpress.maxVideoDuration)
         nativeExpressAD.loadAD(adCount)
     }
 

@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.demo.extend
 
 import android.content.Context
-import com.ifmvo.togetherad.baidu.BaiduProvider
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import org.jetbrains.annotations.NotNull

@@ -1,7 +1,6 @@
-package com.ifmvo.togetherad.csj
+package com.ifmvo.togetherad.csj.provider
 
 import com.bytedance.sdk.openadsdk.TTAdConstant
-import com.ifmvo.togetherad.csj.provider.CsjProviderSplash
 
 /**
  * 广告提供商：穿山甲

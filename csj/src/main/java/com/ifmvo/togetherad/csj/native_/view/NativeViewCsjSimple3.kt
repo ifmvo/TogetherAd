@@ -1,23 +1,23 @@
-package com.ifmvo.togetherad.csj
+package com.ifmvo.togetherad.csj.native_.view
 
 import android.os.CountDownTimer
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple3
+import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.NativeViewListener
-import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.csj.R
 import kotlin.math.roundToInt
 
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNativeViewCsj() {
+class NativeViewCsjSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeViewCsj() {
 
     private var mOnDismiss: (providerType: String) -> Unit = onDismiss
 
     override fun getLayoutRes(): Int {
-        return R.layout.layout_native_view_csj_simple_4
+        return R.layout.layout_native_view_csj_simple_3
     }
 
     override fun getImageContainer(): ViewGroup? {
@@ -51,14 +51,11 @@ class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNati
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         super.showNative(adProviderType, adObject, container, listener)
 
-        getImageContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
-        getVideoContainer()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
-
         //添加跳过按钮
-        val customSkipView = SplashSkipViewSimple3()
+        val customSkipView = SplashSkipViewSimple2()
         val skipView = customSkipView.onCreateSkipView(container.context)
         skipView.run {
-            container.addView(this)
+            container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
                 mOnDismiss.invoke(adProviderType)

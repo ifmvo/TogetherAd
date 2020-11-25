@@ -42,7 +42,7 @@ class AdHelperNativePro(
 
     companion object {
 
-        private const val defaultMaxCount = 4
+        private const val defaultMaxCount = 1
 
         fun show(@Nullable adObject: Any?, @Nullable container: ViewGroup?, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
             if (adObject == null) {

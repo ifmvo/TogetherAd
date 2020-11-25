@@ -9,11 +9,9 @@ import com.ifmvo.togetherad.core.helper.AdHelperReward
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
-import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
-import com.ifmvo.togetherad.gdt.GdtProvider
 import kotlinx.android.synthetic.main.activity_reward.*
 
 /**

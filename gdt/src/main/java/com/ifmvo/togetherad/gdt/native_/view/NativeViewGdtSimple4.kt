@@ -1,28 +1,53 @@
-package com.ifmvo.togetherad.baidu
+package com.ifmvo.togetherad.gdt.native_.view
 
 import android.os.CountDownTimer
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple3
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.gdt.R
+import com.qq.e.ads.nativ.MediaView
+import com.qq.e.ads.nativ.widget.NativeAdContainer
 import kotlin.math.roundToInt
 
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewBaiduSimple4(onDismiss: (providerType: String) -> Unit) : BaseNativeViewBaidu() {
+class NativeViewGdtSimple4(onDismiss: (providerType: String) -> Unit) : BaseNativeViewGdt() {
 
     private var mOnDismiss: (providerType: String) -> Unit = onDismiss
-    private var mTimer: CountDownTimer? = null
 
     override fun getLayoutRes(): Int {
-        return R.layout.layout_native_view_baidu_simple_4
+        return R.layout.layout_native_view_gdt_simple_4
+    }
+
+    override fun getNativeAdContainer(): NativeAdContainer? {
+        return rootView?.findViewById(R.id.native_ad_container)
+    }
+
+    override fun getTitleTextView(): TextView? {
+        return rootView?.findViewById(R.id.tv_title)
+    }
+
+    override fun getDescTextView(): TextView? {
+        return rootView?.findViewById(R.id.tv_desc)
+    }
+
+    override fun getMediaView(): MediaView? {
+        return rootView?.findViewById(R.id.gdt_media_view)
+    }
+
+    override fun getMainImageView(): ImageView? {
+        return rootView?.findViewById(R.id.img_poster)
     }
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         super.showNative(adProviderType, adObject, container, listener)
 
         getMainImageView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
+        getMediaView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
 
         //添加跳过按钮
         val customSkipView = SplashSkipViewSimple3()
@@ -49,4 +74,6 @@ class NativeViewBaiduSimple4(onDismiss: (providerType: String) -> Unit) : BaseNa
         }
         mTimer?.start()
     }
+
+    private var mTimer: CountDownTimer? = null
 }

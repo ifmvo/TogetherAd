@@ -6,7 +6,6 @@ import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.listener.NativeListener
-import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**

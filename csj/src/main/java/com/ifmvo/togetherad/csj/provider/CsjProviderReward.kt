@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.csj.provider
 import android.app.Activity
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.listener.RewardListener
-import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**

@@ -1,10 +1,11 @@
-package com.ifmvo.togetherad.baidu
+package com.ifmvo.togetherad.baidu.native_.view
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.baidu.mobad.feeds.NativeResponse
+import com.ifmvo.togetherad.baidu.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener

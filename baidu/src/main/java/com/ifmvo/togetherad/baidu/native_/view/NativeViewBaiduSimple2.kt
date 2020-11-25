@@ -1,6 +1,7 @@
-package com.ifmvo.togetherad.baidu
+package com.ifmvo.togetherad.baidu.native_.view
 
 import android.view.ViewGroup
+import com.ifmvo.togetherad.baidu.R
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 

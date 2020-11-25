@@ -1,7 +1,8 @@
-package com.ifmvo.togetherad.baidu
+package com.ifmvo.togetherad.baidu.native_.view
 
 import android.os.CountDownTimer
 import android.view.ViewGroup
+import com.ifmvo.togetherad.baidu.R
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import kotlin.math.roundToInt

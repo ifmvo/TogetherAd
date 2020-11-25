@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.utils.loge
-import com.ifmvo.togetherad.csj.CsjProvider
+import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**

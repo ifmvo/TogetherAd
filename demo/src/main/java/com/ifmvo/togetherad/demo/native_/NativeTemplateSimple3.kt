@@ -1,11 +1,11 @@
 package com.ifmvo.togetherad.demo.native_
 
-import com.ifmvo.togetherad.baidu.NativeViewBaiduSimple3
+import com.ifmvo.togetherad.baidu.native_.view.NativeViewBaiduSimple3
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
-import com.ifmvo.togetherad.csj.NativeViewCsjSimple3
+import com.ifmvo.togetherad.csj.native_.view.NativeViewCsjSimple3
 import com.ifmvo.togetherad.demo.AdProviderType
-import com.ifmvo.togetherad.gdt.NativeViewGdtSimple3
+import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple3
 
 /*
  * Created by Matthew Chen on 2020-04-21.

@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.csj
+package com.ifmvo.togetherad.csj.native_.view
 
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +11,7 @@ import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.csj.R
 
 /**
  *

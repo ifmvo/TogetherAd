@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.baidu
 import android.content.Context
 import org.jetbrains.annotations.NotNull
 import com.baidu.mobads.AdView
+import com.ifmvo.togetherad.baidu.provider.BaiduProvider
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 

@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.gdt
+package com.ifmvo.togetherad.gdt.native_.view
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.gdt.R
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.MediaView
 import com.qq.e.ads.nativ.NativeADEventListener

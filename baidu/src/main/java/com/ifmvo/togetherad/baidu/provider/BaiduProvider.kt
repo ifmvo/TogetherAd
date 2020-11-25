@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.baidu
+package com.ifmvo.togetherad.baidu.provider
 
 import android.app.Activity
 import android.view.ViewGroup
@@ -8,6 +8,7 @@ import com.baidu.mobad.feeds.NativeResponse
 import com.baidu.mobad.feeds.RequestParameters
 import com.baidu.mobads.*
 import com.baidu.mobads.rewardvideo.RewardVideoAd
+import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.listener.*
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.logd
@@ -227,6 +228,18 @@ open class BaiduProvider : BaseAdProvider() {
 
             }
         }
+    }
+
+    override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
+
+    }
+
+    override fun destroyNativeExpressAd(adObject: Any) {
+
+    }
+
+    override fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
+        return false
     }
 
     /**

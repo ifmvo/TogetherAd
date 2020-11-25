@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.gdt
 import android.content.Context
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
+import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import com.qq.e.comm.managers.GDTADManager
 import org.jetbrains.annotations.NotNull
 

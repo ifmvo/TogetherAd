@@ -1,10 +1,11 @@
-package com.ifmvo.togetherad.csj
+package com.ifmvo.togetherad.csj.native_.view
 
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.csj.R
 
 /**
  * Created by Matthew Chen on 2020-04-21.

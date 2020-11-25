@@ -1,7 +1,6 @@
-package com.ifmvo.togetherad.gdt
+package com.ifmvo.togetherad.gdt.provider
 
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
-import com.ifmvo.togetherad.gdt.provider.GdtProviderSplash
 import com.qq.e.ads.cfg.BrowserType
 import com.qq.e.ads.cfg.DownAPPConfirmPolicy
 import com.qq.e.ads.cfg.VideoOption
@@ -77,6 +76,12 @@ open class GdtProvider : GdtProviderSplash() {
          */
         var videoPlayPolicy = VideoOption.VideoPlayPolicy.AUTO
 
+        //视频最小时长
+        var minVideoDuration: Int = 0
+
+        //视频最大时长
+        var maxVideoDuration: Int = 0
+
         //广告的宽高
         internal var adWidth = ADSize.FULL_WIDTH
 
@@ -86,7 +91,5 @@ open class GdtProvider : GdtProviderSplash() {
             adWidth = width
             adHeight = height
         }
-
     }
-
 }

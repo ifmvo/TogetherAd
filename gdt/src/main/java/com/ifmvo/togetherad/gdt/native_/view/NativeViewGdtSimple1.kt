@@ -1,20 +1,21 @@
-package com.ifmvo.togetherad.gdt
+package com.ifmvo.togetherad.gdt.native_.view
 
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
+import com.ifmvo.togetherad.gdt.R
 import com.qq.e.ads.nativ.MediaView
 import com.qq.e.ads.nativ.widget.NativeAdContainer
 
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewGdtSimple2 : BaseNativeViewGdt() {
+class NativeViewGdtSimple1 : BaseNativeViewGdt() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.layout_native_view_gdt_simple_2
+        return R.layout.layout_native_view_gdt_simple_1
     }
 
     override fun getNativeAdContainer(): NativeAdContainer? {
@@ -40,8 +41,7 @@ class NativeViewGdtSimple2 : BaseNativeViewGdt() {
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         super.showNative(adProviderType, adObject, container, listener)
 
-        getMainImageView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16)
-        getMediaView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) / 3 * 9 / 16)
+        getMainImageView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
+        getMediaView()?.layoutParams?.height = (ScreenUtil.getDisplayMetricsWidth(container.context) * 9 / 16)
     }
-
 }

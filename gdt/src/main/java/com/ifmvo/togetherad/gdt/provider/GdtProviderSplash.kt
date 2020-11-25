@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
-import com.ifmvo.togetherad.gdt.GdtProvider
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener

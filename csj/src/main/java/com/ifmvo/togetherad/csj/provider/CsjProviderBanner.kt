@@ -8,7 +8,6 @@ import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.core.utils.px2dp
-import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**

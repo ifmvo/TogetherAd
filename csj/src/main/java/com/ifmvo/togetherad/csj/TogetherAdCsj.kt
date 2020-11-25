@@ -8,6 +8,7 @@ import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTCustomController
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
+import com.ifmvo.togetherad.csj.provider.CsjProvider
 import org.jetbrains.annotations.NotNull
 
 /**

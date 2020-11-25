@@ -8,7 +8,6 @@ import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTSplashAd
 import com.ifmvo.togetherad.core.listener.SplashListener
-import com.ifmvo.togetherad.csj.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**

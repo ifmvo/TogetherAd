@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.csj
+package com.ifmvo.togetherad.gdt.native_.view
 
 import android.os.CountDownTimer
 import android.view.ViewGroup
@@ -6,37 +6,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.gdt.R
+import com.qq.e.ads.nativ.MediaView
+import com.qq.e.ads.nativ.widget.NativeAdContainer
 import kotlin.math.roundToInt
 
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeViewCsj() {
+class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeViewGdt() {
 
     private var mOnDismiss: (providerType: String) -> Unit = onDismiss
 
     override fun getLayoutRes(): Int {
-        return R.layout.layout_native_view_csj_simple_3
+        return R.layout.layout_native_view_gdt_simple_3
     }
 
-    override fun getImageContainer(): ViewGroup? {
-        return rootView?.findViewById(R.id.ll_ad_container)
-    }
-
-    override fun getMainImageView_1(): ImageView? {
-        return rootView?.findViewById(R.id.img_poster1)
-    }
-
-    override fun getMainImageView_2(): ImageView? {
-        return rootView?.findViewById(R.id.img_poster2)
-    }
-
-    override fun getMainImageView_3(): ImageView? {
-        return rootView?.findViewById(R.id.img_poster3)
-    }
-
-    override fun getVideoContainer(): ViewGroup? {
-        return rootView?.findViewById(R.id.fl_ad_container)
+    override fun getNativeAdContainer(): NativeAdContainer? {
+        return rootView?.findViewById(R.id.native_ad_container)
     }
 
     override fun getTitleTextView(): TextView? {
@@ -45,6 +32,14 @@ class NativeViewCsjSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
 
     override fun getDescTextView(): TextView? {
         return rootView?.findViewById(R.id.tv_desc)
+    }
+
+    override fun getMediaView(): MediaView? {
+        return rootView?.findViewById(R.id.gdt_media_view)
+    }
+
+    override fun getMainImageView(): ImageView? {
+        return rootView?.findViewById(R.id.img_poster)
     }
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
@@ -74,6 +69,7 @@ class NativeViewCsjSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
             }
         }
         mTimer?.start()
+
     }
 
     private var mTimer: CountDownTimer? = null
