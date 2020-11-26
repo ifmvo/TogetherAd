@@ -9,7 +9,6 @@ import com.qq.e.comm.constants.AdPatternType
 import com.qq.e.comm.util.AdError
 
 /**
- *
  * Created by Matthew Chen on 2020/11/25.
  */
 class NativeExpressViewGdt : BaseNativeView() {

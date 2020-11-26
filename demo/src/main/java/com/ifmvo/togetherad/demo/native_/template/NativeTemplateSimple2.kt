@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.native_.template
 
 import com.ifmvo.togetherad.baidu.native_.view.NativeViewBaiduSimple2
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate

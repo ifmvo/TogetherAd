@@ -16,6 +16,10 @@ import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.demo.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple1
+import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple2
+import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple4
+import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple5
 import kotlinx.android.synthetic.main.activity_native_simple.*
 
 /**

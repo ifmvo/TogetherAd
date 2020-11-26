@@ -12,6 +12,7 @@ import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
+import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple5
 
 /**
  * 一个普通的多类型列表的 Adapter

@@ -1,27 +1,27 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.native_.template
 
-import com.ifmvo.togetherad.baidu.native_.view.NativeViewBaiduSimple1
+import com.ifmvo.togetherad.baidu.native_.view.NativeViewBaiduSimple5
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
 import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
-import com.ifmvo.togetherad.csj.native_.view.NativeViewCsjSimple1
+import com.ifmvo.togetherad.csj.native_.view.NativeViewCsjSimple5
 import com.ifmvo.togetherad.demo.AdProviderType
-import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple1
+import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple5
 
 /*
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeTemplateSimple1 : BaseNativeTemplate() {
+class NativeTemplateSimple5 : BaseNativeTemplate() {
 
     override fun getNativeView(adProviderType: String): BaseNativeView? {
         return when (adProviderType) {
-            AdProviderType.BAIDU.type -> {
-                NativeViewBaiduSimple1()
-            }
             AdProviderType.GDT.type -> {
-                NativeViewGdtSimple1()
+                NativeViewGdtSimple5()
             }
             AdProviderType.CSJ.type -> {
-                NativeViewCsjSimple1()
+                NativeViewCsjSimple5()
+            }
+            AdProviderType.BAIDU.type -> {
+                NativeViewBaiduSimple5()
             }
             else -> throw Exception("模板配置错误")
         }
