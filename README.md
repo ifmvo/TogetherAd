@@ -2,7 +2,7 @@
 
 TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的 Android 项目也可调用 )
 
-能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入国内多家主流广告 SDK。
+能够帮助 Android 开发者``快速``、``便捷``、``灵活``的接入并使用国内多家主流广告 SDK。
 
 欢迎 **<mark>Star**</mark> 、**Fork**、**Issues**
 
@@ -66,6 +66,10 @@ dependencies {
 3. 新增 加载和展示分开的开屏广告 AdHelperSplashPro
 
 [点击查看更多日志](doc/update_log.md)
+
+## TogetherAd 支持广告的结构图
+
+![](img/TogetherAd.png)
 
 ## 使用方法
 
