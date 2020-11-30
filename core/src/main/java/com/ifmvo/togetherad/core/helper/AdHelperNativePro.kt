@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeTemplate
+import com.ifmvo.togetherad.core.custom.native_.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
-import com.ifmvo.togetherad.core.utils.logv
 import com.ifmvo.togetherad.core.utils.logw
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable

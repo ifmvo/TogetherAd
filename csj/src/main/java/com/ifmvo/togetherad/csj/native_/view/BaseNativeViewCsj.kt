@@ -9,7 +9,7 @@ import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.csj.R
 

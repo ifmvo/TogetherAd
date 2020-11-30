@@ -12,17 +12,19 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
  *
  * Created by Matthew Chen on 2020/10/23.
  */
-class XiaomiProvider: BaseAdProvider() {
+class XiaomiProvider : BaseAdProvider() {
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
-        callbackSplashFailed(adProviderType, listener, "小米开屏不支持加载和展示分开")
+        callbackSplashFailed(adProviderType, listener, null, "未实现")
     }
 
     override fun showSplashAd(container: ViewGroup): Boolean {
         return false
     }
 
-    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {}
+    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
+        callbackSplashFailed(adProviderType, listener, null, "未实现")
+    }
 
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {}
 
@@ -36,13 +38,35 @@ class XiaomiProvider: BaseAdProvider() {
 
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {}
 
-    override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean { return false }
+    override fun nativeAdIsBelongTheProvider(adObject: Any): Boolean {
+        return false
+    }
 
     override fun resumeNativeAd(adObject: Any) {}
 
     override fun pauseNativeAd(adObject: Any) {}
 
     override fun destroyNativeAd(adObject: Any) {}
+
+    override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {}
+
+    override fun destroyNativeExpressAd(adObject: Any) {}
+
+    override fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
+        return false
+    }
+
+    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
+        
+    }
+
+    override fun destroyNativeExpress2Ad(adObject: Any) {
+        
+    }
+
+    override fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean {
+        return false
+    }
 
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {}
 

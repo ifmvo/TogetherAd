@@ -10,7 +10,7 @@
 ```kotlin
 class CustomCsjProvider : CsjProvider() {
 
-    private val TAG = "CustomCsjProvider"
+    private val tag = "CustomCsjProvider"
 
     object Banner {
 
@@ -82,7 +82,7 @@ class CustomCsjProvider : CsjProvider() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                "onError".loge(TAG)
+                "onError".loge(tag)
                 callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         })

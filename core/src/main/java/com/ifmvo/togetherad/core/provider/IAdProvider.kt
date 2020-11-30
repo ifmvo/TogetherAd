@@ -13,7 +13,6 @@ interface IAdProvider {
     /**
      * -----------------------------------开屏广告-----------------------------------
      */
-    @Deprecated(message = "进一步优化加载和展示分开调用更灵活", replaceWith = ReplaceWith(expression = "loadOnlySplashAd", imports = ["com.ifmvo.togetherad.core.provider"]), level = DeprecationLevel.WARNING)
     fun loadAndShowSplashAd(
             @NotNull activity: Activity,//由于百度必须使用 Activity，所以这里统一传
             @NotNull adProviderType: String,
@@ -106,6 +105,24 @@ interface IAdProvider {
 
     //判断模板广告对象是否属于这个提供商
     fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean
+
+    /**
+     * -----------------------------------获取原生模板2.0列表-----------------------------------
+     */
+
+    fun getNativeExpress2AdList(
+            @NotNull activity: Activity,
+            @NotNull adProviderType: String,
+            @NotNull alias: String,
+            adCount: Int,
+            @NotNull listener: NativeExpress2Listener
+    )
+
+    //控制原生模板的生命周期
+    fun destroyNativeExpress2Ad(adObject: Any)
+
+    //判断模板广告对象是否属于这个提供商
+    fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean
 
     /**
      * -----------------------------------请求激励广告 -----------------------------------

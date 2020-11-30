@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.baidu.mobad.feeds.NativeResponse
 import com.ifmvo.togetherad.baidu.R
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
+import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 
 /**

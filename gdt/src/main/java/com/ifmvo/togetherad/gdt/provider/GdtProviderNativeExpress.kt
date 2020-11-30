@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
+import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
@@ -10,7 +11,6 @@ import com.qq.e.ads.nativ.NativeExpressADView
 import com.qq.e.comm.util.AdError
 
 /**
- *
  * Created by Matthew Chen on 2020/11/25.
  */
 abstract class GdtProviderNativeExpress : GdtProviderNative() {

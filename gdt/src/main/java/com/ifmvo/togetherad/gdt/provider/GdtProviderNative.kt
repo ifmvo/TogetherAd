@@ -43,7 +43,8 @@ abstract class GdtProviderNative : GdtProviderInter() {
         mAdManager.setMaxVideoDuration(GdtProvider.Native.maxVideoDuration)//有效值就是 5-60
         mAdManager.setMinVideoDuration(GdtProvider.Native.minVideoDuration)
         mAdManager.setVideoPlayPolicy(GdtProvider.Native.videoPlayPolicy)//本次拉回的视频广告，在用户看来是否为自动播放的
-        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK)//视频播放前，用户看到的广告容器是由SDK渲染的
+        //视频播放前，用户看到的广告容器是由SDK渲染的.该接口已经废弃，仅支持sdk渲染，不再支持开发者自己渲染
+        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK)
         mAdManager.loadData(maxCount)
     }
 

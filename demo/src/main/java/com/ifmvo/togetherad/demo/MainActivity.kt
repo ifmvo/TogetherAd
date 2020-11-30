@@ -10,6 +10,8 @@ import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
+import com.ifmvo.togetherad.demo.native_.NativeExpress2SimpleActivity
+import com.ifmvo.togetherad.demo.native_.NativeExpressSimpleActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.other.HelpActivity
@@ -29,6 +31,16 @@ class MainActivity : ListActivity() {
                     "title" to "开屏",
                     "desc" to "请求和展示分开，可实现预加载",
                     "class" to SplashProActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生模板2.0",
+                    "desc" to "简单用法",
+                    "class" to NativeExpress2SimpleActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生模板",
+                    "desc" to "简单用法",
+                    "class" to NativeExpressSimpleActivity::class.java
             ),
             mapOf(
                     "title" to "原生自渲染",

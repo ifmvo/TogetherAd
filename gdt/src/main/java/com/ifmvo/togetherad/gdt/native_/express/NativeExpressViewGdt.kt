@@ -1,8 +1,7 @@
 package com.ifmvo.togetherad.gdt.native_.express
 
 import android.view.ViewGroup
-import com.ifmvo.togetherad.core.custom.flow.BaseNativeView
-import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.core.custom.express.BaseNativeExpressView
 import com.qq.e.ads.nativ.NativeExpressADView
 import com.qq.e.ads.nativ.NativeExpressMediaListener
 import com.qq.e.comm.constants.AdPatternType
@@ -11,9 +10,9 @@ import com.qq.e.comm.util.AdError
 /**
  * Created by Matthew Chen on 2020/11/25.
  */
-class NativeExpressViewGdt : BaseNativeView() {
+class NativeExpressViewGdt : BaseNativeExpressView() {
 
-    override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
+    override fun showNativeExpress(adProviderType: String, adObject: Any, container: ViewGroup) {
         if (adObject !is NativeExpressADView) return
 
         if (adObject.boundData.adPatternType == AdPatternType.NATIVE_VIDEO) {

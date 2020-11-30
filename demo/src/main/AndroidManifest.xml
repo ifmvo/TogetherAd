@@ -42,6 +42,16 @@
             android:theme="@style/SplashTheme" />
 
         <!--
+            原生模板2.0的简单用法
+        -->
+        <activity android:name=".native_.NativeExpress2SimpleActivity" />
+
+        <!--
+            原生模板的简单用法
+        -->
+        <activity android:name=".native_.NativeExpressSimpleActivity" />
+
+        <!--
             原生信息流的简单用法
         -->
         <activity android:name=".native_.NativeSimpleActivity" />

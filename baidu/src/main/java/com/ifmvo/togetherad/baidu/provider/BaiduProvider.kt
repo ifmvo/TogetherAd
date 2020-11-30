@@ -25,7 +25,6 @@ import org.json.JSONObject
 open class BaiduProvider : BaseAdProvider() {
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
-        callbackSplashStartRequest(adProviderType, listener)
         callbackSplashFailed(adProviderType, listener, null, "百度开屏不支持加载和展示分开")
     }
 
@@ -231,7 +230,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
-
+        callbackNativeExpressFailed(adProviderType, listener, null, "百度不支持原生模板类型广告")
     }
 
     override fun destroyNativeExpressAd(adObject: Any) {
@@ -239,6 +238,17 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean {
+        return false
+    }
+
+    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
+        callbackNativeExpressFailed(adProviderType, listener, null, "百度不支持原生模板2类型广告")
+    }
+
+    override fun destroyNativeExpress2Ad(adObject: Any) {
+    }
+
+    override fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean {
         return false
     }
 

@@ -11,7 +11,7 @@ import com.qq.e.comm.util.AdError
  *
  * Created by Matthew Chen on 2020/11/25.
  */
-abstract class GdtProviderReward : GdtProviderNativeExpress() {
+abstract class GdtProviderReward : GdtProviderNativeExpress2() {
 
     private var rewardVideoAD: RewardVideoAD? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {

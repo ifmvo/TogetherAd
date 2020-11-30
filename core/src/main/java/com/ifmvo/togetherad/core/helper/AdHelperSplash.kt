@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
-import org.jetbrains.annotations.NotNull
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
@@ -9,13 +8,13 @@ import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
+import org.jetbrains.annotations.NotNull
 
 /**
  * 开屏广告
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-@Deprecated(message = "即将未来版本中删除，请使用AdHelperSplashPro替换(进一步优化加载和展示分开调用更灵活)", replaceWith = ReplaceWith(expression = "AdHelperSplashPro", imports = ["com.ifmvo.togetherad.core.helper"]), level = DeprecationLevel.WARNING)
 object AdHelperSplash : BaseHelper() {
 
     //为了照顾 Java 调用的同学

@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_splash_pro.*
  */
 class SplashHybridActivity : AppCompatActivity() {
 
-    private val TAG = "SplashHybridActivity"
+    private val tag = "SplashHybridActivity"
 
     private val adHelperSplashHybrid by lazy {
         /**
@@ -88,13 +88,13 @@ class SplashHybridActivity : AppCompatActivity() {
          * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长）
          * 如果不设置，默认值为 3000ms
          */
-        CsjProvider.Splash.maxFetchDelay = 3000
+//        CsjProvider.Splash.maxFetchDelay = 3000
         /**
          * 设置 优量汇 开屏广告超时时间
          * 取值范围为[3000, 5000]ms。
          * 如果不设置，会使用默认值
          */
-        GdtProvider.Splash.maxFetchDelay = 3500
+//        GdtProvider.Splash.maxFetchDelay = 3500
 
         /**
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
@@ -104,38 +104,38 @@ class SplashHybridActivity : AppCompatActivity() {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开屏广告开始请求，$providerType")
-                "onAdStartRequest: $providerType".logi(TAG)
+                "onAdStartRequest: $providerType".logi(tag)
             }
 
             override fun onAdLoaded(providerType: String) {
                 btnShow.isEnabled = true
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("开屏广告请求好了，$providerType")
-                "onAdLoaded: $providerType".logi(TAG)
+                "onAdLoaded: $providerType".logi(tag)
             }
 
             override fun onAdClicked(providerType: String) {
                 //点击广告的回调
                 addLog("开屏广告被点击了，$providerType")
-                "onAdClicked: $providerType".logi(TAG)
+                "onAdClicked: $providerType".logi(tag)
             }
 
             override fun onAdExposure(providerType: String) {
                 //广告展示曝光的回调
                 addLog("开屏广告曝光了，$providerType")
-                "onAdExposure: $providerType".logi(TAG)
+                "onAdExposure: $providerType".logi(tag)
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 //请求失败的回调，失败切换的情况会回调多次
                 addLog("开屏广告单个提供商请求失败了，$failedMsg, $providerType")
-                "onAdFailed: $providerType: $failedMsg".loge(TAG)
+                "onAdFailed: $providerType: $failedMsg".loge(tag)
             }
 
             override fun onAdFailedAll() {
                 //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
                 addLog("全部请求失败了")
-                "onAdFailedAll".loge(TAG)
+                "onAdFailedAll".loge(tag)
                 actionHome(1000)
             }
 
@@ -143,7 +143,7 @@ class SplashHybridActivity : AppCompatActivity() {
                 //开屏广告消失了，点了跳过按钮或者倒计时结束之后会回调一次
                 //在这里跳转主界面，并关闭 Splash
                 addLog("开屏广告点了跳过或者倒计时结束， $providerType")
-                "onAdDismissed: $providerType".logi(TAG)
+                "onAdDismissed: $providerType".logi(tag)
                 actionHome(0)
             }
         })

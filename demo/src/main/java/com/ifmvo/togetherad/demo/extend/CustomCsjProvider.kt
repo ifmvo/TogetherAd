@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.utils.loge
-import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.csj.TogetherAdCsj
+import com.ifmvo.togetherad.csj.provider.CsjProvider
 
 /**
  *
@@ -15,7 +15,7 @@ import com.ifmvo.togetherad.csj.TogetherAdCsj
  */
 class CustomCsjProvider : CsjProvider() {
 
-    private val TAG = "CustomCsjProvider"
+    private val tag = "CustomCsjProvider"
 
     object Banner {
 
@@ -52,13 +52,13 @@ class CustomCsjProvider : CsjProvider() {
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
             override fun onBannerAdLoad(bannerAd: TTBannerAd?) {
                 if (bannerAd == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerAd 为空")
+                    callbackBannerFailed(adProviderType, listener, null, "请求成功，但是返回的 bannerAd 为空")
                     return
                 }
 
                 val bannerView = bannerAd.bannerView
                 if (bannerView == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerView 为空")
+                    callbackBannerFailed(adProviderType, listener, null, "请求成功，但是返回的 bannerView 为空")
                     return
                 }
 
@@ -90,8 +90,8 @@ class CustomCsjProvider : CsjProvider() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                "onError".loge(TAG)
-                callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                "onError".loge(tag)
+                callbackBannerFailed(adProviderType, listener, errorCode, errorMsg)
             }
         })
     }

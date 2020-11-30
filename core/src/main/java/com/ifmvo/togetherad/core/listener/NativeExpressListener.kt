@@ -7,12 +7,7 @@ import org.jetbrains.annotations.Nullable
 /**
  * Created by Matthew Chen on 2020-04-20.
  */
-interface NativeExpressListener : BaseListener {
-
-    /**
-     * 请求到了广告
-     */
-    fun onAdLoaded(@NotNull providerType: String, @NotNull adList: List<Any>) {}
+interface NativeExpressListener : NativeExpress2Listener {
 
     /**
      * 广告被点击了

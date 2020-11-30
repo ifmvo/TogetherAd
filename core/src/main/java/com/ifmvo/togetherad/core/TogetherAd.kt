@@ -1,7 +1,7 @@
 package com.ifmvo.togetherad.core
 
-import com.ifmvo.togetherad.core.custom.flow.AdImageLoader
-import com.ifmvo.togetherad.core.custom.flow.DefaultImageLoader
+import com.ifmvo.togetherad.core.custom.native_.imageloader.AdImageLoader
+import com.ifmvo.togetherad.core.custom.native_.imageloader.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.utils.logi
 import org.jetbrains.annotations.NotNull

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_reward.*
  */
 class RewardActivity : AppCompatActivity() {
 
-    private val TAG = "RewardActivity"
+    private val tag = "RewardActivity"
 
     private lateinit var adHelperReward: AdHelperReward
 
@@ -65,61 +65,61 @@ class RewardActivity : AppCompatActivity() {
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次
                 addLog("\n开始请求: $providerType")
-                "onAdStartRequest: $providerType".logi(TAG)
+                "onAdStartRequest: $providerType".logi(tag)
             }
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 //请求失败的回调，失败切换的情况会回调多次
                 addLog("请求失败: $providerType")
-                "onAdFailed: $providerType: $failedMsg".loge(TAG)
+                "onAdFailed: $providerType: $failedMsg".loge(tag)
             }
 
             override fun onAdFailedAll() {
                 //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
                 addLog("全部失败")
-                "onAdFailedAll".loge(TAG)
+                "onAdFailedAll".loge(tag)
             }
 
             override fun onAdClicked(providerType: String) {
                 //点击广告的回调
                 addLog("点击了: $providerType")
-                "onAdClicked: $providerType".logi(TAG)
+                "onAdClicked: $providerType".logi(tag)
             }
 
             override fun onAdShow(providerType: String) {
                 //广告展示展示的回调
                 addLog("展示了: $providerType")
-                "onAdShow: $providerType".logi(TAG)
+                "onAdShow: $providerType".logi(tag)
             }
 
             override fun onAdLoaded(providerType: String) {
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("请求到了: $providerType")
-                "onAdLoaded: $providerType".logi(TAG)
+                "onAdLoaded: $providerType".logi(tag)
             }
 
             override fun onAdExpose(providerType: String) {
                 //广告展示曝光的回调
                 addLog("曝光了: $providerType")
-                "onAdExpose: $providerType".logi(TAG)
+                "onAdExpose: $providerType".logi(tag)
             }
 
             override fun onAdVideoComplete(providerType: String) {
                 //视频播放完成的回调
                 addLog("视频播放完成: $providerType")
-                "onAdVideoComplete: $providerType".logi(TAG)
+                "onAdVideoComplete: $providerType".logi(tag)
             }
 
             override fun onAdVideoCached(providerType: String) {
                 //视频缓存完成的回调
                 addLog("视频已缓存: $providerType")
-                "onAdVideoCached: $providerType".logi(TAG)
+                "onAdVideoCached: $providerType".logi(tag)
             }
 
             override fun onAdRewardVerify(providerType: String) {
                 //激励结果验证成功的回调
                 addLog("激励验证，$providerType")
-                "onAdRewardVerify，$providerType".logi(TAG)
+                "onAdRewardVerify，$providerType".logi(tag)
 
 //                //如果 csj 使用到服务器到服务器回调功能，需要进行以下判断，gdt、baidu都不需要此判断
 //                if (providerType == AdProviderType.CSJ.type && CsjProvider.Reward.rewardVerify) {
@@ -130,7 +130,7 @@ class RewardActivity : AppCompatActivity() {
             override fun onAdClose(providerType: String) {
                 //广告被关闭的回调
                 addLog("关闭了: $providerType")
-                "onAdClose: $providerType".logi(TAG)
+                "onAdClose: $providerType".logi(tag)
             }
         })
 

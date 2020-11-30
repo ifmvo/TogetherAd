@@ -56,6 +56,8 @@ class App : Application() {
          */
         TogetherAdCsj.idMapCsj = mapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121223",
@@ -66,6 +68,8 @@ class App : Application() {
 
         TogetherAdGdt.idMapGDT = mapOf(
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
@@ -76,6 +80,8 @@ class App : Application() {
 
         TogetherAdBaidu.idMapBaidu = mapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",

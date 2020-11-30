@@ -5,6 +5,7 @@ import com.qq.e.ads.cfg.BrowserType
 import com.qq.e.ads.cfg.DownAPPConfirmPolicy
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.ADSize
+import com.qq.e.ads.nativ.express2.VideoOption2
 
 
 /**
@@ -64,8 +65,14 @@ open class GdtProvider : GdtProviderSplash() {
         // 自动播放时为静音
         var autoPlayMuted = true
 
-        // WIFI 环境下可以自动播放视频
-        var autoPlayPolicy: Int = VideoOption.AutoPlayPolicy.WIFI
+        //视频详情页播放时默认不静音
+        var detailPageMuted = false
+
+        // WIFI 环境下可以自动播放视频( 模板2.0 )
+        var autoPlayPolicyVideoOption2: VideoOption2.AutoPlayPolicy = VideoOption2.AutoPlayPolicy.ALWAYS
+
+        // WIFI 环境下可以自动播放视频 ( 模板1.0 )
+        var autoPlayPolicy: Int = VideoOption.AutoPlayPolicy.ALWAYS
 
         /**
          * 如果广告位支持视频广告，强烈建议在调用loadData请求广告前调用setVideoPlayPolicy，有助于提高视频广告的eCPM值 <br/>
@@ -82,14 +89,19 @@ open class GdtProvider : GdtProviderSplash() {
         //视频最大时长
         var maxVideoDuration: Int = 0
 
+        //指定点击 APP 广告后是否展示二次确认，可选项包括 Default（wifi 不展示，非wifi 展示），NoConfirm（所有情况不展示）
+        var downAPPConfirmPolicy: DownAPPConfirmPolicy = DownAPPConfirmPolicy.Default
+
+        //指定普链广告点击后用于展示落地页的浏览器类型，可选项包括：InnerBrowser（APP 内置浏览器），Sys（系统浏览器），Default（默认），SDK 按照默认逻辑选择
+        var browserType: BrowserType = BrowserType.Default
+
         //广告的宽高
         internal var adWidth = ADSize.FULL_WIDTH
-
         internal var adHeight = ADSize.AUTO_HEIGHT
 
-        fun setAdSize(width: Int = ADSize.FULL_WIDTH, height: Int = ADSize.AUTO_HEIGHT) {
-            adWidth = width
-            adHeight = height
+        fun setAdSize(widthDp: Int = ADSize.FULL_WIDTH, heightDp: Int = ADSize.AUTO_HEIGHT) {
+            adWidth = widthDp
+            adHeight = heightDp
         }
     }
 }
