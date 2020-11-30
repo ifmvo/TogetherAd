@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.csj.provider
 
 import com.bytedance.sdk.openadsdk.TTAdConstant
+import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 
 /**
  * 广告提供商：穿山甲
@@ -18,6 +19,9 @@ open class CsjProvider : CsjProviderSplash() {
         var maxFetchDelay = 3000
 
         var supportDeepLink: Boolean = true
+
+        //自定义按钮
+        var customSkipView: BaseSplashSkipView? = null
 
         //图片的宽高
         internal var imageAcceptedSizeWidth = 1080
