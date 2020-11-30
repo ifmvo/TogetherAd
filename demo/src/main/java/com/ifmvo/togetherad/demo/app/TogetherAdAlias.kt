@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo
+package com.ifmvo.togetherad.demo.app
 
 /**
  * 所有广告位的别名

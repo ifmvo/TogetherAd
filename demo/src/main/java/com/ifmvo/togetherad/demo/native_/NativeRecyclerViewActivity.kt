@@ -10,9 +10,10 @@ import com.bytedance.sdk.openadsdk.AdSlot
 import com.ifmvo.togetherad.core.helper.AdHelperNativePro
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.csj.provider.CsjProvider
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
+import com.ifmvo.togetherad.demo.other.ContentDataEntity
 import kotlinx.android.synthetic.main.activity_native_recyclerview.*
 
 

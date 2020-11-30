@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo
+package com.ifmvo.togetherad.demo.app
 
 /*
  * 广告提供商枚举

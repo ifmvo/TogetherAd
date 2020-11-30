@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.other
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.express
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,21 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.helper.AdHelperNativePro
-import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple5
 import com.ifmvo.togetherad.demo.other.ContentDataEntity
+import com.ifmvo.togetherad.demo.native_.template.NativeExpressTemplateSimple
 
 /**
  * 一个普通的多类型列表的 Adapter
  *
  * Created by Matthew Chen on 2020/6/30.
  */
-class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NativeExpressAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_VIEW_TYPE_AD = 0
@@ -53,15 +51,7 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
             ITEM_VIEW_TYPE_AD -> {
                 val adViewHolder = holder as AdViewHolder
                 adViewHolder.adContainer.removeAllViews()
-                AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple5(), object : NativeViewListener {
-                    override fun onAdExposed(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
-                    }
-
-                    override fun onAdClicked(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
-                    }
-                })
+                AdHelperNativeExpress.show(mList[position], adViewHolder.adContainer, NativeExpressTemplateSimple())
             }
         }
     }
@@ -78,5 +68,4 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
         var imageView: ImageView = itemView.findViewById(R.id.img)
         var textView: TextView = itemView.findViewById(R.id.txt)
     }
-
 }

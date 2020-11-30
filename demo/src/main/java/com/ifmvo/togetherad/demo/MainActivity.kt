@@ -11,6 +11,10 @@ import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.*
+import com.ifmvo.togetherad.demo.express.NativeExpressRecyclerViewActivity
+import com.ifmvo.togetherad.demo.express2.NativeExpress2RecyclerViewActivity
+import com.ifmvo.togetherad.demo.express2.NativeExpress2SimpleActivity
+import com.ifmvo.togetherad.demo.express.NativeExpressSimpleActivity
 import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
@@ -30,19 +34,24 @@ class MainActivity : ListActivity() {
                     "class" to SplashProActivity::class.java
             ),
             mapOf(
-                    "title" to "原生模板2.0",
+                    "title" to "原生模板 2.0",
                     "desc" to "简单用法",
                     "class" to NativeExpress2SimpleActivity::class.java
             ),
             mapOf(
-                    "title" to "原生模板2.0在RecyclerView中的用法",
-                    "desc" to "简单用法",
+                    "title" to "原生模板 2.0",
+                    "desc" to "在RecyclerView中的用法",
                     "class" to NativeExpress2RecyclerViewActivity::class.java
             ),
             mapOf(
-                    "title" to "原生模板",
+                    "title" to "原生模板 1.0",
                     "desc" to "简单用法",
                     "class" to NativeExpressSimpleActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生模板 1.0",
+                    "desc" to "在RecyclerView中的用法",
+                    "class" to NativeExpressRecyclerViewActivity::class.java
             ),
             mapOf(
                     "title" to "原生自渲染",

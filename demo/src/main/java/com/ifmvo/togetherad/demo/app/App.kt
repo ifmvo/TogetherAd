@@ -1,9 +1,11 @@
-package com.ifmvo.togetherad.demo
+package com.ifmvo.togetherad.demo.app
 
 import android.app.Application
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
+import com.ifmvo.togetherad.demo.BuildConfig
+import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 
 /*
@@ -59,6 +61,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121223",
@@ -72,6 +75,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "5060295460765937",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
@@ -85,6 +89,7 @@ class App : Application() {
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",

@@ -15,7 +15,7 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.provider.CsjProvider
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple3
 import org.jetbrains.annotations.NotNull
 import java.lang.ref.WeakReference

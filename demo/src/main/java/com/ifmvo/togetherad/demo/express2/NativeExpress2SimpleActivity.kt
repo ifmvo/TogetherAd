@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.express2
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,9 +8,9 @@ import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
 import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
 import kotlinx.android.synthetic.main.activity_native_express_simple.*
 
@@ -45,7 +45,6 @@ class NativeExpress2SimpleActivity : AppCompatActivity() {
     }
 
     private fun requestAd() {
-
         adHelperNativeExpress2.getExpress2List(object : NativeExpress2Listener {
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 mAdObject = adList[0]

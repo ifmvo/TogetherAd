@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.express2
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
@@ -13,6 +13,7 @@ import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress2
 import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
+import com.ifmvo.togetherad.demo.other.ContentDataEntity
 import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
 import java.lang.ref.WeakReference
 

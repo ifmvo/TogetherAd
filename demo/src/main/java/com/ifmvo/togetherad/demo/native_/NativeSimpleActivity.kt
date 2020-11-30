@@ -13,9 +13,9 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.csj.provider.CsjProvider
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple1
 import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple2
 import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple4

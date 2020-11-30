@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.express2
 
 import android.content.Context
 import android.content.Intent
@@ -8,9 +8,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress2
 import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
+import com.ifmvo.togetherad.demo.other.ContentDataEntity
 import kotlinx.android.synthetic.main.activity_native_recyclerview.*
 
 

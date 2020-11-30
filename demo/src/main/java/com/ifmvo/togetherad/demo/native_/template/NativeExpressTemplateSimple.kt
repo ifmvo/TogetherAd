@@ -2,7 +2,7 @@ package com.ifmvo.togetherad.demo.native_.template
 
 import com.ifmvo.togetherad.core.custom.express.BaseNativeExpressTemplate
 import com.ifmvo.togetherad.core.custom.express.BaseNativeExpressView
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.gdt.native_.express.NativeExpressViewGdt
 
 /**

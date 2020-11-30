@@ -4,7 +4,7 @@ import com.ifmvo.togetherad.baidu.native_.view.NativeViewBaiduSimple1
 import com.ifmvo.togetherad.core.custom.native_.BaseNativeTemplate
 import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.csj.native_.view.NativeViewCsjSimple1
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple1
 
 /*

@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ifmvo.togetherad.core.helper.AdHelperInter
 import com.ifmvo.togetherad.core.listener.InterListener
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import kotlinx.android.synthetic.main.activity_inter.*
 
 /**

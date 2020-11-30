@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.native_
+package com.ifmvo.togetherad.demo.express
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,9 +7,9 @@ import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
-import com.ifmvo.togetherad.demo.AdProviderType
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.TogetherAdAlias
+import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.demo.native_.template.NativeExpressTemplateSimple
 import kotlinx.android.synthetic.main.activity_native_express_simple.*
 
