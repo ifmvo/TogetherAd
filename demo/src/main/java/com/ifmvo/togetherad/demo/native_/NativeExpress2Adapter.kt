@@ -1,5 +1,6 @@
 package com.ifmvo.togetherad.demo.native_
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,18 +9,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.helper.AdHelperNativePro
-import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress2
+import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.demo.R
-import com.ifmvo.togetherad.demo.native_.template.NativeTemplateSimple5
+import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
+import java.lang.ref.WeakReference
 
 /**
  * 一个普通的多类型列表的 Adapter
  *
  * Created by Matthew Chen on 2020/6/30.
  */
-class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NativeExpress2Adapter(activity: Activity, list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_VIEW_TYPE_AD = 0
@@ -27,6 +29,9 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     private var mList: List<Any> = list
+
+    private var mActivity: WeakReference<Activity> = WeakReference(activity)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_VIEW_TYPE_CONTENT) {
@@ -52,15 +57,29 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
             ITEM_VIEW_TYPE_AD -> {
                 val adViewHolder = holder as AdViewHolder
                 adViewHolder.adContainer.removeAllViews()
-                AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple5(), object : NativeViewListener {
-                    override fun onAdExposed(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
-                    }
+                mActivity.get()?.let {
+                    AdHelperNativeExpress2.show(it, mList[position], adViewHolder.adContainer, NativeExpress2TemplateSimple(), object : NativeExpress2ViewListener {
+                        override fun onAdExposed(providerType: String) {
+                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告曝光了：$providerType", Toast.LENGTH_LONG).show()
+                        }
 
-                    override fun onAdClicked(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
-                    }
-                })
+                        override fun onAdClicked(providerType: String) {
+                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告点击了：$providerType", Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onAdRenderSuccess(providerType: String) {
+                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染成功了：$providerType", Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onAdRenderFailed(providerType: String) {
+                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染失败了：$providerType", Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onAdClose(providerType: String) {
+                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染关闭了：$providerType", Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
             }
         }
     }
@@ -77,5 +96,4 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
         var imageView: ImageView = itemView.findViewById(R.id.img)
         var textView: TextView = itemView.findViewById(R.id.txt)
     }
-
 }

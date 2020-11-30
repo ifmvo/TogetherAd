@@ -15,8 +15,6 @@ import com.ifmvo.togetherad.csj.provider.CsjProvider
  */
 class CustomCsjProvider : CsjProvider() {
 
-    private val tag = "CustomCsjProvider"
-
     object Banner {
 
         var supportDeepLink: Boolean = true

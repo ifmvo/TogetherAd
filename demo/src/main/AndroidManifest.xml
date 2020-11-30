@@ -47,6 +47,11 @@
         <activity android:name=".native_.NativeExpress2SimpleActivity" />
 
         <!--
+            原生模板2.0 在 RecyclerView 中的用法
+        -->
+        <activity android:name=".native_.NativeExpress2RecyclerViewActivity" />
+
+        <!--
             原生模板的简单用法
         -->
         <activity android:name=".native_.NativeExpressSimpleActivity" />

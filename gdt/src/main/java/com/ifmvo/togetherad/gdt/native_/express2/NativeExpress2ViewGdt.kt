@@ -30,6 +30,10 @@ class NativeExpress2ViewGdt : BaseNativeExpress2View() {
 
             override fun onRenderSuccess() {
                 if (adObject.adView != null) {
+                    val parent = adObject.adView?.parent
+                    if (parent is ViewGroup) {
+                        parent.removeAllViews()
+                    }
                     container.addView(adObject.adView)
                     listener?.onAdRenderSuccess(adProviderType)
                 } else {

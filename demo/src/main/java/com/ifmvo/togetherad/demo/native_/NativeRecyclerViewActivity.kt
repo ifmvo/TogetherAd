@@ -168,5 +168,3 @@ class NativeRecyclerViewActivity : AppCompatActivity() {
         adHelperNativeRv.destroyAllAd()
     }
 }
-
-class ContentDataEntity(val title: String, val imgUrl: String)

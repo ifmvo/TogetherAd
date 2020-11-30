@@ -59,6 +59,10 @@ class NativeExpress2ViewCsj : BaseNativeExpress2View() {
             })
         }
         adObject.render()
+        val parent = adObject.expressAdView?.parent
+        if (parent is ViewGroup) {
+            parent.removeAllViews()
+        }
         container.addView(adObject.expressAdView)
     }
 

@@ -10,10 +10,7 @@ import android.widget.Toast
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
-import com.ifmvo.togetherad.demo.native_.NativeExpress2SimpleActivity
-import com.ifmvo.togetherad.demo.native_.NativeExpressSimpleActivity
-import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
-import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
+import com.ifmvo.togetherad.demo.native_.*
 import com.ifmvo.togetherad.demo.other.HelpActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
@@ -36,6 +33,11 @@ class MainActivity : ListActivity() {
                     "title" to "原生模板2.0",
                     "desc" to "简单用法",
                     "class" to NativeExpress2SimpleActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生模板2.0在RecyclerView中的用法",
+                    "desc" to "简单用法",
+                    "class" to NativeExpress2RecyclerViewActivity::class.java
             ),
             mapOf(
                     "title" to "原生模板",
