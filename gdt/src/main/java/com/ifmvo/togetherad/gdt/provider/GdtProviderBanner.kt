@@ -55,6 +55,7 @@ abstract class GdtProviderBanner : BaseAdProvider() {
             }
         })
         container.addView(banner)
+        banner?.setRefresh(GdtProvider.Banner.slideIntervalTime)
         banner?.loadAD()
     }
 

@@ -51,7 +51,7 @@ object TogetherAdCsj {
     // 可选参数，需在初始化之前，设置额外的用户信息 **不能超过为1000个字符**
     var data: String? = null
 
-    // 可选参数，需在初始化之前，是否一步初始化
+    // 可选参数，需在初始化之前，是否异步初始化
     var isAsyncInit: Boolean = false
 
     //可选参数，需在初始化之前，可以设置隐私信息控制开关

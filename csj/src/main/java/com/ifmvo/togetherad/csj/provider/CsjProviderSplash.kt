@@ -34,7 +34,6 @@ abstract class CsjProviderSplash : CsjProviderReward() {
         //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(CsjProvider.Splash.supportDeepLink)
                 .setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
@@ -132,7 +131,6 @@ abstract class CsjProviderSplash : CsjProviderReward() {
         //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setSupportDeepLink(CsjProvider.Splash.supportDeepLink)
                 .setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
                 .build()
         TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {

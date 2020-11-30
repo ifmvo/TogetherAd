@@ -18,8 +18,6 @@ open class CsjProvider : CsjProviderSplash() {
         //超时时间
         var maxFetchDelay = 3000
 
-        var supportDeepLink: Boolean = true
-
         //自定义按钮
         var customSkipView: BaseSplashSkipView? = null
 
@@ -41,7 +39,7 @@ open class CsjProvider : CsjProviderSplash() {
 
         var supportDeepLink: Boolean = true
 
-        //图片的宽高
+        //模板的宽高
         internal var expressViewAcceptedSizeWidth = -1f
 
         internal var expressViewAcceptedSizeHeight = -1f

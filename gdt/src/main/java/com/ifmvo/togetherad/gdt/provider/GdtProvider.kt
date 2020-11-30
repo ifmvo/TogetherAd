@@ -32,6 +32,12 @@ open class GdtProvider : GdtProviderSplash() {
 
     }
 
+    object Banner {
+
+        //Banner 刷新间隔时间
+        var slideIntervalTime = 30 * 1000
+    }
+
     /**
      * --------------------------- 原生自渲染 ---------------------------
      */

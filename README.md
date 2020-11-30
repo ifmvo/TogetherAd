@@ -85,6 +85,8 @@ dependencies {
 
 - [扩展](doc/extend.md)
 
+![](img/TogetherAd_Feature.png)
+
 ## 混淆 proguard-rules.pro
 
 资源库中已自带混淆规则，通常情况下无需手动配置。
