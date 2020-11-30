@@ -71,6 +71,8 @@ dependencies {
 
 - [开屏广告](doc/splash.md)
 
+- [原生模板](doc/express.md)
+
 - [原生自渲染](doc/native.md)
 
 - [激励广告](doc/reward.md)
