@@ -158,4 +158,5 @@ AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, ratioMap
 })
 ```
 
-详情可查看 Demo 中 [开屏广告的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)
+详情可查看 Demo 中 [开屏广告请求并展示的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)
+详情可查看 Demo 中 [开屏广告请求和展示分开的示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashProActivity.kt)

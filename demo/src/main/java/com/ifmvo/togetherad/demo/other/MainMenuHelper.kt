@@ -78,7 +78,7 @@ object MainMenuHelper {
             ),
             mapOf(
                     "title" to "请求和展示分开",
-                    "desc" to "请求成功后需调用展示。可实现预加载",
+                    "desc" to "请求成功后需手动调用展示。可实现预加载",
                     "class" to SplashProActivity::class.java
             ),
             mapOf(

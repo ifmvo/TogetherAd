@@ -6,8 +6,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 
 欢迎 **<mark>Star**</mark> 、**Fork**、**Issues**
 
-> 新版本 3.x 已发布。
->  [2.x版本](https://github.com/ifmvo/TogetherAd/tree/2.x) 不再开发新功能，只会更新各个平台SDK版本，以及修复bug。
+![](img/TogetherAd.png)
 
 [点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV) 或者扫描下面二维码下载
 
@@ -60,16 +59,14 @@ dependencies {
 
 ## 最新版本
 
-3.2.6 (2020.11.24)
+4.0.0 (2020.11.30)
 1. 更新优量汇版本到 4.294.1164（ 修复开屏视频广告可能发生的崩溃问题 ）
 2. 更新穿山甲版本到 3.3.0.3
 3. 新增 加载和展示分开的开屏广告 AdHelperSplashPro
+4. 新增原生模板2.0、原生模板1.0
+5. Demo UI 调整
 
 [点击查看更多日志](doc/update_log.md)
-
-## TogetherAd 支持广告的结构图
-
-![](img/TogetherAd.png)
 
 ## 使用方法
 
