@@ -91,6 +91,11 @@
         -->
         <activity android:name=".inter.InterActivity" />
 
+        <!--
+            原生模板1.0 & 原生模板2.0 混合使用
+        -->
+        <activity android:name=".hybrid.NativeExpressHybridActivity" />
+
     </application>
 
 </manifest>

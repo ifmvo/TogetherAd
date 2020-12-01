@@ -6,6 +6,7 @@ import com.ifmvo.togetherad.demo.express.NativeExpressRecyclerViewActivity
 import com.ifmvo.togetherad.demo.express.NativeExpressSimpleActivity
 import com.ifmvo.togetherad.demo.express2.NativeExpress2RecyclerViewActivity
 import com.ifmvo.togetherad.demo.express2.NativeExpress2SimpleActivity
+import com.ifmvo.togetherad.demo.hybrid.NativeExpressHybridActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
@@ -131,6 +132,11 @@ object MainMenuHelper {
                     "title" to "开屏和原生自渲染混合",
                     "desc" to "如果你的开屏ecpm比较低，就可以使用原生自渲染模拟开屏展示，以提高开屏广告位的收入",
                     "class" to SplashHybridActivity::class.java
+            ),
+            mapOf(
+                    "title" to "原生模板1.0和原生模板2.0混合",
+                    "desc" to "由于优量汇的原生模板2.0需要向平台申请，所以这里将优量汇的原生模板1.0和穿山甲的原生模板2.0混合使用",
+                    "class" to NativeExpressHybridActivity::class.java
             )
     )
 

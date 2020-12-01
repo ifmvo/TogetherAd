@@ -44,4 +44,7 @@ object TogetherAdAlias {
     //开屏混合使用
     const val AD_SPLASH_HYBRID = "ad_splash_and_native"
 
+    //原生模板混合
+    const val AD_EXPRESS_HYBRID = "ad_express_hybrid"
+
 }

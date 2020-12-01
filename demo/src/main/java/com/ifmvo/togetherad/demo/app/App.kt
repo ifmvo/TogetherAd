@@ -60,14 +60,15 @@ class App : Application() {
                 TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
                 TogetherAdAlias.AD_BANNER to "901121246",
                 TogetherAdAlias.AD_INTER to "945509693",
                 TogetherAdAlias.AD_REWARD to "901121365",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "901121737"//id是原生类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "901121737",//id是原生类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to "901121134"//id是原生模板2.0
         )
 
         TogetherAdGdt.idMapGDT = mapOf(
@@ -81,21 +82,23 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593"//id是开屏类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593",//id是开屏类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to "5060295460765937"//id是原生模板1.0
         )
 
         TogetherAdBaidu.idMapBaidu = mapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",
                 TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "2058628"//id是原生类型
+                TogetherAdAlias.AD_SPLASH_HYBRID to "2058628",//id是原生类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to ""//不支持
         )
 
         /**

@@ -5,14 +5,19 @@ import android.view.ViewGroup
 import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
-import com.ifmvo.togetherad.core.custom.express.BaseNativeExpressTemplate
+import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress
+import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress2
 import com.ifmvo.togetherad.core.helper.BaseHelper
 import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
+import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.AdRandomUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logw
+import com.ifmvo.togetherad.demo.app.AdProviderType
+import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
+import com.ifmvo.togetherad.demo.native_.template.NativeExpressTemplateSimple
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 import java.lang.ref.WeakReference
@@ -43,7 +48,7 @@ class AdHelperHybridExpress(
 
         private const val defaultAdCount = 1
 
-        fun show(@Nullable adObject: Any?, @Nullable container: ViewGroup?, @NotNull nativeExpressTemplate: BaseNativeExpressTemplate) {
+        fun show(@Nullable adProviderType: String?, @NotNull activity: Activity, @Nullable adObject: Any?, @Nullable container: ViewGroup?) {
             if (adObject == null) {
                 "adObject 广告对象不能为空".logw()
                 return
@@ -52,17 +57,39 @@ class AdHelperHybridExpress(
                 "container 广告容器不能为空".logw()
                 return
             }
-            TogetherAd.mProviders.entries.forEach { entry ->
-                val adProvider = AdProviderLoader.loadAdProvider(entry.key)
-                if (adProvider?.nativeExpressAdIsBelongTheProvider(adObject) == true) {
-                    val nativeView = nativeExpressTemplate.getNativeExpressView(entry.key)
-                    nativeView?.showNativeExpress(entry.key, adObject, container)
-                    return@forEach
+
+            when (adProviderType) {
+                AdProviderType.GDT.type -> {
+                    AdHelperNativeExpress.show(adObject, container, NativeExpressTemplateSimple())
+                }
+                AdProviderType.CSJ.type -> {
+                    AdHelperNativeExpress2.show(activity, adObject, container, NativeExpress2TemplateSimple(), object : NativeExpress2ViewListener {
+                        override fun onAdExposed(providerType: String) {
+
+                        }
+
+                        override fun onAdClicked(providerType: String) {
+
+                        }
+
+                        override fun onAdRenderSuccess(providerType: String) {
+
+                        }
+
+                        override fun onAdRenderFailed(providerType: String) {
+
+                        }
+
+                        override fun onAdClose(providerType: String) {
+
+                        }
+                    })
                 }
             }
+
         }
 
-        fun destroyExpressAd(@Nullable adObject: Any?) {
+        fun destroyHybridExpressAd(@Nullable adObject: Any?) {
             if (adObject == null) {
                 "adObject 广告对象不能为空".logw()
                 return
@@ -70,15 +97,16 @@ class AdHelperHybridExpress(
             TogetherAd.mProviders.entries.forEach { entry ->
                 val adProvider = AdProviderLoader.loadAdProvider(entry.key)
                 adProvider?.destroyNativeExpressAd(adObject)
+                adProvider?.destroyNativeExpress2Ad(adObject)
             }
         }
 
-        fun destroyExpressAd(@Nullable adObjectList: List<Any>?) {
+        fun destroyHybridExpressAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
                 "adObjectList 广告对象List不能为空".logw()
                 return
             }
-            adObjectList.forEach { destroyExpressAd(it) }
+            adObjectList.forEach { destroyHybridExpressAd(it) }
         }
     }
 
@@ -95,14 +123,14 @@ class AdHelperHybridExpress(
             @NotNull alias: String
     ) : this(activity, alias, null, defaultAdCount)
 
-    fun getExpressList(listener: NativeExpressListener? = null) {
+    fun getHybridExpressList(listener: NativeExpress2Listener? = null) {
         val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(listener)
-        getExpressListForMap(currentRatioMap, listener)
+        getHybridExpressListForMap(currentRatioMap, listener)
     }
 
-    private fun getExpressListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeExpress2Listener? = null) {
+    private fun getHybridExpressListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeExpress2Listener? = null) {
 
         val currentAdCount = if (mAdCount <= 0) defaultAdCount else mAdCount
 
@@ -118,10 +146,21 @@ class AdHelperHybridExpress(
 
         if (adProvider == null) {
             "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
-            getExpressListForMap(filterType(ratioMap, adProviderType), listener)
+            getHybridExpressListForMap(filterType(ratioMap, adProviderType), listener)
             return
         }
 
+        when (adProviderType) {
+            AdProviderType.GDT.type -> {
+                getHybridExpressList(adProviderType, currentAdCount, listener, ratioMap)
+            }
+            AdProviderType.CSJ.type -> {
+                getHybridExpress2List(adProviderType, currentAdCount, listener, ratioMap)
+            }
+        }
+    }
+
+    private fun getHybridExpressList(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: Map<String, Int>) {
         adProvider?.getNativeExpressAdList(mActivity.get()!!, adProviderType, mAlias, currentAdCount, object : NativeExpressListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
@@ -130,7 +169,7 @@ class AdHelperHybridExpress(
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                getExpressListForMap(filterType(ratioMap, adProviderType), listener)
+                getHybridExpressListForMap(filterType(ratioMap, adProviderType), listener)
 
                 listener?.onAdFailed(providerType, failedMsg)
             }
@@ -163,7 +202,9 @@ class AdHelperHybridExpress(
 
             }
         })
+    }
 
+    private fun getHybridExpress2List(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: Map<String, Int>) {
         adProvider?.getNativeExpress2AdList(mActivity.get()!!, adProviderType, mAlias, currentAdCount, object : NativeExpress2Listener {
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 if (isFetchOverTime) return
@@ -181,7 +222,7 @@ class AdHelperHybridExpress(
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return
 
-                getExpressListForMap(filterType(ratioMap, adProviderType), listener)
+                getHybridExpressListForMap(filterType(ratioMap, adProviderType), listener)
 
                 listener?.onAdFailed(providerType, failedMsg)
             }
@@ -191,8 +232,8 @@ class AdHelperHybridExpress(
     /**
      * 销毁所有请求到的广告
      */
-    fun destroyAllExpressAd() {
-        destroyExpressAd(mAdList)
+    fun destroyAllHybridExpressAd() {
+        destroyHybridExpressAd(mAdList)
         mAdList.clear()
     }
 
