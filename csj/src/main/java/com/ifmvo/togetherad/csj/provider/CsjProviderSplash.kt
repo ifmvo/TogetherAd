@@ -31,12 +31,15 @@ abstract class CsjProviderSplash : CsjProviderReward() {
 
         callbackSplashStartRequest(adProviderType, listener)
 
-        //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
-        val adSlot = AdSlot.Builder()
-                .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
-                .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
+        val adSlotBuilder = AdSlot.Builder()
+        adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
+        if (CsjProvider.Splash.isExpress) {
+            adSlotBuilder.setExpressViewAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth.toFloat(), CsjProvider.Splash.imageAcceptedSizeHeight.toFloat())
+        } else {
+            adSlotBuilder.setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
+        }
+
+        TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlotBuilder.build(), object : TTAdNative.SplashAdListener {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {
@@ -128,12 +131,15 @@ abstract class CsjProviderSplash : CsjProviderReward() {
         val customSkipView = CsjProvider.Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(activity)
 
-        //step3:创建开屏广告请求参数AdSlot,具体参数含义参考文档
-        val adSlot = AdSlot.Builder()
-                .setCodeId(TogetherAdCsj.idMapCsj[alias])
-                .setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
-                .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlot, object : TTAdNative.SplashAdListener {
+        val adSlotBuilder = AdSlot.Builder()
+        adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
+        if (CsjProvider.Splash.isExpress) {
+            adSlotBuilder.setExpressViewAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth.toFloat(), CsjProvider.Splash.imageAcceptedSizeHeight.toFloat())
+        } else {
+            adSlotBuilder.setImageAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth, CsjProvider.Splash.imageAcceptedSizeHeight)
+        }
+
+        TTAdSdk.getAdManager().createAdNative(activity).loadSplashAd(adSlotBuilder.build(), object : TTAdNative.SplashAdListener {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {

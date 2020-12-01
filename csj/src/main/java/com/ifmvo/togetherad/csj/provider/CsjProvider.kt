@@ -15,6 +15,9 @@ open class CsjProvider : CsjProviderSplash() {
      */
     object Splash {
 
+        //是否模板类型广告请求
+        var isExpress = false
+
         //超时时间
         var maxFetchDelay = 3000
 
@@ -44,9 +47,9 @@ open class CsjProvider : CsjProviderSplash() {
 
         internal var expressViewAcceptedSizeHeight = -1f
 
-        fun setExpressViewAcceptedSize(width: Float, height: Float) {
-            expressViewAcceptedSizeWidth = width
-            expressViewAcceptedSizeHeight = height
+        fun setExpressViewAcceptedSize(widthDp: Float, heightDp: Float) {
+            expressViewAcceptedSizeWidth = widthDp
+            expressViewAcceptedSizeHeight = heightDp
         }
 
         //Banner 刷新间隔时间
@@ -61,13 +64,16 @@ open class CsjProvider : CsjProviderSplash() {
         var supportDeepLink: Boolean = true
 
         //图片的宽高
-        internal var imageAcceptedSizeWidth = 600
+        internal var expressViewAcceptedSizeWidth = -1f
 
-        internal var imageAcceptedSizeHeight = 600
+        internal var expressViewAcceptedSizeHeight = -1f
 
-        fun setImageAcceptedSize(width: Int, height: Int) {
-            imageAcceptedSizeWidth = width
-            imageAcceptedSizeHeight = height
+        /**
+         * 说明：插屏在请求过程中，需要按照所选比例的实际尺寸请求，比如 1:1 的比例可以请求 600*600，2:3 的比例可以请求 600*900
+         */
+        fun setExpressViewAcceptedSize(width: Float, height: Float) {
+            expressViewAcceptedSizeWidth = width
+            expressViewAcceptedSizeHeight = height
         }
     }
 
