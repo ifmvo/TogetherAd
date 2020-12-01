@@ -4,7 +4,6 @@ import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.banner2.UnifiedBannerADListener
 import com.qq.e.ads.banner2.UnifiedBannerView
@@ -22,7 +21,6 @@ abstract class GdtProviderBanner : BaseAdProvider() {
         destroyBannerAd()
         banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
             override fun onADCloseOverlay() {
-                "onADCloseOverlay".logi(tag)
             }
 
             override fun onADExposure() {
@@ -30,19 +28,18 @@ abstract class GdtProviderBanner : BaseAdProvider() {
             }
 
             override fun onADClosed() {
+                destroyBannerAd()
                 callbackBannerClosed(adProviderType, listener)
             }
 
             override fun onADLeftApplication() {
-                "onADLeftApplication".logi(tag)
             }
 
             override fun onADOpenOverlay() {
-                "onADOpenOverlay".logi(tag)
             }
 
             override fun onNoAD(adError: AdError?) {
-                banner?.destroy()
+                destroyBannerAd()
                 callbackBannerFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
             }
 
