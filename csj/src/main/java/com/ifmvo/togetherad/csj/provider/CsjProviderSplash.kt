@@ -57,6 +57,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                     }
 
                     override fun onAdSkip() {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(adProviderType, listener)
                     }
 
@@ -65,6 +66,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                     }
 
                     override fun onAdTimeOver() {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(adProviderType, listener)
                     }
                 })
@@ -99,6 +101,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                 setOnClickListener {
                     mTimer?.cancel()
                     if (mAdProviderType != null && mListener != null) {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(mAdProviderType!!, mListener!!)
                     }
                 }
@@ -109,6 +112,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             mTimer = object : CountDownTimer(5000, 1000) {
                 override fun onFinish() {
                     if (mAdProviderType != null && mListener != null) {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(mAdProviderType!!, mListener!!)
                     }
                 }
@@ -158,6 +162,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                     }
 
                     override fun onAdSkip() {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(adProviderType, listener)
                     }
 
@@ -166,6 +171,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                     }
 
                     override fun onAdTimeOver() {
+                        CsjProvider.Splash.customSkipView = null
                         callbackSplashDismiss(adProviderType, listener)
                     }
                 })
@@ -177,6 +183,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                         container.addView(this, customSkipView.getLayoutParams())
                         setOnClickListener {
                             mTimer?.cancel()
+                            CsjProvider.Splash.customSkipView = null
                             callbackSplashDismiss(adProviderType, listener)
                         }
                     }
@@ -185,6 +192,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
                     mTimer?.cancel()
                     mTimer = object : CountDownTimer(5000, 1000) {
                         override fun onFinish() {
+                            CsjProvider.Splash.customSkipView = null
                             callbackSplashDismiss(adProviderType, listener)
                         }
 
