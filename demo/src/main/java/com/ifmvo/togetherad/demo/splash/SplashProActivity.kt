@@ -72,11 +72,11 @@ class SplashProActivity : AppCompatActivity() {
     private fun requestSplashAd() {
 
         /**
-         * 设置 广点通 开屏广告 自定义跳过按钮
+         * 设置 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
-         * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
          */
-        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
+        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()//广点通
+        CsjProvider.Splash.customSkipView = SplashSkipViewSimple2()//穿山甲
         //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
         /**
          * 给 穿山甲 设置可接受的图片尺寸，避免图片变形

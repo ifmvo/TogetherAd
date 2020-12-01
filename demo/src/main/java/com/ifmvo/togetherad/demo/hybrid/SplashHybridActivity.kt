@@ -15,6 +15,7 @@ import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
+import com.ifmvo.togetherad.demo.hybrid.helper.AdHelperHybridSplash
 import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash_pro.*
 
@@ -41,7 +42,10 @@ class SplashHybridActivity : AppCompatActivity() {
          * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
          * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
          */
-        AdHelperSplashHybrid(activity = this, alias = TogetherAdAlias.AD_SPLASH_HYBRID /*, ratioMap = ratioMapSplash*/)
+        AdHelperHybridSplash(
+            activity = this,
+            alias = TogetherAdAlias.AD_SPLASH_HYBRID /*, ratioMap = ratioMapSplash*/
+        )
     }
 
     companion object {

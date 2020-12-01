@@ -24,6 +24,7 @@ object MainMenuHelper {
     private const val menuSplash = "menuSplash"
     private const val menuNative = "menuNative"
     private const val menuNativeExpress = "menuNativeExpress"
+    private const val menuHybrid = "menuHybrid"
 
     private val menuMainList = arrayListOf(
             mapOf(
@@ -64,6 +65,12 @@ object MainMenuHelper {
                     "class" to RewardActivity::class.java
             ),
             mapOf(
+                    "title" to "混合使用",
+                    "desc" to "混合使用就是将不同类型的广告展示在同一个广告位。可以解决一些问题或者可以提高收入，这里就举例一些常用的场景",
+                    "class" to MainActivity::class.java,
+                    "clickMenu" to menuHybrid
+            ),
+            mapOf(
                     "title" to "采坑指南",
                     "desc" to "持续更新...",
                     "class" to HelpActivity::class.java
@@ -80,11 +87,6 @@ object MainMenuHelper {
                     "title" to "请求和展示分开",
                     "desc" to "请求成功后需手动调用展示。可实现预加载",
                     "class" to SplashProActivity::class.java
-            ),
-            mapOf(
-                    "title" to "混合使用",
-                    "desc" to "gdt是开屏，baidu、csj是原生自渲染伪装成开屏",
-                    "class" to SplashHybridActivity::class.java
             )
     )
 
@@ -124,11 +126,20 @@ object MainMenuHelper {
             )
     )
 
+    private val menuHybridList = arrayListOf(
+            mapOf(
+                    "title" to "开屏和原生自渲染混合",
+                    "desc" to "如果你的开屏ecpm比较低，就可以使用原生自渲染模拟开屏展示，以提高开屏广告位的收入",
+                    "class" to SplashHybridActivity::class.java
+            )
+    )
+
     val map = mapOf(
             menuMain to menuMainList,
             menuSplash to menuSplashList,
             menuNative to menuNativeList,
-            menuNativeExpress to menuNativeExpressList
+            menuNativeExpress to menuNativeExpressList,
+            menuHybrid to menuHybridList
     )
 
 }

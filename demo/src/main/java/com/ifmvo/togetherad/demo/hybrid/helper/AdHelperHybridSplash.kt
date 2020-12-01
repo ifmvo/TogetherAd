@@ -1,4 +1,4 @@
-package com.ifmvo.togetherad.demo.hybrid
+package com.ifmvo.togetherad.demo.hybrid.helper
 
 import android.app.Activity
 import android.view.ViewGroup
@@ -25,7 +25,7 @@ import java.lang.ref.WeakReference
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-class AdHelperSplashHybrid(
+class AdHelperHybridSplash(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
