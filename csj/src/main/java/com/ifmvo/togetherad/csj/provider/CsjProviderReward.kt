@@ -29,6 +29,11 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
             adSlotBuilder.setMediaExtra(CsjProvider.Reward.mediaExtra)
         }
 
+        if (CsjProvider.Reward.isExpress) {
+            //模板广告需要设置期望个性化模板广告的大小,单位dp,激励视频场景，只要设置的值大于0即可
+            adSlotBuilder.setExpressViewAcceptedSize(500f, 500f)
+        }
+
         TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String) {
                 callbackRewardFailed(adProviderType, listener, code, message)

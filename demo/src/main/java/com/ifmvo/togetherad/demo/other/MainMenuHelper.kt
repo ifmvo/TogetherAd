@@ -6,6 +6,7 @@ import com.ifmvo.togetherad.demo.express.NativeExpressRecyclerViewActivity
 import com.ifmvo.togetherad.demo.express.NativeExpressSimpleActivity
 import com.ifmvo.togetherad.demo.express2.NativeExpress2RecyclerViewActivity
 import com.ifmvo.togetherad.demo.express2.NativeExpress2SimpleActivity
+import com.ifmvo.togetherad.demo.fullvideo.FullVideoActivity
 import com.ifmvo.togetherad.demo.hybrid.NativeExpressHybridActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
@@ -64,6 +65,11 @@ object MainMenuHelper {
                     "title" to "激励视频广告",
                     "desc" to "激励视频广告是指将短视频融入到app场景当中，成为app“任务”之一，用户观看短视频广告后可以得到一些应用内奖励",
                     "class" to RewardActivity::class.java
+            ),
+            mapOf(
+                    "title" to "全屏视频广告",
+                    "desc" to "和激励视频广告比较像。差别在于全屏视频广告不需要完整的看完视频，就可以关闭广告",
+                    "class" to FullVideoActivity::class.java
             ),
             mapOf(
                     "title" to "混合使用",

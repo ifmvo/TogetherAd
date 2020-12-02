@@ -123,6 +123,10 @@ open class CsjProvider : CsjProviderSplash() {
      * --------------------------- 激励 ---------------------------
      */
     object Reward {
+
+        //是否模板类型广告请求
+        var isExpress = true
+
         //表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
         var userID: String? = null
 
@@ -154,6 +158,23 @@ open class CsjProvider : CsjProviderSplash() {
 
         var errorMsg: String? = null
             internal set
+    }
+
+    /**
+     * --------------------------- 全屏视频 ---------------------------
+     */
+    object FullVideo {
+
+        //是否模板类型广告请求
+        var isExpress = true
+
+        var supportDeepLink: Boolean = true
+
+        //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
+        var orientation: Int = TTAdConstant.VERTICAL
+
+        var ritScenes: TTAdConstant.RitScenes? = null
+
     }
 
 }

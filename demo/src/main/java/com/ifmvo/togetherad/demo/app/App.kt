@@ -67,6 +67,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "901121246",
                 TogetherAdAlias.AD_INTER to "945509693",
                 TogetherAdAlias.AD_REWARD to "901121365",
+                TogetherAdAlias.AD_FULL_VIDEO to "901121073",
                 TogetherAdAlias.AD_SPLASH_HYBRID to "901121737",//id是原生类型
                 TogetherAdAlias.AD_EXPRESS_HYBRID to "901121134"//id是原生模板2.0
         )
@@ -82,6 +83,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421",
+                TogetherAdAlias.AD_FULL_VIDEO to "",//不支持
                 TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593",//id是开屏类型
                 TogetherAdAlias.AD_EXPRESS_HYBRID to "5060295460765937"//id是原生模板1.0
         )
@@ -97,6 +99,7 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "2015351",
                 TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490",
+                TogetherAdAlias.AD_FULL_VIDEO to "",
                 TogetherAdAlias.AD_SPLASH_HYBRID to "2058628",//id是原生类型
                 TogetherAdAlias.AD_EXPRESS_HYBRID to ""//不支持
         )

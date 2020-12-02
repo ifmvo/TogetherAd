@@ -14,17 +14,13 @@ import com.ifmvo.togetherad.core.provider.BaseAdProvider
  */
 class XiaomiProvider : BaseAdProvider() {
 
-    override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
-        callbackSplashFailed(adProviderType, listener, null, "未实现")
-    }
+    override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {}
 
     override fun showSplashAd(container: ViewGroup): Boolean {
         return false
     }
 
-    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
-        callbackSplashFailed(adProviderType, listener, null, "未实现")
-    }
+    override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {}
 
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {}
 
@@ -56,13 +52,9 @@ class XiaomiProvider : BaseAdProvider() {
         return false
     }
 
-    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
-        
-    }
+    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {}
 
-    override fun destroyNativeExpress2Ad(adObject: Any) {
-        
-    }
+    override fun destroyNativeExpress2Ad(adObject: Any) {}
 
     override fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean {
         return false
@@ -71,4 +63,8 @@ class XiaomiProvider : BaseAdProvider() {
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {}
 
     override fun showRewardAd(activity: Activity) {}
+
+    override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {}
+
+    override fun showFullVideoAd(activity: Activity) {}
 }

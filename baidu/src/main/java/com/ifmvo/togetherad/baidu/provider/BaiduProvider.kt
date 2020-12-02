@@ -308,4 +308,12 @@ open class BaiduProvider : BaseAdProvider() {
     override fun showRewardAd(activity: Activity) {
         mRewardVideoAd?.show()
     }
+
+    override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
+        callbackFullVideoFailed(adProviderType, listener, null, "百度不支持全屏视频广告")
+    }
+
+    override fun showFullVideoAd(activity: Activity) {
+
+    }
 }

@@ -217,6 +217,65 @@ abstract class BaseAdProvider : IAdProvider {
     }
 
     /**
+     * --------------------------- 全屏视频广告 ---------------------------
+     */
+    protected fun callbackFullVideoStartRequest(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 开始请求".logi()
+            listener.onAdStartRequest(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoLoaded(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求成功了".logi()
+            listener.onAdLoaded(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoFailed(@NotNull adProviderType: String, @NotNull listener: FullVideoListener, errorCode: Int?, errorMsg: String?) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
+            listener.onAdFailed(adProviderType, errorMsg)
+        }
+    }
+
+    protected fun callbackFullVideoClicked(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 点击了".logi()
+            listener.onAdClicked(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoShow(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 展示了".logi()
+            listener.onAdShow(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoComplete(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 播放完成".logi()
+            listener.onAdVideoComplete(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoCached(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 视频已缓存".logi()
+            listener.onAdVideoCached(adProviderType)
+        }
+    }
+
+    protected fun callbackFullVideoClosed(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 关闭了".logi()
+            listener.onAdClose(adProviderType)
+        }
+    }
+
+    /**
      * --------------------------- Banner 横幅广告 ---------------------------
      */
     protected fun callbackBannerStartRequest(@NotNull adProviderType: String, @NotNull listener: BannerListener) {

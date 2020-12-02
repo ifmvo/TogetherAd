@@ -12,7 +12,7 @@ import com.qq.e.comm.util.AdError
  *
  * Created by Matthew Chen on 2020/11/25.
  */
-abstract class GdtProviderInter : GdtProviderBanner() {
+abstract class GdtProviderInter : GdtProviderFullVideo() {
 
     private var interAd: UnifiedInterstitialAD? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {

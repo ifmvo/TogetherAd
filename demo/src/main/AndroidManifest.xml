@@ -96,6 +96,11 @@
         -->
         <activity android:name=".hybrid.NativeExpressHybridActivity" />
 
+        <!--
+            全屏视频广告
+        -->
+        <activity android:name=".fullvideo.FullVideoActivity" />
+
     </application>
 
 </manifest>

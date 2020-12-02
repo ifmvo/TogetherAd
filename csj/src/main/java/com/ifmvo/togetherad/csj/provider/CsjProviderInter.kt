@@ -10,7 +10,7 @@ import com.ifmvo.togetherad.csj.TogetherAdCsj
  *
  * Created by Matthew Chen on 2020/11/2.
  */
-abstract class CsjProviderInter : CsjProviderBanner() {
+abstract class CsjProviderInter : CsjProviderFullVideo() {
 
     private var mTTNativeExpressInterAd: TTNativeExpressAd? = null
 

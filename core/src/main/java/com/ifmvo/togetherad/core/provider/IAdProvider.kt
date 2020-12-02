@@ -139,4 +139,17 @@ interface IAdProvider {
             @NotNull activity: Activity
     )
 
+    /**
+     * -----------------------------------请求全屏视频广告 -----------------------------------
+     */
+    fun requestFullVideoAd(
+            @NotNull activity: Activity,
+            @NotNull adProviderType: String,
+            @NotNull alias: String,
+            @NotNull listener: FullVideoListener
+    )
+
+    fun showFullVideoAd(
+            @NotNull activity: Activity
+    )
 }

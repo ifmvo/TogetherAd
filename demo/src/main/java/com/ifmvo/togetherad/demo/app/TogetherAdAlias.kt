@@ -41,6 +41,9 @@ object TogetherAdAlias {
     //激励广告
     const val AD_REWARD = "ad_reward"
 
+    //全屏视频广告
+    const val AD_FULL_VIDEO = "ad_full_video"
+
     //开屏混合使用
     const val AD_SPLASH_HYBRID = "ad_splash_and_native"
 
