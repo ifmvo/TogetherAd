@@ -70,15 +70,17 @@ dependencies {
 
 - [开屏广告](doc/splash.md)
 
+- [Banner横幅广告](doc/banner.md)
+
+- [Interstitial插屏广告](doc/inter.md)
+
 - [原生模板](doc/express.md)
 
 - [原生自渲染](doc/native.md)
 
 - [激励广告](doc/reward.md)
 
-- [Banner横幅广告](doc/banner.md)
-
-- [Interstitial插屏广告](doc/inter.md)
+- [全屏视频广告](doc/full_video.md)
 
 - [混合使用](doc/hybrid.md)
 
