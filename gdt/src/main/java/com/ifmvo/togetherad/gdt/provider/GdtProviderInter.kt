@@ -17,7 +17,7 @@ abstract class GdtProviderInter : GdtProviderFullVideo() {
     private var interAd: UnifiedInterstitialAD? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
-        callbackInterStartRequest(adProviderType, listener)
+        callbackInterStartRequest(adProviderType, alias, listener)
 
         destroyInterAd()
 
@@ -43,11 +43,11 @@ abstract class GdtProviderInter : GdtProviderFullVideo() {
             }
 
             override fun onADReceive() {
-                callbackInterLoaded(adProviderType, listener)
+                callbackInterLoaded(adProviderType, alias, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackInterFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackInterFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onADClicked() {

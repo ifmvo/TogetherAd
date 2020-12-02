@@ -61,23 +61,18 @@ class NativeExpress2Adapter(activity: Activity, list: List<Any>) : RecyclerView.
                 mActivity.get()?.let {
                     AdHelperNativeExpress2.show(it, mList[position], adViewHolder.adContainer, NativeExpress2TemplateSimple(), object : NativeExpress2ViewListener {
                         override fun onAdExposed(providerType: String) {
-                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告曝光了：$providerType", Toast.LENGTH_LONG).show()
                         }
 
                         override fun onAdClicked(providerType: String) {
-                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告点击了：$providerType", Toast.LENGTH_LONG).show()
                         }
 
                         override fun onAdRenderSuccess(providerType: String) {
-                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染成功了：$providerType", Toast.LENGTH_LONG).show()
                         }
 
                         override fun onAdRenderFailed(providerType: String) {
-                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染失败了：$providerType", Toast.LENGTH_LONG).show()
                         }
 
                         override fun onAdClose(providerType: String) {
-                            Toast.makeText(adViewHolder.adContainer.context, "原生模板广告渲染关闭了：$providerType", Toast.LENGTH_LONG).show()
                         }
                     })
                 }

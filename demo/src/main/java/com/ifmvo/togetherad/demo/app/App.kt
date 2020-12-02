@@ -1,8 +1,12 @@
 package com.ifmvo.togetherad.demo.app
 
 import android.app.Application
+import android.widget.Toast
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.listener.AllAdListener
+import com.ifmvo.togetherad.core.utils.loge
+import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
@@ -149,5 +153,26 @@ class App : Application() {
          * 不设置代表没有超时时间
          */
         TogetherAd.maxFetchDelay = 5000
+
+        /**
+         * 所有广告商所有广告类型的广告都会回调这个监听器
+         * 主要是方便做统计：请求成功率、请求失败信息等
+         */
+        TogetherAd.allAdListener = object : AllAdListener {
+            override fun onAdStartRequest(providerType: String, alias: String) {
+                "开始请求: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+                Toast.makeText(this@App, "开始请求: 提供商: $providerType, 广告位: $alias", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onAdFailed(providerType: String, alias: String, failedMsg: String?) {
+                "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg".loge("TogetherAd.allAdListener")
+                Toast.makeText(this@App, "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onAdLoaded(providerType: String, alias: String) {
+                "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+                Toast.makeText(this@App, "请求成功: 提供商: $providerType, 广告位: $alias", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

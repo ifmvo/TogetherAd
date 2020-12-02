@@ -17,7 +17,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
     private var mFllScreenVideoAd: TTFullScreenVideoAd? = null
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
 
-        callbackFullVideoStartRequest(adProviderType, listener)
+        callbackFullVideoStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
         adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
@@ -52,7 +52,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
                     }
                 })
 
-                callbackFullVideoLoaded(adProviderType, listener)
+                callbackFullVideoLoaded(adProviderType, alias, listener)
             }
 
             override fun onFullScreenVideoCached() {
@@ -60,7 +60,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackFullVideoFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackFullVideoFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         })
     }

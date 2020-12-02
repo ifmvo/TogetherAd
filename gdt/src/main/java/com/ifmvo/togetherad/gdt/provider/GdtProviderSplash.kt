@@ -23,7 +23,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
     private var mContainer: ViewGroup? = null
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
-        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, alias, listener)
 
         val customSkipView = GdtProvider.Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(activity)
@@ -39,7 +39,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
                 mContainer = null
-                callbackSplashFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             /**
@@ -80,7 +80,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              */
             override fun onADLoaded(expireTimestamp: Long) {
                 mExpireTimestamp = expireTimestamp
-                callbackSplashLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, alias, listener)
             }
             /**
              * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
@@ -116,7 +116,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
     override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
-        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, alias, listener)
 
         val customSkipView = GdtProvider.Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
@@ -130,7 +130,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
-                callbackSplashFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             /**
@@ -169,7 +169,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
              */
             override fun onADLoaded(expireTimestamp: Long) {
-                callbackSplashLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, alias, listener)
             }
         }, GdtProvider.Splash.maxFetchDelay)
         /**

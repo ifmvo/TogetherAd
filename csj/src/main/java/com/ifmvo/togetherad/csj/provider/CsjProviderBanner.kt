@@ -17,7 +17,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
         destroyBannerAd()
 
-        callbackBannerStartRequest(adProviderType, listener)
+        callbackBannerStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
@@ -30,7 +30,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
-                    callbackBannerFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackBannerFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
 
@@ -46,13 +46,13 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                     }
 
                     override fun onRenderSuccess(view: View?, p1: Float, p2: Float) {
-                        callbackBannerLoaded(adProviderType, listener)
+                        callbackBannerLoaded(adProviderType, alias, listener)
                         container.addView(view)
                     }
 
                     override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
                         destroyBannerAd()
-                        callbackBannerFailed(adProviderType, listener, errorCode, errorMsg)
+                        callbackBannerFailed(adProviderType, alias, listener, errorCode, errorMsg)
                     }
                 })
                 mTTNativeExpressBannerAd?.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
@@ -71,7 +71,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
 
             override fun onError(errorCode: Int, errorMsg: String?) {
                 destroyBannerAd()
-                callbackBannerFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackBannerFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         })
     }

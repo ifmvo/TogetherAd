@@ -66,7 +66,6 @@ class NativeExpress2RecyclerViewActivity : AppCompatActivity() {
             }
 
             override fun onAdFailedAll() {
-                Toast.makeText(this@NativeExpress2RecyclerViewActivity, "所有平台都请求失败了", Toast.LENGTH_LONG).show()
                 //所有的提供商都失败
                 onResult(mutableListOf())
             }

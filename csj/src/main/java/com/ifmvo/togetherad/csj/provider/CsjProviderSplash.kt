@@ -29,7 +29,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
         mListener = listener
         mAdProviderType = adProviderType
 
-        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
         adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
@@ -43,11 +43,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {
-                    callbackSplashFailed(adProviderType, listener, null, "请求成功，但是返回的广告为null")
+                    callbackSplashFailed(adProviderType, alias, listener, null, "请求成功，但是返回的广告为null")
                     return
                 }
 
-                callbackSplashLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, alias, listener)
 
                 mSplashAd = splashAd
 
@@ -73,11 +73,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             }
 
             override fun onTimeout() {
-                callbackSplashFailed(adProviderType, listener, null, "请求超时了")
+                callbackSplashFailed(adProviderType, alias, listener, null, "请求超时了")
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackSplashFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackSplashFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         }, CsjProvider.Splash.maxFetchDelay)//超时时间，demo 为 3000
     }
@@ -130,7 +130,7 @@ abstract class CsjProviderSplash : CsjProviderReward() {
 
     override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
 
-        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, alias, listener)
 
         val customSkipView = CsjProvider.Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(activity)
@@ -147,11 +147,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             override fun onSplashAdLoad(splashAd: TTSplashAd?) {
 
                 if (splashAd == null) {
-                    callbackSplashFailed(adProviderType, listener, null, "请求成功，但是返回的广告为null")
+                    callbackSplashFailed(adProviderType, alias, listener, null, "请求成功，但是返回的广告为null")
                     return
                 }
 
-                callbackSplashLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, alias, listener)
 
                 container.removeAllViews()
                 container.addView(splashAd.splashView)
@@ -206,11 +206,11 @@ abstract class CsjProviderSplash : CsjProviderReward() {
             }
 
             override fun onTimeout() {
-                callbackSplashFailed(adProviderType, listener, null, "请求超时了")
+                callbackSplashFailed(adProviderType, alias, listener, null, "请求超时了")
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackSplashFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackSplashFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         }, CsjProvider.Splash.maxFetchDelay)//超时时间，demo 为 3000
     }

@@ -31,7 +31,7 @@ class CustomCsjProvider : CsjProvider() {
     }
 
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
-        callbackBannerStartRequest(adProviderType, listener)
+        callbackBannerStartRequest(adProviderType, alias, listener)
 
         destroyBannerAd()
 
@@ -44,17 +44,17 @@ class CustomCsjProvider : CsjProvider() {
         TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
             override fun onBannerAdLoad(bannerAd: TTBannerAd?) {
                 if (bannerAd == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerAd 为空")
+                    callbackBannerFailed(adProviderType, alias, listener, "请求成功，但是返回的 bannerAd 为空")
                     return
                 }
 
                 val bannerView = bannerAd.bannerView
                 if (bannerView == null) {
-                    callbackBannerFailed(adProviderType, listener, "请求成功，但是返回的 bannerView 为空")
+                    callbackBannerFailed(adProviderType, alias, listener, "请求成功，但是返回的 bannerView 为空")
                     return
                 }
 
-                callbackBannerLoaded(adProviderType, listener)
+                callbackBannerLoaded(adProviderType, alias, listener)
 
                 bannerAd.setSlideIntervalTime(Banner.slideIntervalTime)
                 container.removeAllViews()
@@ -83,7 +83,7 @@ class CustomCsjProvider : CsjProvider() {
 
             override fun onError(errorCode: Int, errorMsg: String?) {
                 "onError".loge(tag)
-                callbackBannerFailed(adProviderType, listener, "错误码：$errorCode, 错误信息：$errorMsg")
+                callbackBannerFailed(adProviderType, alias, listener, "错误码：$errorCode, 错误信息：$errorMsg")
             }
         })
     }

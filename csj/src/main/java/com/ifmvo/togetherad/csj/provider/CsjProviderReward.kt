@@ -14,7 +14,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
     private var mttRewardVideoAd: TTRewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
-        callbackRewardStartRequest(adProviderType, listener)
+        callbackRewardStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
@@ -36,7 +36,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
 
         TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String) {
-                callbackRewardFailed(adProviderType, listener, code, message)
+                callbackRewardFailed(adProviderType, alias, listener, code, message)
                 mttRewardVideoAd = null
             }
 
@@ -104,7 +104,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
                     }
                 })
 
-                callbackRewardLoaded(adProviderType, listener)
+                callbackRewardLoaded(adProviderType, alias, listener)
             }
         })
     }

@@ -17,19 +17,19 @@ abstract class GdtProviderNativeExpress2 : GdtProviderNativeExpress() {
 
     override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
 
-        callbackNativeExpressStartRequest(adProviderType, listener)
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
 
         val adLoaderListener = object : NativeExpressAD2.AdLoadListener {
             override fun onLoadSuccess(ads: MutableList<NativeExpressADData2>?) {
                 if (ads.isNullOrEmpty()) {
-                    callbackNativeExpressFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
-                callbackNativeExpressLoaded(adProviderType, listener, ads)
+                callbackNativeExpressLoaded(adProviderType, alias, listener, ads)
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackNativeExpressFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackNativeExpressFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
         }
 

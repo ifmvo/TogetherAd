@@ -55,11 +55,9 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
                 adViewHolder.adContainer.removeAllViews()
                 AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple5(), object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告曝光了：$providerType", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onAdClicked(providerType: String) {
-                        Toast.makeText(adViewHolder.adContainer.context, "原生广告点击了：$providerType", Toast.LENGTH_LONG).show()
                     }
                 })
             }

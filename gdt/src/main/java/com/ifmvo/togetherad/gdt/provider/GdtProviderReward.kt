@@ -16,7 +16,7 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
     private var rewardVideoAD: RewardVideoAD? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
-        callbackRewardStartRequest(adProviderType, listener)
+        callbackRewardStartRequest(adProviderType, alias, listener)
 
         rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
 
@@ -42,7 +42,7 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
             }
 
             override fun onADLoad() {
-                callbackRewardLoaded(adProviderType, listener)
+                callbackRewardLoaded(adProviderType, alias, listener)
             }
 
             override fun onVideoComplete() {
@@ -50,7 +50,7 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
             }
 
             override fun onError(adError: AdError?) {
-                callbackRewardFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackRewardFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
                 rewardVideoAD = null
             }
 

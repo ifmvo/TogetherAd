@@ -16,7 +16,7 @@ abstract class CsjProviderNativeExpress2 : CsjProviderNativeExpress() {
 
     override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
 
-        callbackNativeExpressStartRequest(adProviderType, listener)
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
@@ -28,15 +28,15 @@ abstract class CsjProviderNativeExpress2 : CsjProviderNativeExpress() {
         TTAdSdk.getAdManager().createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(ads: MutableList<TTNativeExpressAd>?) {
                 if (ads.isNullOrEmpty()) {
-                    callbackNativeExpressFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
 
-                callbackNativeExpressLoaded(adProviderType, listener, ads)
+                callbackNativeExpressLoaded(adProviderType, alias, listener, ads)
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackNativeExpressFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackNativeExpressFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         })
     }

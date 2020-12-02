@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.core
 import com.ifmvo.togetherad.core.custom.native_.imageloader.AdImageLoader
 import com.ifmvo.togetherad.core.custom.native_.imageloader.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
+import com.ifmvo.togetherad.core.listener.AllAdListener
 import com.ifmvo.togetherad.core.utils.logi
 import org.jetbrains.annotations.NotNull
 
@@ -110,4 +111,10 @@ object TogetherAd {
                 }
             }
         }
+
+    /**
+     * 所有广告商所有广告类型的广告都会回调这个监听器
+     * 主要是方便做统计：请求成功率、请求失败信息等
+     */
+    var allAdListener: AllAdListener? = null
 }

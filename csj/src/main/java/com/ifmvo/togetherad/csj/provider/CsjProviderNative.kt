@@ -37,7 +37,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
             )
         }
 
-        callbackNativeStartRequest(adProviderType, listener)
+        callbackNativeStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
@@ -49,15 +49,15 @@ abstract class CsjProviderNative : CsjProviderInter() {
         TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
             override fun onNativeAdLoad(adList: MutableList<TTNativeAd>?) {
                 if (adList.isNullOrEmpty()) {
-                    callbackNativeFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackNativeFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
 
-                callbackNativeLoaded(adProviderType, listener, adList)
+                callbackNativeLoaded(adProviderType, alias, listener, adList)
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackNativeFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackNativeFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         })
     }

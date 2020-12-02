@@ -25,7 +25,7 @@ import org.json.JSONObject
 open class BaiduProvider : BaseAdProvider() {
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
-        callbackSplashFailed(adProviderType, listener, null, "百度开屏不支持加载和展示分开")
+        callbackSplashFailed(adProviderType, alias, listener, null, "百度开屏不支持加载和展示分开")
     }
 
     override fun showSplashAd(container: ViewGroup): Boolean {
@@ -36,12 +36,12 @@ open class BaiduProvider : BaseAdProvider() {
      * --------------------------- 开屏 ---------------------------
      */
     override fun loadAndShowSplashAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: SplashListener) {
-        callbackSplashStartRequest(adProviderType, listener)
+        callbackSplashStartRequest(adProviderType, alias, listener)
 
         SplashAd(activity, container, object : SplashAdListener {
             override fun onAdPresent() {
                 "onADLoaded".logd(tag)
-                callbackSplashLoaded(adProviderType, listener)
+                callbackSplashLoaded(adProviderType, alias, listener)
             }
 
             override fun onAdDismissed() {
@@ -56,7 +56,7 @@ open class BaiduProvider : BaseAdProvider() {
 
             override fun onAdFailed(errorMsg: String) {
                 "onADLoaded".logd(tag)
-                callbackSplashFailed(adProviderType, listener, null, errorMsg)
+                callbackSplashFailed(adProviderType, alias, listener, null, errorMsg)
             }
 
             override fun onAdClick() {
@@ -72,12 +72,12 @@ open class BaiduProvider : BaseAdProvider() {
      */
     private var adView: AdView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
-        callbackBannerStartRequest(adProviderType, listener)
+        callbackBannerStartRequest(adProviderType, alias, listener)
 
         adView = AdView(activity, TogetherAdBaidu.idMapBaidu[alias])
         adView?.setListener(object : AdViewListener {
             override fun onAdFailed(errorMsg: String?) {
-                callbackBannerFailed(adProviderType, listener, null, errorMsg)
+                callbackBannerFailed(adProviderType, alias, listener, null, errorMsg)
             }
 
             override fun onAdShow(p0: JSONObject?) {
@@ -89,7 +89,7 @@ open class BaiduProvider : BaseAdProvider() {
             }
 
             override fun onAdReady(p0: AdView?) {
-                callbackBannerLoaded(adProviderType, listener)
+                callbackBannerLoaded(adProviderType, alias, listener)
             }
 
             override fun onAdSwitch() {
@@ -113,7 +113,7 @@ open class BaiduProvider : BaseAdProvider() {
     private var mInterAd: InterstitialAd? = null
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
 
-        callbackInterStartRequest(adProviderType, listener)
+        callbackInterStartRequest(adProviderType, alias, listener)
         "onStartRequest".logd(tag)
         destroyInterAd()
 
@@ -121,7 +121,7 @@ open class BaiduProvider : BaseAdProvider() {
         mInterAd?.setListener(object : InterstitialAdListener {
             override fun onAdFailed(errorMsg: String?) {
                 "onAdFailed".logd(tag)
-                callbackInterFailed(adProviderType, listener, null, errorMsg)
+                callbackInterFailed(adProviderType, alias, listener, null, errorMsg)
             }
 
             override fun onAdDismissed() {
@@ -141,7 +141,7 @@ open class BaiduProvider : BaseAdProvider() {
 
             override fun onAdReady() {
                 "onAdReady".logd(tag)
-                callbackInterLoaded(adProviderType, listener)
+                callbackInterLoaded(adProviderType, alias, listener)
             }
         })
         mInterAd?.loadAd()
@@ -161,7 +161,7 @@ open class BaiduProvider : BaseAdProvider() {
      */
     override fun getNativeAdList(activity: Activity, adProviderType: String, alias: String, maxCount: Int, listener: NativeListener) {
 
-        callbackNativeStartRequest(adProviderType, listener)
+        callbackNativeStartRequest(adProviderType, alias, listener)
 
         val baidu = BaiduNative(activity, TogetherAdBaidu.idMapBaidu[alias], object : BaiduNative.BaiduNativeNetworkListener {
 
@@ -171,7 +171,7 @@ open class BaiduProvider : BaseAdProvider() {
                 } else {
                     list
                 }
-                callbackNativeLoaded(adProviderType, listener, subList)
+                callbackNativeLoaded(adProviderType, alias, listener, subList)
             }
 
             override fun onNativeFail(nativeErrorCode: NativeErrorCode) {
@@ -189,7 +189,7 @@ open class BaiduProvider : BaseAdProvider() {
                         "未知错误"
                     }
                 }
-                callbackNativeFailed(adProviderType, listener, null, errorMsg)
+                callbackNativeFailed(adProviderType, alias, listener, null, errorMsg)
             }
         })
         /*
@@ -230,7 +230,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
-        callbackNativeExpressFailed(adProviderType, listener, null, "百度不支持原生模板类型广告")
+        callbackNativeExpressFailed(adProviderType, alias, listener, null, "百度不支持原生模板类型广告")
     }
 
     override fun destroyNativeExpressAd(adObject: Any) {
@@ -242,7 +242,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
-        callbackNativeExpressFailed(adProviderType, listener, null, "百度不支持原生模板2类型广告")
+        callbackNativeExpressFailed(adProviderType, alias, listener, null, "百度不支持原生模板2类型广告")
     }
 
     override fun destroyNativeExpress2Ad(adObject: Any) {
@@ -258,12 +258,12 @@ open class BaiduProvider : BaseAdProvider() {
     private var mRewardVideoAd: RewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
 
-        callbackRewardStartRequest(adProviderType, listener)
+        callbackRewardStartRequest(adProviderType, alias, listener)
 
         mRewardVideoAd = RewardVideoAd(activity, TogetherAdBaidu.idMapBaidu[alias], object : RewardVideoAd.RewardVideoAdListener {
             override fun onAdFailed(errorMsg: String?) {
                 "onAdFailed".loge(tag)
-                callbackRewardFailed(adProviderType, listener, null, errorMsg)
+                callbackRewardFailed(adProviderType, alias, listener, null, errorMsg)
                 mRewardVideoAd = null
             }
 
@@ -292,13 +292,13 @@ open class BaiduProvider : BaseAdProvider() {
 
             override fun onVideoDownloadSuccess() {
                 "onVideoDownloadSuccess".logi(tag)
-                callbackRewardLoaded(adProviderType, listener)
+                callbackRewardLoaded(adProviderType, alias, listener)
                 callbackRewardVideoCached(adProviderType, listener)
             }
 
             override fun onVideoDownloadFailed() {
                 "onVideoDownloadFailed".loge(tag)
-                callbackRewardFailed(adProviderType, listener, null, "视频缓存失败")
+                callbackRewardFailed(adProviderType, alias, listener, null, "视频缓存失败")
             }
         }, false)
 
@@ -310,7 +310,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
-        callbackFullVideoFailed(adProviderType, listener, null, "百度不支持全屏视频广告")
+        callbackFullVideoFailed(adProviderType, alias, listener, null, "百度不支持全屏视频广告")
     }
 
     override fun showFullVideoAd(activity: Activity) {

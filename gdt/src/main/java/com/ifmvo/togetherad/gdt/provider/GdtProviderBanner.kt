@@ -17,7 +17,7 @@ abstract class GdtProviderBanner : BaseAdProvider() {
 
     private var banner: UnifiedBannerView? = null
     override fun showBannerAd(activity: Activity, adProviderType: String, alias: String, container: ViewGroup, listener: BannerListener) {
-        callbackBannerStartRequest(adProviderType, listener)
+        callbackBannerStartRequest(adProviderType, alias, listener)
         destroyBannerAd()
         banner = UnifiedBannerView(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedBannerADListener {
             override fun onADCloseOverlay() {
@@ -40,11 +40,11 @@ abstract class GdtProviderBanner : BaseAdProvider() {
 
             override fun onNoAD(adError: AdError?) {
                 destroyBannerAd()
-                callbackBannerFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackBannerFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onADReceive() {
-                callbackBannerLoaded(adProviderType, listener)
+                callbackBannerLoaded(adProviderType, alias, listener)
             }
 
             override fun onADClicked() {

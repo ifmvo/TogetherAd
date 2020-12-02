@@ -17,7 +17,7 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
     override fun requestInterAd(activity: Activity, adProviderType: String, alias: String, listener: InterListener) {
         destroyInterAd()
 
-        callbackInterStartRequest(adProviderType, listener)
+        callbackInterStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
@@ -29,10 +29,10 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
         TTAdSdk.getAdManager().createAdNative(activity).loadInteractionExpressAd(adSlotBuilder.build(), object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
-                    callbackInterFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackInterFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
-                callbackInterLoaded(adProviderType, listener)
+                callbackInterLoaded(adProviderType, alias, listener)
 
                 mTTNativeExpressInterAd = adList[0]
                 mTTNativeExpressInterAd?.setExpressInteractionListener(object : TTNativeExpressAd.AdInteractionListener {
@@ -64,7 +64,7 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
             }
 
             override fun onError(errorCode: Int, errorMsg: String?) {
-                callbackInterFailed(adProviderType, listener, errorCode, errorMsg)
+                callbackInterFailed(adProviderType, alias, listener, errorCode, errorMsg)
             }
         })
     }

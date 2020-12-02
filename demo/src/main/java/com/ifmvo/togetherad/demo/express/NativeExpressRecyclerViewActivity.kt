@@ -66,29 +66,23 @@ class NativeExpressRecyclerViewActivity : AppCompatActivity() {
             }
 
             override fun onAdFailedAll() {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "所有平台都请求失败了", Toast.LENGTH_LONG).show()
                 //所有的提供商都失败
                 onResult(mutableListOf())
             }
 
             override fun onAdClicked(providerType: String, adObject: Any?) {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "原生模板广告点击了：$providerType", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdShow(providerType: String, adObject: Any?) {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "原生模板广告曝光了：$providerType", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdRenderSuccess(providerType: String, adObject: Any?) {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "原生模板广告渲染成功了：$providerType", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdRenderFail(providerType: String, adObject: Any?) {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "原生模板广告渲染失败了：$providerType", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdClosed(providerType: String, adObject: Any?) {
-                Toast.makeText(this@NativeExpressRecyclerViewActivity, "原生模板广告渲染关闭了：$providerType", Toast.LENGTH_LONG).show()
             }
         })
     }

@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
-import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
@@ -17,20 +16,20 @@ abstract class GdtProviderNativeExpress : GdtProviderNative() {
 
     override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
 
-        callbackNativeExpressStartRequest(adProviderType, listener)
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
 
         val nativeExpressADListener = object : NativeExpressAD.NativeExpressADListener {
 
             override fun onADLoaded(ads: MutableList<NativeExpressADView>?) {
                 if (ads.isNullOrEmpty()) {
-                    callbackNativeExpressFailed(adProviderType, listener, null, "请求成功，但是返回的list为空")
+                    callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
-                callbackNativeExpressLoaded(adProviderType, listener, ads)
+                callbackNativeExpressLoaded(adProviderType, alias, listener, ads)
             }
 
             override fun onNoAD(adError: AdError?) {
-                callbackNativeExpressFailed(adProviderType, listener, adError?.errorCode, adError?.errorMsg)
+                callbackNativeExpressFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onRenderSuccess(adView: NativeExpressADView?) {
