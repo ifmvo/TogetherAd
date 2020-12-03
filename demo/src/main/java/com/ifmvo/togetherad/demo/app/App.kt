@@ -143,7 +143,7 @@ class App : Application() {
          * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
          * 全局实时生效
          */
-        TogetherAd.failedSwitchEnable = true
+//        TogetherAd.failedSwitchEnable = true
 
         /**
          * 最大拉取延时时间 ms（ 请求广告的超时时间 ）
@@ -151,24 +151,24 @@ class App : Application() {
          * 全局实时生效
          * 不设置代表没有超时时间
          */
-        TogetherAd.maxFetchDelay = 5000
+//        TogetherAd.maxFetchDelay = 5000
 
         /**
          * 所有广告商所有广告类型的广告都会回调这个监听器
          * 主要是方便做统计：请求成功率、请求失败信息等
          */
-        TogetherAd.allAdListener = object : AllAdListener {
-            override fun onAdStartRequest(providerType: String, alias: String) {
-                "开始请求: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
-            }
-
-            override fun onAdFailed(providerType: String, alias: String, failedMsg: String?) {
-                "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg".loge("TogetherAd.allAdListener")
-            }
-
-            override fun onAdLoaded(providerType: String, alias: String) {
-                "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
-            }
-        }
+//        TogetherAd.allAdListener = object : AllAdListener {
+//            override fun onAdStartRequest(providerType: String, alias: String) {
+//                "开始请求: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+//            }
+//
+//            override fun onAdFailed(providerType: String, alias: String, failedMsg: String?) {
+//                "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg".loge("TogetherAd.allAdListener")
+//            }
+//
+//            override fun onAdLoaded(providerType: String, alias: String) {
+//                "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+//            }
+//        }
     }
 }

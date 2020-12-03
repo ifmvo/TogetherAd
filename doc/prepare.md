@@ -102,10 +102,22 @@ object TogetherAdAlias {
     //开屏
     const val AD_SPLASH = "ad_splash"
 
-    //原生_简单使用
+    //原生模板2.0 简单使用
+    const val AD_NATIVE_EXPRESS_2_SIMPLE = "ad_native_express2_simple"
+
+    //原生模板2.0 在 RecyclerView 中使用
+    const val AD_NATIVE_EXPRESS_2_RECYCLERVIEW = "ad_native_express2_recyclerview"
+
+    //原生模板 简单使用
+    const val AD_NATIVE_EXPRESS_SIMPLE = "ad_native_express_simple"
+
+    //原生模板 在 RecyclerView 中使用
+    const val AD_NATIVE_EXPRESS_RECYCLERVIEW = "ad_native_express_recyclerview"
+
+    //原生 简单使用
     const val AD_NATIVE_SIMPLE = "ad_native_simple"
 
-    //原生_在 RecyclerView 中使用
+    //原生 在 RecyclerView 中使用
     const val AD_NATIVE_RECYCLERVIEW = "ad_native_recyclerview"
 
     //Banner
@@ -116,6 +128,15 @@ object TogetherAdAlias {
 
     //激励广告
     const val AD_REWARD = "ad_reward"
+
+    //全屏视频广告
+    const val AD_FULL_VIDEO = "ad_full_video"
+
+    //开屏混合使用
+    const val AD_SPLASH_HYBRID = "ad_splash_and_native"
+
+    //原生模板混合
+    const val AD_EXPRESS_HYBRID = "ad_express_hybrid"
 
 }
 ```
@@ -144,16 +165,14 @@ class App : Application() {
 //        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
 //        // 可选参数，需在初始化之前，是否允许sdk展示通知栏提示
 //        TogetherAdCsj.allowShowNotify = true
-//        // 可选参数，需在初始化之前，是否在锁屏场景支持展示广告落地页
-//        TogetherAdCsj.allowShowPageWhenScreenLock = true
 //        // 可选参数，需在初始化之前，测试阶段打开，可以通过日志排查问题，上线时去除该调用
 //        TogetherAdCsj.debug = true
 //        // 可选参数，需在初始化之前，允许直接下载的网络状态集合
-//        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_3G
+//        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_4G
 //        // 可选参数，需在初始化之前，是否支持多进程，true支持
 //        TogetherAdCsj.supportMultiProcess = false
 //        // 可选参数，需在初始化之前，自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
-//        TogetherAdCsj.httpStack = object : IHttpStack {}
+//        TogetherAdCsj.httpStack = object : IHttpStack {  }
 //        // 可选参数，需在初始化之前，设置是否为计费用户：true计费用户、false非计费用户。默认为false非计费用户。须征得用户同意才可传入该参数
 //        TogetherAdCsj.isPaid = false
 //        // 可选参数，需在初始化之前，是否一步初始化
@@ -164,6 +183,7 @@ class App : Application() {
 //        TogetherAdCsj.data = ""
 //        //可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
 //        TogetherAdCsj.customController = object : TTCustomController() {}
+
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通
@@ -173,35 +193,54 @@ class App : Application() {
 
         /**
          * 配置所有广告位ID
+         * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
         TogetherAdCsj.idMapCsj = mapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
-                TogetherAdAlias.AD_BANNER to "901121987",
-                TogetherAdAlias.AD_INTER to "901121725",
+                TogetherAdAlias.AD_BANNER to "901121246",
+                TogetherAdAlias.AD_INTER to "945509693",
                 TogetherAdAlias.AD_REWARD to "901121365",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "901121709"//id是原生类型
+                TogetherAdAlias.AD_FULL_VIDEO to "901121073",
+                TogetherAdAlias.AD_SPLASH_HYBRID to "901121737",//id是原生类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to "901121134"//id是原生模板2.0
         )
 
         TogetherAdGdt.idMapGDT = mapOf(
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "5060295460765937",
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "6040749702835933"//id是原生类型
+                TogetherAdAlias.AD_FULL_VIDEO to "",//不支持
+                TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593",//id是开屏类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to "5060295460765937"//id是原生模板1.0
         )
 
         TogetherAdBaidu.idMapBaidu = mapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
                 TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
                 TogetherAdAlias.AD_BANNER to "2015351",
                 TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "2058622"//id是开屏类型
+                TogetherAdAlias.AD_FULL_VIDEO to "",
+                TogetherAdAlias.AD_SPLASH_HYBRID to "2058628",//id是原生类型
+                TogetherAdAlias.AD_EXPRESS_HYBRID to ""//不支持
         )
 
         /**
@@ -240,7 +279,7 @@ class App : Application() {
          * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
          * 全局实时生效
          */
-        TogetherAd.failedSwitchEnable = true
+//        TogetherAd.failedSwitchEnable = true
 
         /**
          * 最大拉取延时时间 ms（ 请求广告的超时时间 ）
@@ -248,7 +287,25 @@ class App : Application() {
          * 全局实时生效
          * 不设置代表没有超时时间
          */
-        TogetherAd.maxFetchDelay = 5000
+//        TogetherAd.maxFetchDelay = 5000
+
+        /**
+         * 所有广告商所有广告类型的广告都会回调这个监听器
+         * 主要是方便做统计：请求成功率、请求失败信息等
+         */
+//        TogetherAd.allAdListener = object : AllAdListener {
+//            override fun onAdStartRequest(providerType: String, alias: String) {
+//                "开始请求: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+//            }
+//
+//            override fun onAdFailed(providerType: String, alias: String, failedMsg: String?) {
+//                "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg".loge("TogetherAd.allAdListener")
+//            }
+//
+//            override fun onAdLoaded(providerType: String, alias: String) {
+//                "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
+//            }
+//        }
     }
 }
 ```
