@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.demo.app
 
 import android.app.Application
-import android.widget.Toast
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.listener.AllAdListener
@@ -161,17 +160,14 @@ class App : Application() {
         TogetherAd.allAdListener = object : AllAdListener {
             override fun onAdStartRequest(providerType: String, alias: String) {
                 "开始请求: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
-                Toast.makeText(this@App, "开始请求: 提供商: $providerType, 广告位: $alias", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdFailed(providerType: String, alias: String, failedMsg: String?) {
                 "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg".loge("TogetherAd.allAdListener")
-                Toast.makeText(this@App, "请求失败: 提供商: $providerType, 广告位: $alias, 错误信息: $failedMsg", Toast.LENGTH_LONG).show()
             }
 
             override fun onAdLoaded(providerType: String, alias: String) {
                 "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
-                Toast.makeText(this@App, "请求成功: 提供商: $providerType, 广告位: $alias", Toast.LENGTH_LONG).show()
             }
         }
     }
