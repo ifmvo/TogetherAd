@@ -30,14 +30,14 @@ class AdHelperHybridExpress(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null,
+        ratioMap: LinkedHashMap<String, Int>? = null,
         adCount: Int
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var mAdCount: Int = adCount
     private var adProvider: BaseAdProvider? = null
 
@@ -124,13 +124,13 @@ class AdHelperHybridExpress(
     ) : this(activity, alias, null, defaultAdCount)
 
     fun getHybridExpressList(listener: NativeExpress2Listener? = null) {
-        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
+        val currentRatioMap = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(listener)
         getHybridExpressListForMap(currentRatioMap, listener)
     }
 
-    private fun getHybridExpressListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeExpress2Listener? = null) {
+    private fun getHybridExpressListForMap(@NotNull ratioMap: LinkedHashMap<String, Int>, listener: NativeExpress2Listener? = null) {
 
         val currentAdCount = if (mAdCount <= 0) defaultAdCount else mAdCount
 
@@ -160,7 +160,7 @@ class AdHelperHybridExpress(
         }
     }
 
-    private fun getHybridExpressList(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: Map<String, Int>) {
+    private fun getHybridExpressList(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: LinkedHashMap<String, Int>) {
         adProvider?.getNativeExpressAdList(mActivity.get()!!, adProviderType, mAlias, currentAdCount, object : NativeExpressListener {
             override fun onAdStartRequest(providerType: String) {
                 listener?.onAdStartRequest(providerType)
@@ -204,7 +204,7 @@ class AdHelperHybridExpress(
         })
     }
 
-    private fun getHybridExpress2List(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: Map<String, Int>) {
+    private fun getHybridExpress2List(adProviderType: String, currentAdCount: Int, listener: NativeExpress2Listener?, ratioMap: LinkedHashMap<String, Int>) {
         adProvider?.getNativeExpress2AdList(mActivity.get()!!, adProviderType, mAlias, currentAdCount, object : NativeExpress2Listener {
             override fun onAdLoaded(providerType: String, adList: List<Any>) {
                 if (isFetchOverTime) return

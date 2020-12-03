@@ -25,14 +25,14 @@ class AdHelperNativePro(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null,
+        ratioMap: LinkedHashMap<String, Int>? = null,
         maxCount: Int
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var mMaxCount: Int = maxCount
     private var adProvider: BaseAdProvider? = null
 
@@ -134,13 +134,13 @@ class AdHelperNativePro(
     ) : this(activity, alias, null, defaultMaxCount)
 
     fun getList(listener: NativeListener? = null) {
-        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
+        val currentRatioMap: LinkedHashMap<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(listener)
         getListForMap(currentRatioMap, listener)
     }
 
-    private fun getListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeListener? = null) {
+    private fun getListForMap(@NotNull ratioMap: LinkedHashMap<String, Int>, listener: NativeListener? = null) {
 
         val currentMaxCount = if (mMaxCount <= 0) defaultMaxCount else mMaxCount
 

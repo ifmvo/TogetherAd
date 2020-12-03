@@ -29,13 +29,13 @@ class AdHelperHybridSplash(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null
+        ratioMap: LinkedHashMap<String, Int>? = null
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var adProvider: BaseAdProvider? = null
     private var mListener: SplashListener? = null
 
@@ -56,7 +56,7 @@ class AdHelperHybridSplash(
         realLoadOnly(currentRatioMap)
     }
 
-    private fun realLoadOnly(@NotNull ratioMap: Map<String, Int>) {
+    private fun realLoadOnly(@NotNull ratioMap: LinkedHashMap<String, Int>) {
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 
@@ -88,7 +88,7 @@ class AdHelperHybridSplash(
     }
 
     private var mAdObject: Any? = null
-    private fun realLoadOnlyNative(ratioMap: Map<String, Int>, adProviderType: String) {
+    private fun realLoadOnlyNative(ratioMap: LinkedHashMap<String, Int>, adProviderType: String) {
         CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
         adProvider?.getNativeAdList(activity = mActivity.get()!!, adProviderType = adProviderType, alias = mAlias, maxCount = 1, listener = object : NativeListener {
             override fun onAdStartRequest(providerType: String) {
@@ -114,7 +114,7 @@ class AdHelperHybridSplash(
         })
     }
 
-    private fun realLoadOnlySplash(ratioMap: Map<String, Int>, adProviderType: String) {
+    private fun realLoadOnlySplash(ratioMap: LinkedHashMap<String, Int>, adProviderType: String) {
         adProvider?.loadOnlySplashAd(activity = mActivity.get()!!, adProviderType = adProviderType, alias = mAlias, listener = object : SplashListener {
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 if (isFetchOverTime) return

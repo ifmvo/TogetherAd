@@ -23,7 +23,7 @@ class NativeExpressHybridActivity : AppCompatActivity() {
     private var mProviderType: String? = null
 
     private val adHelperHybridExpress by lazy {
-        val ratioMapExpressHybrid = mapOf(
+        val ratioMapExpressHybrid = linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1
         )

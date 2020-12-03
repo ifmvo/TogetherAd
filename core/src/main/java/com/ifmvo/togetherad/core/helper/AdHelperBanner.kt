@@ -25,12 +25,12 @@ object AdHelperBanner : BaseHelper() {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
         startTimer(listener)
         realShow(activity, alias, ratioMap, container, listener)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
+    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: BannerListener? = null) {
 
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 

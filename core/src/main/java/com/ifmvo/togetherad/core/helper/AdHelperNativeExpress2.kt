@@ -24,14 +24,14 @@ class AdHelperNativeExpress2(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null,
+        ratioMap: LinkedHashMap<String, Int>? = null,
         adCount: Int
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var mAdCount: Int = adCount
     private var adProvider: BaseAdProvider? = null
 
@@ -95,13 +95,13 @@ class AdHelperNativeExpress2(
     ) : this(activity, alias, null, defaultAdCount)
 
     fun getExpress2List(listener: NativeExpress2Listener? = null) {
-        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
+        val currentRatioMap: LinkedHashMap<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(listener)
         getExpress2ListForMap(currentRatioMap, listener)
     }
 
-    private fun getExpress2ListForMap(@NotNull ratioMap: Map<String, Int>, listener: NativeExpress2Listener? = null) {
+    private fun getExpress2ListForMap(@NotNull ratioMap: LinkedHashMap<String, Int>, listener: NativeExpress2Listener? = null) {
 
         val currentAdCount = if (mAdCount <= 0) defaultAdCount else mAdCount
 

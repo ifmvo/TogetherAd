@@ -22,12 +22,12 @@ object AdHelperSplash : BaseHelper() {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         startTimer(listener)
         realShow(activity, alias, ratioMap, container, listener)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: Map<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)

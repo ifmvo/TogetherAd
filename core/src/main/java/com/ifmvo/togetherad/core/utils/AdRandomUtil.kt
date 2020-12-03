@@ -17,7 +17,7 @@ object AdRandomUtil {
     /**
      * ratioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
      */
-    fun getRandomAdProvider(@NotNull ratioMap: Map<String, Int>): String? {
+    fun getRandomAdProvider(@NotNull ratioMap: LinkedHashMap<String, Int>): String? {
 
         val ratio = StringBuilder()
         val list = mutableListOf<String>()
@@ -30,15 +30,22 @@ object AdRandomUtil {
             }
         }
 
-        "提供商比例：$ratio".logi()
+//        "提供商比例：$ratio".logi()
 
         //没有匹配的
         if (list.isEmpty()) return null
         //在list里面随机选择一个
         val adNameType = list[(0 until list.size).random()]
-        "随机到的广告: $adNameType".logi()
+//        "随机到的广告: $adNameType".logi()
         return adNameType
     }
+
+    /**
+     *
+     */
+//    fun getAdProviderPriority(@NotNull ratioMap: LinkedHashMap<String, Int>): String? {
+//
+//    }
 
     /**
      * ratio : "baidu:3,gdt:7,csj:7"
@@ -78,25 +85,25 @@ object AdRandomUtil {
 /**
  * 测试工具
  */
-//fun main() {
-//
-//    var a = 0
-//    var b = 0
-//    var c = 0
-//    var d = 0
-//
-//    val ratioMap = mapOf("a" to 1, "b" to 1, "c" to 1, "d" to 1)
-//
-//    val startTime = System.currentTimeMillis()
-//    repeat(300000) {
-//        when (AdRandomUtil.getRandomAdProvider(ratioMap)) {
-//            "a" -> a++
-//            "b" -> b++
-//            "c" -> c++
-//            "d" -> d++
-//        }
-//    }
-//    val endTime = System.currentTimeMillis()
-//    //main函数执行的代码不能打log，要把log删除
-//    println("a: $a, b: $b, c: $c, a: $d, 耗时: ${endTime - startTime}")
-//}
+fun main() {
+
+    var a = 0
+    var b = 0
+    var c = 0
+    var d = 0
+
+    val ratioMap = linkedMapOf("a" to 1, "b" to 1, "c" to 1, "d" to 1)
+
+    val startTime = System.currentTimeMillis()
+    repeat(300000) {
+        when (AdRandomUtil.getRandomAdProvider(ratioMap)) {
+            "a" -> a++
+            "b" -> b++
+            "c" -> c++
+            "d" -> d++
+        }
+    }
+    val endTime = System.currentTimeMillis()
+    //main函数执行的代码不能打log，要把log删除
+    println("a: $a, b: $b, c: $c, a: $d, 耗时: ${endTime - startTime}")
+}

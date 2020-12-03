@@ -149,7 +149,7 @@ class XiaomiProvider: BaseAdProvider() {
  */
 object TogetherAdXiaomi {
 
-    var idMapBaidu = mapOf<String, String>()
+    var idMapXiaomi = mapOf<String, String>()
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull xiaomiAdAppId: String) {
         init(context, adProviderType, xiaomiAdAppId, null, null)
@@ -164,8 +164,8 @@ object TogetherAdXiaomi {
     }
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull xiaomiAdAppId: String, xiaomiIdMap: Map<String, String>? = null, providerClassPath: String? = null) {
-        TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) BaiduProvider::class.java.name else providerClassPath))
-        xiaomiIdMap?.let { idMapBaidu = it }
+        TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) XiaomiProvider::class.java.name else providerClassPath))
+        xiaomiIdMap?.let { idMapXiaomi = it }
 
         //小米SDK初始化
     }

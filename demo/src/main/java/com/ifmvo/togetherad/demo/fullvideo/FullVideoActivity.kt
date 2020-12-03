@@ -35,7 +35,7 @@ class FullVideoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_reward)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val ratioMapFullVideo = mapOf(AdProviderType.CSJ.type to 1)
+        val ratioMapFullVideo = linkedMapOf(AdProviderType.CSJ.type to 1)
 
         /**
          * activity: 必传。

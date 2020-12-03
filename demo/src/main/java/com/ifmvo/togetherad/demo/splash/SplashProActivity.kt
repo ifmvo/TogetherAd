@@ -13,8 +13,8 @@ import com.ifmvo.togetherad.core.utils.dp
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.csj.provider.CsjProvider
-import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash_pro.*
@@ -32,7 +32,7 @@ class SplashProActivity : AppCompatActivity() {
         /**
          * 使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
          */
-        val ratioMapSplash = mapOf(
+        val ratioMapSplash = linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1
         )

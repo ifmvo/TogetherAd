@@ -23,7 +23,7 @@ class NativeExpressSimpleActivity : AppCompatActivity() {
     private var mAdObject: Any? = null
 
     private val adHelperNativeExpress by lazy {
-        val ratioMapNativeExpress = mapOf(AdProviderType.GDT.type to 1)
+        val ratioMapNativeExpress = linkedMapOf(AdProviderType.GDT.type to 1)
         AdHelperNativeExpress(this, TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE, ratioMapNativeExpress, 1)
     }
 

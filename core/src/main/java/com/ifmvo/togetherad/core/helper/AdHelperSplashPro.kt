@@ -21,13 +21,13 @@ class AdHelperSplashPro(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null
+        ratioMap: LinkedHashMap<String, Int>? = null
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var adProvider: BaseAdProvider? = null
 
     //为了照顾 Java 调用的同学
@@ -44,7 +44,7 @@ class AdHelperSplashPro(
         realLoadOnly(currentRatioMap, listener)
     }
 
-    private fun realLoadOnly(@NotNull ratioMap: Map<String, Int>, listener: SplashListener? = null) {
+    private fun realLoadOnly(@NotNull ratioMap: LinkedHashMap<String, Int>, listener: SplashListener? = null) {
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 

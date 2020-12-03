@@ -34,7 +34,7 @@ class InterActivity : AppCompatActivity() {
         //CsjProvider.Inter.setImageAcceptedSize(600, 600)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val ratioMapInter = mapOf(
+        val ratioMapInter = linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 1

@@ -8,8 +8,8 @@ import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
 import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
-import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
+import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
 import kotlinx.android.synthetic.main.activity_native_express_simple.*
@@ -24,7 +24,7 @@ class NativeExpress2SimpleActivity : AppCompatActivity() {
     private var mAdObject: Any? = null
 
     private val adHelperNativeExpress2 by lazy {
-        val ratioMapNativeExpress2 = mapOf(
+        val ratioMapNativeExpress2 = linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1
         )

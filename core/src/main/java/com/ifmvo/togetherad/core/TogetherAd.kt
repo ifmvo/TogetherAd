@@ -13,9 +13,9 @@ import org.jetbrains.annotations.NotNull
 object TogetherAd {
 
     /**
-     * 自定义公共的的的广告提供商比例
+     * 自定义公共的的的广告提供商比例，有序
      */
-    private val mRatioPublicMap = mutableMapOf<String, Int>()
+    private val mRatioPublicMap = linkedMapOf<String, Int>()
 
     /**
      * 所有注册的广告提供商
@@ -39,12 +39,12 @@ object TogetherAd {
      * 全局配置默认比例
      *
      * ratioMap:
-     * val map = HashMap<String, Int>()
+     * val map = LinkedHashLinkedHashMap<String, Int>()
      * map.put(AdProviderType.GDT, 1)
      * map.put(AdProviderType.CSJ, 1)
      * map.put(AdProviderType.BAIDU, 2)
      */
-    fun setPublicProviderRatio(@NotNull ratioMap: Map<String, Int>) {
+    fun setPublicProviderRatio(@NotNull ratioMap: LinkedHashMap<String, Int>) {
         val ratio = StringBuilder()
         ratioMap.entries.forEach {
             ratio.append("${it.key}:${it.value}")
@@ -59,11 +59,11 @@ object TogetherAd {
     /**
      * 有自定义的就用自定义的，没有自定义就每个注册的广告商等比
      */
-    fun getPublicProviderRatio(): Map<String, Int> {
+    fun getPublicProviderRatio(): LinkedHashMap<String, Int> {
         return if (mRatioPublicMap.isNotEmpty()) {
             mRatioPublicMap
         } else {
-            val defaultMap = mutableMapOf<String, Int>()
+            val defaultMap = linkedMapOf<String, Int>()
             mProviders.entries.forEach {
                 defaultMap[it.key] = 0 //所有注册的广告商权重都是 0
             }
@@ -117,4 +117,11 @@ object TogetherAd {
      * 主要是方便做统计：请求成功率、请求失败信息等
      */
     var allAdListener: AllAdListener? = null
+
+    /**
+     * 分发方式
+     * DispatchType.Ratio 按照权重比例进行分发
+     * DispatchType.Priority 按照优先级分发广告
+     */
+    var currentDispatchType: DispatchType = DispatchType.Priority
 }

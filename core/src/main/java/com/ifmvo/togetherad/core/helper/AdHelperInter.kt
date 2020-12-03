@@ -20,14 +20,14 @@ class AdHelperInter(
 
         @NotNull activity: Activity,
         @NotNull alias: String,
-        ratioMap: Map<String, Int>? = null,
+        ratioMap: LinkedHashMap<String, Int>? = null,
         listener: InterListener? = null
 
 ) : BaseHelper() {
 
     private var mActivity: WeakReference<Activity> = WeakReference(activity)
     private var mAlias: String = alias
-    private var mRatioMap: Map<String, Int>? = ratioMap
+    private var mRatioMap: LinkedHashMap<String, Int>? = ratioMap
     private var mListener: InterListener? = listener
     private var adProvider: BaseAdProvider? = null
 
@@ -39,13 +39,13 @@ class AdHelperInter(
     ) : this(activity, alias, null, listener)
 
     fun load() {
-        val currentRatioMap: Map<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
+        val currentRatioMap: LinkedHashMap<String, Int> = if (mRatioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else mRatioMap!!
 
         startTimer(mListener)
         reload(currentRatioMap)
     }
 
-    private fun reload(@NotNull ratioMap: Map<String, Int>) {
+    private fun reload(@NotNull ratioMap: LinkedHashMap<String, Int>) {
 
         val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
 

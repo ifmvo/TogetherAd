@@ -3,9 +3,6 @@ package com.ifmvo.togetherad.demo.app
 import android.app.Application
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.listener.AllAdListener
-import com.ifmvo.togetherad.core.utils.loge
-import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
@@ -114,7 +111,7 @@ class App : Application() {
          *
          * 也可以在请求广告前设置，实时生效
          */
-        TogetherAd.setPublicProviderRatio(mapOf(
+        TogetherAd.setPublicProviderRatio(linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.BAIDU.type to 1,
                 AdProviderType.CSJ.type to 1
