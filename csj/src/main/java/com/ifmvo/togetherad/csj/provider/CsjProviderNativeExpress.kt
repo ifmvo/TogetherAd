@@ -11,6 +11,7 @@ import com.ifmvo.togetherad.core.listener.NativeExpressListener
 abstract class CsjProviderNativeExpress : CsjProviderNative() {
 
     override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
         callbackNativeExpressFailed(adProviderType, alias, listener, null, "穿山甲不支持模板1.0")
     }
 

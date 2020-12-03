@@ -25,6 +25,7 @@ import org.json.JSONObject
 open class BaiduProvider : BaseAdProvider() {
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
+        callbackSplashStartRequest(adProviderType, alias, listener)
         callbackSplashFailed(adProviderType, alias, listener, null, "百度开屏不支持加载和展示分开")
     }
 
@@ -230,6 +231,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun getNativeExpressAdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpressListener) {
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
         callbackNativeExpressFailed(adProviderType, alias, listener, null, "百度不支持原生模板类型广告")
     }
 
@@ -242,6 +244,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
+        callbackNativeExpressStartRequest(adProviderType, alias, listener)
         callbackNativeExpressFailed(adProviderType, alias, listener, null, "百度不支持原生模板2类型广告")
     }
 
@@ -310,6 +313,7 @@ open class BaiduProvider : BaseAdProvider() {
     }
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
+        callbackFullVideoStartRequest(adProviderType, alias, listener)
         callbackFullVideoFailed(adProviderType, alias, listener, null, "百度不支持全屏视频广告")
     }
 

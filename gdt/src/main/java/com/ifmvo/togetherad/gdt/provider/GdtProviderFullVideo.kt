@@ -10,6 +10,7 @@ import com.ifmvo.togetherad.core.listener.FullVideoListener
 abstract class GdtProviderFullVideo : GdtProviderBanner() {
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
+        callbackFullVideoStartRequest(adProviderType, alias, listener)
         callbackFullVideoFailed(adProviderType, alias, listener, null, "优量汇不支持全屏视频广告")
     }
 
