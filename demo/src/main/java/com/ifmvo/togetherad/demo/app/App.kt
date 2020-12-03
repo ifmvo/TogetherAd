@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.demo.app
 
 import android.app.Application
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
+import com.ifmvo.togetherad.core.DispatchType
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
@@ -114,7 +115,7 @@ class App : Application() {
         TogetherAd.setPublicProviderRatio(linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.BAIDU.type to 1,
-                AdProviderType.CSJ.type to 1
+                AdProviderType.CSJ.type to 3
         ))
 
         /**
@@ -167,5 +168,11 @@ class App : Application() {
 //                "请求成功: 提供商: $providerType, 广告位: $alias".logi("TogetherAd.allAdListener")
 //            }
 //        }
+        /**
+         * 设置广告分发模式
+         * DispatchType.Priority    优先权重最高分发模式
+         * DispatchType.Random  按照权重随机分发模式
+         */
+        TogetherAd.dispatchType = DispatchType.Random
     }
 }
