@@ -6,7 +6,7 @@ import com.ifmvo.togetherad.core.R
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.SplashListener
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import org.jetbrains.annotations.NotNull
 
@@ -30,7 +30,7 @@ object AdHelperSplash : BaseHelper() {
     private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
+        val adProviderType = DispatchUtil.getAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()

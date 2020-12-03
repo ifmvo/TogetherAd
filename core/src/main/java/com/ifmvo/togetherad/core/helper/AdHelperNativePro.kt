@@ -9,7 +9,7 @@ import com.ifmvo.togetherad.core.custom.native_.BaseNativeTemplate
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logw
 import org.jetbrains.annotations.NotNull
@@ -144,7 +144,7 @@ class AdHelperNativePro(
 
         val currentMaxCount = if (mMaxCount <= 0) defaultMaxCount else mMaxCount
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

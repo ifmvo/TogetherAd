@@ -7,7 +7,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import java.lang.ref.WeakReference
 
@@ -47,7 +47,7 @@ class AdHelperReward(
 
     private fun reload(@NotNull ratioMap: LinkedHashMap<String, Int>) {
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

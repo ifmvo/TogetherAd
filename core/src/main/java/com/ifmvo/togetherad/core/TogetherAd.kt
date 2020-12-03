@@ -120,8 +120,8 @@ object TogetherAd {
 
     /**
      * 分发方式
-     * DispatchType.Ratio 按照权重比例进行分发
+     * DispatchType.Random 按照权重比例随机分发
      * DispatchType.Priority 按照优先级分发广告
      */
-    var currentDispatchType: DispatchType = DispatchType.Priority
+    var dispatchType: DispatchType = DispatchType.Random
 }

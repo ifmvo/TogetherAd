@@ -9,7 +9,7 @@ import com.ifmvo.togetherad.core.custom.express2.BaseNativeExpress2Template
 import com.ifmvo.togetherad.core.listener.NativeExpress2Listener
 import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logw
 import org.jetbrains.annotations.NotNull
@@ -105,7 +105,7 @@ class AdHelperNativeExpress2(
 
         val currentAdCount = if (mAdCount <= 0) defaultAdCount else mAdCount
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

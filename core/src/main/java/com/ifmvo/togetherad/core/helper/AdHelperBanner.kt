@@ -7,7 +7,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.BannerListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import org.jetbrains.annotations.NotNull
 
@@ -34,7 +34,7 @@ object AdHelperBanner : BaseHelper() {
 
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(currentRatioMap)
+        val adProviderType = DispatchUtil.getAdProvider(currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()

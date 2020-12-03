@@ -12,7 +12,7 @@ import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
-import com.ifmvo.togetherad.core.utils.AdRandomUtil
+import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.demo.app.AdProviderType
@@ -58,7 +58,7 @@ class AdHelperHybridSplash(
 
     private fun realLoadOnly(@NotNull ratioMap: LinkedHashMap<String, Int>) {
 
-        val adProviderType = AdRandomUtil.getRandomAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
