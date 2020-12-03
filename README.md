@@ -118,7 +118,7 @@ dependencies {
 
 -  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase) 
 
-## 有疑问？欢迎 VX 联系我，或者加入 QQ 交流群
+## 有疑问？加我微信备注"广告"拉进微信群，或者加入 QQ 交流群
 
 <img src="img/Wechat.jpeg"  height="200" width="200">
 
