@@ -59,8 +59,9 @@ dependencies {
 
 ## 最新版本
 
-4.0.2 (2020.12.02)
+4.0.2 (2020.12.03)
 1. 支持穿山甲的全屏视频广告
+2. 添加 TogetherAd.allListener 方便广告做相关统计
 
 [点击查看更多日志](doc/update_log.md)
 
