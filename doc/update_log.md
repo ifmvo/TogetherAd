@@ -5,7 +5,8 @@
 2020.12.03
 
 1. 支持穿山甲的全屏视频广告
-2. 添加 TogetherAd.allListener 方便广告做相关统计
+2. 添加 TogetherAd.allListener 方便做统计
+3. 添加广告分发优先级模式 TogetherAd.dispatchType = DispatchType.Priority
 
 ## 4.0.1
 
