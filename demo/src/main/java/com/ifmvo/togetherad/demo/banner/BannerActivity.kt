@@ -102,6 +102,7 @@ class BannerActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         //销毁，避免内存泄漏
+        adContainer?.removeAllViews()//容器需要清空，否则广点通的Banner会一直请求（ gdt的bug ）
         AdHelperBanner.destroy()
     }
 
