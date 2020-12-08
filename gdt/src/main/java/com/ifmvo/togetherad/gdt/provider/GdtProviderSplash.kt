@@ -45,9 +45,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             /**
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
-            /**
-             * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
-             */
             override fun onADPresent() {
                 activity.runOnUiThread {
                     skipView?.run {
@@ -75,18 +72,10 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             /**
              * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
              */
-            /**
-             * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
-             */
             override fun onADLoaded(expireTimestamp: Long) {
                 mExpireTimestamp = expireTimestamp
                 callbackSplashLoaded(adProviderType, alias, listener)
             }
-            /**
-             * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
-             * 取值范围为[3000, 5000]ms。
-             * 如果需要使用默认值，可以调用上一个构造方法，或者给 fetchDelay 设为0。
-             */
             /**
              * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
              * 取值范围为[3000, 5000]ms。
@@ -136,9 +125,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             /**
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
-            /**
-             * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
-             */
             override fun onADPresent() {
                 activity.runOnUiThread {
                     skipView?.run {
@@ -162,9 +148,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
                 callbackSplashExposure(adProviderType, listener)
             }
 
-            /**
-             * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
-             */
             /**
              * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
              */
