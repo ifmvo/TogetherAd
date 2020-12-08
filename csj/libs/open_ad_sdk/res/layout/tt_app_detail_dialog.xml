@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99000000"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/tt_privacy_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <com.bytedance.sdk.openadsdk.core.widget.webview.SSWebView
+                android:id="@+id/tt_privacy_webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tt_app_detail_back_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="22dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lineSpacingExtra="2sp"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:background="@drawable/tt_app_detail_black" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/tt_common_download_app_detail"
+                android:textColor="#222222"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/tt_app_detail_line_bg" />
+
+
+        <RelativeLayout
+            android:id="@+id/tt_open_app_detail_layout"
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/tt_app_detail_bg">
+
+            <TextView
+                android:id="@+id/tt_app_developer_tv"
+                android:layout_width="332dp"
+                android:layout_height="21dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp"
+                android:text="@string/tt_open_app_detail_developer"
+                android:textColor="#80161823"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tt_app_version_tv"
+                android:layout_below="@id/tt_app_developer_tv"
+                android:layout_width="332dp"
+                android:layout_height="21dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/tt_open_app_version"
+                android:textColor="#80161823"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/tt_app_privacy_tv"
+                android:layout_width="75dp"
+                android:layout_height="21dp"
+                android:layout_below="@id/tt_app_version_tv"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:text="@string/tt_open_app_detail_privacy"
+                android:textColor="#80161823"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tt_app_privacy_url_tv"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:layout_toRightOf="@id/tt_app_privacy_tv"
+                android:layout_alignTop="@id/tt_app_privacy_tv"
+                android:textColor="#1A73E8"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="234dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:text="@string/tt_open_app_detail_privacy_list"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="#161823"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="16dp"/>
+
+            <ListView
+                android:id="@+id/tt_privacy_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:divider="@null"
+                android:dividerHeight="24dp"
+                android:listSelector="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/tt_download_app_btn"
+                android:layout_width="343dp"
+                android:layout_height="44dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/tt_open_app_detail_download_btn_bg"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/tt_open_app_detail_layout"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/tt_app_detail_bg">
+
+        <TextView
+            android:id="@+id/tt_app_name_tv"
+            android:layout_width="332dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/tt_open_app_name"
+            android:textColor="#80161823"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tt_app_version_tv"
+            android:layout_below="@id/tt_app_name_tv"
+            android:layout_width="332dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical"
+            android:text="@string/tt_open_app_version"
+            android:textColor="#80161823"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tt_app_developer_tv"
+            android:layout_width="332dp"
+            android:layout_height="21dp"
+            android:layout_below="@id/tt_app_version_tv"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/tt_open_app_detail_developer"
+            android:textColor="#80161823"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tt_app_privacy_tv"
+            android:layout_width="75dp"
+            android:layout_height="21dp"
+            android:layout_below="@id/tt_app_developer_tv"
+            android:layout_marginLeft="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/tt_open_app_detail_privacy"
+            android:textColor="#80161823"
+            android:layout_marginBottom="12dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tt_app_privacy_url_tv"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_alignTop="@id/tt_app_privacy_tv"
+            android:layout_toRightOf="@id/tt_app_privacy_tv"
+            android:textColor="#1A73E8"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tt_app_privacy_title"
+        android:layout_width="90dp"
+        android:layout_height="28dp"
+        android:text="@string/tt_open_app_detail_privacy_list"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#161823"
+        android:layout_marginTop="38dp"
+        android:layout_marginLeft="16dp"/>
+</LinearLayout>

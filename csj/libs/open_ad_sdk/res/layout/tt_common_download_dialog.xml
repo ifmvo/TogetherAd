@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tt_common_download_bg"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/tt_download_layout"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/tt_common_download_bg"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <com.bytedance.sdk.openadsdk.core.widget.TTRoundRectImageView
+            android:id="@+id/tt_download_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp" />
+
+        <TextView
+            android:id="@+id/tt_download_title"
+            android:layout_width="200dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lineSpacingExtra="2sp"
+            android:singleLine="true"
+            android:textColor="#161823"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tt_download_app_version"
+            android:layout_width="110dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lineSpacingExtra="2sp"
+            android:singleLine="true"
+            android:textColor="#4D161823"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tt_download_app_developer"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lineSpacingExtra="2sp"
+            android:singleLine="true"
+            android:textColor="#4D161823"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:layout_marginTop="18dp">
+
+            <TextView
+                android:id="@+id/tt_download_app_detail"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tt_common_download_app_detail"
+                android:textColor="#1A73E8"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="64dp"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="0.5dp"
+                android:layout_height="9dp"
+                android:background="#D8D8D8"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/tt_download_app_privacy"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="64dp"
+                android:gravity="center"
+                android:text="@string/tt_common_download_app_privacy"
+                android:textColor="#1A73E8"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/tt_download_btn"
+            android:layout_width="276dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:background="@drawable/tt_download_dialog_btn_bg"/>
+
+        <TextView
+            android:id="@+id/tt_download_cancel"
+            android:layout_width="70dp"
+            android:layout_height="17dp"
+            android:textColor="#66161823"
+            android:textSize="12sp"
+            android:layout_marginTop="11dp"
+            android:gravity="center_horizontal"
+            android:text="@string/tt_common_download_cancel" />
+
+    </LinearLayout>
+</RelativeLayout>

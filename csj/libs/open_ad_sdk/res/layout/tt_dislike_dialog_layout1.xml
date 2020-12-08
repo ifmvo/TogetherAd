@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.bytedance.sdk.openadsdk.dislike.TTDislikeListView
+            android:id="@+id/tt_filer_words_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/tt_divider"
+            android:dividerHeight="1dp"
+            android:listSelector="@color/tt_transparent"
+            android:scrollbars="none" />
+    </FrameLayout>
+
+</LinearLayout>

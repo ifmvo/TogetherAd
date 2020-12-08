@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_width="241dp">
+
+    <TextView
+        android:id="@+id/app_store_tv"
+        android:layout_width="142dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ttdownloader_bg_huawei_btn1"
+        android:gravity="center"
+        android:text="华为应用市场安装"
+        android:textColor="@android:color/white"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/install_huawei_btn2"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ttdownloader_bg_huawei_btn2"
+        android:layout_below="@id/app_store_tv"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="继续安装"
+        android:textColor="#0074F0"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/install_huawei_btn2"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#E60074f0"
+        android:includeFontPadding="false"
+        android:textSize="11dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ttdownloader_icon_finger"
+        android:layout_marginLeft="143dp"
+        android:layout_marginTop="48dp"
+        android:scaleType="centerCrop"/>
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.bytedance.sdk.openadsdk.core.widget.webview.SSWebView
+        android:id="@+id/tt_browser_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <ProgressBar
+        android:id="@+id/tt_browser_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top|center_horizontal"
+        android:progress="1"
+        android:progressDrawable="@drawable/tt_browser_progress_style" />
+
+    <com.bytedance.sdk.openadsdk.core.widget.webview.SSWebView
+        android:id="@+id/tt_browser_webview_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/tt_playable_ad_close_layout"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/tt_mute_btn_bg"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tt_playable_ad_close"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/tt_video_close_drawable"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <com.bytedance.sdk.openadsdk.core.widget.PlayableLoadingView
+        android:id="@+id/tt_playable_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
+
+</FrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tt_reward_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/tt_video_reward_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:scaleType="centerCrop" />
+
+    <include layout="@layout/tt_activity_reward_and_full_video_bar" />
+
+    <com.bytedance.sdk.openadsdk.core.widget.PlayableLoadingView
+        android:id="@+id/tt_reward_playable_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <com.bytedance.sdk.openadsdk.component.reward.top.TopProxyLayout
+        android:id="@+id/tt_top_layout_proxy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

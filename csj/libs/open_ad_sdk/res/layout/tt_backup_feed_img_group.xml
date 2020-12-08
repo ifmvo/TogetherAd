@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="6dp"
+    android:paddingTop="10dp"
+    android:paddingRight="6dp"
+    android:paddingBottom="10dp"
+    tools:layout_height="wrap_content"
+    tools:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.bytedance.sdk.openadsdk.core.widget.RoundImageView
+            android:id="@+id/tt_bu_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tt_bu_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF3E3E3E"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="当季特惠价格，享受家一样的温馨" />
+
+        <ImageView
+            android:id="@+id/tt_bu_close"
+            android:layout_width="18dp"
+            android:layout_height="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/tt_dislike_icon2" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tt_bu_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="#FF3E3E3E"
+        android:textSize="14sp"
+        tools:text="当季特惠价格，享受家一样的温馨" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tt_bu_img_1"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/tt_bu_img_2"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/tt_bu_img_3"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tt_bu_download"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/tt_backup_btn_1"
+        android:gravity="center"
+        android:text="@string/tt_video_download_apk"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+</LinearLayout>

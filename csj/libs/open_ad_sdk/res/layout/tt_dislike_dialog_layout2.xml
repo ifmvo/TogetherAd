@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/tt_dislike_dialog_linearlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="0.5dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="12dp"
+    tools:context=".dislike.TTDislikeDialogNewPlus"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/tt_dislike_dialog_bg"
+    >
+
+
+    <com.bytedance.sdk.openadsdk.dislike.TTDislikeListView
+        android:id="@+id/tt_filer_words_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#0F161823"
+        android:dividerHeight="0.5dp"
+        android:listSelector="@color/tt_transparent"
+        android:scrollbars="none" />
+
+        <View
+            android:id="@+id/tt_dislike_line1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:visibility="visible"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="11.5dp"
+            android:background="#0F161823"
+            />
+
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/tt_edit_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tt_comment_tv"
+            android:drawableLeft="@drawable/tt_suggestion_logo"
+            android:focusable="false"
+            android:hint=" 其他建议"
+            android:paddingBottom="10dp"
+            android:paddingLeft="8.6dp"
+            android:paddingTop="10dp"
+            android:textSize="12sp"
+            android:textColorHint="#80161823" />
+
+
+</LinearLayout>

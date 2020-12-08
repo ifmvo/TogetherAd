@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_width="241dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/app_store_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_width="222dp"
+            android:layout_height="27dp"
+            android:background="@drawable/ttdownloader_bg_vivo_btn1"
+            android:layout_marginTop="16dp"
+            android:text="vivo应用商店安装"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="11dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/app_store_tv"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:text="继续安装"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="#0088FF"
+                android:background="@drawable/ttdownloader_bg_vivo_btn2"
+                android:layout_marginLeft="17dp"
+                android:textSize="14dp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="取消"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#0088FF"
+                android:layout_marginRight="45dp"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ttdownloader_icon_finger"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="60dp"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+
+</FrameLayout>

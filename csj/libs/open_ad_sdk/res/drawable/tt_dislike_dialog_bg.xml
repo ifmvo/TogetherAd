@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!--圆角度数-->
+    <corners android:radius="8dp"/>
+    <!--颜色填充-->
+    <solid android:color="@color/tt_white"/>
+
+    <!--背景颜色渐变过渡，可以设置开始和结束的颜色渐变效果
+    <gradient android:startColor="#541298"
+        android:endColor="#541298"/>-->
+
+
+</shape>

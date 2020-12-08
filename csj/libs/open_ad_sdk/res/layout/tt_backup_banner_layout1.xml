@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:layout_height="90dp"
+    tools:layout_width="400dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/tt_bu_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tt_bu_title"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tt_bu_icon"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF333333"
+            android:textSize="12sp"
+            tools:text="京东京东" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tt_bu_title"
+            android:layout_toRightOf="@+id/tt_bu_icon"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tt_bu_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingRight="2dp"
+                android:textColor="#FF333333"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="5.0" />
+
+            <com.bytedance.sdk.openadsdk.core.widget.TTRatingBar
+                android:id="@+id/tt_bu_score_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/tt_backup_ad1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/tt_bu_download"
+        android:layout_width="70dp"
+        android:layout_height="23dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/tt_backup_btn_1"
+        android:gravity="center"
+        android:text="@string/tt_video_download_apk"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/tt_bu_close"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/tt_dislike_icon" />
+
+</RelativeLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_height="300dp"
+    tools:layout_width="300dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="337">
+
+        <FrameLayout
+            android:id="@+id/tt_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/tt_bu_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+
+        <!-- 关闭按钮的id一定不能改变否则影响InsertAdDialog逻辑 -->
+        <ImageView
+            android:id="@+id/tt_bu_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end|top"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/tt_dislike_icon" />
+
+        <include
+            layout="@layout/tt_backup_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/tt_bu_dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="反馈"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="263"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tt_bu_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/tt_dislike_icon" />
+
+            <TextView
+                android:id="@+id/tt_bu_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tt_bu_icon"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#FF333333"
+                android:textSize="16sp"
+                tools:text="京东京东" />
+
+            <TextView
+                android:id="@+id/tt_bu_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tt_bu_title"
+                android:layout_toRightOf="@+id/tt_bu_icon"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#FF999999"
+                android:textSize="12sp"
+                tools:text="当季特惠价格，享受家一样的温馨" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tt_bu_download"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/tt_backup_btn_1"
+            android:gravity="center"
+            android:text="@string/tt_video_download_apk"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

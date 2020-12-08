@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="7dp"
+    tools:layout_height="250dp"
+    tools:layout_width="300dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tt_bu_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#3E3E3E"
+            android:textSize="14sp"
+            tools:text="当季特惠价格，享受家一样的温馨" />
+
+        <ImageView
+            android:id="@+id/tt_bu_close"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/tt_titlebar_close_press_for_dark" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:background="@android:color/background_dark">
+
+        <FrameLayout
+            android:id="@+id/tt_ad_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/tt_bu_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <include
+            layout="@layout/tt_backup_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
+
+        <com.bytedance.sdk.openadsdk.core.widget.RoundImageView
+            android:id="@+id/tt_bu_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tt_bu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tt_bu_download"
+            android:layout_toRightOf="@+id/tt_bu_icon"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FFAEAEAE"
+            android:textSize="12sp"
+            tools:text="京东京东" />
+
+        <TextView
+            android:id="@+id/tt_bu_download"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/tt_backup_btn_2"
+            android:gravity="center"
+            android:text="@string/tt_video_download_apk"
+            android:textColor="#bb0082FF"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

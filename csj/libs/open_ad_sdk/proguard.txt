@@ -1,0 +1,91 @@
+# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+
+-dontwarn com.tencent.smtt.sdk.WebView
+-dontwarn com.tencent.smtt.sdk.WebChromeClient
+
+-dontwarn androidx.annotation.Nullable
+-dontwarn androidx.annotation.NonNull
+-dontwarn com.google.android.gms.ads.identifier.AdvertisingIdClient
+-dontwarn com.google.android.gms.ads.identifier.AdvertisingIdClient$Info
+-dontwarn androidx.appcompat.app.AlertDialog
+-dontwarn androidx.appcompat.view.menu.ListMenuItemView
+-dontwarn androidx.recyclerview.widget.RecyclerView
+-dontwarn androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+-dontwarn androidx.viewpager.widget.ViewPager
+-dontwarn androidx.recyclerview.widget.RecyclerView
+-dontwarn androidx.annotation.RequiresApi
+-dontwarn androidx.fragment.app.FragmentActivity
+-dontwarn androidx.fragment.app.Fragment
+-dontwarn androidx.annotation.AnyThread
+-dontwarn androidx.annotation.WorkerThread
+
+-keep class com.bytedance.embedapplog.AppLog { public *; }
+-keep public interface com.bytedance.embedapplog.IDataObserver { *; }
+-keep public interface com.bytedance.embedapplog.IAppParam { *; }
+-keep public interface com.bytedance.embedapplog.IExtraParams { *; }
+-keep public interface com.bytedance.embedapplog.IPicker { *; }
+-keep public interface com.bytedance.embedapplog.IOaidObserver { *; }
+-keep public interface com.bytedance.embedapplog.ISensitiveInfoProvider { *; }
+-keep class com.bytedance.embedapplog.IOaidObserver$Oaid { *; }
+-keep class com.bytedance.embedapplog.GameReportHelper { public *; }
+-keep class com.bytedance.embedapplog.InitConfig { public *; }
+-keep class com.bytedance.embedapplog.util.UriConfig { public *; }
+-keep class com.bytedance.embedapplog.tracker.Tracker { public *; }
+-keep class com.bytedance.embedapplog.picker.Picker { public *; }
+-keep class com.bytedance.embedapplog.tracker.WebViewJsUtil { *; }
+-keep interface com.bytedance.embed_dr.DrLogWriter { public *; }
+-keep interface com.bytedance.embed_bdtracker.bt { public *; }
+-keep class com.bytedance.embed_bdtracker.bt$a { public *; }
+-keep class com.bytedance.embed_bdtracker.bt$a$a { public *; }
+-keep class com.bytedance.embed_dr.VivoIdentifier {*;}
+-keep class com.bytedance.embed_dr.VivoIdentifier$1 {*;}# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+
+
+# SecSDK Interface
+-keep public class com.pgl.sys.ces.out.* {
+    public *;
+}
+
+# SecSDK Main Function
+-keep public class com.pgl.sys.ces.a {*;}
+

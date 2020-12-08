@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <ImageView
+            android:id="@+id/tt_titlebar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/tt_leftbackicon_selector_for_dark" />
+
+        <ImageView
+            android:id="@+id/tt_titlebar_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/tt_titlebar_back"
+            android:layout_toRightOf="@+id/tt_titlebar_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/tt_titlebar_close_seletor_for_dark" />
+
+        <TextView
+            android:id="@+id/tt_titlebar_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="25dp"
+            android:paddingRight="25dp"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/tt_titlebar_dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toEndOf="@+id/tt_titlebar_title"
+            android:layout_toRightOf="@+id/tt_titlebar_title"
+            android:ellipsize="marquee"
+            android:text="反馈"
+            android:textColor="@android:color/black"
+            android:gravity="right"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tt_titlebar_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F2F2F2" />
+
+
+        <TextView
+            android:id="@+id/tt_titlebar_developer"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#999999"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tt_titlebar_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#999999"
+            android:textSize="10sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:background="#26C4C4C4">
+
+            <TextView
+                android:id="@+id/tt_titlebar_app_detail"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tt_common_download_app_detail"
+                android:textColor="#1A73E8"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="64dp"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="0.5dp"
+                android:layout_height="9dp"
+                android:background="#D8D8D8"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/tt_titlebar_app_privacy"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="64dp"
+                android:gravity="center"
+                android:text="@string/tt_common_download_app_privacy"
+                android:textColor="#1A73E8"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

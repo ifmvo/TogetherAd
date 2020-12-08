@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/content_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-1000dp"
+        android:background="@drawable/ttdownloader_bg_ad_white_top_corner"
+        android:orientation="vertical"
+        tools:layout_marginBottom="0dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <com.ss.android.downloadlib.guide.install.ClipImageView
+                android:id="@+id/app_icon_iv"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="下载完成"
+                    android:textColor="#161823"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/app_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#80161823"
+                    android:textSize="13dp"
+                    tools:text="斩兽之刃" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/install_dialog_click_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/install_dialog_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:includeFontPadding="false"
+                android:textColor="@android:color/black"
+                android:textSize="14dp"
+                tools:text="安装页面点击即可快速安装" />
+
+            <FrameLayout
+                android:id="@+id/local_install_hijack_layout"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_marginTop="16dp"
+                android:background="#ffeff1f6">
+
+                <RelativeLayout
+                    android:layout_width="272dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/ttdownloader_bg_phone_border">
+
+                    <LinearLayout
+                        android:layout_width="240dp"
+                        android:layout_height="111dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/ttdownloader_bg_phone_cover"
+                        android:gravity="center_horizontal">
+
+                        <ViewStub
+                            android:id="@+id/install_hijack_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/install_app_tv"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ttdownloader_bg_ad_corner_red_button"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            tools:text="立即安装 3 秒" />
+    </LinearLayout>
+
+
+</RelativeLayout>

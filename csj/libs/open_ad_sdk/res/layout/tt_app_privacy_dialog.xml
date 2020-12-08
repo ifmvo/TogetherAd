@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tt_app_privacy_back_tv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:background="@drawable/tt_app_detail_back_btn" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/tt_app_privacy_dialog_title"
+            android:textColor="#222222"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <com.bytedance.sdk.openadsdk.core.widget.webview.SSWebView
+        android:id="@+id/tt_privacy_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

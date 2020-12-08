@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <color name="appdownloader_notification_material_background_color">#fffafafa</color>
+    <color name="appdownloader_notification_title_color">#7f0b0198</color>
+    <color name="appdownloader_s1">#333333</color>
+    <color name="appdownloader_s13">#cccccc</color>
+    <color name="appdownloader_s18">#eeeeee</color>
+    <color name="appdownloader_s4">#ff819f</color>
+    <color name="appdownloader_s8">#ffffff</color>
+    <color name="tt_app_detail_bg">#F8F8F8</color>
+    <color name="tt_app_detail_line_bg">#66161823</color>
+    <color name="tt_app_detail_privacy_text_bg">#80161823</color>
+    <color name="tt_app_detail_stroke_bg">#EDEDED</color>
+    <color name="tt_cancle_bg">#FDDCDCDC</color>
+    <color name="tt_common_download_bg">#99000000</color>
+    <color name="tt_common_download_btn_bg">#1A73E8</color>
+    <color name="tt_dislike_dialog_background">#161923</color>
+    <color name="tt_dislike_transparent">#80000000</color>
+    <color name="tt_divider">#DCDCDC</color>
+    <color name="tt_download_app_name">#333333</color>
+    <color name="tt_download_bar_background">#C21E1E1E</color>
+    <color name="tt_download_bar_background_new">#E4FFFFFF</color>
+    <color name="tt_download_text_background">#4A90E2</color>
+    <color name="tt_draw_btn_back">#D33F57</color>
+    <color name="tt_full_screen_skip_bg">#904A4A4A</color>
+    <color name="tt_header_font">#FF9B9B9B</color>
+    <color name="tt_heise3">#999999</color>
+    <color name="tt_listview">#FDFFFFFF</color>
+    <color name="tt_listview_press">#FDE6E6E6</color>
+    <color name="tt_rating_comment">#999999</color>
+    <color name="tt_rating_comment_vertical">#4A4A4A</color>
+    <color name="tt_rating_star">#F5A623</color>
+    <color name="tt_skip_red">#FFDF112A</color>
+    <color name="tt_ssxinbaise4">@color/tt_white</color>
+    <color name="tt_ssxinbaise4_press">#7fffffff</color>
+    <color name="tt_ssxinheihui3">#999999</color>
+    <color name="tt_ssxinhongse1">#f85959</color>
+    <color name="tt_ssxinmian1">#e0e0e0</color>
+    <color name="tt_ssxinmian11">#e5000000</color>
+    <color name="tt_ssxinmian15">#7f000000</color>
+    <color name="tt_ssxinmian6">@color/tt_ssxinheihui3</color>
+    <color name="tt_ssxinmian7">@color/tt_ssxinhongse1</color>
+    <color name="tt_ssxinmian8">#2a90d7</color>
+    <color name="tt_ssxinxian11">@color/tt_ssxinbaise4</color>
+    <color name="tt_ssxinxian11_selected">@color/tt_ssxinbaise4_press</color>
+    <color name="tt_ssxinxian3">#2a90d7</color>
+    <color name="tt_ssxinxian3_press">#7f2a90d7</color>
+    <color name="tt_ssxinzi12">@color/tt_white</color>
+    <color name="tt_ssxinzi15">@color/tt_ssxinbaise4</color>
+    <color name="tt_ssxinzi4">@color/tt_ssxinhongse1</color>
+    <color name="tt_ssxinzi9">#cacaca</color>
+    <color name="tt_text_font">#FF4A4A4A</color>
+    <color name="tt_titlebar_background_dark">#46000000</color>
+    <color name="tt_titlebar_background_ffffff">#ffffff</color>
+    <color name="tt_titlebar_background_light">#e0e0e0</color>
+    <color name="tt_trans_black">#00000000</color>
+    <color name="tt_trans_half_black">#FF1A1A1A</color>
+    <color name="tt_transparent">#00000000</color>
+    <color name="tt_video_player_text">@color/tt_white</color>
+    <color name="tt_video_player_text_withoutnight">@color/tt_white</color>
+    <color name="tt_video_playerbg_color">#000000</color>
+    <color name="tt_video_shadow_color">#72000000</color>
+    <color name="tt_video_shaoow_color_fullscreen">#B2000000</color>
+    <color name="tt_video_time_color">#ffffff</color>
+    <color name="tt_video_traffic_tip_background_color">#000000</color>
+    <color name="tt_video_transparent">#1E000000</color>
+    <color name="tt_white">#ffffff</color>
+    <color name="ttdownloader_transparent">#00000000</color>
+    <dimen name="tt_video_container_maxheight">228dp</dimen>
+    <dimen name="tt_video_container_minheight">160dp</dimen>
+    <dimen name="tt_video_cover_padding_horizon">15dp</dimen>
+    <dimen name="tt_video_cover_padding_vertical">14dp</dimen>
+    <item name="tag_ignore" type="id"/>
+    <item name="tag_view_name" type="id"/>
+    <integer name="tt_video_progress_max">100</integer>
+    <string name="app_name">npth</string>
+    <string name="appdownloader_button_cancel_download">"取消"</string>
+    <string name="appdownloader_button_queue_for_wifi">"排队"</string>
+    <string name="appdownloader_button_start_now">"立即开始"</string>
+    <string name="appdownloader_download_percent">"<ns1:g id="NUMBER">%1$d</ns1:g><ns1:g id="PERCENT">%%</ns1:g>"</string>
+    <string name="appdownloader_download_remaining">"剩余时间：<ns1:g id="DURATION">%1$s</ns1:g>"</string>
+    <string name="appdownloader_download_unknown_title">"&lt;未命名>"</string>
+    <string name="appdownloader_duration_hours"><ns1:g id="count">%1$d</ns1:g> 小时</string>
+    <string name="appdownloader_duration_minutes"><ns1:g id="count">%1$d</ns1:g> 分钟</string>
+    <string name="appdownloader_duration_seconds"><ns1:g id="count">%1$d</ns1:g> 秒</string>
+    <string name="appdownloader_jump_unknown_source">请打开应用安装权限，以便顺利安装！</string>
+    <string name="appdownloader_label_cancel">取消</string>
+    <string name="appdownloader_label_ok">确定</string>
+    <string name="appdownloader_notification_download">"下载"</string>
+    <string name="appdownloader_notification_download_complete_open">"下载完成，点击打开。"</string>
+    <string name="appdownloader_notification_download_complete_with_install">"下载完成，点击安装。"</string>
+    <string name="appdownloader_notification_download_complete_without_install">"下载完成"</string>
+    <string name="appdownloader_notification_download_delete">"确认要删除%1$s的下载任务吗？"</string>
+    <string name="appdownloader_notification_download_failed">"下载失败。"</string>
+    <string name="appdownloader_notification_download_install">"安装"</string>
+    <string name="appdownloader_notification_download_open">"打开"</string>
+    <string name="appdownloader_notification_download_pause">"暂停"</string>
+    <string name="appdownloader_notification_download_restart">"重新下载"</string>
+    <string name="appdownloader_notification_download_resume">"继续"</string>
+    <string name="appdownloader_notification_download_space_failed">"SdCard空间不足, 下载失败。"</string>
+    <string name="appdownloader_notification_download_waiting_net">"等待网络继续下载"</string>
+    <string name="appdownloader_notification_download_waiting_wifi">"等待wifi开始下载"</string>
+    <string name="appdownloader_notification_downloading">"正在下载"</string>
+    <string name="appdownloader_notification_install_finished_open">"安装完成，点击打开。"</string>
+    <string name="appdownloader_notification_need_wifi_for_size">"文件过大，需要通过 WLAN 下载。"</string>
+    <string name="appdownloader_notification_paused_in_background">"已在后台暂停。"</string>
+    <string name="appdownloader_notification_pausing">"暂停中"</string>
+    <string name="appdownloader_notification_prepare">"准备中"</string>
+    <string name="appdownloader_notification_request_btn_no">"立即下载"</string>
+    <string name="appdownloader_notification_request_btn_yes">"去设置"</string>
+    <string name="appdownloader_notification_request_message">"为了您能在方便地在通知栏控制下载任务，请到设置中开启通知，如果不需要可直接下载"</string>
+    <string name="appdownloader_notification_request_title">"设置"</string>
+    <string name="appdownloader_notification_waiting_download_complete_handler">"处理中"</string>
+    <string name="appdownloader_tip">提示</string>
+    <string name="appdownloader_wifi_recommended_body">"立即开始下载此内容 (<ns1:g id="SIZE">%1$s </ns1:g>) 可能会缩短电池的使用时间并/或导致过量使用移动数据连接流量（这可能导致移动运营商向您收费，具体取决于您的流量套餐）。\n\n触摸“<ns1:g id="QUEUE_TEXT">%2$s</ns1:g>”可在下次连接到 WLAN 网络时开始下载此内容。"</string>
+    <string name="appdownloader_wifi_recommended_title">"稍后再加入下载队列吗？"</string>
+    <string name="appdownloader_wifi_required_body">"您必须使用 WLAN 完成此内容 (<ns1:g id="SIZE">%1$s </ns1:g>) 的下载。\n\n触摸“<ns1:g id="QUEUE_TEXT">%2$s </ns1:g>”可在下次连接到 WLAN 网络时开始下载此内容。"</string>
+    <string name="appdownloader_wifi_required_title">"文件太大，不适于通过运营商网络下载"</string>
+    <string name="tt_00_00">00:00</string>
+    <string name="tt_ad">Ad</string>
+    <string name="tt_ad_logo_txt">广告</string>
+    <string name="tt_app_name">tt_open_ad_sdk</string>
+    <string name="tt_app_privacy_dialog_title">隐私政策</string>
+    <string name="tt_auto_play_cancel_text">取消</string>
+    <string name="tt_cancel">取消</string>
+    <string name="tt_comment_num">%1$s个评分</string>
+    <string name="tt_comment_num_backup">(%1$s个评论)</string>
+    <string name="tt_comment_score">评价</string>
+    <string name="tt_common_download_app_detail">应用详情</string>
+    <string name="tt_common_download_app_privacy">隐私协议</string>
+    <string name="tt_common_download_cancel">放弃下载</string>
+    <string name="tt_confirm_download">"正在使用非Wifi网络，确认要进行下载吗？"</string>
+    <string name="tt_confirm_download_have_app_name">"准备下载%s应用"</string>
+    <string name="tt_dislike_header_tv_back">返回</string>
+    <string name="tt_dislike_header_tv_title">选择</string>
+    <string name="tt_full_screen_skip_tx">5s后可跳过</string>
+    <string name="tt_label_cancel">取消</string>
+    <string name="tt_label_ok">确定</string>
+    <string name="tt_no_network">"无网络，请稍后再试"</string>
+    <string name="tt_open_app_detail_developer">开发者：%1$s</string>
+    <string name="tt_open_app_detail_privacy">隐私协议：</string>
+    <string name="tt_open_app_detail_privacy_list">权限列表</string>
+    <string name="tt_open_app_name">应用名称：%1$s</string>
+    <string name="tt_open_app_version">版本号：%1$s</string>
+    <string name="tt_open_landing_page_app_name">应用名称：%1$s   版本：%2$s</string>
+    <string name="tt_permission_denied">您已禁止授权操作，请授权</string>
+    <string name="tt_playable_btn_play">立即体验</string>
+    <string name="tt_request_permission_descript_external_storage">存储</string>
+    <string name="tt_request_permission_descript_location">位置信息</string>
+    <string name="tt_request_permission_descript_read_phone_state">拨打电话</string>
+    <string name="tt_reward_feedback">反馈</string>
+    <string name="tt_reward_screen_skip_tx">跳过</string>
+    <string name="tt_splash_skip_tv_text">3s | 跳过</string>
+    <string name="tt_tip">提示</string>
+    <string name="tt_unlike">不感兴趣</string>
+    <string name="tt_video_bytesize">流量</string>
+    <string name="tt_video_bytesize_M">M</string>
+    <string name="tt_video_bytesize_MB">MB</string>
+    <string name="tt_video_continue_play">继续播放</string>
+    <string name="tt_video_dial_phone">立即拨打</string>
+    <string name="tt_video_dial_replay">重新播放</string>
+    <string name="tt_video_download_apk">立即下载</string>
+    <string name="tt_video_mobile_go_detail">查看详情</string>
+    <string name="tt_video_retry_des_txt">加载失败，点击重试</string>
+    <string name="tt_video_without_wifi_tips">播放将消耗</string>
+    <string name="tt_web_title_default">广告</string>
+    <string name="tt_will_play">即将播放</string>
+    <style name="DialogFullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+    <style name="EditTextStyle">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:background">@color/tt_white</item>
+    </style>
+    <style name="Theme.Dialog.TTDownload" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="Theme.Dialog.TTDownloadOld" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="appdownloader_style_detail_download_progress_bar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/appdownloader_ad_detail_download_progress</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:maxHeight">32dp</item>
+    </style>
+    <style name="appdownloader_style_notification_text" parent="android:TextAppearance.StatusBar.EventContent"/>
+    <style name="appdownloader_style_notification_title" parent="android:TextAppearance.StatusBar.EventContent.Title"/>
+    <style name="appdownloader_style_progress_bar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/appdownloader_download_progress_bar_horizontal</item>
+        <item name="android:minHeight">3dp</item>
+        <item name="android:maxHeight">6dp</item>
+    </style>
+    <style name="appdownloader_style_progress_bar_new" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/appdownloader_download_progress_bar_horizontal_new</item>
+        <item name="android:minHeight">3dp</item>
+        <item name="android:maxHeight">6dp</item>
+    </style>
+    <style name="tt_Widget_ProgressBar_Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@drawable/tt_ad_download_progress_bar_horizontal</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+    <style name="tt_back_view">
+        <item name="android:minHeight">44dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:text">"关闭"</item>
+        <!-- TextView in MX3 don't respond to click event if text is null -->
+        <item name="android:background">#00000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="tt_custom_dialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="tt_dislikeDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/tt_dislikeDialogAnimation</item>
+    </style>
+    <style name="tt_dislikeDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/tt_dislike_animation_show</item>
+        <item name="android:windowExitAnimation">@anim/tt_dislike_animation_dismiss</item>
+    </style>
+    <style name="tt_dislikeDialog_new">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/tt_dislikeDialogAnimation</item>
+    </style>
+    <style name="tt_ss_popup_toast_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+    <style name="tt_wg_insert_dialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="tt_widget_gifView" parent="@android:style/Widget"/>
+    <style name="ttdownloader_translucent_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/ttdownloader_transparent</item>
+        <item name="android:windowBackground">@color/ttdownloader_transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>

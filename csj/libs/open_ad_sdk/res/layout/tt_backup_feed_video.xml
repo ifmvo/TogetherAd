@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:layout_width="400dp">
+
+    <FrameLayout
+        android:id="@+id/tt_bu_video_container_inner"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="123" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="220"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.bytedance.sdk.openadsdk.core.widget.TTRoundRectImageView
+            android:id="@+id/tt_bu_video_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="fitXY"
+            tools:background="@drawable/tt_ad_logo_small" />
+
+        <TextView
+            android:id="@+id/tt_bu_video_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF333333"
+            android:textSize="14sp"
+            tools:text="京东" />
+
+        <TextView
+            android:id="@+id/tt_bu_video_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF999999"
+            android:textSize="12sp"
+            tools:text="当季特惠价格，享受家一样的温馨" />
+
+        <TextView
+            android:id="@+id/tt_bu_video_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="5.0" />
+
+        <com.bytedance.sdk.openadsdk.core.widget.TTRatingBar
+            android:id="@+id/tt_bu_video_score_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</LinearLayout>

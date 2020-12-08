@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".dislike.TTDislikeCommentDialog"
+    android:orientation="vertical"
+    android:background="@drawable/tt_dislike_dialog_bg"
+    android:windowSoftInputMode="stateHidden|adjustPan"
+    >
+    <RelativeLayout
+        android:id="@+id/tt_native_video_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/tt_dislike_dialog_bg">
+
+        <ImageView
+            android:id="@+id/tt_comment_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/tt_titlebar_close_seletor" />
+
+        <TextView
+            android:id="@+id/tt_titlebar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="其他建议"
+            android:textColor="#161823"
+            android:textSize="15sp"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/tt_comment_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="12dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/secondary_text_light_nodisable"
+            android:clickable="false"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="提交" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#0F161823"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/tt_comment_content"
+            android:layout_weight="15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lines="7"
+            android:maxLength="500"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="11.5dp"
+            android:hint="请具体说明问题，我们将尽快处理"
+            android:gravity="left"
+            android:textSize="15sp"
+            android:textColorHint="#57161823"
+            android:textColor="#161823"
+            android:background="@null"
+            />
+
+        <TextView
+            android:id="@+id/tt_comment_number"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="bottom"
+            android:text="0"
+            android:gravity="right"
+            android:textColorHint="#57161823"
+            android:textColor="#BF161823"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

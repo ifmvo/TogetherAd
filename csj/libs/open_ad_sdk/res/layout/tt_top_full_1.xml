@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tt_top_countdown"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tt_reward_countdown_bg"
+        android:gravity="center"
+        android:textColor="@color/tt_white"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        tools:text="20"
+        tools:visibility="visible" />
+
+    <com.bytedance.sdk.openadsdk.core.widget.ShadowImageView
+        android:id="@+id/tt_top_mute"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:scaleType="center"
+        android:src="@drawable/tt_unmute"
+        tools:background="@drawable/tt_mute_btn_bg" />
+
+    <TextView
+        android:id="@+id/tt_top_skip"
+        android:layout_width="96dp"
+        android:layout_height="28dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/tt_ad_skip_btn_bg"
+        android:gravity="center"
+        android:text="@string/tt_full_screen_skip_tx"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</merge>

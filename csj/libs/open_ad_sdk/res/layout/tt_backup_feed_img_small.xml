@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    tools:layout_height="124dp"
+    tools:layout_width="375dp">
+
+    <FrameLayout
+        android:id="@+id/tt_bu_img_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/tt_bu_img"
+            android:layout_width="138dp"
+            android:layout_height="92dp"
+            android:scaleType="fitXY" />
+
+        <include
+            layout="@layout/tt_backup_ad2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@+id/tt_bu_img_content"
+        android:orientation="vertical"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/tt_bu_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#FF999999"
+            android:textSize="14sp"
+            tools:text="当季特惠价格，享受家一样的温馨" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tt_bu_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="穿山甲联盟"
+                android:textColor="#FFBCBCBC"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/tt_bu_close"
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/tt_dislike_icon2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

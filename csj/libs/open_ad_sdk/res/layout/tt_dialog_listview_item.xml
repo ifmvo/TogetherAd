@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:id="@+id/tt_item_tv"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:hint="内容"
+            android:layout_marginTop="11.5dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="#161823"
+            android:typeface="normal"
+            android:textSize="15sp"/>
+
+
+        <com.bytedance.sdk.openadsdk.dislike.FlowLayout
+            android:id="@+id/tt_item_tv_son"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tt_white"
+            android:layout_marginTop="-4dp"
+            />
+
+</LinearLayout>

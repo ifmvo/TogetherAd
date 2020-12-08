@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tt_backup_draw_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/tt_bu_video_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:paddingBottom="70dp"
+        android:background="@drawable/tt_draw_back_bg">
+
+    <TextView
+        android:id="@+id/tt_bu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#ffffffff"
+        android:textSize="15sp"
+        tools:text="京东京东" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tt_bu_desc"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#ffefeeef"
+            android:textSize="15sp"
+            tools:text="当季特惠价格，享受家一样的温馨" />
+        <include
+            layout="@layout/tt_backup_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="14dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tt_bu_download"
+        android:layout_width="259dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="14dp"
+        android:background="@drawable/tt_backup_btn_1"
+        android:gravity="center"
+        android:text="@string/tt_video_download_apk"
+        android:textColor="#fff"
+        android:textSize="13sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

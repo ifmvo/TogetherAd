@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bytedance.sdk.openadsdk.adhost"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="28"
+        tools:overrideLibrary="com.ss.android.crash.log, android.support.graphics.drawable.animated,      android.support.graphics.drawable, android.support.v4, android.support.mediacompat, android.support.fragment,      android.support.coreui, android.support.coreutils, android.support.compat, android.arch.lifecycle,      android.arch.lifecycle.livedata.core, android.arch.core, android.arch.lifecycle.viewmodel,      com.ss.android.downloadlib, com.ss.android.downloadad, com.ss.android.downloadapi,      com.ss.android.socialbase.appdownloader, com.ss.android.socialbase.downloader,com.bytedance.crash" />
+
+</manifest>
