@@ -31,7 +31,7 @@ object MainMenuHelper {
     private val menuMainList = arrayListOf(
             mapOf(
                     "title" to "广告聚合 4.0.3",
-                    "desc" to "穿山甲3.3.0.3；优量汇4.294.1164；百度5.91"
+                    "desc" to "穿山甲3.4.0.0；优量汇4.310.1180；百度5.91"
             ),
             mapOf(
                     "title" to "开屏",
