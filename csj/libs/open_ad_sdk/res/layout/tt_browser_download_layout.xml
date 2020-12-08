@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tt_browser_download_btn"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@drawable/tt_browser_download_selector"
-    android:text="立即下载"
-    android:textColor="#fff"
-    android:textSize="16sp" />

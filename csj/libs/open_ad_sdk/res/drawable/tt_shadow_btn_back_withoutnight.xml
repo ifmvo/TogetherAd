@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/tt_shadow_lefterback_titlebar_press_withoutnight" />
-    <item android:state_enabled="false" android:drawable="@drawable/tt_shadow_lefterback_titlebar_press_withoutnight" />
-    <item android:drawable="@drawable/tt_shadow_lefterback_titlebar_withoutnight" />
-</selector>
