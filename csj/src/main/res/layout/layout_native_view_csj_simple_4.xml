@@ -52,16 +52,10 @@
             android:scaleType="centerCrop" />
 
         <ImageView
+            android:id="@+id/csj_ad_logo"
             android:layout_width="45dp"
             android:layout_height="15dp"
-            android:layout_gravity="bottom|right"
-            android:src="@drawable/ic_ad_logo_csj" />
-
-        <!--        <com.rumtel.ad.AdLogoView-->
-        <!--            android:id="@+id/ad_logo_view"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="end|bottom" />-->
+            android:layout_gravity="bottom|right" />
 
         <LinearLayout
             android:layout_width="match_parent"
