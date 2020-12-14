@@ -156,7 +156,6 @@ class NativeSimpleActivity : AppCompatActivity() {
     private fun showAd(adObject: Any?, nativeTemplate: BaseNativeTemplate) {
         if (adObject == null) return
 
-        adContainer.removeAllViews()
         AdHelperNativePro.show(adObject = adObject, container = adContainer, nativeTemplate = nativeTemplate, listener = object : NativeViewListener {
             override fun onAdExposed(providerType: String) {
                 //每次曝光就会回调这里一次

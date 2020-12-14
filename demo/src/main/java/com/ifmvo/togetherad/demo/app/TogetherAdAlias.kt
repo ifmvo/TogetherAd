@@ -45,9 +45,12 @@ object TogetherAdAlias {
     const val AD_FULL_VIDEO = "ad_full_video"
 
     //开屏混合使用
-    const val AD_SPLASH_HYBRID = "ad_splash_and_native"
+    const val AD_HYBRID_SPLASH = "ad_splash_and_native"
 
     //原生模板混合
-    const val AD_EXPRESS_HYBRID = "ad_express_hybrid"
+    const val AD_HYBRID_EXPRESS = "ad_hybrid_express"
+
+    //原生模板混合
+    const val AD_HYBRID_VERTICAL_PREMOVIE = "ad_hybrid_vertical_premovie"
 
 }

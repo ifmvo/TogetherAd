@@ -120,6 +120,8 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
             return
         }
 
+        container.removeAllViews()
+
         //findView
         rootView = View.inflate(container.context, getLayoutRes(), container)
 

@@ -101,6 +101,11 @@
         -->
         <activity android:name=".fullvideo.FullVideoActivity" />
 
+        <!--
+            全屏竖屏前贴广告（ 激励、全屏视频、原生自渲染混合使用 ）
+        -->
+        <activity android:name=".hybrid.VerticalPreMovieHybridActivity" />
+
     </application>
 
 </manifest>

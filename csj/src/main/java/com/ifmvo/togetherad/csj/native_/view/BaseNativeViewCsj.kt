@@ -84,6 +84,8 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
             return
         }
 
+        container.removeAllViews()
+
         //findView
         rootView = View.inflate(container.context, getLayoutRes(), container)
 

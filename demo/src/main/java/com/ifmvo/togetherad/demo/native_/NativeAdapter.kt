@@ -52,7 +52,6 @@ class NativeAdapter(list: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHol
             }
             ITEM_VIEW_TYPE_AD -> {
                 val adViewHolder = holder as AdViewHolder
-                adViewHolder.adContainer.removeAllViews()
                 AdHelperNativePro.show(mList[position], adViewHolder.adContainer, NativeTemplateSimple5(), object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                     }

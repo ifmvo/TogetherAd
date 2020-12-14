@@ -52,6 +52,7 @@ class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
             container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
+                container.removeAllViews()
                 mOnDismiss.invoke(adProviderType)
             }
         }
@@ -60,6 +61,7 @@ class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
         mTimer?.cancel()
         mTimer = object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
+                container.removeAllViews()
                 mOnDismiss.invoke(adProviderType)
             }
 

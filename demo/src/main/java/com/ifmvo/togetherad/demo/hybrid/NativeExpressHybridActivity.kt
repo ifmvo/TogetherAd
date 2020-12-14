@@ -27,7 +27,7 @@ class NativeExpressHybridActivity : AppCompatActivity() {
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1
         )
-        AdHelperHybridExpress(this, TogetherAdAlias.AD_EXPRESS_HYBRID, ratioMapExpressHybrid, 1)
+        AdHelperHybridExpress(this, TogetherAdAlias.AD_HYBRID_EXPRESS, ratioMapExpressHybrid, 1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -44,7 +44,7 @@ class SplashHybridActivity : AppCompatActivity() {
          */
         AdHelperHybridSplash(
             activity = this,
-            alias = TogetherAdAlias.AD_SPLASH_HYBRID /*, ratioMap = ratioMapSplash*/
+            alias = TogetherAdAlias.AD_HYBRID_SPLASH /*, ratioMap = ratioMapSplash*/
         )
     }
 

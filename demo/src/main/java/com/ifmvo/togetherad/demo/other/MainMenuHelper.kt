@@ -9,6 +9,7 @@ import com.ifmvo.togetherad.demo.express2.NativeExpress2SimpleActivity
 import com.ifmvo.togetherad.demo.fullvideo.FullVideoActivity
 import com.ifmvo.togetherad.demo.hybrid.NativeExpressHybridActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
+import com.ifmvo.togetherad.demo.hybrid.VerticalPreMovieHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
@@ -143,7 +144,13 @@ object MainMenuHelper {
                     "title" to "原生模板1.0和原生模板2.0混合",
                     "desc" to "由于优量汇的原生模板2.0需要向平台申请，所以这里将优量汇的原生模板1.0和穿山甲的原生模板2.0混合使用",
                     "class" to NativeExpressHybridActivity::class.java
+            ),
+            mapOf(
+                    "title" to "激励、全屏视频、原生自渲染 混合",
+                    "desc" to "自定义需求",
+                    "class" to VerticalPreMovieHybridActivity::class.java
             )
+
     )
 
     val map = mapOf(
