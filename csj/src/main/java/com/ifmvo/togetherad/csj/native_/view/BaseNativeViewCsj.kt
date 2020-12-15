@@ -79,6 +79,22 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
         return rootView?.findViewById(R.id.csj_btn_action)
     }
 
+    //可点击ViewList，可重写
+    open fun getClickableViews(): List<View>? {
+        // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
+        val clickViewList = mutableListOf<View>()
+        clickViewList.add(rootView!!)
+        return clickViewList
+    }
+
+    // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
+    //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
+    open fun getCreativeViews(): List<View>? {
+        val creativeViewList = mutableListOf<View>()
+        getActionButton()?.let { creativeViewList.add(it) }
+        return creativeViewList
+    }
+
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is TTNativeAd) {
             return
@@ -101,7 +117,7 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
         getSourceTextView()?.text = if (adObject.source?.isNotEmpty() == true) adObject.source else "广告来源"
         getActionButton()?.text = getActionBtnText(adObject)
 
-        adObject.setDownloadListener(object: TTAppDownloadListener{
+        adObject.setDownloadListener(object : TTAppDownloadListener {
             override fun onIdle() {
                 getActionButton()?.text = "开始下载"
             }
@@ -127,15 +143,8 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
             }
         })
 
-        // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
-        val clickViewList = mutableListOf<View>()
-        clickViewList.add(rootView!!)
-        // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
-        //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
-        val creativeViewList = mutableListOf<View>()
-        getActionButton()?.let { creativeViewList.add(it) }
         // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-        adObject.registerViewForInteraction(rootView as ViewGroup, clickViewList, creativeViewList, object : TTNativeAd.AdInteractionListener {
+        adObject.registerViewForInteraction(rootView as ViewGroup, getClickableViews() ?: mutableListOf(), getCreativeViews() ?: mutableListOf(), object : TTNativeAd.AdInteractionListener {
             override fun onAdClicked(view: View, ad: TTNativeAd) {
                 // 点击普通区域的回调
             }

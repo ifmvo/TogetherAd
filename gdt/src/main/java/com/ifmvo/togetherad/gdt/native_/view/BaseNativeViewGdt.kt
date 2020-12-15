@@ -115,6 +115,21 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
         return rootView?.findViewById(R.id.btn_stop)
     }
 
+    //可点击ViewList，可重写
+    open fun getClickableViews(): List<View>? {
+        val clickableViews = mutableListOf<View>()
+        getMainImageView()?.let { clickableViews.add(it) }
+        getIconImageView()?.let { clickableViews.add(it) }
+        return clickableViews
+    }
+
+    //自定义点击按钮，点击直接下载或跳转的按钮，详情看广点通文档
+    open fun getCustomClickableViews(): List<View>? {
+        val customClickableViews = mutableListOf<View>()
+        getActionButton()?.let { customClickableViews.add(it) }
+        return customClickableViews
+    }
+
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is NativeUnifiedADData) {
             return
@@ -145,13 +160,7 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
             }
         }
 
-        //设置可点的View
-        val clickableViews = mutableListOf<View>()
-        val customClickableViews = mutableListOf<View>()
-        getActionButton()?.let { customClickableViews.add(it) }
-        getMainImageView()?.let { clickableViews.add(it) }
-        getIconImageView()?.let { clickableViews.add(it) }
-        adObject.bindAdToView(container.context, getNativeAdContainer(), null, clickableViews, customClickableViews)
+        adObject.bindAdToView(container.context, getNativeAdContainer(), null, getClickableViews(), getCustomClickableViews())
 
         //视频需要设置 静音、播放、暂停、停止按钮
         if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
