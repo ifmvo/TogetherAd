@@ -24,6 +24,13 @@ import org.json.JSONObject
  */
 open class BaiduProvider : BaseAdProvider() {
 
+    object Splash {
+
+        //超时时间
+        var maxFetchDelay = 4000
+
+    }
+
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, alias, listener)
         callbackSplashFailed(adProviderType, alias, listener, null, "百度开屏不支持加载和展示分开")
@@ -65,7 +72,7 @@ open class BaiduProvider : BaseAdProvider() {
                 callbackSplashClicked(adProviderType, listener)
             }
 
-        }, TogetherAdBaidu.idMapBaidu[alias], true)
+        }, TogetherAdBaidu.idMapBaidu[alias], true, Splash.maxFetchDelay)
     }
 
     /**
