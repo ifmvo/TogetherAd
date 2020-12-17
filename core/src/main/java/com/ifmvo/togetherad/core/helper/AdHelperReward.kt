@@ -2,13 +2,13 @@ package com.ifmvo.togetherad.core.helper
 
 import android.app.Activity
 import com.ifmvo.togetherad.core.R
-import org.jetbrains.annotations.NotNull
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
+import org.jetbrains.annotations.NotNull
 import java.lang.ref.WeakReference
 
 /**
@@ -113,7 +113,16 @@ class AdHelperReward(
         })
     }
 
-    fun show() {
-        mActivity.get()?.let { adProvider?.showRewardAd(it) }
+    fun show(): Boolean {
+
+        if (adProvider == null) {
+            return false
+        }
+
+        mActivity.get()?.let {
+            return adProvider!!.showRewardAd(it)
+        }
+
+        return false
     }
 }

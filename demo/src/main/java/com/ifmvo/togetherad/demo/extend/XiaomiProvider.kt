@@ -62,7 +62,9 @@ class XiaomiProvider : BaseAdProvider() {
 
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {}
 
-    override fun showRewardAd(activity: Activity) {}
+    override fun showRewardAd(activity: Activity): Boolean {
+        return false
+    }
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {}
 
