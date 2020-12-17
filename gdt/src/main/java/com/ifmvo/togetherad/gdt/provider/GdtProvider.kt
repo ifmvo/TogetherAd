@@ -25,7 +25,7 @@ open class GdtProvider : GdtProviderSplash() {
          * 取值范围为[3000, 5000]ms。
          * 如果需要使用默认值，可以给 fetchDelay 设为0。
          */
-        var maxFetchDelay = 0
+        var maxFetchDelay = 4000
 
         //自定义按钮
         var customSkipView: BaseSplashSkipView? = null

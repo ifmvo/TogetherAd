@@ -19,7 +19,7 @@ open class CsjProvider : CsjProviderSplash() {
         var isExpress = false
 
         //超时时间
-        var maxFetchDelay = 3000
+        var maxFetchDelay = 4000
 
         //自定义按钮
         var customSkipView: BaseSplashSkipView? = null

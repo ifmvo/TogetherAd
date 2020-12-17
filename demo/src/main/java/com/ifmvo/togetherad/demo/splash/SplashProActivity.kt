@@ -86,15 +86,15 @@ class SplashProActivity : AppCompatActivity() {
         /**
          * 设置 穿山甲 开屏广告超时时间
          * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
-         * 如果不设置，默认值为 3000ms
+         * 如果不设置，默认值为 4000ms
          */
-        CsjProvider.Splash.maxFetchDelay = 3000
+        CsjProvider.Splash.maxFetchDelay = 4000
         /**
          * 设置 优量汇 开屏广告超时时间
          * 取值范围为[3000, 5000]ms。
-         * 如果不设置，会使用默认值
+         * 如果不设置，会使用默认值 4000ms
          */
-        GdtProvider.Splash.maxFetchDelay = 3500
+        GdtProvider.Splash.maxFetchDelay = 4000
 
         /**
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
