@@ -308,8 +308,12 @@ open class BaiduProvider : BaseAdProvider() {
         mRewardVideoAd?.load()
     }
 
-    override fun showRewardAd(activity: Activity) {
-        mRewardVideoAd?.show()
+    override fun showRewardAd(activity: Activity): Boolean {
+        if (mRewardVideoAd?.isReady == true) {
+            mRewardVideoAd?.show()
+            return true
+        }
+        return false
     }
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {

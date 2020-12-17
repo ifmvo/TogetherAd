@@ -109,8 +109,9 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
         })
     }
 
-    override fun showRewardAd(activity: Activity) {
+    override fun showRewardAd(activity: Activity): Boolean {
         mttRewardVideoAd?.showRewardVideoAd(activity)
+        return true
     }
 
 }

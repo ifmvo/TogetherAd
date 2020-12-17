@@ -6,6 +6,8 @@ import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.rewardvideo.RewardVideoAD
 import com.qq.e.ads.rewardvideo.RewardVideoADListener
 import com.qq.e.comm.util.AdError
+import com.qq.e.comm.util.VideoAdValidity
+
 
 /**
  *
@@ -58,12 +60,28 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
                 callbackRewardShow(adProviderType, listener)
             }
 
-        }, false)
+        }, GdtProvider.Reward.volumeOn)
+
         rewardVideoAD?.loadAD()
     }
 
-    override fun showRewardAd(activity: Activity) {
-        rewardVideoAD?.showAD()
+    override fun showRewardAd(activity: Activity): Boolean {
+        //空的就展示失败
+        if (rewardVideoAD == null) {
+            return false
+        }
+
+        return when (rewardVideoAD!!.checkValidity()!!) {
+            //已经展示或过期
+            VideoAdValidity.SHOWED, VideoAdValidity.OVERDUE -> {
+                false
+            }
+            //有效或未缓存完成，直接展示
+            VideoAdValidity.VALID, VideoAdValidity.NONE_CACHE -> {
+                rewardVideoAD?.showAD()
+                true
+            }
+        }
     }
 
 }

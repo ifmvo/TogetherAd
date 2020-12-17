@@ -137,7 +137,7 @@ interface IAdProvider {
     //展示激励广告
     fun showRewardAd(
             @NotNull activity: Activity
-    )
+    ): Boolean
 
     /**
      * -----------------------------------请求全屏视频广告 -----------------------------------

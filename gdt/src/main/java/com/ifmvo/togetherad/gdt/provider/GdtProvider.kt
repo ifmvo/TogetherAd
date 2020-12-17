@@ -32,6 +32,16 @@ open class GdtProvider : GdtProviderSplash() {
 
     }
 
+    /**
+     * --------------------------- 激励 ---------------------------
+     */
+    object Reward {
+
+        //是否有声播放
+        var volumeOn = true
+
+    }
+
     object Banner {
 
         //Banner 刷新间隔时间
