@@ -30,7 +30,7 @@ object AdHelperSplash : BaseHelper() {
     private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = DispatchUtil.getAdProvider(currentRatioMap)
+        val adProviderType = DispatchUtil.getAdProvider(alias, currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()

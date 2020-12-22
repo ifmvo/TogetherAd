@@ -34,7 +34,7 @@ object AdHelperBanner : BaseHelper() {
 
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
-        val adProviderType = DispatchUtil.getAdProvider(currentRatioMap)
+        val adProviderType = DispatchUtil.getAdProvider(alias, currentRatioMap)
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()

@@ -19,8 +19,8 @@ object DispatchUtil {
     /**
      * ratioMap: mapOf("baidu" to 3, "gdt" to 7, "csj" to 7)
      */
-    fun getAdProvider(@NotNull ratioMap: LinkedHashMap<String, Int>): String? {
-        return when (TogetherAd.dispatchType) {
+    fun getAdProvider(@NotNull alias: String, @NotNull ratioMap: LinkedHashMap<String, Int>): String? {
+        return when (TogetherAd.mDispatchTypeMap[alias] ?: TogetherAd.dispatchType) {
             DispatchType.Priority -> {
                 getAdProviderPriority(ratioMap)
             }

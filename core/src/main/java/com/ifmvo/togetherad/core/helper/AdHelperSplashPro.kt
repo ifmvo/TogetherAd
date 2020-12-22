@@ -46,7 +46,7 @@ class AdHelperSplashPro(
 
     private fun realLoadOnly(@NotNull ratioMap: LinkedHashMap<String, Int>, listener: SplashListener? = null) {
 
-        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(mAlias, ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

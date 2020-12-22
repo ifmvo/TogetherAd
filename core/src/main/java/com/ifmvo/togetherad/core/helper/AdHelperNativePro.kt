@@ -144,7 +144,7 @@ class AdHelperNativePro(
 
         val currentMaxCount = if (mMaxCount <= 0) defaultMaxCount else mMaxCount
 
-        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(mAlias, ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

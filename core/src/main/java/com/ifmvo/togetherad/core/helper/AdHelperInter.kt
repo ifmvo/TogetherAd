@@ -47,7 +47,7 @@ class AdHelperInter(
 
     private fun reload(@NotNull ratioMap: LinkedHashMap<String, Int>) {
 
-        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(mAlias, ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()

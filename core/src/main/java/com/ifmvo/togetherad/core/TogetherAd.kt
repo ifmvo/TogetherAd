@@ -18,6 +18,11 @@ object TogetherAd {
     private val mRatioPublicMap = linkedMapOf<String, Int>()
 
     /**
+     * 保存每个广告位的分发方式
+     */
+    var mDispatchTypeMap = hashMapOf<String, DispatchType>()
+
+    /**
      * 所有注册的广告提供商
      */
     var mProviders = mutableMapOf<String, AdProviderEntity>()

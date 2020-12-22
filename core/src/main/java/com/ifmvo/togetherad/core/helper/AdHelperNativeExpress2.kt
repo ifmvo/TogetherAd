@@ -105,7 +105,7 @@ class AdHelperNativeExpress2(
 
         val currentAdCount = if (mAdCount <= 0) defaultAdCount else mAdCount
 
-        val adProviderType = DispatchUtil.getAdProvider(ratioMap)
+        val adProviderType = DispatchUtil.getAdProvider(mAlias, ratioMap)
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
