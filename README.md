@@ -44,13 +44,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.0.6-3.3.0.3'
+    implementation 'com.matthewchen.togetherad:csj:4.0.7-3.3.0.3'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.0.6-4.310.1180'
+    implementation 'com.matthewchen.togetherad:gdt:4.0.7-4.310.1180'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.0.6-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.0.7-5.91'
     
 }
 ```
@@ -59,8 +59,8 @@ dependencies {
 
 ## 最新版本
 
-4.0.6 (2020.12.22)
-1. 每个广告位的ID可以单独设置，例：TogetherAdCsj.idMapCsj[TogetherAdAlias.AD_SPLASH] = "xxxxxxxx"
+## 4.0.7 (2020.12.23)
+1. 每个广告位的分发方式可以单独设置
 
 [点击查看更多日志](doc/update_log.md)
 
