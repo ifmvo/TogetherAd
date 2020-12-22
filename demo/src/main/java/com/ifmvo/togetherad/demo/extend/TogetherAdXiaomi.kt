@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull
  */
 object TogetherAdXiaomi {
 
-    var idMapXiaomi = mapOf<String, String>()
+    var idMapXiaomi = mutableMapOf<String, String>()
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull xiaomiAdAppId: String) {
         init(context, adProviderType, xiaomiAdAppId, null, null)
@@ -27,7 +27,7 @@ object TogetherAdXiaomi {
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull xiaomiAdAppId: String, xiaomiIdMap: Map<String, String>? = null, providerClassPath: String? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) XiaomiProvider::class.java.name else providerClassPath))
-        xiaomiIdMap?.let { idMapXiaomi = it }
+        xiaomiIdMap?.let { idMapXiaomi.putAll(it) }
 
         //小米SDK初始化
     }

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull
 object TogetherAdCsj {
 
     // 必须设置，穿山甲的广告位ID
-    var idMapCsj = mapOf<String, String>()
+    var idMapCsj = mutableMapOf<String, String>()
 
     // 可选参数，需在初始化之前，设置是否使用texture播放视频：true使用、false不使用。默认为false不使用（使用的是surface）
     var useTextureView: Boolean = false
@@ -72,7 +72,7 @@ object TogetherAdCsj {
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null, providerClassPath: String?) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) CsjProvider::class.java.name else providerClassPath))
 
-        csjIdMap?.let { idMapCsj = it }
+        csjIdMap?.let { idMapCsj.putAll(it) }
 
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
         val ttAdConfig = TTAdConfig.Builder()

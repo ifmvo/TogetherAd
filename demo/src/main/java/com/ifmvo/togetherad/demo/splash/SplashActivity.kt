@@ -12,6 +12,7 @@ import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.core.utils.dp
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.AdProviderType

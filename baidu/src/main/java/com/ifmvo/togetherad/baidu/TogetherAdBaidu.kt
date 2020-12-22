@@ -14,7 +14,7 @@ import com.ifmvo.togetherad.core.entity.AdProviderEntity
  */
 object TogetherAdBaidu {
 
-    var idMapBaidu = mapOf<String, String>()
+    var idMapBaidu = mutableMapOf<String, String>()
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull baiduAdAppId: String) {
         init(context, adProviderType, baiduAdAppId, null, null)
@@ -30,7 +30,7 @@ object TogetherAdBaidu {
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull baiduAdAppId: String, baiduIdMap: Map<String, String>? = null, providerClassPath: String? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) BaiduProvider::class.java.name else providerClassPath))
-        baiduIdMap?.let { idMapBaidu = it }
+        baiduIdMap?.let { idMapBaidu.putAll(it) }
         AdView.setAppSid(context, baiduAdAppId)
     }
 }
