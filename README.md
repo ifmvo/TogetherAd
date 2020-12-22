@@ -44,13 +44,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.0.5-3.3.0.3'
+    implementation 'com.matthewchen.togetherad:csj:4.0.6-3.3.0.3'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.0.5-4.310.1180'
+    implementation 'com.matthewchen.togetherad:gdt:4.0.6-4.310.1180'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.0.5-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.0.6-5.91'
     
 }
 ```
@@ -59,9 +59,8 @@ dependencies {
 
 ## 最新版本
 
-4.0.5 (2020.12.17)
-1. 激励广告 show 方法新增返回值，是否展示成功
-2. 每个广告平台的开屏广告超时时间默认都改为 4000ms
+4.0.6 (2020.12.22)
+1. 每个广告位的ID可以单独设置，例：TogetherAdCsj.idMapCsj[TogetherAdAlias.AD_SPLASH] = "xxxxxxxx"
 
 [点击查看更多日志](doc/update_log.md)
 

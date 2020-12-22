@@ -57,7 +57,7 @@ class App : Application() {
          * 配置所有广告位ID
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
-        TogetherAdCsj.idMapCsj = mapOf(
+        TogetherAdCsj.idMapCsj = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
@@ -74,7 +74,7 @@ class App : Application() {
                 TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "901121073"//id是全屏视频
         )
 
-        TogetherAdGdt.idMapGDT = mapOf(
+        TogetherAdGdt.idMapGDT = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
@@ -91,7 +91,7 @@ class App : Application() {
                 TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "6040749702835933"
         )
 
-        TogetherAdBaidu.idMapBaidu = mapOf(
+        TogetherAdBaidu.idMapBaidu = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持

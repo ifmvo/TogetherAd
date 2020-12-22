@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "4.0.5-4.310.1180"
+        versionName "4.0.6-4.310.1180"
     }
 
     lintOptions {
@@ -41,7 +41,7 @@ publish {
     userOrg = 'matthewchen'
     groupId = 'com.matthewchen.togetherad'
     artifactId = 'gdt'
-    publishVersion = '4.0.5-4.310.1180'
+    publishVersion = '4.0.6-4.310.1180'
     desc = 'A fast integration framework for a advertising platform.'
     website = "https://github.com/ifmvo/TogetherAd"
 }

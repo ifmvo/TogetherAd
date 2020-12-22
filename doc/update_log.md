@@ -1,5 +1,11 @@
 # 更新日志
 
+## 4.0.6
+
+2020.12.22
+
+1. 每个广告位的ID可以单独设置，例：TogetherAdCsj.idMapCsj[TogetherAdAlias.AD_SPLASH] = "xxxxxxxx"
+
 ## 4.0.5
 
 2020.12.17
