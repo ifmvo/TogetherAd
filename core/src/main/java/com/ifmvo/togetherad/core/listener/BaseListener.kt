@@ -14,7 +14,7 @@ interface BaseListener {
     fun onAdStartRequest(@NotNull providerType: String) {}
 
     /**
-     * 所有的提供商都请求失败，或请求超时
+     * 所有的提供商都请求失败，或请求超时，或没有分配任何广告商比例
      */
     fun onAdFailedAll(failedMsg: String?) {}
 

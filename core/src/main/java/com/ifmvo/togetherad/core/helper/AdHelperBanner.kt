@@ -38,7 +38,7 @@ object AdHelperBanner : BaseHelper() {
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()
-            listener?.onAdFailedAll(FailedAllMsg.noDispatch)
+            listener?.onAdFailedAll(FailedAllMsg.failedAll_noDispatch)
             return
         }
 

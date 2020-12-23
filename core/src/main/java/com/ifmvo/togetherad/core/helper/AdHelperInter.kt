@@ -51,7 +51,7 @@ class AdHelperInter(
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            mListener?.onAdFailedAll(FailedAllMsg.noDispatch)
+            mListener?.onAdFailedAll(FailedAllMsg.failedAll_noDispatch)
             return
         }
 

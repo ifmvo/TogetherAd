@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull
 abstract class BaseHelper {
 
     object FailedAllMsg {
-        const val noDispatch = "没有任何分配广告"
+        const val failedAll_noDispatch = "全部请求失败或没有分配任何广告"
         const val timeOut = "请求超时"
     }
 

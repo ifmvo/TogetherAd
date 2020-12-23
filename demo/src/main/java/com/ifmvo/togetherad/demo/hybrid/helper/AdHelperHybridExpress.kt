@@ -138,7 +138,7 @@ class AdHelperHybridExpress(
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            listener?.onAdFailedAll(FailedAllMsg.noDispatch)
+            listener?.onAdFailedAll(FailedAllMsg.failedAll_noDispatch)
             return
         }
 
