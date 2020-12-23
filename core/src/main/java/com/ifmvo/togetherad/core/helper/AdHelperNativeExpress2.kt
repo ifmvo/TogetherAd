@@ -109,7 +109,7 @@ class AdHelperNativeExpress2(
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            listener?.onAdFailedAll()
+            listener?.onAdFailedAll(FailedAllMsg.noDispatch)
             return
         }
 

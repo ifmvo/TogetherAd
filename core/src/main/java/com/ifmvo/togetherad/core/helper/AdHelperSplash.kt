@@ -34,7 +34,7 @@ object AdHelperSplash : BaseHelper() {
 
         if (adProviderType?.isEmpty() != false) {
             cancelTimer()
-            listener?.onAdFailedAll()
+            listener?.onAdFailedAll(FailedAllMsg.noDispatch)
             return
         }
 

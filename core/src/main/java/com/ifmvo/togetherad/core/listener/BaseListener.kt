@@ -16,7 +16,7 @@ interface BaseListener {
     /**
      * 所有的提供商都请求失败，或请求超时
      */
-    fun onAdFailedAll() {}
+    fun onAdFailedAll(failedMsg: String?) {}
 
     /**
      * 单个提供商请求失败

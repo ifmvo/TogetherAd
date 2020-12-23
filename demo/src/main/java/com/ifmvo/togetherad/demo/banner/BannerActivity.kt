@@ -77,7 +77,7 @@ class BannerActivity : AppCompatActivity() {
                 addLog("单个广告请求失败, $providerType, $failedMsg")
             }
 
-            override fun onAdFailedAll() {
+            override fun onAdFailedAll(failedMsg: String?) {
                 //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
                 addLog("全部请求失败了")
             }

@@ -62,7 +62,7 @@ class AdHelperHybridSplash(
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            mListener?.onAdFailedAll()
+            mListener?.onAdFailedAll(FailedAllMsg.noDispatch)
             mListener = null
             return
         }

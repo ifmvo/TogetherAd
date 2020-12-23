@@ -61,7 +61,7 @@ class NativeExpressHybridActivity : AppCompatActivity() {
                 addLog("\n原生模板广告开始请求，$providerType")
             }
 
-            override fun onAdFailedAll() {
+            override fun onAdFailedAll(failedMsg: String?) {
                 //所有配置的广告商都请求失败了，只有在全部失败之后会回调一次
                 addLog("原生模板广告全部请求失败了")
                 "onAdFailedAll".loge(tag)

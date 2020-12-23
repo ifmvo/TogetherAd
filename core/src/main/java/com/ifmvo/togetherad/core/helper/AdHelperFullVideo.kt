@@ -50,7 +50,7 @@ class AdHelperFullVideo(
 
         if (adProviderType?.isEmpty() != false || mActivity.get() == null) {
             cancelTimer()
-            mListener?.onAdFailedAll()
+            mListener?.onAdFailedAll(FailedAllMsg.noDispatch)
             return
         }
 

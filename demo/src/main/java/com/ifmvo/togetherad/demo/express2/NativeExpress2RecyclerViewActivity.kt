@@ -65,7 +65,7 @@ class NativeExpress2RecyclerViewActivity : AppCompatActivity() {
                 //单个提供商请求失败
             }
 
-            override fun onAdFailedAll() {
+            override fun onAdFailedAll(failedMsg: String?) {
                 //所有的提供商都失败
                 onResult(mutableListOf())
             }

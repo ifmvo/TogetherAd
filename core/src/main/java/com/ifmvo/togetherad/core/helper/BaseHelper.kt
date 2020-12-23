@@ -13,6 +13,11 @@ import org.jetbrains.annotations.NotNull
  */
 abstract class BaseHelper {
 
+    object FailedAllMsg {
+        const val noDispatch = "没有任何分配广告"
+        const val timeOut = "请求超时"
+    }
+
     /**
      * 将传进来的 adProviderType 权重设置为 0，其他不变
      * 如果是不允许失败切换的时候，将所有广告提供商的权重都清空
@@ -49,7 +54,7 @@ abstract class BaseHelper {
                 "倒计时结束".logv()
                 "请求超时".logi()
                 isFetchOverTime = true
-                listener?.onAdFailedAll()
+                listener?.onAdFailedAll(FailedAllMsg.timeOut)
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -67,6 +72,4 @@ abstract class BaseHelper {
         mTimer?.cancel()
         mTimer = null
     }
-
-
 }
