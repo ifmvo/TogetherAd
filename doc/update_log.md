@@ -4,7 +4,7 @@
 
 2020.12.23
 
-1. 每个广告位的分发方式可以单独设置
+1. 每个广告位的分发方式可以单独设置: TogetherAd.mDispatchTypeMap[TogetherAdAlias.AD_SPLASH] = DispatchType.xxxxxx
 
 ## 4.0.6
 

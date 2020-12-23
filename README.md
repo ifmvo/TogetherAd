@@ -60,7 +60,7 @@ dependencies {
 ## 最新版本
 
 ## 4.0.7 (2020.12.23)
-1. 每个广告位的分发方式可以单独设置
+1. 每个广告位的分发方式可以单独设置: TogetherAd.mDispatchTypeMap[TogetherAdAlias.AD_SPLASH] = DispatchType.Priority
 
 [点击查看更多日志](doc/update_log.md)
 
