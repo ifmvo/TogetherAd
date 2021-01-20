@@ -109,7 +109,9 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
         getAdLogoImageView()?.setImageBitmap(adObject.adLogo)
 
         //Icon
-        getIconImageView()?.let { TogetherAd.mImageLoader?.loadImage(container.context, it, adObject.icon.imageUrl) }
+        getIconImageView()?.let {
+            TogetherAd.mImageLoader?.loadImage(container.context, it, adObject.icon.imageUrl)
+        }
 
         //标题和描述
         getTitleTextView()?.text = adObject.title
@@ -145,20 +147,20 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
 
         // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
         adObject.registerViewForInteraction(rootView as ViewGroup, getClickableViews() ?: mutableListOf(), getCreativeViews() ?: mutableListOf(), object : TTNativeAd.AdInteractionListener {
-            override fun onAdClicked(view: View, ad: TTNativeAd) {
-                // 点击普通区域的回调
-            }
+                override fun onAdClicked(view: View, ad: TTNativeAd) {
+                    // 点击普通区域的回调
+                }
 
-            override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
-                // 点击创意区域的回调
-                listener?.onAdClicked(adProviderType)
-            }
+                override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
+                    // 点击创意区域的回调
+                    listener?.onAdClicked(adProviderType)
+                }
 
-            override fun onAdShow(ad: TTNativeAd) {
-                // 广告曝光展示的回调
-                listener?.onAdExposed(adProviderType)
-            }
-        })
+                override fun onAdShow(ad: TTNativeAd) {
+                    // 广告曝光展示的回调
+                    listener?.onAdExposed(adProviderType)
+                }
+            })
 
         when (adObject.imageMode) {
             //视频类型

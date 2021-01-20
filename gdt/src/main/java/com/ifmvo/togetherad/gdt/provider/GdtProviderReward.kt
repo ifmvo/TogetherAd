@@ -5,6 +5,7 @@ import com.ifmvo.togetherad.core.listener.RewardListener
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.rewardvideo.RewardVideoAD
 import com.qq.e.ads.rewardvideo.RewardVideoADListener
+import com.qq.e.ads.rewardvideo.ServerSideVerificationOptions
 import com.qq.e.comm.util.AdError
 import com.qq.e.comm.util.VideoAdValidity
 
@@ -34,7 +35,8 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
                 callbackRewardVideoCached(adProviderType, listener)
             }
 
-            override fun onReward() {
+            override fun onReward(map: MutableMap<String, Any>?) {
+                map?.let { GdtProvider.Reward.verificationOption = it[ServerSideVerificationOptions.TRANS_ID] }
                 callbackRewardVerify(adProviderType, listener)
             }
 

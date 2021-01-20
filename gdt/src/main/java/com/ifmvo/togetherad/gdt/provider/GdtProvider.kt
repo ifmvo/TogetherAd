@@ -40,6 +40,9 @@ open class GdtProvider : GdtProviderSplash() {
         //是否有声播放
         var volumeOn = true
 
+        //如果开启了服务器验证，用来获取此次交易的信息
+        var verificationOption: Any? = null
+
     }
 
     object Banner {
