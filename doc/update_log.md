@@ -6,7 +6,8 @@
 
 1. 更新优量汇SDK到 v4.330.1202 （ 修复插屏全屏视频、激励视频、激励浏览可能遇到的崩溃问题 ）
 2. 更新穿山甲SDK到 v3.4.5.0 ( https://bytedance.feishu.cn/docs/doccnhkyP8kSJZGDus7C5UsMdgc#l67FVr【新增】SDK初始化增加异步初始化方式和初始化完成回调，且必须在主线程调用初始化方法;【优化】SDK初始化逻辑优化，同步初始化方式必须在主线程中调用;【废弃】TTAdConfig.Builder中asyncInit()方法废弃; )
-3. TogetherAd 对穿山甲初始化 API 的变化进行了适配 TogetherAdCsj.initCallback
+3. TogetherAd 对穿山甲初始化API的变化进行了适配: TogetherAdCsj.initCallback
+4. 新增热启动开屏示例
 
 ## 4.1.1
 
