@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.demo
 
 import android.app.ListActivity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,12 +9,19 @@ import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.other.MainMenuHelper
+import com.ifmvo.togetherad.demo.splash.SplashActivity
 
 class MainActivity : ListActivity() {
 
     private val menu by lazy { intent.getStringExtra("menu") ?: MainMenuHelper.menuMain }
 
     private val menuList by lazy { MainMenuHelper.map[menu] }
+
+    companion object {
+        fun action(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

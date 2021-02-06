@@ -14,6 +14,7 @@ import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.csj.provider.CsjProvider
+import com.ifmvo.togetherad.demo.MainActivity
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
@@ -146,6 +147,7 @@ class SplashActivity : AppCompatActivity() {
     private fun actionHome(delayMillis: Long) {
         adContainer.postDelayed({
             //在这里跳转到 Home 主界面
+            MainActivity.action(this)
             finish()
         }, delayMillis)
     }

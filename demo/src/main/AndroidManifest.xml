@@ -13,7 +13,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+        <!--
+            开屏界面
+        -->
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,17 +26,22 @@
         </activity>
 
         <!--
-            开屏界面
+            主页
         -->
-        <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/SplashTheme" />
+        <activity android:name=".MainActivity" />
 
         <!--
             开屏界面 （ 请求与展示分开 ）
         -->
         <activity
             android:name=".splash.SplashProActivity"
+            android:theme="@style/SplashTheme" />
+
+        <!--
+            热启动的开屏界面
+        -->
+        <activity
+            android:name=".splash.SplashHotActivity"
             android:theme="@style/SplashTheme" />
 
         <!--

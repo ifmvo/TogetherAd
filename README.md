@@ -44,13 +44,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.1-3.4.1.2'
+    implementation 'com.matthewchen.togetherad:csj:4.1.2-3.4.5.0'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.1-4.330.1200'
+    implementation 'com.matthewchen.togetherad:gdt:4.1.2-4.330.1202'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.1-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.1.2-5.91'
     
 }
 ```
@@ -59,8 +59,11 @@ dependencies {
 
 ## 最新版本
 
-## 4.1.1 (2021.01.20)
-1. 更新优量汇SDK到 v4.330.1200 ( 激励视频支持server to server通知、开屏支持预拉取，开屏支持滑动引导手势，激励视频、插屏全屏视频的倒计时和关闭按钮优化，视频广告支持动态营销挂件等功能。 )
+## 4.1.2（ 2021.02.06 ）
+
+1. 更新优量汇SDK到 v4.330.1202 （ 修复插屏全屏视频、激励视频、激励浏览可能遇到的崩溃问题 ）
+2. 更新穿山甲SDK到 v3.4.5.0 ( https://bytedance.feishu.cn/docs/doccnhkyP8kSJZGDus7C5UsMdgc#l67FVr【新增】SDK初始化增加异步初始化方式和初始化完成回调，且必须在主线程调用初始化方法;【优化】SDK初始化逻辑优化，同步初始化方式必须在主线程中调用;【废弃】TTAdConfig.Builder中asyncInit()方法废弃; )
+3. TogetherAd 对穿山甲初始化 API 的变化进行了适配 TogetherAdCsj.initCallback
 
 [点击查看更多日志](doc/update_log.md)
 

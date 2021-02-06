@@ -52,23 +52,42 @@ object TogetherAdCsj {
     var data: String? = null
 
     // 可选参数，需在初始化之前，是否异步初始化
+    @Deprecated(message = "穿山甲改变了异步初始化的方式, 使用 initCallback 替换", replaceWith = ReplaceWith(expression = "initCallback", imports = ["com.ifmvo.togetherad.csj"]), level = DeprecationLevel.WARNING)
     var isAsyncInit: Boolean = false
 
-    //可选参数，需在初始化之前，可以设置隐私信息控制开关
+    // 可选参数，需在初始化之前，可以设置隐私信息控制开关
     var customController: TTCustomController? = null
 
+    // 可选参数，异步初始化回调
+    var initCallback: TTAdSdk.InitCallback? = null
+
+    // 判断穿山甲SDK是否初始化成功
+    var isInitSuccess = TTAdSdk.isInitSuccess()
+
+    /**
+     * 简单初始化
+     */
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String) {
         init(context, adProviderType, csjAdAppId, appName, null, null)
     }
 
+    /**
+     * 自定义Provider初始化
+     */
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, providerClassPath: String? = null) {
         init(context, adProviderType, csjAdAppId, appName, null, providerClassPath)
     }
 
+    /**
+     * 广告位ID 初始化
+     */
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null) {
         init(context, adProviderType, csjAdAppId, appName, csjIdMap, null)
     }
 
+    /**
+     * 自定义Provider + 广告位ID 一起初始化
+     */
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null, providerClassPath: String?) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) CsjProvider::class.java.name else providerClassPath))
 
@@ -90,6 +109,11 @@ object TogetherAdCsj {
         data?.let { ttAdConfig.data(it) }
         httpStack?.let { ttAdConfig.httpStack(it) } //自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
         customController?.let { ttAdConfig.customController(it) }
-        TTAdSdk.init(context, ttAdConfig.build())
+        //初始化
+        if (initCallback == null) {
+            TTAdSdk.init(context, ttAdConfig.build())
+        } else {
+            TTAdSdk.init(context, ttAdConfig.build(), initCallback)
+        }
     }
 }

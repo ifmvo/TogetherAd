@@ -1,9 +1,10 @@
 package com.ifmvo.togetherad.demo.app
 
-import android.app.Application
+import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.DispatchType
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
@@ -12,7 +13,7 @@ import com.ifmvo.togetherad.gdt.TogetherAdGdt
 /*
  * Created by Matthew Chen on 2020-04-16.
  */
-class App : Application() {
+class App : ActLifecycleAppBase() {
 
     override fun onCreate() {
         super.onCreate()
@@ -43,8 +44,18 @@ class App : Application() {
 //        TogetherAdCsj.keywords = ""
 //        // 可选参数，需在初始化之前，设置额外的用户信息 **不能超过为1000个字符**
 //        TogetherAdCsj.data = ""
-//        //可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
+//        // 可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
 //        TogetherAdCsj.customController = object : TTCustomController() {}
+        // 可选参数，需在初始化之前，穿山甲初始化状态回调
+        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {
+            override fun fail(code: Int, msg: String?) {
+                "穿山甲初始化错误：code: $code, msg: $msg".loge()
+            }
+
+            override fun success() {
+                "穿山甲初始化成功".loge()
+            }
+        }
 
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
@@ -59,6 +70,7 @@ class App : Application() {
          */
         TogetherAdCsj.idMapCsj = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
+                TogetherAdAlias.AD_SPLASH_HOT to "801121648",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
@@ -76,6 +88,7 @@ class App : Application() {
 
         TogetherAdGdt.idMapGDT = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+                TogetherAdAlias.AD_SPLASH_HOT to "8863364436303842593",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
@@ -93,6 +106,7 @@ class App : Application() {
 
         TogetherAdBaidu.idMapBaidu = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
+                TogetherAdAlias.AD_SPLASH_HOT to "2058622",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
