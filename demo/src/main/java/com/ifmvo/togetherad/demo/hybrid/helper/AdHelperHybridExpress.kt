@@ -14,7 +14,6 @@ import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.core.provider.BaseAdProvider
 import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
-import com.ifmvo.togetherad.core.utils.logw
 import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.native_.template.NativeExpress2TemplateSimple
 import com.ifmvo.togetherad.demo.native_.template.NativeExpressTemplateSimple
@@ -50,11 +49,9 @@ class AdHelperHybridExpress(
 
         fun show(@Nullable adProviderType: String?, @NotNull activity: Activity, @Nullable adObject: Any?, @Nullable container: ViewGroup?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             if (container == null) {
-                "container 广告容器不能为空".logw()
                 return
             }
 
@@ -91,7 +88,6 @@ class AdHelperHybridExpress(
 
         fun destroyHybridExpressAd(@Nullable adObject: Any?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -103,7 +99,6 @@ class AdHelperHybridExpress(
 
         fun destroyHybridExpressAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
-                "adObjectList 广告对象List不能为空".logw()
                 return
             }
             adObjectList.forEach { destroyHybridExpressAd(it) }

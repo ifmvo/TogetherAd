@@ -45,11 +45,9 @@ class AdHelperNativePro(
 
         fun show(@Nullable adObject: Any?, @Nullable container: ViewGroup?, @NotNull nativeTemplate: BaseNativeTemplate, @Nullable listener: NativeViewListener? = null) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             if (container == null) {
-                "container 广告容器不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -64,7 +62,6 @@ class AdHelperNativePro(
 
         fun pauseAd(@Nullable adObject: Any?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -75,7 +72,6 @@ class AdHelperNativePro(
 
         fun pauseAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
-                "adObjectList 广告对象List不能为空".logw()
                 return
             }
             adObjectList.forEach { pauseAd(it) }
@@ -83,7 +79,6 @@ class AdHelperNativePro(
 
         fun resumeAd(@Nullable adObject: Any?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -94,7 +89,6 @@ class AdHelperNativePro(
 
         fun resumeAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
-                "adObjectList 广告对象List不能为空".logw()
                 return
             }
             adObjectList.forEach { resumeAd(it) }
@@ -102,7 +96,6 @@ class AdHelperNativePro(
 
         fun destroyAd(@Nullable adObject: Any?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -113,7 +106,6 @@ class AdHelperNativePro(
 
         fun destroyAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
-                "adObjectList 广告对象List不能为空".logw()
                 return
             }
             adObjectList.forEach { destroyAd(it) }

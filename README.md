@@ -44,13 +44,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.2-3.4.5.0'
+    implementation 'com.matthewchen.togetherad:csj:4.1.3-3.4.5.0'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.2-4.330.1202'
+    implementation 'com.matthewchen.togetherad:gdt:4.1.3-4.332.1202'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.2-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.1.3-5.91'
     
 }
 ```
@@ -59,12 +59,9 @@ dependencies {
 
 ## 最新版本
 
-## 4.1.2（ 2021.02.06 ）
+## 4.1.3 ( 2021.02.20 )
 
-1. 更新优量汇SDK到 v4.330.1202 （ 修复插屏全屏视频、激励视频、激励浏览可能遇到的崩溃问题 ）
-2. 更新穿山甲SDK到 v3.4.5.0 ( https://bytedance.feishu.cn/docs/doccnhkyP8kSJZGDus7C5UsMdgc#l67FVr ) 【新增】SDK初始化增加异步初始化方式和初始化完成回调，且必须在主线程调用初始化方法;【优化】SDK初始化逻辑优化，同步初始化方式必须在主线程中调用;【废弃】TTAdConfig.Builder中asyncInit()方法废弃;
-3. TogetherAd 对穿山甲初始化API的变化进行了适配: TogetherAdCsj.initCallback
-4. 新增热启动开屏示例
+1. 更新穿山甲SDK到 v3.4.5.1 ( 已知问题修复 )
 
 [点击查看更多日志](doc/update_log.md)
 

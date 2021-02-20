@@ -43,11 +43,9 @@ class AdHelperNativeExpress(
 
         fun show(@Nullable adObject: Any?, @Nullable container: ViewGroup?, @NotNull nativeExpressTemplate: BaseNativeExpressTemplate) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             if (container == null) {
-                "container 广告容器不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -62,7 +60,6 @@ class AdHelperNativeExpress(
 
         fun destroyExpressAd(@Nullable adObject: Any?) {
             if (adObject == null) {
-                "adObject 广告对象不能为空".logw()
                 return
             }
             TogetherAd.mProviders.entries.forEach { entry ->
@@ -73,7 +70,6 @@ class AdHelperNativeExpress(
 
         fun destroyExpressAd(@Nullable adObjectList: List<Any>?) {
             if (adObjectList?.isEmpty() != false) {
-                "adObjectList 广告对象List不能为空".logw()
                 return
             }
             adObjectList.forEach { destroyExpressAd(it) }
