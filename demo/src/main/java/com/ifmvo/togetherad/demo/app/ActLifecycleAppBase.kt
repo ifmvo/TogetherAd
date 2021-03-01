@@ -26,6 +26,9 @@ open class ActLifecycleAppBase : Application() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
 
             override fun onActivityStarted(activity: Activity?) {
+
+                activity ?: return
+
                 //热启动 && 应用退到后台时间超过10s
                 if (mActivityCount.get() == 0 && System.currentTimeMillis() - mAppStopTimeMillis > 10 * 1000 && activity !is SplashActivity) {
                     SplashHotActivity.action(activity!!)
@@ -36,6 +39,9 @@ open class ActLifecycleAppBase : Application() {
             }
 
             override fun onActivityStopped(activity: Activity?) {
+
+                activity ?: return
+
                 //-1
                 mActivityCount.getAndDecrement()
 

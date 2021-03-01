@@ -132,7 +132,7 @@ class App : ActLifecycleAppBase() {
         TogetherAd.setPublicProviderRatio(linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.BAIDU.type to 1,
-                AdProviderType.CSJ.type to 3
+                AdProviderType.CSJ.type to 1
         ))
 
         /**
