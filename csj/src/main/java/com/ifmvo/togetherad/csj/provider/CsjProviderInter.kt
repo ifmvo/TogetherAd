@@ -60,6 +60,7 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
                     override fun onSelected(position: Int, value: String) {}
                     override fun onCancel() {}
                     override fun onRefuse() {}
+                    override fun onShow() {}
                 })
             }
 

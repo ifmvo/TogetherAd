@@ -24,7 +24,7 @@ class NativeExpressSimpleActivity : AppCompatActivity() {
 
     private val adHelperNativeExpress by lazy {
         val ratioMapNativeExpress = linkedMapOf(AdProviderType.GDT.type to 1)
-        AdHelperNativeExpress(this, TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE, ratioMapNativeExpress, 1)
+        AdHelperNativeExpress(this, TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE, /*ratioMapNativeExpress,*/ 1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

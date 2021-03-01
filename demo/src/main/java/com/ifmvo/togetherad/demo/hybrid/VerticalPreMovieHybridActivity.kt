@@ -21,9 +21,9 @@ class VerticalPreMovieHybridActivity : AppCompatActivity() {
     private val adHelper by lazy {
         val ratioMapVerticalPreMovie = linkedMapOf(
                 AdProviderType.GDT.type to 1,
-                AdProviderType.CSJ.type to 0
+                AdProviderType.CSJ.type to 1
         )
-        AdHelperHybridVerticalPreMovie(this, TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE, adContainer, ratioMapVerticalPreMovie)
+        AdHelperHybridVerticalPreMovie(this, TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE, adContainer/*, ratioMapVerticalPreMovie*/)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

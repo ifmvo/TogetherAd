@@ -65,6 +65,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
 
                     override fun onCancel() {}
                     override fun onRefuse() {}
+                    override fun onShow() {}
                 })
                 mTTNativeExpressBannerAd?.render()
             }

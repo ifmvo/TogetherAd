@@ -28,7 +28,7 @@ class NativeExpress2SimpleActivity : AppCompatActivity() {
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1
         )
-        AdHelperNativeExpress2(this, TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE, ratioMapNativeExpress2, 1)
+        AdHelperNativeExpress2(this, TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE, /*ratioMapNativeExpress2,*/ 1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,10 +1,7 @@
 package com.ifmvo.togetherad.demo.app
 
-import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
-import com.ifmvo.togetherad.core.DispatchType
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
@@ -46,16 +43,8 @@ class App : ActLifecycleAppBase() {
 //        TogetherAdCsj.data = ""
 //        // 可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
 //        TogetherAdCsj.customController = object : TTCustomController() {}
-        // 可选参数，需在初始化之前，穿山甲初始化状态回调
-        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {
-            override fun fail(code: Int, msg: String?) {
-                "穿山甲初始化错误：code: $code, msg: $msg".loge()
-            }
-
-            override fun success() {
-                "穿山甲初始化成功".loge()
-            }
-        }
+//        // 可选参数，需在初始化之前，穿山甲初始化状态回调
+//        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {}
 
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
@@ -130,8 +119,8 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-                AdProviderType.GDT.type to 1,
-                AdProviderType.BAIDU.type to 1,
+                AdProviderType.GDT.type to 0,
+                AdProviderType.BAIDU.type to 0,
                 AdProviderType.CSJ.type to 1
         ))
 
@@ -190,6 +179,6 @@ class App : ActLifecycleAppBase() {
          * DispatchType.Priority    优先权重最高分发模式
          * DispatchType.Random  按照权重随机分发模式
          */
-        TogetherAd.dispatchType = DispatchType.Random
+//        TogetherAd.dispatchType = DispatchType.Random
     }
 }

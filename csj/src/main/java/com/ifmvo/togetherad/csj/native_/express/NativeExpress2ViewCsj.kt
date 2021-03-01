@@ -46,6 +46,7 @@ class NativeExpress2ViewCsj : BaseNativeExpress2View() {
 
             override fun onCancel() {}
             override fun onRefuse() {}
+            override fun onShow() {}
         })
 
         if (adObject.interactionType == TTAdConstant.INTERACTION_TYPE_DOWNLOAD) {
