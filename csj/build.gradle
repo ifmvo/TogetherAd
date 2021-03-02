@@ -15,8 +15,8 @@ android {
         versionName "4.1.3-3.5.0.1"
     }
 
-    lintOptions{
-        abortOnError
+    lintOptions {
+        abortOnError false
     }
 
     buildTypes {
