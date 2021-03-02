@@ -119,7 +119,7 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-                AdProviderType.GDT.type to 0,
+                AdProviderType.GDT.type to 1,
                 AdProviderType.BAIDU.type to 0,
                 AdProviderType.CSJ.type to 1
         ))
