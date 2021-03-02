@@ -44,7 +44,7 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.3-3.4.5.0'
+    implementation 'com.matthewchen.togetherad:csj:4.1.3-3.5.0.1'
     
     //优量汇（ 腾讯广点通 ）
     implementation 'com.matthewchen.togetherad:gdt:4.1.3-4.332.1202'
