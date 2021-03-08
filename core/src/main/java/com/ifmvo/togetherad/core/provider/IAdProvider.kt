@@ -151,5 +151,5 @@ interface IAdProvider {
 
     fun showFullVideoAd(
             @NotNull activity: Activity
-    )
+    ): Boolean
 }

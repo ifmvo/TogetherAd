@@ -90,10 +90,6 @@ class AdHelperFullVideo(
                 mListener?.onAdLoaded(providerType)
             }
 
-            override fun onAdVideoComplete(providerType: String) {
-                mListener?.onAdVideoComplete(providerType)
-            }
-
             override fun onAdVideoCached(providerType: String) {
                 mListener?.onAdVideoCached(providerType)
             }

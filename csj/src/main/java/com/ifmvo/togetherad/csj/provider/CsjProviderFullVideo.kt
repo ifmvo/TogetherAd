@@ -43,9 +43,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
                         callbackFullVideoClicked(adProviderType, listener)
                     }
 
-                    override fun onVideoComplete() {
-                        callbackFullVideoComplete(adProviderType, listener)
-                    }
+                    override fun onVideoComplete() {}
 
                     override fun onAdClose() {
                         callbackFullVideoClosed(adProviderType, listener)
@@ -65,7 +63,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
         })
     }
 
-    override fun showFullVideoAd(activity: Activity) {
+    override fun showFullVideoAd(activity: Activity): Boolean {
         val ritScenes = CsjProvider.FullVideo.ritScenes
         if (ritScenes != null) {
             mFllScreenVideoAd?.showFullScreenVideoAd(activity, ritScenes, null)
@@ -73,6 +71,6 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
             mFllScreenVideoAd?.showFullScreenVideoAd(activity)
         }
         mFllScreenVideoAd = null
-
+        return true
     }
 }

@@ -68,5 +68,7 @@ class XiaomiProvider : BaseAdProvider() {
 
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {}
 
-    override fun showFullVideoAd(activity: Activity) {}
+    override fun showFullVideoAd(activity: Activity): Boolean {
+        return false
+    }
 }

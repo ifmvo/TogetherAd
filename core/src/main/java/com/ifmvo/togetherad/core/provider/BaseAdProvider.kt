@@ -270,13 +270,6 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackFullVideoComplete(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
-        Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 播放完成".logi()
-            listener.onAdVideoComplete(adProviderType)
-        }
-    }
-
     protected fun callbackFullVideoCached(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 视频已缓存".logi()

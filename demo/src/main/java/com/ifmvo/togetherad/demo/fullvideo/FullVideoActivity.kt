@@ -35,7 +35,10 @@ class FullVideoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_reward)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
-        val ratioMapFullVideo = linkedMapOf(AdProviderType.CSJ.type to 1)
+        val ratioMapFullVideo = linkedMapOf(
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.GDT.type to 1
+        )
 
         /**
          * activity: 必传。
@@ -78,12 +81,6 @@ class FullVideoActivity : AppCompatActivity() {
                 //广告请求成功的回调，每次请求只回调一次
                 addLog("请求到了: $providerType")
                 "onAdLoaded: $providerType".logi(tag)
-            }
-
-            override fun onAdVideoComplete(providerType: String) {
-                //视频播放完成的回调
-                addLog("视频播放完成: $providerType")
-                "onAdVideoComplete: $providerType".logi(tag)
             }
 
             override fun onAdVideoCached(providerType: String) {

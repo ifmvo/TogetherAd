@@ -69,7 +69,7 @@ object MainMenuHelper {
             ),
             mapOf(
                     "title" to "全屏视频广告",
-                    "desc" to "和激励视频广告比较像。差别在于全屏视频广告不需要完整的看完视频，就可以关闭广告",
+                    "desc" to "对应的是优量汇的插屏全屏视频和穿山甲的全屏视频广告。全屏视频广告和激励视频广告比较像。差别在于全屏视频广告不需要完整的看完视频，就可以关闭广告。",
                     "class" to FullVideoActivity::class.java
             ),
             mapOf(

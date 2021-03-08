@@ -123,4 +123,30 @@ open class GdtProvider : GdtProviderSplash() {
             adHeight = heightDp
         }
     }
+
+    /**
+     * --------------------------- 全屏视频 ---------------------------
+     */
+    object FullVideo {
+
+        // 自动播放时为静音
+        var autoPlayMuted = true
+
+        // WIFI 环境下可以自动播放视频
+        var autoPlayPolicy: Int = VideoOption.AutoPlayPolicy.ALWAYS
+
+        //视频最小时长
+        var minVideoDuration: Int = 0
+
+        //视频最大时长
+        var maxVideoDuration: Int = 0
+
+        /*
+         * 设置本次拉取的视频广告，从用户角度看到的视频播放策略；
+         * 可选项包括自VideoOption.VideoPlayPolicy.AUTO(在用户看来，视频广告是自动播放的)和VideoOption.VideoPlayPolicy.MANUAL(在用户看来，视频广告是手动播放的)；
+         * 插屏全屏视频广告，强烈建议调用此接口设置视频广告的播放策略，有助于提高eCPM值
+         */
+        var videoPlayPolicy = VideoOption.VideoPlayPolicy.AUTO
+
+    }
 }

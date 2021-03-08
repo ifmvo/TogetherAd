@@ -109,7 +109,9 @@
         <!--
             全屏视频广告
         -->
-        <activity android:name=".fullvideo.FullVideoActivity" />
+        <activity
+            android:name=".fullvideo.FullVideoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
         <!--
             全屏竖屏前贴广告（ 激励、全屏视频、原生自渲染混合使用 ）
