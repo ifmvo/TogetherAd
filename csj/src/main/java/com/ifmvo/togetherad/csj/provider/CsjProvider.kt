@@ -8,7 +8,7 @@ import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
  *
  * Created by Matthew Chen on 2020-04-03.
  */
-open class CsjProvider : CsjProviderSplash() {
+open class CsjProvider : CsjProviderStream() {
 
     /**
      * --------------------------- 开屏 ---------------------------
@@ -175,6 +175,22 @@ open class CsjProvider : CsjProviderSplash() {
 
         var ritScenes: TTAdConstant.RitScenes? = null
 
+    }
+
+    /**
+     * --------------------------- 自渲染贴片 ---------------------------
+     */
+    object Stream {
+
+        //图片的宽高
+        internal var imageAcceptedSizeWidth = 1080
+
+        internal var imageAcceptedSizeHeight = 1080 * 9 / 16
+
+        fun setImageAcceptedSize(width: Int, height: Int) {
+            imageAcceptedSizeWidth = width
+            imageAcceptedSizeHeight = height
+        }
     }
 
 }

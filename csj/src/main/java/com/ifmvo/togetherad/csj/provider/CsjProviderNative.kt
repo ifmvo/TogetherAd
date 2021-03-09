@@ -81,7 +81,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
     override fun destroyNativeAd(adObject: Any) {
         when (adObject) {
             is TTNativeAd -> {
-
+                adObject.destroy()
             }
         }
     }
