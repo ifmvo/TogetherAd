@@ -64,9 +64,9 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
 //    //穿山甲（ 头条 ）
-//    implementation 'com.matthewchen.togetherad:csj:4.1.4-3.5.0.1'
+//    implementation 'com.matthewchen.togetherad:csj:4.1.4-3.5.0.2'
 //    //优量汇（ 腾讯广点通 ）
-//    implementation 'com.matthewchen.togetherad:gdt:4.1.4-4.332.1202'
+//    implementation 'com.matthewchen.togetherad:gdt:4.1.4-4.333.1203'
 //    //百青藤 ( 百度 Mob )
 //    implementation 'com.matthewchen.togetherad:baidu:4.1.4-5.91'
 
