@@ -40,6 +40,9 @@ abstract class GdtProviderFullVideo : GdtProviderBanner() {
             override fun onADLeftApplication() {}
 
             override fun onADReceive() {
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    fullVideoAd?.setDownloadConfirmListener(it)
+                }
                 callbackFullVideoLoaded(adProviderType, alias, listener)
             }
 

@@ -46,6 +46,9 @@ abstract class GdtProviderReward : GdtProviderNativeExpress2() {
             }
 
             override fun onADLoad() {
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    rewardVideoAD?.setDownloadConfirmListener(it)
+                }
                 callbackRewardLoaded(adProviderType, alias, listener)
             }
 

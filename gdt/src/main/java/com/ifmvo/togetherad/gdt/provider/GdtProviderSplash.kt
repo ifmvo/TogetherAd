@@ -7,13 +7,13 @@ import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
+import com.ifmvo.togetherad.gdt.other.DownloadConfirmHelper
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
 import kotlin.math.roundToInt
 
 /**
- *
  * Created by Matthew Chen on 2020/11/25.
  */
 abstract class GdtProviderSplash : GdtProviderReward() {
@@ -33,12 +33,14 @@ abstract class GdtProviderSplash : GdtProviderReward() {
             override fun onADDismissed() {
                 GdtProvider.Splash.customSkipView = null
                 mContainer = null
+                splashAd = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
                 mContainer = null
+                splashAd = null
                 callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
@@ -74,6 +76,9 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              */
             override fun onADLoaded(expireTimestamp: Long) {
                 mExpireTimestamp = expireTimestamp
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    splashAd?.setDownloadConfirmListener(it)
+                }
                 callbackSplashLoaded(adProviderType, alias, listener)
             }
             /**
@@ -110,15 +115,17 @@ abstract class GdtProviderSplash : GdtProviderReward() {
         val customSkipView = GdtProvider.Splash.customSkipView
         val skipView = customSkipView?.onCreateSkipView(container.context)
 
-        val splash = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+        splashAd = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
+                splashAd = null
                 GdtProvider.Splash.customSkipView = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
                 GdtProvider.Splash.customSkipView = null
+                splashAd = null
                 callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
@@ -152,6 +159,9 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              * 广告加载成功的回调，在fetchAdOnly的情况下，表示广告拉取成功可以显示了。广告需要在SystemClock.elapsedRealtime <expireTimestamp前展示，否则在showAd时会返回广告超时错误。
              */
             override fun onADLoaded(expireTimestamp: Long) {
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    splashAd?.setDownloadConfirmListener(it)
+                }
                 callbackSplashLoaded(adProviderType, alias, listener)
             }
         }, GdtProvider.Splash.maxFetchDelay)
@@ -160,7 +170,7 @@ abstract class GdtProviderSplash : GdtProviderReward() {
          * 取值范围为[3000, 5000]ms。
          * 如果需要使用默认值，可以调用上一个构造方法，或者给 fetchDelay 设为0。
          */
-        splash.fetchAndShowIn(container)
+        splashAd?.fetchAndShowIn(container)
     }
 
 }

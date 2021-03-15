@@ -29,6 +29,9 @@ class SplashActivity : AppCompatActivity() {
 
     private val tag = "SplashActivity"
 
+    //是否可以跳转，逻辑 copy from gdt demo
+    private var canJump = false
+
     companion object {
         fun action(context: Context) {
             context.startActivity(Intent(context, SplashActivity::class.java))
@@ -134,7 +137,7 @@ class SplashActivity : AppCompatActivity() {
                 //在这里跳转主界面，并关闭 Splash
                 addLog("开屏广告点了跳过或者倒计时结束， $providerType")
                 "onAdDismissed: $providerType".logi(tag)
-                actionHome(0)
+                actionHome()
             }
         })
         //回调中的 providerType 是广告商类型
@@ -143,7 +146,26 @@ class SplashActivity : AppCompatActivity() {
     //不能手动返回
     override fun onBackPressed() {}
 
-    private fun actionHome(delayMillis: Long) {
+    override fun onResume() {
+        super.onResume()
+        if (canJump) {
+            actionHome()
+        }
+        canJump = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        canJump = false
+    }
+
+    private fun actionHome(delayMillis: Long = 0) {
+
+        if (!canJump) {
+            canJump = true
+            return
+        }
+
         adContainer.postDelayed({
             //在这里跳转到 Home 主界面
             MainActivity.action(this)

@@ -10,6 +10,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
 import com.ifmvo.togetherad.gdt.R
+import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.MediaView
 import com.qq.e.ads.nativ.NativeADEventListener
@@ -139,6 +140,11 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
 
         //findView
         rootView = View.inflate(container.context, getLayoutRes(), container)
+
+        //设置下载确认
+        TogetherAdGdt.downloadConfirmListener?.let {
+            adObject.setDownloadConfirmListener(it)
+        }
 
         //Image
         getIconImageView()?.let { TogetherAd.mImageLoader?.loadImage(container.context, it, adObject.iconUrl) }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.custom.express2.BaseNativeExpress2View
 import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
+import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.nativ.express2.AdEventListener
 import com.qq.e.ads.nativ.express2.MediaEventListener
 import com.qq.e.ads.nativ.express2.NativeExpressADData2
@@ -18,6 +19,11 @@ class NativeExpress2ViewGdt : BaseNativeExpress2View() {
         if (adObject !is NativeExpressADData2) return
 
         container.removeAllViews()
+
+        //设置下载确认
+        TogetherAdGdt.downloadConfirmListener?.let {
+            adObject.setDownloadConfirmListener(it)
+        }
 
         adObject.setAdEventListener(object : AdEventListener {
             override fun onClick() {

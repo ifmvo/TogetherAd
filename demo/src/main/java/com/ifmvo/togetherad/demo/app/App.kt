@@ -46,8 +46,15 @@ class App : ActLifecycleAppBase() {
 //        // 可选参数，需在初始化之前，穿山甲初始化状态回调
 //        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {}
 
+        /**
+         * 自定义优量汇的初始化配置
+         */
+//        //可参照 DownloadConfirmHelper 自定义下载确认的回调
+//        TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
+
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
+
         //初始化广点通
         TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "1101152570")
         //初始化百青藤
@@ -120,8 +127,8 @@ class App : ActLifecycleAppBase() {
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
                 AdProviderType.GDT.type to 1,
-                AdProviderType.BAIDU.type to 0,
-                AdProviderType.CSJ.type to 0
+                AdProviderType.CSJ.type to 1,
+                AdProviderType.BAIDU.type to 0
         ))
 
         /**

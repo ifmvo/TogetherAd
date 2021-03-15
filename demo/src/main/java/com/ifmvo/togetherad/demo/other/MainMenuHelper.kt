@@ -15,6 +15,7 @@ import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
 import com.ifmvo.togetherad.demo.splash.SplashActivity
+import com.ifmvo.togetherad.demo.splash.SplashHotActivity
 import com.ifmvo.togetherad.demo.splash.SplashProActivity
 
 /**
@@ -32,7 +33,7 @@ object MainMenuHelper {
     private val menuMainList = arrayListOf(
             mapOf(
                     "title" to "广告聚合 4.1.4",
-                    "desc" to "穿山甲3.5.0.2；优量汇4.333.1203；百度5.91"
+                    "desc" to "穿山甲3.5.0.3；优量汇4.333.1203；百度5.91"
             ),
             mapOf(
                     "title" to "开屏",
@@ -89,7 +90,7 @@ object MainMenuHelper {
             mapOf(
                     "title" to "请求并展示",
                     "desc" to "请求成功后立即自动展示",
-                    "class" to SplashActivity::class.java
+                    "class" to SplashHotActivity::class.java
             ),
             mapOf(
                     "title" to "请求和展示分开",

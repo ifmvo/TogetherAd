@@ -44,6 +44,9 @@ abstract class GdtProviderBanner : BaseAdProvider() {
             }
 
             override fun onADReceive() {
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    banner?.setDownloadConfirmListener(it)
+                }
                 callbackBannerLoaded(adProviderType, alias, listener)
             }
 

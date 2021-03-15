@@ -4,6 +4,7 @@ import android.content.Context
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.gdt.provider.GdtProvider
+import com.qq.e.comm.compliance.DownloadConfirmListener
 import com.qq.e.comm.managers.GDTADManager
 import org.jetbrains.annotations.NotNull
 
@@ -15,6 +16,9 @@ import org.jetbrains.annotations.NotNull
 object TogetherAdGdt {
 
     var idMapGDT = mutableMapOf<String, String>()
+
+    //下载确认的回调，可参考 DownloadConfirmHelper 进行自定义
+    var downloadConfirmListener: DownloadConfirmListener? = null
 
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull gdtAdAppId: String) {
         init(context, adProviderType, gdtAdAppId, null, null)

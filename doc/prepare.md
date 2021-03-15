@@ -181,11 +181,20 @@ class App : Application() {
 //        TogetherAdCsj.keywords = ""
 //        // 可选参数，需在初始化之前，设置额外的用户信息 **不能超过为1000个字符**
 //        TogetherAdCsj.data = ""
-//        //可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
+//        // 可选参数，需在初始化之前，可以设置隐私信息控制开关，需要重写其方法
 //        TogetherAdCsj.customController = object : TTCustomController() {}
+//        // 可选参数，需在初始化之前，穿山甲初始化状态回调
+//        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {}
+
+        /**
+         * 自定义优量汇的初始化配置
+         */
+//        //可参照 DownloadConfirmHelper 自定义下载确认的回调
+//        TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
 
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
+
         //初始化广点通
         TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "1101152570")
         //初始化百青藤
@@ -195,8 +204,9 @@ class App : Application() {
          * 配置所有广告位ID
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
-        TogetherAdCsj.idMapCsj = mapOf(
+        TogetherAdCsj.idMapCsj = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "801121648",
+                TogetherAdAlias.AD_SPLASH_HOT to "801121648",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
@@ -207,12 +217,14 @@ class App : Application() {
                 TogetherAdAlias.AD_INTER to "945509693",
                 TogetherAdAlias.AD_REWARD to "901121365",
                 TogetherAdAlias.AD_FULL_VIDEO to "901121073",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "901121737",//id是原生类型
-                TogetherAdAlias.AD_EXPRESS_HYBRID to "901121134"//id是原生模板2.0
+                TogetherAdAlias.AD_HYBRID_SPLASH to "901121737",//id是原生类型
+                TogetherAdAlias.AD_HYBRID_EXPRESS to "901121134",//id是原生模板2.0
+                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "901121073"//id是全屏视频
         )
 
-        TogetherAdGdt.idMapGDT = mapOf(
+        TogetherAdGdt.idMapGDT = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+                TogetherAdAlias.AD_SPLASH_HOT to "8863364436303842593",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
@@ -222,13 +234,15 @@ class App : Application() {
                 TogetherAdAlias.AD_BANNER to "4080052898050840",
                 TogetherAdAlias.AD_INTER to "1050691202717808",
                 TogetherAdAlias.AD_REWARD to "2090845242931421",
-                TogetherAdAlias.AD_FULL_VIDEO to "",//不支持
-                TogetherAdAlias.AD_SPLASH_HYBRID to "8863364436303842593",//id是开屏类型
-                TogetherAdAlias.AD_EXPRESS_HYBRID to "5060295460765937"//id是原生模板1.0
+                TogetherAdAlias.AD_FULL_VIDEO to "9051949928507973",
+                TogetherAdAlias.AD_HYBRID_SPLASH to "8863364436303842593",//id是开屏类型
+                TogetherAdAlias.AD_HYBRID_EXPRESS to "5060295460765937",//id是原生模板1.0
+                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "6040749702835933"
         )
 
-        TogetherAdBaidu.idMapBaidu = mapOf(
+        TogetherAdBaidu.idMapBaidu = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to "2058622",
+                TogetherAdAlias.AD_SPLASH_HOT to "2058622",
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
                 TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持
                 TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
@@ -239,8 +253,9 @@ class App : Application() {
                 TogetherAdAlias.AD_INTER to "2403633",
                 TogetherAdAlias.AD_REWARD to "5925490",
                 TogetherAdAlias.AD_FULL_VIDEO to "",
-                TogetherAdAlias.AD_SPLASH_HYBRID to "2058628",//id是原生类型
-                TogetherAdAlias.AD_EXPRESS_HYBRID to ""//不支持
+                TogetherAdAlias.AD_HYBRID_SPLASH to "2058628",//id是原生类型
+                TogetherAdAlias.AD_HYBRID_EXPRESS to "",//不支持
+                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to ""//不支持
         )
 
         /**
@@ -252,8 +267,8 @@ class App : Application() {
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
                 AdProviderType.GDT.type to 1,
-                AdProviderType.BAIDU.type to 1,
-                AdProviderType.CSJ.type to 3
+                AdProviderType.BAIDU.type to 0,
+                AdProviderType.CSJ.type to 0
         ))
 
         /**
@@ -285,9 +300,9 @@ class App : Application() {
          * 最大拉取延时时间 ms（ 请求广告的超时时间 ）
          * 3000 ≤ value ≥ 10000（ 小于3000时按3000计算，大于10000时按10000计算 ）
          * 全局实时生效
-         * 不设置代表没有超时时间
+         * 不设置或设置为0 -> 超时时间无限长
          */
-//        TogetherAd.maxFetchDelay = 5000
+//        TogetherAd.maxFetchDelay = 8000
 
         /**
          * 所有广告商所有广告类型的广告都会回调这个监听器
@@ -311,7 +326,7 @@ class App : Application() {
          * DispatchType.Priority    优先权重最高分发模式
          * DispatchType.Random  按照权重随机分发模式
          */
-        TogetherAd.dispatchType = DispatchType.Random
+//        TogetherAd.dispatchType = DispatchType.Random
     }
 }
 ```

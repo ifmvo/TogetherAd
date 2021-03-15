@@ -45,6 +45,9 @@ open class GdtProvider : GdtProviderSplash() {
 
     }
 
+    /**
+     * --------------------------- 横幅 ---------------------------
+     */
     object Banner {
 
         //Banner 刷新间隔时间

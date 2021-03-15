@@ -2,12 +2,13 @@
 
 ## 4.1.4
 
-2021.03.09
+2021.03.15
 
 1. 新增穿山甲的自渲染贴片广告
 2. 优量汇支持了全屏视频广告
-3. 更新穿山甲SDK到 v3.5.0.2
-4, 更新优量汇SDK到 v4.333.1203
+3. 优量汇添加下载确认的弹窗，可自定义: TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
+4. 更新穿山甲SDK到 v3.5.0.3
+5. 更新优量汇SDK到 v4.333.1203
 
 ## 4.1.3
 

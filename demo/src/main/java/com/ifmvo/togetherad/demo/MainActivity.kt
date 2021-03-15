@@ -9,7 +9,6 @@ import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
 import com.ifmvo.togetherad.demo.other.MainMenuHelper
-import com.ifmvo.togetherad.demo.splash.SplashActivity
 
 class MainActivity : ListActivity() {
 

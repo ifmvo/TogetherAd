@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.gdt.native_.express
 
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.custom.express.BaseNativeExpressView
+import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.nativ.NativeExpressADView
 import com.qq.e.ads.nativ.NativeExpressMediaListener
 import com.qq.e.comm.constants.AdPatternType
@@ -15,6 +16,11 @@ class NativeExpressViewGdt : BaseNativeExpressView() {
     override fun showNativeExpress(adProviderType: String, adObject: Any, container: ViewGroup) {
         if (adObject !is NativeExpressADView) return
 
+        TogetherAdGdt.downloadConfirmListener?.let {
+            adObject.setDownloadConfirmListener(it)
+        }
+
+        //设置下载确认
         if (adObject.boundData.adPatternType == AdPatternType.NATIVE_VIDEO) {
             adObject.setMediaListener(object : NativeExpressMediaListener {
                 override fun onVideoInit(adView: NativeExpressADView?) {}
