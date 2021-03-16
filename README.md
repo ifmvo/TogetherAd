@@ -44,13 +44,13 @@ TogetherAd 是全部由 Kotlin 编写的 Android 开源项目。( Java 编写的
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.4-3.5.0.3'
+    implementation 'com.matthewchen.togetherad:csj:4.1.5-3.5.0.3'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.4-4.333.1203'
+    implementation 'com.matthewchen.togetherad:gdt:4.1.5-4.333.1203'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.4-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.1.5-5.91'
     
 }
 ```
@@ -59,13 +59,9 @@ dependencies {
 
 ## 最新版本
 
-## 4.1.4 ( 2021.03.15 )
+## 4.1.5 ( 2021.03.16 )
 
-1. 新增穿山甲的自渲染贴片广告
-2. 优量汇支持了全屏视频广告
-3. 优量汇添加下载确认的弹窗，可自定义: TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
-4. 更新穿山甲SDK到 v3.5.0.3
-5. 更新优量汇SDK到 v4.333.1203
+1. 原生自渲染广告支持快速添加关闭按钮
 
 [点击查看更多日志](doc/update_log.md)
 

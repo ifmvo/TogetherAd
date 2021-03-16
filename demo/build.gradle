@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "4.1.4"
+        versionName "4.1.5"
         multiDexEnabled true
     }
 
@@ -64,11 +64,11 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
 //    //穿山甲（ 头条 ）
-//    implementation 'com.matthewchen.togetherad:csj:4.1.4-3.5.0.3'
+//    implementation 'com.matthewchen.togetherad:csj:4.1.5-3.5.0.3'
 //    //优量汇（ 腾讯广点通 ）
-//    implementation 'com.matthewchen.togetherad:gdt:4.1.4-4.333.1203'
+//    implementation 'com.matthewchen.togetherad:gdt:4.1.5-4.333.1203'
 //    //百青藤 ( 百度 Mob )
-//    implementation 'com.matthewchen.togetherad:baidu:4.1.4-5.91'
+//    implementation 'com.matthewchen.togetherad:baidu:4.1.5-5.91'
 
 
     //TogetherAd
