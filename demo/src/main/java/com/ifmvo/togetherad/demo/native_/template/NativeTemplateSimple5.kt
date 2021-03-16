@@ -10,18 +10,20 @@ import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple5
 /*
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeTemplateSimple5 : BaseNativeTemplate() {
+class NativeTemplateSimple5(onClose: (providerType: String) -> Unit = {}) : BaseNativeTemplate() {
+
+    private var mOnClose = onClose
 
     override fun getNativeView(adProviderType: String): BaseNativeView? {
         return when (adProviderType) {
             AdProviderType.GDT.type -> {
-                NativeViewGdtSimple5()
+                NativeViewGdtSimple5(mOnClose)
             }
             AdProviderType.CSJ.type -> {
-                NativeViewCsjSimple5()
+                NativeViewCsjSimple5(mOnClose)
             }
             AdProviderType.BAIDU.type -> {
-                NativeViewBaiduSimple5()
+                NativeViewBaiduSimple5(mOnClose)
             }
             else -> throw Exception("模板配置错误")
         }

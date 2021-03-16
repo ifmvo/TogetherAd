@@ -153,12 +153,12 @@ class AdHelperHybridSplash(
     fun showAd(@NotNull container: ViewGroup): Boolean {
 
         if (mAdObject != null) {
-            fun onDismiss(adProviderType: String) {
+            fun onClose(adProviderType: String) {
                 mListener?.onAdDismissed(adProviderType)
                 destroyAd()
             }
 
-            AdHelperNativePro.show(adObject = mAdObject, container = container, nativeTemplate = NativeTemplateSimple3(::onDismiss), listener = object : NativeViewListener {
+            AdHelperNativePro.show(adObject = mAdObject, container = container, nativeTemplate = NativeTemplateSimple3(::onClose), listener = object : NativeViewListener {
                 override fun onAdExposed(providerType: String) {
                     mListener?.onAdExposure(providerType)
                 }

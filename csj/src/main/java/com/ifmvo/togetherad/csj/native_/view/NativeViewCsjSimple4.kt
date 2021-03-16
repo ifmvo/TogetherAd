@@ -13,9 +13,9 @@ import kotlin.math.roundToInt
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNativeViewCsj() {
+class NativeViewCsjSimple4(onClose: (providerType: String) -> Unit = {}) : BaseNativeViewCsj() {
 
-    private var mOnDismiss: (providerType: String) -> Unit = onDismiss
+    private var mOnClose: (providerType: String) -> Unit = onClose
 
     override fun getLayoutRes(): Int {
         return R.layout.layout_native_view_csj_simple_4
@@ -62,7 +62,7 @@ class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNati
             container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
-                mOnDismiss.invoke(adProviderType)
+                mOnClose.invoke(adProviderType)
             }
         }
 
@@ -70,7 +70,7 @@ class NativeViewCsjSimple4(onDismiss: (providerType: String) -> Unit) : BaseNati
         mTimer?.cancel()
         mTimer = object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
-                mOnDismiss.invoke(adProviderType)
+                mOnClose.invoke(adProviderType)
             }
 
             override fun onTick(millisUntilFinished: Long) {

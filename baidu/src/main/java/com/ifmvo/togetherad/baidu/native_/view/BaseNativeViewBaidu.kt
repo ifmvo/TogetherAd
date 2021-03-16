@@ -14,7 +14,9 @@ import com.ifmvo.togetherad.core.listener.NativeViewListener
  *
  * Created by Matthew Chen on 2020/9/14.
  */
-abstract class BaseNativeViewBaidu : BaseNativeView() {
+abstract class BaseNativeViewBaidu(onClose: (providerType: String) -> Unit = {}) : BaseNativeView() {
+
+    private var mOnClose = onClose
 
     var rootView: View? = null
 

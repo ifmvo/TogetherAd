@@ -17,9 +17,12 @@ import com.ifmvo.togetherad.csj.R
  *
  * Created by Matthew Chen on 2020/9/27.
  */
-abstract class BaseNativeViewCsj : BaseNativeView() {
+abstract class BaseNativeViewCsj(onClose: (adProviderType: String) -> Unit = {}) : BaseNativeView() {
 
     var rootView: View? = null
+
+    //关闭按钮的回调
+    private var mOnClose = onClose
 
     open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_csj
@@ -75,8 +78,14 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
         return rootView?.findViewById(R.id.csj_img_container)
     }
 
+    //广告创意按钮
     open fun getActionButton(): Button? {
         return rootView?.findViewById(R.id.csj_btn_action)
+    }
+
+    //关闭按钮，可以重写为任意类型的View
+    open fun getCloseButton(): View? {
+        return rootView?.findViewById(R.id.csj_btn_close)
     }
 
     //可点击ViewList，可重写
@@ -113,6 +122,12 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
             TogetherAd.mImageLoader?.loadImage(container.context, it, adObject.icon.imageUrl)
         }
 
+        //CloseBtn
+        getCloseButton()?.visibility = if (mOnClose == {}) View.GONE else View.VISIBLE
+        getCloseButton()?.setOnClickListener {
+            mOnClose.invoke(adProviderType)
+        }
+
         //标题和描述
         getTitleTextView()?.text = adObject.title
         getDescTextView()?.text = adObject.description
@@ -146,21 +161,25 @@ abstract class BaseNativeViewCsj : BaseNativeView() {
         })
 
         // 注册普通点击区域，创意点击区域。重要! 这个涉及到广告计费及交互，必须正确调用。convertView必须使用ViewGroup。
-        adObject.registerViewForInteraction(rootView as ViewGroup, getClickableViews() ?: mutableListOf(), getCreativeViews() ?: mutableListOf(), object : TTNativeAd.AdInteractionListener {
-                override fun onAdClicked(view: View, ad: TTNativeAd) {
-                    // 点击普通区域的回调
-                }
+        adObject.registerViewForInteraction(
+                rootView as ViewGroup,
+                getClickableViews() ?: mutableListOf(),
+                getCreativeViews() ?: mutableListOf(),
+                object : TTNativeAd.AdInteractionListener {
+                    override fun onAdClicked(view: View, ad: TTNativeAd) {
+                        // 点击普通区域的回调
+                    }
 
-                override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
-                    // 点击创意区域的回调
-                    listener?.onAdClicked(adProviderType)
-                }
+                    override fun onAdCreativeClick(view: View, ad: TTNativeAd) {
+                        // 点击创意区域的回调
+                        listener?.onAdClicked(adProviderType)
+                    }
 
-                override fun onAdShow(ad: TTNativeAd) {
-                    // 广告曝光展示的回调
-                    listener?.onAdExposed(adProviderType)
-                }
-            })
+                    override fun onAdShow(ad: TTNativeAd) {
+                        // 广告曝光展示的回调
+                        listener?.onAdExposed(adProviderType)
+                    }
+                })
 
         when (adObject.imageMode) {
             //视频类型

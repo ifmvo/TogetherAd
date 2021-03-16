@@ -186,12 +186,12 @@ class AdHelperHybridVerticalPreMovie(
                 mListener?.onAdLoaded(providerType)
 
                 mAdObject = adList[0]
-                fun onDismiss(adProviderType: String) {
+                fun onClose(adProviderType: String) {
                     AdHelperNativePro.destroyAd(mAdObject)
                     mListener?.onAdClose(adProviderType)
                 }
 
-                AdHelperNativePro.show(adObject = mAdObject, container = mContainer, nativeTemplate = NativeTemplateSimple3(::onDismiss), listener = object : NativeViewListener {
+                AdHelperNativePro.show(adObject = mAdObject, container = mContainer, nativeTemplate = NativeTemplateSimple3(::onClose), listener = object : NativeViewListener {
                     override fun onAdExposed(providerType: String) {
                         mListener?.onAdExpose(providerType)
                     }

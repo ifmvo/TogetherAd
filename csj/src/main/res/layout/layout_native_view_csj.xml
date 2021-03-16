@@ -56,8 +56,7 @@
             android:id="@+id/csj_ad_logo"
             android:layout_width="45dp"
             android:layout_height="15dp"
-            android:layout_gravity="bottom|right"
-            tools:src="@drawable/ic_ad_logo_csj" />
+            android:layout_gravity="bottom|right" />
 
     </FrameLayout>
 
@@ -135,5 +134,11 @@
         android:id="@+id/csj_btn_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/csj_btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭广告" />
 
 </LinearLayout>

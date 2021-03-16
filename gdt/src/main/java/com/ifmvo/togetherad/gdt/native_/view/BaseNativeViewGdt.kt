@@ -25,7 +25,7 @@ import com.qq.e.comm.util.AdError
  *
  * Created by Matthew Chen on 2020/9/16.
  */
-abstract class BaseNativeViewGdt : BaseNativeView() {
+abstract class BaseNativeViewGdt(onClose: (adProviderType: String) -> Unit = {}) : BaseNativeView() {
 
     //设置视频广告在预览页自动播放时是否静音，默认为true，静音自动播放；
     // 模板渲染视频、插屏2.0视频、自渲染2.0视频都可使用
@@ -58,6 +58,9 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
 
     var rootView: View? = null
 
+    //关闭按钮的回调
+    private var mOnClose = onClose
+
     open fun getLayoutRes(): Int {
         return R.layout.layout_native_view_gdt
     }
@@ -74,6 +77,11 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
     //action 按钮（ 下载、浏览、打电话。。。 ）
     open fun getActionButton(): Button? {
         return rootView?.findViewById(R.id.btn_download)
+    }
+
+    //关闭按钮
+    open fun getCloseButton(): View? {
+        return rootView?.findViewById(R.id.btn_close)
     }
 
     //标题文字
@@ -243,6 +251,12 @@ abstract class BaseNativeViewGdt : BaseNativeView() {
 
         //设置按钮的初始文字
         getActionButton()?.let { it.text = getActionBtnText(adObject) }
+
+        //设置关闭按钮
+        getCloseButton()?.visibility = if (mOnClose == {}) View.GONE else View.VISIBLE
+        getCloseButton()?.setOnClickListener {
+            mOnClose.invoke(adProviderType)
+        }
     }
 
     /**

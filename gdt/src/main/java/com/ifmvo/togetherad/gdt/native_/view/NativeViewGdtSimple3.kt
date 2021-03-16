@@ -14,9 +14,9 @@ import kotlin.math.roundToInt
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNativeViewGdt() {
+class NativeViewGdtSimple3(onClose: (providerType: String) -> Unit = {}) : BaseNativeViewGdt() {
 
-    private var mOnDismiss: (providerType: String) -> Unit = onDismiss
+    private var mOnClose: (providerType: String) -> Unit = onClose
 
     override fun getLayoutRes(): Int {
         return R.layout.layout_native_view_gdt_simple_3
@@ -53,7 +53,7 @@ class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
             setOnClickListener {
                 mTimer?.cancel()
                 container.removeAllViews()
-                mOnDismiss.invoke(adProviderType)
+                mOnClose.invoke(adProviderType)
             }
         }
 
@@ -62,7 +62,7 @@ class NativeViewGdtSimple3(onDismiss: (providerType: String) -> Unit) : BaseNati
         mTimer = object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
                 container.removeAllViews()
-                mOnDismiss.invoke(adProviderType)
+                mOnClose.invoke(adProviderType)
             }
 
             override fun onTick(millisUntilFinished: Long) {
