@@ -10,7 +10,7 @@ import com.ifmvo.togetherad.gdt.native_.view.NativeViewGdtSimple4
 /*
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeTemplateSimple4(onClose: (providerType: String) -> Unit = {}) : BaseNativeTemplate() {
+class NativeTemplateSimple4(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeTemplate() {
 
     private var mOnClose = onClose
 

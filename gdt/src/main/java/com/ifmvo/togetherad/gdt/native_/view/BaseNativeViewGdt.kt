@@ -22,7 +22,7 @@ import com.qq.e.comm.util.AdError
  *
  * Created by Matthew Chen on 2020/9/16.
  */
-abstract class BaseNativeViewGdt(onClose: (adProviderType: String) -> Unit = {}) : BaseNativeView() {
+abstract class BaseNativeViewGdt(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeView() {
 
     //设置视频广告在预览页自动播放时是否静音，默认为true，静音自动播放；
     // 模板渲染视频、插屏2.0视频、自渲染2.0视频都可使用
@@ -250,9 +250,9 @@ abstract class BaseNativeViewGdt(onClose: (adProviderType: String) -> Unit = {})
         getActionButton()?.let { it.text = getActionBtnText(adObject) }
 
         //设置关闭按钮
-        getCloseButton()?.visibility = if (mOnClose == {}) View.GONE else View.VISIBLE
+        getCloseButton()?.visibility = if (mOnClose == null) View.GONE else View.VISIBLE
         getCloseButton()?.setOnClickListener {
-            mOnClose.invoke(adProviderType)
+            mOnClose?.invoke(adProviderType)
         }
     }
 

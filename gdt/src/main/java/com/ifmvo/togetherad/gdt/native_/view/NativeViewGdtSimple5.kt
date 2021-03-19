@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewGdtSimple5(onClose: (adProviderType: String) -> Unit = {}) : BaseNativeViewGdt(onClose) {
+class NativeViewGdtSimple5(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeViewGdt(onClose) {
 
     /**
      * 重写该方法，可以设置广告Logo标识的位置

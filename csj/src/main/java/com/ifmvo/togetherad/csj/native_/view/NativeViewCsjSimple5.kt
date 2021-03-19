@@ -8,7 +8,7 @@ import com.ifmvo.togetherad.csj.native_.view.BaseNativeViewCsj
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewCsjSimple5(onClose: (providerType: String) -> Unit = {}) : BaseNativeViewCsj(onClose){
+class NativeViewCsjSimple5(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeViewCsj(onClose){
 
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         super.showNative(adProviderType, adObject, container, listener)

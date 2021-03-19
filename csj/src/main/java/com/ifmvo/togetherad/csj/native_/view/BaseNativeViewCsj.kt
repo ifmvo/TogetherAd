@@ -17,7 +17,7 @@ import com.ifmvo.togetherad.csj.R
  *
  * Created by Matthew Chen on 2020/9/27.
  */
-abstract class BaseNativeViewCsj(onClose: (adProviderType: String) -> Unit = {}) : BaseNativeView() {
+abstract class BaseNativeViewCsj(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeView() {
 
     var rootView: View? = null
 
@@ -123,9 +123,9 @@ abstract class BaseNativeViewCsj(onClose: (adProviderType: String) -> Unit = {})
         }
 
         //CloseBtn
-        getCloseButton()?.visibility = if (mOnClose == {}) View.GONE else View.VISIBLE
+        getCloseButton()?.visibility = if (mOnClose == null) View.GONE else View.VISIBLE
         getCloseButton()?.setOnClickListener {
-            mOnClose.invoke(adProviderType)
+            mOnClose?.invoke(adProviderType)
         }
 
         //标题和描述

@@ -11,9 +11,9 @@ import kotlin.math.roundToInt
 /**
  * Created by Matthew Chen on 2020-04-21.
  */
-class NativeViewBaiduSimple4(onClose: (providerType: String) -> Unit = {}) : BaseNativeViewBaidu() {
+class NativeViewBaiduSimple4(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeViewBaidu() {
 
-    private var mOnClose: (providerType: String) -> Unit = onClose
+    private var mOnClose = onClose
     private var mTimer: CountDownTimer? = null
 
     override fun getLayoutRes(): Int {
@@ -32,7 +32,7 @@ class NativeViewBaiduSimple4(onClose: (providerType: String) -> Unit = {}) : Bas
             container.addView(this, customSkipView.getLayoutParams())
             setOnClickListener {
                 mTimer?.cancel()
-                mOnClose.invoke(adProviderType)
+                mOnClose?.invoke(adProviderType)
             }
         }
 
@@ -40,7 +40,7 @@ class NativeViewBaiduSimple4(onClose: (providerType: String) -> Unit = {}) : Bas
         mTimer?.cancel()
         mTimer = object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
-                mOnClose.invoke(adProviderType)
+                mOnClose?.invoke(adProviderType)
             }
 
             override fun onTick(millisUntilFinished: Long) {

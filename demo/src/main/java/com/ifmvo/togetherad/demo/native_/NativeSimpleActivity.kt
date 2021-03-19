@@ -75,9 +75,7 @@ class NativeSimpleActivity : AppCompatActivity() {
         }
 
         btnShow5.setOnClickListener {
-            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple5 {
-                adContainer.removeAllViews()
-            })
+            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple5())
         }
     }
 
