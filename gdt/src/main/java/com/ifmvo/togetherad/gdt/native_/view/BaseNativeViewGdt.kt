@@ -2,10 +2,7 @@ package com.ifmvo.togetherad.gdt.native_.view
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
@@ -174,7 +171,7 @@ abstract class BaseNativeViewGdt(onClose: (adProviderType: String) -> Unit = {})
             }
         }
 
-        adObject.bindAdToView(container.context, getNativeAdContainer(), null, getClickableViews(), getCustomClickableViews())
+        adObject.bindAdToView(container.context, getNativeAdContainer(), getLogoLayoutParams(), getClickableViews(), getCustomClickableViews())
 
         //视频需要设置 静音、播放、暂停、停止按钮
         if (adObject.adPatternType == AdPatternType.NATIVE_VIDEO) {
@@ -275,5 +272,12 @@ abstract class BaseNativeViewGdt(onClose: (adProviderType: String) -> Unit = {})
             16 -> "下载失败，重新下载"
             else -> "浏览"
         }
+    }
+
+    /**
+     * 可以根据自己的情况重写，设置广告标示和logo的位置
+     */
+    open fun getLogoLayoutParams(): FrameLayout.LayoutParams? {
+        return null
     }
 }
