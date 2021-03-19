@@ -85,6 +85,8 @@ dependencies {
 
 - [扩展](doc/extend.md)
 
+- [常见问题](doc/question.md)
+
 ![](img/TogetherAd_Feature.png)
 
 ## 混淆 proguard-rules.pro
