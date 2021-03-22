@@ -75,7 +75,9 @@ class NativeSimpleActivity : AppCompatActivity() {
         }
 
         btnShow5.setOnClickListener {
-            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple5())
+            showAd(adObject = mAdObject, nativeTemplate = NativeTemplateSimple5 {
+
+            })
         }
     }
 

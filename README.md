@@ -42,13 +42,13 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.6-3.5.0.3'
+    implementation 'com.matthewchen.togetherad:csj:4.1.7-3.5.0.3'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.6-4.333.1203'
+    implementation 'com.matthewchen.togetherad:gdt:4.1.7-4.333.1203'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.6-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.1.7-5.91'
     
 }
 ```

@@ -52,6 +52,11 @@ abstract class BaseNativeViewBaidu(onClose: ((adProviderType: String) -> Unit)? 
         return rootView?.findViewById(R.id.native_brand_name)
     }
 
+    //关闭按钮，可以重写为任意类型的View
+    open fun getCloseButton(): View? {
+        return rootView?.findViewById(R.id.btn_close)
+    }
+
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
         if (adObject !is NativeResponse) {
             return
@@ -70,6 +75,12 @@ abstract class BaseNativeViewBaidu(onClose: ((adProviderType: String) -> Unit)? 
         getTitleTextView()?.let { it.text = adObject.title }
         getDescTextView()?.let { it.text = adObject.desc }
         getBrandNameTextView()?.let { it.text = adObject.brandName }
+
+        //CloseBtn
+        getCloseButton()?.visibility = if (mOnClose == null) View.GONE else View.VISIBLE
+        getCloseButton()?.setOnClickListener {
+            mOnClose?.invoke(adProviderType)
+        }
 
         //Handle
         adObject.recordImpression(rootView)
