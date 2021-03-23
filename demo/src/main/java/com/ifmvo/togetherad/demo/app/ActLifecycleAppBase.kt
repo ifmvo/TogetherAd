@@ -31,7 +31,7 @@ open class ActLifecycleAppBase : Application() {
 
                 //热启动 && 应用退到后台时间超过10s
                 if (mActivityCount.get() == 0 && System.currentTimeMillis() - mAppStopTimeMillis > 10 * 1000 && activity !is SplashActivity) {
-                    SplashHotActivity.action(activity!!)
+                    SplashHotActivity.action(activity)
                 }
 
                 //+1

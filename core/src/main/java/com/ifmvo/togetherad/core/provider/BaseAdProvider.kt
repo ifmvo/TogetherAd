@@ -92,33 +92,6 @@ abstract class BaseAdProvider : IAdProvider {
     }
 
     /**
-     * --------------------------- 自渲染贴片 ---------------------------
-     */
-    protected fun callbackStreamStartRequest(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeListener) {
-        Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 开始请求".logi()
-            listener.onAdStartRequest(adProviderType)
-            TogetherAd.allAdListener?.onAdStartRequest(adProviderType, alias)
-        }
-    }
-
-    protected fun callbackStreamLoaded(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeListener, @NotNull adList: List<Any>) {
-        Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
-            listener.onAdLoaded(adProviderType, adList)
-            TogetherAd.allAdListener?.onAdLoaded(adProviderType, alias)
-        }
-    }
-
-    protected fun callbackStreamFailed(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeListener, errorCode: Int?, errorMsg: String?) {
-        Handler(Looper.getMainLooper()).post {
-            "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
-            listener.onAdFailed(adProviderType, errorMsg)
-            TogetherAd.allAdListener?.onAdFailed(adProviderType, alias, errorMsg)
-        }
-    }
-
-    /**
      * --------------------------- 原生信息流模板 ---------------------------
      */
     protected fun callbackNativeExpressStartRequest(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpress2Listener) {

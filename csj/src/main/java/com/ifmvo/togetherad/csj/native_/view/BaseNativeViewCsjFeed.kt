@@ -2,30 +2,111 @@ package com.ifmvo.togetherad.csj.native_.view
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener
 import com.bytedance.sdk.openadsdk.TTFeedAd
 import com.bytedance.sdk.openadsdk.TTNativeAd
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.custom.native_.BaseNativeView
 import com.ifmvo.togetherad.core.listener.NativeViewListener
+import com.ifmvo.togetherad.csj.R
 
 /**
  *
  * Created by Matthew Chen on 2020/9/27.
  */
-abstract class BaseNativeViewCsj(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeViewCsjFeed(onClose) {
+abstract class BaseNativeViewCsjFeed(onClose: ((adProviderType: String) -> Unit)? = null) : BaseNativeView() {
+
+    var rootView: View? = null
 
     //关闭按钮的回调
     private var mOnClose = onClose
 
+    open fun getLayoutRes(): Int {
+        return R.layout.layout_native_view_csj
+    }
+
+    //广告Logo
+    open fun getAdLogoImageView(): ImageView? {
+        return rootView?.findViewById(R.id.csj_ad_logo)
+    }
+
+    //标题文字
+    open fun getTitleTextView(): TextView? {
+        return rootView?.findViewById(R.id.csj_tv_title)
+    }
+
+    //描述文字
+    open fun getDescTextView(): TextView? {
+        return rootView?.findViewById(R.id.csj_tv_desc)
+    }
+
+    //描述文字
+    open fun getSourceTextView(): TextView? {
+        return rootView?.findViewById(R.id.csj_tv_source)
+    }
+
+    //icon 图
+    open fun getIconImageView(): ImageView? {
+        return rootView?.findViewById(R.id.csj_img_logo)
+    }
+
+    //主图1
+    open fun getMainImageView_1(): ImageView? {
+        return rootView?.findViewById(R.id.csj_img_poster1)
+    }
+
+    //主图2
+    open fun getMainImageView_2(): ImageView? {
+        return rootView?.findViewById(R.id.csj_img_poster2)
+    }
+
+    //主图3
+    open fun getMainImageView_3(): ImageView? {
+        return rootView?.findViewById(R.id.csj_img_poster2)
+    }
+
+    //视频容器
+    open fun getVideoContainer(): ViewGroup? {
+        return rootView?.findViewById(R.id.csj_video_container)
+    }
+
+    //图片容器
+    open fun getImageContainer(): ViewGroup? {
+        return rootView?.findViewById(R.id.csj_img_container)
+    }
+
+    //广告创意按钮
+    open fun getActionButton(): Button? {
+        return rootView?.findViewById(R.id.csj_btn_action)
+    }
+
+    //关闭按钮，可以重写为任意类型的View
+    open fun getCloseButton(): View? {
+        return rootView?.findViewById(R.id.csj_btn_close)
+    }
+
+    //可点击ViewList，可重写
+    open fun getClickableViews(): List<View>? {
+        // 可以被点击的view, 也可以把convertView放进来意味整个item可被点击，点击会跳转到落地页
+        val clickViewList = mutableListOf<View>()
+        clickViewList.add(rootView!!)
+        return clickViewList
+    }
+
+    // 创意点击区域的view 点击根据不同的创意进行下载或拨打电话动作
+    //如果需要点击图文区域也能进行下载或者拨打电话动作，请将图文区域的view传入creativeViewList
+    open fun getCreativeViews(): List<View>? {
+        val creativeViewList = mutableListOf<View>()
+        getActionButton()?.let { creativeViewList.add(it) }
+        return creativeViewList
+    }
+
     override fun showNative(adProviderType: String, adObject: Any, container: ViewGroup, listener: NativeViewListener?) {
-
-        if (adObject is TTFeedAd) {
-            super.showNative(adProviderType, adObject, container, listener)
-            return
-        }
-
-        if (adObject !is TTNativeAd) {
+        if (adObject !is TTFeedAd) {
             return
         }
 
@@ -104,18 +185,12 @@ abstract class BaseNativeViewCsj(onClose: ((adProviderType: String) -> Unit)? = 
         when (adObject.imageMode) {
             //视频类型
             TTAdConstant.IMAGE_MODE_VIDEO, TTAdConstant.IMAGE_MODE_VIDEO_VERTICAL -> {
-                getImageContainer()?.visibility = View.VISIBLE
-                getVideoContainer()?.visibility = View.GONE
+                getImageContainer()?.visibility = View.GONE
+                getVideoContainer()?.visibility = View.VISIBLE
+                getMainImageView_1()?.visibility = View.GONE
                 getMainImageView_2()?.visibility = View.GONE
                 getMainImageView_3()?.visibility = View.GONE
-                val videoCoverImage = adObject.videoCoverImage
-
-                //信息流如果是视频的话，就只展示视频封面
-                if (videoCoverImage != null && videoCoverImage.imageUrl != null) {
-                    getMainImageView_1()?.let {
-                        TogetherAd.mImageLoader?.loadImage(container.context, it, videoCoverImage.imageUrl)
-                    }
-                }
+                getVideoContainer()?.addView(adObject.adView)
             }
             //单个图片的类型
             TTAdConstant.IMAGE_MODE_LARGE_IMG, TTAdConstant.IMAGE_MODE_SMALL_IMG, TTAdConstant.IMAGE_MODE_VERTICAL_IMG -> {
@@ -154,6 +229,26 @@ abstract class BaseNativeViewCsj(onClose: ((adProviderType: String) -> Unit)? = 
                         TogetherAd.mImageLoader?.loadImage(container.context, it, imageList[2].imageUrl)
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * 根据广告的状态返回按钮应该展示的文字
+     */
+    open fun getActionBtnText(ad: TTNativeAd): String {
+        return when (ad.interactionType) {
+            TTAdConstant.INTERACTION_TYPE_DOWNLOAD -> {
+                "下载"
+            }
+            TTAdConstant.INTERACTION_TYPE_DIAL -> {
+                "立即拨打"
+            }
+            TTAdConstant.INTERACTION_TYPE_LANDING_PAGE, TTAdConstant.INTERACTION_TYPE_BROWSER -> {
+                "查看详情"
+            }
+            else -> {
+                "查看详情"
             }
         }
     }
