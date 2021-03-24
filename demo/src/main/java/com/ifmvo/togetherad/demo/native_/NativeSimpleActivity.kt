@@ -96,6 +96,7 @@ class NativeSimpleActivity : AppCompatActivity() {
         //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_FULL_SCREEN_VIDEO
         //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_REWARD_VIDEO
         //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_SPLASH
+        //  CsjProvider.Native.nativeAdType = AdSlot.TYPE_STREAM
         //--------------------------------------------------------------------------------------
         CsjProvider.Native.nativeAdType = AdSlot.TYPE_FEED
 
