@@ -1,5 +1,11 @@
 # 更新日志
 
+## 4.1.8
+
+2021.03.24
+
+1. 穿山甲的视频贴片广告合并到 AdHelperNativePro ( CsjProvider.Native.nativeAdType = AdSlot.TYPE_STREAM )，展示方式和原生自渲染一样
+
 ## 4.1.7
 
 2021.03.22
