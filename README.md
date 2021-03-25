@@ -25,7 +25,9 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-## 有疑问？微信扫描下面二维码 ``留言`` 即可，回复 ``apk`` 也可获取项目示例安装包
+## 有疑问？
+
+微信扫描下面二维码 ``留言`` 即可，回复 ``apk`` 也可获取项目示例安装包
 
 <img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
@@ -56,8 +58,6 @@ dependencies {
 - [扩展](doc/extend.md)
 
 - [常见问题](doc/question.md)
-
-![](img/TogetherAd_Feature.png)
 
 ## 混淆 proguard-rules.pro
 
