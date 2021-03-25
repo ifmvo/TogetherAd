@@ -4,30 +4,6 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的 ``接入并使用`` 国内多家主流广告 SDK。
 
-## 特色功能
-
-### 1. 主流SDK随意搭配组合
-
-实际项目中，往往会接入多家广告SDK，以实现收益最大化的目的。
-
-``TogetherAd``帮助开发者将其集成在一起，开发者可以任选组合进行搭配使用
-
-### 2. 支持权重配置
-
-因为各个平台分发广告的量以及价格都是不一样的，所以需要动态配置请求的比例。
-
-例如：有三家广告平台 A、B、C，你认为 A 的单价和收入都是最高的，想要多展示一点。
-
-那么可以配置他们的权重：A：B：C = 2：1：1
-
-``TogetherAd`` 会根据配置的权重随机请求一家平台的广告，如果请求广告的总数是 40000 次。
-
-那么每家平台请求的次数就会趋近于：A: 20000, B:10000, C:10000
-
-### 3. 支持失败切换
-
-如果某个平台的广告请求失败或没有量，会自动在其他广告中随机出一种再次请求，这样可以尽可能多的展示广告，使收益最大化
-
 ## Gradle 添加依赖
 
 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
@@ -49,15 +25,15 @@ dependencies {
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
 
-## 最新版本
+## 有疑问？微信扫描下面二维码 ``留言`` 即可，回复 ``apk`` 也可获取项目示例安装包
 
-## 4.1.8 ( 2021.03.24 )
+<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
-1. 穿山甲的视频贴片广告合并到 AdHelperNativePro ( CsjProvider.Native.nativeAdType = AdSlot.TYPE_STREAM )，展示方式和原生自渲染一样
-
-[点击查看更多日志](doc/update_log.md)
+[点击查看更新日志](doc/update_log.md)
 
 ## 使用方法
+
+- [特色功能](doc/feature.md)
 
 - [准备工作及初始化](doc/prepare.md)
 
@@ -89,12 +65,6 @@ dependencies {
 
 当然你也可以点击这里查看每个资源库的混淆规则： [core](core/proguard-rules.pro)、[gdt](gdt/proguard-rules.pro)、[csj](csj/proguard-rules.pro)、[baidu](baidu/proguard-rules.pro)
 
-## 扩展
-
-``TogetherAd``目前支持的广告平台有：穿山甲、广点通、百青藤。
-
-如果你想接入其他广告平台，或者自己有API组装。可参考[这里进行自定义扩展](doc/extend.md)。
-
 ## 相关文档收集
 
 - [优量汇接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
@@ -112,10 +82,6 @@ dependencies {
 ## 致谢
 
 -  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase) 
-
-## 有疑问？微信扫描下面二维码留言即可，回复 "apk" 也可获取项目示例安装包
-
-<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
 ## License
 
