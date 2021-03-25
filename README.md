@@ -121,10 +121,9 @@ dependencies {
 
 ## 有疑问？加我微信备注"广告"拉进微信群，或者加入 QQ 交流群
 
-<img src="img/Wechat.jpeg"  height="200" width="200">
+[公众号图片](img/qrcode_for_gh_e66be0cfb1f0_258.jpeg)
 
-
-<img src="img/QQ.png"  height="265" width="200">
+<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
 ## License
 
