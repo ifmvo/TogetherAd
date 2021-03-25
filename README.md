@@ -4,6 +4,8 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的 ``接入并使用`` 国内多家主流广告 SDK。
 
+微信扫描底部二维码，回复 ``apk`` 可下载 Demo Apk 尝鲜
+
 ## Gradle 添加依赖
 
 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
@@ -24,14 +26,6 @@ dependencies {
 ```
 
 > 版本号的规则：TogetherAd版本-对应广告商的SDK版本号
-
-## 有疑问？
-
-微信扫描下面二维码 ``留言`` 即可，回复 ``apk`` 也可获取项目示例安装包
-
-<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
-
-[点击查看更新日志](doc/update_log.md)
 
 ## 使用方法
 
@@ -59,6 +53,8 @@ dependencies {
 
 - [常见问题](doc/question.md)
 
+- [版本更新日志](doc/update_log.md)
+
 ## 混淆 proguard-rules.pro
 
 资源库中已自带混淆规则，通常情况下无需手动配置。
@@ -81,7 +77,13 @@ dependencies {
 
 ## 致谢
 
--  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase) 
+-  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase)
+
+## 有疑问？
+
+微信扫描下面二维码 ``留言`` 或 ``联系我``
+
+<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
 ## License
 
