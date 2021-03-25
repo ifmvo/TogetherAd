@@ -4,12 +4,6 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的 ``接入并使用`` 国内多家主流广告 SDK。
 
-![](img/TogetherAd.png)
-
-[点击下载 Demo APK 尝鲜](https://www.pgyer.com/4jeV) 或者扫描下面二维码下载
-
-<img src="img/QR-code.png"  height="200" width="200">
-
 ## 特色功能
 
 ### 1. 主流SDK随意搭配组合
@@ -119,9 +113,7 @@ dependencies {
 
 -  在 Provider 分发逻辑上借鉴了 [PlayerBase](https://github.com/jiajunhui/PlayerBase) 
 
-## 有疑问？加我微信备注"广告"拉进微信群，或者加入 QQ 交流群
-
-[公众号图片](img/qrcode_for_gh_e66be0cfb1f0_258.jpeg)
+## 有疑问？微信扫描下面二维码留言即可，回复 "apk" 也可获取项目示例安装包
 
 <img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
