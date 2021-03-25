@@ -79,7 +79,7 @@ dependencies {
 
 ### 有疑问？
 
-微信扫描下面二维码 ``联系我``，关注后可邀请进微信群
+微信扫描下面二维码, 关注后 ``联系我`` 可邀请进微信交流群，更多大佬为你答疑。
 
 <img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
 
