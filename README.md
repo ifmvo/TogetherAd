@@ -10,19 +10,29 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 ### Gradle 添加依赖
 
+项目根目录下的 build.gradle 文件中添加 ``jcenter`` 仓库
+
+```gradle
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+```
+
 根据自身需求``任选``以下 1 至 3 个依赖，随意组合搭配
 
 ```gradle
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.8-3.5.0.3'
+    implementation 'com.matthewchen.togetherad:csj:4.1.9-3.5.5.0'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.8-4.333.1203'
+    implementation 'com.matthewchen.togetherad:gdt:4.1.9-4.333.1203'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.8-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.1.9-5.91'
     
 }
 ```

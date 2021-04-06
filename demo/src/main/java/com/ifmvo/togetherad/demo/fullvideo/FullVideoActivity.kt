@@ -32,7 +32,7 @@ class FullVideoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reward)
+        setContentView(R.layout.activity_full_video)
 
         //使用 Map<String, Int> 配置广告商 权重，通俗的讲就是 随机请求的概率占比
         val ratioMapFullVideo = linkedMapOf(
@@ -55,7 +55,7 @@ class FullVideoActivity : AppCompatActivity() {
 
             override fun onAdFailed(providerType: String, failedMsg: String?) {
                 //请求失败的回调，失败切换的情况会回调多次
-                addLog("请求失败: $providerType")
+                addLog("请求失败: $providerType: $failedMsg")
                 "onAdFailed: $providerType: $failedMsg".loge(tag)
             }
 
