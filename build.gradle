@@ -8,6 +8,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.kezong:fat-aar:1.2.12'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
 

@@ -2,6 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Your Group
+group = 'com.github.ifmvo'
+
 android {
     compileSdkVersion 28
 
@@ -12,7 +17,7 @@ android {
         versionName "4.1.9"
     }
 
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
 
