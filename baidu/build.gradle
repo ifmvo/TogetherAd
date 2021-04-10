@@ -6,7 +6,7 @@ apply plugin: 'com.kezong.fat-aar'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.matthewchen'
+group = 'com.matthewchen.togetherad'
 
 android {
     compileSdkVersion 28
