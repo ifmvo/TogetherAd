@@ -70,6 +70,11 @@ dependencies {
 //    //百青藤 ( 百度 Mob )
 //    implementation 'com.matthewchen.togetherad:baidu:4.1.9-5.91'
 
+//    implementation 'com.github.ifmvo.TogetherAd:core:4.1.9'
+//    implementation 'com.github.ifmvo.TogetherAd:gdt:4.1.9'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:4.1.9'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:4.1.9'
+
 
     //TogetherAd
     implementation project(':csj')
