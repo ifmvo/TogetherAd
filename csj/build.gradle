@@ -6,7 +6,8 @@ apply plugin: 'com.kezong.fat-aar'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.matthewchen.togetherad'
+group = 'com.github.ifmvo'
+version = '4.2.4-3.5.5.0'
 
 android {
     compileSdkVersion 28
@@ -15,7 +16,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "4.1.9-3.5.5.0"
+        versionName "4.2.4-3.5.5.0"
     }
 
     lintOptions {

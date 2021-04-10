@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "4.1.9"
+        versionName "4.2.4"
         multiDexEnabled true
     }
 
@@ -64,21 +64,21 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
 //    //穿山甲（ 头条 ）
-//    implementation 'com.matthewchen.togetherad:csj:4.1.9-3.5.5.0'
+//    implementation 'com.matthewchen.togetherad:csj:4.2.4-3.5.5.0'
 //    //优量汇（ 腾讯广点通 ）
-//    implementation 'com.matthewchen.togetherad:gdt:4.1.9-4.333.1203'
+//    implementation 'com.matthewchen.togetherad:gdt:4.2.4-4.333.1203'
 //    //百青藤 ( 百度 Mob )
-//    implementation 'com.matthewchen.togetherad:baidu:4.1.9-5.91'
+//    implementation 'com.matthewchen.togetherad:baidu:4.2.4-5.91'
 
-//    implementation 'com.matthewchen:core:4.2.1'
-//    implementation 'com.matthewchen:gdt:4.2.1'
-//    implementation 'com.matthewchen:baidu:4.2.1'
-//    implementation 'com.matthewchen:csj:4.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:core:4.2.3'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:4.2.3'
+    implementation 'com.github.ifmvo.TogetherAd:csj:4.2.3'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:4.2.3'
 
 
     //TogetherAd
-    implementation project(':csj')
-    implementation project(':gdt')
-    implementation project(':baidu')
+//    implementation project(':csj')
+//    implementation project(':gdt')
+//    implementation project(':baidu')
 
 }

@@ -5,7 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.matthewchen.togetherad'
+group = 'com.github.ifmvo'
+version = '4.2.4'
 
 android {
     compileSdkVersion 28
@@ -14,7 +15,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "4.1.9"
+        versionName "4.2.4"
     }
 
     lintOptions {

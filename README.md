@@ -26,13 +26,13 @@ allprojects {
 dependencies {
 
     //穿山甲（ 头条 ）
-    implementation 'com.matthewchen.togetherad:csj:4.1.9-3.5.5.0'
+    implementation 'com.matthewchen.togetherad:csj:4.2.4-3.5.5.0'
     
     //优量汇（ 腾讯广点通 ）
-    implementation 'com.matthewchen.togetherad:gdt:4.1.9-4.333.1203'
+    implementation 'com.matthewchen.togetherad:gdt:4.2.4-4.333.1203'
     
     //百青藤 ( 百度 Mob )
-    implementation 'com.matthewchen.togetherad:baidu:4.1.9-5.91'
+    implementation 'com.matthewchen.togetherad:baidu:4.2.4-5.91'
     
 }
 ```
