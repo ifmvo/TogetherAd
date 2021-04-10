@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.github.ifmvo'
+group = 'com.matthewchen'
 
 android {
     compileSdkVersion 28
