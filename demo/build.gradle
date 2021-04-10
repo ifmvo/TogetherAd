@@ -51,7 +51,7 @@ android {
 }
 
 //获取时间
-def releaseTime() {
+static def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
