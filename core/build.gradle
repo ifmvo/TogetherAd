@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'maven'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 28
@@ -27,13 +25,4 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-
-publish {
-    userOrg = 'matthewchen'
-    groupId = 'com.matthewchen.togetherad'
-    artifactId = 'core'
-    publishVersion = '4.1.9'
-    desc = 'A fast integration framework for a advertising platform.'
-    website = "https://github.com/ifmvo/TogetherAd"
 }
