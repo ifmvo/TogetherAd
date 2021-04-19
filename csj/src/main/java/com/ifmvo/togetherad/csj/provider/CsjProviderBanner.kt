@@ -26,8 +26,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                 .setExpressViewAcceptedSize(CsjProvider.Banner.expressViewAcceptedSizeWidth, CsjProvider.Banner.expressViewAcceptedSizeHeight)
                 .setImageAcceptedSize(640, 320)//这个参数设置即可，不影响个性化模板广告的size
                 .build()
-
-        TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackBannerFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
@@ -56,7 +55,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                     }
                 })
                 mTTNativeExpressBannerAd?.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
-                    override fun onSelected(position: Int, value: String) {
+                    override fun onSelected(position: Int, value: String, enforce: Boolean) {
                         //用户选择不喜欢原因后，移除广告展示
                         container.removeAllViews()
                         destroyBannerAd()
@@ -64,7 +63,6 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                     }
 
                     override fun onCancel() {}
-                    override fun onRefuse() {}
                     override fun onShow() {}
                 })
                 mTTNativeExpressBannerAd?.render()

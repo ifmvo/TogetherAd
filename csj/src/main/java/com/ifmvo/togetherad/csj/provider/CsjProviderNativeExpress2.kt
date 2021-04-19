@@ -25,7 +25,7 @@ abstract class CsjProviderNativeExpress2 : CsjProviderNativeExpress() {
                 .setExpressViewAcceptedSize(CsjProvider.NativeExpress.expressViewAcceptedSizeWidth, CsjProvider.NativeExpress.expressViewAcceptedSizeHeight)//期望模板广告view的size,单位dp
                 .build()
 
-        TTAdSdk.getAdManager().createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(ads: MutableList<TTNativeExpressAd>?) {
                 if (ads.isNullOrEmpty()) {
                     callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")

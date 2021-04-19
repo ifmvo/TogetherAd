@@ -50,7 +50,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
                 .setNativeAdType(CsjProvider.Native.nativeAdType)
                 .setAdCount(maxCount)
                 .build()
-        TTAdSdk.getAdManager().createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadNativeAd(adSlot, object : TTAdNative.NativeAdListener {
             override fun onNativeAdLoad(adList: MutableList<TTNativeAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackNativeFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
@@ -76,7 +76,7 @@ abstract class CsjProviderNative : CsjProviderInter() {
                 .setAdCount(maxCount)
                 .build()
 
-        TTAdSdk.getAdManager().createAdNative(activity).loadStream(adSlot, object : TTAdNative.FeedAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadStream(adSlot, object : TTAdNative.FeedAdListener {
             override fun onFeedAdLoad(adList: MutableList<TTFeedAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackNativeFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")

@@ -25,8 +25,7 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
                 .setExpressViewAcceptedSize(CsjProvider.Inter.expressViewAcceptedSizeWidth, CsjProvider.Inter.expressViewAcceptedSizeHeight)
                 .setImageAcceptedSize(640, 320)//这个参数设置即可，不影响个性化模板广告的size
                 .setAdCount(1) //请求广告数量为1到3条
-
-        TTAdSdk.getAdManager().createAdNative(activity).loadInteractionExpressAd(adSlotBuilder.build(), object : TTAdNative.NativeExpressAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadInteractionExpressAd(adSlotBuilder.build(), object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackInterFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
@@ -57,9 +56,8 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
                     }
                 })
                 mTTNativeExpressInterAd?.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
-                    override fun onSelected(position: Int, value: String) {}
+                    override fun onSelected(p0: Int, p1: String?, enforce: Boolean) {}
                     override fun onCancel() {}
-                    override fun onRefuse() {}
                     override fun onShow() {}
                 })
             }

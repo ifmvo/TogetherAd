@@ -1,5 +1,14 @@
 # 更新日志
 
+## 5.0.1
+
+2021.04.19
+
+1. 对应版本：穿山甲3.6.0.0；优量汇4.333.1203；百度5.91
+2. 更新了穿山甲的SDK
+3. 优化 TTAdManager 的获取方式，全局使用一个，可以减少内存开支
+4. 新增可以设置夜间模式的接口 TogetherAdCsj.themeStatus = 1 或者 TogetherAdCsj.mTTAdManager.themeStatus = 1
+
 ## 5.0.0
 
 2021.04.11

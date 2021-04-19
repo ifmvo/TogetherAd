@@ -1,5 +1,6 @@
 package com.ifmvo.togetherad.demo.app
 
+import com.bytedance.sdk.openadsdk.TTAdManager
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -21,6 +22,10 @@ class App : ActLifecycleAppBase() {
          */
 //        // 可选参数，需在初始化之前，使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
 //        TogetherAdCsj.useTextureView = false
+//        // 可选参数，设置主题类型，0：正常模式；1：夜间模式；默认为0；传非法值，按照0处理
+//        TogetherAdCsj.themeStatus = 1
+//        // 可选参数，同上，区别在于这个随时可以调用
+//        TogetherAdCsj.mTTAdManager.themeStatus = 1
 //        // 可选参数，需在初始化之前，标题栏的主题色
 //        TogetherAdCsj.titleBarTheme = TTAdConstant.TITLE_BAR_THEME_DARK
 //        // 可选参数，需在初始化之前，是否允许sdk展示通知栏提示
@@ -126,7 +131,7 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-                AdProviderType.GDT.type to 1,
+                AdProviderType.GDT.type to 0,
                 AdProviderType.CSJ.type to 1,
                 AdProviderType.BAIDU.type to 0
         ))

@@ -47,7 +47,7 @@ class CustomCsjProvider : CsjProvider() {
                 .setImageAcceptedSize(Banner.imageAcceptedSizeWidth, Banner.imageAcceptedSizeHeight)
                 .build()
 
-        TTAdSdk.getAdManager().createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
+        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadBannerAd(adSlot, object : TTAdNative.BannerAdListener {
             override fun onBannerAdLoad(bannerAd: TTBannerAd?) {
                 if (bannerAd == null) {
                     callbackBannerFailed(adProviderType, alias, listener, null, "请求成功，但是返回的 bannerAd 为空")
@@ -77,13 +77,12 @@ class CustomCsjProvider : CsjProvider() {
                 })
 
                 bannerAd.setShowDislikeIcon(object : TTAdDislike.DislikeInteractionCallback {
-                    override fun onSelected(position: Int, value: String?) {
+                    override fun onSelected(position: Int, value: String?, enforce: Boolean) {
                         container.removeAllViews()
                         callbackBannerClosed(adProviderType, listener)
                     }
 
                     override fun onCancel() {}
-                    override fun onRefuse() {}
                     override fun onShow() {}
                 })
             }

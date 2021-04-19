@@ -1,11 +1,8 @@
 package com.ifmvo.togetherad.csj
 
 import android.content.Context
-import com.bytedance.sdk.adnet.face.IHttpStack
-import com.bytedance.sdk.openadsdk.TTAdConfig
-import com.bytedance.sdk.openadsdk.TTAdConstant
-import com.bytedance.sdk.openadsdk.TTAdSdk
-import com.bytedance.sdk.openadsdk.TTCustomController
+import com.bytedance.sdk.component.adnet.face.IHttpStack
+import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.csj.provider.CsjProvider
@@ -23,6 +20,9 @@ object TogetherAdCsj {
 
     // 可选参数，需在初始化之前，设置是否使用texture播放视频：true使用、false不使用。默认为false不使用（使用的是surface）
     var useTextureView: Boolean = false
+
+    // 可选参数，设置主题类型，0：正常模式；1：夜间模式；默认为0；传非法值，按照0处理
+    var themeStatus: Int = 0
 
     // 可选参数，需在初始化之前，设置落地页主题，默认为TTAdConstant#TITLE_BAR_THEME_LIGHT
     var titleBarTheme: Int = TTAdConstant.TITLE_BAR_THEME_LIGHT
@@ -64,6 +64,10 @@ object TogetherAdCsj {
     // 判断穿山甲SDK是否初始化成功
     var isInitSuccess = TTAdSdk.isInitSuccess()
 
+    //全局使用的 TTAdManager
+    var mTTAdManager = TTAdSdk.getAdManager()
+        private set
+
     /**
      * 简单初始化
      */
@@ -97,6 +101,7 @@ object TogetherAdCsj {
         val ttAdConfig = TTAdConfig.Builder()
         ttAdConfig.appId(csjAdAppId)
         ttAdConfig.appName(appName)
+        ttAdConfig.themeStatus(themeStatus)//设置是否为夜间模式
         ttAdConfig.useTextureView(useTextureView) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
         ttAdConfig.titleBarTheme(titleBarTheme)
         ttAdConfig.allowShowNotify(allowShowNotify) //是否允许sdk展示通知栏提示

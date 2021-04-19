@@ -39,13 +39,12 @@ class NativeExpress2ViewCsj : BaseNativeExpress2View() {
         })
 
         adObject.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
-            override fun onSelected(position: Int, value: String) {
+            override fun onSelected(position: Int, value: String?, enforce: Boolean) {
                 container.removeAllViews()
                 listener?.onAdClose(adProviderType)
             }
 
             override fun onCancel() {}
-            override fun onRefuse() {}
             override fun onShow() {}
         })
 

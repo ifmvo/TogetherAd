@@ -41,7 +41,7 @@ class SplashProActivity : AppCompatActivity() {
          * alias: 必传。广告位的别名。初始化的时候是根据别名设置的广告ID，所以这里TogetherAd会根据别名查找对应的广告位ID。
          * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
          */
-        AdHelperSplashPro(activity = this, alias = TogetherAdAlias.AD_SPLASH, ratioMap = ratioMapSplash)
+        AdHelperSplashPro(activity = this, alias = TogetherAdAlias.AD_SPLASH/*, ratioMap = ratioMapSplash*/)
     }
 
     companion object {
