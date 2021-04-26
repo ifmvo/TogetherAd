@@ -6,6 +6,7 @@ import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.interstitial2.UnifiedInterstitialAD
 import com.qq.e.ads.interstitial2.UnifiedInterstitialADListener
+import com.qq.e.ads.interstitial2.UnifiedInterstitialMediaListener
 import com.qq.e.comm.util.AdError
 
 
@@ -62,6 +63,19 @@ abstract class GdtProviderFullVideo : GdtProviderBanner() {
         fullVideoAd?.setVideoPlayPolicy(GdtProvider.FullVideo.videoPlayPolicy)
         fullVideoAd?.setMaxVideoDuration(GdtProvider.FullVideo.maxVideoDuration)
         fullVideoAd?.setMaxVideoDuration(GdtProvider.FullVideo.minVideoDuration)
+        fullVideoAd?.setMediaListener(object :UnifiedInterstitialMediaListener {
+            override fun onVideoPageOpen() {}
+            override fun onVideoLoading() {}
+            override fun onVideoReady(p0: Long) {}
+            override fun onVideoInit() {}
+            override fun onVideoPause() {}
+            override fun onVideoPageClose() {}
+            override fun onVideoStart() {}
+            override fun onVideoComplete() {
+                callbackFullVideoComplete(adProviderType, listener)
+            }
+            override fun onVideoError(adError: AdError?) {}
+        })
         fullVideoAd?.loadFullScreenAD()
     }
 

@@ -94,6 +94,12 @@ class FullVideoActivity : AppCompatActivity() {
                 addLog("关闭了: $providerType")
                 "onAdClose: $providerType".logi(tag)
             }
+
+            override fun onAdVideoComplete(providerType: String) {
+                //广告播放完成的回调
+                addLog("视频播放完成了: $providerType")
+                "onAdVideoComplete: $providerType".logi(tag)
+            }
         })
 
         btnRequest.setOnClickListener {

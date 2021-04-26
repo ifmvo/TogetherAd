@@ -29,6 +29,11 @@ interface FullVideoListener : BaseListener {
     fun onAdVideoCached(@NotNull providerType: String) {}
 
     /**
+     * 视频播放完成
+     */
+    fun onAdVideoComplete(@NotNull providerType: String) {}
+
+    /**
      * 广告被关闭了
      */
     fun onAdClose(@NotNull providerType: String) {}

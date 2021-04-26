@@ -284,6 +284,13 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
+    protected fun callbackFullVideoComplete(@NotNull adProviderType: String, @NotNull listener: FullVideoListener) {
+        Handler(Looper.getMainLooper()).post {
+            "${adProviderType}: 视频播放完成了".logi()
+            listener.onAdVideoComplete(adProviderType)
+        }
+    }
+
     /**
      * --------------------------- Banner 横幅广告 ---------------------------
      */

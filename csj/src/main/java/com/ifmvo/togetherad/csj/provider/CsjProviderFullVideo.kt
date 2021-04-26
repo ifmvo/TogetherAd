@@ -43,7 +43,9 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
                         callbackFullVideoClicked(adProviderType, listener)
                     }
 
-                    override fun onVideoComplete() {}
+                    override fun onVideoComplete() {
+                        callbackFullVideoComplete(adProviderType, listener)
+                    }
 
                     override fun onAdClose() {
                         callbackFullVideoClosed(adProviderType, listener)
