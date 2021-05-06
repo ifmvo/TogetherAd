@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "5.0.2"
+        versionName "5.0.3"
         multiDexEnabled true
     }
 
@@ -63,10 +63,10 @@ dependencies {
     //内存泄漏检测工具
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
-//    implementation 'com.github.ifmvo.TogetherAd:core:5.0.2'
-//    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.2'
-//    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.2'
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.2'
+//    implementation 'com.github.ifmvo.TogetherAd:core:5.0.3'
+//    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.3'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.3'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.3'
 
     //TogetherAd
     implementation project(':csj')

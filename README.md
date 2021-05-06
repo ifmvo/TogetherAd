@@ -35,21 +35,21 @@ allprojects {
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.0.2'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.0.3'
     
     //优量汇（ 腾讯广点通 ）可选
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.2'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.3'
     
     //穿山甲（ 头条 ）可选
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.2'
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.3'
     
     //百青藤 ( 百度 Mob ) 可选
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.2'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.3'
 
 }
 ```
 
-> 对应版本：穿山甲3.6.1.0；优量汇4.351.1221；百度5.91
+> 对应版本：穿山甲3.6.1.1；优量汇4.351.1221；百度5.91
 
 ### 使用方法
 

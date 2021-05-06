@@ -1,6 +1,5 @@
 package com.ifmvo.togetherad.demo.app
 
-import com.bytedance.sdk.openadsdk.TTAdManager
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj

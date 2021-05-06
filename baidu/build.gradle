@@ -15,7 +15,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "5.0.2"
+        versionName "5.0.3"
     }
 
     lintOptions {
@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-//    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    embed(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    embed(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')
