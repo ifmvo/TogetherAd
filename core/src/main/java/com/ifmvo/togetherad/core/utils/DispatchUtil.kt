@@ -6,11 +6,7 @@ import org.jetbrains.annotations.NotNull
 
 
 /**
- * 参数 configStr : "baidu:1,gdt:4,csj:4"
- *
- * 按照 2 ：8 的比例随机返回 BAIDU or GDT or CSJ
- *
- * return AdNameType.BAIDU  || AdNameType.GDT || AdNameType.CSJ
+ * 广告分发工具类
  *
  * Created by Matthew_Chen on 2018/8/24.
  */
