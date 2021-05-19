@@ -1,4 +1,4 @@
-![](img/ic_launcher.jpg)
+<img src="img/ic_launcher.jpg"  height="200" width="200">
 
 # TogetherAd
 
