@@ -1,5 +1,3 @@
-<img src="img/ic_launcher.jpg"  height="200" width="200">
-
 # TogetherAd
 
 [![](https://jitpack.io/v/ifmvo/TogetherAd.svg)](https://jitpack.io/#ifmvo/TogetherAd)
@@ -54,7 +52,7 @@ dependencies {
 }
 ```
 
-> 对应版本：穿山甲3.6.1.3；优量汇4.362.1232；百度5.91
+> 对应版本：穿山甲3.6.1.1；优量汇4.351.1221；百度5.91
 
 ### 使用方法
 
