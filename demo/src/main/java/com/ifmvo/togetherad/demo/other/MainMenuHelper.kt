@@ -32,7 +32,7 @@ object MainMenuHelper {
 
     private val menuMainList = arrayListOf(
             mapOf(
-                    "title" to "广告大全 5.0.4",
+                    "title" to "广告大全 5.0.5",
                     "desc" to "穿山甲3.6.1.3；优量汇4.362.1232；百度5.91"
             ),
             mapOf(
