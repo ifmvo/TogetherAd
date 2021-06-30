@@ -94,7 +94,7 @@ abstract class BaseAdProvider : IAdProvider {
     /**
      * --------------------------- 原生信息流模板 ---------------------------
      */
-    protected fun callbackNativeExpressStartRequest(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpress2Listener) {
+    protected fun callbackNativeExpressStartRequest(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpressListener) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 开始请求".logi()
             listener.onAdStartRequest(adProviderType)
@@ -102,7 +102,7 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackNativeExpressLoaded(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpress2Listener, @NotNull adList: List<Any>) {
+    protected fun callbackNativeExpressLoaded(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpressListener, @NotNull adList: List<Any>) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求成功了, 请求到${adList.size}个广告".logi()
             listener.onAdLoaded(adProviderType, adList)
@@ -110,7 +110,7 @@ abstract class BaseAdProvider : IAdProvider {
         }
     }
 
-    protected fun callbackNativeExpressFailed(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpress2Listener, errorCode: Int?, errorMsg: String?) {
+    protected fun callbackNativeExpressFailed(@NotNull adProviderType: String, @NotNull alias: String, @NotNull listener: NativeExpressListener, errorCode: Int?, errorMsg: String?) {
         Handler(Looper.getMainLooper()).post {
             "${adProviderType}: 请求失败了：$errorCode $errorMsg".loge()
             listener.onAdFailed(adProviderType, errorMsg)

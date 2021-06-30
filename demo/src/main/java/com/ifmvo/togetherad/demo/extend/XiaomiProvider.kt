@@ -52,14 +52,6 @@ class XiaomiProvider : BaseAdProvider() {
         return false
     }
 
-    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {}
-
-    override fun destroyNativeExpress2Ad(adObject: Any) {}
-
-    override fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean {
-        return false
-    }
-
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {}
 
     override fun showRewardAd(activity: Activity): Boolean {

@@ -34,6 +34,10 @@ abstract class GdtProviderInter : GdtProviderFullVideo() {
                 "onADOpened".logi(tag)
             }
 
+            override fun onRenderFail() {
+
+            }
+
             override fun onADClosed() {
                 callbackInterClosed(adProviderType, listener)
             }
@@ -55,6 +59,9 @@ abstract class GdtProviderInter : GdtProviderFullVideo() {
 
             override fun onADClicked() {
                 callbackInterClicked(adProviderType, listener)
+            }
+
+            override fun onRenderSuccess() {
             }
         })
         interAd?.loadAD()

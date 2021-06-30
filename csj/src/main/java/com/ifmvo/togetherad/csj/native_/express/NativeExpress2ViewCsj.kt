@@ -8,7 +8,6 @@ import com.bytedance.sdk.openadsdk.TTAdDislike
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd
 import com.ifmvo.togetherad.core.custom.express2.BaseNativeExpress2View
-import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 
 /**
  * Created by Matthew Chen on 2020/11/25.

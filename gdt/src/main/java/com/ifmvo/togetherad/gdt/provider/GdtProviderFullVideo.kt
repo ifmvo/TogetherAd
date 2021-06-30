@@ -2,6 +2,7 @@ package com.ifmvo.togetherad.gdt.provider
 
 import android.app.Activity
 import com.ifmvo.togetherad.core.listener.FullVideoListener
+import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.interstitial2.UnifiedInterstitialAD
@@ -25,22 +26,31 @@ abstract class GdtProviderFullVideo : GdtProviderBanner() {
 
         fullVideoAd = UnifiedInterstitialAD(activity, TogetherAdGdt.idMapGDT[alias], object : UnifiedInterstitialADListener {
             override fun onADExposure() {
+                "onADExposure".logd(tag)
                 callbackFullVideoShow(adProviderType, listener)
             }
 
             override fun onVideoCached() {
+                "onVideoCached".logd(tag)
                 callbackFullVideoCached(adProviderType, listener)
             }
 
-            override fun onADOpened() {}
+            override fun onADOpened() {
+                "onADOpened".logd(tag)
+            }
+            override fun onRenderFail() {
+                "onRenderFail".logd(tag)
+            }
 
             override fun onADClosed() {
+                "onADClosed".logd(tag)
                 callbackFullVideoClosed(adProviderType, listener)
             }
 
             override fun onADLeftApplication() {}
 
             override fun onADReceive() {
+                "onADReceive".logd(tag)
                 TogetherAdGdt.downloadConfirmListener?.let {
                     fullVideoAd?.setDownloadConfirmListener(it)
                 }
@@ -48,11 +58,17 @@ abstract class GdtProviderFullVideo : GdtProviderBanner() {
             }
 
             override fun onNoAD(adError: AdError?) {
+                "onNoAD".logd(tag)
                 callbackFullVideoFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
 
             override fun onADClicked() {
+                "onADClicked".logd(tag)
                 callbackFullVideoClicked(adProviderType, listener)
+            }
+
+            override fun onRenderSuccess() {
+                "onRenderSuccess".logd(tag)
             }
         })
         val option = VideoOption.Builder()

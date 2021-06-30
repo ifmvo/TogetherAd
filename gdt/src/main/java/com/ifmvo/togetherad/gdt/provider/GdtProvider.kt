@@ -1,6 +1,5 @@
 package com.ifmvo.togetherad.gdt.provider
 
-import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 import com.qq.e.ads.cfg.BrowserType
 import com.qq.e.ads.cfg.DownAPPConfirmPolicy
 import com.qq.e.ads.cfg.VideoOption
@@ -26,9 +25,6 @@ open class GdtProvider : GdtProviderSplash() {
          * 如果需要使用默认值，可以给 fetchDelay 设为0。
          */
         var maxFetchDelay = 4000
-
-        //自定义按钮
-        var customSkipView: BaseSplashSkipView? = null
 
     }
 

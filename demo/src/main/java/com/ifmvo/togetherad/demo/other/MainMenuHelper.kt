@@ -4,17 +4,13 @@ import com.ifmvo.togetherad.demo.MainActivity
 import com.ifmvo.togetherad.demo.banner.BannerActivity
 import com.ifmvo.togetherad.demo.express.NativeExpressRecyclerViewActivity
 import com.ifmvo.togetherad.demo.express.NativeExpressSimpleActivity
-import com.ifmvo.togetherad.demo.express2.NativeExpress2RecyclerViewActivity
-import com.ifmvo.togetherad.demo.express2.NativeExpress2SimpleActivity
 import com.ifmvo.togetherad.demo.fullvideo.FullVideoActivity
-import com.ifmvo.togetherad.demo.hybrid.NativeExpressHybridActivity
 import com.ifmvo.togetherad.demo.hybrid.SplashHybridActivity
 import com.ifmvo.togetherad.demo.hybrid.VerticalPreMovieHybridActivity
 import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
-import com.ifmvo.togetherad.demo.splash.SplashActivity
 import com.ifmvo.togetherad.demo.splash.SplashHotActivity
 import com.ifmvo.togetherad.demo.splash.SplashProActivity
 
@@ -32,7 +28,7 @@ object MainMenuHelper {
 
     private val menuMainList = arrayListOf(
             mapOf(
-                    "title" to "广告大全 5.0.6",
+                    "title" to "广告大全 5.0.7",
                     "desc" to "穿山甲3.7.0.1；优量汇4.362.1232；百度5.91"
             ),
             mapOf(
@@ -114,22 +110,12 @@ object MainMenuHelper {
 
     private val menuNativeExpressList = arrayListOf(
             mapOf(
-                    "title" to "原生模板 2.0（ 只支持优量汇、穿山甲 ）",
-                    "desc" to "简单用法",
-                    "class" to NativeExpress2SimpleActivity::class.java
-            ),
-            mapOf(
-                    "title" to "原生模板 2.0（ 只支持优量汇、穿山甲 ）",
-                    "desc" to "在RecyclerView中的用法",
-                    "class" to NativeExpress2RecyclerViewActivity::class.java
-            ),
-            mapOf(
-                    "title" to "原生模板 1.0（ 只支持优量汇 ）",
+                    "title" to "原生模板",
                     "desc" to "简单用法",
                     "class" to NativeExpressSimpleActivity::class.java
             ),
             mapOf(
-                    "title" to "原生模板 1.0（ 只支持优量汇 ）",
+                    "title" to "原生模板",
                     "desc" to "在RecyclerView中的用法",
                     "class" to NativeExpressRecyclerViewActivity::class.java
             )
@@ -140,11 +126,6 @@ object MainMenuHelper {
                     "title" to "开屏和原生自渲染混合",
                     "desc" to "如果你的开屏ecpm比较低，就可以使用原生自渲染模拟开屏展示，以提高开屏广告位的收入",
                     "class" to SplashHybridActivity::class.java
-            ),
-            mapOf(
-                    "title" to "原生模板1.0和原生模板2.0混合",
-                    "desc" to "由于优量汇的原生模板2.0需要向平台申请，所以这里将优量汇的原生模板1.0和穿山甲的原生模板2.0混合使用",
-                    "class" to NativeExpressHybridActivity::class.java
             ),
             mapOf(
                     "title" to "激励、全屏视频、原生自渲染 混合",

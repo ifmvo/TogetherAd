@@ -14,9 +14,6 @@ object TogetherAdAlias {
     //开屏
     const val AD_SPLASH = "ad_splash"
 
-    //热启动开屏
-    const val AD_SPLASH_HOT = "ad_splash_hot"
-
     //原生模板2.0 简单使用
     const val AD_NATIVE_EXPRESS_2_SIMPLE = "ad_native_express2_simple"
 

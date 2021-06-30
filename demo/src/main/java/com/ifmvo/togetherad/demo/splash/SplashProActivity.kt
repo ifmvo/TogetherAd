@@ -75,9 +75,8 @@ class SplashProActivity : AppCompatActivity() {
          * 设置 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          */
-        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()//广点通
         CsjProvider.Splash.customSkipView = SplashSkipViewSimple2()//穿山甲
-        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
+        //CsjProvider.Splash.customSkipView = SplashSkipViewSimple1()
         /**
          * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
          * 一般设置容器的宽高即可

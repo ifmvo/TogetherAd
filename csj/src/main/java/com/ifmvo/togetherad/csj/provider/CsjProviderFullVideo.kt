@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.csj.provider
 import android.app.Activity
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.bytedance.sdk.openadsdk.TTAdNative
-import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd
 import com.ifmvo.togetherad.core.listener.FullVideoListener
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -55,7 +54,9 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
                 callbackFullVideoLoaded(adProviderType, alias, listener)
             }
 
-            override fun onFullScreenVideoCached() {
+            override fun onFullScreenVideoCached() {}
+
+            override fun onFullScreenVideoCached(videoAd: TTFullScreenVideoAd?) {
                 callbackFullVideoCached(adProviderType, listener)
             }
 

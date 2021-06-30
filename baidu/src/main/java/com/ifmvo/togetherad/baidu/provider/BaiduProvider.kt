@@ -250,18 +250,6 @@ open class BaiduProvider : BaseAdProvider() {
         return false
     }
 
-    override fun getNativeExpress2AdList(activity: Activity, adProviderType: String, alias: String, adCount: Int, listener: NativeExpress2Listener) {
-        callbackNativeExpressStartRequest(adProviderType, alias, listener)
-        callbackNativeExpressFailed(adProviderType, alias, listener, null, "百度不支持原生模板2类型广告")
-    }
-
-    override fun destroyNativeExpress2Ad(adObject: Any) {
-    }
-
-    override fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean {
-        return false
-    }
-
     /**
      * --------------------------- 激励 ---------------------------
      */

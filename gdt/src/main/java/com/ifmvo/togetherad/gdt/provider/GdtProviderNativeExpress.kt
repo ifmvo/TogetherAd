@@ -25,6 +25,7 @@ abstract class GdtProviderNativeExpress : GdtProviderNative() {
                     callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
                     return
                 }
+
                 callbackNativeExpressLoaded(adProviderType, alias, listener, ads)
             }
 

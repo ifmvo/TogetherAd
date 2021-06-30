@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.ifmvo.togetherad.core.custom.splashSkip.SplashSkipViewSimple2
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.ScreenUtil
 import com.ifmvo.togetherad.core.utils.dp
@@ -16,7 +15,6 @@ import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
 import com.ifmvo.togetherad.demo.hybrid.helper.AdHelperHybridSplash
-import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash_pro.*
 
 /**
@@ -43,9 +41,7 @@ class SplashHybridActivity : AppCompatActivity() {
          * ratioMap: 非必传。广告商的权重。可以不传或传null，空的情况 TogetherAd 会自动使用初始化时 TogetherAd.setPublicProviderRatio 设置的全局通用权重。
          */
         AdHelperHybridSplash(
-            activity = this,
-            alias = TogetherAdAlias.AD_HYBRID_SPLASH /*, ratioMap = ratioMapSplash*/
-        )
+                activity = this, alias = TogetherAdAlias.AD_HYBRID_SPLASH /*, ratioMap = ratioMapSplash*/)
     }
 
     companion object {
@@ -75,13 +71,6 @@ class SplashHybridActivity : AppCompatActivity() {
      */
     private fun requestSplashAd() {
 
-        /**
-         * 设置 广点通 开屏广告 自定义跳过按钮
-         * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
-         * 目前只有 优量汇(广点通) 支持自定义跳过按钮的样式，所以只会对 广点通 生效
-         */
-        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
-        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
         /**
          * 给 穿山甲 设置可接受的图片尺寸，避免图片变形
          * 一般设置容器的宽高即可

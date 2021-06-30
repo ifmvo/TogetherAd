@@ -14,7 +14,7 @@ import com.qq.e.comm.util.VideoAdValidity
  *
  * Created by Matthew Chen on 2020/11/25.
  */
-abstract class GdtProviderReward : GdtProviderNativeExpress2() {
+abstract class GdtProviderReward : GdtProviderNativeExpress() {
 
     private var rewardVideoAD: RewardVideoAD? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {

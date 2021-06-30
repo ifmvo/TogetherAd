@@ -107,24 +107,6 @@ interface IAdProvider {
     fun nativeExpressAdIsBelongTheProvider(adObject: Any): Boolean
 
     /**
-     * -----------------------------------获取原生模板2.0列表-----------------------------------
-     */
-
-    fun getNativeExpress2AdList(
-            @NotNull activity: Activity,
-            @NotNull adProviderType: String,
-            @NotNull alias: String,
-            adCount: Int,
-            @NotNull listener: NativeExpress2Listener
-    )
-
-    //控制原生模板的生命周期
-    fun destroyNativeExpress2Ad(adObject: Any)
-
-    //判断模板广告对象是否属于这个提供商
-    fun nativeExpress2AdIsBelongTheProvider(adObject: Any): Boolean
-
-    /**
      * -----------------------------------请求激励广告 -----------------------------------
      */
     fun requestRewardAd(

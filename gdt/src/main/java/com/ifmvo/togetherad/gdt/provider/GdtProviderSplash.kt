@@ -7,7 +7,6 @@ import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
-import com.ifmvo.togetherad.gdt.other.DownloadConfirmHelper
 import com.qq.e.ads.splash.SplashAD
 import com.qq.e.ads.splash.SplashADListener
 import com.qq.e.comm.util.AdError
@@ -25,20 +24,15 @@ abstract class GdtProviderSplash : GdtProviderReward() {
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
         callbackSplashStartRequest(adProviderType, alias, listener)
 
-        val customSkipView = GdtProvider.Splash.customSkipView
-        val skipView = customSkipView?.onCreateSkipView(activity)
-
-        splashAd = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+        splashAd = SplashAD(activity, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
-                GdtProvider.Splash.customSkipView = null
                 mContainer = null
                 splashAd = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
-                GdtProvider.Splash.customSkipView = null
                 mContainer = null
                 splashAd = null
                 callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
@@ -48,11 +42,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
             override fun onADPresent() {
-                activity.runOnUiThread {
-                    skipView?.run {
-                        mContainer?.addView(this, customSkipView.getLayoutParams())
-                    }
-                }
                 "${adProviderType}: 广告成功展示".logi(tag)
                 splashAd?.preLoad()
             }
@@ -63,7 +52,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
             override fun onADTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
-                GdtProvider.Splash.customSkipView?.handleTime(second)
                 "${adProviderType}: 倒计时: $second".logv(tag)
             }
 
@@ -112,19 +100,14 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
         callbackSplashStartRequest(adProviderType, alias, listener)
 
-        val customSkipView = GdtProvider.Splash.customSkipView
-        val skipView = customSkipView?.onCreateSkipView(container.context)
-
-        splashAd = SplashAD(activity, skipView, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
+        splashAd = SplashAD(activity, TogetherAdGdt.idMapGDT[alias], object : SplashADListener {
 
             override fun onADDismissed() {
                 splashAd = null
-                GdtProvider.Splash.customSkipView = null
                 callbackSplashDismiss(adProviderType, listener)
             }
 
             override fun onNoAD(adError: AdError?) {
-                GdtProvider.Splash.customSkipView = null
                 splashAd = null
                 callbackSplashFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
             }
@@ -133,11 +116,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
              * 广告成功展示时调用，成功展示不等于有效展示（比如广告容器高度不够）
              */
             override fun onADPresent() {
-                activity.runOnUiThread {
-                    skipView?.run {
-                        container.addView(this, customSkipView.getLayoutParams())
-                    }
-                }
                 "${adProviderType}: 广告成功展示".logi(tag)
             }
 
@@ -147,7 +125,6 @@ abstract class GdtProviderSplash : GdtProviderReward() {
 
             override fun onADTick(millisUntilFinished: Long) {
                 val second = (millisUntilFinished / 1000f).roundToInt()
-                customSkipView?.handleTime(second)
                 "${adProviderType}: 倒计时: $second".logv(tag)
             }
 

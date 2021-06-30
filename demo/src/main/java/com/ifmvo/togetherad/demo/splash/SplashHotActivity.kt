@@ -46,9 +46,8 @@ class SplashHotActivity : AppCompatActivity() {
          * 设置 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          */
-        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
-        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
         CsjProvider.Splash.customSkipView = SplashSkipViewSimple2()
+//        CsjProvider.Splash.customSkipView = SplashSkipViewSimple1()
         /**
          * 设置 广点通 开屏广告超时时间
          * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），
@@ -84,7 +83,7 @@ class SplashHotActivity : AppCompatActivity() {
          * container: 必传。请求到广告之后会自动添加到 container 这个布局中展示。
          * listener: 非必传。如果你不需要监听结果可以不传或传空。各个回调方法也可以选择性添加
          */
-        AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH_HOT, /*ratioMap = ratioMapSplash,*/ container = adContainer, listener = object : SplashListener {
+        AdHelperSplash.show(activity = this, alias = TogetherAdAlias.AD_SPLASH, /*ratioMap = ratioMapSplash,*/ container = adContainer, listener = object : SplashListener {
 
             override fun onAdStartRequest(providerType: String) {
                 //在开始请求之前会回调此方法，失败切换的情况会回调多次

@@ -15,7 +15,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "5.0.6"
+        versionName "5.0.7"
     }
 
     lintOptions {
@@ -34,7 +34,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'open_ad_sdk', ext: 'aar')
+//    embed(name: 'open_ad_sdk_3.8.0.0', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')

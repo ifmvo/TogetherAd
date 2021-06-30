@@ -55,10 +55,8 @@ class App : ActLifecycleAppBase() {
          */
 //        //可参照 DownloadConfirmHelper 自定义下载确认的回调
 //        TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
-
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
-
         //初始化广点通
         TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "1101152570")
         //初始化百青藤
@@ -70,11 +68,8 @@ class App : ActLifecycleAppBase() {
          */
         TogetherAdCsj.idMapCsj = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "801121648",
-            TogetherAdAlias.AD_SPLASH_HOT to "801121648",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "901121134",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "901121125",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
-            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "901121134",//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "901121125",//不支持
             TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
             TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
             TogetherAdAlias.AD_BANNER to "901121246",
@@ -88,11 +83,8 @@ class App : ActLifecycleAppBase() {
 
         TogetherAdGdt.idMapGDT = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "8863364436303842593",
-            TogetherAdAlias.AD_SPLASH_HOT to "8863364436303842593",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "9061615683013706",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "9061615683013706",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "5060295460765937",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "5060295460765937",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "9061615683013706",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "9061615683013706",
             TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
             TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
             TogetherAdAlias.AD_BANNER to "4080052898050840",
@@ -106,9 +98,6 @@ class App : ActLifecycleAppBase() {
 
         TogetherAdBaidu.idMapBaidu = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "2058622",
-            TogetherAdAlias.AD_SPLASH_HOT to "2058622",
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_SIMPLE to "",//不支持
-            TogetherAdAlias.AD_NATIVE_EXPRESS_2_RECYCLERVIEW to "",//不支持
             TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
             TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
             TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
@@ -130,7 +119,7 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-            AdProviderType.GDT.type to 1,
+            AdProviderType.GDT.type to 0,
             AdProviderType.CSJ.type to 1,
             AdProviderType.BAIDU.type to 0
         ))

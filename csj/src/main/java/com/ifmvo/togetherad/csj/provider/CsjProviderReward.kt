@@ -9,7 +9,7 @@ import com.ifmvo.togetherad.csj.TogetherAdCsj
  *
  * Created by Matthew Chen on 2020/11/25.
  */
-abstract class CsjProviderReward : CsjProviderNativeExpress2() {
+abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
     private var mttRewardVideoAd: TTRewardVideoAd? = null
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
@@ -40,8 +40,10 @@ abstract class CsjProviderReward : CsjProviderNativeExpress2() {
                 mttRewardVideoAd = null
             }
 
+            override fun onRewardVideoCached() {}
+
             //视频广告加载后的视频文件资源缓存到本地的回调
-            override fun onRewardVideoCached() {
+            override fun onRewardVideoCached(videoAd: TTRewardVideoAd?) {
                 callbackRewardVideoCached(adProviderType, listener)
             }
 

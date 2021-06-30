@@ -17,7 +17,6 @@ import com.ifmvo.togetherad.demo.MainActivity
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
-import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
@@ -55,9 +54,8 @@ class SplashActivity : AppCompatActivity() {
          * 设置 开屏广告 自定义跳过按钮
          * TogetherAd 提供了两个简单的实例模板，同时只能设置一个,如果设置多个后面的生效
          */
-        GdtProvider.Splash.customSkipView = SplashSkipViewSimple2()
-        //GdtProvider.Splash.customSkipView = SplashSkipViewSimple1()
         CsjProvider.Splash.customSkipView = SplashSkipViewSimple2()
+//        CsjProvider.Splash.customSkipView = SplashSkipViewSimple1()
         /**
          * 设置 广点通 开屏广告超时时间
          * fetchDelay 参数，设置开屏广告从请求到展示所花的最大时长（并不是指广告曝光时长），

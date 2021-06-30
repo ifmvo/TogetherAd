@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.gdt.native_.express2
 import android.app.Activity
 import android.view.ViewGroup
 import com.ifmvo.togetherad.core.custom.express2.BaseNativeExpress2View
-import com.ifmvo.togetherad.core.listener.NativeExpress2ViewListener
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.qq.e.ads.nativ.express2.AdEventListener
 import com.qq.e.ads.nativ.express2.MediaEventListener
