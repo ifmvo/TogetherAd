@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.csj.provider
 import android.app.Activity
 import android.view.View
 import com.bytedance.sdk.openadsdk.AdSlot
+import com.bytedance.sdk.openadsdk.TTAdDislike
 import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
@@ -49,6 +50,15 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
                         override fun onRenderFail(view: View?, errorMsg: String?, errorCode: Int) {
                             listener.onAdRenderFail(adProviderType, adObject)
                         }
+                    })
+
+                    adObject.setDislikeCallback(activity, object : TTAdDislike.DislikeInteractionCallback {
+                        override fun onSelected(position: Int, value: String?, enforce: Boolean) {
+                            listener.onAdClosed(adProviderType, adObject)
+                        }
+
+                        override fun onCancel() {}
+                        override fun onShow() {}
                     })
                 }
 

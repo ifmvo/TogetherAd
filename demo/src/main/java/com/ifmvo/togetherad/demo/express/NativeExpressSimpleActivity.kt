@@ -7,6 +7,7 @@ import com.ifmvo.togetherad.core.helper.AdHelperNativeExpress
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.core.utils.logi
+import com.ifmvo.togetherad.csj.provider.CsjProvider
 import com.ifmvo.togetherad.demo.app.AdProviderType
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.demo.app.TogetherAdAlias
@@ -77,6 +78,7 @@ class NativeExpressSimpleActivity : AppCompatActivity() {
 
             override fun onAdClosed(providerType: String, adObject: Any?) {
                 //模板广告关闭了就会回调这里一次
+                adContainer.removeAllViews()
                 addLog("模板广告关闭了")
                 "onAdClosed".logi(tag)
             }
