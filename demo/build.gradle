@@ -65,8 +65,8 @@ dependencies {
 
 //    implementation 'com.github.ifmvo.TogetherAd:core:5.0.7'
 //    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.7'
-//    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.6'
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.6'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.7'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.7'
 
     //TogetherAd
     implementation project(':csj')
