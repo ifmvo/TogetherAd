@@ -2,11 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.kezong.fat-aar'
 
-// JitPack Maven
-apply plugin: 'com.github.dcendents.android-maven'
-// Your Group
-group = 'com.github.ifmvo'
-
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
@@ -27,12 +22,11 @@ android {
     }
 
     repositories { flatDir { dirs 'libs' } }
-
 }
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'open_ad_sdk_3.8.0.3', ext: 'aar')
+//    embed(name: 'kssdk-ad--3.3.10.2-publishRelease-3cffa2edf', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')

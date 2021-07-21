@@ -1,3 +1,4 @@
+include ':ks'
 include ':core'
 include ':gdt'
 include ':csj'
