@@ -5,6 +5,7 @@ import com.bytedance.sdk.openadsdk.AdSlot
 import com.bytedance.sdk.openadsdk.TTAdNative
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd
 import com.ifmvo.togetherad.core.listener.FullVideoListener
+import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**
@@ -67,6 +68,10 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
     }
 
     override fun showFullVideoAd(activity: Activity): Boolean {
+        "过期时间：${mFllScreenVideoAd?.expirationTimestamp}".logd(tag)
+        if (mFllScreenVideoAd?.expirationTimestamp ?: 0 <= System.currentTimeMillis()) {
+            return false
+        }
         val ritScenes = CsjProvider.FullVideo.ritScenes
         if (ritScenes != null) {
             mFllScreenVideoAd?.showFullScreenVideoAd(activity, ritScenes, null)

@@ -39,9 +39,6 @@ object TogetherAdCsj {
     // 可选参数，需在初始化之前，设置是否支持多进程：true支持、false不支持。默认为false不支持
     var supportMultiProcess: Boolean = false
 
-    // 可选参数，需在初始化之前，设置外部网络请求，默认为 urlconnection
-    var httpStack: IHttpStack? = null
-
     // 可选参数，需在初始化之前，设置是否为计费用户：true计费用户、false非计费用户。默认为false非计费用户。须征得用户同意才可传入该参数
     var isPaid: Boolean = false
 
@@ -62,7 +59,7 @@ object TogetherAdCsj {
     var initCallback: TTAdSdk.InitCallback? = null
 
     // 判断穿山甲SDK是否初始化成功
-    var isInitSuccess = TTAdSdk.isInitSuccess()
+    var pluginUpdateConfig = -1
 
     //全局使用的 TTAdManager
     var mTTAdManager = TTAdSdk.getAdManager()
@@ -112,7 +109,9 @@ object TogetherAdCsj {
         ttAdConfig.asyncInit(isAsyncInit)
         keywords?.let { ttAdConfig.keywords(it) }
         data?.let { ttAdConfig.data(it) }
-        httpStack?.let { ttAdConfig.httpStack(it) } //自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
+        if (pluginUpdateConfig != -1) {
+            ttAdConfig.setPluginUpdateConfig(pluginUpdateConfig)
+        }
         customController?.let { ttAdConfig.customController(it) }
         //初始化
         if (initCallback == null) {

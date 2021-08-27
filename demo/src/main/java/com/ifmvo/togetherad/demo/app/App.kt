@@ -155,7 +155,7 @@ class App : ActLifecycleAppBase() {
          * 全局实时生效
          * 不设置或设置为0 -> 超时时间无限长
          */
-//        TogetherAd.maxFetchDelay = 8000
+        TogetherAd.maxFetchDelay = 8000
 
         /**
          * 所有广告商所有广告类型的广告都会回调这个监听器
