@@ -106,7 +106,7 @@ dependencies {
 
 微信扫描下面二维码, **关注后点击联系我** 可邀请进微信交流群，更多大佬为你答疑。
 
-<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpeg"  height="200" width="200">
+<img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpg"  height="200" width="200">
 
 ### 寻找该项目的维护成员
 
