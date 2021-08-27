@@ -1,5 +1,6 @@
 package com.ifmvo.togetherad.demo.app
 
+import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -48,7 +49,8 @@ class App : ActLifecycleAppBase() {
 //        // 可选参数，需在初始化之前，穿山甲初始化状态回调
 //        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {}
 //        // 可选参数，需在初始化之前，用于控制下载APP前是否弹出二次确认弹窗(适用所有广告类型，跳转应用商店的除外)
-//        TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_POPUP
+        TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_POPUP
+        TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
 
         /**
          * 自定义优量汇的初始化配置
