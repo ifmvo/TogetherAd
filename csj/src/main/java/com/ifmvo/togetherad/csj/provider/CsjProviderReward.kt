@@ -18,6 +18,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
         callbackRewardStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
+                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
                 .setRewardAmount(if (CsjProvider.Reward.rewardAmount != -1) CsjProvider.Reward.rewardAmount else -1)

@@ -21,11 +21,17 @@
 #-renamesourcefileattribute SourceFile
 
 #------------------------穿山甲的混淆---------------------------#
--keep class com.bytedance.** { *; }
--keep class com.ss.** { *; }
--keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
--keep class com.pgl.sys.ces.** {*;}
--keep class com.bytedance.embed_dr.** {*;}
+-keep class com.bytedance.sdk.openadsdk.** { *; }
+-keep class com.bytedance.frameworks.** { *; }
+
+-keep class ms.bd.c.Pgl.**{*;}
+-keep class com.bytedance.mobsec.metasec.ml.**{*;}
+
+-keep class com.ss.android.**{*;}
+
 -keep class com.bytedance.embedapplog.** {*;}
+-keep class com.bytedance.embed_dr.** {*;}
+
+-keep class com.bykv.vk.** {*;}
 
 -keep class com.ifmvo.togetherad.csj.** { *; }

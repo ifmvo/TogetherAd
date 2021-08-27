@@ -58,8 +58,11 @@ object TogetherAdCsj {
     // 可选参数，异步初始化回调
     var initCallback: TTAdSdk.InitCallback? = null
 
-    // 判断穿山甲SDK是否初始化成功
+    // 插件更新配置
     var pluginUpdateConfig = -1
+
+    //下载前是否需要popup提示
+    var downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
 
     //全局使用的 TTAdManager
     var mTTAdManager = TTAdSdk.getAdManager()

@@ -21,6 +21,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
 
         val adSlotBuilder = AdSlot.Builder()
         adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
+        adSlotBuilder.setDownloadType(TogetherAdCsj.downloadType)
         //模板广告需要设置期望个性化模板广告的大小,单位dp,激励视频场景，只要设置的值大于0即可且仅是模板渲染的代码位ID使用，非模板渲染代码位切勿使用
         if (CsjProvider.FullVideo.isExpress) {
             adSlotBuilder.setExpressViewAcceptedSize(500f, 500f)
