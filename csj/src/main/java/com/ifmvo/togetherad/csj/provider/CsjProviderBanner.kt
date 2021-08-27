@@ -20,6 +20,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
         callbackBannerStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
+                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
                 .setSupportDeepLink(CsjProvider.Banner.supportDeepLink)
                 .setAdCount(1) //请求广告数量为1到3条

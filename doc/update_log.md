@@ -1,5 +1,16 @@
 # 更新日志
 
+## 5.0.9
+
+2021.08.27
+1. 对应版本：穿山甲3.9.0.2；优量汇4.400.1270；百度5.91
+2. 穿山甲新增API用于开屏广告点击区域设置
+CsjProvider.Splash.splashButtonType = TTAdConstant.SPLASH_BUTTON_TYPE_DOWNLOAD_BAR//下载按钮
+CsjProvider.Splash.splashButtonType = TTAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN//广告全部区域
+3. 穿山甲新增API用于控制下载APP前是否弹出二次确认弹窗(适用所有广告类型，跳转应用商店的除外)
+TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_POPUP
+TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
+
 ## 5.0.8
 
 2021.07.21

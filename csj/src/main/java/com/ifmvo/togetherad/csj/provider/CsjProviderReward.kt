@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.csj.provider
 import android.app.Activity
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.listener.RewardListener
+import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
 /**
@@ -17,6 +18,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
         callbackRewardStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
+                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
                 .setRewardAmount(if (CsjProvider.Reward.rewardAmount != -1) CsjProvider.Reward.rewardAmount else -1)
@@ -52,7 +54,8 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
                 mttRewardVideoAd = ad
                 mttRewardVideoAd?.setShowDownLoadBar(CsjProvider.Reward.showDownLoadBar)
-                mttRewardVideoAd?.setRewardAdInteractionListener(object : TTRewardVideoAd.RewardAdInteractionListener {
+
+                val rewardAdListener = object : TTRewardVideoAd.RewardAdInteractionListener {
                     override fun onSkippedVideo() {
                     }
 
@@ -85,7 +88,11 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
                         CsjProvider.Reward.errorMsg = errorMsg
                         callbackRewardVerify(adProviderType, listener)
                     }
-                })
+                }
+
+                mttRewardVideoAd?.setRewardAdInteractionListener(rewardAdListener)
+                mttRewardVideoAd?.setRewardPlayAgainInteractionListener(rewardAdListener)
+
                 mttRewardVideoAd?.setDownloadListener(object : TTAppDownloadListener {
                     override fun onIdle() {
                     }
@@ -112,6 +119,10 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
     }
 
     override fun showRewardAd(activity: Activity): Boolean {
+        "过期时间：${mttRewardVideoAd?.expirationTimestamp}".logd(tag)
+        if (mttRewardVideoAd?.expirationTimestamp ?: 0 <= System.currentTimeMillis()) {
+            return false
+        }
         mttRewardVideoAd?.showRewardVideoAd(activity, TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test")
         return true
     }

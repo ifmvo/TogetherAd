@@ -1,5 +1,6 @@
 package com.ifmvo.togetherad.demo.app
 
+import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
@@ -35,8 +36,6 @@ class App : ActLifecycleAppBase() {
 //        TogetherAdCsj.directDownloadNetworkType = TTAdConstant.NETWORK_STATE_WIFI or TTAdConstant.NETWORK_STATE_4G
 //        // 可选参数，需在初始化之前，是否支持多进程，true支持
 //        TogetherAdCsj.supportMultiProcess = false
-//        // 可选参数，需在初始化之前，自定义网络库，demo中给出了okhttp3版本的样例，其余请自行开发或者咨询工作人员。
-//        TogetherAdCsj.httpStack = object : IHttpStack {  }
 //        // 可选参数，需在初始化之前，设置是否为计费用户：true计费用户、false非计费用户。默认为false非计费用户。须征得用户同意才可传入该参数
 //        TogetherAdCsj.isPaid = false
 //        // 可选参数，需在初始化之前，是否一步初始化
@@ -49,6 +48,9 @@ class App : ActLifecycleAppBase() {
 //        TogetherAdCsj.customController = object : TTCustomController() {}
 //        // 可选参数，需在初始化之前，穿山甲初始化状态回调
 //        TogetherAdCsj.initCallback = object : TTAdSdk.InitCallback {}
+//        // 可选参数，需在初始化之前，用于控制下载APP前是否弹出二次确认弹窗(适用所有广告类型，跳转应用商店的除外)
+        TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_POPUP
+        TogetherAdCsj.downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
 
         /**
          * 自定义优量汇的初始化配置
@@ -155,7 +157,7 @@ class App : ActLifecycleAppBase() {
          * 全局实时生效
          * 不设置或设置为0 -> 超时时间无限长
          */
-//        TogetherAd.maxFetchDelay = 8000
+        TogetherAd.maxFetchDelay = 8000
 
         /**
          * 所有广告商所有广告类型的广告都会回调这个监听器
