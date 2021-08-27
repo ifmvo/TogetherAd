@@ -34,8 +34,8 @@ object TogetherAdKs {
         ksIdMap?.let { idMapKs.putAll(it) }
         KsAdSDK.init(
                 context, SdkConfig.Builder()
-                .appId(ksAdAppId) // 测试aapId，请联系快手平台申请正式AppId，必填
-                .showNotification(showNotification) // 是否展示下载通知栏
+                .appId(ksAdAppId)
+                .showNotification(showNotification)
                 .debug(debug)
                 .build()
         )
