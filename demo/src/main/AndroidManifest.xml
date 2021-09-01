@@ -51,16 +51,6 @@
             android:theme="@style/SplashTheme" />
 
         <!--
-            原生模板2.0的简单用法
-        -->
-        <activity android:name=".express2.NativeExpress2SimpleActivity" />
-
-        <!--
-            原生模板2.0 在 RecyclerView 中的用法
-        -->
-        <activity android:name=".express2.NativeExpress2RecyclerViewActivity" />
-
-        <!--
             原生模板的简单用法
         -->
         <activity android:name=".express.NativeExpressSimpleActivity" />
@@ -99,11 +89,6 @@
             Interstitial 插屏广告
         -->
         <activity android:name=".inter.InterActivity" />
-
-        <!--
-            原生模板1.0 & 原生模板2.0 混合使用
-        -->
-        <activity android:name=".hybrid.NativeExpressHybridActivity" />
 
         <!--
             全屏视频广告

@@ -65,8 +65,7 @@ object TogetherAdCsj {
     var downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
 
     //全局使用的 TTAdManager
-    var mTTAdManager = TTAdSdk.getAdManager()
-        private set
+    val mTTAdManager = TTAdSdk.getAdManager()
 
     /**
      * 简单初始化

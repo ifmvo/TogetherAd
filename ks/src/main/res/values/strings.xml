@@ -1,0 +1,5 @@
+<resources>
+    <string name="ks_init_failed">快手广告SDK初始化失败</string>
+    <string name="ks_ad_null">请求到的广告为null</string>
+    <string name="ks_can_not">快手广告暂不支持</string>
+</resources>

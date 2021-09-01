@@ -82,6 +82,7 @@ class SplashActivity : AppCompatActivity() {
         val ratioMapSplash = linkedMapOf(
                 AdProviderType.GDT.type to 1,
                 AdProviderType.CSJ.type to 1,
+                AdProviderType.KS.type to 1,
                 AdProviderType.BAIDU.type to 1
         )
 

@@ -65,6 +65,7 @@ dependencies {
     //TogetherAd
     implementation project(':csj')
     implementation project(':gdt')
+    implementation project(':ks')
     implementation project(':baidu')
 
 }
