@@ -1,9 +1,7 @@
 package com.ifmvo.togetherad.demo.app
 
-import com.bytedance.sdk.openadsdk.TTAdConstant
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
