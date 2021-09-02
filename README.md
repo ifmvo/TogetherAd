@@ -38,19 +38,19 @@ allprojects {
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.1.0'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.1.1'
     
     //腾讯优量汇 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.0'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.1'
     
     //穿山甲 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.1.0'
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.1.1'
 
     //快手联盟 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:ks:5.1.0'
+    implementation 'com.github.ifmvo.TogetherAd:ks:5.1.1'
     
     //百度百青藤 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.1.0'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.1.1'
 
 }
 ```
