@@ -27,3 +27,5 @@
 -dontwarn com.kwad.**
 -dontwarn com.ksad.**
 -dontwarn aegon.chrome.**
+
+-keep class com.ifmvo.togetherad.ks.** { *; }

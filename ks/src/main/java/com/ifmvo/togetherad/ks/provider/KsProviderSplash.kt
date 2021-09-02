@@ -69,6 +69,7 @@ abstract class KsProviderSplash : KsProviderReward() {
     }
 
     override fun loadOnlySplashAd(activity: Activity, adProviderType: String, alias: String, listener: SplashListener) {
+        callbackSplashStartRequest(adProviderType, alias, listener)
         callbackSplashFailed(adProviderType, alias, listener, null, activity.getString(R.string.ks_can_not))
     }
 

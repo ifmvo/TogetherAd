@@ -102,7 +102,17 @@ class App : ActLifecycleAppBase() {
 
         TogetherAdKs.idMapKs = mutableMapOf(
                 TogetherAdAlias.AD_SPLASH to 4000000042L,
-                TogetherAdAlias.AD_REWARD to 90009001L
+                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to 0L,//不支持
+                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to 0L,//不支持
+                TogetherAdAlias.AD_NATIVE_SIMPLE to 0L,
+                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to 0L,
+                TogetherAdAlias.AD_BANNER to 0L,
+                TogetherAdAlias.AD_INTER to 90009002L,
+                TogetherAdAlias.AD_REWARD to 90009001L,
+                TogetherAdAlias.AD_FULL_VIDEO to 90009002L,
+                TogetherAdAlias.AD_HYBRID_SPLASH to 0L,//id是原生类型
+                TogetherAdAlias.AD_HYBRID_EXPRESS to 0L,//不支持
+                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to 0L//不支持
         )
 
         TogetherAdBaidu.idMapBaidu = mutableMapOf(
@@ -128,8 +138,8 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-                AdProviderType.GDT.type to 0,
-                AdProviderType.CSJ.type to 0,
+                AdProviderType.GDT.type to 1,
+                AdProviderType.CSJ.type to 1,
                 AdProviderType.KS.type to 1,
                 AdProviderType.BAIDU.type to 0
         ))

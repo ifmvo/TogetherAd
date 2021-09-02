@@ -7,16 +7,16 @@ package com.ifmvo.togetherad.demo.app
  */
 enum class AdProviderType(val type: String) {
 
-    //百度 Mob （ 百青藤 ）
-    BAIDU("baidu"),
-
-    //腾讯的广点通（ 优量汇 ）
+    //腾讯优量汇 也叫广点通
     GDT("gdt"),
 
     //穿山甲
     CSJ("csj"),
 
     //快手
-    KS("ks")
+    KS("ks"),
+
+    //百度百青藤
+    BAIDU("baidu")
 
 }

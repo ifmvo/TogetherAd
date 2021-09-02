@@ -9,9 +9,9 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
 
-默认提供了三家广告提供商：``字节的穿山甲``、``腾讯的优量汇``、``百度的百青藤``。
+默认提供了四家广告提供商：``字节的穿山甲``、``腾讯的优量汇``、``快手的快手联盟``、``百度的百青藤``。
 
-如果这三家满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
+如果这四家满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
 
 TogetherAd 也提供了很多自定义功能，比如：``按权重分发广告``、``失败切换``、``超时时间``、``自定义图片加载器``、``热启动开屏广告解决方案``等...
 
@@ -32,27 +32,30 @@ allprojects {
 }
 ```
 
-``core``是必选，其他3个根据自身需求``任选``1 ~ 3个组合搭配
+``core``是必选，其他4个根据自身需求``任选``1 ~ 4个组合搭配
 
 ```gradle
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.0.9'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.1.0'
     
-    //优量汇（ 腾讯广点通 ）可选
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.0.9'
+    //腾讯优量汇 （ 可选 ）
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.0'
     
-    //穿山甲（ 头条 ）可选
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.0.9'
+    //穿山甲 （ 可选 ）
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.1.0'
+
+    //快手联盟 （ 可选 ）
+    implementation 'com.github.ifmvo.TogetherAd:ks:5.1.0'
     
-    //百青藤 ( 百度 Mob ) 可选
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.0.9'
+    //百度百青藤 （ 可选 ）
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.1.0'
 
 }
 ```
 
-> 对应版本：穿山甲3.9.0.2；优量汇4.400.1270；百度5.91
+> 对应版本：穿山甲3.9.0.5；优量汇4.400.1270；快手3.3.10.2；百度5.91
 
 ### 使用方法
 

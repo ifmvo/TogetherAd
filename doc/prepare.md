@@ -11,13 +11,16 @@
  */
 enum class AdProviderType(val type: String) {
 
-    //腾讯的广点通
+    //腾讯优量汇 也叫广点通
     GDT("gdt"),
 
     //穿山甲
     CSJ("csj"),
-    
-    //百度 Mob
+
+    //快手
+    KS("ks"),
+
+    //百度百青藤
     //BAIDU("baidu")
 
 }
@@ -71,6 +74,8 @@ class App : Application() {
         TogetherAdGdt.init(context = this, adProviderType = AdProviderType.GDT.type, gdtAdAppId = "1101152570")
         //初始化百青藤
         TogetherAdBaidu.init(context = this, adProviderType = AdProviderType.BAIDU.type, baiduAdAppId = "e866cfb0")
+        //初始化快手
+        TogetherAdKs.init(context = this, adProviderType = AdProviderType.KS.type, ksAdAppId = "90009")
 
         /**
          * 配置所有广告位ID
@@ -85,6 +90,12 @@ class App : Application() {
         TogetherAdGdt.idMapGDT = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "8863364436303842593",
             TogetherAdAlias.AD_REWARD to "2090845242931421"
+            //......其他更多
+        )
+
+        TogetherAdKs.idMapKs = mutableMapOf(
+            TogetherAdAlias.AD_SPLASH to 4000000042L,
+            TogetherAdAlias.AD_REWARD to 90009001L
             //......其他更多
         )
 
