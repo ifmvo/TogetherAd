@@ -61,6 +61,8 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
                         callbackRewardFailed(adProviderType, alias, listener, errorCode, extra.toString())
                     }
 
+                    override fun onVideoSkipToEnd(p0: Long) {}
+
                     override fun onVideoPlayEnd() {
                         callbackRewardVideoComplete(adProviderType, listener)
                     }

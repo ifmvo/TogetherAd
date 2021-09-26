@@ -45,12 +45,24 @@ abstract class KsProviderSplash : KsProviderReward() {
                         callbackSplashExposure(adProviderType, listener)
                     }
 
+                    override fun onDownloadTipsDialogShow() {
+                        
+                    }
+
                     override fun onAdClicked() {
                         callbackSplashClicked(adProviderType, listener)
                     }
 
+                    override fun onDownloadTipsDialogDismiss() {
+                        
+                    }
+
                     override fun onAdShowEnd() {
                         callbackSplashDismiss(adProviderType, listener)
+                    }
+
+                    override fun onDownloadTipsDialogCancel() {
+                        
                     }
 
                     override fun onSkippedAd() {
