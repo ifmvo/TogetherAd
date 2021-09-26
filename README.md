@@ -38,24 +38,24 @@ allprojects {
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.1.1'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.1.3'
     
     //腾讯优量汇 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.1'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.3'
     
     //穿山甲 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.1.1'
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.1.3'
 
     //快手联盟 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:ks:5.1.1'
+    implementation 'com.github.ifmvo.TogetherAd:ks:5.1.3'
     
     //百度百青藤 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.1.1'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.1.3'
 
 }
 ```
 
-> 对应版本：穿山甲3.9.0.5；优量汇4.410.1280；快手3.3.10.2；百度5.91
+> 对应版本：穿山甲3.9.0.5；优量汇4.410.1280；快手3.3.15；百度5.91
 
 ### 使用方法
 
