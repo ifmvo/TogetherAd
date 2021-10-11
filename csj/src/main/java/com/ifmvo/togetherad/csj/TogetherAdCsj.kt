@@ -1,7 +1,6 @@
 package com.ifmvo.togetherad.csj
 
 import android.content.Context
-import com.bytedance.sdk.component.adnet.face.IHttpStack
 import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
@@ -116,10 +115,6 @@ object TogetherAdCsj {
         }
         customController?.let { ttAdConfig.customController(it) }
         //初始化
-        if (initCallback == null) {
-            TTAdSdk.init(context, ttAdConfig.build())
-        } else {
-            TTAdSdk.init(context, ttAdConfig.build(), initCallback)
-        }
+        TTAdSdk.init(context, ttAdConfig.build(), initCallback)
     }
 }
