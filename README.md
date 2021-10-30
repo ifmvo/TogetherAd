@@ -60,6 +60,18 @@ dependencies {
 
 > 对应版本：芒果1.0.2；穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91
 
+### 官网链接
+
+- [穿山甲](https://www.csjplatform.com/)
+
+- [优量汇](https://e.qq.com/dev/index.html)
+
+- [芒果互动](http://channel.mangolm.com/Home/Register?ch=1)
+
+- [快手联盟](https://u.kuaishou.com/)
+
+- [百青藤](http://e.baidu.com/)
+
 ### 使用方法
 
 - [特色功能](doc/feature.md)
