@@ -8,6 +8,7 @@
 2. 新增[芒果广告提供商](http://channel.mangolm.com/Home/Register?ch=1)
 3. 新增 AdHelperRewardPro，激励广告请求成功后展示
 4. 更新穿山甲、更新优量汇
+5. 修复已知问题
 
 ## 5.1.4
 
