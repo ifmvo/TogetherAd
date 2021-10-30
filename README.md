@@ -9,7 +9,7 @@ TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。
 
 TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
 
-默认提供了以下广告提供商：``字节的穿山甲``、``腾讯的优量汇``、``快手的快手联盟``、``百度的百青藤``、``芒果互动``。
+默认提供了以下广告提供商：[字节的穿山甲](https://www.csjplatform.com/)、[腾讯的优量汇](https://e.qq.com/dev/index.html)、[快手的快手联盟](https://u.kuaishou.com/)、[百度的百青藤](http://e.baidu.com/)、[芒果互动](http://channel.mangolm.com/Home/Register?ch=1)。
 
 如果这四家满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
 
