@@ -16,6 +16,9 @@ enum class AdProviderType(val type: String) {
     //快手
     KS("ks"),
 
+    //芒果
+    MG("mg"),
+
     //百度百青藤
     BAIDU("baidu")
 

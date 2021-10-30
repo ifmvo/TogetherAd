@@ -89,4 +89,57 @@ abstract class GdtProviderReward : GdtProviderNativeExpress() {
         }
     }
 
+    override fun requestAndShowRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
+        callbackRewardStartRequest(adProviderType, alias, listener)
+
+        rewardVideoAD = RewardVideoAD(activity, TogetherAdGdt.idMapGDT[alias], object : RewardVideoADListener {
+
+            override fun onADExpose() {
+                callbackRewardExpose(adProviderType, listener)
+            }
+
+            override fun onADClick() {
+                callbackRewardClicked(adProviderType, listener)
+            }
+
+            override fun onVideoCached() {
+                callbackRewardVideoCached(adProviderType, listener)
+                showRewardAd(activity)
+            }
+
+            override fun onReward(map: MutableMap<String, Any>?) {
+                map?.let { GdtProvider.Reward.verificationOption = it[ServerSideVerificationOptions.TRANS_ID] }
+                callbackRewardVerify(adProviderType, listener)
+            }
+
+            override fun onADClose() {
+                callbackRewardClosed(adProviderType, listener)
+                rewardVideoAD = null
+            }
+
+            override fun onADLoad() {
+                TogetherAdGdt.downloadConfirmListener?.let {
+                    rewardVideoAD?.setDownloadConfirmListener(it)
+                }
+                callbackRewardLoaded(adProviderType, alias, listener)
+            }
+
+            override fun onVideoComplete() {
+                callbackRewardVideoComplete(adProviderType, listener)
+            }
+
+            override fun onError(adError: AdError?) {
+                callbackRewardFailed(adProviderType, alias, listener, adError?.errorCode, adError?.errorMsg)
+                rewardVideoAD = null
+            }
+
+            override fun onADShow() {
+                callbackRewardShow(adProviderType, listener)
+            }
+
+        }, GdtProvider.Reward.volumeOn)
+
+        rewardVideoAD?.loadAD()
+    }
+
 }

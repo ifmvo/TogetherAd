@@ -311,6 +311,55 @@ open class BaiduProvider : BaseAdProvider() {
         return false
     }
 
+    override fun requestAndShowRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
+        callbackRewardStartRequest(adProviderType, alias, listener)
+
+        mRewardVideoAd = RewardVideoAd(activity, TogetherAdBaidu.idMapBaidu[alias], object : RewardVideoAd.RewardVideoAdListener {
+            override fun onAdFailed(errorMsg: String?) {
+                "onAdFailed".loge(tag)
+                callbackRewardFailed(adProviderType, alias, listener, null, errorMsg)
+                mRewardVideoAd = null
+            }
+
+            override fun playCompletion() {
+                "playCompletion".logi(tag)
+                callbackRewardVideoComplete(adProviderType, listener)
+                callbackRewardVerify(adProviderType, listener)
+            }
+
+            override fun onAdShow() {
+                "onAdShow".logi(tag)
+                callbackRewardShow(adProviderType, listener)
+                callbackRewardExpose(adProviderType, listener)
+            }
+
+            override fun onAdClick() {
+                "onAdClick".logi(tag)
+                callbackRewardClicked(adProviderType, listener)
+            }
+
+            override fun onAdClose(playScale: Float) {
+                "onAdClose".logi(tag)
+                callbackRewardClosed(adProviderType, listener)
+                mRewardVideoAd = null
+            }
+
+            override fun onVideoDownloadSuccess() {
+                "onVideoDownloadSuccess".logi(tag)
+                callbackRewardLoaded(adProviderType, alias, listener)
+                callbackRewardVideoCached(adProviderType, listener)
+                showRewardAd(activity)
+            }
+
+            override fun onVideoDownloadFailed() {
+                "onVideoDownloadFailed".loge(tag)
+                callbackRewardFailed(adProviderType, alias, listener, null, "视频缓存失败")
+            }
+        }, false)
+
+        mRewardVideoAd?.load()
+    }
+
     override fun requestFullVideoAd(activity: Activity, adProviderType: String, alias: String, listener: FullVideoListener) {
         callbackFullVideoStartRequest(adProviderType, alias, listener)
         callbackFullVideoFailed(adProviderType, alias, listener, null, "百度不支持全屏视频广告")

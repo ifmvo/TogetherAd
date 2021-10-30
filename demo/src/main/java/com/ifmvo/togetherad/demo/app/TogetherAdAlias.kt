@@ -14,12 +14,6 @@ object TogetherAdAlias {
     //开屏
     const val AD_SPLASH = "ad_splash"
 
-    //原生模板2.0 简单使用
-    const val AD_NATIVE_EXPRESS_2_SIMPLE = "ad_native_express2_simple"
-
-    //原生模板2.0 在 RecyclerView 中使用
-    const val AD_NATIVE_EXPRESS_2_RECYCLERVIEW = "ad_native_express2_recyclerview"
-
     //原生模板 简单使用
     const val AD_NATIVE_EXPRESS_SIMPLE = "ad_native_express_simple"
 

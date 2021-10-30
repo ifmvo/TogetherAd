@@ -76,6 +76,11 @@
         <activity android:name=".reward.RewardActivity" />
 
         <!--
+            激励广告(请求并展示)
+        -->
+        <activity android:name=".reward.RewardProActivity" />
+
+        <!--
             踩坑指南
         -->
         <activity android:name=".other.HelpActivity" />

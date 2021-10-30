@@ -109,6 +109,13 @@ interface IAdProvider {
     /**
      * -----------------------------------请求激励广告 -----------------------------------
      */
+    fun requestAndShowRewardAd(
+            @NotNull activity: Activity,
+            @NotNull adProviderType: String,
+            @NotNull alias: String,
+            @NotNull listener: RewardListener
+    )
+
     fun requestRewardAd(
             @NotNull activity: Activity,
             @NotNull adProviderType: String,

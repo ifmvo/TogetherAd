@@ -1,3 +1,4 @@
+include ':mg'
 include ':ks'
 include ':core'
 include ':gdt'

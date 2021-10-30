@@ -11,6 +11,7 @@ import com.ifmvo.togetherad.demo.inter.InterActivity
 import com.ifmvo.togetherad.demo.native_.NativeRecyclerViewActivity
 import com.ifmvo.togetherad.demo.native_.NativeSimpleActivity
 import com.ifmvo.togetherad.demo.reward.RewardActivity
+import com.ifmvo.togetherad.demo.reward.RewardProActivity
 import com.ifmvo.togetherad.demo.splash.SplashHotActivity
 import com.ifmvo.togetherad.demo.splash.SplashProActivity
 
@@ -23,13 +24,14 @@ object MainMenuHelper {
     const val menuMain = "menuMain"
     private const val menuSplash = "menuSplash"
     private const val menuNative = "menuNative"
+    private const val menuReward = "menuReward"
     private const val menuNativeExpress = "menuNativeExpress"
     private const val menuHybrid = "menuHybrid"
 
     private val menuMainList = arrayListOf(
             mapOf(
-                    "title" to "广告大全 5.1.4",
-                    "desc" to "穿山甲4.0.0.6；优量汇4.420.1290；快手3.3.15；百度5.91"
+                    "title" to "广告大全 5.1.5",
+                    "desc" to "芒果1.0.2；穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91"
             ),
             mapOf(
                     "title" to "开屏",
@@ -62,7 +64,8 @@ object MainMenuHelper {
             mapOf(
                     "title" to "激励视频广告",
                     "desc" to "激励视频广告是指将短视频融入到app场景当中，成为app“任务”之一，用户观看短视频广告后可以得到一些应用内奖励",
-                    "class" to RewardActivity::class.java
+                    "class" to MainActivity::class.java,
+                    "clickMenu" to menuReward
             ),
             mapOf(
                     "title" to "全屏视频广告",
@@ -92,6 +95,19 @@ object MainMenuHelper {
                     "title" to "请求和展示分开",
                     "desc" to "请求成功后需手动调用展示。可实现预加载",
                     "class" to SplashProActivity::class.java
+            )
+    )
+
+    private val menuRewardList = arrayListOf(
+            mapOf(
+                    "title" to "请求并展示（芒果、优量汇、穿山甲、百度、快手）",
+                    "desc" to "请求成功后立即自动展示",
+                    "class" to RewardProActivity::class.java
+            ),
+            mapOf(
+                    "title" to "请求和展示分开",
+                    "desc" to "请求成功后需手动调用展示。可实现预加载",
+                    "class" to RewardActivity::class.java
             )
     )
 
@@ -139,6 +155,7 @@ object MainMenuHelper {
             menuMain to menuMainList,
             menuSplash to menuSplashList,
             menuNative to menuNativeList,
+            menuReward to menuRewardList,
             menuNativeExpress to menuNativeExpressList,
             menuHybrid to menuHybridList
     )
