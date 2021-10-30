@@ -62,7 +62,7 @@ dependencies {
 
 ### 官网链接
 
-[穿山甲](https://www.csjplatform.com/)、[优量汇](https://e.qq.com/dev/index.html)、[芒果互动](http://channel.mangolm.com/Home/Register?ch=1)、[快手联盟](https://u.kuaishou.com/)、[百青藤](http://e.baidu.com/)
+[穿山甲](https://www.csjplatform.com/)、[优量汇](https://e.qq.com/dev/index.html)、[芒果互动](http://channel.mangolm.com/Home/Register?ch=1)（推荐）、[快手联盟](https://u.kuaishou.com/)、[百青藤](http://e.baidu.com/)
 
 ### 使用方法
 
