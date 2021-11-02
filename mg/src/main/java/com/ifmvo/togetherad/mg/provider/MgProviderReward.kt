@@ -44,7 +44,7 @@ abstract class MgProviderReward : MgProviderNativeExpress() {
 
     override fun requestRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {
         callbackRewardStartRequest(adProviderType, alias, listener)
-        callbackRewardFailed(adProviderType, alias, listener, null, "请使用requestAndShowRewardAd进行请求")
+        callbackRewardFailed(adProviderType, alias, listener, null, "芒果广告只支持AdHelperRewardPro.show的方式调用")
     }
 
     override fun showRewardAd(activity: Activity): Boolean {
