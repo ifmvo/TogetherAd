@@ -19,13 +19,28 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class org.chromium.** {*;}
--keep class org.chromium.** { *; }
--keep class aegon.chrome.** { *; }
--keep class com.kwai.**{ *; }
--dontwarn com.kwai.**
--dontwarn com.kwad.**
--dontwarn com.ksad.**
--dontwarn aegon.chrome.**
+# OA ID
+-dontwarn com.bun.**
+-keep class com.bun.** {*;}
+-keep class a.**{*;}
+-keep class XI.CA.XI.**{*;}
+-keep class XI.K0.XI.**{*;}
+-keep class XI.XI.K0.**{*;}
+-keep class XI.vs.K0.**{*;}
+-keep class XI.xo.XI.XI.**{*;}
+-keep class com.asus.msa.SupplementaryDID.**{*;}
+-keep class com.asus.msa.sdid.**{*;}
+-keep class com.huawei.hms.ads.identifier.**{*;}
+-keep class com.samsung.android.deviceidservice.**{*;}
+-keep class com.zui.opendeviceidlibrary.**{*;}
+-keep class org.json.**{*;}
+-keep public class com.netease.nis.sdkwrapper.Utils {public <methods>;}
 
--keep class com.ifmvo.togetherad.ks.** { *; }
+#七牛云视频
+-keep class com.pili.pldroid.player.** { *; }
+-keep class com.qiniu.qplayer.mediaEngine.MediaPlayer**{*;}
+
+# 芒果互动
+-keep class com.mango.wakeupsdk.ManGoSDK**{ *; }
+-keep class com.mango.wakeupsdk.open**{ *; }
+-keep class com.mango.wakeupsdk.provider**{ *; }
