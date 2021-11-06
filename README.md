@@ -23,12 +23,16 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 ## 更多变现渠道
 
-多量CPL激励式游戏广告平台（游戏试玩）。多种接入方式：SDK、H5、API。支持Android、iOS、Uni-app、Flutter、ApiCloud。
+多量CPL激励式游戏广告平台（游戏试玩）
+
+多种接入方式：SDK、H5、API。支持Android、iOS、Uni-app、Flutter、ApiCloud。
 
 **注册后将账号ID，扫描下方二维码发送到我微信，为您审核通过后即可接入。**
 
 官网地址：https://www.duomob.com/
+
 体验安卓：http://www.duomoburl.com/android
+
 体验苹果：http://www.duomoburl.com/ios
 
 ## 联系我
