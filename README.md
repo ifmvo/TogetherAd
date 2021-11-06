@@ -3,11 +3,11 @@
 [![](https://jitpack.io/v/ifmvo/TogetherAd.svg)](https://jitpack.io/#ifmvo/TogetherAd)
 ![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
 
-- TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。 能够帮助 Android 开发者快速、便捷、灵活的接入国内多家主流广告 SDK。
+TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。 能够帮助 Android 开发者快速、便捷、灵活的接入国内多家主流广告 SDK。
 
-- TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
+TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
 
-- TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、失败切换、超时时间、自定义图片加载器、热启动开屏广告解决方案等等。
+TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、失败切换、超时时间、自定义图片加载器、热启动开屏广告解决方案等等。
 
 ## 目前支持的广告提供商
 
@@ -27,15 +27,15 @@
 
 **注册后将账号ID，扫描下方二维码发送到我微信，为您审核通过后即可接入。**
 
-- 官网地址：https://www.duomob.com/
-- 体验安卓：http://www.duomoburl.com/android
-- 体验苹果：http://www.duomoburl.com/ios
+官网地址：https://www.duomob.com/
+体验安卓：http://www.duomoburl.com/android
+体验苹果：http://www.duomoburl.com/ios
 
 ## 联系我
 
-- 加我微信，可邀请进微信交流群，更多大佬为你答疑。
+加我微信，可邀请进微信交流群，更多大佬为你答疑。
 
-- 关注公众号，回复 ``apk`` 可下载 Demo Apk 进行体验
+关注公众号，回复 ``apk`` 可下载 Demo Apk 进行体验
 
 <img src="img/ifmvo.jpg"  height="200" width="200"> <img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpg"  height="200" width="200">
 
