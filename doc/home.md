@@ -162,7 +162,7 @@ class App : Application() {
 
 更多自定义配置查看[示例代码](../demo/src/main/java/com/ifmvo/togetherad/demo/app/App.kt)
 
-# 三、快速开始
+# 三、请求和展示广告
 
 [开屏广告（请求成功后立即自动展示）](../demo/src/main/java/com/ifmvo/togetherad/demo/splash/SplashActivity.kt)（推荐）
 
@@ -189,35 +189,3 @@ class App : Application() {
 [原生自渲染广告在RecyclerView中使用](../demo/src/main/java/com/ifmvo/togetherad/demo/native_/NativeRecyclerViewActivity.kt)
 
 >原生广告自渲染方式支持开发者自由拼合素材，最大程度的满足开发需求；与原生模板方式相比，自渲染方式更加自由灵活，开发者可以使用其打造自定义的布局样式
-
-### 8. 混合使用
-
-实际项目中我们可能遇到这样的情况：
-
-百度百青藤的开屏广告ecpm很低，但是它的原生自渲染ecpm相对较高，那我们是不是可以使用原生自渲染伪装成开屏来代替百度百青藤自己的开屏广告呢？这样收益岂不是更高！
-
-所以 TogetherAd 提供了混合使用的方案：
-
-调用开屏广告时，如果随机到csj和gdt就调用其开屏进行展示，如果随机到baidu就使用原生自渲染伪装成开屏再进行展示。
-
-详情可查看 Demo 中例子 [开屏和原生自渲染的混合](../demo/src/main/java/com/ifmvo/togetherad/demo/hybrid/SplashHybridActivity.kt)、[全屏视频和原生自渲染的混合](../demo/src/main/java/com/ifmvo/togetherad/demo/hybrid/VerticalPreMovieHybridActivity.kt)
-
-这里只举了开屏和全屏视频的例子，更多使用场景同理，可自行发挥。原生自渲染可以和任何类型的广告混合使用。
-
-### 9. 扩展
-
-如果这四家满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
-
-### 相关文档收集
-
-- [优量汇接入文档](https://developers.adnet.qq.com/doc/android/access_doc)
-
-- [优量汇常见问题](https://e.qq.com/dev/help_detail.html?cid=668&pid=2208)
-
-- [优量汇SDK修订历史](https://developers.adnet.qq.com/doc/android/union/union_version)
-
-- [优量汇错误码对照](https://developers.adnet.qq.com/backend/error_code.html)
-
-- [穿山甲文档](http://partner.toutiao.com/doc?id=5dd0fe756b181e00112e3ec5)
-
-- [百青藤v5.88接入文档](https://baidu-ssp.gz.bcebos.com/mssp/sdk/BaiduMobAds_MSSP_bd_SDK_android_v5.88.pdf)

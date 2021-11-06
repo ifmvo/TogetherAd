@@ -19,7 +19,7 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 ## 文档
 
-[接入文档](doc/home.md) | [扩展文档](doc/extend.md) | [特色功能](doc/feature.md) | [常见问题](doc/question.md) | [版本更新日志](doc/update_log.md)
+[接入文档](doc/home.md) | [扩展文档](doc/extend.md) | [特色功能](doc/feature.md) | [常见问题](doc/question.md) | [版本更新日志](doc/update_log.md) | [相关文档收集](doc/docs.md)
 
 ## 更多变现渠道
 

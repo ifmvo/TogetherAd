@@ -1,6 +1,21 @@
 # 扩展
 
-### 扩展现有的 Provider
+#### 混合使用
+
+实际项目中我们可能遇到这样的情况：
+
+百度百青藤的开屏广告ecpm很低，但是它的原生自渲染ecpm相对较高，那我们是不是可以使用原生自渲染伪装成开屏来代替百度百青藤自己的开屏广告呢？这样收益岂不是更高！
+
+所以 TogetherAd 提供了混合使用的方案：
+
+调用开屏广告时，如果随机到csj和gdt就调用其开屏进行展示，如果随机到baidu就使用原生自渲染伪装成开屏再进行展示。
+
+详情可查看 Demo 中例子 [开屏和原生自渲染的混合](../demo/src/main/java/com/ifmvo/togetherad/demo/hybrid/SplashHybridActivity.kt)、[全屏视频和原生自渲染的混合](../demo/src/main/java/com/ifmvo/togetherad/demo/hybrid/VerticalPreMovieHybridActivity.kt)
+
+这里只举了开屏和全屏视频的例子，更多使用场景同理，可自行发挥。原生自渲染可以和任何类型的广告混合使用。
+
+#### 扩展现有的 Provider
+
 [CsjProvider.kt](../csj/src/main/java/com/ifmvo/togetherad/csj/CsjProvider.kt)、[GdtProvider.kt](../gdt/src/main/java/com/ifmvo/togetherad/gdt/GdtProvider.kt)、[BaiduProvider.kt](../baidu/src/main/java/com/ifmvo/togetherad/baidu/BaiduProvider.kt) 
 
 这三个文件分别是穿山甲、广点通、百青藤真正请求广告的代码，如果现有的Provider不符合你的需求，你可以通过``继承``的方式，按照自己的需求，对其他相应的方法进行``重写``。
@@ -97,7 +112,7 @@ class CustomCsjProvider : CsjProvider() {
 TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name), providerClassPath = CustomCsjProvider::class.java.name)
 ```
 
-### 新增自定义 Provider
+#### 新增自定义 Provider
 
 同样的原理，如果穿山甲、广点通、百青藤这三个平台已经满足不了你，你还想再加一个其他的广告平台，那你就可以这样，自定义一个Provider：
 
