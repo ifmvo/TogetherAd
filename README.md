@@ -3,13 +3,13 @@
 [![](https://jitpack.io/v/ifmvo/TogetherAd.svg)](https://jitpack.io/#ifmvo/TogetherAd)
 ![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
 
-- TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。 能够帮助 Android 开发者``快速``、``便捷``、``灵活``的 ``接入并使用`` 国内多家主流广告 SDK。
+- TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。 能够帮助 Android 开发者快速、便捷、灵活的接入国内多家主流广告 SDK。
 
 - TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
 
-- TogetherAd 也提供了很多自定义功能，比如：``按权重分发广告``、``失败切换``、``超时时间``、``自定义图片加载器``、``热启动开屏广告解决方案``等...
+- TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、失败切换、超时时间、自定义图片加载器、热启动开屏广告解决方案等等。
 
-### 目前支持的广告提供商
+## 目前支持的广告提供商
 
 [字节穿山甲](https://www.csjplatform.com/)、[腾讯优量汇](https://e.qq.com/dev/index.html)、[芒果互动](http://channel.mangolm.com/Home/Register?ch=1)（推荐）、[快手联盟](https://u.kuaishou.com/)、[百度百青藤](http://e.baidu.com/)。
 
@@ -17,11 +17,11 @@
 
 > 对应版本：芒果1.0.2；穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91
 
-### 文档
+## 文档
 
 [接入文档](doc/home.md) | [扩展文档](doc/extend.md) | [特色功能](doc/feature.md) | [常见问题](doc/question.md) | [版本更新日志](doc/update_log.md)
 
-### 更多变现渠道
+## 更多变现渠道
 
 多量CPL激励式游戏广告平台（游戏试玩）。多种接入方式：SDK、H5、API。支持Android、iOS、Uni-app、Flutter、ApiCloud。
 
@@ -31,7 +31,7 @@
 - 体验安卓：http://www.duomoburl.com/android
 - 体验苹果：http://www.duomoburl.com/ios
 
-### 联系我
+## 联系我
 
 - 加我微信，可邀请进微信交流群，更多大佬为你答疑。
 
@@ -39,7 +39,7 @@
 
 <img src="img/ifmvo.jpg"  height="200" width="200"> <img src="img/qrcode_for_gh_e66be0cfb1f0_258.jpg"  height="200" width="200">
 
-### License
+## License
 
 ```
 MIT License
