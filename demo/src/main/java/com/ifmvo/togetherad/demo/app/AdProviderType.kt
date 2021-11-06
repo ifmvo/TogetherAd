@@ -2,8 +2,7 @@ package com.ifmvo.togetherad.demo.app
 
 /*
  * 广告提供商枚举
- *
- * Created by Matthew_Chen on 2018/8/23.
+ * 不需要的就删除，只保留需要的即可
  */
 enum class AdProviderType(val type: String) {
 
