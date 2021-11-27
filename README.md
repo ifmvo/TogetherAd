@@ -21,20 +21,6 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 [接入文档](doc/home.md) | [扩展文档](doc/extend.md) | [特色功能](doc/feature.md) | [常见问题](doc/question.md) | [版本更新日志](doc/update_log.md) | [相关文档收集](doc/docs.md)
 
-## 更多变现渠道
-
-多量CPL激励式游戏广告平台（游戏试玩）
-
-多种接入方式：SDK、H5、API。支持Android、iOS、Uni-app、Flutter、ApiCloud。
-
-**注册后将账号ID，扫描下方二维码发送到我微信，为您审核通过后即可接入。**
-
-官网地址：https://www.duomob.com/
-
-体验安卓：http://www.duomoburl.com/android
-
-体验苹果：http://www.duomoburl.com/ios
-
 ## 联系我
 
 加我微信，可邀请进微信交流群，更多大佬为你答疑。
