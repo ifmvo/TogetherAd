@@ -1,5 +1,6 @@
 package com.ifmvo.togetherad.demo.app
 
+import com.duoyou.task.openapi.DyAdApi
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.utils.logd
@@ -20,6 +21,22 @@ class App : ActLifecycleAppBase() {
     override fun onCreate() {
         super.onCreate()
 
+        /**
+         * https://github.com/ifmvo/TogetherAd
+         * 初始化多量CPL激励式游戏广告平台
+         */
+        initDy()
+
+        /**
+         * 初始化聚合广告
+         */
+        initTogetherAd()
+    }
+
+    /**
+     * 初始化聚合广告
+     */
+    private fun initTogetherAd() {
         /**
          * 自定义穿山甲的初始化配置
          * 可自行选择自定义穿山甲的配置，不配置就会使用穿山甲的默认值
@@ -86,66 +103,66 @@ class App : ActLifecycleAppBase() {
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
         TogetherAdMg.idMapMg = mutableMapOf(
-                TogetherAdAlias.AD_REWARD to "10018"
+            TogetherAdAlias.AD_REWARD to "10018"
         )
         TogetherAdCsj.idMapCsj = mutableMapOf(
-                TogetherAdAlias.AD_SPLASH to "801121648",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "901121134",//不支持
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "901121125",//不支持
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
-                TogetherAdAlias.AD_BANNER to "901121246",
-                TogetherAdAlias.AD_INTER to "945509693",
-                TogetherAdAlias.AD_REWARD to "901121365",
-                TogetherAdAlias.AD_FULL_VIDEO to "901121073",
-                TogetherAdAlias.AD_HYBRID_SPLASH to "901121737",//id是原生类型
-                TogetherAdAlias.AD_HYBRID_EXPRESS to "901121134",//id是原生模板2.0
-                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "901121073"//id是全屏视频
+            TogetherAdAlias.AD_SPLASH to "801121648",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "901121134",//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "901121125",//不支持
+            TogetherAdAlias.AD_NATIVE_SIMPLE to "901121737",
+            TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "901121737",
+            TogetherAdAlias.AD_BANNER to "901121246",
+            TogetherAdAlias.AD_INTER to "945509693",
+            TogetherAdAlias.AD_REWARD to "901121365",
+            TogetherAdAlias.AD_FULL_VIDEO to "901121073",
+            TogetherAdAlias.AD_HYBRID_SPLASH to "901121737",//id是原生类型
+            TogetherAdAlias.AD_HYBRID_EXPRESS to "901121134",//id是原生模板2.0
+            TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "901121073"//id是全屏视频
         )
 
         TogetherAdGdt.idMapGDT = mutableMapOf(
-                TogetherAdAlias.AD_SPLASH to "8863364436303842593",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "9061615683013706",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "9061615683013706",
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
-                TogetherAdAlias.AD_BANNER to "4080052898050840",
-                TogetherAdAlias.AD_INTER to "1050691202717808",
-                TogetherAdAlias.AD_REWARD to "2090845242931421",
-                TogetherAdAlias.AD_FULL_VIDEO to "9051949928507973",
-                TogetherAdAlias.AD_HYBRID_SPLASH to "8863364436303842593",//id是开屏类型
-                TogetherAdAlias.AD_HYBRID_EXPRESS to "5060295460765937",//id是原生模板1.0
-                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "6040749702835933"
+            TogetherAdAlias.AD_SPLASH to "8863364436303842593",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "9061615683013706",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "9061615683013706",
+            TogetherAdAlias.AD_NATIVE_SIMPLE to "6040749702835933",
+            TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "6040749702835933",
+            TogetherAdAlias.AD_BANNER to "4080052898050840",
+            TogetherAdAlias.AD_INTER to "1050691202717808",
+            TogetherAdAlias.AD_REWARD to "2090845242931421",
+            TogetherAdAlias.AD_FULL_VIDEO to "9051949928507973",
+            TogetherAdAlias.AD_HYBRID_SPLASH to "8863364436303842593",//id是开屏类型
+            TogetherAdAlias.AD_HYBRID_EXPRESS to "5060295460765937",//id是原生模板1.0
+            TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to "6040749702835933"
         )
 
         TogetherAdKs.idMapKs = mutableMapOf(
-                TogetherAdAlias.AD_SPLASH to 4000000042L,
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to 0L,//不支持
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to 0L,//不支持
-                TogetherAdAlias.AD_NATIVE_SIMPLE to 0L,
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to 0L,
-                TogetherAdAlias.AD_BANNER to 0L,
-                TogetherAdAlias.AD_INTER to 90009002L,
-                TogetherAdAlias.AD_REWARD to 90009001L,
-                TogetherAdAlias.AD_FULL_VIDEO to 90009002L,
-                TogetherAdAlias.AD_HYBRID_SPLASH to 0L,//id是原生类型
-                TogetherAdAlias.AD_HYBRID_EXPRESS to 0L,//不支持
-                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to 0L//不支持
+            TogetherAdAlias.AD_SPLASH to 4000000042L,
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to 0L,//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to 0L,//不支持
+            TogetherAdAlias.AD_NATIVE_SIMPLE to 0L,
+            TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to 0L,
+            TogetherAdAlias.AD_BANNER to 0L,
+            TogetherAdAlias.AD_INTER to 90009002L,
+            TogetherAdAlias.AD_REWARD to 90009001L,
+            TogetherAdAlias.AD_FULL_VIDEO to 90009002L,
+            TogetherAdAlias.AD_HYBRID_SPLASH to 0L,//id是原生类型
+            TogetherAdAlias.AD_HYBRID_EXPRESS to 0L,//不支持
+            TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to 0L//不支持
         )
 
         TogetherAdBaidu.idMapBaidu = mutableMapOf(
-                TogetherAdAlias.AD_SPLASH to "2058622",
-                TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
-                TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
-                TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
-                TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
-                TogetherAdAlias.AD_BANNER to "2015351",
-                TogetherAdAlias.AD_INTER to "2403633",
-                TogetherAdAlias.AD_REWARD to "5925490",
-                TogetherAdAlias.AD_FULL_VIDEO to "",
-                TogetherAdAlias.AD_HYBRID_SPLASH to "2058628",//id是原生类型
-                TogetherAdAlias.AD_HYBRID_EXPRESS to "",//不支持
-                TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to ""//不支持
+            TogetherAdAlias.AD_SPLASH to "2058622",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
+            TogetherAdAlias.AD_NATIVE_SIMPLE to "2058628",
+            TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "2058628",
+            TogetherAdAlias.AD_BANNER to "2015351",
+            TogetherAdAlias.AD_INTER to "2403633",
+            TogetherAdAlias.AD_REWARD to "5925490",
+            TogetherAdAlias.AD_FULL_VIDEO to "",
+            TogetherAdAlias.AD_HYBRID_SPLASH to "2058628",//id是原生类型
+            TogetherAdAlias.AD_HYBRID_EXPRESS to "",//不支持
+            TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to ""//不支持
         )
 
         /**
@@ -156,11 +173,11 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-                AdProviderType.GDT.type to 1,
-                AdProviderType.CSJ.type to 1,
-                AdProviderType.KS.type to 1,
-                AdProviderType.BAIDU.type to 1,
-                AdProviderType.MG.type to 1
+            AdProviderType.GDT.type to 1,
+            AdProviderType.CSJ.type to 1,
+            AdProviderType.KS.type to 1,
+            AdProviderType.BAIDU.type to 1,
+            AdProviderType.MG.type to 1
         ))
 
         /**
@@ -219,5 +236,12 @@ class App : ActLifecycleAppBase() {
          * DispatchType.Random  按照权重随机分发模式
          */
 //        TogetherAd.dispatchType = DispatchType.Random
+    }
+
+    /**
+     * 多量CPL激励式游戏广告平台
+     */
+    private fun initDy() {
+        DyAdApi.getDyAdApi().init(this,"dy_59633678", "ee0a8ee5de2ce442c8b094410440ec8c", "channel", true)
     }
 }

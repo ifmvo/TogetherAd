@@ -52,6 +52,8 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
+    repositories { flatDir { dirs 'libs' } }
 }
 
 //获取时间
@@ -66,6 +68,9 @@ dependencies {
 
     //内存泄漏检测工具
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
+    //多量CPL激励式游戏广告平台
+    implementation(name: 'dy-task-sdk-2.1.8', ext: 'aar')
 
     //TogetherAd
     implementation project(':csj')
