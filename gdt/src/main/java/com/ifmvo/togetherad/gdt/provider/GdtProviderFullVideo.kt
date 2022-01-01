@@ -76,7 +76,6 @@ abstract class GdtProviderFullVideo : GdtProviderBanner() {
                 .setAutoPlayPolicy(GdtProvider.FullVideo.autoPlayPolicy)
                 .build()
         fullVideoAd?.setVideoOption(option)
-        fullVideoAd?.setVideoPlayPolicy(GdtProvider.FullVideo.videoPlayPolicy)
         fullVideoAd?.setMaxVideoDuration(GdtProvider.FullVideo.maxVideoDuration)
         fullVideoAd?.setMaxVideoDuration(GdtProvider.FullVideo.minVideoDuration)
         fullVideoAd?.setMediaListener(object :UnifiedInterstitialMediaListener {

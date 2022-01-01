@@ -5,7 +5,7 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.gdt.provider.GdtProvider
 import com.qq.e.comm.compliance.DownloadConfirmListener
-import com.qq.e.comm.managers.GDTADManager
+import com.qq.e.comm.managers.GDTAdSdk
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -35,6 +35,6 @@ object TogetherAdGdt {
     fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull gdtAdAppId: String, gdtIdMap: Map<String, String>? = null, providerClassPath: String? = null) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) GdtProvider::class.java.name else providerClassPath))
         gdtIdMap?.let { idMapGDT.putAll(it) }
-        GDTADManager.getInstance().initWith(context, gdtAdAppId)
+        GDTAdSdk.init(context, gdtAdAppId)
     }
 }

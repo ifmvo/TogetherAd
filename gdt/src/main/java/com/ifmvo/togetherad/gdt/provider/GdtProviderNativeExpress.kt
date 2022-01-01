@@ -53,8 +53,6 @@ abstract class GdtProviderNativeExpress : GdtProviderNative() {
                 callbackNativeExpressClosed(adProviderType, adView, listener)
             }
 
-            override fun onADCloseOverlay(adView: NativeExpressADView?) {}
-            override fun onADOpenOverlay(adView: NativeExpressADView?) {}
             override fun onADLeftApplication(adView: NativeExpressADView?) {}
         }
 
@@ -63,7 +61,6 @@ abstract class GdtProviderNativeExpress : GdtProviderNative() {
                 .setAutoPlayPolicy(GdtProvider.NativeExpress.autoPlayPolicy)
                 .setAutoPlayMuted(GdtProvider.NativeExpress.autoPlayMuted)
                 .build())
-        nativeExpressAD.setVideoPlayPolicy(GdtProvider.NativeExpress.videoPlayPolicy)
         nativeExpressAD.setMinVideoDuration(GdtProvider.NativeExpress.minVideoDuration)
         nativeExpressAD.setMaxVideoDuration(GdtProvider.NativeExpress.maxVideoDuration)
         nativeExpressAD.loadAD(adCount)

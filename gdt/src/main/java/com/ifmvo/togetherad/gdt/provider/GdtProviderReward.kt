@@ -7,7 +7,6 @@ import com.qq.e.ads.rewardvideo.RewardVideoAD
 import com.qq.e.ads.rewardvideo.RewardVideoADListener
 import com.qq.e.ads.rewardvideo.ServerSideVerificationOptions
 import com.qq.e.comm.util.AdError
-import com.qq.e.comm.util.VideoAdValidity
 
 
 /**
@@ -76,17 +75,12 @@ abstract class GdtProviderReward : GdtProviderNativeExpress() {
             return false
         }
 
-        return when (rewardVideoAD!!.checkValidity()!!) {
-            //已经展示或过期
-            VideoAdValidity.SHOWED, VideoAdValidity.OVERDUE -> {
-                false
-            }
-            //有效或未缓存完成，直接展示
-            VideoAdValidity.VALID, VideoAdValidity.NONE_CACHE -> {
-                rewardVideoAD?.showAD()
-                true
-            }
+        if (rewardVideoAD!!.isValid) {
+            rewardVideoAD?.showAD()
+            return true
         }
+
+        return false
     }
 
     override fun requestAndShowRewardAd(activity: Activity, adProviderType: String, alias: String, listener: RewardListener) {

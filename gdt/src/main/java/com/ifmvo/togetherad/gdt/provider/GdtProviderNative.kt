@@ -3,7 +3,6 @@ package com.ifmvo.togetherad.gdt.provider
 import android.app.Activity
 import com.ifmvo.togetherad.core.listener.NativeListener
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
-import com.qq.e.ads.cfg.VideoOption
 import com.qq.e.ads.nativ.NativeADUnifiedListener
 import com.qq.e.ads.nativ.NativeUnifiedAD
 import com.qq.e.ads.nativ.NativeUnifiedADData
@@ -37,14 +36,10 @@ abstract class GdtProviderNative : GdtProviderInter() {
         }
 
         val mAdManager = NativeUnifiedAD(activity, TogetherAdGdt.idMapGDT[alias], nativeADUnifiedListener)
-        mAdManager.setBrowserType(GdtProvider.Native.browserType)
         mAdManager.setDownAPPConfirmPolicy(GdtProvider.Native.downAPPConfirmPolicy)
         GdtProvider.Native.categories?.let { mAdManager.setCategories(it) }
         mAdManager.setMaxVideoDuration(GdtProvider.Native.maxVideoDuration)//有效值就是 5-60
         mAdManager.setMinVideoDuration(GdtProvider.Native.minVideoDuration)
-        mAdManager.setVideoPlayPolicy(GdtProvider.Native.videoPlayPolicy)//本次拉回的视频广告，在用户看来是否为自动播放的
-        //视频播放前，用户看到的广告容器是由SDK渲染的.该接口已经废弃，仅支持sdk渲染，不再支持开发者自己渲染
-        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK)
         mAdManager.loadData(maxCount)
     }
 
