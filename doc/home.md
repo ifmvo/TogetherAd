@@ -21,9 +21,6 @@ dependencies {
     //核心库（ 必要 ）
     implementation 'com.github.ifmvo.TogetherAd:core:5.1.8'
 
-    //芒果 （可选）
-    implementation 'com.github.ifmvo.TogetherAd:mg:5.1.8'
-
     //腾讯优量汇 （ 可选 ）
     implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.8'
 
@@ -38,6 +35,8 @@ dependencies {
 
 }
 ```
+
+> 对应版本：穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91
 
 ### 2. 混淆 proguard-rules.pro
 
@@ -67,9 +66,6 @@ enum class AdProviderType(val type: String) {
 
     //快手
     KS("ks"),
-
-    //芒果
-    MG("mg"),
 
     //百度百青藤
     BAIDU("baidu")
@@ -114,8 +110,6 @@ class App : Application() {
         /**
          * 尽量放在 Application 的 onCreate 方法中初始化，否则可能会影响填充率
          */
-        //初始化芒果
-        TogetherAdMg.init(context = this, adProviderType = AdProviderType.MG.type, mgAdAppId = "ERRRaIIYGq", mgAdAppKey = "efgQRSTZhijKopqr2345")
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通
@@ -153,9 +147,6 @@ class App : Application() {
             //......其他更多
         )
 
-        TogetherAdMg.idMapMg = mutableMapOf(
-            TogetherAdAlias.AD_REWARD to "10018"
-        )
     }
 }
 ```

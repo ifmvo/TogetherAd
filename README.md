@@ -11,11 +11,9 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 ## 目前支持的广告提供商
 
-[字节穿山甲](https://www.csjplatform.com/)、[腾讯优量汇](https://e.qq.com/dev/index.html)、[芒果互动](http://channel.mangolm.com/Home/Register?ch=1)（推荐）、[快手联盟](https://u.kuaishou.com/)、[百度百青藤](http://e.baidu.com/)。
+[字节穿山甲](https://www.csjplatform.com/)、[腾讯优量汇](https://e.qq.com/dev/index.html)、[快手联盟](https://u.kuaishou.com/)、[百度百青藤](http://e.baidu.com/)。
 
 如果这几家广告提供商满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
-
-> 对应版本：芒果1.0.2；穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91
 
 ## 文档
 

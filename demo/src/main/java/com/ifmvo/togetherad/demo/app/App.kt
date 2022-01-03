@@ -3,15 +3,11 @@ package com.ifmvo.togetherad.demo.app
 import com.duoyou.task.openapi.DyAdApi
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
-import com.ifmvo.togetherad.core.utils.logd
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.ifmvo.togetherad.ks.TogetherAdKs
-import com.ifmvo.togetherad.mg.TogetherAdMg
-import com.mango.wakeupsdk.open.error.ErrorMessage
-import com.mango.wakeupsdk.open.listener.OnInitListener
 
 /*
  * Created by Matthew Chen on 2020-04-16.
@@ -77,18 +73,7 @@ class App : ActLifecycleAppBase() {
          */
 //        //可参照 DownloadConfirmHelper 自定义下载确认的回调
 //        TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
-        TogetherAdMg.onInitListener = object : OnInitListener {
-            override fun onSuccess() {
-                "芒果初始化成功".logd("TogetherAd")
-            }
 
-            override fun onFail(message: ErrorMessage?) {
-                "芒果初始化失败 ${message?.code} ${message?.message}".logd("TogetherAd")
-            }
-        }
-
-        //初始化芒果
-        TogetherAdMg.init(context = this, adProviderType = AdProviderType.MG.type, mgAdAppId = "ERRRaIIYGq", mgAdAppKey = "efgQRSTZhijKopqr2345")
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通
@@ -102,9 +87,6 @@ class App : ActLifecycleAppBase() {
          * 配置所有广告位ID
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
-        TogetherAdMg.idMapMg = mutableMapOf(
-            TogetherAdAlias.AD_REWARD to "10018"
-        )
         TogetherAdCsj.idMapCsj = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "801121648",
             TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "901121134",//不支持
@@ -176,8 +158,7 @@ class App : ActLifecycleAppBase() {
             AdProviderType.GDT.type to 1,
             AdProviderType.CSJ.type to 1,
             AdProviderType.KS.type to 1,
-            AdProviderType.BAIDU.type to 1,
-            AdProviderType.MG.type to 1
+            AdProviderType.BAIDU.type to 1
         ))
 
         /**

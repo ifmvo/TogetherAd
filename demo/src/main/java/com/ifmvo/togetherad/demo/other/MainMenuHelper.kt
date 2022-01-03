@@ -31,7 +31,7 @@ object MainMenuHelper {
     private val menuMainList = arrayListOf(
             mapOf(
                     "title" to "广告大全 5.1.8",
-                    "desc" to "芒果1.0.2；穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91"
+                    "desc" to "穿山甲4.0.1.1；优量汇4.422.1292；快手3.3.15；百度5.91"
             ),
             mapOf(
                     "title" to "开屏",
@@ -100,7 +100,7 @@ object MainMenuHelper {
 
     private val menuRewardList = arrayListOf(
             mapOf(
-                    "title" to "请求并展示（芒果、优量汇、穿山甲、百度、快手）",
+                    "title" to "请求并展示",
                     "desc" to "请求成功后立即自动展示",
                     "class" to RewardProActivity::class.java
             ),

@@ -1,5 +1,0 @@
-<resources>
-    <string name="mg_init_failed">芒果广告SDK初始化失败</string>
-    <string name="mg_ad_null">请求到的广告为null</string>
-    <string name="mg_can_not">芒果广告暂不支持</string>
-</resources>

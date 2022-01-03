@@ -77,12 +77,9 @@ dependencies {
     implementation project(':gdt')
     implementation project(':ks')
     implementation project(':baidu')
-    implementation project(':mg')
 
 //    //核心库（ 必要 ）
 //    implementation 'com.github.ifmvo.TogetherAd:core:5.1.8'
-//    //芒果互动 （可选）
-//    implementation 'com.github.ifmvo.TogetherAd:mg:5.1.8'
 //    //腾讯优量汇 （ 可选 ）
 //    implementation 'com.github.ifmvo.TogetherAd:gdt:5.1.8'
 //    //穿山甲 （ 可选 ）
