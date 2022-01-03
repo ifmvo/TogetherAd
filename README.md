@@ -11,7 +11,7 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 ## 目前支持的广告提供商
 
-[字节穿山甲](https://www.csjplatform.com/)、[腾讯优量汇](https://e.qq.com/dev/index.html)、[快手联盟](https://u.kuaishou.com/)、[百度百青藤](http://e.baidu.com/)。
+字节穿山甲、腾讯优量汇、快手联盟、百度百青藤。
 
 如果这几家广告提供商满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
 
@@ -46,7 +46,7 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 ```
 MIT License
 
-Copyright (c) 2021 陈铭卓
+Copyright (c) 2022 陈铭卓
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
