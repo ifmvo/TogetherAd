@@ -77,7 +77,7 @@ abstract class KsProviderInter : KsProviderFullVideo() {
         val config = KsVideoPlayConfig.Builder()
                 .showLandscape(KsProvider.FullVideo.isShowLandscape)
                 .build()
-        interstitialAd!!.showInterstitialAd(activity, config)
+        interstitialAd?.showInterstitialAd(activity, config)
     }
 
     override fun destroyInterAd() {
