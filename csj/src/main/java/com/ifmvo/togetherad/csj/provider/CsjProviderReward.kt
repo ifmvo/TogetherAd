@@ -21,8 +21,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
                 .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
-                .setRewardAmount(if (CsjProvider.Reward.rewardAmount != -1) CsjProvider.Reward.rewardAmount else -1)
-                .setRewardName(if (CsjProvider.Reward.rewardName?.isNotEmpty() == true) CsjProvider.Reward.rewardName else "")
                 //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
                 .setUserID(if (CsjProvider.Reward.userID?.isNotEmpty() == true) CsjProvider.Reward.userID else "")
                 .setOrientation(CsjProvider.Reward.orientation)  //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
@@ -82,8 +80,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
                     override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String?, errorCode: Int, errorMsg: String?) {
                         CsjProvider.Reward.rewardVerify = rewardVerify
-                        CsjProvider.Reward.rewardAmount = rewardAmount
-                        CsjProvider.Reward.rewardName = rewardName
                         CsjProvider.Reward.errorCode = errorCode
                         CsjProvider.Reward.errorMsg = errorMsg
                         callbackRewardVerify(adProviderType, listener)
@@ -135,8 +131,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
                 .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
-                .setRewardAmount(if (CsjProvider.Reward.rewardAmount != -1) CsjProvider.Reward.rewardAmount else -1)
-                .setRewardName(if (CsjProvider.Reward.rewardName?.isNotEmpty() == true) CsjProvider.Reward.rewardName else "")
                 //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
                 .setUserID(if (CsjProvider.Reward.userID?.isNotEmpty() == true) CsjProvider.Reward.userID else "")
                 .setOrientation(CsjProvider.Reward.orientation)  //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
@@ -197,8 +191,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
                     override fun onRewardVerify(rewardVerify: Boolean, rewardAmount: Int, rewardName: String?, errorCode: Int, errorMsg: String?) {
                         CsjProvider.Reward.rewardVerify = rewardVerify
-                        CsjProvider.Reward.rewardAmount = rewardAmount
-                        CsjProvider.Reward.rewardName = rewardName
                         CsjProvider.Reward.errorCode = errorCode
                         CsjProvider.Reward.errorMsg = errorMsg
                         callbackRewardVerify(adProviderType, listener)

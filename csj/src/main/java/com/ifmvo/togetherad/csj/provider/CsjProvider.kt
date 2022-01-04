@@ -134,12 +134,6 @@ open class CsjProvider : CsjProviderSplash() {
 
         var supportDeepLink: Boolean = true
 
-        //奖励的名称
-        var rewardName: String? = null
-
-        //奖励的数量
-        var rewardAmount: Int = -1
-
         //设置期望视频播放的方向，为TTAdConstant.HORIZONTAL或TTAdConstant.VERTICAL
         var orientation: Int = TTAdConstant.VERTICAL
 
