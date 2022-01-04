@@ -3,6 +3,8 @@
 [![](https://jitpack.io/v/ifmvo/TogetherAd.svg)](https://jitpack.io/#ifmvo/TogetherAd)
 ![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
 
+https://github.com/ifmvo/TogetherAd
+
 TogetherAd 是由 Kotlin 编写的 Android 广告聚合开源项目。 能够帮助 Android 开发者快速、便捷、灵活的接入国内多家主流广告 SDK。
 
 TogetherAd 也是一种将各个广告提供商``组件化处理``的解决方案。
@@ -18,20 +20,6 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 ## 文档
 
 [接入文档](doc/home.md) | [扩展文档](doc/extend.md) | [特色功能](doc/feature.md) | [常见问题](doc/question.md) | [版本更新日志](doc/update_log.md) | [相关文档收集](doc/docs.md)
-
-## 更多变现渠道
-
-多量CPL激励式游戏广告平台（游戏试玩）
-
-多种接入方式：SDK、H5、API。支持Android、iOS、Uni-app、Flutter、ApiCloud。
-
-**注册后将账号ID，扫描下方二维码发送到我微信，为您审核通过后即可接入。**
-
-官网地址：https://www.duomob.com/
-
-体验安卓：http://www.duomoburl.com/android
-
-体验苹果：http://www.duomoburl.com/ios
 
 ## 联系我
 
