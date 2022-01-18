@@ -62,6 +62,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
                     }
 
                     override fun onVideoSkipToEnd(p0: Long) {}
+                    override fun onRewardStepVerify(taskType: Int, currentTaskStatus: Int) {}
 
                     override fun onVideoPlayEnd() {
                         callbackRewardVideoComplete(adProviderType, listener)
@@ -139,6 +140,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
                     }
 
                     override fun onVideoSkipToEnd(p0: Long) {}
+                    override fun onRewardStepVerify(taskType: Int, currentTaskStatus: Int) {}
 
                     override fun onVideoPlayEnd() {
                         callbackRewardVideoComplete(adProviderType, listener)
