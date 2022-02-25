@@ -19,25 +19,24 @@ allprojects {
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.2.2'
 
     //腾讯优量汇 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.2'
 
     //穿山甲 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.2'
 
     //快手联盟 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.2'
 
     //百度百青藤 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.1'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.2'
 
 }
 ```
-> 发布日期：2022.01.18
 
-> 对应版本：穿山甲4.2.5.2；优量汇4.441.1311；快手3.3.20；百度5.91
+> 对应版本：穿山甲4.3.0.1；优量汇4.450.1320；快手3.3.21；百度5.91
 
 ### 2. 混淆 proguard-rules.pro
 
