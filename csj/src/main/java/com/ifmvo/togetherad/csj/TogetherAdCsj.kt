@@ -56,9 +56,6 @@ object TogetherAdCsj {
     // 插件更新配置
     var pluginUpdateConfig = -1
 
-    //下载前是否需要popup提示
-    var downloadType = TTAdConstant.DOWNLOAD_TYPE_NO_POPUP
-
     //全局使用的 TTAdManager
     val mTTAdManager = TTAdSdk.getAdManager()
 

@@ -30,8 +30,6 @@ abstract class CsjProviderSplash : CsjProviderReward() {
 
         val adSlotBuilder = AdSlot.Builder()
         adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
-        adSlotBuilder.setSplashButtonType(CsjProvider.Splash.splashButtonType)
-        adSlotBuilder.setDownloadType(TogetherAdCsj.downloadType)
         if (CsjProvider.Splash.isExpress) {
             adSlotBuilder.setExpressViewAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth.toFloat(), CsjProvider.Splash.imageAcceptedSizeHeight.toFloat())
         } else {
@@ -135,7 +133,6 @@ abstract class CsjProviderSplash : CsjProviderReward() {
         val skipView = customSkipView?.onCreateSkipView(activity)
 
         val adSlotBuilder = AdSlot.Builder()
-        adSlotBuilder.setDownloadType(TogetherAdCsj.downloadType)
         adSlotBuilder.setCodeId(TogetherAdCsj.idMapCsj[alias])
         if (CsjProvider.Splash.isExpress) {
             adSlotBuilder.setExpressViewAcceptedSize(CsjProvider.Splash.imageAcceptedSizeWidth.toFloat(), CsjProvider.Splash.imageAcceptedSizeHeight.toFloat())

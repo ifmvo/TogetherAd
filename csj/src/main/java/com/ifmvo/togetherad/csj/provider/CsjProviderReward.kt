@@ -18,7 +18,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
         callbackRewardStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
                 //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串
@@ -128,7 +127,6 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
         callbackRewardStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Reward.supportDeepLink)
                 //必传参数，表来标识应用侧唯一用户；若非服务器回调模式或不需sdk透传,可设置为空字符串

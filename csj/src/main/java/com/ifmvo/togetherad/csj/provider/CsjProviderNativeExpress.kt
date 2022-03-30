@@ -20,7 +20,6 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
         callbackNativeExpressStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
                 .setSupportDeepLink(CsjProvider.NativeExpress.supportDeepLink)
                 .setAdCount(adCount)//请求广告数量为1到3条

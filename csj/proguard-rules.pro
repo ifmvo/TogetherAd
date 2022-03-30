@@ -21,17 +21,95 @@
 #-renamesourcefileattribute SourceFile
 
 #------------------------穿山甲的混淆---------------------------#
+-keep class com.ifmvo.togetherad.csj.** { *; }
+
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+-keep class com.bytedance.sdk.openadsdk.** {*;}
+-keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
+-keep class com.pgl.sys.ces.* {*;}
+
+-keepclassmembers class * {
+    *** getContext(...);
+    *** getActivity(...);
+    *** getResources(...);
+    *** startActivity(...);
+    *** startActivityForResult(...);
+    *** registerReceiver(...);
+    *** unregisterReceiver(...);
+    *** query(...);
+    *** getType(...);
+    *** insert(...);
+    *** delete(...);
+    *** update(...);
+    *** call(...);
+    *** setResult(...);
+    *** startService(...);
+    *** stopService(...);
+    *** bindService(...);
+    *** unbindService(...);
+    *** requestPermissions(...);
+    *** getIdentifier(...);
+   }
+
+-keep class com.bytedance.pangle.** {*;}
 -keep class com.bytedance.sdk.openadsdk.** { *; }
--keep class com.bytedance.frameworks.** { *; }
 
 -keep class ms.bd.c.Pgl.**{*;}
 -keep class com.bytedance.mobsec.metasec.ml.**{*;}
-
--keep class com.ss.android.**{*;}
 
 -keep class com.bytedance.embedapplog.** {*;}
 -keep class com.bytedance.embed_dr.** {*;}
 
 -keep class com.bykv.vk.** {*;}
 
--keep class com.ifmvo.togetherad.csj.** { *; }
+-keep class com.lynx.** { *; }
+
+-keep class com.ss.android.**{*;}
+
+-keep class android.support.v4.app.FragmentActivity{}
+-keep class androidx.fragment.app.FragmentActivity{}
+-keepclassmembernames class *{
+	*** _GET_PLUGIN_PKG();
+}
+-keep class androidx.fragment.app.FragmentFactory{
+    *** sClassMap;
+}
+-keep class com.volcengine.zeus.LocalBroadcastManager{
+    *** getInstance(**);
+    *** registerReceiver(**,**);
+    *** unregisterReceiver(**);
+    *** sendBroadcast(**);
+    *** sendBroadcastSync(**);
+}
+-keep class com.bytedance.pangle.LocalBroadcastManager{
+    *** getInstance(**);
+    *** registerReceiver(**,**);
+    *** unregisterReceiver(**);
+    *** sendBroadcast(**);
+    *** sendBroadcastSync(**);
+}
+
+
+-keep class android.support.v4.app.FragmentActivity{}
+-keep class androidx.fragment.app.FragmentActivity{}
+-keepclassmembernames class *{
+	*** _GET_PLUGIN_PKG();
+}
+-keep class androidx.fragment.app.FragmentFactory{
+    *** sClassMap;
+}
+-keep class com.volcengine.zeus.LocalBroadcastManager{
+    *** getInstance(**);
+    *** registerReceiver(**,**);
+    *** unregisterReceiver(**);
+    *** sendBroadcast(**);
+    *** sendBroadcastSync(**);
+}
+-keep class com.bytedance.pangle.LocalBroadcastManager{
+    *** getInstance(**);
+    *** registerReceiver(**,**);
+    *** unregisterReceiver(**);
+    *** sendBroadcast(**);
+    *** sendBroadcastSync(**);
+}
+

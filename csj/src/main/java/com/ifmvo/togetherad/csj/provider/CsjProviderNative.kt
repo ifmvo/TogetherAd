@@ -44,7 +44,6 @@ abstract class CsjProviderNative : CsjProviderInter() {
         callbackNativeStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setSupportDeepLink(CsjProvider.Native.supportDeepLink)
                 .setImageAcceptedSize(CsjProvider.Native.imageAcceptedSizeWidth, CsjProvider.Native.imageAcceptedSizeHeight)
@@ -72,7 +71,6 @@ abstract class CsjProviderNative : CsjProviderInter() {
         callbackNativeStartRequest(adProviderType, alias, listener)
 
         val adSlot = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias])
                 .setImageAcceptedSize(CsjProvider.Native.imageAcceptedSizeWidth, CsjProvider.Native.imageAcceptedSizeHeight)
                 .setAdCount(maxCount)

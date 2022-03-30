@@ -34,7 +34,6 @@ open class CsjProvider : CsjProviderSplash() {
             imageAcceptedSizeHeight = height
         }
 
-        var splashButtonType = TTAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN
     }
 
     /**

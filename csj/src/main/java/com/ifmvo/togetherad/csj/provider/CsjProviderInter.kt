@@ -20,7 +20,6 @@ abstract class CsjProviderInter : CsjProviderFullVideo() {
         callbackInterStartRequest(adProviderType, alias, listener)
 
         val adSlotBuilder = AdSlot.Builder()
-                .setDownloadType(TogetherAdCsj.downloadType)
                 .setCodeId(TogetherAdCsj.idMapCsj[alias]) //广告位id
                 .setSupportDeepLink(CsjProvider.Inter.supportDeepLink)
                 .setExpressViewAcceptedSize(CsjProvider.Inter.expressViewAcceptedSizeWidth, CsjProvider.Inter.expressViewAcceptedSizeHeight)
