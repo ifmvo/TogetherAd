@@ -21,6 +21,9 @@ abstract class KsProviderFullVideo : KsProviderBanner() {
         val ksScene = KsScene.Builder(TogetherAdKs.idMapKs[alias] ?: 0).build()
 
         TogetherAdKs.adRequestManager!!.loadFullScreenVideoAd(ksScene, object : KsLoadManager.FullScreenVideoAdListener {
+
+            override fun onFullScreenVideoResult(adList: MutableList<KsFullScreenVideoAd>?) {}
+
             override fun onFullScreenVideoAdLoad(adList: MutableList<KsFullScreenVideoAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackFullVideoFailed(adProviderType, alias, listener, null, activity.getString(R.string.ks_ad_null))
@@ -61,8 +64,6 @@ abstract class KsProviderFullVideo : KsProviderBanner() {
                     }
                 })
             }
-
-            override fun onRequestResult(adNumber: Int) {}
 
             override fun onError(errorCode: Int, errorMsg: String?) {
                 callbackFullVideoFailed(adProviderType, alias, listener, errorCode, errorMsg)

@@ -8,6 +8,7 @@ import com.kwad.sdk.api.KsLoadManager
 import com.kwad.sdk.api.KsRewardVideoAd
 import com.kwad.sdk.api.KsScene
 import com.kwad.sdk.api.KsVideoPlayConfig
+import com.kwad.sdk.api.model.KsExtraRewardType
 
 abstract class KsProviderReward : KsProviderNativeExpress() {
 
@@ -30,7 +31,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
                 callbackRewardFailed(adProviderType, alias, listener, code, msg)
             }
 
-            override fun onRequestResult(adNumber: Int) {}
+            override fun onRewardVideoResult(adList: MutableList<KsRewardVideoAd>?) {}
 
             override fun onRewardVideoAdLoad(adList: List<KsRewardVideoAd>?) {
                 if (adList.isNullOrEmpty()) {
@@ -63,6 +64,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
 
                     override fun onVideoSkipToEnd(p0: Long) {}
                     override fun onRewardStepVerify(taskType: Int, currentTaskStatus: Int) {}
+                    override fun onExtraRewardVerify(@KsExtraRewardType extraRewardType: Int) {}
 
                     override fun onVideoPlayEnd() {
                         callbackRewardVideoComplete(adProviderType, listener)
@@ -108,7 +110,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
                 callbackRewardFailed(adProviderType, alias, listener, code, msg)
             }
 
-            override fun onRequestResult(adNumber: Int) {}
+            override fun onRewardVideoResult(adList: MutableList<KsRewardVideoAd>?) {}
 
             override fun onRewardVideoAdLoad(adList: List<KsRewardVideoAd>?) {
                 if (adList.isNullOrEmpty()) {
@@ -141,6 +143,7 @@ abstract class KsProviderReward : KsProviderNativeExpress() {
 
                     override fun onVideoSkipToEnd(p0: Long) {}
                     override fun onRewardStepVerify(taskType: Int, currentTaskStatus: Int) {}
+                    override fun onExtraRewardVerify(p0: Int) {}
 
                     override fun onVideoPlayEnd() {
                         callbackRewardVideoComplete(adProviderType, listener)
