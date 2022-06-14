@@ -31,7 +31,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'kssdk-ad-3.3.21-publishRelease-9745a91dc', ext: 'aar')
+//    embed(name: 'kssdk-ad-3.3.25-publishRelease-7e900809c', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api project(':core')
