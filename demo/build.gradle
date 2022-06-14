@@ -79,14 +79,14 @@ dependencies {
     implementation project(':baidu')
 
 //    //核心库（ 必要 ）
-//    implementation 'com.github.ifmvo.TogetherAd:core:5.2.3'
+//    implementation 'com.github.ifmvo.TogetherAd:core:5.2.4'
 //    //腾讯优量汇 （ 可选 ）
-//    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.3'
+//    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.4'
 //    //穿山甲 （ 可选 ）
-//    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.3'
+//    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.4'
 //    //快手联盟 （ 可选 ）
-//    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.3'
+//    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.4'
 //    //百度百青藤 （ 可选 ）
-//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.3'
+//    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.4'
 
 }
