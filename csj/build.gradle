@@ -32,7 +32,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-//    embed(name: 'open_ad_sdk_4.3.0.8', ext: 'aar')
+//    embed(name: 'open_ad_sdk_4.5.1.1', ext: 'aar')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
