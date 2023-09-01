@@ -5,8 +5,6 @@ import com.ifmvo.togetherad.core.TogetherAd
 import com.ifmvo.togetherad.core.listener.BaseListener
 import com.ifmvo.togetherad.core.utils.logi
 import com.ifmvo.togetherad.core.utils.logv
-import org.jetbrains.annotations.NotNull
-
 
 /*
  * Created by Matthew Chen on 2020-04-03.
@@ -22,7 +20,7 @@ abstract class BaseHelper {
      * 将传进来的 adProviderType 权重设置为 0，其他不变
      * 如果是不允许失败切换的时候，将所有广告提供商的权重都清空
      */
-    fun filterType(@NotNull ratioMap: LinkedHashMap<String, Int>, adProviderType: String): LinkedHashMap<String, Int> {
+    fun filterType(ratioMap: LinkedHashMap<String, Int>, adProviderType: String): LinkedHashMap<String, Int> {
         val newRatioMap = linkedMapOf<String, Int>()
         newRatioMap.putAll(ratioMap)
         newRatioMap[adProviderType] = 0

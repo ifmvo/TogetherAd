@@ -5,7 +5,6 @@ import com.ifmvo.togetherad.core.custom.native_.imageloader.DefaultImageLoader
 import com.ifmvo.togetherad.core.entity.AdProviderEntity
 import com.ifmvo.togetherad.core.listener.AllAdListener
 import com.ifmvo.togetherad.core.utils.logi
-import org.jetbrains.annotations.NotNull
 
 /**
  * Created by Matthew Chen on 2020-04-02.
@@ -31,7 +30,7 @@ object TogetherAd {
     /**
      * 添加广告提供商
      */
-    fun addProvider(@NotNull adProviderEntity: AdProviderEntity) {
+    fun addProvider(adProviderEntity: AdProviderEntity) {
         mProviders[adProviderEntity.providerType] = adProviderEntity
         "注册广告提供商：${adProviderEntity.providerType}".logi()
     }
@@ -49,7 +48,7 @@ object TogetherAd {
      * map.put(AdProviderType.CSJ, 1)
      * map.put(AdProviderType.BAIDU, 2)
      */
-    fun setPublicProviderRatio(@NotNull ratioMap: LinkedHashMap<String, Int>) {
+    fun setPublicProviderRatio(ratioMap: LinkedHashMap<String, Int>) {
         val ratio = StringBuilder()
         ratioMap.entries.forEach {
             ratio.append("${it.key}:${it.value}")
@@ -65,9 +64,7 @@ object TogetherAd {
      * 有自定义的就用自定义的，没有自定义就每个注册的广告商等比
      */
     fun getPublicProviderRatio(): LinkedHashMap<String, Int> {
-        return if (mRatioPublicMap.isNotEmpty()) {
-            mRatioPublicMap
-        } else {
+        return mRatioPublicMap.ifEmpty {
             val defaultMap = linkedMapOf<String, Int>()
             mProviders.entries.forEach {
                 defaultMap[it.key] = 0 //所有注册的广告商权重都是 0
@@ -85,7 +82,7 @@ object TogetherAd {
     /**
      * 提供了自定义图片加载框架的接口
      */
-    fun setCustomImageLoader(@NotNull imageLoader: AdImageLoader) {
+    fun setCustomImageLoader(imageLoader: AdImageLoader) {
         mImageLoader = imageLoader
     }
 

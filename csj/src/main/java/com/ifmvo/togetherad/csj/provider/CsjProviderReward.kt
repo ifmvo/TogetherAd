@@ -34,7 +34,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
             adSlotBuilder.setExpressViewAcceptedSize(500f, 500f)
         }
 
-        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String?) {
                 callbackRewardFailed(adProviderType, alias, listener, code, message)
                 mttRewardVideoAd = null
@@ -120,7 +120,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
 
     override fun showRewardAd(activity: Activity): Boolean {
         "过期时间：${mttRewardVideoAd?.expirationTimestamp}".logd(tag)
-        if (mttRewardVideoAd?.expirationTimestamp ?: 0 <= System.currentTimeMillis()) {
+        if ((mttRewardVideoAd?.expirationTimestamp ?: 0) <= System.currentTimeMillis()) {
             return false
         }
         mttRewardVideoAd?.showRewardVideoAd(activity, TTAdConstant.RitScenes.CUSTOMIZE_SCENES, "scenes_test")
@@ -147,7 +147,7 @@ abstract class CsjProviderReward : CsjProviderNativeExpress() {
             adSlotBuilder.setExpressViewAcceptedSize(500f, 500f)
         }
 
-        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadRewardVideoAd(adSlotBuilder.build(), object : TTAdNative.RewardVideoAdListener {
             override fun onError(code: Int, message: String?) {
                 callbackRewardFailed(adProviderType, alias, listener, code, message)
                 mttRewardVideoAd = null

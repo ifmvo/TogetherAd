@@ -11,6 +11,6 @@ import android.widget.ImageView
  */
 interface AdImageLoader {
 
-    fun loadImage(@NotNull context: Context, @NotNull imageView: ImageView, @NotNull imgUrl: String)
+    fun loadImage(context: Context, imageView: ImageView, imgUrl: String)
 
 }

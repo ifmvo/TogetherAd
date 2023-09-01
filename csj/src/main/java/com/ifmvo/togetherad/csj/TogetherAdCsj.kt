@@ -51,39 +51,39 @@ object TogetherAdCsj {
     var customController: TTCustomController? = null
 
     // 可选参数，异步初始化回调
-    var initCallback: TTAdSdk.InitCallback? = null
+    var initCallback: TTAdSdk.Callback? = null
 
     // 插件更新配置
     var pluginUpdateConfig = -1
 
     //全局使用的 TTAdManager
-    val mTTAdManager = TTAdSdk.getAdManager()
+//    val mTTAdManager: TTAdManager = TTAdSdk.getAdManager()
 
     /**
      * 简单初始化
      */
-    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String) {
+    fun init(context: Context, adProviderType: String, csjAdAppId: String, appName: String) {
         init(context, adProviderType, csjAdAppId, appName, null, null)
     }
 
     /**
      * 自定义Provider初始化
      */
-    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, providerClassPath: String? = null) {
+    fun init(context: Context, adProviderType: String, csjAdAppId: String, appName: String, providerClassPath: String? = null) {
         init(context, adProviderType, csjAdAppId, appName, null, providerClassPath)
     }
 
     /**
      * 广告位ID 初始化
      */
-    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null) {
+    fun init(context: Context, adProviderType: String, csjAdAppId: String, appName: String, csjIdMap: Map<String, String>? = null) {
         init(context, adProviderType, csjAdAppId, appName, csjIdMap, null)
     }
 
     /**
      * 自定义Provider + 广告位ID 一起初始化
      */
-    fun init(@NotNull context: Context, @NotNull adProviderType: String, @NotNull csjAdAppId: String, @NotNull appName: String, csjIdMap: Map<String, String>? = null, providerClassPath: String?) {
+    fun init(context: Context, adProviderType: String, csjAdAppId: String, appName: String, csjIdMap: Map<String, String>? = null, providerClassPath: String?) {
         TogetherAd.addProvider(AdProviderEntity(adProviderType, if (providerClassPath?.isEmpty() != false) CsjProvider::class.java.name else providerClassPath))
 
         csjIdMap?.let { idMapCsj.putAll(it) }
@@ -107,6 +107,8 @@ object TogetherAdCsj {
         }
         customController?.let { ttAdConfig.customController(it) }
         //初始化
-        TTAdSdk.init(context, ttAdConfig.build(), initCallback)
+        TTAdSdk.init(context, ttAdConfig.build())
+
+        TTAdSdk.start(initCallback)
     }
 }

@@ -6,27 +6,27 @@ import com.ifmvo.togetherad.core.TogetherAd
 /* 
  * Created by Matthew_Chen on 2018/12/24.
  */
-fun String.logv(tag: String? = "TogetherAd") {
+fun String.logv(tag: String? = "TogetherAdTag") {
     if (TogetherAd.printLogEnable)
         Log.v(tag, this)
 }
 
-fun String.logd(tag: String? = "TogetherAd") {
+fun String.logd(tag: String? = "TogetherAdTag") {
     if (TogetherAd.printLogEnable)
         Log.d(tag, this)
 }
 
-fun String.logi(tag: String? = "TogetherAd") {
+fun String.logi(tag: String? = "TogetherAdTag") {
     if (TogetherAd.printLogEnable)
         Log.i(tag, this)
 }
 
-fun String.logw(tag: String? = "TogetherAd") {
+fun String.logw(tag: String? = "TogetherAdTag") {
     if (TogetherAd.printLogEnable)
         Log.w(tag, this)
 }
 
-fun String.loge(tag: String? = "TogetherAd") {
+fun String.loge(tag: String? = "TogetherAdTag") {
     if (TogetherAd.printLogEnable)
         Log.e(tag, this)
 }

@@ -11,6 +11,8 @@ import com.ifmvo.togetherad.ks.TogetherAdKs
 
 /*
  * Created by Matthew Chen on 2020-04-16.
+ *
+ * Updated by Matthew Chen on 2023-09-01.
  */
 class App : ActLifecycleAppBase() {
 
@@ -155,10 +157,10 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
-            AdProviderType.GDT.type to 1,
+            AdProviderType.GDT.type to 0,
             AdProviderType.CSJ.type to 1,
-            AdProviderType.KS.type to 1,
-            AdProviderType.BAIDU.type to 1
+            AdProviderType.KS.type to 0,
+            AdProviderType.BAIDU.type to 0
         ))
 
         /**

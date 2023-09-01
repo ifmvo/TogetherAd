@@ -1,6 +1,7 @@
 package com.ifmvo.togetherad.csj.provider
 
 import com.bytedance.sdk.openadsdk.TTAdConstant
+import com.bytedance.sdk.openadsdk.TTAdLoadType
 import com.ifmvo.togetherad.core.custom.splashSkip.BaseSplashSkipView
 
 /**
@@ -18,8 +19,11 @@ open class CsjProvider : CsjProviderSplash() {
         //是否模板类型广告请求
         var isExpress = false
 
-        //超时时间
-        var maxFetchDelay = 4000
+        //推荐使用，用于标注此次的广告请求用途为预加载（当做缓存）还是实时加载，方便后续为开发者优化相关策略
+        var adLoadType = TTAdLoadType.LOAD
+
+        //超时时间 开屏广告加载超时时间建议大于3500ms，最大程度的保证广告的展示率可开屏体验,示例设置了3500ms
+        var maxFetchDelay = 3500
 
         //自定义按钮
         var customSkipView: BaseSplashSkipView? = null

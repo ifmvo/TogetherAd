@@ -26,7 +26,7 @@ abstract class CsjProviderBanner : BaseAdProvider() {
                 .setExpressViewAcceptedSize(CsjProvider.Banner.expressViewAcceptedSizeWidth, CsjProvider.Banner.expressViewAcceptedSizeHeight)
                 .setImageAcceptedSize(640, 320)//这个参数设置即可，不影响个性化模板广告的size
                 .build()
-        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadBannerExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(adList: MutableList<TTNativeExpressAd>?) {
                 if (adList.isNullOrEmpty()) {
                     callbackBannerFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")

@@ -8,7 +8,6 @@ import com.ifmvo.togetherad.core.config.AdProviderLoader
 import com.ifmvo.togetherad.core.listener.SplashListener
 import com.ifmvo.togetherad.core.utils.DispatchUtil
 import com.ifmvo.togetherad.core.utils.loge
-import org.jetbrains.annotations.NotNull
 
 /**
  * 开屏广告
@@ -18,16 +17,16 @@ import org.jetbrains.annotations.NotNull
 object AdHelperSplash : BaseHelper() {
 
     //为了照顾 Java 调用的同学
-    fun show(@NotNull activity: Activity, @NotNull alias: String, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(activity: Activity, alias: String, container: ViewGroup, listener: SplashListener? = null) {
         show(activity, alias, null, container, listener)
     }
 
-    fun show(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    fun show(activity: Activity, alias: String, ratioMap: LinkedHashMap<String, Int>? = null, container: ViewGroup, listener: SplashListener? = null) {
         startTimer(listener)
         realShow(activity, alias, ratioMap, container, listener)
     }
 
-    private fun realShow(@NotNull activity: Activity, @NotNull alias: String, ratioMap: LinkedHashMap<String, Int>? = null, @NotNull container: ViewGroup, listener: SplashListener? = null) {
+    private fun realShow(activity: Activity, alias: String, ratioMap: LinkedHashMap<String, Int>? = null, container: ViewGroup, listener: SplashListener? = null) {
         val currentRatioMap = if (ratioMap?.isEmpty() != false) TogetherAd.getPublicProviderRatio() else ratioMap
 
         val adProviderType = DispatchUtil.getAdProvider(alias, currentRatioMap)

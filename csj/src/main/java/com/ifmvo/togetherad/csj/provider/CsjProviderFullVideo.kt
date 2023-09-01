@@ -3,6 +3,7 @@ package com.ifmvo.togetherad.csj.provider
 import android.app.Activity
 import com.bytedance.sdk.openadsdk.AdSlot
 import com.bytedance.sdk.openadsdk.TTAdNative
+import com.bytedance.sdk.openadsdk.TTAdSdk
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd
 import com.ifmvo.togetherad.core.listener.FullVideoListener
 import com.ifmvo.togetherad.core.utils.logd
@@ -28,7 +29,7 @@ abstract class CsjProviderFullVideo : CsjProviderBanner() {
         adSlotBuilder.setSupportDeepLink(CsjProvider.FullVideo.supportDeepLink)
         adSlotBuilder.setOrientation(CsjProvider.FullVideo.orientation)//必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL
 
-        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadFullScreenVideoAd(adSlotBuilder.build(), object : TTAdNative.FullScreenVideoAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadFullScreenVideoAd(adSlotBuilder.build(), object : TTAdNative.FullScreenVideoAdListener {
             override fun onFullScreenVideoAdLoad(fullScreenVideoAd: TTFullScreenVideoAd?) {
                 mFllScreenVideoAd = fullScreenVideoAd
 

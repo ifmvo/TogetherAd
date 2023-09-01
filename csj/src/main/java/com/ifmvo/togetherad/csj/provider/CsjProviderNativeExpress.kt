@@ -2,10 +2,7 @@ package com.ifmvo.togetherad.csj.provider
 
 import android.app.Activity
 import android.view.View
-import com.bytedance.sdk.openadsdk.AdSlot
-import com.bytedance.sdk.openadsdk.TTAdDislike
-import com.bytedance.sdk.openadsdk.TTAdNative
-import com.bytedance.sdk.openadsdk.TTNativeExpressAd
+import com.bytedance.sdk.openadsdk.*
 import com.ifmvo.togetherad.core.listener.NativeExpressListener
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 
@@ -26,7 +23,7 @@ abstract class CsjProviderNativeExpress : CsjProviderNative() {
                 .setExpressViewAcceptedSize(CsjProvider.NativeExpress.expressViewAcceptedSizeWidth, CsjProvider.NativeExpress.expressViewAcceptedSizeHeight)//期望模板广告view的size,单位dp
                 .build()
 
-        TogetherAdCsj.mTTAdManager.createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
+        TTAdSdk.getAdManager().createAdNative(activity).loadNativeExpressAd(adSlot, object : TTAdNative.NativeExpressAdListener {
             override fun onNativeExpressAdLoad(ads: MutableList<TTNativeExpressAd>?) {
                 if (ads.isNullOrEmpty()) {
                     callbackNativeExpressFailed(adProviderType, alias, listener, null, "请求成功，但是返回的list为空")
