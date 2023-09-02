@@ -13,7 +13,7 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 
 ## 目前支持的广告提供商
 
-字节穿山甲、腾讯优量汇、快手联盟、百度百青藤。
+[芒果移动广告](https://www.mangolm.com/?ch=1)、字节穿山甲、腾讯优量汇、快手联盟、百度百青藤。
 
 如果这几家广告提供商满足不了你的需求，还需要其他家广告提供商，可参考[扩展文档](doc/extend.md)。
 
@@ -34,7 +34,7 @@ TogetherAd 也提供了很多自定义功能，比如：按权重分发广告、
 ```
 MIT License
 
-Copyright (c) 2022 陈铭卓
+Copyright (c) 2023 陈铭卓
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
