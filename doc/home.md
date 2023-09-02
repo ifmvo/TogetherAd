@@ -19,24 +19,27 @@ allprojects {
 dependencies {
 
     //核心库（ 必要 ）
-    implementation 'com.github.ifmvo.TogetherAd:core:5.2.4'
+    implementation 'com.github.ifmvo.TogetherAd:core:5.2.5'
+
+    //芒果 （ 可选 ）
+    implementation 'com.github.ifmvo.TogetherAd:mg:5.2.5'
 
     //腾讯优量汇 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.4'
+    implementation 'com.github.ifmvo.TogetherAd:gdt:5.2.5'
 
     //穿山甲 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.4'
+    implementation 'com.github.ifmvo.TogetherAd:csj:5.2.5'
 
     //快手联盟 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.4'
+    implementation 'com.github.ifmvo.TogetherAd:ks:5.2.5'
 
     //百度百青藤 （ 可选 ）
-    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.4'
+    implementation 'com.github.ifmvo.TogetherAd:baidu:5.2.5'
 
 }
 ```
 
-> 对应版本：穿山甲5.1.0.2；优量汇4.510.1380；快手3.3.25；百度5.91
+> 对应版本：[芒果1.0.10](https://www.mangolm.com/?ch=1)；穿山甲5.6.0.2；优量汇4.510.1380；快手3.3.25；百度5.91
 
 ### 2. 混淆 proguard-rules.pro
 
@@ -57,6 +60,9 @@ dependencies {
  * 不需要的就删除，只保留需要的即可
  */
 enum class AdProviderType(val type: String) {
+
+    //芒果移动广告
+    MG("mg"),
 
     //腾讯优量汇 也叫广点通
     GDT("gdt"),

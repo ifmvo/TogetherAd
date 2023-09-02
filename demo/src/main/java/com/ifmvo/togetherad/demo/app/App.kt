@@ -3,11 +3,16 @@ package com.ifmvo.togetherad.demo.app
 import com.duoyou.task.openapi.DyAdApi
 import com.ifmvo.togetherad.baidu.TogetherAdBaidu
 import com.ifmvo.togetherad.core.TogetherAd
+import com.ifmvo.togetherad.core.utils.logd
+import com.ifmvo.togetherad.core.utils.loge
 import com.ifmvo.togetherad.csj.TogetherAdCsj
 import com.ifmvo.togetherad.demo.BuildConfig
 import com.ifmvo.togetherad.demo.R
 import com.ifmvo.togetherad.gdt.TogetherAdGdt
 import com.ifmvo.togetherad.ks.TogetherAdKs
+import com.ifmvo.togetherad.mg.TogetherAdMg
+import com.mango.wakeupsdk.open.error.ErrorMessage
+import com.mango.wakeupsdk.open.listener.OnInitListener
 
 /*
  * Created by Matthew Chen on 2020-04-16.
@@ -76,6 +81,22 @@ class App : ActLifecycleAppBase() {
 //        //可参照 DownloadConfirmHelper 自定义下载确认的回调
 //        TogetherAdGdt.downloadConfirmListener = DownloadConfirmHelper.DOWNLOAD_CONFIRM_LISTENER
 
+
+        /**
+         * 自定义芒果的初始化配置
+         */
+        TogetherAdMg.onInitListener = object : OnInitListener {
+            override fun onSuccess() {
+                "芒果初始化成功".logd()
+            }
+
+            override fun onFail(message: ErrorMessage?) {
+                "芒果初始化失败 ${message?.code} ${message?.message}".loge()
+            }
+        }
+
+        //初始化芒果
+        TogetherAdMg.init(context = this, adProviderType = AdProviderType.MG.type, mgAdAppId = "SGTSWGWKJA", mgAdAppKey = "efgQRSTZhijKopqr2345")
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通
@@ -89,6 +110,22 @@ class App : ActLifecycleAppBase() {
          * 配置所有广告位ID
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
+
+        TogetherAdMg.idMapMg = mutableMapOf(
+            TogetherAdAlias.AD_SPLASH to "10402",
+            TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "",//不支持
+            TogetherAdAlias.AD_NATIVE_EXPRESS_RECYCLERVIEW to "",//不支持
+            TogetherAdAlias.AD_NATIVE_SIMPLE to "",
+            TogetherAdAlias.AD_NATIVE_RECYCLERVIEW to "",
+            TogetherAdAlias.AD_BANNER to "10404",
+            TogetherAdAlias.AD_INTER to "10403",
+            TogetherAdAlias.AD_REWARD to "10401",
+            TogetherAdAlias.AD_FULL_VIDEO to "",
+            TogetherAdAlias.AD_HYBRID_SPLASH to "",//id是原生类型
+            TogetherAdAlias.AD_HYBRID_EXPRESS to "",//不支持
+            TogetherAdAlias.AD_HYBRID_VERTICAL_PREMOVIE to ""//不支持
+        )
+
         TogetherAdCsj.idMapCsj = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "801121648",
             TogetherAdAlias.AD_NATIVE_EXPRESS_SIMPLE to "901121134",//不支持
@@ -157,8 +194,9 @@ class App : ActLifecycleAppBase() {
          * 也可以在请求广告前设置，实时生效
          */
         TogetherAd.setPublicProviderRatio(linkedMapOf(
+            AdProviderType.MG.type to 1,
             AdProviderType.GDT.type to 0,
-            AdProviderType.CSJ.type to 1,
+            AdProviderType.CSJ.type to 0,
             AdProviderType.KS.type to 0,
             AdProviderType.BAIDU.type to 0
         ))
@@ -186,7 +224,7 @@ class App : ActLifecycleAppBase() {
          * 是否失败切换 （ 当请求广告失败时，是否允许切换到其他广告提供商再次请求 ）
          * 全局实时生效
          */
-//        TogetherAd.failedSwitchEnable = true
+        TogetherAd.failedSwitchEnable = false
 
         /**
          * 最大拉取延时时间 ms（ 请求广告的超时时间 ）

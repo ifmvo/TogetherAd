@@ -59,7 +59,8 @@ class AdHelperReward(
 
         if (adProvider == null) {
             "$adProviderType ${mActivity.get()?.getString(R.string.no_init)}".loge()
-            reload(filterType(ratioMap, adProviderType))
+            val newRatioMap = filterType(ratioMap, adProviderType)
+            reload(newRatioMap)
             return
         }
 

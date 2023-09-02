@@ -6,6 +6,9 @@ package com.ifmvo.togetherad.demo.app
  */
 enum class AdProviderType(val type: String) {
 
+    //芒果 https://www.mangolm.com/?ch=1
+    MG("mg"),
+
     //腾讯优量汇 也叫广点通
     GDT("gdt"),
 
