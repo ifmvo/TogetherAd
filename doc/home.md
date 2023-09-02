@@ -116,6 +116,8 @@ class App : Application() {
         /**
          * 尽量放在 Application 的 onCreate 方法中初始化，否则可能会影响填充率
          */
+        //初始化芒果
+        TogetherAdMg.init(context = this, adProviderType = AdProviderType.MG.type, mgAdAppId = "SGTSWGWKJA", mgAdAppKey = "efgQRSTZhijKopqr2345")
         //初始化穿山甲
         TogetherAdCsj.init(context = this, adProviderType = AdProviderType.CSJ.type, csjAdAppId = "5001121", appName = this.getString(R.string.app_name))
         //初始化广点通
@@ -129,6 +131,12 @@ class App : Application() {
          * 配置所有广告位ID
          * 如果你的ID是服务器下发，也可以把配置ID放在其他位置，但是必须要在请求广告之前完成配置，否则无法加载广告
          */
+        TogetherAdMg.idMapMg = mutableMapOf(
+            TogetherAdAlias.AD_SPLASH to "10402",
+            TogetherAdAlias.AD_REWARD to "10401"
+            //......其他更多
+        )
+
         TogetherAdCsj.idMapCsj = mutableMapOf(
             TogetherAdAlias.AD_SPLASH to "801121648",
             TogetherAdAlias.AD_REWARD to "901121365"
